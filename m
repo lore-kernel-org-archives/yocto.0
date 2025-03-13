@@ -1,174 +1,79 @@
-Return-Path: <kontakt@daniel-kampert.de>
+Return-Path: <alex.kanavin@gmail.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 70EA6C28B28
-	for <webhook@archiver.kernel.org>; Thu, 13 Mar 2025 09:16:39 +0000 (UTC)
-Received: from mo4-p00-ob.smtp.rzone.de (mo4-p00-ob.smtp.rzone.de [81.169.146.163])
- by mx.groups.io with SMTP id smtpd.web10.10519.1741857391665326734
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 7E8C0C282DE
+	for <webhook@archiver.kernel.org>; Thu, 13 Mar 2025 11:15:50 +0000 (UTC)
+Received: from mail-qv1-f43.google.com (mail-qv1-f43.google.com [209.85.219.43])
+ by mx.groups.io with SMTP id smtpd.web11.12064.1741864544459530478
  for <yocto@lists.yoctoproject.org>;
- Thu, 13 Mar 2025 02:16:32 -0700
+ Thu, 13 Mar 2025 04:15:44 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@daniel-kampert.de header.s=strato-dkim-0002 header.b=Qg9PztIa;
- dkim=pass header.i=@daniel-kampert.de header.s=strato-dkim-0003 header.b=vqAXFm5L;
- spf=none, err=permanent DNS error (domain: daniel-kampert.de, ip: 81.169.146.163, mailfrom: kontakt@daniel-kampert.de)
-ARC-Seal: i=1; a=rsa-sha256; t=1741857389; cv=none;
-    d=strato.com; s=strato-dkim-0002;
-    b=DecqBO+10HoOKzmvpGKVsKMpK4DhAaxmUOz7G8glpgMGixEpapRIeWL+ycPgD3kij0
-    q4uBn42Hsq+x/GK2eMTaTeslWYgSRa09gbARnh+keuy3dsKufhGvIT0HdxnhfvjWw99h
-    Jizi7Bm4eoWLWzjTB2o3nyotPqFbQY9fEu7sp4rGGWb0Mllb1s75GAtyvYqjNJw+iyJ4
-    +XIxUBSvOWLB6jeb1G5/BGq9g7YxCaY1exKrbBOUtKWBAbVN+XG4wW1iodMVJJiZSlgw
-    zG6J2nTzSXB1W9pZflWwrYMJZ0Sn+ZHEU0tA9nZhI1REMzJ8SM7AYKJNoeNwBDXNr4rc
-    v40A==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; t=1741857389;
-    s=strato-dkim-0002; d=strato.com;
-    h=Subject:References:In-Reply-To:Message-ID:To:From:Date:Cc:Date:From:
-    Subject:Sender;
-    bh=7PZ33pNaRBcHAhoReZ5xF3I5gyvX8dH4FmEmlRx8QN8=;
-    b=d9ou5mC3WRn15y4dswVmKz5nGCR+raDKUEqlqEe15ZowC5qQjnVUejPdncCHx6ZbO1
-    ZfNmSK5BSAEXQrsXKy7ekBB/ZIr7PytC22rPm8UioI5hDE23rUDTsWSA8anSV7E7Gjyp
-    Zz7cCEPpT37R9VPz3JvgRSnf0OcZqREfNRpMtHqzm2HINwaXIokv1qii1VotluP1ydyo
-    nevYbTVNJqqeOf8CJyOO+fDIfPYguwEa8WycxYT1xwe6MO4/Upldd0ff6NRi00IFTG9X
-    /35xUtIjobW9UuuKB9f6vbXqnz6f4yWgEBSgU0VjUMsYf9TkWe2pUm78BJto/dMjD2W4
-    0OCQ==
-ARC-Authentication-Results: i=1; strato.com;
-    arc=none;
-    dkim=none
-X-RZG-CLASS-ID: mo00
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; t=1741857389;
-    s=strato-dkim-0002; d=daniel-kampert.de;
-    h=Subject:References:In-Reply-To:Message-ID:To:From:Date:Cc:Date:From:
-    Subject:Sender;
-    bh=7PZ33pNaRBcHAhoReZ5xF3I5gyvX8dH4FmEmlRx8QN8=;
-    b=Qg9PztIa8EVmuD/j4ONNyQ9vddsoowVHUMbAaCN0f+OUf8/KKxbQJGluqkOie34YkH
-    VVlnjrd0Zbx56hef3kIs3V6FKuyAsrt4xAyC8xQ3Q9KuvF5643Tp/TLLxJLFhAO9JGlp
-    52f1fsQU1cfcWBlOID/iWzf8MV1LT4nMKafo+gjXGnnJTkpGiICkGAg0inC+hv395FG8
-    wxMm8v2vFm8wB6LSHVMBDgGp3UxZ6I+XjtJ285MU/yxkxvYBcRl0JgR4ObjTHXfCSrya
-    D4OGmywpQnZmZR4ehtepXlucQmunbMHHD/PNyF1B9N6nhF7a+4220GFcWaYS9eDb1k0w
-    Cq1A==
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; t=1741857389;
-    s=strato-dkim-0003; d=daniel-kampert.de;
-    h=Subject:References:In-Reply-To:Message-ID:To:From:Date:Cc:Date:From:
-    Subject:Sender;
-    bh=7PZ33pNaRBcHAhoReZ5xF3I5gyvX8dH4FmEmlRx8QN8=;
-    b=vqAXFm5LueG6y1pGMdIEp1ufUYFc8QMZhxjd1uhIOXgxa6T33zhqnMfL/0qbV9DShH
-    keCRXO1surQ6SlGeHNCA==
-X-RZG-AUTH: ":J2MKYUGjb98fESEFCJFViw9Avy7eC0lbL9IJtUAlr//iX6qLOAGQ/pwD7T1oMG+TLVuVbxkCQk4="
-Received: from ox-live-app105.back.ox.d0m.de
-    by smtp-ox.front (RZmta 51.3.0 AUTH)
-    with ESMTPSA id j1bda812D9GTcs8
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (curve X9_62_prime256v1 with 256 ECDH bits, eq. 3072 bits RSA))
-	(Client did not present a certificate);
-    Thu, 13 Mar 2025 10:16:29 +0100 (CET)
-Date: Thu, 13 Mar 2025 10:16:29 +0100 (CET)
-From: Daniel Kampert <kontakt@daniel-kampert.de>
-To: yocto@lists.yoctoproject.org, skandigraun@gmail.com,
-	"Gyorgy Sarvari via lists.yoctoproject.org"
- <skandigraun=gmail.com@lists.yoctoproject.org>
-Message-ID: <1504675712.5312442.1741857389278@webmail.strato.de>
-In-Reply-To: <cb9c03cc-949d-468e-8a6f-d1f6f593537e@gmail.com>
-References: <78350915.5121127.1741794175287@webmail.strato.de>
- <cb9c03cc-949d-468e-8a6f-d1f6f593537e@gmail.com>
-Subject: Re: [yocto] Copy file from ZIP archive to image
+ dkim=pass header.i=@gmail.com header.s=20230601 header.b=EzLTlIFR;
+ spf=pass (domain: gmail.com, ip: 209.85.219.43, mailfrom: alex.kanavin@gmail.com)
+Received: by mail-qv1-f43.google.com with SMTP id 6a1803df08f44-6e8f254b875so8132906d6.1
+        for <yocto@lists.yoctoproject.org>; Thu, 13 Mar 2025 04:15:44 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1741864543; x=1742469343; darn=lists.yoctoproject.org;
+        h=to:subject:message-id:date:from:in-reply-to:references:mime-version
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=6NTdtWOiZQB2VXV/v7p5/nvoHFEjR5yqY+qGEbbRk2Q=;
+        b=EzLTlIFRQTsb4MuNbEaV5Wr1ffcalernbLSZhbpEpXr+uuS4rhv+CHKeqUG5XihMYd
+         3JKhjqw/0ICdC9SAzQ6Q+0joRrABFaM0pY57hbjMdUuuHU4GpJRJOsEjR4+QwLX72rtV
+         0q58G9B6bYnXv5OWz80LsILA1cHse/4K3rklW/C/ss+vXASRMvRDRsCnfsHjO8HTpd77
+         2nh0HzHClCfxjeyoGWFpMGByNdKHT1JgZRzhf2oXYTBVGySTNxPGwrZ8rcyFh0DjF8eT
+         Gtxu20ktbX8jVnMT7gDHukmHMKfQ0dDPNCsMAfFpWPiw17el5uwqx29sv2ihOC8vd4WN
+         ml5g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1741864543; x=1742469343;
+        h=to:subject:message-id:date:from:in-reply-to:references:mime-version
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=6NTdtWOiZQB2VXV/v7p5/nvoHFEjR5yqY+qGEbbRk2Q=;
+        b=IIGGQ+lY6lFBIsPdOJpE/fjYWtMPYC+zMwcK+vUZSWcPJsG1K7BiqWJpLEhCcOu84z
+         dcQVQk65WVINugss+jTOkeHd6vqEj2HD9Oc18LrSyiVzKL6y9igScglIb4wp2HQDJCI9
+         pmnrYWu6Vp9rDt/qW/vAAM3mGY7yB35zrzOFgpFJiz26VF7LuRn7xkpLYelvUp6q/5Ma
+         AXtg9nF1z4vB3gJ+0EJwH+LvrmyV8HrJowjhG4jYEyDYCkYTa379NVieFGoJ9N5X2yku
+         CuN+skYyXQzYyqCOgVkfVHdeBmyL4WbgGIZm02KqOpzgX1F8ibP6p5Gc2oxXMRuVGCNp
+         8o7Q==
+X-Gm-Message-State: AOJu0YwPueueD5fu6q+ERhsMzbR+GUDWceImgJS5UPF4kR2XBgGafITe
+	KTZunWF6BxmOruLTZwGe4ZVsqJnd3GQsBzjT9nHFN5sZLwxwILO1slGGKSpAMWv8MZjdPiYCO9V
+	17W+iEfdqea6ZAg5RYscK49k2xSm6LtNd
+X-Gm-Gg: ASbGncsX/F70f8R53FEyTtS+iXeLVpg6B3U0hzFRtTgpwXudGb8+ilBny0XiFA2p3o0
+	UFic60tfAm36Y6IrWAYsR7+OCJkB2b+8o3PKaBB49gNxZ9hu/VpgGqBHvcC+YhZ94ilOVhAEPqv
+	lRHPUWjXgHSZTss7c4y/IpOjXmlqGPWQMAVxs=
+X-Google-Smtp-Source: AGHT+IH6rt94ICX9nErQ6WGAPpiBs3bNt4+U9AZN/cm5dIZE8weEj8HSeHCEgFQ+r4EKQMxhrKaduW1ATEvVjP4GQEU=
+X-Received: by 2002:a0c:e405:0:b0:6ea:d046:bcc9 with SMTP id
+ 6a1803df08f44-6ead046be00mr71612386d6.40.1741864543393; Thu, 13 Mar 2025
+ 04:15:43 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
-X-Priority: 3
-Importance: Normal
-X-Mailer: Open-Xchange Mailer v7.10.6-Rev73
-X-Originating-Client: open-xchange-appsuite
+References: <093b7c87-b979-4f89-981f-cbc4e49e27db@berginkonsult.se>
+In-Reply-To: <093b7c87-b979-4f89-981f-cbc4e49e27db@berginkonsult.se>
+From: Alexander Kanavin <alex.kanavin@gmail.com>
+Date: Thu, 13 Mar 2025 12:15:32 +0100
+X-Gm-Features: AQ5f1JqnderuHRP1owT0USw8pTelQz7Z9ePSTJ3y2z0ssvMVtKhRg0XBeY5uGLw
+Message-ID: <CANNYZj9pn1jOhtS-uQJ0wr6OuZYWkd34ji2kg4+1YEYPskm9fg@mail.gmail.com>
+Subject: Re: [yocto] Workflow with Extensible SDK and rust project
+To: yocto@lists.yoctoproject.org, peter@berginkonsult.se
+Content-Type: text/plain; charset="UTF-8"
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Thu, 13 Mar 2025 09:16:39 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/64948
+ <yocto@lists.yoctoproject.org>; Thu, 13 Mar 2025 11:15:50 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/64949
 
-Hi Gyorgy,
+On Wed, 12 Mar 2025 at 22:01, Peter Bergin via lists.yoctoproject.org
+<peter=berginkonsult.se@lists.yoctoproject.org> wrote:
+> But how do I proceed to upgrade my recipe and the '<name>-crates.inc'
+> file? Is there any tooling or way of working around this yet or is it to
+> be developed?
 
-thanks for the answer. The issue is gone after unzipping and adding the fil=
-es directly. This solves the issue.
+I am basically encouraging people to move away from esdk bundles into
+'direct' esdk workflows where you set up a sdk environment from a
+bitbake environment:
 
-> Gyorgy Sarvari via lists.yoctoproject.org <skandigraun=3Dgmail.com@lists.=
-yoctoproject.org> hat am 13.03.2025 09:21 CET geschrieben:
->=20
-> =20
-> I have 2 thoughts which may or may not be worthless:
->=20
-> 1. Are there any non-US-ASCII characters in any of the filenames in your
-> zip archive? If yes, can you change them, and try again?
->=20
-> 2. If #1leads nowhere, try to add some print() statements to
-> meta/lib/oe/package.py, just before the failing subprocess call. Try to
-> capture the executed command and its output, and see if it sheds some
-> light at the issue.
->=20
-> On 12.03.25 16:42, Daniel Kampert via lists.yoctoproject.org wrote:
-> > I have a ZIP archive with some media, html and JSON files and I want
-> > to copy them with this recipe
-> > =C2=A0
-> > SUMMARY =3D "Frontend application"
-> > LICENSE =3D "Proprietary"
-> > LIC_FILES_CHKSUM =3D " \
-> > file://${WORKDIR}/LICENSE;md5=3D03fe683ef28b9ddfe7f658a0f4b3b80e \
-> > "
-> > SRC_URI =3D " \
-> > file://LICENSE \
-> > file://frontend.zip \
-> > "
-> > do_install () {
-> > =C2=A0 install -d ${D}/opt/app/frontend
-> > =C2=A0 cp -r ${WORKDIR}/build/* ${D}/opt/app/frontend
-> > }
-> > FILES_${PN} +=3D "/opt/app/frontend/*"
-> > =C2=A0
-> > But I get these errors
-> >
-> > ERROR: frontend-1.0-r0 do_package: Fatal errors occurred in subprocesse=
-s:
-> > 'utf-8' codec can't decode byte 0x9a in position 619: invalid start
-> > byte: Traceback (most recent call last):
-> > File
-> > "/BSP5/os/build/../layers/openembedded-core/meta/lib/oe/utils.py",
-> > line 280, in run
-> > ret =3D self._target(*self._args, **self._kwargs)
-> > File
-> > "/BSP5/os/build/../layers/openembedded-core/meta/lib/oe/package.py",
-> > line 251, in filedeprunner
-> > output =3D subprocess.check_output(shlex.split(rpmdeps) + pkgfiles,
-> > stderr=3Dsubprocess.STDOUT).decode("utf-8")
-> > UnicodeDecodeError: 'utf-8' codec can't decode byte 0x9a in position
-> > 619: invalid start byte
-> > =C2=A0
-> > How can I fix them?
-> > =C2=A0
-> > Mit freundlichen Gr=C3=BC=C3=9Fen / With kind regards
-> > =C2=A0
-> > Ing. Daniel Kampert, M. Sc.
-> > Embedded Systems Solutions
-> > Address: Hauptstr. 36 | 91469 Hagenb=C3=BCchach | Deutschland
-> > Phone: +49 (0)174 6932561
-> > E-Mail: kontakt@daniel-kampert.de
-> > Web:=C2=A0www.daniel-kampert.de <https://www.daniel-kampert.de>
-> >
-> >=20
-> >
->=20
-> -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
-> Links: You receive all messages sent to this group.
-> View/Reply Online (#64947): https://lists.yoctoproject.org/g/yocto/messag=
-e/64947
-> Mute This Topic: https://lists.yoctoproject.org/mt/111662118/9229641
-> Group Owner: yocto+owner@lists.yoctoproject.org
-> Unsubscribe: https://lists.yoctoproject.org/g/yocto/unsub [kontakt@daniel=
--kampert.de]
-> -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
+https://docs.yoctoproject.org/sdk-manual/extensible.html#installing-the-extensible-sdk
 
-Mit freundlichen Gr=C3=BC=C3=9Fen / With kind regards
+In such a setup you can run bitbake directly whenever needed.
 
-Ing. Daniel Kampert, M. Sc.=20
-Embedded Systems Solutions
-Address: Hauptstr. 36 | 91469 Hagenb=C3=BCchach | Deutschland=20
-Phone: +49 (0)174 6932561=20
-E-Mail: kontakt@daniel-kampert.de=20
-Web:=C2=A0www.daniel-kampert.de (https://www.daniel-kampert.de)
+Alex
 
