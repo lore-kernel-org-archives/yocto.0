@@ -1,213 +1,120 @@
-Return-Path: <kontakt@daniel-kampert.de>
+Return-Path: <alex.kanavin@gmail.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id B7584C35FF3
-	for <webhook@archiver.kernel.org>; Mon, 17 Mar 2025 09:24:48 +0000 (UTC)
-Received: from mo4-p00-ob.smtp.rzone.de (mo4-p00-ob.smtp.rzone.de [81.169.146.216])
- by mx.groups.io with SMTP id smtpd.web10.48073.1742203479471594298
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 146CFC282EC
+	for <webhook@archiver.kernel.org>; Mon, 17 Mar 2025 10:24:49 +0000 (UTC)
+Received: from mail-qv1-f47.google.com (mail-qv1-f47.google.com [209.85.219.47])
+ by mx.groups.io with SMTP id smtpd.web10.49017.1742207088009601586
  for <yocto@lists.yoctoproject.org>;
- Mon, 17 Mar 2025 02:24:39 -0700
+ Mon, 17 Mar 2025 03:24:48 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@daniel-kampert.de header.s=strato-dkim-0002 header.b=LWZMcGdC;
- dkim=pass header.i=@daniel-kampert.de header.s=strato-dkim-0003 header.b=L3EZ1hDw;
- spf=none, err=permanent DNS error (domain: daniel-kampert.de, ip: 81.169.146.216, mailfrom: kontakt@daniel-kampert.de)
-ARC-Seal: i=1; a=rsa-sha256; t=1742203477; cv=none;
-    d=strato.com; s=strato-dkim-0002;
-    b=LtCztV2VjDamiYpaVmiWJmVg41IP02Tz9RZfauuL7d124IaOBf9MGtTWXAzafgaU/e
-    1oIjWIQ7EXiAumTO/rPu4z80vlh50RwNwKsDs+Q8OgwkKZjFFwiRQBeZsoY2XNej8X2S
-    dId5yy7q1JN35uwgy7G2rOCrQmf2Z6OB6aawk0Jp+4+bR22lyaK9s99pxCusqOBMKB0C
-    8KBcUfjuR6uYFNAzybfueNgOGYOhPyXskbMjls9gVdyH9MMDttCLfo4jwXYexvI8RuUw
-    CIUgUF8luJaglFEa2zt48IsmkEqzGaDy/sNmdmqN/AHgD6Ir1FnCM0UE7GmFaVCJMPeg
-    ntJA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; t=1742203477;
-    s=strato-dkim-0002; d=strato.com;
-    h=Subject:Message-ID:To:From:Date:Cc:Date:From:Subject:Sender;
-    bh=osnhFOnp68ZO0YKSSQD1zdNwPFJK2G7dU6jElOSXm6o=;
-    b=TsykguQveYJC1PKdxS+lQl0i57ify4Q7+N6xlu4KozjHf4+wfRWATPh2ZiI5DMi6/B
-    5OTFSCzA/mSZBgkF6HUydkJgnhSITkbSUqLSmAuI5rCqu1JNnsM4AECpAIZexOqZ7Ydp
-    mIuy1FjQ8gEQdN6zirtYOJbnZ9PrOK0/XKF71bIUUM0mgxBm5cbK+XD+w70pplLzJbDF
-    GccU0+TQAddF46zella6RAnsSfqyyM0qWBmEee0jU50YHSM+69KN7P/F+QhN1RmTN7V1
-    gAK/fvFHOVcjR0jTxtPw6qsRf2CD6kQivnu3vWoaJryBawB5Bsy68YxYUkZJ0YQiiL9h
-    pg3Q==
-ARC-Authentication-Results: i=1; strato.com;
-    arc=none;
-    dkim=none
-X-RZG-CLASS-ID: mo00
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; t=1742203477;
-    s=strato-dkim-0002; d=daniel-kampert.de;
-    h=Subject:Message-ID:To:From:Date:Cc:Date:From:Subject:Sender;
-    bh=osnhFOnp68ZO0YKSSQD1zdNwPFJK2G7dU6jElOSXm6o=;
-    b=LWZMcGdCjvIFApp3ypYFs8MR/43bkFC2LsiIJ5KFRBIipMS5elk4X2wqVJ6Z6OEXP5
-    UItT2nvG0PZXwRaqkX+3tZ+R5yehoVpyKPoAFzsClZqD3g6zk12dEBIIXzJViicD0Jl3
-    K+/UGSw05deJukhPVWZjDA2NY09VxohzzJhSCgiloU1bGGAXDG9QEVfqcfBXYQrNoplP
-    Q2fMkVEmOSe5QK/MdKUu3sjVMuQsLJxsPrF2bIHqvlLmKle1TU1VGpbdK0nsYNOpiKhZ
-    2Ded2t31krOOPn/DYmi8XFRoBabmmS+P0jTHYScJ0a0uWOzB871iATzTRZtN0MX4dVRk
-    LcEg==
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; t=1742203477;
-    s=strato-dkim-0003; d=daniel-kampert.de;
-    h=Subject:Message-ID:To:From:Date:Cc:Date:From:Subject:Sender;
-    bh=osnhFOnp68ZO0YKSSQD1zdNwPFJK2G7dU6jElOSXm6o=;
-    b=L3EZ1hDwxUPks92Ny80yEJiPywJsgzcRXyWqHoRjTZKbTB4cm6udFkMZfk5a9OVVft
-    XYNIdlG/my7mZ7yEC3Dw==
-X-RZG-AUTH: ":J2MKYUGjb98fESEFCJFViw9Avy7eC0lbL9IJtUAlr//iX6qLOAGQ/pwD7TVoM22VIJQXcvOsjy38"
-Received: from ox-live-app204.back.ox.d0m.de
-    by smtp-ox.front (RZmta 51.3.0 AUTH)
-    with ESMTPSA id j1bda812H9ObptU
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (curve X9_62_prime256v1 with 256 ECDH bits, eq. 3072 bits RSA))
-	(Client did not present a certificate)
-    for <yocto@lists.yoctoproject.org>;
-    Mon, 17 Mar 2025 10:24:37 +0100 (CET)
-Date: Mon, 17 Mar 2025 10:24:37 +0100 (CET)
-From: Daniel Kampert <kontakt@daniel-kampert.de>
-To: "yocto@lists.yoctoproject.org" <yocto@lists.yoctoproject.org>
-Message-ID: <852477278.5779554.1742203477554@webmail.strato.de>
-Subject: Migrating npm installation script into Yocto BSP
+ dkim=pass header.i=@gmail.com header.s=20230601 header.b=cx68zI5G;
+ spf=pass (domain: gmail.com, ip: 209.85.219.47, mailfrom: alex.kanavin@gmail.com)
+Received: by mail-qv1-f47.google.com with SMTP id 6a1803df08f44-6eb16dfa988so2285936d6.2
+        for <yocto@lists.yoctoproject.org>; Mon, 17 Mar 2025 03:24:47 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1742207087; x=1742811887; darn=lists.yoctoproject.org;
+        h=content-transfer-encoding:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=1sZ/nF7Ou0kwB19gml6wqUL7bYez6U2qlX6JBbUA9vA=;
+        b=cx68zI5G9xGY4z5IhLtckXWwsL6A5UqJ8GBhaCWZfXFxiJa95a73NS/ZdZ8vx10xYO
+         1y3O1e+O3Y1Sh3rlnNBi6xrrV5OIw8p97g3ptzYc6nLsYuKr3o2jg/uf5aa79ta3p9Ub
+         t7xQ+Y4dx4QBJoH4QKQXsuhnTzNg8lxdDvF35ft/IuonpCxomOWHmbRmoFEvbCEO8H+P
+         uIK+06YcE8rkMIYIciemvIY1BFkNcmTE2KxAX+soUg6doaX95gkoHWV2VJKV8QLu7hwT
+         1Xa5Ghv971iNORZri0qFshL+HLDC9beydoIpjK5gjr3Pf8qermEEnHumlbI45Z5BICJ6
+         llcg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1742207087; x=1742811887;
+        h=content-transfer-encoding:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=1sZ/nF7Ou0kwB19gml6wqUL7bYez6U2qlX6JBbUA9vA=;
+        b=MfS7TL+7OCQAmdsK3E6u8W8NVyrQtpmLfrPxBx0TUrYwfwXkBV4P1AdA78vrrUfL7s
+         O4IDGeZLe2G/UTgEFY1xCNicsrl7kk1M8VSZtCcbM4jO6etj8BbhBwLCNV35lU0aSNMe
+         smLC0RQZZyOlkLUgwrmkLc4aLh6VxCOyGQnDjztAp5ufyPIC28IA6g9R/znmQvf8mVXm
+         wbEGmyjqBCyhAnYBOJevDYy6B58C/xtLHV6t+BhJ48WA5q9wfGkBJZv+ato8fHaRn3Ua
+         WGMcYv1Yu2TSJVXAhnFJ270gMRLjYA7UEMDunuFVmSplf8VgsuTGBhkDl8nbxDF0JlhX
+         EbWg==
+X-Gm-Message-State: AOJu0YxcYldXTf+TynhMCkf9O9PN6sCqgVO6jlcR0YP4Pz3EKBPQ1s/V
+	bkynuh/Vn9DZnWfhIPzvdjkhx7CguzM8+jA+/drKFxP1ht5XbrFbvtAvOIe8F3xPNerIk+eNPP6
+	mrV05AdMXxd3qfqc4tNLVAEJvcVfbGw==
+X-Gm-Gg: ASbGncuwj5psOKA4jfU9QSSY447DPpMlwjdXP4nBzUGf4AD7F+i3z0aDp7vGE7n1jJI
+	0K1EdKAEAGjtroQ86pQcnyVkaXGyraByfBVyC0+ENxmWahMuNuAzufaRY7tYPG9X6NaicPQ9WQa
+	jimWlnmru0yfCyA9KclWpckbqZLQsExJZQaocLwPvHLru0KBrsv3fbTyxthCZFzzBBh9cENGc=
+X-Google-Smtp-Source: AGHT+IGl3XGa3M1nVqbKC/feBwjMIBIvVtIHRsHZj1+3myBrUqDE1YrEo1kVsx3WMu0AaltyGa+AisEfKX0OknyQbuY=
+X-Received: by 2002:a05:6214:2483:b0:6e8:eabf:fd55 with SMTP id
+ 6a1803df08f44-6eaeaae0998mr174556656d6.39.1742207086952; Mon, 17 Mar 2025
+ 03:24:46 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: multipart/alternative; 
-	boundary="----=_Part_5779553_2069286139.1742203477550"
-X-Priority: 3
-Importance: Normal
-X-Mailer: Open-Xchange Mailer v7.10.6-Rev73
-X-Originating-Client: open-xchange-appsuite
-Content-Transfer-Encoding: 7bit
+References: <852477278.5779554.1742203477554@webmail.strato.de>
+In-Reply-To: <852477278.5779554.1742203477554@webmail.strato.de>
+From: Alexander Kanavin <alex.kanavin@gmail.com>
+Date: Mon, 17 Mar 2025 11:24:35 +0100
+X-Gm-Features: AQ5f1Jq6Q35lpPwa9NQt9mRGS9jMozFc66n2Pk_BMYxs0dHn2bE-xB0CGePFPTo
+Message-ID: <CANNYZj_+csNysr1sb2pR4nQrctLOLVuK8y8An0YTxB48tgH4bg@mail.gmail.com>
+Subject: Re: [yocto] Migrating npm installation script into Yocto BSP
+To: yocto@lists.yoctoproject.org, kontakt@daniel-kampert.de
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Mon, 17 Mar 2025 09:24:48 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/64959
+ <yocto@lists.yoctoproject.org>; Mon, 17 Mar 2025 10:24:49 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/64960
 
-------=_Part_5779553_2069286139.1742203477550
-MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
+Dunfell reached end of life almost a year ago, and is no longer
+supported. You need to update to a more recent yocto.
 
-Hi,
-=20
-I have a BSP with a npm installation script. The script is sourced during t=
-he initialization and contains the following commands:
-=20
-#!/bin/sh
-=20
-# Install Node.js version 18.20.2
-curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.1/install.sh | =
-bash
-export NVM_DIR=3D"$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
-nvm install 18.20.2
-=20
-# Install pm2 via npm
-npm --prefix /opt/app/backend/ install
-=20
-Now I=C2=B4m wondering how I can add this to the Yocto recipes of my BSP. T=
-he current Dunfell BSP only supports npm 14.x but I need this upgrade to 18=
-.20.
-=20
-How can I do it? Has someone done anything similar so far?
-=20
-Thanks for help!
-=20
-Mit freundlichen Gr=C3=BC=C3=9Fen / With kind regards
-=20
-Ing. Daniel Kampert, M. Sc.
-Embedded Systems Solutions
-Address: Hauptstr. 36 | 91469 Hagenb=C3=BCchach | Deutschland
-Phone: +49 (0)174 6932561
-E-Mail: kontakt@daniel-kampert.de mailto:kontakt@daniel-kampert.de
-Web: www.daniel-kampert.de https://www.daniel-kampert.de
-------=_Part_5779553_2069286139.1742203477550
-MIME-Version: 1.0
-Content-Type: text/html; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
+Alex
 
-<!doctype html>
-<html>
- <head>=20
-  <meta charset=3D"UTF-8">=20
- </head>
- <body>
-  <div class=3D"default-style">
-   Hi,
-  </div>=20
-  <div class=3D"default-style">
-   &nbsp;
-  </div>=20
-  <div class=3D"default-style">
-   I have a BSP with a npm installation script. The script is sourced durin=
-g the initialization and contains the following commands:
-  </div>=20
-  <div class=3D"default-style">
-   &nbsp;
-  </div>=20
-  <div class=3D"default-style">=20
-   <div class=3D"default-style">
-    <em>#!/bin/sh</em>
-   </div>=20
-   <div class=3D"default-style">
-    &nbsp;
-   </div>=20
-   <div class=3D"default-style">
-    <em># Install Node.js version 18.20.2</em>
-    <br><em>curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.1/i=
-nstall.sh | bash</em>
-    <br><em>export NVM_DIR=3D"$HOME/.nvm"</em>
-    <br><em>[ -s "$NVM_DIR/nvm.sh" ] &amp;&amp; \. "$NVM_DIR/nvm.sh"</em>
-    <br><em>nvm install 18.20.2</em>
-   </div>=20
-   <div class=3D"default-style">
-    &nbsp;
-   </div>=20
-   <div class=3D"default-style">
-    <em># Install pm2 via npm</em>
-    <br><em>npm --prefix /opt/app/backend/ install</em>
-   </div>=20
-   <div class=3D"default-style">
-    &nbsp;
-   </div>=20
-   <div class=3D"default-style">
-    Now I=C2=B4m wondering how I can add this to the Yocto recipes of my BS=
-P. The current Dunfell BSP only supports npm 14.x but I need this upgrade t=
-o 18.20.
-   </div>=20
-   <div class=3D"default-style">
-    &nbsp;
-   </div>=20
-   <div class=3D"default-style">
-    How can I do it? Has someone done anything similar so far?
-   </div>=20
-   <div class=3D"default-style">
-    &nbsp;
-   </div>=20
-   <div class=3D"default-style">
-    Thanks for help!
-   </div>=20
-   <div class=3D"default-style">
-    &nbsp;
-   </div>=20
-  </div>=20
-  <div class=3D"io-ox-signature">=20
-   <div class=3D"default-style">
-    Mit freundlichen Gr=C3=BC=C3=9Fen / With kind regards
-   </div>=20
-   <div class=3D"default-style">
-    &nbsp;
-   </div>=20
-   <div class=3D"default-style">
-    Ing. Daniel Kampert, M. Sc.=20
-    <br>Embedded Systems Solutions
-   </div>=20
-   <div class=3D"default-style">=20
-    <div>
-     Address: Hauptstr. 36 | 91469 Hagenb=C3=BCchach | Deutschland=20
-     <br>Phone: +49 (0)174 6932561=20
-     <br>E-Mail: <a href=3D"mailto:kontakt@daniel-kampert.de">kontakt@danie=
-l-kampert.de</a>=20
-     <br>Web:&nbsp;<a href=3D"https://www.daniel-kampert.de">www.daniel-kam=
-pert.de</a>
-    </div>=20
-   </div>=20
-  </div>=20
- </body>
-</html>
-------=_Part_5779553_2069286139.1742203477550--
+On Mon, 17 Mar 2025 at 10:24, Daniel Kampert via
+lists.yoctoproject.org
+<kontakt=3Ddaniel-kampert.de@lists.yoctoproject.org> wrote:
+>
+> Hi,
+>
+> I have a BSP with a npm installation script. The script is sourced during=
+ the initialization and contains the following commands:
+>
+> #!/bin/sh
+>
+> # Install Node.js version 18.20.2
+> curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.1/install.sh =
+| bash
+> export NVM_DIR=3D"$HOME/.nvm"
+> [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+> nvm install 18.20.2
+>
+> # Install pm2 via npm
+> npm --prefix /opt/app/backend/ install
+>
+> Now I=C2=B4m wondering how I can add this to the Yocto recipes of my BSP.=
+ The current Dunfell BSP only supports npm 14.x but I need this upgrade to =
+18.20.
+>
+> How can I do it? Has someone done anything similar so far?
+>
+> Thanks for help!
+>
+> Mit freundlichen Gr=C3=BC=C3=9Fen / With kind regards
+>
+> Ing. Daniel Kampert, M. Sc.
+> Embedded Systems Solutions
+> Address: Hauptstr. 36 | 91469 Hagenb=C3=BCchach | Deutschland
+> Phone: +49 (0)174 6932561
+> E-Mail: kontakt@daniel-kampert.de
+> Web: www.daniel-kampert.de
+>
+> -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
+> Links: You receive all messages sent to this group.
+> View/Reply Online (#64959): https://lists.yoctoproject.org/g/yocto/messag=
+e/64959
+> Mute This Topic: https://lists.yoctoproject.org/mt/111745830/1686489
+> Group Owner: yocto+owner@lists.yoctoproject.org
+> Unsubscribe: https://lists.yoctoproject.org/g/yocto/unsub [alex.kanavin@g=
+mail.com]
+> -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
+>
 
