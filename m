@@ -1,160 +1,208 @@
-Return-Path: <vs.yocto@outlook.com>
+Return-Path: <sjolley.yp.pm@gmail.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 8934DC282EC
-	for <webhook@archiver.kernel.org>; Tue, 18 Mar 2025 03:25:00 +0000 (UTC)
-Subject: Issue: /var/tmp does not persist due to /var/volatile being tmpfs in fstab #scarthgap
-To: yocto@lists.yoctoproject.org
-From: "Vish" <vs.yocto@outlook.com>
-X-Originating-Location: San Ramon, California, US (107.141.38.29)
-X-Originating-Platform: Linux Chrome 127
-User-Agent: GROUPS.IO Web Poster
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 1120FC282EC
+	for <webhook@archiver.kernel.org>; Tue, 18 Mar 2025 05:29:12 +0000 (UTC)
+Received: from mail-pj1-f54.google.com (mail-pj1-f54.google.com [209.85.216.54])
+ by mx.groups.io with SMTP id smtpd.web10.4799.1742275744182170531
+ for <yocto@lists.yoctoproject.org>;
+ Mon, 17 Mar 2025 22:29:04 -0700
+Authentication-Results: mx.groups.io;
+ dkim=pass header.i=@gmail.com header.s=20230601 header.b=BlVfBaSI;
+ spf=pass (domain: gmail.com, ip: 209.85.216.54, mailfrom: sjolley.yp.pm@gmail.com)
+Received: by mail-pj1-f54.google.com with SMTP id 98e67ed59e1d1-2ff85fec403so4857194a91.1
+        for <yocto@lists.yoctoproject.org>; Mon, 17 Mar 2025 22:29:04 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1742275743; x=1742880543; darn=lists.yoctoproject.org;
+        h=to:subject:message-id:date:from:mime-version:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=tRtXuO1aWjlvP3u0Q+vtylGwVP2jc1QZ1Uyj22ROH5c=;
+        b=BlVfBaSIXTZgqkF+M5EOkClzKKSI4oGj88Kv825vjdKPRNhJcT4jiIIt+EHEzmpuIi
+         AOSMaQHTNI+3ThTn+EFwl3JTyBrg1v+arl0qDmTPWfLC55eESmcxnxqBbBRw1Y9lzdVw
+         BnwCag95Zt7jWugSGSe7zL01ex1lO04uT4U9vSRrMMfIjscgr5Aic61CaXEpvS+RJwzB
+         4MY38powuQR3Qupcc40l96Yb5AJ/YNMIkSY2RST2wjOQUJ1anpeU16vwM+0sJ1j8DNHp
+         JxMhBbBKtTSz+rVckVAqrHZgcIV+cmyANsX9dvk6RbOJ86aCPYZ2hPG6fIE9tAZX03wu
+         E82g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1742275743; x=1742880543;
+        h=to:subject:message-id:date:from:mime-version:x-gm-message-state
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=tRtXuO1aWjlvP3u0Q+vtylGwVP2jc1QZ1Uyj22ROH5c=;
+        b=bQJRhSjRWSMSJjgsJ6we3StyaMOGYeOZKCC+7sd3MpNUFvpAHmJMquw01W/wdKmy0z
+         UujqPjzjnTllt1J06Kj6DQ2QsAfmtgplI6a3rLecGuwn7COXIO5606+XIIXng+1yH1Mf
+         XRtOIyWiITSmXaTsPBZ9dG277Q7YHNF9J995SajBfvjnfuQeFDWSu4CdtAjWyXupZyGw
+         PcPQfSsr0SZ6VNeI8KSVd8jq9kQJmYY8adfMTZ+3Mpf5DT9LEBxlarT0SZ3P4BCGb+IB
+         75IibOej411z+B2wV8QkJRZqaC2Cbjv3rpSvJQ7dfMXOe2S9VMIQrTRAc5yd5o/Rc9a4
+         wtQg==
+X-Forwarded-Encrypted: i=1; AJvYcCVkS/H+8eWfJiCxyOJbVjyKYHYYorewlMnMln2oEKsnLAFoXFfBiWw9aTCuHJw2qLVKiFbQNQ==@lists.yoctoproject.org
+X-Gm-Message-State: AOJu0YxbqgE4VLOR0VEWCdGnUdkUVRytGHJx7+JsqrnP8Psvwsge49VO
+	ByeotAmgsk1CWf2y7QIKeNRcO4QeUCG6i315MYzSbhGDvP4XUuqpXf0ZrFXYmhG83rifzwIPfi0
+	hkvUZDSPySgAToHniCILuQytaNuM=
+X-Gm-Gg: ASbGncti+E4RavN3Lr4BV9RgebWfGRAmZ0Q2F4S0nvTd17fWqfuiDx8l68oWtP+a4Cu
+	JybjJtnhGjxIL+mgrdPKJM8BQ93iQ+EZ78hEmnGon+EDShhjffachJ3Nkbo+a1b/AUHu5aVES50
+	x+/saDFiehg5e/I/lUR5+9gyRbWRdeAI01R4/0pzn8XlLZY3Ik9tt9nvYozc8=
+X-Google-Smtp-Source: AGHT+IHzx+87lBIHa2uJkQ+o5UY5lolsJW/vLlfWrru8FFMjk/tKgTQCilRxnEGww8snkWlAHppBF5F7Vkt/b0hCvsA=
+X-Received: by 2002:a17:90b:274a:b0:2ef:ad48:7175 with SMTP id
+ 98e67ed59e1d1-301a5c0f70dmr1712001a91.15.1742275743396; Mon, 17 Mar 2025
+ 22:29:03 -0700 (PDT)
 MIME-Version: 1.0
-Date: Mon, 17 Mar 2025 20:24:53 -0700
-Message-ID: <muE5.1742268293198439750.1zm5@lists.yoctoproject.org>
-Content-Type: multipart/alternative; boundary="SL8IXZqqnpcFRE0oWNsZ"
+From: Stephen K Jolley <sjolley.yp.pm@gmail.com>
+Date: Mon, 17 Mar 2025 22:28:52 -0700
+X-Gm-Features: AQ5f1JrgB2dpSGeYHT5KaI73y3995RoYjBP4jSa-V78KEERwpsHiEqqR6DeRDGY
+Message-ID: <CAK5yBb8Q1ROx4G=3MtXGcEkukwnOiTMQva0YN7c_HgkjCuezqw@mail.gmail.com>
+Subject: Yocto Project Newcomer & Unassigned Bugs - Help Needed
+To: openembedded-devel@lists.openembedded.org, 
+	Yocto-mailing-list <yocto@lists.yoctoproject.org>
+Content-Type: multipart/alternative; boundary="000000000000c93a340630972ea6"
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Tue, 18 Mar 2025 03:25:00 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/64966
+ <yocto@lists.yoctoproject.org>; Tue, 18 Mar 2025 05:29:12 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/64967
 
---SL8IXZqqnpcFRE0oWNsZ
-Content-Type: text/plain; charset="utf-8"
+--000000000000c93a340630972ea6
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-The current Yocto basefiles fstab mounts /var/volatile as tmpfs, which resu=
-lts in the loss of all files stored in /var/tmp upon reboot.
+All,
 
-fstab in base-files:
+The triage team is starting to try and collect up and classify bugs which a
+newcomer to the project would be able to work on in a way which means
+people can find them. They're being listed on the triage page under the
+appropriate heading:
+https://wiki.yoctoproject.org/wiki/Bug_Triage#Newcomer_Bugs Also please
+review:
+https://www.openembedded.org/wiki/How_to_submit_a_patch_to_OpenEmbedded and
+how to create a bugzilla account at:
+https://bugzilla.yoctoproject.org/createaccount.cgi
 
-https://git.yoctoproject.org/poky/tree/meta/recipes-core/base-files/base-fi=
-les/fstab?h=3Dscarthgap&id=3D3cc8c3520cedb66500757f843f757646da69ab30#n7
+The idea is these bugs should be straight forward for a person to help work
+on who doesn't have deep experience with the project. If anyone can help,
+please take ownership of the bug and send patches! If anyone needs
+help/advice there are people on irc who can likely do so, or some of the
+more experienced contributors will likely be happy to help too.
 
-Since /var/volatile is a tmpfs, its contents are lost on reboot.
+Also, the triage team meets weekly and does its best to handle the bugs
+reported into the Bugzilla. The number of people attending that meeting has
+fallen, as have the number of people available to help fix bugs. One of the
+things we hear users report is they don't know how to help. We (the triage
+team) are therefore going to start reporting out the currently 438
+unassigned or newcomer bugs.
 
-This commit might have introduced the issue - s ince /var/volatile/tmp is i=
-nside a tmpfs mount, it gets wiped on reboot, meaning /var/tmp is also clea=
-red.
-Commit - https://git.yoctoproject.org/poky/commit/meta/recipes-core/systemd=
-/systemd/00-create-volatile.conf?h=3Dscarthgap&id=3D3cc8c3520cedb66500757f8=
-43f757646da69ab30 ( https://git.yoctoproject.org/poky/commit/meta/recipes-c=
-ore/systemd/systemd/00-create-volatile.conf?h=3Dscarthgap&id=3D3cc8c3520ced=
-b66500757f843f757646da69ab30 )
+We're hoping people may be able to spare some time now and again to help
+out with these. Bugs are split into two types, "true bugs" where things
+don't work as they should and "enhancements" which are features we'd want
+to add to the system. There are also roughly four different "priority"
+classes right now, =E2=80=9C5.2=E2=80=9D, =E2=80=9C5.3", "5.99" and "Future=
+", the more
+pressing/urgent issues being in "5.2" and then =E2=80=9C5.3=E2=80=9D.
 
-This commit links /var/tmp to /var/volatile/tmp
-*Expected Behavior*
+Please review this link and if a bug is something you would be able to help
+with either take ownership of the bug, or send me (sjolley.yp.pm@gmail.com)
+an e-mail with the bug number you would like and I will assign it to you
+(please make sure you have a Bugzilla account). The list is at:
+https://wiki.yoctoproject.org/wiki/Bug_Triage_Archive#Unassigned_or_Newcome=
+r_Bugs
 
-* /var/tmp should retain files across reboots, as per standard Linux behavi=
-or.
-* Using a symlink to a volatile tmpfs directory contradicts this expectatio=
-n.
+Thanks,
 
-*Impact*
 
-* Any application expecting persistent temporary storage in /var/tmp will l=
-ose data after a reboot.
-* This behavior may break software relying on the standard /var/tmp persist=
-ence.
 
-Should /var/tmp continue following standard Linux behavior by *not being li=
-nked to /var/volatile/tmp* , or is this change intentional for specific use=
- cases? If persistence is desired, this approach seems problematic.
+*Stephen K. Jolley*
 
-Would appreciate input from the maintainers on whether this is a bug or int=
-ended behavior.
+*Yocto Project Program Manager*
 
-Cross-post - https://lists.openembedded.org/g/openembedded-core/topic/issue=
-_var_tmp_does_not/111764066
+(    *Cell*:                (208) 244-4460
 
---SL8IXZqqnpcFRE0oWNsZ
-Content-Type: text/html; charset="utf-8"
+* *Email*:                 *s
+<stephen.k.jolley@intel.com>jolley.yp.pm@gmail.com <jolley.yp.pm@gmail.com>=
+*
+
+--000000000000c93a340630972ea6
+Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-<div><span style=3D"background-color: var(--light-mode-body-color);">The cu=
-rrent Yocto basefiles fstab mounts /var/volatile as tmpfs, which results in=
- the loss of all files stored in /var/tmp upon reboot.</span></div>
-<div>&nbsp;</div>
-<div><span style=3D"background-color: var(--light-mode-body-color);">fstab =
-in base-files:</span></div>
-<div><span style=3D"background-color: var(--light-mode-body-color);"><br />=
-<a href=3D"https://git.yoctoproject.org/poky/tree/meta/recipes-core/base-fi=
-les/base-files/fstab?h=3Dscarthgap&amp;id=3D3cc8c3520cedb66500757f843f75764=
-6da69ab30#n7" target=3D"_blank" rel=3D"noopener">https://git.yoctoproject.o=
-rg/poky/tree/meta/recipes-core/base-files/base-files/fstab?h=3Dscarthgap&am=
-p;id=3D3cc8c3520cedb66500757f843f757646da69ab30#n7</a></span></div>
-<div><span style=3D"background-color: var(--light-mode-body-color);"><br />=
-Since /var/volatile is a tmpfs, its contents are lost on reboot.</span></di=
-v>
-<div>
-<div>
-<div>&nbsp;</div>
-<div>This commit might have introduced the issue - s<span style=3D"backgrou=
-nd-color: var(--light-mode-body-color);">ince </span><code data-start=3D"12=
-10" data-end=3D"1229">/var/volatile/tmp</code><span style=3D"background-col=
-or: var(--light-mode-body-color);"> is inside a tmpfs mount, it gets wiped =
-on reboot, meaning </span><code data-start=3D"1288" data-end=3D"1298">/var/=
-tmp</code><span style=3D"background-color: var(--light-mode-body-color);"> =
-is also cleared.</span></div>
-<div>
-<h4 data-start=3D"1317" data-end=3D"1343"><span style=3D"background-color: =
-var(--light-mode-body-color); font-size: 16px;">Commit - </span><a style=3D=
-"font-size: 16px;" href=3D"https://git.yoctoproject.org/poky/commit/meta/re=
-cipes-core/systemd/systemd/00-create-volatile.conf?h=3Dscarthgap&amp;id=3D3=
-cc8c3520cedb66500757f843f757646da69ab30" target=3D"_blank" rel=3D"noopener"=
->https://git.yoctoproject.org/poky/commit/meta/recipes-core/systemd/systemd=
-/00-create-volatile.conf?h=3Dscarthgap&amp;id=3D3cc8c3520cedb66500757f843f7=
-57646da69ab30&nbsp;</a></h4>
-</div>
-</div>
-<div>&nbsp;</div>
-<div>This commit links <code data-start=3D"1104" data-end=3D"1114">/var/tmp=
-</code> to <code data-start=3D"1118" data-end=3D"1137">/var/volatile/tmp</c=
-ode></div>
-<div>
-<h4 data-start=3D"1317" data-end=3D"1343">&nbsp;</h4>
-<h4 data-start=3D"1317" data-end=3D"1343"><strong data-start=3D"1322" data-=
-end=3D"1343">Expected Behavior</strong></h4>
-<ul data-start=3D"1344" data-end=3D"1502">
-<li data-start=3D"1344" data-end=3D"1424"><code data-start=3D"1346" data-en=
-d=3D"1356">/var/tmp</code> should retain files across reboots, as per stand=
-ard Linux behavior.</li>
-<li data-start=3D"1425" data-end=3D"1502">Using a symlink to a volatile tmp=
-fs directory contradicts this expectation.</li>
-</ul>
-</div>
-<div>
-<h4 data-start=3D"1504" data-end=3D"1519">&nbsp;</h4>
-<h4 data-start=3D"1504" data-end=3D"1519"><strong data-start=3D"1509" data-=
-end=3D"1519">Impact</strong></h4>
-<ul data-start=3D"1520" data-end=3D"1704">
-<li data-start=3D"1520" data-end=3D"1621">Any application expecting persist=
-ent temporary storage in <code data-start=3D"1580" data-end=3D"1590">/var/t=
-mp</code> will lose data after a reboot.</li>
-<li data-start=3D"1622" data-end=3D"1704">This behavior may break software =
-relying on the standard <code data-start=3D"1681" data-end=3D"1691">/var/tm=
-p</code> persistence.</li>
-</ul>
-</div>
-<div>
-<p data-start=3D"1738" data-end=3D"1969">&nbsp;</p>
-<p data-start=3D"1738" data-end=3D"1969">Should <code data-start=3D"1745" d=
-ata-end=3D"1755">/var/tmp</code> continue following standard Linux behavior=
- by <strong data-start=3D"1802" data-end=3D"1845">not being linked to <code=
- data-start=3D"1824" data-end=3D"1843">/var/volatile/tmp</code></strong>, o=
-r is this change intentional for specific use cases? If persistence is desi=
-red, this approach seems problematic.</p>
-<p data-start=3D"1971" data-end=3D"2061">Would appreciate input from the ma=
-intainers on whether this is a bug or intended behavior.&nbsp;</p>
-<p data-start=3D"1971" data-end=3D"2061">Cross-post - <a href=3D"https://li=
-sts.openembedded.org/g/openembedded-core/topic/issue_var_tmp_does_not/11176=
-4066" target=3D"_blank" rel=3D"noopener">https://lists.openembedded.org/g/o=
-penembedded-core/topic/issue_var_tmp_does_not/111764066</a></p>
-<p data-start=3D"1971" data-end=3D"2061">&nbsp;</p>
-<p data-start=3D"1971" data-end=3D"2061">&nbsp;</p>
-</div>
-</div>
+<div dir=3D"ltr"><div><span style=3D"font-size:11pt;font-family:Calibri,Ari=
+al">All,<br><br>The triage team is starting to try and collect up and class=
+ify bugs which a newcomer to the project would be able to work on in a way =
+which means people can find them. They&#39;re being listed on the triage pa=
+ge under the appropriate heading: <a href=3D"https://wiki.yoctoproject.org/=
+wiki/Bug_Triage#Newcomer_Bugs">https://wiki.yoctoproject.org/wiki/Bug_Triag=
+e#Newcomer_Bugs</a>  Also please review: <a href=3D"https://www.openembedde=
+d.org/wiki/How_to_submit_a_patch_to_OpenEmbedded">https://www.openembedded.=
+org/wiki/How_to_submit_a_patch_to_OpenEmbedded</a> and how to create a bugz=
+illa account at: <a href=3D"https://bugzilla.yoctoproject.org/createaccount=
+.cgi">https://bugzilla.yoctoproject.org/createaccount.cgi</a><br><br>The id=
+ea is these bugs should be straight forward for a person to help work on wh=
+o doesn&#39;t have deep experience with the project.  If anyone can help, p=
+lease take ownership of the bug and send patches!  If anyone needs help/adv=
+ice there are people on irc who can likely do so, or some of the more exper=
+ienced contributors will likely be happy to help too.<br><br>Also, the tria=
+ge team meets weekly and does its best to handle the bugs reported into the=
+ Bugzilla. The number of people attending that meeting has fallen, as have =
+the number of people available to help fix bugs. One of the things we hear =
+users report is they don&#39;t know how to help. We (the triage team) are t=
+herefore going to start reporting out the currently 438 unassigned or newco=
+mer bugs.<br><br>We&#39;re hoping people may be able to spare some time now=
+ and again to help out with these.  Bugs are split into two types, &quot;tr=
+ue bugs&quot; where things don&#39;t work as they should and &quot;enhancem=
+ents&quot; which are features we&#39;d want to add to the system.  There ar=
+e also roughly four different &quot;priority&quot; classes right now, =E2=
+=80=9C5.2=E2=80=9D, =E2=80=9C5.3&quot;, &quot;5.99&quot; and &quot;Future&q=
+uot;, the more pressing/urgent issues being in &quot;5.2&quot; and then =E2=
+=80=9C5.3=E2=80=9D.<br><br>Please review this link and if a bug is somethin=
+g you would be able to help with either take ownership of the bug, or send =
+me (<a href=3D"mailto:sjolley.yp.pm@gmail.com">sjolley.yp.pm@gmail.com</a>)=
+ an e-mail with the bug number you would like and I will assign it to you (=
+please make sure you have a Bugzilla account).  The list is at: <a href=3D"=
+https://wiki.yoctoproject.org/wiki/Bug_Triage_Archive#Unassigned_or_Newcome=
+r_Bugs">https://wiki.yoctoproject.org/wiki/Bug_Triage_Archive#Unassigned_or=
+_Newcomer_Bugs</a></span></div><div dir=3D"ltr" class=3D"gmail_signature" d=
+ata-smartmail=3D"gmail_signature"><div dir=3D"ltr"><div dir=3D"ltr"><p clas=
+s=3D"MsoNormal" style=3D"background-image:initial;background-position:initi=
+al;background-repeat:initial"><span style=3D"font-size:12pt;font-family:Ari=
+al,sans-serif">Thanks,<span></span></span></p>
 
---SL8IXZqqnpcFRE0oWNsZ--
+<p class=3D"MsoNormal" style=3D"background-image:initial;background-positio=
+n:initial;background-repeat:initial"><span style=3D"font-size:12pt;font-fam=
+ily:Arial,sans-serif">=C2=A0<span></span></span></p>
+
+<p class=3D"MsoNormal" style=3D"background-image:initial;background-positio=
+n:initial;background-repeat:initial"><b><i><span style=3D"font-size:16pt;co=
+lor:purple">Stephen K. Jolley</span></i></b><span style=3D"font-size:12pt;f=
+ont-family:Arial,sans-serif"><span></span></span></p>
+
+<p class=3D"MsoNormal" style=3D"background-image:initial;background-positio=
+n:initial;background-repeat:initial"><b><span style=3D"font-size:8pt;font-f=
+amily:&quot;Courier New&quot;;color:blue">Yocto Project Program Manager</sp=
+an></b></p>
+
+<p class=3D"MsoNormal" style=3D"background-image:initial;background-positio=
+n:initial;background-repeat:initial"><span style=3D"font-size:9pt;font-fami=
+ly:Wingdings;color:black">(</span><span style=3D"font-size:9pt;font-family:=
+&quot;MS Sans Serif&quot;,serif;color:teal">=C2=A0=C2=A0=C2=A0=C2=A0</span>=
+<b><span style=3D"font-size:8pt;font-family:&quot;Comic Sans MS&quot;;color=
+:teal">Cell</span></b><span style=3D"font-size:9pt;font-family:&quot;MS San=
+s Serif&quot;,serif;color:teal">:=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 </span><span style=3D"font=
+-size:9pt;font-family:&quot;MS Sans Serif&quot;,serif">(208) 244-4460</span=
+><span style=3D"font-size:12pt;font-family:Arial,sans-serif"><span></span><=
+/span></p>
+
+<p class=3D"MsoNormal" style=3D"background-image:initial;background-positio=
+n:initial;background-repeat:initial"><span style=3D"font-size:9pt;font-fami=
+ly:Wingdings">*=C2=A0</span><b><span lang=3D"FR" style=3D"font-size:8pt;fon=
+t-family:&quot;Comic Sans MS&quot;;color:teal">Email</span></b><span lang=
+=3D"FR" style=3D"font-size:9pt;font-family:&quot;MS Sans Serif&quot;,serif;=
+color:teal">:</span><span lang=3D"FR" style=3D"font-size:9pt;font-family:&q=
+uot;MS Sans Serif&quot;,serif">=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0</span><u><span=
+ lang=3D"FR" style=3D"font-size:9pt;font-family:&quot;MS Sans Serif&quot;,s=
+erif;color:blue"><span style=3D"color:rgb(17,85,204)"><a href=3D"mailto:ste=
+phen.k.jolley@intel.com" target=3D"_blank">s</a><a href=3D"mailto:jolley.yp=
+.pm@gmail.com" target=3D"_blank">jolley.yp.pm@gmail.com</a></span></span></=
+u></p></div></div></div></div>
+
+--000000000000c93a340630972ea6--
 
