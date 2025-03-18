@@ -1,131 +1,134 @@
-Return-Path: <lpmeyer@ics.com>
+Return-Path: <skandigraun@gmail.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 2846AC282EC
-	for <webhook@archiver.kernel.org>; Tue, 18 Mar 2025 14:53:12 +0000 (UTC)
-Received: from mail-wr1-f53.google.com (mail-wr1-f53.google.com [209.85.221.53])
- by mx.groups.io with SMTP id smtpd.web10.324.1742309582905273113
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 5B87EC282EC
+	for <webhook@archiver.kernel.org>; Tue, 18 Mar 2025 17:37:15 +0000 (UTC)
+Received: from mail-ej1-f41.google.com (mail-ej1-f41.google.com [209.85.218.41])
+ by mx.groups.io with SMTP id smtpd.web11.1290.1742319433219914687
  for <yocto@lists.yoctoproject.org>;
- Tue, 18 Mar 2025 07:53:03 -0700
+ Tue, 18 Mar 2025 10:37:13 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@ics.com header.s=google header.b=oD8pEo2J;
- spf=pass (domain: ics.com, ip: 209.85.221.53, mailfrom: lpmeyer@ics.com)
-Received: by mail-wr1-f53.google.com with SMTP id ffacd0b85a97d-3912baafc58so4938791f8f.1
-        for <yocto@lists.yoctoproject.org>; Tue, 18 Mar 2025 07:53:02 -0700 (PDT)
+ dkim=pass header.i=@gmail.com header.s=20230601 header.b=X6bNtw/L;
+ spf=pass (domain: gmail.com, ip: 209.85.218.41, mailfrom: skandigraun@gmail.com)
+Received: by mail-ej1-f41.google.com with SMTP id a640c23a62f3a-ac2ab99e16eso241206466b.0
+        for <yocto@lists.yoctoproject.org>; Tue, 18 Mar 2025 10:37:12 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=ics.com; s=google; t=1742309581; x=1742914381; darn=lists.yoctoproject.org;
-        h=to:subject:message-id:date:from:in-reply-to:references:mime-version
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=AewUCbL/ZelkgApBn/ZxWp1mWcTAUFxy9IaBI99CRqQ=;
-        b=oD8pEo2JMBJOYBG7p8G5ydFCC4meJyq208vgTKeXYOHQvZZiCPTH5zEkWyUw8UjL4D
-         pOV0H3ueH4Ri6JFUlJwM+I9exZH2MuHDLOFzYqNF5rz11ZXvkqQ+r1l+pzDE8/5AcZFt
-         gC+LOEyrJrySD9qtt0ys4wkJjbDUpOqH9fWMZb+aRrRelN0iO5Cc3apSZjRCDD5rBtJ4
-         CyFmrVoMWVqA1jSMfrTe0Xpst5YQ1f60My7LWTsuPFpGcYX5ZJ0AxkTCnb8ytIdGubSq
-         rRu0cRpZegFmHwAkjdhRNBocPUczdnSQlGT+bi8oyw7YQdCe9KNiDQKsNEJOq3whr1bY
-         zF9w==
+        d=gmail.com; s=20230601; t=1742319431; x=1742924231; darn=lists.yoctoproject.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:to:subject:user-agent:mime-version:date:message-id:from
+         :to:cc:subject:date:message-id:reply-to;
+        bh=wGCwnlpvK4pKvb8x9b1njn5CI+P3A1DTUTxRSbzxS5M=;
+        b=X6bNtw/La+QHhKwczrAx9eE+LKPniZ/QCVpXNMr1vqEmDXDgGhEb6rMTTdsjbGJN14
+         h4r0R1AV0rpYn2CPb0MC8/o3Tl6AxUiMChskmzmNucJjUrtNwK5mC++Q4akQkqZF3MeF
+         XUFd5GmIUzfoJ5O3p+jSU58ezdWmesue+IKrZSphZEabAOA+6L63UWZeH2JBQgq5KYsm
+         tg4ZjlATobEanWW0c1YhpAlB7P5jvRVXrw+X5j9lNEax655ayP3w8j2Y0/k0ce5Afg3g
+         7NJDSRHRwrB8v9aNgV9PezF3fbYl7tl2SdYVtwkD5ZhNzVPPOutBZZLvrOtP5OMukRh2
+         r31w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1742309581; x=1742914381;
-        h=to:subject:message-id:date:from:in-reply-to:references:mime-version
+        d=1e100.net; s=20230601; t=1742319431; x=1742924231;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:to:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=AewUCbL/ZelkgApBn/ZxWp1mWcTAUFxy9IaBI99CRqQ=;
-        b=OI30sS9Jk+czFJRYQ4mO+2cnbWOIIp1mLP5Xu6RQTnUJOUwbLM20CRF+5Hjj3e5KSv
-         KR77bXolHG2L9DBkMwocNsJZGKlny9SarC6guYMfDO4pkd8Ms3atOHhJuBNG8LXGU0Ha
-         JkSBIhhA3jFGXtus+boaIsP+qoBE2mD97zrUAsHrvwGnCdIktrEdpJt1cjH/EA71kRbl
-         1a5QIcH3WMOvtg8ZL67FnTvV2aF/WLEeb5ECmyBMimOy+Cqotpz/T9z9H+d/ztJOLQ/S
-         TpdRt7sq9jpsJu/etu7EFRp+3qUXOpgEgSrKJ1tvu4LY02Zgmlyfuzj/RjPl4uAlYt6t
-         v5Fw==
-X-Gm-Message-State: AOJu0Yz4Yy+RuM4Gpf1X1AhrrkJrOlkeqxn4i1gg2xebnqXqox2mBEsO
-	rPrGGw5pc5t07BXoRwTA0yjwnJa+fWi/EiYMSJUJEyY09URiYv7qgtzOhLz4uu5OPSOhfc3hy1P
-	TvsWxY9x45OtCo7hdoTxgQ+eWTm2t3cm2hEnSpvkTpyHIMGvM
-X-Gm-Gg: ASbGncvdFPvk1GQ3MybSDYRY83Xq31RkMR91sfETFv88Adgs9D4zWk/kTCojeav0Yuh
-	ZngWp2at2surLf+3SBFhlLpoGAapKPRnslov/SnGAw0FiL3QNGON5+ahacDNGfH7eRpcJkodwjI
-	/iKdbQcY/RtJ6zt4CmNuBuYLhAHgC30FVwMULxjhQ=
-X-Google-Smtp-Source: AGHT+IEAUxu/LQXOvphB4eC0VtKHDUamzKJOv80cc6oh9QNJI3gw3nkGmcUsgz1PQK5BVlTQvB/ObNkrV+4iCRgbLmk=
-X-Received: by 2002:a05:6000:4025:b0:391:412b:e22b with SMTP id
- ffacd0b85a97d-3971d617ae4mr17308642f8f.18.1742309579969; Tue, 18 Mar 2025
- 07:52:59 -0700 (PDT)
+        bh=wGCwnlpvK4pKvb8x9b1njn5CI+P3A1DTUTxRSbzxS5M=;
+        b=hQyKjq+8nRbPnBc3Qrofhe+FiBDKco+BcyoGmvTfHxuNWyJoZfZ7YfjmgCfwgBByhq
+         26QSK6OtO1Aa1eRFPTDlJusxAFB3wYNUskQtvlXVlK/77Nv0vUEM3EYtL7RbLfWgw6yO
+         OSAKXd8cF+dMsF687nByMYD+mvJOjKKjG+5Ua0ja6fBvQCLI7h7ffQC+nR8BGKFdUbGc
+         isYDmk4MdiBowiGTS/QOePz7brP/xn68ezeulXl0tH1A3n5+huI/rC8A7HMwqmxe6mnc
+         Cw7scBWrZJZ95pP8ehQmREQz1OuCkS20mQhM/Aj/+3sxUpACx3BFY5aQJb53CK/JAADr
+         HFHQ==
+X-Gm-Message-State: AOJu0Yxko96Qkl3c2UxNh0PxR0FTaX5LGJMAUSCH5KD6JnJI3lqmhnWi
+	2XR2rR0bkMlC3Xr5VJ+yUmORZr37iHKQlzPNpCECPK/TbdpguyYq6uK9fQ==
+X-Gm-Gg: ASbGnctWr4tWd4/995V2VpORL3IVYMgK+zzdcHQqOAlY2doMaP2jGpCcTaohvDaR5yu
+	XpzNXYVL0lv5Bn5J2PUGrhKnJWu80RMOpHjAjjiLreVDoSycecVHts/Wl4nL14H8GNOxEkJaI15
+	mw3/aSS4jBCi6YfBlvNpEwrEsnW6np1qmhoIBY3AjZMBoHWytljTPsFzmmEV1S2cLXMi19WDuAg
+	oEC5X9AajdEZ9nTBo13wbIjcyUpT0ZUVG9udxwZ8uqfPqubBWRPUSCBvTRMgElpvXMBfNUCTAb1
+	P7vmfuYpw/bqSheovlGPEK/5x+OkwpitSQ0kvgbcEbv3abBd2A==
+X-Google-Smtp-Source: AGHT+IF1WqS9qe7WSIXskdo+XZ/hdCpH8uxDKgCN4PXmZ7RM+fp6pMtRXze61H8a3PrGjTkUJhh4oA==
+X-Received: by 2002:a17:907:97d3:b0:abf:742e:1fca with SMTP id a640c23a62f3a-ac330263cfdmr2026983366b.18.1742319431253;
+        Tue, 18 Mar 2025 10:37:11 -0700 (PDT)
+Received: from [192.168.1.2] ([51.154.145.205])
+        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-5e816ad392csm7881875a12.53.2025.03.18.10.37.10
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 18 Mar 2025 10:37:10 -0700 (PDT)
+Message-ID: <4f88c962-b369-4e8c-9b3c-cc7de9ebb2b3@gmail.com>
+Date: Tue, 18 Mar 2025 18:37:09 +0100
 MIME-Version: 1.0
-References: <CABqjNW8MPXLqFxubZKJ5LF=7HAyW_ft5GxK5y1TUe0DkPCCycg@mail.gmail.com>
- <4b6990e5-eaef-47d5-ab90-b904594a0b8a@gmail.com>
-In-Reply-To: <4b6990e5-eaef-47d5-ab90-b904594a0b8a@gmail.com>
-From: =?UTF-8?Q?Lisandro_P=C3=A9rez_Meyer?= <lpmeyer@ics.com>
-Date: Tue, 18 Mar 2025 11:52:43 -0300
-X-Gm-Features: AQ5f1JpsiKEWcaQ-_Le43Dv-Cs7XYPYOjgXqF28hR7dJyaqY9OraI1WgJotGM7c
-Message-ID: <CABqjNW-GBA061W+AV5xLukZwyLJ-BaeOrBPfACoinD4yiEX36w@mail.gmail.com>
-Subject: Re: [yocto] Kernel with initramfs: issues with packaging, out of
- source modules
-To: yocto@lists.yoctoproject.org
-Content-Type: multipart/alternative; boundary="0000000000009a7ede06309f0f05"
+User-Agent: Mozilla Thunderbird
+Subject: Re: [yocto] Build failing at do_compile_kernelmodules
+To: yocto@lists.yoctoproject.org, kanakshilledar111@protonmail.com
+References: <3qt5x0zk7wn1MKNt8VOP6UosjPF_bny1MEmXm4G5FWrCpT3tdMVFyNyDChg5F4fHYKsXk_b02Zu0ZjjTTiD1JNwhJEt61NT4XPVkKYH_xYM=@protonmail.com>
+Content-Language: en-US
+From: Gyorgy Sarvari <skandigraun@gmail.com>
+In-Reply-To: <3qt5x0zk7wn1MKNt8VOP6UosjPF_bny1MEmXm4G5FWrCpT3tdMVFyNyDChg5F4fHYKsXk_b02Zu0ZjjTTiD1JNwhJEt61NT4XPVkKYH_xYM=@protonmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Tue, 18 Mar 2025 14:53:12 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/64975
+ <yocto@lists.yoctoproject.org>; Tue, 18 Mar 2025 17:37:15 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/64976
 
---0000000000009a7ede06309f0f05
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+The problem seems to be with the vendor kernel's additions. For example, 
+check this line[1].
 
-On Tue, Mar 18, 2025 at 5:10=E2=80=AFAM Gyorgy Sarvari <skandigraun@gmail.c=
-om>
-wrote:
+It is defined as "-I$(src)..." - this works when you build it on your 
+machine, because most likely you are building it in the sourcetree.
 
-> On 17.03.25 19:08, Lisandro P=C3=A9rez Meyer (ICS) via lists.yoctoproject=
-.org
-> wrote:
->
-[snip]
+However when it is compiled with yocto, the PWD is 
+"$WORKDIR/standard-build...", but $(srctree) value is 
+".../work-shared/kernel-source" - the source and build folder are not 
+the same, and $(src) is a relative path compared to $(srctree).
 
-> > But after the above I am finding an issue with kernel versioning. The
-> > function `do_bundle_initramfs` is being run after `do_package`, which
-> > means I can not create a package of the kernel with initramfs on it.
-> > Moreover I can no longer build out of kernel modules, because the git
-> > commit id changes, and thus KERNEL_VERSION.
-> Regarding the version problem with out-of-tree modules:
->
-> This sounds similar to
-> https://lists.yoctoproject.org/g/yocto/message/64358 - would disabling
-> CONFIG_LOCALVERSION_AUTO in the kernel config solve this for you?
->
+To solve the missing file issues, you could try patching these 
+Makefiles, by prefixing these include paths as $(srctree)/$(src) 
+(instead of only $(src)). You might also want to report this to the vendor.
 
-Yes it does! The rest I can hack around, so at least I get unblocked.
-Thanks a lot!
+I don't know if there are other issues also with this kernel - your logs 
+have some other errors too, though maybe they will disappear once this 
+is solved.
 
---0000000000009a7ede06309f0f05
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+[1]: 
+https://github.com/revyos/th1520-linux-kernel/blob/th1520-lts/drivers/soc/xuantie/nna/vha/Makefile#L52
 
-<div dir=3D"ltr"><div dir=3D"ltr"><br><div class=3D"gmail_quote"><div dir=
-=3D"ltr" class=3D"gmail_attr">On Tue, Mar 18, 2025 at 5:10=E2=80=AFAM Gyorg=
-y Sarvari &lt;<a href=3D"mailto:skandigraun@gmail.com" target=3D"_blank">sk=
-andigraun@gmail.com</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quot=
-e" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204)=
-;padding-left:1ex">On 17.03.25 19:08, Lisandro P=C3=A9rez Meyer (ICS) via <=
-a href=3D"http://lists.yoctoproject.org" rel=3D"noreferrer" target=3D"_blan=
-k">lists.yoctoproject.org</a><br>
-wrote:<br></blockquote><div>[snip]</div><blockquote class=3D"gmail_quote" s=
-tyle=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);pad=
-ding-left:1ex"><div>
-&gt; But after the above I am finding an issue with kernel versioning. The<=
-br>
-&gt; function `do_bundle_initramfs` is being run after `do_package`, which<=
-br>
-&gt; means I can not create a package of the kernel with initramfs on it.<b=
-r>
-&gt; Moreover I can no longer build out of kernel modules, because the git<=
-br>
-&gt; commit id changes, and thus KERNEL_VERSION.<br>
-Regarding the version problem with out-of-tree modules:<br>
-<br>
-This sounds similar to<br>
-<a href=3D"https://lists.yoctoproject.org/g/yocto/message/64358" rel=3D"nor=
-eferrer" target=3D"_blank">https://lists.yoctoproject.org/g/yocto/message/6=
-4358</a> - would disabling<br>
-CONFIG_LOCALVERSION_AUTO in the kernel config solve this for you?<br></div>=
-</blockquote><div><br></div></div>Yes it does! The rest I can hack around, =
-so at least I get unblocked. Thanks a lot!<br></div>
-</div>
+On 3/17/25 12:28, Kanak Shilledar via lists.yoctoproject.org wrote:
+> Hi,
+> I am trying to write a recipe for compiling vendor kernel
+> [https://github.com/revyos/th1520-linux-kernel <https://github.com/ 
+> revyos/th1520-linux-kernel>] for beaglev ahead in meta-riscv.
+> It is failing at the do_compile_kernelmodules task. I have attached the 
+> full error log below.
+> I tried to manually clone the git tree and compile the source and it got 
+> fully built.
+> 
+> Further analyzing the log file, the first error shows that "vha_plat.h" 
+> is missing. I tried running
+> the find command to locate the file in the vendor's tree and it was 
+> available. Secondly, when
+> the package was extracted by yocto, I was able to find the file in "./ 
+> tmp/work-shared/beaglev-ahead/kernel-source/drivers/soc/xuantie/nna/vha/ 
+> platform/vha_plat.h" but the file is missing in "/tmp/work/ 
+> beaglev_ahead-poky-linux/linux-beaglev-vendor/6.6.82+git/linux- 
+> beaglev_ahead-standard-build/"
+> 
+> There are multiple such file not found errors. How can I fix these issues?
+> You can have a look at my linux-beaglev-vendor.bb recipe here: https:// 
+> github.com/kanakshilledar/meta-riscv/commit/ 
+> f97e4f771db19b1195cbb35849e781a659854a96 <https://github.com/ 
+> kanakshilledar/meta-riscv/commit/f97e4f771db19b1195cbb35849e781a659854a96>
+> I am using the th1520_defconfig for building the kernel.
+> 
+> Thanks and Regards,
+> Kanak Shilledar
+> 
+> 
+> -=-=-=-=-=-=-=-=-=-=-=-
+> Links: You receive all messages sent to this group.
+> View/Reply Online (#64961): https://lists.yoctoproject.org/g/yocto/message/64961
+> Mute This Topic: https://lists.yoctoproject.org/mt/111747161/6084445
+> Group Owner: yocto+owner@lists.yoctoproject.org
+> Unsubscribe: https://lists.yoctoproject.org/g/yocto/unsub [skandigraun@gmail.com]
+> -=-=-=-=-=-=-=-=-=-=-=-
+> 
 
---0000000000009a7ede06309f0f05--
 
