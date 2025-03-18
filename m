@@ -1,127 +1,160 @@
-Return-Path: <lpmeyer@ics.com>
+Return-Path: <vs.yocto@outlook.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id EE722C282EC
-	for <webhook@archiver.kernel.org>; Mon, 17 Mar 2025 18:09:21 +0000 (UTC)
-Received: from mail-ed1-f52.google.com (mail-ed1-f52.google.com [209.85.208.52])
- by mx.groups.io with SMTP id smtpd.web10.60009.1742234952098682524
- for <yocto@lists.yoctoproject.org>;
- Mon, 17 Mar 2025 11:09:12 -0700
-Authentication-Results: mx.groups.io;
- dkim=pass header.i=@ics.com header.s=google header.b=a1s07rZV;
- spf=pass (domain: ics.com, ip: 209.85.208.52, mailfrom: lpmeyer@ics.com)
-Received: by mail-ed1-f52.google.com with SMTP id 4fb4d7f45d1cf-5e5b6f3025dso6938680a12.1
-        for <yocto@lists.yoctoproject.org>; Mon, 17 Mar 2025 11:09:11 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=ics.com; s=google; t=1742234950; x=1742839750; darn=lists.yoctoproject.org;
-        h=to:subject:message-id:date:from:mime-version:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=V15tmZCu9mZ9aZuo5gdG+4ty9gw5dnyTwnpKD2PRjgE=;
-        b=a1s07rZVeEKmU8gpHRhcvTINm3Xx7727lG0NlxtAy71ZHE4ncRHhlBIXbMYRS6mxVG
-         fT8e8Obk+IBrJf5oBiXmkRlgOyDKBEkIydHsuLRpX34vGUHovTso7L4d6uNdfJoQBw/l
-         69BQLE7jOdz6r7U2DuKoffVeaZyv+s8RvUX/mIW0inuCzD1rxONVSPi4moO+tQ5N1VG9
-         CPPNACd3H9EmS6wnbDJOrp9QAcZ7b5dtfFqpBVtaWlb3ZdgmvxG6jvhSoHI4hi/niJLr
-         IU1dQd6OPKdEVVnhh1YoM9Ydeq6VkiMuzMx/mi1dTVjfM09B1bLF2l5XpJnccAZ8R87r
-         DuiQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1742234950; x=1742839750;
-        h=to:subject:message-id:date:from:mime-version:x-gm-message-state
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=V15tmZCu9mZ9aZuo5gdG+4ty9gw5dnyTwnpKD2PRjgE=;
-        b=IgXTUjRfyO66+xkyUr41e/DyNMnPL8vD6oRki7LNO8YKwNDVdzf305aLFUsPk/8kN4
-         owYHuci7a13vQCUHaX2XwtVdXEIpxDFh2QaZmaDgkt7H4nkVBVR+u0q5skG7u9pxywWu
-         vwwsbz1JmeKxfwQvhSbgh9cvqWdXJcPt/mWyI1rriFhd9gMa8vZjZ2BNJe4EJC04WHWb
-         9CM8U5gDAqp2jTkF/vOMdGa+w5I593GSbWZCuyfenet0hU7mvj+zzxIkZCKyPpdrJHfm
-         S+U2awcNDNjUW2bmFsRpCJ2WkvYc3OBCulWeM+WZp20IWJ+CreJHz+JdXdJrOZoHupTc
-         luCw==
-X-Gm-Message-State: AOJu0YwD617q1sIZ0gS2yG6B2qEH/Shw42E4H0uiQEYaSZn13F0pBCLZ
-	Ly308b9h7KVrXhVYsH9SbIrqmGt5NhONr4dO7gVfdjd4ip7BHkVE6A/LbI+/wzXNcuW7OaZdfIG
-	oO/TWO0XevHkuO0eMrSPys1xQSZuWysGfn5BUyvhj1zqfRlbx1fw=
-X-Gm-Gg: ASbGncv2zj4jG953+oyi7MwMmTsqIFKQCZHEWyTSXi7lBMiWyJtesVImYJXvkCEFzCW
-	taD1Tv3lJgTRyXglSmjFN0Nezpm1uRGWZv0FVBU4YCJ1+LvzOeJKDQ0DWhYRpq/3veL9SvqN8/e
-	4GLzbxGfDcfcLzmDx/ysC3q+KRpeBi2mCLJJrPC+U=
-X-Google-Smtp-Source: AGHT+IFlaqVm414PX5PEgr9xx1NlEg+6d/wRHqBT2YSn2bqRhQErMWMQMxFfFP1YJEQQ9vAl593ea4Bfpnfd9Uo1RAk=
-X-Received: by 2002:a05:6402:2688:b0:5e5:edf8:88f2 with SMTP id
- 4fb4d7f45d1cf-5eb1df62a34mr474336a12.23.1742234949845; Mon, 17 Mar 2025
- 11:09:09 -0700 (PDT)
-MIME-Version: 1.0
-From: =?UTF-8?Q?Lisandro_P=C3=A9rez_Meyer?= <lpmeyer@ics.com>
-Date: Mon, 17 Mar 2025 15:08:54 -0300
-X-Gm-Features: AQ5f1Jop0Sk0W8p-yKUJ_PyFaoWpBuleG-Q8--DDXbam1sFwomuNIW15bosvY80
-Message-ID: <CABqjNW8MPXLqFxubZKJ5LF=7HAyW_ft5GxK5y1TUe0DkPCCycg@mail.gmail.com>
-Subject: Kernel with initramfs: issues with packaging, out of source modules
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 8934DC282EC
+	for <webhook@archiver.kernel.org>; Tue, 18 Mar 2025 03:25:00 +0000 (UTC)
+Subject: Issue: /var/tmp does not persist due to /var/volatile being tmpfs in fstab #scarthgap
 To: yocto@lists.yoctoproject.org
-Content-Type: multipart/alternative; boundary="0000000000004d2a4c06308daf55"
+From: "Vish" <vs.yocto@outlook.com>
+X-Originating-Location: San Ramon, California, US (107.141.38.29)
+X-Originating-Platform: Linux Chrome 127
+User-Agent: GROUPS.IO Web Poster
+MIME-Version: 1.0
+Date: Mon, 17 Mar 2025 20:24:53 -0700
+Message-ID: <muE5.1742268293198439750.1zm5@lists.yoctoproject.org>
+Content-Type: multipart/alternative; boundary="SL8IXZqqnpcFRE0oWNsZ"
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Mon, 17 Mar 2025 18:09:21 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/64965
+ <yocto@lists.yoctoproject.org>; Tue, 18 Mar 2025 03:25:00 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/64966
 
---0000000000004d2a4c06308daf55
-Content-Type: text/plain; charset="UTF-8"
+--SL8IXZqqnpcFRE0oWNsZ
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: quoted-printable
 
-Hi,
+The current Yocto basefiles fstab mounts /var/volatile as tmpfs, which resu=
+lts in the loss of all files stored in /var/tmp upon reboot.
 
-I'm building a Scarthgap-based system with a Variscite iMX8M-Plus SoC which
-needs a kernel with initramfs embedded into it. Following the doc I created
-a initramfs recipe, enabled/set:
+fstab in base-files:
 
-# On a linux-variscite's bbappend
-INITRAMFS_IMAGE =3D "theproject-initramfs-image"
+https://git.yoctoproject.org/poky/tree/meta/recipes-core/base-files/base-fi=
+les/fstab?h=3Dscarthgap&id=3D3cc8c3520cedb66500757f843f757646da69ab30#n7
 
-# Machine conf
-INITRAMFS_IMAGE_BUNDLE =3D "1"
-IMAGE_BOOT_FILES:prepend =3D " ${KERNEL_IMAGETPYE}-initramfs-${MACHINE}.bin=
-"
+Since /var/volatile is a tmpfs, its contents are lost on reboot.
 
-Up to that point everything is OK: kernel + bundled initramfs is created, I
-can copy it to the board, boot with it, run scripts, etc.
+This commit might have introduced the issue - s ince /var/volatile/tmp is i=
+nside a tmpfs mount, it gets wiped on reboot, meaning /var/tmp is also clea=
+red.
+Commit - https://git.yoctoproject.org/poky/commit/meta/recipes-core/systemd=
+/systemd/00-create-volatile.conf?h=3Dscarthgap&id=3D3cc8c3520cedb66500757f8=
+43f757646da69ab30 ( https://git.yoctoproject.org/poky/commit/meta/recipes-c=
+ore/systemd/systemd/00-create-volatile.conf?h=3Dscarthgap&id=3D3cc8c3520ced=
+b66500757f843f757646da69ab30 )
 
-But after the above I am finding an issue with kernel versioning. The
-function `do_bundle_initramfs` is being run after `do_package`, which means
-I can not create a package of the kernel with initramfs on it. Moreover I
-can no longer build out of kernel modules, because the git commit id
-changes, and thus KERNEL_VERSION.
+This commit links /var/tmp to /var/volatile/tmp
+*Expected Behavior*
 
-Maybe `do_bundle_initramfs` happens after `do_package` to avoid a circular
-dependency somehow? Maybe I could try to hack the class to avoid building
-the image without the initramfs and building the version with it before
-`do_package` is called? Maybe there is some other approach?
+* /var/tmp should retain files across reboots, as per standard Linux behavi=
+or.
+* Using a symlink to a volatile tmpfs directory contradicts this expectatio=
+n.
 
-Thanks in advance, Lisandro.
+*Impact*
 
---=20
-Lisandro P=C3=A9rez Meyer
-Embedded Platform Engineer
+* Any application expecting persistent temporary storage in /var/tmp will l=
+ose data after a reboot.
+* This behavior may break software relying on the standard /var/tmp persist=
+ence.
 
---0000000000004d2a4c06308daf55
-Content-Type: text/html; charset="UTF-8"
+Should /var/tmp continue following standard Linux behavior by *not being li=
+nked to /var/volatile/tmp* , or is this change intentional for specific use=
+ cases? If persistence is desired, this approach seems problematic.
+
+Would appreciate input from the maintainers on whether this is a bug or int=
+ended behavior.
+
+Cross-post - https://lists.openembedded.org/g/openembedded-core/topic/issue=
+_var_tmp_does_not/111764066
+
+--SL8IXZqqnpcFRE0oWNsZ
+Content-Type: text/html; charset="utf-8"
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr"><div>Hi,<br><br>I&#39;m building a Scarthgap-based system =
-with a Variscite iMX8M-Plus SoC which needs a kernel with initramfs embedde=
-d into it. Following the doc I created a initramfs recipe, enabled/set:<br>=
-<br># On a linux-variscite&#39;s bbappend<br>INITRAMFS_IMAGE =3D &quot;thep=
-roject-initramfs-image&quot; <br><br># Machine conf<br>INITRAMFS_IMAGE_BUND=
-LE =3D &quot;1&quot;<br>IMAGE_BOOT_FILES:prepend =3D &quot; ${KERNEL_IMAGET=
-PYE}-initramfs-${MACHINE}.bin&quot;<br><br>Up to that point everything is O=
-K: kernel + bundled initramfs is created, I can copy it to the board, boot =
-with it, run scripts, etc.<br><br>But after the above I am finding an issue=
- with kernel versioning. The function `do_bundle_initramfs` is being run af=
-ter `do_package`, which means I can not create a package of the kernel with=
- initramfs on it. Moreover I can no longer build out of kernel modules, bec=
-ause the git commit id changes, and thus KERNEL_VERSION.<br><br>Maybe `do_b=
-undle_initramfs` happens after `do_package` to avoid a circular dependency =
-somehow? Maybe I could try to hack the class to avoid building the image wi=
-thout the initramfs and building the version with it before `do_package` is=
- called? Maybe there is some other approach?<br><br>Thanks in advance, Lisa=
-ndro.</div><br><span class=3D"gmail_signature_prefix">-- </span><br><div di=
-r=3D"ltr" class=3D"gmail_signature" data-smartmail=3D"gmail_signature"><div=
- dir=3D"ltr"><div>Lisandro P=C3=A9rez Meyer<br></div>Embedded Platform Engi=
-neer<br></div></div></div>
+<div><span style=3D"background-color: var(--light-mode-body-color);">The cu=
+rrent Yocto basefiles fstab mounts /var/volatile as tmpfs, which results in=
+ the loss of all files stored in /var/tmp upon reboot.</span></div>
+<div>&nbsp;</div>
+<div><span style=3D"background-color: var(--light-mode-body-color);">fstab =
+in base-files:</span></div>
+<div><span style=3D"background-color: var(--light-mode-body-color);"><br />=
+<a href=3D"https://git.yoctoproject.org/poky/tree/meta/recipes-core/base-fi=
+les/base-files/fstab?h=3Dscarthgap&amp;id=3D3cc8c3520cedb66500757f843f75764=
+6da69ab30#n7" target=3D"_blank" rel=3D"noopener">https://git.yoctoproject.o=
+rg/poky/tree/meta/recipes-core/base-files/base-files/fstab?h=3Dscarthgap&am=
+p;id=3D3cc8c3520cedb66500757f843f757646da69ab30#n7</a></span></div>
+<div><span style=3D"background-color: var(--light-mode-body-color);"><br />=
+Since /var/volatile is a tmpfs, its contents are lost on reboot.</span></di=
+v>
+<div>
+<div>
+<div>&nbsp;</div>
+<div>This commit might have introduced the issue - s<span style=3D"backgrou=
+nd-color: var(--light-mode-body-color);">ince </span><code data-start=3D"12=
+10" data-end=3D"1229">/var/volatile/tmp</code><span style=3D"background-col=
+or: var(--light-mode-body-color);"> is inside a tmpfs mount, it gets wiped =
+on reboot, meaning </span><code data-start=3D"1288" data-end=3D"1298">/var/=
+tmp</code><span style=3D"background-color: var(--light-mode-body-color);"> =
+is also cleared.</span></div>
+<div>
+<h4 data-start=3D"1317" data-end=3D"1343"><span style=3D"background-color: =
+var(--light-mode-body-color); font-size: 16px;">Commit - </span><a style=3D=
+"font-size: 16px;" href=3D"https://git.yoctoproject.org/poky/commit/meta/re=
+cipes-core/systemd/systemd/00-create-volatile.conf?h=3Dscarthgap&amp;id=3D3=
+cc8c3520cedb66500757f843f757646da69ab30" target=3D"_blank" rel=3D"noopener"=
+>https://git.yoctoproject.org/poky/commit/meta/recipes-core/systemd/systemd=
+/00-create-volatile.conf?h=3Dscarthgap&amp;id=3D3cc8c3520cedb66500757f843f7=
+57646da69ab30&nbsp;</a></h4>
+</div>
+</div>
+<div>&nbsp;</div>
+<div>This commit links <code data-start=3D"1104" data-end=3D"1114">/var/tmp=
+</code> to <code data-start=3D"1118" data-end=3D"1137">/var/volatile/tmp</c=
+ode></div>
+<div>
+<h4 data-start=3D"1317" data-end=3D"1343">&nbsp;</h4>
+<h4 data-start=3D"1317" data-end=3D"1343"><strong data-start=3D"1322" data-=
+end=3D"1343">Expected Behavior</strong></h4>
+<ul data-start=3D"1344" data-end=3D"1502">
+<li data-start=3D"1344" data-end=3D"1424"><code data-start=3D"1346" data-en=
+d=3D"1356">/var/tmp</code> should retain files across reboots, as per stand=
+ard Linux behavior.</li>
+<li data-start=3D"1425" data-end=3D"1502">Using a symlink to a volatile tmp=
+fs directory contradicts this expectation.</li>
+</ul>
+</div>
+<div>
+<h4 data-start=3D"1504" data-end=3D"1519">&nbsp;</h4>
+<h4 data-start=3D"1504" data-end=3D"1519"><strong data-start=3D"1509" data-=
+end=3D"1519">Impact</strong></h4>
+<ul data-start=3D"1520" data-end=3D"1704">
+<li data-start=3D"1520" data-end=3D"1621">Any application expecting persist=
+ent temporary storage in <code data-start=3D"1580" data-end=3D"1590">/var/t=
+mp</code> will lose data after a reboot.</li>
+<li data-start=3D"1622" data-end=3D"1704">This behavior may break software =
+relying on the standard <code data-start=3D"1681" data-end=3D"1691">/var/tm=
+p</code> persistence.</li>
+</ul>
+</div>
+<div>
+<p data-start=3D"1738" data-end=3D"1969">&nbsp;</p>
+<p data-start=3D"1738" data-end=3D"1969">Should <code data-start=3D"1745" d=
+ata-end=3D"1755">/var/tmp</code> continue following standard Linux behavior=
+ by <strong data-start=3D"1802" data-end=3D"1845">not being linked to <code=
+ data-start=3D"1824" data-end=3D"1843">/var/volatile/tmp</code></strong>, o=
+r is this change intentional for specific use cases? If persistence is desi=
+red, this approach seems problematic.</p>
+<p data-start=3D"1971" data-end=3D"2061">Would appreciate input from the ma=
+intainers on whether this is a bug or intended behavior.&nbsp;</p>
+<p data-start=3D"1971" data-end=3D"2061">Cross-post - <a href=3D"https://li=
+sts.openembedded.org/g/openembedded-core/topic/issue_var_tmp_does_not/11176=
+4066" target=3D"_blank" rel=3D"noopener">https://lists.openembedded.org/g/o=
+penembedded-core/topic/issue_var_tmp_does_not/111764066</a></p>
+<p data-start=3D"1971" data-end=3D"2061">&nbsp;</p>
+<p data-start=3D"1971" data-end=3D"2061">&nbsp;</p>
+</div>
+</div>
 
---0000000000004d2a4c06308daf55--
+--SL8IXZqqnpcFRE0oWNsZ--
 
