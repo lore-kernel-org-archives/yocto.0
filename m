@@ -1,47 +1,67 @@
-Return-Path: <283982@ust.com>
+Return-Path: <ndivecha@granitenet.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id B4BA8C35FFA
-	for <webhook@archiver.kernel.org>; Wed, 19 Mar 2025 11:26:30 +0000 (UTC)
-Subject: Re: [yocto] How to build a yocto image with two different python3 versions ? #yocto #python #scarthgap #sdk #toolchain
-To: "Alexander Kanavin" <alex.kanavin@gmail.com>, yocto@lists.yoctoproject.org
-From: 283982@ust.com
-X-Originating-Location: US (136.226.244.124)
-X-Originating-Platform: Linux Chrome 107
+	by smtp.lore.kernel.org (Postfix) with ESMTP id CB4CAC35FFA
+	for <webhook@archiver.kernel.org>; Wed, 19 Mar 2025 11:27:40 +0000 (UTC)
+Subject: Re: [yocto] Install zabbix-proxy
+To: "Gyorgy Sarvari" <skandigraun@gmail.com>, yocto@lists.yoctoproject.org
+From: "Nitesh D" <ndivecha@granitenet.com>
+X-Originating-Location: Troy, Michigan, US (143.59.9.147)
+X-Originating-Platform: Mac Chrome 134
 User-Agent: GROUPS.IO Web Poster
 MIME-Version: 1.0
-Date: Wed, 19 Mar 2025 04:26:25 -0700
-References: <CANNYZj9ezHHK2gfc3k9twdtS-X7tPpNr_orb2+HOEzEnaxdpfQ@mail.gmail.com>
-In-Reply-To: <CANNYZj9ezHHK2gfc3k9twdtS-X7tPpNr_orb2+HOEzEnaxdpfQ@mail.gmail.com>
-Message-ID: <30508.1742383585587192332@lists.yoctoproject.org>
-Content-Type: multipart/alternative; boundary="qaso82C8dqpqTJKFniHx"
+Date: Wed, 19 Mar 2025 04:27:31 -0700
+References: <b8dbe5fa-663e-4039-9c17-d93d919aa09c@gmail.com>
+In-Reply-To: <b8dbe5fa-663e-4039-9c17-d93d919aa09c@gmail.com>
+Message-ID: <30508.1742383651277830454@lists.yoctoproject.org>
+Content-Type: multipart/alternative; boundary="dxn0WvW4EQdj5TQBZ8ri"
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Wed, 19 Mar 2025 11:26:30 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/64982
+ <yocto@lists.yoctoproject.org>; Wed, 19 Mar 2025 11:27:40 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/64983
 
---qaso82C8dqpqTJKFniHx
+--dxn0WvW4EQdj5TQBZ8ri
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: quoted-printable
 
-I was unable to cross-compile SciPy for Python 3.12, and my team decided no=
-t to proceed with the STM32MPU157F. Instead, I will be using the RZ/V2L, wh=
-ich currently only supports Python 3.8. However, my client requires the Pyt=
-hon version to be greater than 3.10. So I am currently learning on how to b=
-uild package required for running the application on the STM32 board
+Hi there,
 
---qaso82C8dqpqTJKFniHx
+I haven=E2=80=99t tried anything yet because I was busy researching how to =
+install Zabbix-proxy and if there=E2=80=99s a recipe for Zabbix-proxy.
+
+But it seems like the best way to install Zabbix-proxy is to append =E2=80=
+=9C=E2=80=94enable-proxy=E2=80=9D to EXTRA_OECONF and choose the right data=
+base.
+
+I=E2=80=99ll give it a shot and let you know if I run into any issues.
+
+Thanks again!
+
+Cheers,
+
+--dxn0WvW4EQdj5TQBZ8ri
 Content-Type: text/html; charset="utf-8"
 Content-Transfer-Encoding: quoted-printable
 
-<div>I was unable to cross-compile SciPy for Python 3.12, and my team decid=
-ed not to proceed with the STM32MPU157F. Instead, I will be using the RZ/V2=
-L, which currently only supports Python 3.8. However, my client requires th=
-e Python version to be greater than 3.10. So I am currently learning on how=
- to build package required for running the application on the STM32 board</=
+<div>Hi there,</div>
+<div>&nbsp;</div>
+<div>I haven&rsquo;t tried anything yet because I was busy researching how =
+to install Zabbix-proxy and if there&rsquo;s a recipe for Zabbix-proxy.</di=
+v>
+<div>&nbsp;</div>
+<div>But it seems like the best way to install Zabbix-proxy is to append &l=
+dquo;&mdash;enable-proxy&rdquo; to EXTRA_OECONF and choose the right databa=
+se.</div>
+<div>&nbsp;</div>
+<div>I&rsquo;ll give it a shot and let you know if I run into any issues.</=
 div>
+<div>&nbsp;</div>
+<div>Thanks again!</div>
+<div>&nbsp;</div>
+<div>Cheers,&nbsp;</div>
+<div>&nbsp;</div>
 
---qaso82C8dqpqTJKFniHx--
+--dxn0WvW4EQdj5TQBZ8ri--
 
