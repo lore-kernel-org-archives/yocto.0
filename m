@@ -1,222 +1,100 @@
-Return-Path: <william.martin@muxen.fr>
+Return-Path: <raj.khem@gmail.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 9ADD6C28B30
-	for <webhook@archiver.kernel.org>; Thu, 20 Mar 2025 18:40:14 +0000 (UTC)
-Received: from relay7-d.mail.gandi.net (relay7-d.mail.gandi.net [217.70.183.200])
- by mx.groups.io with SMTP id smtpd.web10.2577.1742496010361054875
+	by smtp.lore.kernel.org (Postfix) with ESMTP id E6471C36001
+	for <webhook@archiver.kernel.org>; Thu, 20 Mar 2025 19:30:54 +0000 (UTC)
+Received: from mail-oi1-f172.google.com (mail-oi1-f172.google.com [209.85.167.172])
+ by mx.groups.io with SMTP id smtpd.web10.3702.1742499044763724313
  for <yocto@lists.yoctoproject.org>;
- Thu, 20 Mar 2025 11:40:10 -0700
+ Thu, 20 Mar 2025 12:30:44 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@muxen.fr header.s=gm1 header.b=TkV0SaV6;
- spf=pass (domain: muxen.fr, ip: 217.70.183.200, mailfrom: william.martin@muxen.fr)
-Received: by mail.gandi.net (Postfix) with ESMTPSA id 63C0A44240
-	for <yocto@lists.yoctoproject.org>; Thu, 20 Mar 2025 18:40:08 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=muxen.fr; s=gm1;
-	t=1742496008;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:mime-version:mime-version:content-type:content-type;
-	bh=BQb3DBDRO/ljEjafRbSnZTEWEYJclGP+ANl4zIHFJW8=;
-	b=TkV0SaV6CzeUhSwnM3h6Bx+hdoohGmXmd9ezsIA/xfgTs0nlQJ+PQW3yarHrcqjdYxpKuo
-	o8ZcGsTAVHhFf6W5cqA0YbVsMulnnQRBzuxLXG5h2wXFaVK+d18r6eQWdzcdQFcyb0wszz
-	M7MhWHZeiHVuhB6FORnAs8sXykuYUsE68veElza+4yeoahRovzfJNgERnB150hPBcf5kq4
-	82amWLs+fX0n8+8BfnedaVVliF1Irv7WlcB4vkm/JlhrbTyPLqTPffB+oywqMVB8MmVK7Z
-	KSadAmMWbE9Z867Ig/jLV9XAJqczz9kUM8vavO7eU9rbwR0N8IxXKZCscScYMQ==
-Content-Type: multipart/alternative;
- boundary="------------Zp09AOQfjd0vcnGtJV6hawMQ"
-Message-ID: <975bd8bc-c4a8-4927-ae48-fde101bfbf7f@muxen.fr>
-Date: Thu, 20 Mar 2025 19:40:07 +0100
+ dkim=pass header.i=@gmail.com header.s=20230601 header.b=BpXAT810;
+ spf=pass (domain: gmail.com, ip: 209.85.167.172, mailfrom: raj.khem@gmail.com)
+Received: by mail-oi1-f172.google.com with SMTP id 5614622812f47-3fbaa18b810so325173b6e.2
+        for <yocto@lists.yoctoproject.org>; Thu, 20 Mar 2025 12:30:44 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1742499043; x=1743103843; darn=lists.yoctoproject.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=OqVvCqErroqTh/ZW/vUeAqHcNnzRgZF+hKuLMMDns4o=;
+        b=BpXAT810gxj9i0wPfLZRlXmK2GunpcStvJEbKjKAkGH2klma7n0oBGiN6O9dcrSzhM
+         lcIWTn0dTHeQ7u7a4dOEpATXZKK480ciRYasyvZvmqBwoMZazexixQ+vTHOxgDN0XEod
+         3MyF6Ycg4a+lDyqCRN1Pz3tG3f/e8j6uHPrJw95HPHzbCnI0/eHSVq+07zgEK7F/g2aq
+         EXy47vU8MgV0IwNXx3OSk639+0kLxXDJeyiJsUn/ExE8bSNs4VfzBOMFO59S6WCpIEsC
+         RKdBR9h5qmErvyZq0mTAkZnMDHzV7NLcY0lfMu+1Q0JmOUx7DttZpO/6dng/Ybs9qD6D
+         WYGw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1742499043; x=1743103843;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=OqVvCqErroqTh/ZW/vUeAqHcNnzRgZF+hKuLMMDns4o=;
+        b=W4FvvcAqR9BzxPLX4L9zlGx1KzXciXKrapG/daQYMh925vffVs/Z0F9017U5r+jr1/
+         iBMo+fjqUVt8plGRIVN7EqmU9vNslC9oKpF81NCPBobQ8aK1s+jOaHhjjV8pw029/pzU
+         iAFPc4FZjzvjIfb3BeWNYD6RqqQHZHmPIBqmybC+QGbcQFybbfHOz7DZuok9kvI994Ka
+         l9Dx1cpGEaKiwuifZXbP473aYw9tgTh5SkX0eXNufFvSLrZkIt6WMRfI8x/UxHwbiRfO
+         uvphz/v6LoOgboxk9JZfAhMIMMWGXmuHaQgx5G4c3jBLfNcgfvCFCALGNYlK250sPAoa
+         +GVA==
+X-Gm-Message-State: AOJu0YyRCbVrXsH04CZtVtek0CBHACx6JDZfp6RtoT0f3naLOpAOs5b8
+	y9KAdSiFgQt0jlh5fuQpDxDMWtK0uFYO72YK5xTxY013sLfIyEpOSSFygO14K6iVV5OuyPIJ+Oq
+	w9GQQ+oc4tp7FzXUNdApC8NZkciL8GHaW
+X-Gm-Gg: ASbGnct/+DYnu940elLP8O5R96JCr782Err0RDBf29FG2KJAqJQsCtAQik7OSHXax8i
+	4AKVVbV2OvN4igZC/jx4YPJyCVT6E4YnEjNX1lWrAeguKjegrUnwgv2sluPQB558OVEkEWU0VbY
+	Q235Sla4w+WGGyqcjQr6q/Ot1OG61sRJritZsnVVF0jvaLkC/Uf5eHIMc=
+X-Google-Smtp-Source: AGHT+IGDgukhPTwD0J+X1qmFaSZETzM6HBBQBNG7EBUmQayPIw7nq1Wfw7qUHTCtvdWJ295xZnRG8A707tKofvE8Yb4=
+X-Received: by 2002:a05:6808:15a8:b0:3fa:d6c:cdbe with SMTP id
+ 5614622812f47-3febf791ffbmr268436b6e.32.1742499043557; Thu, 20 Mar 2025
+ 12:30:43 -0700 (PDT)
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-From: William MARTIN <william.martin@muxen.fr>
-Subject: Using a python3 native module during do_fetch
-To: yocto@lists.yoctoproject.org
-Content-Language: en-US
-X-GND-State: clean
-X-GND-Score: 0
-X-GND-Cause: gggruggvucftvghtrhhoucdtuddrgeefvddrtddtgddugeekleeiucetufdoteggodetrfdotffvucfrrhhofhhilhgvmecuifetpfffkfdpucggtfgfnhhsuhgsshgtrhhisggvnecuuegrihhlohhuthemuceftddunecunecujfgurheptgfkffggfgfhuffvsegrtderredtvdejnecuhfhrohhmpeghihhllhhirghmucfoteftvffkpfcuoeifihhllhhirghmrdhmrghrthhinhesmhhugigvnhdrfhhrqeenucggtffrrghtthgvrhhnpeevheeufffhheevhfekveefvdevudeikeehleevkedtveevkedvgfffveeuhfffteenucffohhmrghinhepghhithhhuhgsrdgtohhmnecukfhppedvrgdtudemvgdtrgemsgektdemfhejtdemgeekudgsmeegugektdemfhegsggumeeifhefheenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepihhnvghtpedvrgdtudemvgdtrgemsgektdemfhejtdemgeekudgsmeegugektdemfhegsggumeeifhefhedphhgvlhhopeglkffrggeimedvrgdtudemvgdtrgemsgektdemfhejtdemgeekudgsmeegugektdemfhegsggumeeifhefhegnpdhmrghilhhfrhhomhepfihilhhlihgrmhdrmhgrrhhtihhnsehmuhigvghnrdhfrhdpnhgspghrtghpthhtohepuddprhgtphhtthhopeihohgtthhosehlihhsthhsrdihohgtthhophhrohhjvggtthdrohhrgh
-X-GND-Sasl: william.martin@muxen.fr
+References: <3311f3fd48ab25e96d99b89aa804f3571b13f0ac.camel@vrag.ch> <4474D02F-CA52-4A58-A8A5-8413584297D5@arm.com>
+In-Reply-To: <4474D02F-CA52-4A58-A8A5-8413584297D5@arm.com>
+From: Khem Raj <raj.khem@gmail.com>
+Date: Thu, 20 Mar 2025 12:30:17 -0700
+X-Gm-Features: AQ5f1JoJyqKEM03uPCkEELbK1UGxTLPR7yGlvcwoXXggdZMK1aSu4O0vcBKlLhE
+Message-ID: <CAMKF1srmDjAgPK2ZCXg2XQfbdnhuHhc3kafhagkCJvug2tOT4A@mail.gmail.com>
+Subject: Re: [yocto] Failure expanding variable GITPKGVTAG in libusbmuxd_2.1.0.bb
+To: yocto@lists.yoctoproject.org, ross.burton@arm.com
+Cc: "david.daniel@vrag.ch" <david.daniel@vrag.ch>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Thu, 20 Mar 2025 18:40:14 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/64995
+ <yocto@lists.yoctoproject.org>; Thu, 20 Mar 2025 19:30:54 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/64996
 
-This is a multi-part message in MIME format.
---------------Zp09AOQfjd0vcnGtJV6hawMQ
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+On Thu, Mar 20, 2025 at 8:31=E2=80=AFAM Ross Burton via lists.yoctoproject.=
+org
+<ross.burton=3Darm.com@lists.yoctoproject.org> wrote:
+>
+>
+>
+> > On 20 Mar 2025, at 14:23, David Daniel via lists.yoctoproject.org <davi=
+d.daniel=3Dvrag.ch@lists.yoctoproject.org> wrote:
+> > I can't find anything wrong in the libusbmuxd_2.1.0.bb recipe - has any=
+one an idea what is causing this?
+>
+>
+> oe-core master changed and https://lore.kernel.org/openembedded-devel/202=
+50319164511.832211-1-richard.purdie@linuxfoundation.org/T/#u hasn=E2=80=99t=
+ yet been merged.  You can apply that locally until it has.
 
-    Hi,
+Its in now, so please update your meta-openembedded checkout to latest
+on master branch
 
-
-I have write a custom fetcher for Gitlab Artifiacts based on the python3 
-module "python_gitlab".
-The fetcher works fine if the python module is installed using pip on 
-the build machine.
-
-I have create a recipe for the "python_gitlab" module to try to make the 
-fetcher works without the pip module pre-installed.
-The package python3-python-gitlab-native seem created.
-
-But the do_fetch seem to be executed using the build machine python, so 
-the python module is unavailable.
-Does someone have any tips to add a ***wrapper*** to ensure the fetch is 
-done using the python3 build by yocto ?
-
-Regards,
-
-William
-
-
-
-python3-python-gitlab_5.6.0.bb
-
-SUMMARY = "Access to the GitLab APIs."
-HOMEPAGE = "https://github.com/python-gitlab/python-gitlab"
-LICENSE = "LGPL-3.0-only"
-LIC_FILES_CHKSUM = "file://COPYING;md5=e6a600fd5e1d9cbde2d983680233ad02"
-PYPI_PACKAGE="python_gitlab"
-SRC_URI[sha256sum] = 
-"bc531e8ba3e5641b60409445d4919ace68a2c18cb0ec6d48fbced6616b954166"
-RDEPENDS:${PN} += " \
-     python3-requests-toolbelt \
-"
-inherit pypi python_setuptools_build_meta
-BBCLASSEXTEND = "native nativesdk"
-
-
-python3-requests-toolbelt_%.bbappend
-
-BBCLASSEXTEND = "native nativesdk"
-
-
-conf/layer.conf
-
-addpylib ${LAYERDIR}/lib muxen
-
-classes/artifact-fetch.bbclass
-
-#
-# artifact-fetch class
-#
-# Registers 'artifact' method for Bitbake fetch2.
-#
-# Adds support for following format in recipe SRC_URI:
-# 
-artifact://<projectGitlabURL>;version<version>;job=<jobName>;auth=<authToken>
-#
-# Install python_gitlab on the host
-# pip install --break-system-packages python_gitlab
-#
-# Add authentification token per host in your build/conf/local.conf
-# GITLAB_AUTH_WWW_EXEMPLE_COM = "glpat-56123sdc6sdHHHHHHfsd"
-
-do_unpack[depends] += "unzip-native:do_populate_sysroot"
-S = "${WORKDIR}/sources-unpack"
-
-do_fetch[depends] += "python3-python-gitlab-native:do_populate_sysroot"
-
-python () {
-from muxen import artifact
-bb.fetch2.methods.append( artifact.Artifact() )
-}
-
-
-
---------------Zp09AOQfjd0vcnGtJV6hawMQ
-Content-Type: text/html; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-
-<!DOCTYPE html>
-<html>
-  <head>
-
-    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
-  </head>
-  <body>
-    <blockquote>Hi,<br>
-    </blockquote>
-    <br>
-    I have write a custom fetcher for Gitlab Artifiacts based on the
-    python3 module "python_gitlab".<br>
-    The fetcher works fine if the python module is installed using pip
-    on the build machine.<br>
-    <br>
-    I have create a recipe for the "python_gitlab" module to try to make
-    the fetcher works without the pip module pre-installed.<br>
-    The package python3-python-gitlab-native seem created.<br>
-    <br>
-    But the do_fetch seem to be executed using the build machine python,
-    so the python module is unavailable.<br>
-    Does someone have any tips to add a ***wrapper*** to ensure the
-    fetch is done using the python3 build by yocto ?<br>
-    <br>
-    Regards,<br>
-    <br>
-    William<br>
-    <br>
-    <br>
-    <br>
-    python3-python-gitlab_5.6.0.bb<br>
-    <br>
-    SUMMARY = "Access to the GitLab APIs."<br>
-    HOMEPAGE = <a class="moz-txt-link-rfc2396E" href="https://github.com/python-gitlab/python-gitlab">"https://github.com/python-gitlab/python-gitlab"</a><br>
-    LICENSE = "LGPL-3.0-only"<br>
-    LIC_FILES_CHKSUM =
-    <a class="moz-txt-link-rfc2396E" href="file://COPYING;md5=e6a600fd5e1d9cbde2d983680233ad02">"file://COPYING;md5=e6a600fd5e1d9cbde2d983680233ad02"</a><br>
-    PYPI_PACKAGE="python_gitlab"<br>
-    SRC_URI[sha256sum] =
-    "bc531e8ba3e5641b60409445d4919ace68a2c18cb0ec6d48fbced6616b954166"<br>
-    RDEPENDS:${PN} += " \<br>
-        python3-requests-toolbelt \<br>
-    "<br>
-    inherit pypi python_setuptools_build_meta<br>
-    BBCLASSEXTEND = "native nativesdk"<br>
-    <br>
-    <br>
-    python3-requests-toolbelt_%.bbappend<br>
-    <br>
-    BBCLASSEXTEND = "native nativesdk"<br>
-    <br>
-    <br>
-    conf/layer.conf<br>
-    <br>
-    addpylib ${LAYERDIR}/lib muxen<br>
-    <br>
-    classes/artifact-fetch.bbclass<br>
-    <br>
-    #<br>
-    # artifact-fetch class<br>
-    #<br>
-    # Registers 'artifact' method for Bitbake fetch2.<br>
-    #<br>
-    # Adds support for following format in recipe SRC_URI:<br>
-    #
-artifact://&lt;projectGitlabURL&gt;;version&lt;version&gt;;job=&lt;jobName&gt;;auth=&lt;authToken&gt;<br>
-    #<br>
-    # Install python_gitlab on the host<br>
-    # pip install --break-system-packages python_gitlab<br>
-    #<br>
-    # Add authentification token per host in your build/conf/local.conf<br>
-    # GITLAB_AUTH_WWW_EXEMPLE_COM = "glpat-56123sdc6sdHHHHHHfsd"<br>
-    <br>
-    do_unpack[depends] += "unzip-native:do_populate_sysroot"<br>
-    S = "${WORKDIR}/sources-unpack"<br>
-    <br>
-    do_fetch[depends] +=
-    "python3-python-gitlab-native:do_populate_sysroot"<br>
-    <br>
-    python () {<br>
-    from muxen import artifact<br>
-    bb.fetch2.methods.append( artifact.Artifact() )<br>
-    }<br>
-    <br>
-    <br>
-    <br>
-  </body>
-</html>
-
---------------Zp09AOQfjd0vcnGtJV6hawMQ--
+>
+> Ross
+> -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
+> Links: You receive all messages sent to this group.
+> You automatically follow any topics you start or reply to.
+> View/Reply Online (#64993): https://lists.yoctoproject.org/g/yocto/messag=
+e/64993
+> Mute This Topic: https://lists.yoctoproject.org/mt/111809199/1997914
+> Group Owner: yocto+owner@lists.yoctoproject.org
+> Unsubscribe: https://lists.yoctoproject.org/g/yocto/unsub [raj.khem@gmail=
+.com]
+> -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
+>
 
