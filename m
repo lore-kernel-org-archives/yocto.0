@@ -1,431 +1,256 @@
-Return-Path: <ndivecha@granitenet.com>
+Return-Path: <skandigraun@gmail.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 94F96C36001
-	for <webhook@archiver.kernel.org>; Sat, 22 Mar 2025 01:26:20 +0000 (UTC)
-Subject: Re: [yocto] Install zabbix-proxy
-To: "Gyorgy Sarvari" <skandigraun@gmail.com>, yocto@lists.yoctoproject.org
-From: "Nitesh D" <ndivecha@granitenet.com>
-X-Originating-Location: Troy, Michigan, US (143.59.9.147)
-X-Originating-Platform: Mac Chrome 134
-User-Agent: GROUPS.IO Web Poster
+	by smtp.lore.kernel.org (Postfix) with ESMTP id BAA06C36002
+	for <webhook@archiver.kernel.org>; Sat, 22 Mar 2025 09:19:22 +0000 (UTC)
+Received: from mail-ej1-f49.google.com (mail-ej1-f49.google.com [209.85.218.49])
+ by mx.groups.io with SMTP id smtpd.web11.6320.1742635153000669957
+ for <yocto@lists.yoctoproject.org>;
+ Sat, 22 Mar 2025 02:19:13 -0700
+Authentication-Results: mx.groups.io;
+ dkim=pass header.i=@gmail.com header.s=20230601 header.b=BBJxmisR;
+ spf=pass (domain: gmail.com, ip: 209.85.218.49, mailfrom: skandigraun@gmail.com)
+Received: by mail-ej1-f49.google.com with SMTP id a640c23a62f3a-ab771575040so759894966b.1
+        for <yocto@lists.yoctoproject.org>; Sat, 22 Mar 2025 02:19:12 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1742635151; x=1743239951; darn=lists.yoctoproject.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:to:subject:user-agent:mime-version:date:message-id:from
+         :to:cc:subject:date:message-id:reply-to;
+        bh=9S5hi5ZctvqB6bZxsbGK7eDdtmrui2cuVhy/tlcqDLo=;
+        b=BBJxmisRLd6y/j+mp83OMARR7ix5MMazgDSlc0uW0Qlk2wXRrVQV16fLxRkaI8GfuQ
+         JVZHG7C7h7E3pWl1x9SOHM2ZyO0cYfUqhKQ9r8KWGBFBY+i9qP19IBqN2BG7FgxMHn3i
+         Jd2D1ivG0F/du8/apXg08lwAbg3QLc6w5C53zIvAxNrGaaw72XPt/+0W7+EneIkthu/b
+         0LOdKdnyDM+cBPFEMYo8qjS4jSzVhguCjt5e7cU+BzhJ2DdPMf+zd0BwgT4TzQY0w9TI
+         G1YlA6lflZr5+FYzee4+OXCRnwU7KBNoxs5mWJatoLlgCoxddIdkKPBwrnjBo2ptXnoi
+         VmhQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1742635151; x=1743239951;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=9S5hi5ZctvqB6bZxsbGK7eDdtmrui2cuVhy/tlcqDLo=;
+        b=K2pBCKfXSakVyxYLWFS28tWNkHXkZoc/xJRnB7xR5MAt09ZTIKsnmtL24pHHF1FI96
+         Mes/rcmPFyBbvlrxanHnjvud0E8VflqiBO8l/wt8kznKv5Gje23568B382NoLnoTIrx6
+         0b+fFhAGh1/YaX1X7TUg/0QamMSvscP1pqapLQLjwV8P9vMKfYpV8h3iWA28KAPfDOeu
+         NI4QfrC8nQbUJ5XD+t5WyQgUSw294o4uxTfYHmYN77anEr7b3GqLvKNeTiu+ycl1k73R
+         IUcpsfC6cPLkvD5WgCXdBOY7hPkxLGaWkTVXtqC4Q8kOX91sjgFn6G02yM0wv5LAdTdK
+         o0Yg==
+X-Forwarded-Encrypted: i=1; AJvYcCVBwlWNegyUSJO0s28gRNJiIt4h59daH76lTo2wvSKm2FTf6hVZOsv0DaZiolhwH0LqO3NZlA==@lists.yoctoproject.org
+X-Gm-Message-State: AOJu0Yxhx4hsCZYgcUqc6TLICWhuNJ5qrHh6vury+FOTX8zjBKdqxidO
+	HfagTVOzJhR8CLIMF5XRR2tR5+41RytnZMUdG3mOVB9t0S6UG02F
+X-Gm-Gg: ASbGncvAmwVE/gr8M2wNRDvC6TFacduqDM+V26SoDxqk0U0VFYJA+L4FkqfN7b/a881
+	6SJpV3QpHTBOOxjTB8jL8PnEoDNil9NY7JbpZKT3iGU+u8BGsX7XhTG4OQWFx6Q6TK+nlCY+ozB
+	5ycP/aDPsv86E9Xns7rz07PxkWdfy7JDHfXVd6+rThPev+5DjWWfSyytfkSOIu0Eg19iWKZQCf0
+	D16ItFH7PvOvXasVH1pb0qMx3FTlsBh9HEaExCGmtfuQV/+7sK3UJqgB2Q0A5IvUqG/K1DXYFDM
+	ndxfT8kbbh8Z6HUDnedGGCnsxThaV5kKOhp+kuDo0AEcYobIXPAT
+X-Google-Smtp-Source: AGHT+IHFzbFTAKPC7LeDPoh6fByRvlZQlSskxVXhKYxkUCMCNaWsL39HuqHrqM7749UAimx590h88g==
+X-Received: by 2002:a17:907:60d3:b0:abf:68b5:f78b with SMTP id a640c23a62f3a-ac3f03c1efemr510427166b.24.1742635150914;
+        Sat, 22 Mar 2025 02:19:10 -0700 (PDT)
+Received: from [192.168.1.106] ([51.154.145.205])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-ac3ef8d3d05sm311425166b.54.2025.03.22.02.19.10
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sat, 22 Mar 2025 02:19:10 -0700 (PDT)
+Message-ID: <e233d006-78aa-48a6-89d9-617486592970@gmail.com>
+Date: Sat, 22 Mar 2025 10:19:09 +0100
 MIME-Version: 1.0
-Date: Fri, 21 Mar 2025 18:26:14 -0700
+User-Agent: Mozilla Thunderbird
+Subject: Re: [yocto] Install zabbix-proxy
+To: ndivecha@granitenet.com, yocto@lists.yoctoproject.org
 References: <b8dbe5fa-663e-4039-9c17-d93d919aa09c@gmail.com>
-In-Reply-To: <b8dbe5fa-663e-4039-9c17-d93d919aa09c@gmail.com>
-Message-ID: <22795.1742606774386014983@lists.yoctoproject.org>
-Content-Type: multipart/alternative; boundary="JhKwf79GkX2EvMcE5kJ6"
+ <22795.1742606774386014983@lists.yoctoproject.org>
+Content-Language: en-US
+From: Gyorgy Sarvari <skandigraun@gmail.com>
+In-Reply-To: <22795.1742606774386014983@lists.yoctoproject.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Sat, 22 Mar 2025 01:26:20 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/65006
+ <yocto@lists.yoctoproject.org>; Sat, 22 Mar 2025 09:19:22 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/65007
 
---JhKwf79GkX2EvMcE5kJ6
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: quoted-printable
+I followed your description: I grabbed a clean Kirkstone env, copied
+zabbix recipe from Scarthgap, and added your bbappend (without your
+extra-extra-conf). I compiled it successfully after some modifications -
+but the recipe seems to be configure zabbix in a way that it looks for
+headers on the build machine, rather than the recipe sysroot.
 
-Hello there,
+1. I needed to add the following packages to DEPENDS: unixodbc,
+net-snmp, libssh2 and libevent (this last one is mentioned in your logs
+also)
 
-So I have started my implementation but already running into an issue. My d=
-istro is based on `kirkstone` branch which has Zabbix version 5.4.12 and I =
-need Zabbix-proxy version 6 and above. Next stable branch for me is `Scarth=
-gap` and has the right version 6.2.7. I did override by copying https://git=
-.openembedded.org/meta-openembedded/tree/meta-oe/recipes-connectivity/zabbi=
-x/zabbix_6.2.7.bb?h=3Dscarthgap and I was able to compile as-is without any=
- issues.
+2. In the bbappend I removed the "--with-sqlite3" part from EXTRA_OECONF
+(it's also present in the main recipe)
 
-But I only need "zabbix-proxy" with sqlite3, so I created "zabbix_%.bbappen=
-d" file with following:
+3. In the main zabbix_6.2.7.bb recipe the EXTRA_OECONF[1] needs some
+changes - this seems to be causing it to look for headers at the wrong
+place. Change it to this (it's the same as the original, but appended
+"=${STAGING_EXECPREFIXDIR}" to some of them, to specify the search
+location):
 
->=20
->=20
->=20
-> # Add required dependencies
->=20
->=20
->=20
-> DEPENDS +=3D "sqlite3"
->=20
->=20
->=20
-> # Add proxy to the list of packages
->=20
->=20
->=20
-> PACKAGES +=3D "${PN}-proxy"
->=20
->=20
->=20
-> # Define the files for the proxy package
->=20
->=20
->=20
-> FILES:${PN}-proxy =3D "\
->=20
->=20
->=20
-> ${sbindir}/zabbix_proxy \
->=20
->=20
->=20
-> ${sysconfdir}/zabbix/zabbix_proxy.conf \
->=20
->=20
->=20
-> ${systemd_system_unitdir}/zabbix-proxy.service \
->=20
->=20
->=20
-> "
->=20
->=20
->=20
-> # Add sqlite3 as a runtime dependency for the proxy
->=20
->=20
->=20
-> RDEPENDS:${PN}-proxy +=3D "sqlite3"
->=20
->=20
->=20
-> # Configure systemd for the proxy
->=20
->=20
->=20
-> SYSTEMD_PACKAGES +=3D "${PN}-proxy"
->=20
->=20
->=20
-> SYSTEMD_SERVICE:${PN}-proxy =3D "zabbix-proxy.service"
->=20
->=20
->=20
-> SYSTEMD_AUTO_ENABLE:${PN}-proxy =3D "enable"
->=20
->=20
->=20
-> # Add proxy configuration options
->=20
->=20
->=20
-> EXTRA_OECONF +=3D " \
->=20
->=20
->=20
-> --enable-proxy \
->=20
->=20
->=20
-> --with-sqlite3 \
->=20
->=20
->=20
-> "
->=20
->=20
->=20
-> # Create proxy configuration file and systemd service
->=20
->=20
->=20
-> SRC_URI +=3D "file://zabbix-proxy.service"
->=20
->=20
+EXTRA_OECONF = " \
+   --enable-dependency-tracking \
+   --enable-agent \
+   --enable-ipv6 \
+   --with-net-snmp \
+   --with-ldap=${STAGING_EXECPREFIXDIR} \
+   --with-unixodbc \
+   --with-ssh2=${STAGING_EXECPREFIXDIR} \
+   --with-sqlite3=${STAGING_EXECPREFIXDIR} \
+   --with-zlib=${STAGING_EXECPREFIXDIR} \    
+   --with-libpthread=${STAGING_EXECPREFIXDIR} \
+   --with-libevent=${STAGING_EXECPREFIXDIR} \
+   --with-libpcre=${STAGING_EXECPREFIXDIR} \
+   --with-iconv=${STAGING_EXECPREFIXDIR} \
+"
 
->=20
->=20
->=20
-> do_install:append() {
->=20
->=20
->=20
-> # Install zabbix proxy configuration file
->=20
->=20
->=20
-> install -d ${D}${sysconfdir}/zabbix
->=20
->=20
->=20
-> install -m 0644 ${S}/conf/zabbix_proxy.conf ${D}${sysconfdir}/zabbix/
->=20
->=20
->=20
->=20
->=20
->=20
->=20
-> # Install systemd service file for proxy
->=20
->=20
->=20
-> if ${@bb.utils.contains('DISTRO_FEATURES','systemd','true','false',d)};
-> then
->=20
->=20
->=20
-> install -d ${D}${systemd_unitdir}/system
->=20
->=20
->=20
-> install -m 0644 ${WORKDIR}/zabbix-proxy.service
-> ${D}${systemd_unitdir}/system/
->=20
->=20
->=20
-> sed -i -e 's#@SBINDIR@#${sbindir}#g'
-> ${D}${systemd_unitdir}/system/zabbix-proxy.service
->=20
->=20
->=20
-> fi
->=20
->=20
->=20
-> }
->=20
->=20
->=20
->=20
->=20
->=20
->=20
+After these, I could compile it successfully. One last note: it's
+possible that this STAGING_EXECPREFIX needs to be added to all the
+"--with" arguments, in case they are also present on your machine. I
+didn't look further once it succeeded to compile. (If you need your
+extra-extra-conf with disabling ssh2, etc, of course you are free to add
+them. This is mostly a demo-solution, rather than a canonical one.)
 
-But started to get errors:
+Hope this helps. If not, ping back.
 
->=20
->=20
->=20
-> | checking for SSH2 support... no
->=20
->=20
->=20
-> | configure: error: SSH2 library not found
->=20
->=20
->=20
-> | NOTE: The following config.log files may provide further information.
->=20
->=20
->=20
-> | checking for odbc_config... no
->=20
->=20
->=20
-> | checking for SQLAllocHandle in -lodbc... no
->=20
->=20
->=20
-> | configure: error: unixODBC library not found
->=20
->=20
->=20
-> | NOTE: The following config.log files may provide further information.
->=20
->=20
->=20
-> | checking for process shared libpthread support... no
->=20
->=20
->=20
-> | checking for libevent support... configure: error: Unable to use
-> libevent (libevent check failed)
->=20
->=20
->=20
-> | NOTE: The following config.log files may provide further information.
->=20
->=20
+[1]:
+https://git.openembedded.org/meta-openembedded/tree/meta-oe/recipes-connectivity/zabbix/zabbix_6.2.7.bb?h=scarthgap#n47
 
-I started adding following to EXTRA_OECONF:
-
->=20
->=20
->=20
-> EXTRA_OECONF +=3D " \
->=20
->=20
->=20
-> --enable-proxy \
->=20
->=20
->=20
-> --with-sqlite3 \
->=20
->=20
->=20
-> --without-unixodbc \
->=20
->=20
->=20
-> --without-ssh2 \
->=20
->=20
->=20
-> "
->=20
->=20
-
-But now I'm in dead water... Any thoughts or suggestion?
-
-Cheers,
-
---JhKwf79GkX2EvMcE5kJ6
-Content-Type: text/html; charset="utf-8"
-Content-Transfer-Encoding: quoted-printable
-
-<div>Hello there,&nbsp;</div>
-<div>&nbsp;</div>
-<div>So I have started my implementation but already running into an issue.=
- My distro is based on `kirkstone` branch which has Zabbix version 5.4.12 a=
-nd I need Zabbix-proxy version 6 and above. Next stable branch for me is `S=
-carthgap` and has the right version 6.2.7. I did override by copying <a hre=
-f=3D"https://git.openembedded.org/meta-openembedded/tree/meta-oe/recipes-co=
-nnectivity/zabbix/zabbix_6.2.7.bb?h=3Dscarthgap" target=3D"_blank" rel=3D"n=
-oopener">https://git.openembedded.org/meta-openembedded/tree/meta-oe/recipe=
-s-connectivity/zabbix/zabbix_6.2.7.bb?h=3Dscarthgap</a> and I was able to c=
-ompile as-is without any issues.&nbsp;</div>
-<div>&nbsp;</div>
-<div>But I only need "zabbix-proxy" with sqlite3, so I created "zabbix_%.bb=
-append" file with following:</div>
-<div>&nbsp;</div>
-<div>
-<blockquote>
-<p class=3D"p1"><span class=3D"s1" style=3D"font-size: 12px;"># Add require=
-d dependencies</span></p>
-<p class=3D"p2"><span class=3D"s1" style=3D"font-size: 12px;">DEPENDS +=3D =
-"sqlite3"</span></p>
-<p class=3D"p1"><span class=3D"s1" style=3D"font-size: 12px;"># Add proxy t=
-o the list of packages</span></p>
-<p class=3D"p2"><span class=3D"s1" style=3D"font-size: 12px;">PACKAGES +=3D=
- "${PN}-proxy"</span></p>
-<p class=3D"p1"><span class=3D"s1" style=3D"font-size: 12px;"># Define the =
-files for the proxy package</span></p>
-<p class=3D"p2"><span class=3D"s1" style=3D"font-size: 12px;">FILES:${PN}-p=
-roxy =3D "\</span></p>
-<p class=3D"p2"><span class=3D"s1" style=3D"font-size: 12px;"><span class=
-=3D"Apple-converted-space">&nbsp; &nbsp; </span>${sbindir}/zabbix_proxy \</=
-span></p>
-<p class=3D"p2"><span class=3D"s1" style=3D"font-size: 12px;"><span class=
-=3D"Apple-converted-space">&nbsp; &nbsp; </span>${sysconfdir}/zabbix/zabbix=
-_proxy.conf \</span></p>
-<p class=3D"p2"><span class=3D"s1" style=3D"font-size: 12px;"><span class=
-=3D"Apple-converted-space">&nbsp; &nbsp; </span>${systemd_system_unitdir}/z=
-abbix-proxy.service \</span></p>
-<p class=3D"p2"><span class=3D"s1" style=3D"font-size: 12px;">"</span></p>
-<p class=3D"p1"><span class=3D"s1" style=3D"font-size: 12px;"># Add sqlite3=
- as a runtime dependency for the proxy</span></p>
-<p class=3D"p2"><span class=3D"s1" style=3D"font-size: 12px;">RDEPENDS:${PN=
-}-proxy +=3D "sqlite3"</span></p>
-<p class=3D"p1"><span class=3D"s1" style=3D"font-size: 12px;"># Configure s=
-ystemd for the proxy</span></p>
-<p class=3D"p2"><span class=3D"s1" style=3D"font-size: 12px;">SYSTEMD_PACKA=
-GES +=3D "${PN}-proxy"</span></p>
-<p class=3D"p2"><span class=3D"s1" style=3D"font-size: 12px;">SYSTEMD_SERVI=
-CE:${PN}-proxy =3D "zabbix-proxy.service"</span></p>
-<p class=3D"p2"><span class=3D"s1" style=3D"font-size: 12px;">SYSTEMD_AUTO_=
-ENABLE:${PN}-proxy =3D "enable"</span></p>
-<p class=3D"p1"><span class=3D"s1" style=3D"font-size: 12px;"># Add proxy c=
-onfiguration options</span></p>
-<p class=3D"p2"><span class=3D"s1" style=3D"font-size: 12px;">EXTRA_OECONF =
-+=3D " \</span></p>
-<p class=3D"p2"><span class=3D"s1" style=3D"font-size: 12px;"><span class=
-=3D"Apple-converted-space">&nbsp; &nbsp; </span>--enable-proxy \</span></p>
-<p class=3D"p2"><span class=3D"s1" style=3D"font-size: 12px;"><span class=
-=3D"Apple-converted-space">&nbsp; &nbsp; </span>--with-sqlite3 \</span></p>
-<p class=3D"p2"><span style=3D"font-size: 12px;"><span class=3D"s1">"</span=
-><span class=3D"s1"></span></span></p>
-<p class=3D"p1"><span class=3D"s1" style=3D"font-size: 12px;"># Create prox=
-y configuration file and systemd service</span></p>
-<p class=3D"p2"><span class=3D"s1" style=3D"font-size: 12px;">SRC_URI +=3D =
-"file://zabbix-proxy.service"</span></p>
-</blockquote>
-</div>
-<blockquote>
-<div>
-<p class=3D"p1"><span class=3D"s1" style=3D"font-size: 12px;">do_install:ap=
-pend() {</span></p>
-<p class=3D"p2"><span class=3D"s1" style=3D"font-size: 12px;"><span class=
-=3D"Apple-converted-space">&nbsp; &nbsp; </span># Install zabbix proxy conf=
-iguration file</span></p>
-<p class=3D"p1"><span class=3D"s1" style=3D"font-size: 12px;"><span class=
-=3D"Apple-converted-space">&nbsp; &nbsp; </span>install -d ${D}${sysconfdir=
-}/zabbix</span></p>
-<p class=3D"p1"><span class=3D"s1" style=3D"font-size: 12px;"><span class=
-=3D"Apple-converted-space">&nbsp; &nbsp; </span>install -m 0644 ${S}/conf/z=
-abbix_proxy.conf ${D}${sysconfdir}/zabbix/</span></p>
-<p class=3D"p3">&nbsp;</p>
-<p class=3D"p2"><span class=3D"s1" style=3D"font-size: 12px;"><span class=
-=3D"Apple-converted-space">&nbsp; &nbsp; </span># Install systemd service f=
-ile for proxy</span></p>
-<p class=3D"p1"><span class=3D"s1" style=3D"font-size: 12px;"><span class=
-=3D"Apple-converted-space">&nbsp; &nbsp; </span>if ${@bb.utils.contains('DI=
-STRO_FEATURES','systemd','true','false',d)}; then</span></p>
-<p class=3D"p1"><span class=3D"s1" style=3D"font-size: 12px;"><span class=
-=3D"Apple-converted-space">&nbsp; &nbsp; &nbsp; &nbsp; </span>install -d ${=
-D}${systemd_unitdir}/system</span></p>
-<p class=3D"p1"><span class=3D"s1" style=3D"font-size: 12px;"><span class=
-=3D"Apple-converted-space">&nbsp; &nbsp; &nbsp; &nbsp; </span>install -m 06=
-44 ${WORKDIR}/zabbix-proxy.service ${D}${systemd_unitdir}/system/</span></p=
+On 22.03.25 02:26, Nitesh D via Lists.Yoctoproject.Org wrote:
+> Hello there, 
+>  
+> So I have started my implementation but already running into an issue.
+> My distro is based on `kirkstone` branch which has Zabbix version
+> 5.4.12 and I need Zabbix-proxy version 6 and above. Next stable branch
+> for me is `Scarthgap` and has the right version 6.2.7. I did override
+> by copying
+> https://git.openembedded.org/meta-openembedded/tree/meta-oe/recipes-connectivity/zabbix/zabbix_6.2.7.bb?h=scarthgap
+> and I was able to compile as-is without any issues. 
+>  
+> But I only need "zabbix-proxy" with sqlite3, so I created
+> "zabbix_%.bbappend" file with following:
+>  
 >
-<p class=3D"p1"><span class=3D"s1" style=3D"font-size: 12px;"><span class=
-=3D"Apple-converted-space">&nbsp; &nbsp; &nbsp; &nbsp; </span>sed -i -e 's#=
-@SBINDIR@#${sbindir}#g' ${D}${systemd_unitdir}/system/zabbix-proxy.service<=
-/span></p>
-<p class=3D"p1"><span class=3D"s1" style=3D"font-size: 12px;"><span class=
-=3D"Apple-converted-space">&nbsp; &nbsp; </span>fi</span></p>
-<p class=3D"p1"><span class=3D"s1" style=3D"font-size: 12px;">}</span></p>
-<p class=3D"p1">&nbsp;</p>
-</div>
-</blockquote>
-<div>But started to get errors:</div>
-<div>
-<blockquote>
-<p class=3D"p1"><span class=3D"s1" style=3D"font-size: 12px;">| checking fo=
-r SSH2 support... no</span></p>
-<p class=3D"p1"><span class=3D"s1" style=3D"font-size: 12px;">| configure: =
-error: SSH2 library not found</span></p>
-<p class=3D"p1"><span class=3D"s1" style=3D"font-size: 12px;">| NOTE: The f=
-ollowing config.log files may provide further information.</span></p>
-<p class=3D"p1"><span class=3D"s1" style=3D"font-size: 12px;">| checking fo=
-r odbc_config... no</span></p>
-<p class=3D"p1"><span class=3D"s1" style=3D"font-size: 12px;">| checking fo=
-r SQLAllocHandle in -lodbc... no</span></p>
-<p class=3D"p1"><span class=3D"s1" style=3D"font-size: 12px;">| configure: =
-error: unixODBC library not found</span></p>
-<p class=3D"p1"><span class=3D"s1" style=3D"font-size: 12px;">| NOTE: The f=
-ollowing config.log files may provide further information.</span></p>
-<p class=3D"p1"><span class=3D"s1">|<span style=3D"font-size: 12px;"> check=
-ing for process shared libpthread support... no</span></span></p>
-<p class=3D"p1"><span class=3D"s1" style=3D"font-size: 12px;">| checking fo=
-r libevent support... configure: error: Unable to use libevent (libevent ch=
-eck failed)</span></p>
-<p class=3D"p1"><span class=3D"s1" style=3D"font-size: 12px;">| NOTE: The f=
-ollowing config.log files may provide further information.</span></p>
-</blockquote>
-</div>
-<div>I started adding following to EXTRA_OECONF:</div>
-<div>
-<blockquote>
-<p class=3D"p1"><span class=3D"s1" style=3D"font-size: 12px;">EXTRA_OECONF =
-+=3D " \</span></p>
-<p class=3D"p1"><span class=3D"s1" style=3D"font-size: 12px;"><span class=
-=3D"Apple-converted-space">&nbsp; &nbsp; </span>--enable-proxy \</span></p>
-<p class=3D"p1"><span class=3D"s1" style=3D"font-size: 12px;"><span class=
-=3D"Apple-converted-space">&nbsp; &nbsp; </span>--with-sqlite3 \</span></p>
-<p class=3D"p1"><span class=3D"s1" style=3D"font-size: 12px;"><span class=
-=3D"Apple-converted-space">&nbsp; &nbsp; </span>--without-unixodbc \</span>=
-</p>
-<p class=3D"p1"><span class=3D"s1" style=3D"font-size: 12px;"><span class=
-=3D"Apple-converted-space">&nbsp; &nbsp; </span>--without-ssh2 \</span></p>
-<p class=3D"p1"><span class=3D"s1" style=3D"font-size: 12px;">"</span></p>
-</blockquote>
-</div>
-<div>But now I'm in dead water... Any thoughts or suggestion?&nbsp;</div>
-<div>&nbsp;</div>
-<div>Cheers,&nbsp;</div>
-
---JhKwf79GkX2EvMcE5kJ6--
+>     # Add required dependencies
+>
+>     DEPENDS += "sqlite3"
+>
+>     # Add proxy to the list of packages
+>
+>     PACKAGES += "${PN}-proxy"
+>
+>     # Define the files for the proxy package
+>
+>     FILES:${PN}-proxy = "\
+>
+>         ${sbindir}/zabbix_proxy \
+>
+>         ${sysconfdir}/zabbix/zabbix_proxy.conf \
+>
+>         ${systemd_system_unitdir}/zabbix-proxy.service \
+>
+>     "
+>
+>     # Add sqlite3 as a runtime dependency for the proxy
+>
+>     RDEPENDS:${PN}-proxy += "sqlite3"
+>
+>     # Configure systemd for the proxy
+>
+>     SYSTEMD_PACKAGES += "${PN}-proxy"
+>
+>     SYSTEMD_SERVICE:${PN}-proxy = "zabbix-proxy.service"
+>
+>     SYSTEMD_AUTO_ENABLE:${PN}-proxy = "enable"
+>
+>     # Add proxy configuration options
+>
+>     EXTRA_OECONF += " \
+>
+>         --enable-proxy \
+>
+>         --with-sqlite3 \
+>
+>     "
+>
+>     # Create proxy configuration file and systemd service
+>
+>     SRC_URI += "file://zabbix-proxy.service"
+>
+>     do_install:append() {
+>
+>         # Install zabbix proxy configuration file
+>
+>         install -d ${D}${sysconfdir}/zabbix
+>
+>         install -m 0644 ${S}/conf/zabbix_proxy.conf
+>     ${D}${sysconfdir}/zabbix/
+>
+>      
+>
+>         # Install systemd service file for proxy
+>
+>         if
+>     ${@bb.utils.contains('DISTRO_FEATURES','systemd','true','false',d)};
+>     then
+>
+>             install -d ${D}${systemd_unitdir}/system
+>
+>             install -m 0644 ${WORKDIR}/zabbix-proxy.service
+>     ${D}${systemd_unitdir}/system/
+>
+>             sed -i -e 's#@SBINDIR@#${sbindir}#g'
+>     ${D}${systemd_unitdir}/system/zabbix-proxy.service
+>
+>         fi
+>
+>     }
+>
+>      
+>
+> But started to get errors:
+>
+>     | checking for SSH2 support... no
+>
+>     | configure: error: SSH2 library not found
+>
+>     | NOTE: The following config.log files may provide further
+>     information.
+>
+>     | checking for odbc_config... no
+>
+>     | checking for SQLAllocHandle in -lodbc... no
+>
+>     | configure: error: unixODBC library not found
+>
+>     | NOTE: The following config.log files may provide further
+>     information.
+>
+>     |checking for process shared libpthread support... no
+>
+>     | checking for libevent support... configure: error: Unable to use
+>     libevent (libevent check failed)
+>
+>     | NOTE: The following config.log files may provide further
+>     information.
+>
+> I started adding following to EXTRA_OECONF:
+>
+>     EXTRA_OECONF += " \
+>
+>         --enable-proxy \
+>
+>         --with-sqlite3 \
+>
+>         --without-unixodbc \
+>
+>         --without-ssh2 \
+>
+>     "
+>
+> But now I'm in dead water... Any thoughts or suggestion? 
+>  
+> Cheers, 
 
