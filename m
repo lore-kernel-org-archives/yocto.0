@@ -1,87 +1,84 @@
-Return-Path: <sean@geanix.com>
+Return-Path: <G.Kautzmann@PRIMES.de>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id E147DC36013
-	for <webhook@archiver.kernel.org>; Mon, 31 Mar 2025 07:52:39 +0000 (UTC)
-Received: from mail-10625.protonmail.ch (mail-10625.protonmail.ch [79.135.106.25])
- by mx.groups.io with SMTP id smtpd.web11.46711.1743407555281333565
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 0290EC36011
+	for <webhook@archiver.kernel.org>; Mon, 31 Mar 2025 08:16:30 +0000 (UTC)
+Received: from mout.kundenserver.de (mout.kundenserver.de [212.227.126.130])
+ by mx.groups.io with SMTP id smtpd.web10.47146.1743408980446343824
  for <yocto@lists.yoctoproject.org>;
- Mon, 31 Mar 2025 00:52:36 -0700
+ Mon, 31 Mar 2025 01:16:21 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@geanix.com header.s=protonmail header.b=XfBzX95u;
- spf=pass (domain: geanix.com, ip: 79.135.106.25, mailfrom: sean@geanix.com)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=geanix.com;
-	s=protonmail; t=1743407552; x=1743666752;
-	bh=9K4c5/+/vlaRBm5ZH1j5sa24uu6GYwCuxDFMZSAPz/o=;
-	h=Date:To:From:Cc:Subject:Message-ID:In-Reply-To:References:
-	 Feedback-ID:From:To:Cc:Date:Subject:Reply-To:Feedback-ID:
-	 Message-ID:BIMI-Selector:List-Unsubscribe:List-Unsubscribe-Post;
-	b=XfBzX95uoSSfdIxaJPvRpQgPZUlgnOA+YzwDsOc2s/bW+IOF+quPWsAX6fLRKpoou
-	 yt/GtJVJhGTTAD6AI/c4RfKvfiqRl08UfqQIpQX9y8HVZbWfHXfixboY22dvfjjr5P
-	 F7Pk4WGa+tDwD0diltGv1TGnmMC4pTutwLi74wCIL/0l1btxx3BQ7KCmtYY8HtCjqr
-	 loFPQIRNr971bL6l7DbMCwy9lWhoEhMDHJj3RMVKsVPo8wB1x7OzMfOLAigizLF9/B
-	 oZmnBH64vtq8lQgt5SpugPTr3RrygTLb1kQi7C7cjXVkyfgMYymTJmVNZfZ+BCT5bS
-	 PjVKuN4Xlq5nw==
-Date: Mon, 31 Mar 2025 07:52:27 +0000
-To: Scott Murray <scott.murray@konsulko.com>
-From: Sean Nyekjaer <sean@geanix.com>
-Cc: yocto@lists.yoctoproject.org
-Subject: Re: [yocto] [meta-lts-mixins][scarthgap/rust] rust 1.85.x
-Message-ID: <hkltnol6e7kh7zhetcta65npojw7rvoekxja5yievokqwkqqsi@ktlfdrbwkcar>
-In-Reply-To: <100191b0-a12c-8cee-6de3-469874928aa6@konsulko.com>
-References: <5wpwzkdc7cmkaj2xqsflisupelwim4eyrvub5yqyom4agcowfw@ym4fodrxb43t> <100191b0-a12c-8cee-6de3-469874928aa6@konsulko.com>
-Feedback-ID: 134068486:user:proton
-X-Pm-Message-ID: 3878a7e2459e437390b1bb02ea350335d5f5d62f
-MIME-Version: 1.0
+ dkim=fail reason="dkim: domain mismatch" header.i=g.kautzmann@primes.de header.s=s1-ionos header.b=PfxInISw;
+ spf=pass (domain: primes.de, ip: 212.227.126.130, mailfrom: g.kautzmann@primes.de)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=PRIMES.de;
+	s=s1-ionos; t=1743408978; x=1744013778; i=g.kautzmann@primes.de;
+	bh=EEOXCkmvrb8/zD33Pj5GoWfkqSBsCeEbMcHGzarU/fs=;
+	h=X-UI-Sender-Class:From:To:Subject:Date:Message-ID:Content-Type:
+	 Content-Transfer-Encoding:MIME-Version:cc:
+	 content-transfer-encoding:content-type:date:from:message-id:
+	 mime-version:reply-to:subject:to;
+	b=PfxInISwuE7BbBRbANjc6jVVkX5Pcgz+z1KMEWA4vc3sXKcgGHdCo4FoeB8NdBB4
+	 mlmbu86aCVBsyolmMirScEQ8oNnLmoq+0+5rDvKS1J6eHvWBRJFVxKVXDF/eZarQC
+	 827REPNaJT2SYODTSjUs/FXvGATcaaLn17JrcsLQ/0UHSFREJJODqbOaHbZCv6WUY
+	 04ogKroBLTbVNznGKcCSzJ/pamIBi/BITMFdntzhOPbX9LxkAQzKCU8hRdap13Dhf
+	 6VDP1PFvUSrD+gPUsCXZUgx0piBVhJca45if6vNV3F84UhOVbQ/48eEeV4mdry9No
+	 XezAMbqgwlg+yqAw3A==
+X-UI-Sender-Class: 55c96926-9e95-11ee-ae09-1f7a4046a0f6
+Received: from Exchange2013.PRIMES.local ([80.154.17.250]) by
+ mrelayeu.kundenserver.de (mreue009 [213.165.67.97]) with ESMTPSA (Nemesis) id
+ 1MFK8H-1tssnL2ihl-005SKa for <yocto@lists.yoctoproject.org>; Mon, 31 Mar 2025
+ 10:16:18 +0200
+Received: from EXCHANGE2013.PRIMES.local ([192.168.116.253]) by Exchange2013.PRIMES.local ([192.168.116.253]) with mapi id 14.03.0513.000; Mon, 31 Mar 2025 10:16:17 +0200
+From: Gerd Kautzmann <G.Kautzmann@PRIMES.de>
+To: "yocto@lists.yoctoproject.org" <yocto@lists.yoctoproject.org>
+Subject: OT: Message, can not  'unsubscribe'
+Thread-Topic: Message, can not  'unsubscribe'
+Thread-Index: AduiFO1RmYzLOc1ESMC65wjhV3OgQw==
+Date: Mon, 31 Mar 2025 08:16:16 +0000
+Message-ID: <1619D009AA8C9E469331A8EE22395AEC014788D6F6@Exchange2013.PRIMES.local>
+Accept-Language: de-DE, en-US
+Content-Language: de-DE
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [192.168.117.128]
 Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: base64
+MIME-Version: 1.0
+X-Provags-ID: V03:K1:1zvGEXC3ZVtHnj5vubRRP1SrLcjrqCX5J278kvRauubqUt2MsK7
+ 3teQvq0Zq2RTQIIxcLlcqONIZilzi+GwNq8+m14DXkY/CmUcuC5HS0lvqPFZSbaMLGfF7cJ
+ yO9tZSuHkfrf2IdfaA/YOzyeTnuMTVJmJB+k4PIteREO8eW/RAyb1e+HRgp7H9H8fiVe3oI
+ 960tZD+DsE+90+m37gNNA==
+UI-OutboundReport: notjunk:1;M01:P0:HRUulnAVc9Q=;kAVKNoWuW0T1mX5lpMIxSN37WvS
+ vpQdU0cNdmP3OlFlHJiVqhnnOm2sgckmZoCn8oAOI/STJtlv2Jotkije6M6zvJ819RoN4Ikql
+ IMDQKmqQ5wmHb4lqUvT78WCybk2/eGZfZ1D5NPZ1ZqAzMsdRC4Qu/lrFU59OcfYzYtqPpVF1C
+ sM+YHQwsfNXEZBvJNP3kH+dE/tPFhk0voKOOkACTosTHwjDjK+/yUorOE+Yg/vVrJODaNTZQc
+ mcYwWyOFPMcBg49fTM9YNy+2vK9peZs+9UKNBziTcU/1MaOJ6e5D4HCrwnNyspi5lgBUe7NdS
+ bYtxykgPN/Rkg8JuuFHmX2zJR3/1HjcH5LXaTeSzb86Y6SnamQsH6rMTdGMRpR+6Gw5FrHJQ4
+ 0cROIbi7yzOcwr3VNgCQUjqpkrMIeVgyuoLmD7O6uA5hQnEsKkanHskH6WgOQ+roklD5Y2+Eg
+ MZ7djzH90iP0ThJf5Hzu+VI95r/hAZEBSbE07ZJQ+lQc9B5QQNpzzrpj6NE9rHNcjNsAkLqMN
+ ffZDcZjLDY1hq7YB1FWcJDnmmABIJ4JkrBbu6TIaaoUiMwfoNrH8HcEXbsUmZdeNRmqF9FKAC
+ TBcM35y6VcyVlGKa+AcESwpaHuUtAd/xbFBIy+jf9GJmipufpbLrr+tKCr9T9yAIJ2ZcxgIfa
+ 5VcyJRVt28SpTiV1XITQeOxdefZqMvWqt0Hswt+58Rjt+d6+eGFm+DOrjh1g2Q//0rUl4SqDj
+ 1U6q/YBrOhheHukshJbaz7JDwoU3wwtM1Uxux8eZmiUB0nDrRwkOe9HG9nTOwA969IE8BmXDI
+ SM3ZmqbX5z4GjYPx6jycji3I0gYNB/btmdHveAYHptoTeCQGKv2VvgwmYHbnjTXmL7TbnXhK2
+ wMzUkryLB5i9W45JOie7haKJhLc6zHevc6Oq/ck+EN6awiQBOBrX8u/aWvnzJM4SX0vC73AMj
+ 4fig7aGrNNlURgn0cfMYVGVwjWafFLFkjfvghA1O7/S3Ygo9T9Zu20kLuCYxbv4IrFK/v6uym
+ C0Tt6RBLe+Q1pT0Wfg5OW7S9Fm43WXxXDKgKGRUOYIGyBa/4ncX76An2ovhPjeGCPrhpi/I/X
+ HyDSQdManmbLE8HoMcQVOKMx6Ymudr5gi1c67oadcVrr4wrtIvEv4kkP50dLaIt619ad6XDhU
+ CWvk8JhG8K2yLuv366c64zgjzZazwXGSokifNfn8XFEzYfMwqN/SPB7fPyO/4bSlTWLLf6NNB
+ 3LLjAsUI06ClfL+a6uoIoRG7MGla99YvMra+QwaI3bF2bf+/c/FtfPeWaM9brqIxG/TYaxjrw
+ goG/QAi+BpqbEb3L6ks2B/8VOG9I0DNGsBnM0rbEGjYL6Da7wKV8m5OcW6jCbNGbBoFOA/ej8
+ FtQ18/QGeIHTXq7HjREXJ6yp0EmoGgPeIEBHw=
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Mon, 31 Mar 2025 07:52:39 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/65036
+ <yocto@lists.yoctoproject.org>; Mon, 31 Mar 2025 08:16:29 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/65037
 
-On Sun, Mar 30, 2025 at 02:18:50PM +0100, Scott Murray wrote:
-> On Sat, 29 Mar 2025, Sean Nyekjaer via lists.yoctoproject.org wrote:
->=20
-> > Hi,
-> >
-> > I'm using scarthgap lts for a customer and they really want to get
-> > started with Rust 2024 edition which is included in rust 1.85.
-> > It looks like it's close to getting into oe-core.
-> >
-> > What is the procedure for getting this into meta-lts-mixins?
-> >
-> > Do I need to create a new branch called scarthgap/rust-1.85 ?
->=20
-> If there are folks that intend to stick with 2024 edition for a
-> significant period of time (i.e. years), there could be a benefit to
-> doing so at some point, assuming there end up being 1.85.x patch
-> releases that oe-core might end up skipping (since it will quickly
-> move on from 1.85 to track latest).
-
-I don't think they will begin to do 1.85.x releases. 2024 edition, is
-"just" a feature set, that have gone stable in 1.85.
-
->=20
-> > Do we have to wait for a oe-core release to be able include it in
-> > meta-lts-mixins?
-> > scarthgap/rust is rust 1.81 which is newer than the one in styhead :)
->=20
-> The intent of the scarthgap/rust mixin is to backport what is in
-> oe-core master branch.  I am slightly behind atm due to work travel
-> and susbequent illness, but I should be updating the mixins this coming
-> week.  I don't really have the time at present and probably not the
-> patience to attempt to track upstream Rust releases in such a layer
-> myself. If you desire 1.85 faster, I suggest discussing how you can
-> help out with the Wind River folks who have been doing the Rust
-> upgrades in oe-core.
-
-Cool. If there is anything i can help with(testing, patches), feel
-free to reach out.
-
-Br,
-/Sean
+RXhjdXNlIG1lIGZvciB0aGlzIE9UIE1lc3NhZ2UgDQoNCg0KSSBzZW50IHRoZSB1bnN1YnNyaWJl
+IG1lc3NhZ2Ugb24gbXVsdGlwbGUgb2NjYXNpb25zIGJ1dCBzdGlsbCBnb3QgbWFpbCwgdGhpcyBp
+cyBteSBsYXN0IG1haWwgZnJvbSB0aGlzIGFkZHJlc3MsIA0KDQptYXliZSB0aGUgYWRtaW4gY2Fu
+IHVuc3Vic2NyaWJlIG1lDQo=
 
 
