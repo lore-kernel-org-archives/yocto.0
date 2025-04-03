@@ -1,98 +1,83 @@
-Return-Path: <alex.kiernan@gmail.com>
+Return-Path: <raj.khem@gmail.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 0186EC3601A
-	for <webhook@archiver.kernel.org>; Thu,  3 Apr 2025 14:25:32 +0000 (UTC)
-Received: from mail-lf1-f47.google.com (mail-lf1-f47.google.com [209.85.167.47])
- by mx.groups.io with SMTP id smtpd.web11.14626.1743690324757327631
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 27DCAC3601A
+	for <webhook@archiver.kernel.org>; Thu,  3 Apr 2025 14:54:22 +0000 (UTC)
+Received: from mail-oo1-f54.google.com (mail-oo1-f54.google.com [209.85.161.54])
+ by mx.groups.io with SMTP id smtpd.web10.15481.1743692054538384172
  for <yocto@lists.yoctoproject.org>;
- Thu, 03 Apr 2025 07:25:25 -0700
+ Thu, 03 Apr 2025 07:54:14 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20230601 header.b=StK6L+bT;
- spf=pass (domain: gmail.com, ip: 209.85.167.47, mailfrom: alex.kiernan@gmail.com)
-Received: by mail-lf1-f47.google.com with SMTP id 2adb3069b0e04-549b159c84cso1160228e87.3
-        for <yocto@lists.yoctoproject.org>; Thu, 03 Apr 2025 07:25:24 -0700 (PDT)
+ dkim=pass header.i=@gmail.com header.s=20230601 header.b=MfxHN4w+;
+ spf=pass (domain: gmail.com, ip: 209.85.161.54, mailfrom: raj.khem@gmail.com)
+Received: by mail-oo1-f54.google.com with SMTP id 006d021491bc7-60288fd4169so518144eaf.3
+        for <yocto@lists.yoctoproject.org>; Thu, 03 Apr 2025 07:54:14 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1743690322; x=1744295122; darn=lists.yoctoproject.org;
+        d=gmail.com; s=20230601; t=1743692054; x=1744296854; darn=lists.yoctoproject.org;
         h=content-transfer-encoding:cc:to:subject:message-id:date:from
          :in-reply-to:references:mime-version:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=8o0ZBIpyBYcr3zve8IAeA0eQNQnencu/bDIIrCHBXbs=;
-        b=StK6L+bT6rVk3XzHQxbgvvag2lI01lEjB/snFVy/Hp19nf3GzIckqLEHroMz6tzjs3
-         kwdgDKYV2jJeGeCaq/+AmS5owmPiqJt3fhLe5NV9cMLLb+WaWwVf2ahUH8v7BNQI/T89
-         VUsS8p3+RrmnjfbYw6b2U5daD4SX9w2JMECDIczw1+mlu6BQ/UtZKRlddZX+6zQ2+JxV
-         1aNrcKzy/cjtITrc8O2qYs4WNeKpQPATt1FdTCq0gAnGtr0GT6OtXYHR9NK1wTMP9T1Y
-         o1yAcSZqxqgZzuwJRZ0q0vCTk00s/WJadh6JG78hQVqAsmf1BeSg3UrFiiV0V79Qq7rH
-         426w==
+        bh=0Qk0VEoRimYUxT86TdxD/hySMLqK3zdlaHO2kgYbr18=;
+        b=MfxHN4w+Kmq+ueyoJvNLuZqJbozBQrVR+S+CtOB2kp5aHMdwKPhaAonBvwGXF3yIpv
+         CNm8nZDFZAcJ28zP4I5CCxt+6AjijQLBxVamiat0egsJTney759PYKBM4OWk60Jay57j
+         0SCAyAlKagH1KnMbgSAjlfNdANzb+k0bJseLzCDwBfz9eCQlK0Rl3yhXHtSn8u/FJYNq
+         AMJU+4rwKc0oYoFlQ0euRTh+01W6UrktZyVRbbSHuURyWlt4SLUnH1yb6gUqZ1Y9SdLw
+         po/7nUJAy9Vc7pCDndbYPRmEDHfkdOszkbdKkBPr0lkemM+CwQ0gO8k82IWksoWwHmjb
+         UnaA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1743690322; x=1744295122;
+        d=1e100.net; s=20230601; t=1743692054; x=1744296854;
         h=content-transfer-encoding:cc:to:subject:message-id:date:from
          :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=8o0ZBIpyBYcr3zve8IAeA0eQNQnencu/bDIIrCHBXbs=;
-        b=XFHrWxs+iJF0wDL477ZfcOki2Sz8IDK49tJBp19UQrNdul52JJOxsZuR4oI8GTbOaH
-         QNlRx6uwfgApX4xnXN4iYnar0COXGw/Ct10k5USHGKd4LAQ9jkxi09WlE/aaLSugtJ/Y
-         SZ6TyXWhwR/9TiDrf+M5GFei/VwBdcyCu5hC7Tstf6Zx5dzX/q7UBC9wPAm1CT3DW1hZ
-         8re1yXYW1fCtdcV13+n0CopQBHjk+DFfS7JYW/e4mjDZoIl57Wgc1h/GlvbUoxLUQ5wk
-         gXEW8KyIGZCdw/UYkNy5ScyeS56STRv3c6vkQN6KAmsS7eQxojLNVev9jGTgG7Ej5WPp
-         7dLg==
-X-Gm-Message-State: AOJu0YyE9KNIH61W+CWTojyhdy+PQip0t33ZueWZjirh9QuOypQXVtkM
-	hcGP3KXsuDQ+AzaNP3fwDpBW5jpGW+BZfH4F3LqSaSpGWePgxS+hNYqqUkWi83WNlo1bhIluBzn
-	QEzjEA1Ft334rqDfEL/zJot5W7jgLzS/tDM8=
-X-Gm-Gg: ASbGnct79/AV3fBrbF/WMB3FiozwU3b45PMG61ILtajdOShb29tYjGcbbrqeGSVfM/z
-	Ym5PwTSORL3YnHLEv1fYuZGIm4yPU5h1psVomljFzfnzDT81CqqVT85IVA/7VxHN7sOC+9nZ2iy
-	X7dH1GlQKa9SomCKiVoIjQDxjuSAHrrABKH73eZxdPoM+8WGdYgG2+isg6I/QOz3F6
-X-Google-Smtp-Source: AGHT+IGv/aaBRjfNsnqey1kAev2lj8E2XS2P+J3yl91dVLcaWaRtANpQqQb0mTJXXr0L4gm5oGjS69if+yKslHRerJ4=
-X-Received: by 2002:a05:6512:3d23:b0:545:56c:36c7 with SMTP id
- 2adb3069b0e04-54c1d8dbf5fmr1209515e87.41.1743690322257; Thu, 03 Apr 2025
- 07:25:22 -0700 (PDT)
+        bh=0Qk0VEoRimYUxT86TdxD/hySMLqK3zdlaHO2kgYbr18=;
+        b=GJ00AsfpLHp3qOJmqPRg+reKDKcoB7G3LQ56jo2CbXDfgzJHfhHc7JOyN/ErWn6c12
+         uL5UU1pNN2CzUezj/mdqydoGMf4eSKJKK0dx0MtUQiSQFaN/bNjUp3+cIHnXZKh+djwK
+         j77azOo4+CAG2KxQnsRKYDDp2zL/hfwcHQa3Mtjq7Gf6d1P6qbuSmzbYKi2bPvigrq0t
+         /3bnnQP5PwldjSavA7pg+pMMOFlycVNJG2aG9l+FNsSbf2hPDDT6BYpua8ZsmzWq3/D6
+         XlaRJ+mkWZ5HDxcriLwJaMZD/QyIDMpw8bGe5aLUsN1cKvLs+T5aR4Zmrs/14SatFmMd
+         HQRg==
+X-Gm-Message-State: AOJu0Yysqok/gq0db7WMb9w9pvnWDJM7vhyxWvgR/DYkrLnLB8cVyKeg
+	xU3zKMkmQpjqE66SMXy97CsD1SmW4eVwkZ+YZzRUGO6yaNPh8/zEQv7mHnZrmhwrju8jJpIzCfB
+	JmxO04vVU2orrXq7We+eAQV2FXwQ=
+X-Gm-Gg: ASbGnct3L8w6dmG87Wsu7SH+XDZJe4hKuq4TbrwDo5IqlfTRVwdUalsnn+W7Zo89VGE
+	LB7LIf5llSfzc8+v4ZQiA/AoMF8XlKi5gyseHvVWwdyu2Si2c9wFvcEQBCUdvM1AqOhmUvpHaVD
+	Ts0/qfsXSO1LI1GJoWitS0vz0L68udOvdqQJNv
+X-Google-Smtp-Source: AGHT+IHOeCkjW4ocW3wDIyqAohuzGVaiSjI0Y8x0GhB7Wk2bvnQN10SJXtH8Na+rqhTbTkTQZinfdprrJjJ+zsL78hQ=
+X-Received: by 2002:a05:6820:2011:b0:602:2bd5:121c with SMTP id
+ 006d021491bc7-6040d367391mr1155323eaf.3.1743692053789; Thu, 03 Apr 2025
+ 07:54:13 -0700 (PDT)
 MIME-Version: 1.0
-References: <CAMKF1srf5Q0vvmr1e3RSKRDNu_3TD+jJL4Sb-DvyGTUDxE0KpA@mail.gmail.com>
- <19208.1743571877535931497@lists.yoctoproject.org>
-In-Reply-To: <19208.1743571877535931497@lists.yoctoproject.org>
-From: Alex Kiernan <alex.kiernan@gmail.com>
-Date: Thu, 3 Apr 2025 15:25:11 +0100
-X-Gm-Features: AQ5f1JqSAHMCd9-Ersxr5B_Ox4lfNUCAiMA_OjLp6lAkh9AMBpP8p8rQ61Q2VKE
-Message-ID: <CAO5Uq5QXPTqx3CEpRniX37Ymwp_QS+G46EWMNsYVPfMoHnMN2w@mail.gmail.com>
-Subject: Re: [yocto] Replace Bash with Busybox
-To: yocto@lists.yoctoproject.org, sateesh0457@gmail.com
-Cc: Khem Raj <raj.khem@gmail.com>
+References: <24e2c174-fed3-4f40-a14e-8e5f742c1ec6@gmail.com> <18249.1743659052514069680@lists.yoctoproject.org>
+In-Reply-To: <18249.1743659052514069680@lists.yoctoproject.org>
+From: Khem Raj <raj.khem@gmail.com>
+Date: Thu, 3 Apr 2025 07:53:47 -0700
+X-Gm-Features: AQ5f1JpUEzqgMO5Cf0efuc4_wk-EJP7aHl40SP3ygVj_tSSd5scubbWeoQmbPFE
+Message-ID: <CAMKF1soN+NMKVONJvWYdAaA3fDyEohH=Z6gsvskK5-mfr0=g0g@mail.gmail.com>
+Subject: Re: [yocto] Issue Booting Yocto Scarthgap (core-image-sato) Image on
+ AIMB-288E (Intel based target board) #kirkstone #scarthgap #yocto
+To: rajesh.d@mindteck.com
+Cc: yocto@lists.yoctoproject.org
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Thu, 03 Apr 2025 14:25:31 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/65085
+ <yocto@lists.yoctoproject.org>; Thu, 03 Apr 2025 14:54:22 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/65086
 
-On Wed, Apr 2, 2025 at 6:31=E2=80=AFAM sateesh m via lists.yoctoproject.org
-<sateesh0457=3Dgmail.com@lists.yoctoproject.org> wrote:
+On Wed, Apr 2, 2025 at 10:44=E2=80=AFPM Rajesh D via Lists.Yoctoproject.Org
+<rajesh.d=3Dmindteck.com@lists.yoctoproject.org> wrote:
 >
-> If I keep these lines in layer.conf instead of local.conf, will it work? =
-I added the following lines to the layer.conf file:
+> Hi Khem Raj,
 >
-> IMAGE_INSTALL +=3D "busybox"
-> VIRTUAL-RUNTIME_shell =3D "busybox"
-> IMAGE_INSTALL_remove =3D "bash"
-> BAD_RECOMMENDATIONS +=3D "bash"
+> Thank you for your response and for your helpful suggestions.
 >
-> However, when I run the command bitbake -g my-image && cat pn-buildlist |=
- grep bash,
->
-> Bash is still present.
->
-> My actual requirement I need to upgrade busybox replace bash with busybox=
- and remove bash.
->
+> I included DISTRO =3D "poky-altcfg" in my configuration and built a core-=
+image-sato image. However, when I booted it on the target board, the boot p=
+rocess stopped, displaying the Yocto logo and a progress bar on the screen.=
+ I waited for a while, but it did not complete.
 
-Add
-
-PACKAGE_EXCLUDE =3D "bash"
-
-to your local.conf. Your image build will fail, from where you can
-start working out who is pulling bash in.
-
---=20
-Alex Kiernan
+you need to connect serial console or somehow get into the machine to
+observe logs for more info
 
