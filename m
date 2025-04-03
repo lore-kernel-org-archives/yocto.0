@@ -1,247 +1,813 @@
-Return-Path: <bruce.ashfield@gmail.com>
+Return-Path: <yoann.congal@smile.fr>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 9A41BC3600C
-	for <webhook@archiver.kernel.org>; Thu,  3 Apr 2025 15:57:02 +0000 (UTC)
-Received: from mail-qt1-f175.google.com (mail-qt1-f175.google.com [209.85.160.175])
- by mx.groups.io with SMTP id smtpd.web11.17162.1743695820616062276
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 790A0C3601A
+	for <webhook@archiver.kernel.org>; Thu,  3 Apr 2025 17:22:24 +0000 (UTC)
+Received: from mail-wr1-f51.google.com (mail-wr1-f51.google.com [209.85.221.51])
+ by mx.groups.io with SMTP id smtpd.web10.1308.1743700935566881975
  for <yocto@lists.yoctoproject.org>;
- Thu, 03 Apr 2025 08:57:00 -0700
+ Thu, 03 Apr 2025 10:22:16 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20230601 header.b=JkxpXNpM;
- spf=pass (domain: gmail.com, ip: 209.85.160.175, mailfrom: bruce.ashfield@gmail.com)
-Received: by mail-qt1-f175.google.com with SMTP id d75a77b69052e-47663aeff1bso9766891cf.0
-        for <yocto@lists.yoctoproject.org>; Thu, 03 Apr 2025 08:57:00 -0700 (PDT)
+ dkim=pass header.i=@smile.fr header.s=google header.b=EO43KEvC;
+ spf=pass (domain: smile.fr, ip: 209.85.221.51, mailfrom: yoann.congal@smile.fr)
+Received: by mail-wr1-f51.google.com with SMTP id ffacd0b85a97d-39ac8e7688aso890058f8f.2
+        for <yocto@lists.yoctoproject.org>; Thu, 03 Apr 2025 10:22:15 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1743695819; x=1744300619; darn=lists.yoctoproject.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=R2+Wd7Fx9Ao2DLdxihcAP/4z9AAn1o+6n+KAaj0JNng=;
-        b=JkxpXNpMpbyirXYt57MAUbgeIiIQkeyRUF96oZ5xIQ2acsIoyNvOu3x3E0qw6HvfBB
-         cL+NfMtzt0/GY36hC6PO046w+LmmzP+iV/aZyz1lUCu6UaVUTTTaYomSGKcZG/Z7mEkn
-         V5rjTjkLC0hiOFc1LHlReJcKdzEEPtXTrcUZkEFCl1W9Ein3U9Gv44LiCqO+YPdgpIhc
-         vopvxvtmsd5ONLWMjuz/Vs047gmVq6MiFD9ydFcnpoItiNhSOFBlvEW3pLNRpx11EV4e
-         h8ktjyb194EuWolwusQGfiqLi0W+YrTBSML1WqrZUE2AzAOEZt4lb80BxjEkQZcO4df0
-         QWQA==
+        d=smile.fr; s=google; t=1743700933; x=1744305733; darn=lists.yoctoproject.org;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=hGtWqcbpmXzyURhy4dQMw5ju1gtA34JLb9LGl0jdwzk=;
+        b=EO43KEvC+JOEbskhE0gocf8CZ8x9MXgmrgj5R40/Ymgp5vh/mydKqIy6nBn5B6SLjt
+         rW4lx7o5RT+yimF2vYP7W62PKK9lA7Wz0JYroC7KnI29c3rqiVbAgS4rgvtCJQEjgbWR
+         HxtDGc0BwcEtlrb9S0EflnJ2TigeHVOHzM8j8=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1743695819; x=1744300619;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=R2+Wd7Fx9Ao2DLdxihcAP/4z9AAn1o+6n+KAaj0JNng=;
-        b=hAeHInJNMYRgefQkvavVpzBOlYSwtdKp2vxcohbP8qlV437XjeIEzEaMoDI6wk6uAc
-         sYnE1rVWgFlH7B1puxG60mCnkTklyZMmm1mw1yZue7JRmWge0WJRTYIJZSFAAR1bmCd1
-         mdFKy0BxAS4pWMNcwzzHBDC0wgCaD2ang6+3oI+xCoM/F6oL/YwWMiiTiMbTFMWp6i/T
-         eWtsOsP56ns0iApPIKAXsRqTtE9XkvlcXjnTMz1p49EG6CjSHV5I6k/TWMfzsq4XWD0E
-         /IyAQ8jW4d+1Oo/7pYgGq5lKja3JGTwrA9ksMF0kiGtC68IGd8i8FTViBFc7JXKsPZIh
-         /JWA==
-X-Gm-Message-State: AOJu0Yx0hy6vMABTPtSJiZoPEH7n3iikAzq/5haYjjXz+LpeISJJvFL7
-	K6DJRBiMlnXWuyVYm3W4+kqX4k92iBnT9nEzUV2k4fL9dSssoTpdVIlH2ZzdoAo=
-X-Gm-Gg: ASbGncuygGqQxEqkZKX3o9RA3GGAzxbS/cGXVGuVV7Rg4t1bn4XhGaSqccCAb02LekB
-	eTtvj4N4JPTLfQAU+BlB71oteCqHL6xY3rsT9KV5pKqcGWIbJEYmACzSKZtRLEyrRckzoyIRToW
-	a9u3boZXJ2xT3o63R4An+5yy2vnCvvLqVxC/sz/yp6CYLL9ZnrQZEEglorvCTyNTMoaGb23GQ0F
-	wHdNpmepkF9SA1WoW3rQbFfGA979o9nwvcfhLKuoiewnGaNibq1k/EtTSTpOqNiNdo9GHmchmIy
-	lxP1Pc0h0uXC9bjCRQKK8E1c5+aWCb836M0ln9hSJB69XU/kao/Vb0RbPGJXigL72VO9U7rN79l
-	K1LbDcWxqwkQrwFT7jUHBHPw=
-X-Google-Smtp-Source: AGHT+IEXA2ZERw9orYP6uzoCGNwoNB2Zvj4zSkjQ4s7bpRhYFHKSE13Mh0dL/TulisEs96ed/6tYDw==
-X-Received: by 2002:ad4:5c89:0:b0:6e8:ebc6:fd5f with SMTP id 6a1803df08f44-6ef02c4b79bmr101024486d6.20.1743695819001;
-        Thu, 03 Apr 2025 08:56:59 -0700 (PDT)
-Received: from gmail.com (pool-174-112-62-108.cpe.net.cable.rogers.com. [174.112.62.108])
-        by smtp.gmail.com with ESMTPSA id 6a1803df08f44-6ef0f139490sm8964806d6.93.2025.04.03.08.56.58
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 03 Apr 2025 08:56:58 -0700 (PDT)
-Date: Thu, 3 Apr 2025 11:56:56 -0400
-From: Bruce Ashfield <bruce.ashfield@gmail.com>
-To: yocto@lists.yoctoproject.org, miriam.rico@enigmedia.es
-Subject: Re: [yocto] Yocto Kirkstone IMA Kernel Flags #kernel #kirkstone
-Message-ID: <Z+6vyKw0b2LW7J29@gmail.com>
-References: <xMfo.1743597142032633477.or5v@lists.yoctoproject.org>
+        d=1e100.net; s=20230601; t=1743700933; x=1744305733;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=hGtWqcbpmXzyURhy4dQMw5ju1gtA34JLb9LGl0jdwzk=;
+        b=tiFtJwK6roh3gmomOQVIcw2X+U+0D7F/f/4nvVMSBTfh4Gkv/velt/x9Ezp+6/B6V9
+         Q7zN+tv8axlRcW/VsNFTsLqKHY4ydFgoGvsWFKazvZeab/ldQDSh2K7NfUiygligcfg+
+         6pv0s1znd79/5KW9mqARMwo4Fd1JaE815FrGsIT4p8NaTaO70o0/w0NVP1z9sr+gNR5g
+         ohTJ6IJjZLrghbKKQDL8Kv4LpTBEqHs6/DrqrO9jD4FxFYk2TqNkrljM2nFPBGciMwA1
+         eAvjT9xrIvOm6J24I/6k/a/uOHn1ISYAZpzs/gL74jzN0UkHwzoa0bJpx/lYDJubDaTR
+         KK/A==
+X-Gm-Message-State: AOJu0YyWIy2A4kmaWIqVzGiV9Hul0N+DDpEyQ+zZlGS166XrqaV8N6WE
+	MTl8ZhTFSCGLAIPqNj2OX+8bbo0yCeln9mwwoUqK20PURzzGvBQ0+W61rfqQdrWDaCaWRC40uRp
+	dBlGfh6bAPcYsMxp/qp24l3P+jXFX7/z88AcDRDBZIMEJs8sWzIA=
+X-Gm-Gg: ASbGnctt/ev8Apjg1xVBCui2o1b093tLvDQhPOWdJzflxWq81hF/BoEfbHyGPdezyna
+	Ial3X/UHxdxlHJfiFid4iB0GZNccmliSf8/N5U4j6bi4pji7ZFzLIHr9pUbQEistm7NtEEXoEfh
+	sOV1zoD6kaL0p0ojLrOGdonvxCaWb4mZz9fyk6ZWhrKsfMABO1mHAVBvvFCHIH
+X-Google-Smtp-Source: AGHT+IFWlVMv8TMmq7kIduRjIiOcCdXE/Fsn+YF6huXlCY/9pZ8AVKbOUv/3QKOXxJUAZulvysBCRM9NnUY3BN8arVc=
+X-Received: by 2002:a05:6000:4022:b0:391:231b:8e0d with SMTP id
+ ffacd0b85a97d-39cba977650mr96332f8f.39.1743700933312; Thu, 03 Apr 2025
+ 10:22:13 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <xMfo.1743597142032633477.or5v@lists.yoctoproject.org>
+References: <BL4PR11MB87978ADAB7C9CAF579B1AF0DB9AF2@BL4PR11MB8797.namprd11.prod.outlook.com>
+In-Reply-To: <BL4PR11MB87978ADAB7C9CAF579B1AF0DB9AF2@BL4PR11MB8797.namprd11.prod.outlook.com>
+From: Yoann Congal <yoann.congal@smile.fr>
+Date: Thu, 3 Apr 2025 19:21:46 +0200
+X-Gm-Features: ATxdqUGMA3JbLuq3pqjbOuZBPerm4WkRrDkPmGjCxwLYmRJ-Cg8UTJ8DY_H84Tg
+Message-ID: <CAMSfU+6MVEpORbaTvnxQMJQ55mW1F4ZwaYPDBzGvtzrt0KJeMA@mail.gmail.com>
+Subject: Re: [yocto] [ANNOUNCEMENT] Yocto Project 5.1.4 is Released
+To: yocto@lists.yoctoproject.org, chee.yang.lee@intel.com
+Cc: Richard Purdie <richard.purdie@linuxfoundation.org>
+Content-Type: multipart/alternative; boundary="000000000000b99c090631e302e6"
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Thu, 03 Apr 2025 15:57:02 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/65089
+ <yocto@lists.yoctoproject.org>; Thu, 03 Apr 2025 17:22:24 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/65090
+
+--000000000000b99c090631e302e6
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+Hello,
+
+I've answered the 5.1.3 release mail asking for a change in the release
+mail template. Maybe you missed it?
+
+Here it is:
+
+> Thanks for these nice release emails!
+>
+> Would it be possible to put the release branch ("kirkstone",
+> "scarthgap", ...) in the commit title? (Those branch names are more
+> used than their numerical equivalent)
+> For this mail, something like : "Yocto Project 5.1.3 (styhead) is
+> Released" ? I don't know how strict/free the format is...
+>
+> Best regards,
 
 
+Thanks!
 
-In message: [yocto] Yocto Kirkstone IMA Kernel Flags #kernel #kirkstone
-on 02/04/2025 miriam.rico via lists.yoctoproject.org wrote:
 
-> Hi,
->  
-> I want to add IMA (Integrity Measurement Architecture) support to my Yocto
-> build and I enabled it on my local.conf by adding: 
-> 
-> DISTRO_FEATURES:append = " integrity ima"
-> IMAGE_CLASSES += "ima-evm-rootfs"
-> IMA_EVM_KEY_DIR = "${INTEGRITY_BASE}/data/debug-keys"
-> IMA_EVM_PRIVKEY = "${IMA_EVM_KEY_DIR}/ima_privkey.pem"
-> IMA_EVM_X509 = "${IMA_EVM_KEY_DIR}/x509_ima.der"
-> EVM_X509 = "${IMA_EVM_KEY_DIR}/x509_evm.der"
->  
-> Also, I added the meta-integrity layer to my bblayers.conf file.
->  
-> After building the image, I noticed that the used algorithm is sha1. I would
-> like to enable the sha256 algorithm, but I am having problems with it. I have
-> tried to enable it using the kernel flags, but I can't get it. I have reviewed
-> the configuration that applies when IMA is enabled and found it to be as
-> follows (looking at the config file generated after compiling the kernel and
-> doing a grep for IMA, I am using Kernel version 5.15):
->  
-> # SPDX-License-Identifier: MIT
-> CONFIG_IMA=y
-> CONFIG_IMA_MEASURE_PCR_IDX=10
-> CONFIG_IMA_NG_TEMPLATE=y
-> CONFIG_IMA_DEFAULT_TEMPLATE="ima-ng"
-> CONFIG_IMA_DEFAULT_HASH_SHA1=y
-> CONFIG_IMA_DEFAULT_HASH="sha1"
-> CONFIG_IMA_APPRAISE=y
-> CONFIG_IMA_APPRAISE_BOOTPARAM=y
-> CONFIG_IMA_TRUSTED_KEYRING=y
-> CONFIG_SIGNATURE=y
-> CONFIG_IMA_WRITE_POLICY=y
-> CONFIG_IMA_READ_POLICY=y
-> CONFIG_IMA_LOAD_X509=y
-> CONFIG_IMA_X509_PATH="/etc/keys/x509_ima.der"
->  
-> So I created a fragment file with the following:
->  
-> CONFIG_IMA_SIG_TEMPLATE=y
-> CONFIG_IMA_DEFAULT_TEMPLATE="ima-sig"
-> CONFIG_IMA_DEFAULT_HASH_SHA256=y
-> CONFIG_IMA_DEFAULT_HASH="sha256"
-> 
-> Then, I add it to my linux-yocto_%.bbappend file:
-> 
-> FILESEXTRAPATHS:prepend := "${THISDIR}/files:"
-> SRC_URI += "file://enable-ima.cfg "
-> 
-> But after recompiling the kernel, the template and the hash remain "ima-ng" and
-> "sha1". 
-> 
-> I have also tried to create the fragment file using menuconfig, activating
-> "ima-sig" and "sha256", using diffconfig to create fragment.cfg file, copying
-> the fragment file to meta-my-layer/recipes-kernel/linux/files and adding it to
-> my linux-yocto_%.bbappend file, but the result has been the same, the template
-> and the algorithm have not changed.
->  
-> FILESEXTRAPATHS:prepend := "${THISDIR}/files:"
-> SRC_URI += "file://fragment.cfg "
->  
-> I have been going through the tasks logs trying to see where the problem might
-> be and found do_kernel_configme log. In the log, I saw the following:
-> 
-> Final scc/cfg list:  /home/.../Yocto/build/tmp/work/genericx86_64-poky-linux/
-> linux-yocto/5.15.72+gitAUTOINC+441f5fe000_0b628306d1-r0/kernel-meta/bsp/
-> common-pc-64/common-pc-64-standard.scc /home/
-> /home/.../Yocto/my_yocto_project/meta-my-layer/recipes-kernel/linux/files/
-> enable-ima.cfg
-> /home/.../Yocto/my_yocto_project/meta-security/meta-tpm/recipes-kernel/linux/
-> linux-yocto/tpm2.scc features/ima/ima.scc
->  
-> So I thought that maybe the kernel features are applied after the user-created
-> fragments. So, I added the following options to my enable-ima.cfg fragment to
-> see if it was true or not.
->  
-> CONFIG_IMA_APPRAISE_REQUIRE_KEXEC_SIGS=y
-> CONFIG_IMA_APPRAISE_REQUIRE_MODULE_SIGS=y
-> CONFIG_IMA_APPRAISE_BUILD_POLICY=y
-> CONFIG_IMA_APPRAISE_REQUIRE_FIRMWARE_SIGS=y
-> CONFIG_IMA_APPRAISE_REQUIRE_POLICY_SIGS=y
->  
-> After recompiling the kernel, the result was the following:
->  
-> # CONFIG_MDIO_BCM_UNIMAC is not set
-> CONFIG_FB_CFB_IMAGEBLIT=y
-> CONFIG_FB_SYS_IMAGEBLIT=y
-> CONFIG_FRAMEBUFFER_CONSOLE_DETECT_PRIMARY=y
-> # CONFIG_HID_PRIMAX is not set
-> CONFIG_IMA=y
-> CONFIG_IMA_MEASURE_PCR_IDX=10
-> CONFIG_IMA_NG_TEMPLATE=y
-> # CONFIG_IMA_SIG_TEMPLATE is not set
-> CONFIG_IMA_DEFAULT_TEMPLATE="ima-ng"
-> CONFIG_IMA_DEFAULT_HASH_SHA1=y
-> # CONFIG_IMA_DEFAULT_HASH_SHA256 is not set
-> # CONFIG_IMA_DEFAULT_HASH_SHA512 is not set
-> CONFIG_IMA_DEFAULT_HASH="sha1"
-> CONFIG_IMA_WRITE_POLICY=y
-> CONFIG_IMA_READ_POLICY=y
-> CONFIG_IMA_APPRAISE=y
-> # CONFIG_IMA_ARCH_POLICY is not set
-> CONFIG_IMA_APPRAISE_BUILD_POLICY=y
-> CONFIG_IMA_APPRAISE_REQUIRE_FIRMWARE_SIGS=y
-> CONFIG_IMA_APPRAISE_REQUIRE_KEXEC_SIGS=y
-> CONFIG_IMA_APPRAISE_REQUIRE_MODULE_SIGS=y
-> CONFIG_IMA_APPRAISE_REQUIRE_POLICY_SIGS=y
-> CONFIG_IMA_APPRAISE_BOOTPARAM=y
-> CONFIG_IMA_APPRAISE_MODSIG=y
-> CONFIG_IMA_TRUSTED_KEYRING=y
-> # CONFIG_IMA_BLACKLIST_KEYRING is not set
-> CONFIG_IMA_LOAD_X509=y
-> CONFIG_IMA_X509_PATH="/etc/keys/x509_ima.der"
-> CONFIG_IMA_APPRAISE_SIGNED_INIT=y
-> CONFIG_IMA_MEASURE_ASYMMETRIC_KEYS=y
-> CONFIG_IMA_QUEUE_EARLY_BOOT_KEYS=y
-> # CONFIG_IMA_SECURE_AND_OR_TRUSTED_BOOT is not set
-> # CONFIG_IMA_DISABLE_HTABLE is not set
->  
-> The newly added options appear in the configuration.
->  
-> Can anyone tell me which is the order of applying Kernel configuration? I am
-> not sure whether I am following the correct order. How can I apply my Kernel
-> configuration? 
+Le mer. 2 avr. 2025 =C3=A0 05:06, Lee Chee Yang via lists.yoctoproject.org
+<chee.yang.lee=3Dintel.com@lists.yoctoproject.org> a =C3=A9crit :
 
-I've send the order several times for documenation, but I admit that
-I haven't really gone to check to see if it is there. I've also answered
-on the list a few times over the years, but also, that only helps if
-you know what to look/search for.
-
-Fragments are applied in the order they are found. And that order
-is of course governed by the standard bitbake variable processing
-rules (default values, overrides, etc, etc). A bbappend like you
-tried first would work, unless the processing order of the variable
-puts another fragment after that manipulates the same variable (as
-you also found)
-
-KERNEL_FEATURES are always applied after all "in tree" (aka
-kernel-cache) and user supplied fragments (i.e. bbappends), since
-KERNEL_FEATURES have more stringent checks to see that they
-exist and are applied. They form a "contract" that if they aren't
-applied, then we have a problem. Of course the order of KERNEL_FEATURES
-is also controlled by normal bitbake variable processing rules.
-
-So yes, if you have another fragment that is modifying an option
-that yuo want to apply, you can either :remove that feature / fragment
-from the SRC_URI or create a KERNEL_FEATURE that will be applied
-after the usersupplied 'standard' fragments.
-
-Bruce
-
->  
-> Any answer will be appreciated.
->  
-> Thank you,
->  
-> Miriam
->  
->  
-
-> 
-> -=-=-=-=-=-=-=-=-=-=-=-
+> Hi
+>
+> We are pleased to announce the Yocto Project 5.1.4 Release is now
+> available for download.
+>
+>
+>
+>
+> https://downloads.yoctoproject.org/releases/yocto/yocto-5.1.4/poky-70dc28=
+ac287bf35541270cae1d99130a0f6b7b5f.tar.bz2
+>
+>
+>
+> https://mirrors.kernel.org/yocto/yocto/yocto-5.1.4/poky-70dc28ac287bf3554=
+1270cae1d99130a0f6b7b5f.tar.bz2
+>
+>
+>
+> A gpg signed version of these release notes is available at:
+>
+>
+>
+> https://downloads.yoctoproject.org/releases/yocto/yocto-5.1.4/RELEASENOTE=
+S
+>
+>
+>
+> Full Test Report:
+>
+>
+>
+>
+> https://downloads.yoctoproject.org/releases/yocto/yocto-5.1.4/testreport.=
+txt
+>
+>
+>
+> Thank you for everyone's contributions to this release.
+>
+>
+>
+> Chee Yang
+>
+> chee.yang.lee@intel.com
+>
+> Yocto Project Build and Release
+>
+>
+> --------------------------
+>
+> yocto-5.1.4 Release Notes
+>
+> --------------------------
+>
+>
+>
+>
+>
+> --------------------------
+>
+> Repositories/Downloads
+>
+> --------------------------
+>
+>
+>
+> Repository Name: poky
+>
+> Repository Location: https://git.yoctoproject.org/poky
+>
+> Branch: styhead
+>
+> Tag: yocto-5.1.4
+>
+> Git Revision: 70dc28ac287bf35541270cae1d99130a0f6b7b5f
+>
+> Release Artefact: poky-70dc28ac287bf35541270cae1d99130a0f6b7b5f
+>
+> sha: 63f1d3d47a28bd9b41c89db6e1f2657c04233a00d10210795e766c0bc265d766
+>
+> Download Locations:
+>
+>
+> https://downloads.yoctoproject.org/releases/yocto/yocto-5.1.4/poky-70dc28=
+ac287bf35541270cae1d99130a0f6b7b5f.tar.bz2
+>
+>
+> https://mirrors.kernel.org/yocto/yocto/yocto-5.1.4/poky-70dc28ac287bf3554=
+1270cae1d99130a0f6b7b5f.tar.bz2
+>
+>
+>
+> Repository Name: openembedded-core
+>
+> Repository Location: https://git.openembedded.org/openembedded-core
+>
+> Branch: styhead
+>
+> Tag: yocto-5.1.4
+>
+> Git Revision: 2d94f4b8a852dc761f89e5106347e239382df5fb
+>
+> Release Artefact: oecore-2d94f4b8a852dc761f89e5106347e239382df5fb
+>
+> sha: 344ac23f814c049d69b06cee42c43b7b422506ce84397406caef09becb2555bf
+>
+> Download Locations:
+>
+>
+> https://downloads.yoctoproject.org/releases/yocto/yocto-5.1.4/oecore-2d94=
+f4b8a852dc761f89e5106347e239382df5fb.tar.bz2
+>
+>
+> https://mirrors.kernel.org/yocto/yocto/yocto-5.1.4/oecore-2d94f4b8a852dc7=
+61f89e5106347e239382df5fb.tar.bz2
+>
+>
+>
+> Repository Name: meta-mingw
+>
+> Repository Location: https://git.yoctoproject.org/meta-mingw
+>
+> Branch: styhead
+>
+> Tag: yocto-5.1.4
+>
+> Git Revision: 77fe18d4f8ec34501045c5d92ce7e13b1bd129e9
+>
+> Release Artefact: meta-mingw-77fe18d4f8ec34501045c5d92ce7e13b1bd129e9
+>
+> sha: 4c7f8100a3675d9863e51825def3df5b263ffc81cd57bae26eedbc156d771534
+>
+> Download Locations:
+>
+>
+> https://downloads.yoctoproject.org/releases/yocto/yocto-5.1.4/meta-mingw-=
+77fe18d4f8ec34501045c5d92ce7e13b1bd129e9.tar.bz2
+>
+>
+> https://mirrors.kernel.org/yocto/yocto/yocto-5.1.4/meta-mingw-77fe18d4f8e=
+c34501045c5d92ce7e13b1bd129e9.tar.bz2
+>
+>
+>
+> Repository Name: bitbake
+>
+> Repository Location: https://git.openembedded.org/bitbake
+>
+> Branch: 2.10
+>
+> Tag: yocto-5.1.4
+>
+> Git Revision: 82b9f42126983579da03bdbb4e3ebf07346118a7
+>
+> Release Artefact: bitbake-82b9f42126983579da03bdbb4e3ebf07346118a7
+>
+> sha: 209d62c5262f2287af60e7fe2343c29ab25b5088de4da71de89016e75900285a
+>
+> Download Locations:
+>
+>
+> https://downloads.yoctoproject.org/releases/yocto/yocto-5.1.4/bitbake-82b=
+9f42126983579da03bdbb4e3ebf07346118a7.tar.bz2
+>
+>
+> https://mirrors.kernel.org/yocto/yocto/yocto-5.1.4/bitbake-82b9f421269835=
+79da03bdbb4e3ebf07346118a7.tar.bz2
+>
+>
+>
+> Repository Name: yocto-docs
+>
+> Repository Location: https://git.yoctoproject.org/yocto-docs
+>
+> Branch: styhead
+>
+> Tag: yocto-5.1.4
+>
+> Git Revision: f0324b8f14881227336f84325cdebd0518e17796
+>
+>
+>
+>
+>
+> ---------------
+>
+> Contributors
+>
+> ---------------
+>
+> Alessio Cascone
+>
+> Lee Chee Yang
+>
+> Makarios Christakis
+>
+> Marta Rybczynska
+>
+> Peter Marko
+>
+> Priyal Doshi
+>
+> Richard Purdie
+>
+> Ross Burton
+>
+> Steve Sakoman
+>
+> Vijay Anusuri
+>
+> Wang Mingyu
+>
+> Weisser, Pascal
+>
+>
+>
+>
+>
+> ---------------
+>
+> Known Issues
+>
+> ---------------
+>
+> N/A
+>
+>
+>
+>
+>
+> ---------------
+>
+> Security Fixes
+>
+> ---------------
+>
+> binutils: Fix CVE-2025-0840
+>
+> grub: Fix CVE-2024-45774  CVE-2024-45775  CVE-2024-45776  CVE-2024-45777
+> CVE-2024-45778   CVE-2024-45779  CVE-2024-45780  CVE-2024-45781
+> CVE-2024-45782   CVE-2024-45783  CVE-2024-56737  CVE-2025-0622
+> CVE-2025-0624  CVE-2025-0677  CVE-2025-0678  CVE-2025-0684  CVE-2025-0685
+> CVE-2025-0686  CVE-2025-0689  CVE-2025-0690  CVE-2025-1118  CVE-2025-1125
+>
+> openssh: Fix CVE-2025-26465 CVE-2025-26466
+>
+> puzzles: Ignore CVE-2024-13769 CVE-2024-13770 CVE-2025-0837
+>
+> subversion: Ignore CVE-2024-45720
+>
+> xserver-xorg: Ignore CVE-2025-26594 CVE-2025-26595 CVE-2025-26596
+> CVE-2025-26597 CVE-2025-26598 CVE-2025-26599 CVE-2025-26600 CVE-2025-2660=
+1
+>
+>
+>
+> ---------------
+>
+> Fixes
+>
+> ---------------
+>
+> bitbake: event/utils: Avoid deadlock from lock_timeout() and recursive
+> events
+>
+> bitbake: utils: Add signal blocking for lock_timeout
+>
+> bitbake: utils: Print information about lock issue before exiting
+>
+> bitbake: utils: Tweak lock_timeout logic
+>
+> build-appliance-image: Update to styhead head revision
+>
+> docs: Remove all mention of core-image-lsb
+>
+> grub: backport strlcpy function
+>
+> grub: drop obsolete CVE statuses
+>
+> icu: Adjust ICU_DATA_DIR path on big endian targets
+>
+> libtasn1: upgrade to 4.20.0
+>
+> libxml2: upgrade to 2.13.6
+>
+> migration-guides: add release notes for 4.0.25 and 5.1.3
+>
+> poky.conf: bump version for 5.1.4
+>
+> ref-manual: Add missing variable IMAGE_ROOTFS_MAXSIZE
+>
+> ref-manual: don't refer to poky-lsb
+>
+> ref-manual: remove OE_IMPORTS
+>
+> tzcode-native: Fix compiler setting from 2023d version
+>
+> tzdata/tzcode-native: upgrade to 2025a
+>
+> vulnerabilities/classes: remove references to cve-check text format
+>
+> xserver-xf86-config: add a configuration fragment to disable screen
+> blanking
+>
+> xserver-xf86-config: remove obsolete configuration files
+>
+> xserver-xorg: upgrade to 21.1.16
+>
+> xwayland: upgrade to 21.1.6
+>
+>
+>
+>
+> -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
 > Links: You receive all messages sent to this group.
-> View/Reply Online (#65063): https://lists.yoctoproject.org/g/yocto/message/65063
-> Mute This Topic: https://lists.yoctoproject.org/mt/112045333/1050810
-> Mute #kernel:https://lists.yoctoproject.org/g/yocto/mutehashtag/kernel
-> Mute #kirkstone:https://lists.yoctoproject.org/g/yocto/mutehashtag/kirkstone
+> View/Reply Online (#65051):
+> https://lists.yoctoproject.org/g/yocto/message/65051
+> Mute This Topic: https://lists.yoctoproject.org/mt/112040510/4316185
 > Group Owner: yocto+owner@lists.yoctoproject.org
-> Unsubscribe: https://lists.yoctoproject.org/g/yocto/unsub [bruce.ashfield@gmail.com]
-> -=-=-=-=-=-=-=-=-=-=-=-
-> 
+> Unsubscribe: https://lists.yoctoproject.org/g/yocto/unsub [
+> yoann.congal@smile.fr]
+> -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
+>
+>
 
+--=20
+Yoann Congal
+Smile ECS
+
+--000000000000b99c090631e302e6
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr"><div>Hello,</div><div><br></div><div>I&#39;ve answered the=
+ 5.1.3 release mail asking for a change in the release mail template. Maybe=
+ you missed it?</div><div><br></div><div>Here it is:</div><blockquote class=
+=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rg=
+b(204,204,204);padding-left:1ex">
+Thanks for these nice release emails!<br>
+<br>
+Would it be possible to put the release branch (&quot;kirkstone&quot;,<br>
+&quot;scarthgap&quot;, ...) in the commit title? (Those branch names are mo=
+re<br>
+used than their numerical equivalent)<br>
+For this mail, something like : &quot;Yocto Project 5.1.3 (styhead) is<br>
+Released&quot; ? I don&#39;t know how strict/free the format is...<br>
+<br>
+Best regards,</blockquote><div><br></div><div>Thanks!</div><div><br></div><=
+br><div class=3D"gmail_quote gmail_quote_container"><div dir=3D"ltr" class=
+=3D"gmail_attr">Le=C2=A0mer. 2 avr. 2025 =C3=A0=C2=A005:06, Lee Chee Yang v=
+ia <a href=3D"http://lists.yoctoproject.org">lists.yoctoproject.org</a> &lt=
+;chee.yang.lee=3D<a href=3D"mailto:intel.com@lists.yoctoproject.org">intel.=
+com@lists.yoctoproject.org</a>&gt; a =C3=A9crit=C2=A0:<br></div><blockquote=
+ class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px so=
+lid rgb(204,204,204);padding-left:1ex"><div class=3D"msg1282906510442997460=
+">
+
+
+
+
+
+<div lang=3D"EN-MY" style=3D"overflow-wrap: break-word;">
+<div class=3D"m_1282906510442997460WordSection1">
+<p class=3D"MsoNormal"><span style=3D"font-size:11pt">Hi<br>
+<br>
+We are pleased to announce the Yocto Project 5.1.4 Release is now available=
+ for download.<u></u><u></u></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11pt"><u></u>=C2=A0<u></u><=
+/span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11pt"><a href=3D"https://do=
+wnloads.yoctoproject.org/releases/yocto/yocto-5.1.4/poky-70dc28ac287bf35541=
+270cae1d99130a0f6b7b5f.tar.bz2" target=3D"_blank">https://downloads.yoctopr=
+oject.org/releases/yocto/yocto-5.1.4/poky-70dc28ac287bf35541270cae1d99130a0=
+f6b7b5f.tar.bz2</a>
+ =C2=A0=C2=A0=C2=A0<u></u><u></u></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11pt"><a href=3D"https://mi=
+rrors.kernel.org/yocto/yocto/yocto-5.1.4/poky-70dc28ac287bf35541270cae1d991=
+30a0f6b7b5f.tar.bz2" target=3D"_blank">https://mirrors.kernel.org/yocto/yoc=
+to/yocto-5.1.4/poky-70dc28ac287bf35541270cae1d99130a0f6b7b5f.tar.bz2</a>
+<u></u><u></u></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11pt"><u></u>=C2=A0<u></u><=
+/span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11pt">A gpg signed version =
+of these release notes is available at:<u></u><u></u></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11pt"><u></u>=C2=A0<u></u><=
+/span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11pt"><a href=3D"https://do=
+wnloads.yoctoproject.org/releases/yocto/yocto-5.1.4/RELEASENOTES" target=3D=
+"_blank">https://downloads.yoctoproject.org/releases/yocto/yocto-5.1.4/RELE=
+ASENOTES</a><u></u><u></u></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11pt"><u></u>=C2=A0<u></u><=
+/span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11pt">Full Test Report:<u><=
+/u><u></u></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11pt"><u></u>=C2=A0<u></u><=
+/span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11pt"><a href=3D"https://do=
+wnloads.yoctoproject.org/releases/yocto/yocto-5.1.4/testreport.txt" target=
+=3D"_blank">https://downloads.yoctoproject.org/releases/yocto/yocto-5.1.4/t=
+estreport.txt</a><u></u><u></u></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11pt"><u></u>=C2=A0<u></u><=
+/span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11pt">Thank you for everyon=
+e&#39;s contributions to this release.<u></u><u></u></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11pt"><u></u>=C2=A0<u></u><=
+/span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11pt">Chee Yang<u></u><u></=
+u></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11pt"><a href=3D"mailto:che=
+e.yang.lee@intel.com" target=3D"_blank">chee.yang.lee@intel.com</a><u></u><=
+u></u></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11pt">Yocto Project Build a=
+nd Release<br>
+<br>
+<br>
+<u></u><u></u></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11pt">---------------------=
+-----<u></u><u></u></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11pt">yocto-5.1.4 Release N=
+otes<u></u><u></u></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11pt">---------------------=
+-----<u></u><u></u></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11pt"><u></u>=C2=A0<u></u><=
+/span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11pt"><u></u>=C2=A0<u></u><=
+/span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11pt">---------------------=
+-----<u></u><u></u></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11pt">Repositories/Download=
+s<u></u><u></u></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11pt">---------------------=
+-----<u></u><u></u></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11pt"><u></u>=C2=A0<u></u><=
+/span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11pt">Repository Name: poky=
+<u></u><u></u></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11pt">Repository Location: =
+<a href=3D"https://git.yoctoproject.org/poky" target=3D"_blank">https://git=
+.yoctoproject.org/poky</a><u></u><u></u></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11pt">Branch: styhead<u></u=
+><u></u></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11pt">Tag: yocto-5.1.4<u></=
+u><u></u></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11pt">Git Revision: 70dc28a=
+c287bf35541270cae1d99130a0f6b7b5f<u></u><u></u></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11pt">Release Artefact: pok=
+y-70dc28ac287bf35541270cae1d99130a0f6b7b5f<u></u><u></u></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11pt">sha: 63f1d3d47a28bd9b=
+41c89db6e1f2657c04233a00d10210795e766c0bc265d766<u></u><u></u></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11pt">Download Locations:<u=
+></u><u></u></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11pt"><a href=3D"https://do=
+wnloads.yoctoproject.org/releases/yocto/yocto-5.1.4/poky-70dc28ac287bf35541=
+270cae1d99130a0f6b7b5f.tar.bz2" target=3D"_blank">https://downloads.yoctopr=
+oject.org/releases/yocto/yocto-5.1.4/poky-70dc28ac287bf35541270cae1d99130a0=
+f6b7b5f.tar.bz2</a><u></u><u></u></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11pt"><a href=3D"https://mi=
+rrors.kernel.org/yocto/yocto/yocto-5.1.4/poky-70dc28ac287bf35541270cae1d991=
+30a0f6b7b5f.tar.bz2" target=3D"_blank">https://mirrors.kernel.org/yocto/yoc=
+to/yocto-5.1.4/poky-70dc28ac287bf35541270cae1d99130a0f6b7b5f.tar.bz2</a><u>=
+</u><u></u></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11pt"><u></u>=C2=A0<u></u><=
+/span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11pt">Repository Name: open=
+embedded-core<u></u><u></u></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11pt">Repository Location: =
+<a href=3D"https://git.openembedded.org/openembedded-core" target=3D"_blank=
+">https://git.openembedded.org/openembedded-core</a><u></u><u></u></span></=
+p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11pt">Branch: styhead<u></u=
+><u></u></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11pt">Tag: yocto-5.1.4<u></=
+u><u></u></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11pt">Git Revision: 2d94f4b=
+8a852dc761f89e5106347e239382df5fb<u></u><u></u></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11pt">Release Artefact: oec=
+ore-2d94f4b8a852dc761f89e5106347e239382df5fb<u></u><u></u></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11pt">sha: 344ac23f814c049d=
+69b06cee42c43b7b422506ce84397406caef09becb2555bf<u></u><u></u></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11pt">Download Locations:<u=
+></u><u></u></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11pt"><a href=3D"https://do=
+wnloads.yoctoproject.org/releases/yocto/yocto-5.1.4/oecore-2d94f4b8a852dc76=
+1f89e5106347e239382df5fb.tar.bz2" target=3D"_blank">https://downloads.yocto=
+project.org/releases/yocto/yocto-5.1.4/oecore-2d94f4b8a852dc761f89e5106347e=
+239382df5fb.tar.bz2</a><u></u><u></u></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11pt"><a href=3D"https://mi=
+rrors.kernel.org/yocto/yocto/yocto-5.1.4/oecore-2d94f4b8a852dc761f89e510634=
+7e239382df5fb.tar.bz2" target=3D"_blank">https://mirrors.kernel.org/yocto/y=
+octo/yocto-5.1.4/oecore-2d94f4b8a852dc761f89e5106347e239382df5fb.tar.bz2</a=
+><u></u><u></u></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11pt"><u></u>=C2=A0<u></u><=
+/span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11pt">Repository Name: meta=
+-mingw<u></u><u></u></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11pt">Repository Location: =
+<a href=3D"https://git.yoctoproject.org/meta-mingw" target=3D"_blank">https=
+://git.yoctoproject.org/meta-mingw</a><u></u><u></u></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11pt">Branch: styhead<u></u=
+><u></u></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11pt">Tag: yocto-5.1.4<u></=
+u><u></u></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11pt">Git Revision: 77fe18d=
+4f8ec34501045c5d92ce7e13b1bd129e9<u></u><u></u></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11pt">Release Artefact: met=
+a-mingw-77fe18d4f8ec34501045c5d92ce7e13b1bd129e9<u></u><u></u></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11pt">sha: 4c7f8100a3675d98=
+63e51825def3df5b263ffc81cd57bae26eedbc156d771534<u></u><u></u></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11pt">Download Locations:<u=
+></u><u></u></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11pt"><a href=3D"https://do=
+wnloads.yoctoproject.org/releases/yocto/yocto-5.1.4/meta-mingw-77fe18d4f8ec=
+34501045c5d92ce7e13b1bd129e9.tar.bz2" target=3D"_blank">https://downloads.y=
+octoproject.org/releases/yocto/yocto-5.1.4/meta-mingw-77fe18d4f8ec34501045c=
+5d92ce7e13b1bd129e9.tar.bz2</a><u></u><u></u></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11pt"><a href=3D"https://mi=
+rrors.kernel.org/yocto/yocto/yocto-5.1.4/meta-mingw-77fe18d4f8ec34501045c5d=
+92ce7e13b1bd129e9.tar.bz2" target=3D"_blank">https://mirrors.kernel.org/yoc=
+to/yocto/yocto-5.1.4/meta-mingw-77fe18d4f8ec34501045c5d92ce7e13b1bd129e9.ta=
+r.bz2</a><u></u><u></u></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11pt"><u></u>=C2=A0<u></u><=
+/span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11pt">Repository Name: bitb=
+ake<u></u><u></u></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11pt">Repository Location: =
+<a href=3D"https://git.openembedded.org/bitbake" target=3D"_blank">https://=
+git.openembedded.org/bitbake</a><u></u><u></u></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11pt">Branch: 2.10<u></u><u=
+></u></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11pt">Tag: yocto-5.1.4<u></=
+u><u></u></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11pt">Git Revision: 82b9f42=
+126983579da03bdbb4e3ebf07346118a7<u></u><u></u></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11pt">Release Artefact: bit=
+bake-82b9f42126983579da03bdbb4e3ebf07346118a7<u></u><u></u></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11pt">sha: 209d62c5262f2287=
+af60e7fe2343c29ab25b5088de4da71de89016e75900285a<u></u><u></u></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11pt">Download Locations:<u=
+></u><u></u></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11pt"><a href=3D"https://do=
+wnloads.yoctoproject.org/releases/yocto/yocto-5.1.4/bitbake-82b9f4212698357=
+9da03bdbb4e3ebf07346118a7.tar.bz2" target=3D"_blank">https://downloads.yoct=
+oproject.org/releases/yocto/yocto-5.1.4/bitbake-82b9f42126983579da03bdbb4e3=
+ebf07346118a7.tar.bz2</a><u></u><u></u></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11pt"><a href=3D"https://mi=
+rrors.kernel.org/yocto/yocto/yocto-5.1.4/bitbake-82b9f42126983579da03bdbb4e=
+3ebf07346118a7.tar.bz2" target=3D"_blank">https://mirrors.kernel.org/yocto/=
+yocto/yocto-5.1.4/bitbake-82b9f42126983579da03bdbb4e3ebf07346118a7.tar.bz2<=
+/a><u></u><u></u></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11pt"><u></u>=C2=A0<u></u><=
+/span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11pt">Repository Name: yoct=
+o-docs<u></u><u></u></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11pt">Repository Location: =
+<a href=3D"https://git.yoctoproject.org/yocto-docs" target=3D"_blank">https=
+://git.yoctoproject.org/yocto-docs</a><u></u><u></u></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11pt">Branch: styhead<u></u=
+><u></u></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11pt">Tag: yocto-5.1.4<u></=
+u><u></u></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11pt">Git Revision: f0324b8=
+f14881227336f84325cdebd0518e17796<u></u><u></u></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11pt"><u></u>=C2=A0<u></u><=
+/span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11pt"><u></u>=C2=A0<u></u><=
+/span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11pt">---------------<u></u=
+><u></u></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11pt">Contributors<u></u><u=
+></u></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11pt">---------------<u></u=
+><u></u></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11pt">Alessio Cascone<u></u=
+><u></u></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11pt">Lee Chee Yang<u></u><=
+u></u></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11pt">Makarios Christakis<u=
+></u><u></u></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11pt">Marta Rybczynska<u></=
+u><u></u></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11pt">Peter Marko<u></u><u>=
+</u></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11pt">Priyal Doshi<u></u><u=
+></u></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11pt">Richard Purdie<u></u>=
+<u></u></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11pt">Ross Burton<u></u><u>=
+</u></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11pt">Steve Sakoman<u></u><=
+u></u></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11pt">Vijay Anusuri<u></u><=
+u></u></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11pt">Wang Mingyu<u></u><u>=
+</u></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11pt">Weisser, Pascal<u></u=
+><u></u></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11pt"><u></u>=C2=A0<u></u><=
+/span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11pt"><u></u>=C2=A0<u></u><=
+/span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11pt">---------------<u></u=
+><u></u></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11pt">Known Issues<u></u><u=
+></u></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11pt">---------------<u></u=
+><u></u></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11pt">N/A<u></u><u></u></sp=
+an></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11pt"><u></u>=C2=A0<u></u><=
+/span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11pt"><u></u>=C2=A0<u></u><=
+/span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11pt">---------------<u></u=
+><u></u></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11pt">Security Fixes<u></u>=
+<u></u></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11pt">---------------<u></u=
+><u></u></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11pt">binutils: Fix CVE-202=
+5-0840<u></u><u></u></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11pt">grub: Fix CVE-2024-45=
+774=C2=A0 CVE-2024-45775=C2=A0 CVE-2024-45776=C2=A0 CVE-2024-45777=C2=A0 CV=
+E-2024-45778=C2=A0=C2=A0 CVE-2024-45779=C2=A0 CVE-2024-45780=C2=A0 CVE-2024=
+-45781=C2=A0 CVE-2024-45782=C2=A0=C2=A0 CVE-2024-45783=C2=A0 CVE-2024-56737=
+=C2=A0 CVE-2025-0622=C2=A0 CVE-2025-0624=C2=A0
+ CVE-2025-0677=C2=A0 CVE-2025-0678=C2=A0 CVE-2025-0684=C2=A0 CVE-2025-0685=
+=C2=A0 CVE-2025-0686=C2=A0 CVE-2025-0689=C2=A0 CVE-2025-0690=C2=A0 CVE-2025=
+-1118=C2=A0 CVE-2025-1125<u></u><u></u></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11pt">openssh: Fix CVE-2025=
+-26465 CVE-2025-26466<u></u><u></u></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11pt">puzzles: Ignore CVE-2=
+024-13769 CVE-2024-13770 CVE-2025-0837<u></u><u></u></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11pt">subversion: Ignore CV=
+E-2024-45720<u></u><u></u></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11pt">xserver-xorg: Ignore =
+CVE-2025-26594 CVE-2025-26595 CVE-2025-26596 CVE-2025-26597 CVE-2025-26598 =
+CVE-2025-26599 CVE-2025-26600 CVE-2025-26601<u></u><u></u></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11pt"><u></u>=C2=A0<u></u><=
+/span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11pt">---------------<u></u=
+><u></u></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11pt">Fixes<u></u><u></u></=
+span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11pt">---------------<u></u=
+><u></u></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11pt">bitbake: event/utils:=
+ Avoid deadlock from lock_timeout() and recursive events<u></u><u></u></spa=
+n></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11pt">bitbake: utils: Add s=
+ignal blocking for lock_timeout<u></u><u></u></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11pt">bitbake: utils: Print=
+ information about lock issue before exiting<u></u><u></u></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11pt">bitbake: utils: Tweak=
+ lock_timeout logic<u></u><u></u></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11pt">build-appliance-image=
+: Update to styhead head revision<u></u><u></u></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11pt">docs: Remove all ment=
+ion of core-image-lsb<u></u><u></u></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11pt">grub: backport strlcp=
+y function<u></u><u></u></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11pt">grub: drop obsolete C=
+VE statuses<u></u><u></u></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11pt">icu: Adjust ICU_DATA_=
+DIR path on big endian targets<u></u><u></u></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11pt">libtasn1: upgrade to =
+4.20.0<u></u><u></u></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11pt">libxml2: upgrade to 2=
+.13.6<u></u><u></u></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11pt">migration-guides: add=
+ release notes for 4.0.25 and 5.1.3<u></u><u></u></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11pt">poky.conf: bump versi=
+on for 5.1.4<u></u><u></u></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11pt">ref-manual: Add missi=
+ng variable IMAGE_ROOTFS_MAXSIZE<u></u><u></u></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11pt">ref-manual: don&#39;t=
+ refer to poky-lsb<u></u><u></u></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11pt">ref-manual: remove OE=
+_IMPORTS<u></u><u></u></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11pt">tzcode-native: Fix co=
+mpiler setting from 2023d version<u></u><u></u></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11pt">tzdata/tzcode-native:=
+ upgrade to 2025a<u></u><u></u></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11pt">vulnerabilities/class=
+es: remove references to cve-check text format<u></u><u></u></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11pt">xserver-xf86-config: =
+add a configuration fragment to disable screen blanking<u></u><u></u></span=
+></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11pt">xserver-xf86-config: =
+remove obsolete configuration files<u></u><u></u></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11pt">xserver-xorg: upgrade=
+ to 21.1.16<u></u><u></u></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11pt">xwayland: upgrade to =
+21.1.6<u></u><u></u></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11pt"><br>
+<br>
+<u></u><u></u></span></p>
+</div>
+</div>
+
+<br>
+-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-<br>
+Links: You receive all messages sent to this group.<br>
+View/Reply Online (#65051): <a href=3D"https://lists.yoctoproject.org/g/yoc=
+to/message/65051" rel=3D"noreferrer" target=3D"_blank">https://lists.yoctop=
+roject.org/g/yocto/message/65051</a><br>
+Mute This Topic: <a href=3D"https://lists.yoctoproject.org/mt/112040510/431=
+6185" rel=3D"noreferrer" target=3D"_blank">https://lists.yoctoproject.org/m=
+t/112040510/4316185</a><br>
+Group Owner: <a href=3D"mailto:yocto%2Bowner@lists.yoctoproject.org" target=
+=3D"_blank">yocto+owner@lists.yoctoproject.org</a><br>
+Unsubscribe: <a href=3D"https://lists.yoctoproject.org/g/yocto/unsub" rel=
+=3D"noreferrer" target=3D"_blank">https://lists.yoctoproject.org/g/yocto/un=
+sub</a> [<a href=3D"mailto:yoann.congal@smile.fr" target=3D"_blank">yoann.c=
+ongal@smile.fr</a>]<br>
+-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-<br>
+<br>
+</div></blockquote></div><div><br clear=3D"all"></div><br><span class=3D"gm=
+ail_signature_prefix">-- </span><br><div dir=3D"ltr" class=3D"gmail_signatu=
+re"><div dir=3D"ltr"><font face=3D"Raleway, regular">Yoann Congal</font><di=
+v><font face=3D"Raleway, regular">Smile ECS</font></div></div></div></div>
+
+--000000000000b99c090631e302e6--
 
