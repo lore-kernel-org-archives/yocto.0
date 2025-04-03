@@ -1,70 +1,131 @@
-Return-Path: <abhijithkannan45@gmail.com>
+Return-Path: <proffesionaladdress2@duck.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 0B7D9C3600C
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 0CBFBC3601B
 	for <webhook@archiver.kernel.org>; Thu,  3 Apr 2025 11:19:51 +0000 (UTC)
-Subject: Re: [yocto] Error while building python3.11 as an alternative for scarthgap (OpenSTLinux) #openstlinux #bitbake #yocto
-To: "Alexander Kanavin" <alex.kanavin@gmail.com>, yocto@lists.yoctoproject.org
-From: "Abhijith" <abhijithkannan45@gmail.com>
-X-Originating-Location: US (136.226.242.122)
-X-Originating-Platform: Linux Firefox 137
-User-Agent: GROUPS.IO Web Poster
+Received: from smtp-outbound5.duck.com (smtp-outbound5.duck.com [20.67.223.11])
+ by mx.groups.io with SMTP id smtpd.web10.10959.1743679188195563609
+ for <yocto@lists.yoctoproject.org>;
+ Thu, 03 Apr 2025 04:19:48 -0700
+Authentication-Results: mx.groups.io;
+ dkim=pass header.i=@duck.com header.s=postal-KpyQVw header.b=fkpUn97L;
+ spf=pass (domain: duck.com, ip: 20.67.223.11, mailfrom: proffesionaladdress2@duck.com)
+Subject: Update a machine configuration file from another layer depending to
+ it (with .bbapend)
 MIME-Version: 1.0
-Date: Thu, 03 Apr 2025 04:19:44 -0700
-References: <CANNYZj_LzJH1w_ieTQTbmpdhgaXKmjpWGkR=FqhvbG3zreKBkg@mail.gmail.com>
-In-Reply-To: <CANNYZj_LzJH1w_ieTQTbmpdhgaXKmjpWGkR=FqhvbG3zreKBkg@mail.gmail.com>
-Message-ID: <4900.1743679184541317939@lists.yoctoproject.org>
-Content-Type: multipart/alternative; boundary="lDESfsEBlhDF4ONSmQqB"
+Content-Type: multipart/alternative;
+	boundary="=_8gr+iVu8sZd4X20Ez6ZqZy_="
+X-Rspamd-Bar: /
+X-Rspamd-Report: DMARC_POLICY_ALLOW(-0.5) MIME_GOOD(-0.1) R_DKIM_ALLOW(-0.2) URI_COUNT_ODD(1) R_SPF_ALLOW(-0.2)
+X-Rspamd-Score: 0
+X-Rspamd-Action: no action
+To: main <yocto@lists.yoctoproject.org>
+Received: by smtp-inbound1.duck.com; Thu, 03 Apr 2025 07:19:46 -0400
+Message-ID: <CE791ECA-60AE-471D-86AB-170EA3C58287.1@smtp-inbound1.duck.com>
+Date: Thu, 03 Apr 2025 07:19:46 -0400
+From: proffesionaladdress2@duck.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=duck.com; h=From:
+ Date: Message-ID: To: Content-Type: MIME-Version: Subject; q=dns/txt;
+ s=postal-KpyQVw; t=1743679187;
+ bh=0Y3If0H/FirDRApgPvk0JfzF8mBM+ghbrmpB1riW864=;
+ b=fkpUn97LAsqom28PIc2ebflHsIm6sxvWLmt3Xd/nbHCHvRaxnec063/Xo+ABawwxE+praVGZF
+ ds3aeGhEmH/cXH9jSAGTFe4U1rwPB+Oq3r3tOR47QIAXMleQJvHvkHkUS0nXRmw/5NYdofe3/j7
+ z96Cq2BcVO5lb7i78/dlUgE=
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
  <yocto@lists.yoctoproject.org>; Thu, 03 Apr 2025 11:19:51 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/65071
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/65072
 
---lDESfsEBlhDF4ONSmQqB
-Content-Type: text/plain; charset="utf-8"
+--=_8gr+iVu8sZd4X20Ez6ZqZy_=
+Content-Type: text/plain;
+	charset=utf-8
+Content-Transfer-Encoding: 7bit
+
+Hello, 
+
+I want to enable initramfs for raspberry-pi, by adding this machine specific configuration, through a layer (to make an overlay-fs on rootfs): 
+
+# Enable uboot for rasperry pi 
+RPI_USE_U_BOOT = "1" 
+
+INITRAMFS_IMAGE = "image-initramfs" 
+INITRAMFS_IMAGE_BUNDLE = "1" 
+BOOT_SPACE = "1073741" 
+INITRAMFS_MAXSIZE = "315400" 
+
+INITRAMFS_KERNEL_IMAGE="${INITRAMFS_IMAGE}-${MACHINE}" 
+IMAGE_BOOT_FILES:append = " ${INITRAMFS_KERNEL_IMAGE}.${INITRAMFS_FSTYPES};initramfs.cpio.gz" 
+
+but the layer have a .bbapend file to modifing the uboot setting of the layer. If I understand properly I cannot change the priority of the layer to be before the meta-raspberrypi. 
+
+I can also add it to a distro configuration like here: 
+[ https://yocto.yoctoproject.narkive.com/YX6jam7u/possible-to-append-or-patch-existing-machine-conf-file | https://yocto.yoctoproject.narkive.com/YX6jam7u/possible-to-append-or-patch-existing-machine-conf-file ] 
+
+but the layer shall be use with another layer that has already a distribution that modify the raspberry pi configuration. 
+To keep things independant, I don't want to add the above configuration to conf/machine/rpi-extra.conf of other layer. 
+
+I try something like this to my distro.conf file but I cannot use bash inside a conf file: 
+
+for layer in ${BBFILE_COLLECTIONS}; do 
+include ${layer}/conf/machine/${SOC_FAMILY}-extra.conf 
+include ${layer}/conf/machine/${MACHINE}-extra.conf 
+done 
+
+The alone option I see now is to ask to add it to local.conf through a README. 
+
+Best regards 
+
+--=_8gr+iVu8sZd4X20Ez6ZqZy_=
+Content-Type: text/html;
+	charset=utf-8
 Content-Transfer-Encoding: quoted-printable
 
-Hi Alex,
+<html><head></head><body><div style=3D"font-family: arial, helvetica, =
+sans-serif; font-size: 12pt; color: #000000"><div><div><div><div =
+style=3D"font-family: arial, helvetica, sans-serif; font-size: 12pt; color:=
+ #000000;" data-mce-style=3D"font-family: arial, helvetica, sans-serif; =
+font-size: 12pt; color: #000000;"><div><div><div><div style=3D"font-family:=
+ arial, helvetica, sans-serif; font-size: 12pt; color: #000000;" =
+data-mce-style=3D"font-family: arial, helvetica, sans-serif; font-size: =
+12pt; color: #000000;"><div><div><div><div style=3D"font-family: arial, =
+helvetica, sans-serif; font-size: 12pt; color: #000000;" =
+data-mce-style=3D"font-family: arial, helvetica, sans-serif; font-size: =
+12pt; color: #000000;"><div>Hello,</div><div><br></div><div>I want to =
+enable initramfs for raspberry-pi, by adding this machine specific =
+configuration, through a layer (to make an overlay-fs on =
+rootfs):</div><div><br></div><div># Enable uboot for rasperry =
+pi<br>RPI_USE_U_BOOT =3D "1"</div><div><br></div><div>INITRAMFS_IMAGE =3D =
+"image-initramfs"<br>INITRAMFS_IMAGE_BUNDLE =3D "1"<br>BOOT_SPACE =3D =
+"1073741"<br>INITRAMFS_MAXSIZE =3D "315400"<br><br>INITRAMFS_KERNEL_IMAGE=
+=3D"${INITRAMFS_IMAGE}-${MACHINE}"<br>IMAGE_BOOT_FILES:append =3D " =
+${INITRAMFS_KERNEL_IMAGE}.${INITRAMFS_FSTYPES};initramfs.cpio.=
+gz"</div><div><br></div><div>but the layer have a .bbapend file to modifing=
+ the uboot setting of the layer. If I understand properly I cannot change =
+the priority of the layer to be before the meta-raspberrypi.=
+</div><div><br></div><div>I can also add it to a distro configuration like =
+here:</div><div><span class=3D"Object" id=3D"OBJ_PREFIX_DWT250_com_zimbra_u=
+rl"><span class=3D"Object" id=3D"OBJ_PREFIX_DWT432_com_zimbra_url"><span =
+class=3D"Object" role=3D"link" id=3D"OBJ_PREFIX_DWT131_com_zimbra_url"><a =
+href=3D"https://yocto.yoctoproject.narkive.com/YX6jam7u/possible-to-append-=
+or-patch-existing-machine-conf-file" target=3D"_blank" rel=3D"noopener" =
+data-mce-href=3D"https://yocto.yoctoproject.narkive.=
+com/YX6jam7u/possible-to-append-or-patch-existing-machine-conf-file">https:=
+//yocto.yoctoproject.narkive.com/YX6jam7u/possible-to-append-or-patch-exist=
+ing-machine-conf-file</a></span></span></span><br></div><div><br></div><div=
+>but the layer shall be use with another layer that has already a =
+distribution that modify the raspberry pi configuration.</div><div>To keep =
+things independant, I don't want to add the above configuration to =
+conf/machine/rpi-extra.conf of other layer.</div><div><br></div><div>I try =
+something like this to my distro.conf file but I cannot use bash inside a =
+conf file:</div><div><br></div><div>for layer in ${BBFILE_COLLECTIONS}; =
+do<br>&nbsp;&nbsp; include ${layer}/conf/machine/${SOC_FAMILY}-extra.=
+conf<br>&nbsp;&nbsp;&nbsp; include ${layer}/conf/machine/${MACHINE}-extra.=
+conf<br>done<br></div><div><br></div><div>The alone option I see now is to =
+ask to add it to local.conf through a README.</div><div><br></div><div>Best=
+ regards</div></div></div></div></div></div></div></div></div></div></div><=
+/div></div></div></body></html>
 
-Unfortunately, that option isn=E2=80=99t feasible for me at the moment. As =
-mentioned in my previous message, I am using the STM32MPU for learning purp=
-oses. The end goal is to have an image for the RZ/V2L with Python 3.11. How=
-ever, the RZ/V2L currently only supports Python 3.8. I=E2=80=99ve reached o=
-ut to Renesas regarding support for a higher version, and they informed me =
-that I either have to wait until the end of the year for an official releas=
-e with Python 3.12, or build it myself. Since I cannot wait until the end o=
-f the year for the official release, I am working on building an image with=
- Python 3.11.
-
-Since I don=E2=80=99t currently have access to RZ/V2L hardware, I=E2=80=99m=
- using the STM32MPU to learn and build an image with Python 3.11. I underst=
-and your concern, but this task has been assigned to me by my company. Our =
-client provides the models and Python code, and they=E2=80=99ve made it cle=
-ar that they cannot proceed with Python 3.8. They require at least Python 3=
-.10.
-
---lDESfsEBlhDF4ONSmQqB
-Content-Type: text/html; charset="utf-8"
-Content-Transfer-Encoding: quoted-printable
-
-<p class=3D"" data-start=3D"151" data-end=3D"159">Hi Alex,</p>
-<p class=3D"" data-start=3D"161" data-end=3D"634">Unfortunately, that optio=
-n isn&rsquo;t feasible for me at the moment. As mentioned in my previous me=
-ssage, I am using the STM32MPU for learning purposes. The end goal is to ha=
-ve an image for the RZ/V2L with Python 3.11. However, the RZ/V2L currently =
-only supports Python 3.8. I&rsquo;ve reached out to Renesas regarding suppo=
-rt for a higher version, and they informed me that I either have to wait un=
-til the end of the year for an official release with Python 3.12, or build =
-it myself. Since I cannot wait until the end of the year for the official r=
-elease, I am working on building an image with Python 3.11.&nbsp;</p>
-<p class=3D"" data-start=3D"636" data-end=3D"1009">Since I don&rsquo;t curr=
-ently have access to RZ/V2L hardware, I&rsquo;m using the STM32MPU to learn=
- and build an image with Python 3.11. I understand your concern, but this t=
-ask has been assigned to me by my company. Our client provides the models a=
-nd Python code, and they&rsquo;ve made it clear that they cannot proceed wi=
-th Python 3.8. They require at least Python 3.10.</p>
-
---lDESfsEBlhDF4ONSmQqB--
+--=_8gr+iVu8sZd4X20Ez6ZqZy_=--
 
