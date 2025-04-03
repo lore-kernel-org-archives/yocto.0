@@ -2,93 +2,118 @@ Return-Path: <alex.kanavin@gmail.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 1935CC3600C
-	for <webhook@archiver.kernel.org>; Thu,  3 Apr 2025 11:26:41 +0000 (UTC)
-Received: from mail-qv1-f47.google.com (mail-qv1-f47.google.com [209.85.219.47])
- by mx.groups.io with SMTP id smtpd.web11.11012.1743679599824149082
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 19F5FC3600C
+	for <webhook@archiver.kernel.org>; Thu,  3 Apr 2025 11:28:41 +0000 (UTC)
+Received: from mail-qv1-f54.google.com (mail-qv1-f54.google.com [209.85.219.54])
+ by mx.groups.io with SMTP id smtpd.web10.11076.1743679719432766870
  for <yocto@lists.yoctoproject.org>;
- Thu, 03 Apr 2025 04:26:39 -0700
+ Thu, 03 Apr 2025 04:28:39 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20230601 header.b=BOtB6Xdx;
- spf=pass (domain: gmail.com, ip: 209.85.219.47, mailfrom: alex.kanavin@gmail.com)
-Received: by mail-qv1-f47.google.com with SMTP id 6a1803df08f44-6e904f53151so7076646d6.3
-        for <yocto@lists.yoctoproject.org>; Thu, 03 Apr 2025 04:26:39 -0700 (PDT)
+ dkim=pass header.i=@gmail.com header.s=20230601 header.b=WbaXO5DR;
+ spf=pass (domain: gmail.com, ip: 209.85.219.54, mailfrom: alex.kanavin@gmail.com)
+Received: by mail-qv1-f54.google.com with SMTP id 6a1803df08f44-6eb16dfa988so7469576d6.2
+        for <yocto@lists.yoctoproject.org>; Thu, 03 Apr 2025 04:28:39 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1743679599; x=1744284399; darn=lists.yoctoproject.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=MJpkGtpIuAOwDDn38NN+g6FHoSjqjSBQ+OJt7O6tFjQ=;
-        b=BOtB6Xdx4GuBsh7pZmGQYCh168UByNII3k+1TXoOjJJrbXCRm7RiTVGKzBtA4A20Pc
-         giBi1OnvW+CnOhV33PIwd+kDkjk26M1M44kzVsgya1Mdi1gDBXTwAieKVR47dvqOjt8d
-         Kg4Cr2aP0uQIpX0ggm1RhZ2VyeNbava4huz738durx64OUDSXbfK/hFPQJWMWtspsWAH
-         sLzpYKrxIz+OrWCPiP9vZdFZTqd2ukdE97+vKdm/9QKFxo5Nka2xuC+lEzjfsrAj9Lb0
-         eFx4LS/VEpit9nLrFoJb/A+88dHc0FDG4Z+sFtdFMVpmBVnoVpXz0DR4jzOGIEdeEDLZ
-         ZjHA==
+        d=gmail.com; s=20230601; t=1743679718; x=1744284518; darn=lists.yoctoproject.org;
+        h=to:subject:message-id:date:from:in-reply-to:references:mime-version
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=ukRJ7la3lWIyM2tMaK5IEVV4s0pFREdckcUKDH0zSXM=;
+        b=WbaXO5DRY8fs+jTVy7f/ftQtf+0ndEDrPkAJAfxo1SFJ/bddciY7wqE2plWYCDFbNH
+         etb20hkMf9ElhfsM8FSLA68dGJJmlORhBrDO0frhD09X1vsLJo1ZCu9iaYJjXMCyA4oW
+         YrsU644bVE71taWFdL7I402ERQkL0xo3HDv/XZ3qOJiULUQe6WGbQVn7DyxoJC8BGqlp
+         2dzfQCaulMZhAEe/Po8xRrgQoelNfrlgeAlORR+AtgZ4CmOdFWHeYZfXVl9sI1qss4JG
+         mXEYazM+dRk6cq3xiPWcrBBH13QzMM2EsM/Eki8zFnfy9+O9ileVOSdMciIURFAnT/ke
+         Z1SA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1743679599; x=1744284399;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=MJpkGtpIuAOwDDn38NN+g6FHoSjqjSBQ+OJt7O6tFjQ=;
-        b=Fxm0aAA+0X+K1vf8X6ZDaUnQ+CivTSlp5AqKOnbGsevqrraAtugDB8dKJpYMOAmI51
-         VrkMzOflTN5YEcOmTFLWF0w7MnkO2ir/SowOV49ayMhCYLdba9PAi7j38ywKql7xiXJS
-         BudCtabrnlKg009s9Kv6PQ1JE+yQNOidDDYBAY8sbK5PXglnyPx4TOjDDP8AtDbWjOF1
-         7nro/VWDwOAlxhX6ioUBH5VYnGNVTX7yd/jlijKZwWuuK6Mf4o2X8DcEZbWzpJ+bw/51
-         ZnAKgYgjOsIG+VZNpaL/WCe9tSSf6mLzNDVNq8gGCwAHIXlGH+VFhtHR+t+YQJxV97lY
-         0GfQ==
-X-Gm-Message-State: AOJu0Yx/8xupOsTVT/iGR5jVyr/9auS96ehi0au1lEmVihFUic9++tRV
-	LqvGm3E/tF+GNQkDZO8SvfUsOvzQpCe/TEoyUWw2HE/E2FI5tg18RHPFA82I5qbdb4gV5w1gdzv
-	dlUCw81gffjZ/90Nq8uzcA0BiawU=
-X-Gm-Gg: ASbGncsRL/Equz715RXRYQq3nRFKnKka52JMELhHZV5y8xpFiFHsZQczdTqPXO/mgwa
-	yi0p6If4Y1UQe0WPiTx1QQPmiVUdv0UMoSfa77wrTASLkIbaFvazDywoP8n6O7PZvnMLhOPYKLt
-	B9htXDH40YVMeYxxyjkZeVSrNVoKPrmNn8vV/5BHbWvQI2Ooa7Wn1Q5Kwtkr7Q
-X-Google-Smtp-Source: AGHT+IFHa/8wVgyGQgrrgtdqrn/0vun6L4ofkgIsx/uA87cDrm14lB+4I6bOYY3/FWeEBA0FfpVzZSGTrdFb5yPE5jM=
-X-Received: by 2002:a05:6214:1c0e:b0:6d8:a39e:32a4 with SMTP id
- 6a1803df08f44-6eed61d1a5fmr351989756d6.25.1743679598913; Thu, 03 Apr 2025
- 04:26:38 -0700 (PDT)
+        d=1e100.net; s=20230601; t=1743679718; x=1744284518;
+        h=to:subject:message-id:date:from:in-reply-to:references:mime-version
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=ukRJ7la3lWIyM2tMaK5IEVV4s0pFREdckcUKDH0zSXM=;
+        b=tLX3cjjMkgrdLX+XcQySWqi6+O4f09QZi+f+7E+CFIE4fJjEc8th6xgXevMTsHtEqT
+         NEQr/TWvYlnQedjLS1YOY2KQWmcX60yXpmSFnkeok/UvH5LTlw404yn9fY1kLZJGspdk
+         szPRAYyIOFu0zA3ojrIUqg2XVknpupkdxXXNDEVufZMHgYyMwnpe4jKuSyOe/RPkj9NP
+         ZyVZhXmQhXlF+3u1mSsE01ukGTDtRLNNqxtnfWjp0e9LPtcg+iiP6F0rvTunpovtAXxg
+         ZuC20v8FscgEKOMrK0pYKRQlDPFBmiL2vhK5KSpvSe9czs2GM+7G3G7gaKP2B/bHdhLy
+         +2vg==
+X-Gm-Message-State: AOJu0Yw2cEYecYZfCGmFyRBhs7abNfBNPTtHAUq7mDLhDVCz1GIDTnj4
+	Gpr588aUfq2XkObYnNw6D4AIHw7Gc4iszTaiD1LaXrgvNk97Qy+ZRB7ww4g9slTiNjgAI38TE6m
+	Bdz7ZRO2C3q2dOevHVv7HzjEWEMZ7Nw==
+X-Gm-Gg: ASbGncs90jaDDqQWJeFXMqP+tGvHBtrYfr63ArtWf3tOprd/zhKkTV/F77rpw/HplJ+
+	CCjVTpgBr9cIwY/jMAwhbtB+lrle3q4qMbdXmTSqO/VwNJFMhwN7195Z8Ke/ZLCfydThXAa8D4J
+	N6mmaG5MkKSW33k8pMY5xU1KbTDmX2ykFIb/XtnJGMu4GNUQbWKScbWFQzalK+2CMLvyLkKUM=
+X-Google-Smtp-Source: AGHT+IFQQ72SOgpPE0KxPLO3P1vGvvjuo5xRGO2FVLJDgl94gX+gthRd6KLRlAf79ha3b9HIyxQfkHa3VwDldbQ15K4=
+X-Received: by 2002:ad4:5f07:0:b0:6e8:eabf:fd55 with SMTP id
+ 6a1803df08f44-6eed625b85dmr299851146d6.39.1743679718367; Thu, 03 Apr 2025
+ 04:28:38 -0700 (PDT)
 MIME-Version: 1.0
-References: <CANNYZj_LzJH1w_ieTQTbmpdhgaXKmjpWGkR=FqhvbG3zreKBkg@mail.gmail.com>
- <4900.1743679184541317939@lists.yoctoproject.org>
-In-Reply-To: <4900.1743679184541317939@lists.yoctoproject.org>
+References: <CE791ECA-60AE-471D-86AB-170EA3C58287.1@smtp-inbound1.duck.com>
+In-Reply-To: <CE791ECA-60AE-471D-86AB-170EA3C58287.1@smtp-inbound1.duck.com>
 From: Alexander Kanavin <alex.kanavin@gmail.com>
-Date: Thu, 3 Apr 2025 13:26:27 +0200
-X-Gm-Features: ATxdqUGNqGvD49rTUO7EEe-Nt6jsAaqZNUgClRk2dkR6sElm99rppY2dnJXi8oY
-Message-ID: <CANNYZj9uurddieEzEScQWNOqauv-g9+UqLNCv80TyCctKd6upw@mail.gmail.com>
-Subject: Re: [yocto] Error while building python3.11 as an alternative for
- scarthgap (OpenSTLinux) #openstlinux #bitbake #yocto
-To: abhijithkannan45@gmail.com
-Cc: yocto@lists.yoctoproject.org
+Date: Thu, 3 Apr 2025 13:28:27 +0200
+X-Gm-Features: ATxdqUEZTqOJVCqZ9teYvQs57nj97rOBXG5jJaciDDw_Xqgphp8jy75vnoLHUpQ
+Message-ID: <CANNYZj8yu=dbOEaN6CzF5Eu0W+UrQar99WyrV+TG0M8vZ85qAQ@mail.gmail.com>
+Subject: Re: [yocto] Update a machine configuration file from another layer
+ depending to it (with .bbapend)
+To: yocto@lists.yoctoproject.org, proffesionaladdress2@duck.com
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Thu, 03 Apr 2025 11:26:41 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/65073
+ <yocto@lists.yoctoproject.org>; Thu, 03 Apr 2025 11:28:41 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/65074
 
-On Thu, 3 Apr 2025 at 13:19, Abhijith via Lists.Yoctoproject.Org
-<abhijithkannan45=3Dgmail.com@lists.yoctoproject.org> wrote:
-> Unfortunately, that option isn=E2=80=99t feasible for me at the moment. A=
-s mentioned in my previous message, I am using the STM32MPU for learning pu=
-rposes. The end goal is to have an image for the RZ/V2L with Python 3.11. H=
-owever, the RZ/V2L currently only supports Python 3.8. I=E2=80=99ve reached=
- out to Renesas regarding support for a higher version, and they informed m=
-e that I either have to wait until the end of the year for an official rele=
-ase with Python 3.12, or build it myself. Since I cannot wait until the end=
- of the year for the official release, I am working on building an image wi=
-th Python 3.11.
->
-> Since I don=E2=80=99t currently have access to RZ/V2L hardware, I=E2=80=
-=99m using the STM32MPU to learn and build an image with Python 3.11. I und=
-erstand your concern, but this task has been assigned to me by my company. =
-Our client provides the models and Python code, and they=E2=80=99ve made it=
- clear that they cannot proceed with Python 3.8. They require at least Pyth=
-on 3.10.
+You can define a new machine in your layer:
+meta-mylayer/conf/machine/mymachine.conf
 
-This does not explain where 3.11 specifically is needed, and why
-standard 3.12 from scarthgap is not going to work. If you provide
-details about that, chances of getting help are much higher.
+and then include any files from other machine definitions as needed,
+and add tweaks on top.
 
 Alex
+
+On Thu, 3 Apr 2025 at 13:19, proffesionaladdress2 via
+lists.yoctoproject.org
+<proffesionaladdress2=duck.com@lists.yoctoproject.org> wrote:
+>
+> Hello,
+>
+> I want to enable initramfs for raspberry-pi, by adding this machine specific configuration, through a layer (to make an overlay-fs on rootfs):
+>
+> # Enable uboot for rasperry pi
+> RPI_USE_U_BOOT = "1"
+>
+> INITRAMFS_IMAGE = "image-initramfs"
+> INITRAMFS_IMAGE_BUNDLE = "1"
+> BOOT_SPACE = "1073741"
+> INITRAMFS_MAXSIZE = "315400"
+>
+> INITRAMFS_KERNEL_IMAGE="${INITRAMFS_IMAGE}-${MACHINE}"
+> IMAGE_BOOT_FILES:append = " ${INITRAMFS_KERNEL_IMAGE}.${INITRAMFS_FSTYPES};initramfs.cpio.gz"
+>
+> but the layer have a .bbapend file to modifing the uboot setting of the layer. If I understand properly I cannot change the priority of the layer to be before the meta-raspberrypi.
+>
+> I can also add it to a distro configuration like here:
+> https://yocto.yoctoproject.narkive.com/YX6jam7u/possible-to-append-or-patch-existing-machine-conf-file
+>
+> but the layer shall be use with another layer that has already a distribution that modify the raspberry pi configuration.
+> To keep things independant, I don't want to add the above configuration to conf/machine/rpi-extra.conf of other layer.
+>
+> I try something like this to my distro.conf file but I cannot use bash inside a conf file:
+>
+> for layer in ${BBFILE_COLLECTIONS}; do
+>    include ${layer}/conf/machine/${SOC_FAMILY}-extra.conf
+>     include ${layer}/conf/machine/${MACHINE}-extra.conf
+> done
+>
+> The alone option I see now is to ask to add it to local.conf through a README.
+>
+> Best regards
+>
+> -=-=-=-=-=-=-=-=-=-=-=-
+> Links: You receive all messages sent to this group.
+> View/Reply Online (#65072): https://lists.yoctoproject.org/g/yocto/message/65072
+> Mute This Topic: https://lists.yoctoproject.org/mt/112063497/1686489
+> Group Owner: yocto+owner@lists.yoctoproject.org
+> Unsubscribe: https://lists.yoctoproject.org/g/yocto/unsub [alex.kanavin@gmail.com]
+> -=-=-=-=-=-=-=-=-=-=-=-
+>
 
