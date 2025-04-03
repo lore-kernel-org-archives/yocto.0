@@ -1,119 +1,130 @@
-Return-Path: <alex.kanavin@gmail.com>
+Return-Path: <ross.burton@arm.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 19F5FC3600C
-	for <webhook@archiver.kernel.org>; Thu,  3 Apr 2025 11:28:41 +0000 (UTC)
-Received: from mail-qv1-f54.google.com (mail-qv1-f54.google.com [209.85.219.54])
- by mx.groups.io with SMTP id smtpd.web10.11076.1743679719432766870
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 35923C3601E
+	for <webhook@archiver.kernel.org>; Thu,  3 Apr 2025 11:44:41 +0000 (UTC)
+Received: from smtpa-outbound6.duck.com (smtpa-outbound6.duck.com [20.13.235.195])
+ by mx.groups.io with SMTP id smtpd.web11.10870.1743678930962709528
  for <yocto@lists.yoctoproject.org>;
- Thu, 03 Apr 2025 04:28:39 -0700
+ Thu, 03 Apr 2025 04:15:31 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20230601 header.b=WbaXO5DR;
- spf=pass (domain: gmail.com, ip: 209.85.219.54, mailfrom: alex.kanavin@gmail.com)
-Received: by mail-qv1-f54.google.com with SMTP id 6a1803df08f44-6eb16dfa988so7469576d6.2
-        for <yocto@lists.yoctoproject.org>; Thu, 03 Apr 2025 04:28:39 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1743679718; x=1744284518; darn=lists.yoctoproject.org;
-        h=to:subject:message-id:date:from:in-reply-to:references:mime-version
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=ukRJ7la3lWIyM2tMaK5IEVV4s0pFREdckcUKDH0zSXM=;
-        b=WbaXO5DRY8fs+jTVy7f/ftQtf+0ndEDrPkAJAfxo1SFJ/bddciY7wqE2plWYCDFbNH
-         etb20hkMf9ElhfsM8FSLA68dGJJmlORhBrDO0frhD09X1vsLJo1ZCu9iaYJjXMCyA4oW
-         YrsU644bVE71taWFdL7I402ERQkL0xo3HDv/XZ3qOJiULUQe6WGbQVn7DyxoJC8BGqlp
-         2dzfQCaulMZhAEe/Po8xRrgQoelNfrlgeAlORR+AtgZ4CmOdFWHeYZfXVl9sI1qss4JG
-         mXEYazM+dRk6cq3xiPWcrBBH13QzMM2EsM/Eki8zFnfy9+O9ileVOSdMciIURFAnT/ke
-         Z1SA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1743679718; x=1744284518;
-        h=to:subject:message-id:date:from:in-reply-to:references:mime-version
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=ukRJ7la3lWIyM2tMaK5IEVV4s0pFREdckcUKDH0zSXM=;
-        b=tLX3cjjMkgrdLX+XcQySWqi6+O4f09QZi+f+7E+CFIE4fJjEc8th6xgXevMTsHtEqT
-         NEQr/TWvYlnQedjLS1YOY2KQWmcX60yXpmSFnkeok/UvH5LTlw404yn9fY1kLZJGspdk
-         szPRAYyIOFu0zA3ojrIUqg2XVknpupkdxXXNDEVufZMHgYyMwnpe4jKuSyOe/RPkj9NP
-         ZyVZhXmQhXlF+3u1mSsE01ukGTDtRLNNqxtnfWjp0e9LPtcg+iiP6F0rvTunpovtAXxg
-         ZuC20v8FscgEKOMrK0pYKRQlDPFBmiL2vhK5KSpvSe9czs2GM+7G3G7gaKP2B/bHdhLy
-         +2vg==
-X-Gm-Message-State: AOJu0Yw2cEYecYZfCGmFyRBhs7abNfBNPTtHAUq7mDLhDVCz1GIDTnj4
-	Gpr588aUfq2XkObYnNw6D4AIHw7Gc4iszTaiD1LaXrgvNk97Qy+ZRB7ww4g9slTiNjgAI38TE6m
-	Bdz7ZRO2C3q2dOevHVv7HzjEWEMZ7Nw==
-X-Gm-Gg: ASbGncs90jaDDqQWJeFXMqP+tGvHBtrYfr63ArtWf3tOprd/zhKkTV/F77rpw/HplJ+
-	CCjVTpgBr9cIwY/jMAwhbtB+lrle3q4qMbdXmTSqO/VwNJFMhwN7195Z8Ke/ZLCfydThXAa8D4J
-	N6mmaG5MkKSW33k8pMY5xU1KbTDmX2ykFIb/XtnJGMu4GNUQbWKScbWFQzalK+2CMLvyLkKUM=
-X-Google-Smtp-Source: AGHT+IFQQ72SOgpPE0KxPLO3P1vGvvjuo5xRGO2FVLJDgl94gX+gthRd6KLRlAf79ha3b9HIyxQfkHa3VwDldbQ15K4=
-X-Received: by 2002:ad4:5f07:0:b0:6e8:eabf:fd55 with SMTP id
- 6a1803df08f44-6eed625b85dmr299851146d6.39.1743679718367; Thu, 03 Apr 2025
- 04:28:38 -0700 (PDT)
+ dkim=pass header.i=@duck.com header.s=postal-KpyQVw header.b=CTBhWk1X;
+ spf=pass (domain: duck.com, ip: 20.13.235.195, mailfrom: proffesionaladdress2@duck.com)
+Subject: Update a machine configuration file from another layer depending to it (with .bbapend)
 MIME-Version: 1.0
-References: <CE791ECA-60AE-471D-86AB-170EA3C58287.1@smtp-inbound1.duck.com>
-In-Reply-To: <CE791ECA-60AE-471D-86AB-170EA3C58287.1@smtp-inbound1.duck.com>
-From: Alexander Kanavin <alex.kanavin@gmail.com>
-Date: Thu, 3 Apr 2025 13:28:27 +0200
-X-Gm-Features: ATxdqUEZTqOJVCqZ9teYvQs57nj97rOBXG5jJaciDDw_Xqgphp8jy75vnoLHUpQ
-Message-ID: <CANNYZj8yu=dbOEaN6CzF5Eu0W+UrQar99WyrV+TG0M8vZ85qAQ@mail.gmail.com>
-Subject: Re: [yocto] Update a machine configuration file from another layer
- depending to it (with .bbapend)
-To: yocto@lists.yoctoproject.org, proffesionaladdress2@duck.com
-Content-Type: text/plain; charset="UTF-8"
+X-Rspamd-Bar: /
+X-Rspamd-Report: DMARC_POLICY_ALLOW(-0.5) R_DKIM_ALLOW(-0.2) MIME_GOOD(-0.1) URI_COUNT_ODD(1) R_SPF_ALLOW(-0.2)
+X-Rspamd-Score: 0
+X-Rspamd-Action: no action
+To: main <yocto@lists.yoctoproject.org>
+Received: by smtp-inbound1.duck.com; Thu, 03 Apr 2025 07:15:29 -0400
+Message-ID: <293557D6-6B2D-472B-AB1B-796839F5EAE6.1@smtp-inbound1.duck.com>
+Date: Thu, 03 Apr 2025 07:15:29 -0400
+From: proffesionaladdress2@duck.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=duck.com; h=From:
+ Date: Message-ID: To: Content-Type: MIME-Version: Subject; q=dns/txt;
+ s=postal-KpyQVw; t=1743678930;
+ bh=0Y3If0H/FirDRApgPvk0JfzF8mBM+ghbrmpB1riW864=;
+ b=CTBhWk1XS9r9A3l3kCS+JVwV//5faMW/8Ur/SavWSsN6qkn1Vj7QUb/6K8d2AtfR26lnpRdUJ
+ gXDmLBA2eLjBOv3xsyjlqJ5eg9MaK9LVYndSdoCqugsqbP3jCv6iv/I98QcMt4l3dSa2FLHhB/4
+ AhqGOa7eMO9UokGW/K2R7K0=
+Content-Type: multipart/alternative;
+	boundary="=_8gr+iVu8sZd4X20Ez6ZqZy_="
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Thu, 03 Apr 2025 11:28:41 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/65074
+ <yocto@lists.yoctoproject.org>; Thu, 03 Apr 2025 11:44:41 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/65076
 
-You can define a new machine in your layer:
-meta-mylayer/conf/machine/mymachine.conf
+--=_8gr+iVu8sZd4X20Ez6ZqZy_=
+Content-Type: text/plain;
+	charset=utf-8
+Content-Transfer-Encoding: 7bit
 
-and then include any files from other machine definitions as needed,
-and add tweaks on top.
+Hello, 
 
-Alex
+I want to enable initramfs for raspberry-pi, by adding this machine specific configuration, through a layer (to make an overlay-fs on rootfs): 
 
-On Thu, 3 Apr 2025 at 13:19, proffesionaladdress2 via
-lists.yoctoproject.org
-<proffesionaladdress2=duck.com@lists.yoctoproject.org> wrote:
->
-> Hello,
->
-> I want to enable initramfs for raspberry-pi, by adding this machine specific configuration, through a layer (to make an overlay-fs on rootfs):
->
-> # Enable uboot for rasperry pi
-> RPI_USE_U_BOOT = "1"
->
-> INITRAMFS_IMAGE = "image-initramfs"
-> INITRAMFS_IMAGE_BUNDLE = "1"
-> BOOT_SPACE = "1073741"
-> INITRAMFS_MAXSIZE = "315400"
->
-> INITRAMFS_KERNEL_IMAGE="${INITRAMFS_IMAGE}-${MACHINE}"
-> IMAGE_BOOT_FILES:append = " ${INITRAMFS_KERNEL_IMAGE}.${INITRAMFS_FSTYPES};initramfs.cpio.gz"
->
-> but the layer have a .bbapend file to modifing the uboot setting of the layer. If I understand properly I cannot change the priority of the layer to be before the meta-raspberrypi.
->
-> I can also add it to a distro configuration like here:
-> https://yocto.yoctoproject.narkive.com/YX6jam7u/possible-to-append-or-patch-existing-machine-conf-file
->
-> but the layer shall be use with another layer that has already a distribution that modify the raspberry pi configuration.
-> To keep things independant, I don't want to add the above configuration to conf/machine/rpi-extra.conf of other layer.
->
-> I try something like this to my distro.conf file but I cannot use bash inside a conf file:
->
-> for layer in ${BBFILE_COLLECTIONS}; do
->    include ${layer}/conf/machine/${SOC_FAMILY}-extra.conf
->     include ${layer}/conf/machine/${MACHINE}-extra.conf
-> done
->
-> The alone option I see now is to ask to add it to local.conf through a README.
->
-> Best regards
->
-> -=-=-=-=-=-=-=-=-=-=-=-
-> Links: You receive all messages sent to this group.
-> View/Reply Online (#65072): https://lists.yoctoproject.org/g/yocto/message/65072
-> Mute This Topic: https://lists.yoctoproject.org/mt/112063497/1686489
-> Group Owner: yocto+owner@lists.yoctoproject.org
-> Unsubscribe: https://lists.yoctoproject.org/g/yocto/unsub [alex.kanavin@gmail.com]
-> -=-=-=-=-=-=-=-=-=-=-=-
->
+# Enable uboot for rasperry pi 
+RPI_USE_U_BOOT = "1" 
+
+INITRAMFS_IMAGE = "image-initramfs" 
+INITRAMFS_IMAGE_BUNDLE = "1" 
+BOOT_SPACE = "1073741" 
+INITRAMFS_MAXSIZE = "315400" 
+
+INITRAMFS_KERNEL_IMAGE="${INITRAMFS_IMAGE}-${MACHINE}" 
+IMAGE_BOOT_FILES:append = " ${INITRAMFS_KERNEL_IMAGE}.${INITRAMFS_FSTYPES};initramfs.cpio.gz" 
+
+but the layer have a .bbapend file to modifing the uboot setting of the layer. If I understand properly I cannot change the priority of the layer to be before the meta-raspberrypi. 
+
+I can also add it to a distro configuration like here: 
+[ https://yocto.yoctoproject.narkive.com/YX6jam7u/possible-to-append-or-patch-existing-machine-conf-file | https://yocto.yoctoproject.narkive.com/YX6jam7u/possible-to-append-or-patch-existing-machine-conf-file ] 
+
+but the layer shall be use with another layer that has already a distribution that modify the raspberry pi configuration. 
+To keep things independant, I don't want to add the above configuration to conf/machine/rpi-extra.conf of other layer. 
+
+I try something like this to my distro.conf file but I cannot use bash inside a conf file: 
+
+for layer in ${BBFILE_COLLECTIONS}; do 
+include ${layer}/conf/machine/${SOC_FAMILY}-extra.conf 
+include ${layer}/conf/machine/${MACHINE}-extra.conf 
+done 
+
+The alone option I see now is to ask to add it to local.conf through a README. 
+
+Best regards 
+
+--=_8gr+iVu8sZd4X20Ez6ZqZy_=
+Content-Type: text/html;
+	charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+
+<html><head></head><body><div style=3D"font-family: arial, helvetica, =
+sans-serif; font-size: 12pt; color: #000000"><div><div><div><div =
+style=3D"font-family: arial, helvetica, sans-serif; font-size: 12pt; color:=
+ #000000;" data-mce-style=3D"font-family: arial, helvetica, sans-serif; =
+font-size: 12pt; color: #000000;"><div><div><div><div style=3D"font-family:=
+ arial, helvetica, sans-serif; font-size: 12pt; color: #000000;" =
+data-mce-style=3D"font-family: arial, helvetica, sans-serif; font-size: =
+12pt; color: #000000;"><div><div><div><div style=3D"font-family: arial, =
+helvetica, sans-serif; font-size: 12pt; color: #000000;" =
+data-mce-style=3D"font-family: arial, helvetica, sans-serif; font-size: =
+12pt; color: #000000;"><div>Hello,</div><div><br></div><div>I want to =
+enable initramfs for raspberry-pi, by adding this machine specific =
+configuration, through a layer (to make an overlay-fs on =
+rootfs):</div><div><br></div><div># Enable uboot for rasperry =
+pi<br>RPI_USE_U_BOOT =3D "1"</div><div><br></div><div>INITRAMFS_IMAGE =3D =
+"image-initramfs"<br>INITRAMFS_IMAGE_BUNDLE =3D "1"<br>BOOT_SPACE =3D =
+"1073741"<br>INITRAMFS_MAXSIZE =3D "315400"<br><br>INITRAMFS_KERNEL_IMAGE=
+=3D"${INITRAMFS_IMAGE}-${MACHINE}"<br>IMAGE_BOOT_FILES:append =3D " =
+${INITRAMFS_KERNEL_IMAGE}.${INITRAMFS_FSTYPES};initramfs.cpio.=
+gz"</div><div><br></div><div>but the layer have a .bbapend file to modifing=
+ the uboot setting of the layer. If I understand properly I cannot change =
+the priority of the layer to be before the meta-raspberrypi.=
+</div><div><br></div><div>I can also add it to a distro configuration like =
+here:</div><div><span class=3D"Object" id=3D"OBJ_PREFIX_DWT250_com_zimbra_u=
+rl"><span class=3D"Object" id=3D"OBJ_PREFIX_DWT432_com_zimbra_url"><span =
+class=3D"Object" role=3D"link" id=3D"OBJ_PREFIX_DWT131_com_zimbra_url"><a =
+href=3D"https://yocto.yoctoproject.narkive.com/YX6jam7u/possible-to-append-=
+or-patch-existing-machine-conf-file" target=3D"_blank" rel=3D"noopener" =
+data-mce-href=3D"https://yocto.yoctoproject.narkive.=
+com/YX6jam7u/possible-to-append-or-patch-existing-machine-conf-file">https:=
+//yocto.yoctoproject.narkive.com/YX6jam7u/possible-to-append-or-patch-exist=
+ing-machine-conf-file</a></span></span></span><br></div><div><br></div><div=
+>but the layer shall be use with another layer that has already a =
+distribution that modify the raspberry pi configuration.</div><div>To keep =
+things independant, I don't want to add the above configuration to =
+conf/machine/rpi-extra.conf of other layer.</div><div><br></div><div>I try =
+something like this to my distro.conf file but I cannot use bash inside a =
+conf file:</div><div><br></div><div>for layer in ${BBFILE_COLLECTIONS}; =
+do<br>&nbsp;&nbsp; include ${layer}/conf/machine/${SOC_FAMILY}-extra.=
+conf<br>&nbsp;&nbsp;&nbsp; include ${layer}/conf/machine/${MACHINE}-extra.=
+conf<br>done<br></div><div><br></div><div>The alone option I see now is to =
+ask to add it to local.conf through a README.</div><div><br></div><div>Best=
+ regards</div></div></div></div></div></div></div></div></div></div></div><=
+/div></div></div></body></html>
+
+--=_8gr+iVu8sZd4X20Ez6ZqZy_=--
 
