@@ -1,71 +1,53 @@
-Return-Path: <ShohamZarfati@proton.me>
+Return-Path: <rajesh.d@mindteck.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 2C95FC28B20
-	for <webhook@archiver.kernel.org>; Wed,  2 Apr 2025 18:41:15 +0000 (UTC)
-Subject: Issue including kernel sources in DEBUGFS image
-To: yocto@lists.yoctoproject.org
-From: "Shoham Zarfati" <ShohamZarfati@proton.me>
-X-Originating-Location: IL (147.235.200.57)
-X-Originating-Platform: Linux Chrome 134
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 8C962C3600C
+	for <webhook@archiver.kernel.org>; Thu,  3 Apr 2025 05:44:18 +0000 (UTC)
+Subject: Re: [yocto] Issue Booting Yocto Scarthgap (core-image-sato) Image on AIMB-288E (Intel based target board) #kirkstone #scarthgap #yocto
+To: "Khem Raj" <raj.khem@gmail.com>, yocto@lists.yoctoproject.org
+From: "Rajesh D" <rajesh.d@mindteck.com>
+X-Originating-Location: Bengaluru, Karnataka, IN (14.142.4.2)
+X-Originating-Platform: Linux Chrome 131
 User-Agent: GROUPS.IO Web Poster
 MIME-Version: 1.0
-Date: Wed, 02 Apr 2025 11:41:07 -0700
-Message-ID: <hJb2.1743619267969409361.AdoF@lists.yoctoproject.org>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: quoted-printable
+Date: Wed, 02 Apr 2025 22:44:12 -0700
+References: <24e2c174-fed3-4f40-a14e-8e5f742c1ec6@gmail.com>
+In-Reply-To: <24e2c174-fed3-4f40-a14e-8e5f742c1ec6@gmail.com>
+Message-ID: <18249.1743659052514069680@lists.yoctoproject.org>
+Content-Type: multipart/alternative; boundary="dBtay6LmikOkmMqvfpqQ"
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Wed, 02 Apr 2025 18:41:15 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/65064
+ <yocto@lists.yoctoproject.org>; Thu, 03 Apr 2025 05:44:18 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/65065
 
-Hi,
+--dBtay6LmikOkmMqvfpqQ
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
 
-I'm trying to include the kernel sources in the debug image generated when =
-using `IMAGE_GEN_DEBUGFS`.
+Hi Khem Raj,
 
-The issue is easily reproducible,
-I followed the Yocto Project Quick Build guide I checked out the `scarthgap=
-` branch and built `core-image-minimal`.
-After successfully building the image, I added the following to my `local.c=
-onf` file:
+Thank you for your response and for your helpful suggestions.
 
-```
-IMAGE_GEN_DEBUGFS =3D "1"
-IMAGE_FSTYPE_DEBUGFS =3D "tar.gz"
-```
+I included DISTRO =3D "poky-altcfg" in my configuration and built a core-im=
+age-sato image. However, when I booted it on the target board, the boot pro=
+cess stopped, displaying the Yocto logo and a progress bar on the screen. I=
+ waited for a while, but it did not complete.
 
-This works perfectly and produces the separate "-dbg" tar.gz files in the `=
-deploy` directory.
-The problem occurs when I add the following line to my `local.conf` file:
+--dBtay6LmikOkmMqvfpqQ
+Content-Type: text/html; charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
 
-```
-IMAGE_INSTALL_DEBUGFS:append =3D " kernel-devsrc"
-```
+<p class=3D"" data-start=3D"77" data-end=3D"95">Hi Khem Raj,</p>
+<p class=3D"" data-start=3D"97" data-end=3D"160">Thank you for your respons=
+e and for your helpful suggestions.</p>
+<p class=3D"" data-start=3D"162" data-end=3D"436">I included <code data-sta=
+rt=3D"173" data-end=3D"197">DISTRO =3D "poky-altcfg"</code> in my configura=
+tion and built a <code data-start=3D"230" data-end=3D"247">core-image-sato<=
+/code> image. However, when I booted it on the target board, the boot proce=
+ss stopped, displaying the Yocto logo and a progress bar on the screen. I w=
+aited for a while, but it did not complete.</p>
 
-This results in the following error:
-
-```
-ERROR: core-image-minimal-1.0-r0 do_rootfs: The postinstall intercept hook =
-'update_gio_module_cache' failed, details in /home/ubuntu/dev/poky/build/tm=
-p/work/qemux86_64-poky-linux/core-image-minimal/1.0/temp/log.do_rootfs
-ERROR: Logfile of failure stored in: /home/ubuntu/dev/poky/build/tmp/work/q=
-emux86_64-poky-linux/core-image-minimal/1.0/temp/log.do_rootfs.2994391
-ERROR: Task (/home/ubuntu/dev/poky/meta/recipes-core/images/core-image-mini=
-mal.bb:do_rootfs) failed with exit code '1'
-```
-
-The `update_gio_module_cache` seems to be called as part of `glib-2.0`'s po=
-stinst script, which is created through this https://web.git.yoctoproject.o=
-rg/poky/tree/meta/classes-recipe/gio-module-cache.bbclass?h=3Dscarthgap bbc=
-lass being inherited in the `glib-2.0` recipe.
-
-The problem itself appears to be that `gio-querymodules` is not installed i=
-n the rootfs, but in `rootfs-dbg`, and the `D` variable points to the rootf=
-s directory when executing the postinst script.
-I'm unsure how I should proceed from here.
-
-Any help would be greatly appreciated.
+--dBtay6LmikOkmMqvfpqQ--
 
