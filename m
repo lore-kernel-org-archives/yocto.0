@@ -1,197 +1,322 @@
-Return-Path: <skandigraun@gmail.com>
+Return-Path: <raj.khem@gmail.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id D55B9C3600C
-	for <webhook@archiver.kernel.org>; Thu,  3 Apr 2025 18:41:24 +0000 (UTC)
-Received: from mail-wm1-f46.google.com (mail-wm1-f46.google.com [209.85.128.46])
- by mx.groups.io with SMTP id smtpd.web10.3079.1743705676280841535
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 56D7EC3600C
+	for <webhook@archiver.kernel.org>; Fri,  4 Apr 2025 01:22:29 +0000 (UTC)
+Received: from mail-pl1-f172.google.com (mail-pl1-f172.google.com [209.85.214.172])
+ by mx.groups.io with SMTP id smtpd.web10.1726.1743729744519323097
  for <yocto@lists.yoctoproject.org>;
- Thu, 03 Apr 2025 11:41:16 -0700
+ Thu, 03 Apr 2025 18:22:24 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20230601 header.b=iXwKijOe;
- spf=pass (domain: gmail.com, ip: 209.85.128.46, mailfrom: skandigraun@gmail.com)
-Received: by mail-wm1-f46.google.com with SMTP id 5b1f17b1804b1-43cec5cd73bso7371635e9.3
-        for <yocto@lists.yoctoproject.org>; Thu, 03 Apr 2025 11:41:16 -0700 (PDT)
+ dkim=pass header.i=@gmail.com header.s=20230601 header.b=RilIXOYQ;
+ spf=pass (domain: gmail.com, ip: 209.85.214.172, mailfrom: raj.khem@gmail.com)
+Received: by mail-pl1-f172.google.com with SMTP id d9443c01a7336-226185948ffso16597255ad.0
+        for <yocto@lists.yoctoproject.org>; Thu, 03 Apr 2025 18:22:24 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1743705674; x=1744310474; darn=lists.yoctoproject.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:to:subject:user-agent:mime-version:date:message-id:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=UZ1v90x5q73ZwRxtPEavfN3vC0Vn2z5pfM78WNLnyOs=;
-        b=iXwKijOeEaB08i6dB3vHo4KXNbeF7z8S5uDh6NrBYyCNURPDYNc4FxK5WcvHHjoSrF
-         0MUMUgWZqX7wK4vuxNwnHxuBSQ8elKuKHcG+o2A16pSKvLHnt/YkrXaou9n4ja5EHrb0
-         6cvrczphVdnjwXQW2bcioqi/HNuEF+WYnOt03sivxzCuXqERNdlUdI3tzB06O5EjBa/0
-         YI+Lbthxagfyg/Cqjfp7+tvduIQCQS5i7uuWV8Hggm9h9+a0sgHPopBHCDH5tPogvPOV
-         6p66KV7hyYFKLiZISHdahqeSg8eZTuLNPp0DYp891SREVqAy/1R4bvJNM3i8KH92xcWH
-         t37A==
+        d=gmail.com; s=20230601; t=1743729743; x=1744334543; darn=lists.yoctoproject.org;
+        h=in-reply-to:autocrypt:from:content-language:references:to:subject
+         :user-agent:mime-version:date:message-id:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=pP8/oDaOQ3U1Kz0byj+ZaFEb7Dy86iJckc34x7r3Cdc=;
+        b=RilIXOYQY34Ayc4IFLk1hxpMvLoLa7RyPiqWkliaJyrsTGf7t9gUNkbNr2WAfXX754
+         eD4eGb/K4zL5jXEQZ8ZvRTECOhCxv2o4Gg58VR5EQN/uSQN2gTxBjxLYXOQ2xt9VoOZc
+         csqJWnd3fJ/lc1Kf0GCNn2p6c9x50/Nmoisq8gTkFXw60jvObub8uIjW7dF5+v5GUGPu
+         oxCkTFfNN8MVP10KzsO+DFa3XHtFr7pCeVEVU+QfPuQAmzf8JVyhdtkvk2M46gvmxpDf
+         EbGdUi3HkltNOkNV8lWZb/gEinOidW9C+EScYpIBjHOG1ap6OxRooP6TLe34AvD6NxSM
+         FtVw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1743705674; x=1744310474;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=UZ1v90x5q73ZwRxtPEavfN3vC0Vn2z5pfM78WNLnyOs=;
-        b=JfI3J8+B1EPY9akoUKao37PpP1AbB9p2H1WoyTDfVXJUQBv1dMlzEpYyftQbwT36MP
-         AmextfQUzXDlg+9E/mNzSTH3fKjbw9EHEN2qDTX8rY0yNKvtVvSKBscEO46xUCrs+lko
-         S8XHf92DSIXpLbNScx4tIPLL4rKYNAhAC0E3qo10t0OhKve1c3Uo1qgwhcdOgEVHCWoc
-         wEyGT+mIxfIkgTXrcTKMQsVWc7Imv5hJMRv1AcvyUAQMZrozeC1BbtZg9E022bpcbtQJ
-         1QVYi3q/ek2xJvEV5xSJ22ggrp9MHxK1daFFcbRmIWrXHvlCxWGACOqmJOztnK9N86fj
-         bIHQ==
-X-Gm-Message-State: AOJu0Yy41p5GDeVko8VavaAQHx7sIKYrlK0WaZqhcuCUlCHsnn82dory
-	fsZvWdThFSxiswRbmZwlIEFuHrYqPaKLsKStvZCg+GAKACEZW7VmIdM0HDdv
-X-Gm-Gg: ASbGncsL7lnqmVCOFDLLN0xHYBHxTDSKwM1vn+Aqt0aAvPcODhIaTXZ9IBD3HhWq3Ss
-	hIV552xeOJQvkiLBXdGqlJkNepgUoAwRCcFbtmIj/YbTSNur7Y8LPgbGfBwr07nJnlZWH+TrPpn
-	W5WwNlSydqufO3ywDsJGFHCAWsDUHrbbM93LoM2kUWPT1Opm/lZuAaSoJrpmlihWNPx/Jdc9lO2
-	N/htyPeHibxhY2ZhvgB6yN2VDJlNQLIE1hDatlHSpCu3Xp+0v6nWA9eMeaC+y9YTAAUxO0k4YHc
-	oYGbIl2nTvsZ3HCS+Rmw0wjBhMGRaZpnJ4FxTceEjqnMgQEsJz3N0HKqpgPX
-X-Google-Smtp-Source: AGHT+IFcFNfjJYEs4qZObIzZKdC02LBTAmCiphZ3QT/6ajmArvTWRQ9/kTR61xGqzOWtyuLLx27XvQ==
-X-Received: by 2002:a05:600c:4690:b0:43c:e467:d6ce with SMTP id 5b1f17b1804b1-43ecf83ff46mr1995925e9.4.1743705673931;
-        Thu, 03 Apr 2025 11:41:13 -0700 (PDT)
-Received: from [192.168.1.2] ([51.154.145.205])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-43ec1660bcesm28653405e9.10.2025.04.03.11.41.13
+        d=1e100.net; s=20230601; t=1743729743; x=1744334543;
+        h=in-reply-to:autocrypt:from:content-language:references:to:subject
+         :user-agent:mime-version:date:message-id:x-gm-message-state:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=pP8/oDaOQ3U1Kz0byj+ZaFEb7Dy86iJckc34x7r3Cdc=;
+        b=wv0OoUAXPo01MMNNZpFLm8xvLwpIOA7ZmBUAK7JMNGsi/L0AINVHruTwQJNjWAqKfN
+         HC1uxbmdiywIwqGVjp/QhARe/+VB0kO8EFcizIm9NJR9OwgmCxeoYtJJbhL7rUNJqoyZ
+         +ZV5ZBcgw3sZR+qLWeASYYqx9VkDJj2Gxa0CMIEK9RF/iCJVCWoY0ULYnlU5M/ch9wrm
+         4p/qQQRkJMuD7CPQtxu/UMUQFuNdFuMfoUVXmJyzATbJc5tvMw3uA+kdh7KberT7HeD2
+         g8mmHxoLHD63tcYoHuYHWVGR/J2fCsNm+qp7ioIT270FoLLMqOF0DDsFtguZTS3pAEbP
+         Nj7w==
+X-Gm-Message-State: AOJu0YzKHYad/w52cb2At6rCJ0CYcr6RChtjZ+MlP0CY+tynZnpAzpsR
+	C9ICMHnYGFFuWpCKTpX3YPJwf71Wm4dyZB13JJl7yrz5mmgcs/1IyVz0JFUg
+X-Gm-Gg: ASbGncsU/qv3UldPQeu9bKEnda2SMDo2RLHV1M7Np+3iN3J/2fevOwg+DoUcx3u4YYD
+	N5KBhARBBcnSMlz6HaZm75BZqaUr95jQsvz38mQ5TxzgHbTOeMvqehlRDu2Ts4ycbYY8FHL+cY2
+	6JjFrrJLGbVYrjbBGfyN7BQhNia9rk7F4I/8srJ7Wx5oAytzUdfMLhjWJlV69T+NzRC4JaTkEKu
+	9toR6pqySPuD+aQ+Veb7qrLGnlXUOEdLu2Jkl3hakbdlZG1BzgBjHZkwRSlKOQYFhaktilYhnHk
+	PQ8q02b4l3t7AFbev2eehMalh8QDS6IPqXIbrxPcA970W+DnEjUkNPOXmNn3tTY/nyvEKFZ0P2S
+	1UYzt/OIRWTyT/qadrYpuy56JcvlVh4WMiJc=
+X-Google-Smtp-Source: AGHT+IG3Va/3Klp96sNcJvbOXaGXkNlAdKNDW8ct6GVukigqYjdi4noh/zZyeb7hNPCfllXB4d4QwA==
+X-Received: by 2002:a17:903:190d:b0:226:38ff:1d6a with SMTP id d9443c01a7336-22a8a032418mr13098725ad.7.1743729743289;
+        Thu, 03 Apr 2025 18:22:23 -0700 (PDT)
+Received: from ?IPV6:2601:646:8201:fd20:c9f1:e4a5:727f:b7a? ([2601:646:8201:fd20:c9f1:e4a5:727f:b7a])
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-229785c3867sm21333005ad.92.2025.04.03.18.22.22
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 03 Apr 2025 11:41:13 -0700 (PDT)
-Message-ID: <36b9c7bc-ebd3-43f9-bd32-b8fcf25a08b7@gmail.com>
-Date: Thu, 3 Apr 2025 20:41:12 +0200
+        Thu, 03 Apr 2025 18:22:22 -0700 (PDT)
+Message-ID: <4cc996f3-0359-4a56-a4bf-c52d5c8c636a@gmail.com>
+Date: Thu, 3 Apr 2025 18:22:21 -0700
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
 Subject: Re: [yocto] nativesdk-mesa do_configure fails with
  PACKAGECONFIG:append=" gallium gallium-llvm"
-To: yocto@lists.yoctoproject.org, philip.dawson@datapath.co.uk
+To: yocto@lists.yoctoproject.org, skandigraun@gmail.com,
+ philip.dawson@datapath.co.uk
 References: <Z8Dt.1743694621655020425.miUC@lists.yoctoproject.org>
+ <36b9c7bc-ebd3-43f9-bd32-b8fcf25a08b7@gmail.com>
 Content-Language: en-US
-From: Gyorgy Sarvari <skandigraun@gmail.com>
-In-Reply-To: <Z8Dt.1743694621655020425.miUC@lists.yoctoproject.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+From: Khem Raj <raj.khem@gmail.com>
+Autocrypt: addr=raj.khem@gmail.com; keydata=
+ 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
+In-Reply-To: <36b9c7bc-ebd3-43f9-bd32-b8fcf25a08b7@gmail.com>
+Content-Type: multipart/signed; micalg=pgp-sha256;
+ protocol="application/pgp-signature";
+ boundary="------------qxkXz0gEdUjI5fvIDYGw0Ee2"
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Thu, 03 Apr 2025 18:41:24 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/65091
+ <yocto@lists.yoctoproject.org>; Fri, 04 Apr 2025 01:22:29 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/65092
 
-I managed to reproduce this. I see the problem itself, but without
-looking much deeper don't know what is causing it, or why it is
-happening unfortunately...
+This is an OpenPGP/MIME signed message (RFC 4880 and 3156)
+--------------qxkXz0gEdUjI5fvIDYGw0Ee2
+Content-Type: multipart/mixed; boundary="------------m0Dd05YWgwMc5Uevlwfou6Y3";
+ protected-headers="v1"
+From: Khem Raj <raj.khem@gmail.com>
+To: yocto@lists.yoctoproject.org, skandigraun@gmail.com,
+ philip.dawson@datapath.co.uk
+Message-ID: <4cc996f3-0359-4a56-a4bf-c52d5c8c636a@gmail.com>
+Subject: Re: [yocto] nativesdk-mesa do_configure fails with
+ PACKAGECONFIG:append=" gallium gallium-llvm"
+References: <Z8Dt.1743694621655020425.miUC@lists.yoctoproject.org>
+ <36b9c7bc-ebd3-43f9-bd32-b8fcf25a08b7@gmail.com>
+In-Reply-To: <36b9c7bc-ebd3-43f9-bd32-b8fcf25a08b7@gmail.com>
 
-There are people more familiar and experienced with deep llvm things, so
-I'm sharing this for them.
+--------------m0Dd05YWgwMc5Uevlwfou6Y3
+Content-Type: multipart/mixed; boundary="------------LvLl42B0rT4vFSSqfzJb5Rpz"
 
-I used an empty build folder, with only checking out poky repo,
-langsdale branch (I imagine kirkstone would be the same, after the
-previous report, though I haven't tried this now explicitly)
-I only added gallium-llvm to the PACKAGECONFIG of mesa.
-I ran the following command: "MACHINE=qemuarm64 bitbake nativesdk-mesa"
+--------------LvLl42B0rT4vFSSqfzJb5Rpz
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: base64
 
-After the error:
-1. llvm-config is present. Meson is trying to execute "llvm-config
---shared-mode" - but it errors out. It throws a lot of errors about
-missing files:
+T24gNC8zLzI1IDExOjQxIEFNLCBHeW9yZ3kgU2FydmFyaSB2aWEgbGlzdHMueW9jdG9wcm9q
+ZWN0Lm9yZyB3cm90ZToNCj4gSSBtYW5hZ2VkIHRvIHJlcHJvZHVjZSB0aGlzLiBJIHNlZSB0
+aGUgcHJvYmxlbSBpdHNlbGYsIGJ1dCB3aXRob3V0DQo+IGxvb2tpbmcgbXVjaCBkZWVwZXIg
+ZG9uJ3Qga25vdyB3aGF0IGlzIGNhdXNpbmcgaXQsIG9yIHdoeSBpdCBpcw0KPiBoYXBwZW5p
+bmcgdW5mb3J0dW5hdGVseS4uLg0KPiANCj4gVGhlcmUgYXJlIHBlb3BsZSBtb3JlIGZhbWls
+aWFyIGFuZCBleHBlcmllbmNlZCB3aXRoIGRlZXAgbGx2bSB0aGluZ3MsIHNvDQo+IEknbSBz
+aGFyaW5nIHRoaXMgZm9yIHRoZW0uDQo+IA0KPiBJIHVzZWQgYW4gZW1wdHkgYnVpbGQgZm9s
+ZGVyLCB3aXRoIG9ubHkgY2hlY2tpbmcgb3V0IHBva3kgcmVwbywNCj4gbGFuZ3NkYWxlIGJy
+YW5jaCAoSSBpbWFnaW5lIGtpcmtzdG9uZSB3b3VsZCBiZSB0aGUgc2FtZSwgYWZ0ZXIgdGhl
+DQo+IHByZXZpb3VzIHJlcG9ydCwgdGhvdWdoIEkgaGF2ZW4ndCB0cmllZCB0aGlzIG5vdyBl
+eHBsaWNpdGx5KQ0KPiBJIG9ubHkgYWRkZWQgZ2FsbGl1bS1sbHZtIHRvIHRoZSBQQUNLQUdF
+Q09ORklHIG9mIG1lc2EuDQo+IEkgcmFuIHRoZSBmb2xsb3dpbmcgY29tbWFuZDogIk1BQ0hJ
+TkU9cWVtdWFybTY0IGJpdGJha2UgbmF0aXZlc2RrLW1lc2EiDQo+IA0KPiBBZnRlciB0aGUg
+ZXJyb3I6DQo+IDEuIGxsdm0tY29uZmlnIGlzIHByZXNlbnQuIE1lc29uIGlzIHRyeWluZyB0
+byBleGVjdXRlICJsbHZtLWNvbmZpZw0KPiAtLXNoYXJlZC1tb2RlIiAtIGJ1dCBpdCBlcnJv
+cnMgb3V0LiBJdCB0aHJvd3MgYSBsb3Qgb2YgZXJyb3JzIGFib3V0DQo+IG1pc3NpbmcgZmls
+ZXM6DQo+IA0KPiBsbHZtLWNvbmZpZzogZXJyb3I6IG1pc3Npbmc6DQo+IC9ob21lL21lZWVl
+L3N0dWZmL3lvY3RvL2J1aWxkL3RtcC93b3JrL3g4Nl82NC1uYXRpdmVzZGstcG9reXNkay1s
+aW51eC9uYXRpdmVzZGstbWVzYS8yXzIyLjIuMy1yMC9yZWNpcGUtc3lzcm9vdC1uYXRpdmUv
+dXNyL2xpYi9saWJMTFZNRGVtYW5nbGUuYQ0KPiANCj4gTm90ZSB0aGF0IGl0IGlzIGxvb2tp
+bmcgZm9yIGl0IGluICRSRUNJUEVfU1lTUk9PVF9OQVRJVkUNCj4gDQo+IDIuIFdoZW4gSSBs
+b29rIGluIHRoZSBXT1JLRElSLCBJIGNhbiBmaW5kIHRoZSBtaXNzaW5nIGZpbGVzLCBpbg0K
+PiAkUkVDSVBFX1NZU1JPT1QuIFRoaXMgZG9lc24ndCBsb29rIGNvcnJlY3QgYXQgdGhlIGZp
+cnN0IHNpZ2h0Li4uIE91dCBvZg0KPiBjdXJpb3VzaXR5IEkgY2hlY2tlZCB0aGUgdHlwZSBv
+ZiB0aGlzIGZpbGUgLSBpdCdzIGZvciB4ODYtNjQuDQo+IA0KPiAzLiBXaGVuIEkgbG9vayBp
+biB0aGUgc3lzcm9vdHMtY29tcG9uZW50cyBmb2xkZXIsIEkgZm91bmQgaXQgaW4geDg2DQo+
+IHN5c3Jvb3RzLWNvbXBvbmVudHMveDg2XzY0LW5hdGl2ZXNkay9uYXRpdmVzZGstbGx2bS8g
+Zm9sZGVyLCB3aGljaCBsb29rcw0KPiBhYm91dCByaWdodCwgdGhvdWdodCBpdCdzIG5vdCBt
+b3JlIHRoYW4gYSBndWVzcy4NCj4gDQo+IElzIGl0IHBvc3NpYmxlIHRoYXQgc29tZWhvdyB0
+aGVzZSBmaWxlcyBnZXQgc3RhZ2VkIGluIHRoZSB3cm9uZyBzeXNyb290Pw0KPiANCg0KSSB0
+aGluayBuYXRpdmVzZGsgc3lzcm9vdCBpcyB3aGVyZSBpdCBzaG91bGQgaGF2ZSBsb29rZWQg
+aW50by4gTXkgZ3Vlc3MgDQppcyBlaXRoZXIgbWVzYSdzIGxsdm0gZGV0ZWN0aW9uIGxvZ2lj
+IG5lZWRzIHRvIGJlIGxvb2tlZCBpbnRvIG9yIHBlcmhhcHMgDQpsbHZtLWNvbmZpZyBpcyBu
+b3Qgd29ya2luZyBjb3JyZWN0bHkgaW4gbmF0aXZlc2RrIGNhc2UuDQoNCj4gT24gNC8zLzI1
+IDE3OjM3LCBwaGlsaXAuZGF3c29uIHZpYSBsaXN0cy55b2N0b3Byb2plY3Qub3JnIHdyb3Rl
+Og0KPj4gSGksDQo+PiAgIA0KPj4gV2UncmUgdHJ5aW5nIHRvIGVuYWJsZSBnYWxsaXVtLWxs
+dm0gZm9yIG1lc2EgMjIuMi4zIGJ1aWxkIGluIG91cg0KPj4gbGFuZ2RhbGUgYmFzZWQgcHJv
+amVjdC4NCj4+IChXZSdyZSB1c2luZyBQZXRhbGludXggdG9vbGluZyBidXQgSSBkb24ndCB0
+aGluayB0aGF0J3MgbWFraW5nIGENCj4+IGRpZmZlcmVuY2UgaGVyZSAtIG1ldGEteGlsaW54
+IGRvZXMgaGF2ZSBhIG1lc2FfJS5iYmFwcGVuZCBidXQgaXQgc2VlbXMNCj4+IG9ubHkgY29u
+Y2VybmVkIHdpdGggbWFsaS9saWJtYWxpKQ0KPj4gICANCj4+IFRoZSB0YXJnZXQgYnVpbGQg
+d29ya3MgZmluZSwgYnV0IGlmIHdlIHRyeSB0byBydW4gdGhlIG5hdGl2ZXNkay1tYWxpDQo+
+PiBidWlsZCAoYXMgcGFydCBvZiBiaXRiYWtlIHBldGFsaW51eC1pbWFnZS1taW5pbWFsIC1j
+IGRvX3BvcHVsYXRlX3NkayBydW4NCj4+IGJ5IHRoZSBwZXRhbGludXggdG9vbHMpIHRoZW4g
+aXQgZmFpbHMgb24gdGhlIGRvX2NvbmZpZ3VyZSBzdGVwIHdpdGggdGhlDQo+PiBmb2xsb3dp
+bmcgbWVzb24gZXJyb3I6DQo+PiAgIA0KPj4gfCBXQVJOSU5HOiBJZ25vcmluZyBMTFZNIENN
+YWtlIGRlcGVuZGVuY3kgYmVjYXVzZSBkeW5hbWljIHdhcyByZXF1ZXN0ZWQNCj4+IHwgbGx2
+bS1jb25maWcgZm91bmQ6IFlFUyAoL2hvbWUvcGhpbC13c2wyLXUyMjA0L2J1aWxkL2RnYzIx
+OV9uc2cvZGdjMjE5Lw0KPj4gYnVpbGQvdG1wL3dvcmsveDg2XzY0LW5hdGl2ZXNkay1wZXRh
+bGludXgtbGludXgvbmF0aXZlc2RrLW1lc2EvMl8yMi4yLjMtDQo+PiByMC9yZWNpcGUtc3lz
+cm9vdC1uYXRpdmUvdXNyL2Jpbi9sbHZtLWNvbmZpZzE0LjAuNikgMTQuMC42DQo+PiB8IFJ1
+bi10aW1lIGRlcGVuZGVuY3kgTExWTSAobW9kdWxlczogYml0d3JpdGVyLCBjb3JlLCBlbmdp
+bmUsDQo+PiBleGVjdXRpb25lbmdpbmUsIGluc3Rjb21iaW5lLCBtY2Rpc2Fzc2VtYmxlciwg
+bWNqaXQsIG5hdGl2ZSwgc2NhbGFyb3B0cywNCj4+IHRyYW5zZm9ybXV0aWxzLCBjb3JvdXRp
+bmVzKSBmb3VuZDogTk8gKHRyaWVkIGNtYWtlIGFuZCBjb25maWctdG9vbCkNCj4+IHwgTG9v
+a2luZyBmb3IgYSBmYWxsYmFjayBzdWJwcm9qZWN0IGZvciB0aGUgZGVwZW5kZW5jeSBsbHZt
+IChtb2R1bGVzOg0KPj4gYml0d3JpdGVyLCBlbmdpbmUsIG1jZGlzYXNzZW1ibGVyLCBtY2pp
+dCwgY29yZSwgZXhlY3V0aW9uZW5naW5lLA0KPj4gc2NhbGFyb3B0cywgdHJhbnNmb3JtdXRp
+bHMsIGluc3Rjb21iaW5lLCBuYXRpdmUpDQo+PiB8IEJ1aWxkaW5nIGZhbGxiYWNrIHN1YnBy
+b2plY3Qgd2l0aCBkZWZhdWx0X2xpYnJhcnk9c2hhcmVkDQo+PiB8DQo+PiB8IC4uL21lc2Et
+MjIuMi4zL21lc29uLmJ1aWxkOjE3ODI6MjogRVJST1I6IE5laXRoZXIgYSBzdWJwcm9qZWN0
+DQo+PiBkaXJlY3Rvcnkgbm9yIGEgbGx2bS53cmFwIGZpbGUgd2FzIGZvdW5kLg0KPj4gfA0K
+Pj4gfCBBIGZ1bGwgbG9nIGNhbiBiZSBmb3VuZCBhdCAvaG9tZS9waGlsLXdzbDItdTIyMDQv
+YnVpbGQvZGdjMjE5X25zZy8NCj4+IGRnYzIxOS9idWlsZC90bXAvd29yay94ODZfNjQtbmF0
+aXZlc2RrLXBldGFsaW51eC1saW51eC9uYXRpdmVzZGstDQo+PiBtZXNhLzJfMjIuMi4zLXIw
+L2J1aWxkL21lc29uLWxvZ3MvbWVzb24tbG9nLnR4dA0KPj4gfCBFUlJPUjogbWVzb24gZmFp
+bGVkDQo+PiB8IFdBUk5JTkc6IC9ob21lL3BoaWwtd3NsMi11MjIwNC9idWlsZC9kZ2MyMTlf
+bnNnL2RnYzIxOS9idWlsZC90bXAvd29yay8NCj4+IHg4Nl82NC1uYXRpdmVzZGstcGV0YWxp
+bnV4LWxpbnV4L25hdGl2ZXNkay1tZXNhLzJfMjIuMi4zLXIwL3RlbXAvDQo+PiBydW4uZG9f
+Y29uZmlndXJlLjM5Mjc4NDg6MTczIGV4aXQgMSBmcm9tICdleGl0IDEnDQo+PiB8IFdBUk5J
+Tkc6IEJhY2t0cmFjZSAoQkIgZ2VuZXJhdGVkIHNjcmlwdCk6DQo+PiB8IMKgIMKgIMKgICMx
+OiBiYmZhdGFsX2xvZywgL2hvbWUvcGhpbC13c2wyLXUyMjA0L2J1aWxkL2RnYzIxOV9uc2cv
+ZGdjMjE5Lw0KPj4gYnVpbGQvdG1wL3dvcmsveDg2XzY0LW5hdGl2ZXNkay1wZXRhbGludXgt
+bGludXgvbmF0aXZlc2RrLW1lc2EvMl8yMi4yLjMtDQo+PiByMC90ZW1wL3J1bi5kb19jb25m
+aWd1cmUuMzkyNzg0OCwgbGluZSAxNzMNCj4+IHwgwqAgwqAgwqAgIzI6IG1lc29uX2RvX2Nv
+bmZpZ3VyZSwgL2hvbWUvcGhpbC13c2wyLXUyMjA0L2J1aWxkL2RnYzIxOV9uc2cvDQo+PiBk
+Z2MyMTkvYnVpbGQvdG1wL3dvcmsveDg2XzY0LW5hdGl2ZXNkay1wZXRhbGludXgtbGludXgv
+bmF0aXZlc2RrLQ0KPj4gbWVzYS8yXzIyLjIuMy1yMC90ZW1wL3J1bi5kb19jb25maWd1cmUu
+MzkyNzg0OCwgbGluZSAxNjINCj4+IHwgwqAgwqAgwqAgIzM6IGRvX2NvbmZpZ3VyZSwgL2hv
+bWUvcGhpbC13c2wyLXUyMjA0L2J1aWxkL2RnYzIxOV9uc2cvZGdjMjE5Lw0KPj4gYnVpbGQv
+dG1wL3dvcmsveDg2XzY0LW5hdGl2ZXNkay1wZXRhbGludXgtbGludXgvbmF0aXZlc2RrLW1l
+c2EvMl8yMi4yLjMtDQo+PiByMC90ZW1wL3J1bi5kb19jb25maWd1cmUuMzkyNzg0OCwgbGlu
+ZSAxNDgNCj4+IHwgwqAgwqAgwqAgIzQ6IG1haW4sIC9ob21lL3BoaWwtd3NsMi11MjIwNC9i
+dWlsZC9kZ2MyMTlfbnNnL2RnYzIxOS9idWlsZC8NCj4+IHRtcC93b3JrL3g4Nl82NC1uYXRp
+dmVzZGstcGV0YWxpbnV4LWxpbnV4L25hdGl2ZXNkay1tZXNhLzJfMjIuMi4zLXIwLw0KPj4g
+dGVtcC9ydW4uZG9fY29uZmlndXJlLjM5Mjc4NDgsIGxpbmUgMTg2DQo+PiBFUlJPUjogVGFz
+ayAodmlydHVhbDpuYXRpdmVzZGs6L2hvbWUvcGhpbC13c2wyLXUyMjA0L2J1aWxkL2RnYzIx
+OV9uc2cvDQo+PiBkZ2MyMTkvY29tcG9uZW50cy95b2N0by9sYXllcnMvcG9reS9tZXRhL3Jl
+Y2lwZXMtZ3JhcGhpY3MvbWVzYS8NCj4+IG1lc2FfMjIuMi4zLmJiOmRvX2NvbmZpZ3VyZSkg
+ZmFpbGVkIHdpdGggZXhpdCBjb2RlICcxJw0KPj4gTk9URTogVGFza3MgU3VtbWFyeTogQXR0
+ZW1wdGVkIDY1NTggdGFza3Mgb2Ygd2hpY2ggNjU0OSBkaWRuJ3QgbmVlZCB0bw0KPj4gYmUg
+cmVydW4gYW5kIDEgZmFpbGVkLg0KPj4gU3VtbWFyeTogMSB0YXNrIGZhaWxlZDoNCj4+ICDC
+oCB2aXJ0dWFsOm5hdGl2ZXNkazovaG9tZS9waGlsLXdzbDItdTIyMDQvYnVpbGQvZGdjMjE5
+X25zZy9kZ2MyMTkvDQo+PiBjb21wb25lbnRzL3lvY3RvL2xheWVycy9wb2t5L21ldGEvcmVj
+aXBlcy1ncmFwaGljcy9tZXNhLw0KPj4gbWVzYV8yMi4yLjMuYmI6ZG9fY29uZmlndXJlDQo+
+PiBTdW1tYXJ5OiBUaGVyZSB3ZXJlIDIgRVJST1IgbWVzc2FnZXMsIHJldHVybmluZyBhIG5v
+bi16ZXJvIGV4aXQgY29kZS4NCj4+IEVSUk9SOiBGYWlsZWQgdG8gYnVpbGQgcHJvamVjdC4g
+Q2hlY2sgdGhlIC9ob21lL3BoaWwtd3NsMi11MjIwNC9idWlsZC8NCj4+IGRnYzIxOV9uc2cv
+ZGdjMjE5L2J1aWxkL2J1aWxkLmxvZyBmaWxlIGZvciBtb3JlIGRldGFpbHMuLi4NCj4+ICAg
+DQo+PiAgIA0KPj4gKEl0IGxvb2tzIGxpa2Ugc29tZW9uZSBoYWQgYSBzaW1pbGFyIGVycm9y
+IGZvciB0YXJnZXQgbWVzYSBidWlsZCBpbiBhDQo+PiBNYXIgMjYgbWVzc2FnZSBidXQgdGhl
+eSBoYXZlbid0IHBvc3RlZCBkZXRhaWxzIHRvIGdldCBhbnkgYXNzaXN0YW5jZSB5ZXQpLg0K
+Pj4gICANCj4+IEFzIGZhciBhcyBJIGNhbiB0ZWxsIG5hdGl2ZXNkay1sbHZtMTQuMC42IGFu
+ZCBuYXRpdmVzZGstbGx2bSBhcmUgaW4gdGhlDQo+PiBuYXRpdmVzZGstbWVzYSByZWNpcGUt
+c3lzcm9vdCBwcm92aWRlcnMgYW5kIGxsdm0tbmF0aXZlIGFuZCBsbHZtMTQuMC42LQ0KPj4g
+bmF0aXZlIGFyZSBpbiB0aGUgbmF0aXZlc2RrLW1lc2EgcmVjZWlwZS1zeXNyb290LW5hdGl2
+ZSBwcm92aWRlcnMuIEkgZ2V0DQo+PiBhIGJpdCBtaXhlZCB1cCB3aGVuIGRlYWxpbmcgd2l0
+aCBuYXRpdmUvbmF0aXZlc2RrIGJ1aWxkcyBhbmQgdGhlIHZhaXJvdXMNCj4+IHN5c3Jvb3Rz
+IGFuZCBJIGhhdmUgbm8gaWRlYSBob3cgbWVzb24gZGV0ZWN0cyBsbHZtIGFuZCB3aHkgaXQn
+cyBmYWlsaW5nDQo+PiBoZXJlLiBUaGUgbWVzb24tbG9nLnR4dCBkb2Vzbid0IHNlZW0gcHJv
+dmlkZSBhbnkgaWxsdW1pbmF0aW9uIChhdCBsZWFzdA0KPj4gdG8gbXkgdW50cmFpbmVkIGV5
+ZSkuDQo+PiAgIA0KPj4gRG8geW91IGhhdmUgYW55IGlkZWEgaG93IEkgY2FuIGdldCB0aGlz
+IGJ1aWxkIHdvcmtpbmc/IEFyZSB0aGVyZSBhbnkNCj4+IG1vcmUgZGVidWcgb3B0aW9ucyBJ
+IGNhbiBlbmFibGUgdG8gd29yayBvdXQgd2hhdCBtZXNvbiBpcyBsb29raW5nIGZvcg0KPj4g
+ZXhhY3RseSBhbmQgd2h5IGl0IGNhbid0IGZpbmQgaXQ/DQo+PiAgIA0KPj4gQmVzdCBSZWdh
+cmRzLA0KPj4gUGhpbCBEYXdzb24NCj4+DQo+Pg0KPj4NCj4+DQo+IA0KPiANCj4gDQo+IC09
+LT0tPS09LT0tPS09LT0tPS09LT0tDQo+IExpbmtzOiBZb3UgcmVjZWl2ZSBhbGwgbWVzc2Fn
+ZXMgc2VudCB0byB0aGlzIGdyb3VwLg0KPiBZb3UgYXV0b21hdGljYWxseSBmb2xsb3cgYW55
+IHRvcGljcyB5b3Ugc3RhcnQgb3IgcmVwbHkgdG8uDQo+IFZpZXcvUmVwbHkgT25saW5lICgj
+NjUwOTEpOiBodHRwczovL2xpc3RzLnlvY3RvcHJvamVjdC5vcmcvZy95b2N0by9tZXNzYWdl
+LzY1MDkxDQo+IE11dGUgVGhpcyBUb3BpYzogaHR0cHM6Ly9saXN0cy55b2N0b3Byb2plY3Qu
+b3JnL210LzExMjA2Nzc4MS8xOTk3OTE0DQo+IEdyb3VwIE93bmVyOiB5b2N0bytvd25lckBs
+aXN0cy55b2N0b3Byb2plY3Qub3JnDQo+IFVuc3Vic2NyaWJlOiBodHRwczovL2xpc3RzLnlv
+Y3RvcHJvamVjdC5vcmcvZy95b2N0by91bnN1YiBbcmFqLmtoZW1AZ21haWwuY29tXQ0KPiAt
+PS09LT0tPS09LT0tPS09LT0tPS09LQ0KPiANCg==
+--------------LvLl42B0rT4vFSSqfzJb5Rpz
+Content-Type: application/pgp-keys; name="OpenPGP_0xBB053355919D3314.asc"
+Content-Disposition: attachment; filename="OpenPGP_0xBB053355919D3314.asc"
+Content-Description: OpenPGP public key
+Content-Transfer-Encoding: quoted-printable
 
-llvm-config: error: missing:
-/home/meeee/stuff/yocto/build/tmp/work/x86_64-nativesdk-pokysdk-linux/nativesdk-mesa/2_22.2.3-r0/recipe-sysroot-native/usr/lib/libLLVMDemangle.a
+-----BEGIN PGP PUBLIC KEY BLOCK-----
 
-Note that it is looking for it in $RECIPE_SYSROOT_NATIVE
+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
+//VuX4EDPW3CZmbPy6U=3D
+=3D+jUt
+-----END PGP PUBLIC KEY BLOCK-----
 
-2. When I look in the WORKDIR, I can find the missing files, in
-$RECIPE_SYSROOT. This doesn't look correct at the first sight... Out of
-curiousity I checked the type of this file - it's for x86-64.
+--------------LvLl42B0rT4vFSSqfzJb5Rpz--
 
-3. When I look in the sysroots-components folder, I found it in x86
-sysroots-components/x86_64-nativesdk/nativesdk-llvm/ folder, which looks
-about right, thought it's not more than a guess.
+--------------m0Dd05YWgwMc5Uevlwfou6Y3--
 
-Is it possible that somehow these files get staged in the wrong sysroot?
+--------------qxkXz0gEdUjI5fvIDYGw0Ee2
+Content-Type: application/pgp-signature; name="OpenPGP_signature.asc"
+Content-Description: OpenPGP digital signature
+Content-Disposition: attachment; filename="OpenPGP_signature.asc"
 
-On 4/3/25 17:37, philip.dawson via lists.yoctoproject.org wrote:
-> Hi,
->  
-> We're trying to enable gallium-llvm for mesa 22.2.3 build in our
-> langdale based project.
-> (We're using Petalinux tooling but I don't think that's making a
-> difference here - meta-xilinx does have a mesa_%.bbappend but it seems
-> only concerned with mali/libmali)
->  
-> The target build works fine, but if we try to run the nativesdk-mali
-> build (as part of bitbake petalinux-image-minimal -c do_populate_sdk run
-> by the petalinux tools) then it fails on the do_configure step with the
-> following meson error:
->  
-> | WARNING: Ignoring LLVM CMake dependency because dynamic was requested
-> | llvm-config found: YES (/home/phil-wsl2-u2204/build/dgc219_nsg/dgc219/
-> build/tmp/work/x86_64-nativesdk-petalinux-linux/nativesdk-mesa/2_22.2.3-
-> r0/recipe-sysroot-native/usr/bin/llvm-config14.0.6) 14.0.6
-> | Run-time dependency LLVM (modules: bitwriter, core, engine,
-> executionengine, instcombine, mcdisassembler, mcjit, native, scalaropts,
-> transformutils, coroutines) found: NO (tried cmake and config-tool)
-> | Looking for a fallback subproject for the dependency llvm (modules:
-> bitwriter, engine, mcdisassembler, mcjit, core, executionengine,
-> scalaropts, transformutils, instcombine, native)
-> | Building fallback subproject with default_library=shared
-> |
-> | ../mesa-22.2.3/meson.build:1782:2: ERROR: Neither a subproject
-> directory nor a llvm.wrap file was found.
-> |
-> | A full log can be found at /home/phil-wsl2-u2204/build/dgc219_nsg/
-> dgc219/build/tmp/work/x86_64-nativesdk-petalinux-linux/nativesdk-
-> mesa/2_22.2.3-r0/build/meson-logs/meson-log.txt
-> | ERROR: meson failed
-> | WARNING: /home/phil-wsl2-u2204/build/dgc219_nsg/dgc219/build/tmp/work/
-> x86_64-nativesdk-petalinux-linux/nativesdk-mesa/2_22.2.3-r0/temp/
-> run.do_configure.3927848:173 exit 1 from 'exit 1'
-> | WARNING: Backtrace (BB generated script):
-> |       #1: bbfatal_log, /home/phil-wsl2-u2204/build/dgc219_nsg/dgc219/
-> build/tmp/work/x86_64-nativesdk-petalinux-linux/nativesdk-mesa/2_22.2.3-
-> r0/temp/run.do_configure.3927848, line 173
-> |       #2: meson_do_configure, /home/phil-wsl2-u2204/build/dgc219_nsg/
-> dgc219/build/tmp/work/x86_64-nativesdk-petalinux-linux/nativesdk-
-> mesa/2_22.2.3-r0/temp/run.do_configure.3927848, line 162
-> |       #3: do_configure, /home/phil-wsl2-u2204/build/dgc219_nsg/dgc219/
-> build/tmp/work/x86_64-nativesdk-petalinux-linux/nativesdk-mesa/2_22.2.3-
-> r0/temp/run.do_configure.3927848, line 148
-> |       #4: main, /home/phil-wsl2-u2204/build/dgc219_nsg/dgc219/build/
-> tmp/work/x86_64-nativesdk-petalinux-linux/nativesdk-mesa/2_22.2.3-r0/
-> temp/run.do_configure.3927848, line 186
-> ERROR: Task (virtual:nativesdk:/home/phil-wsl2-u2204/build/dgc219_nsg/
-> dgc219/components/yocto/layers/poky/meta/recipes-graphics/mesa/
-> mesa_22.2.3.bb:do_configure) failed with exit code '1'
-> NOTE: Tasks Summary: Attempted 6558 tasks of which 6549 didn't need to
-> be rerun and 1 failed.
-> Summary: 1 task failed:
->   virtual:nativesdk:/home/phil-wsl2-u2204/build/dgc219_nsg/dgc219/
-> components/yocto/layers/poky/meta/recipes-graphics/mesa/
-> mesa_22.2.3.bb:do_configure
-> Summary: There were 2 ERROR messages, returning a non-zero exit code.
-> ERROR: Failed to build project. Check the /home/phil-wsl2-u2204/build/
-> dgc219_nsg/dgc219/build/build.log file for more details...
->  
->  
-> (It looks like someone had a similar error for target mesa build in a
-> Mar 26 message but they haven't posted details to get any assistance yet).
->  
-> As far as I can tell nativesdk-llvm14.0.6 and nativesdk-llvm are in the
-> nativesdk-mesa recipe-sysroot providers and llvm-native and llvm14.0.6-
-> native are in the nativesdk-mesa receipe-sysroot-native providers. I get
-> a bit mixed up when dealing with native/nativesdk builds and the vairous
-> sysroots and I have no idea how meson detects llvm and why it's failing
-> here. The meson-log.txt doesn't seem provide any illumination (at least
-> to my untrained eye).
->  
-> Do you have any idea how I can get this build working? Are there any
-> more debug options I can enable to work out what meson is looking for
-> exactly and why it can't find it?
->  
-> Best Regards,
-> Phil Dawson
-> 
-> 
-> -=-=-=-=-=-=-=-=-=-=-=-
-> Links: You receive all messages sent to this group.
-> View/Reply Online (#65087): https://lists.yoctoproject.org/g/yocto/message/65087
-> Mute This Topic: https://lists.yoctoproject.org/mt/112067781/6084445
-> Group Owner: yocto+owner@lists.yoctoproject.org
-> Unsubscribe: https://lists.yoctoproject.org/g/yocto/unsub [skandigraun@gmail.com]
-> -=-=-=-=-=-=-=-=-=-=-=-
-> 
+-----BEGIN PGP SIGNATURE-----
 
+wmMEABEIACMWIQSPpVvapDR0rgZCCc27BTNVkZ0zFAUCZ+80TQUDAAAAAAAKCRC7BTNVkZ0zFFD/
+AJ9Kt10idCVSZVTbSlzeEr6sWh7yvgCfV+QKatgdtDpfhNFlQRVm6b2a6rw=
+=O0q+
+-----END PGP SIGNATURE-----
+
+--------------qxkXz0gEdUjI5fvIDYGw0Ee2--
 
