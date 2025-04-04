@@ -1,85 +1,59 @@
-Return-Path: <richard.purdie@linuxfoundation.org>
+Return-Path: <abhijithkannan45@gmail.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 5F0D1C36010
-	for <webhook@archiver.kernel.org>; Fri,  4 Apr 2025 08:55:02 +0000 (UTC)
-Received: from mail-wr1-f48.google.com (mail-wr1-f48.google.com [209.85.221.48])
- by mx.groups.io with SMTP id smtpd.web10.6910.1743756893302309185
- for <yocto@lists.yoctoproject.org>;
- Fri, 04 Apr 2025 01:54:53 -0700
-Authentication-Results: mx.groups.io;
- dkim=pass header.i=@linuxfoundation.org header.s=google header.b=JfQ91OAI;
- spf=pass (domain: linuxfoundation.org, ip: 209.85.221.48, mailfrom: richard.purdie@linuxfoundation.org)
-Received: by mail-wr1-f48.google.com with SMTP id ffacd0b85a97d-391342fc1f6so1524081f8f.1
-        for <yocto@lists.yoctoproject.org>; Fri, 04 Apr 2025 01:54:52 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linuxfoundation.org; s=google; t=1743756891; x=1744361691; darn=lists.yoctoproject.org;
-        h=mime-version:user-agent:content-transfer-encoding:references
-         :in-reply-to:date:to:from:subject:message-id:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=ZNu0aFuuEIIfYgRTNZ/znJ4/jWXF7skbb+jXEBj649U=;
-        b=JfQ91OAIVsQZLDx+okbn3qd5hriETdNXblYCyiQZKXMARMd/D9che/mQyTKr3GNG1H
-         DHel8nbpNIu11gNvO6ribJ1O8Oj4t8nMsuEooRx/UadT48HVJx7XP6uLX2nCaxZy7ZfV
-         G5CnDL70BHZEriHxeTI5x1kj+hEMgEKB5xtMQ=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1743756891; x=1744361691;
-        h=mime-version:user-agent:content-transfer-encoding:references
-         :in-reply-to:date:to:from:subject:message-id:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=ZNu0aFuuEIIfYgRTNZ/znJ4/jWXF7skbb+jXEBj649U=;
-        b=j5aCboOhz0ZQjLzpgZqJUZmhguhX26qBGu/LghL2Uu9txAbOYpymeTyNFe3Wt9RUNf
-         4R9vGuKdQXQGr0MBMaVku3QMMtshnHr9l10g8Q6LXDzE1OtAy+MAbLZt6RAIEtAjuy6B
-         hRr64s8YFGW1W5dXIs86V7DAR80wh0wFzc8i310Ad/9idZ42+OIZb7APvofpPtJLBr4w
-         SBoB+OIl7qwnuTb8ck0pv+PpmftgWBB9q9FIBKn/9d3ziqV4ArVeRtHezYNApXpyYMmq
-         L4cz5/z0ONs+kmu6JPwuKr0msFq4T0chU/K6AeUw37z9HvqBmcOizSVah9Kgt35uU4ES
-         2ECA==
-X-Forwarded-Encrypted: i=1; AJvYcCW0SOY9PAR5NSNI7BHHDjDU+usy4F40jX74Qi8TmjW9JdbZq2WsDR10JxwUdWNgEKzqdcGF+g==@lists.yoctoproject.org
-X-Gm-Message-State: AOJu0Yz42Gde8IwlFrzbstlBwyBA9pwPx1u22Hqq1SGJauxBXkt5p67m
-	GRsMehT6M8ko/6pOsY1ex47uXk5h0bhDv5jKv/dtibPFLjAufUyMJeOMgWyiU24=
-X-Gm-Gg: ASbGnctT2fwOC44Hk76pESgXaNJXCgQjS8MbGAKPWXv+QiSewK2cGluQbKeHU4vG0AU
-	ghaddBL9x1KA8kMZAoO4bCSH2e1Dy339duGzXeEagl0uNlEsEKVVt5eMggngEAayIFQ9bXl+hs/
-	xeMUg7QIRdO5bSKl4YPqZ1tIClKGnvve0GaikC62U3MB2E3KpIAeDCs4TRG5jAKb5ii9Vr/pK18
-	c3WIooULPYeTCiI9nokd0YpS72TogsvjiRaTCzI3KiNwL89mC9qnEIrpqXtoxmu9TKRUAUQ7qIa
-	ptA2FGSu0OrpCkngT1/FIbKF/P6lDcQB3k3ImqEv0LKOWLL/DwuVVrF79EGxQ3rrsuqZFVuONrB
-	XXuqSecxBKnjbw4zB3RXhg9Ff27974uy0wvRS7mMhtMIv
-X-Google-Smtp-Source: AGHT+IHOFJRszTZSsxlA3Dfkx1agShJdbaN50l6mnTWX0w9JeDBvIUZD5AzcArx+hFCOFHgPJGVKTw==
-X-Received: by 2002:a05:6000:1886:b0:38f:2ddd:a1bb with SMTP id ffacd0b85a97d-39d0864b966mr1369496f8f.8.1743756891239;
-        Fri, 04 Apr 2025 01:54:51 -0700 (PDT)
-Received: from ?IPv6:2001:8b0:aba:5f3c:9913:7de7:e825:95a6? ([2001:8b0:aba:5f3c:9913:7de7:e825:95a6])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-39c3020d62fsm3868704f8f.79.2025.04.04.01.54.50
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 04 Apr 2025 01:54:50 -0700 (PDT)
-Message-ID: <c5e17b00e17da6787a5b88f54df63e22a1589700.camel@linuxfoundation.org>
-Subject: Re: [yocto] [ANNOUNCEMENT] Yocto Project 5.1.4 is Released
-From: Richard Purdie <richard.purdie@linuxfoundation.org>
-To: "Lee, Chee Yang" <chee.yang.lee@intel.com>, 
- "yocto@lists.yoctoproject.org"	 <yocto@lists.yoctoproject.org>,
- "yoann.congal@smile.fr" <yoann.congal@smile.fr>
-Date: Fri, 04 Apr 2025 09:54:49 +0100
-In-Reply-To: <BL4PR11MB8797BD6E2B3B2ECDE9088CA6B9A92@BL4PR11MB8797.namprd11.prod.outlook.com>
-References: 
-	<BL4PR11MB87978ADAB7C9CAF579B1AF0DB9AF2@BL4PR11MB8797.namprd11.prod.outlook.com>
-	 <CAMSfU+6MVEpORbaTvnxQMJQ55mW1F4ZwaYPDBzGvtzrt0KJeMA@mail.gmail.com>
-	 <BL4PR11MB8797BD6E2B3B2ECDE9088CA6B9A92@BL4PR11MB8797.namprd11.prod.outlook.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.56.0-1 
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 7FF8AC36010
+	for <webhook@archiver.kernel.org>; Fri,  4 Apr 2025 09:15:12 +0000 (UTC)
+Subject: Re: [yocto] Error while building python3.11 as an alternative for scarthgap (OpenSTLinux) #openstlinux #bitbake #yocto
+To: "Gyorgy Sarvari" <skandigraun@gmail.com>, yocto@lists.yoctoproject.org
+From: "Abhijith" <abhijithkannan45@gmail.com>
+X-Originating-Location: US (136.226.242.122)
+X-Originating-Platform: Linux Firefox 137
+User-Agent: GROUPS.IO Web Poster
 MIME-Version: 1.0
+Date: Fri, 04 Apr 2025 02:15:04 -0700
+References: <abb758f9-f4fb-476b-8dca-00ed032cc259@gmail.com>
+In-Reply-To: <abb758f9-f4fb-476b-8dca-00ed032cc259@gmail.com>
+Message-ID: <7593.1743758104645038790@lists.yoctoproject.org>
+Content-Type: multipart/alternative; boundary="4gyQIKlqvTM4tdvukttD"
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Fri, 04 Apr 2025 08:55:02 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/65099
+ <yocto@lists.yoctoproject.org>; Fri, 04 Apr 2025 09:15:12 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/65100
 
-On Fri, 2025-04-04 at 03:20 +0000, Lee, Chee Yang wrote:
-> i can add the codename in title. I don=E2=80=99t think there is strict fo=
-rmat
-> for the title format.
+--4gyQIKlqvTM4tdvukttD
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
 
-That sounds good to me too, thanks!
+Hi Gyorgy,
 
-Cheers,
+If we were to go with STM32MP157F-DF2 board, I didn't have to try to instal=
+l python3.11 on it. I think the code would run just fine on python3.12. But=
+ we aren't using STM32MP157F-DF2 for the product, we will be using RZ/V2L a=
+nd that have only python3.8. Python3.8 isn't feasable.
 
-Richard
+The reason why didn't try to upgrade python3.8 to python3.10 or higher was =
+based on the online forums stating trying to upgrade the default python3.8 =
+would cause issue with other packages. I thought I would having to build an=
+ alternative python would much be much easier than upgrading one. Anyways I=
+'ll try that as well.
+
+--4gyQIKlqvTM4tdvukttD
+Content-Type: text/html; charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div>Hi Gyorgy,<br /><br />If we were to go with STM32MP157F-DF2 board, I d=
+idn't have to try to install python3.11 on it. I think the code would run j=
+ust fine on python3.12. But we aren't using STM32MP157F-DF2 for the product=
+, we will be using RZ/V2L and that have only python3.8. Python3.8 isn't fea=
+sable.</div>
+<div>&nbsp;</div>
+<div>The reason why didn't try to upgrade python3.8 to python3.10 or higher=
+ was based on the online forums stating trying to upgrade the default pytho=
+n3.8 would cause issue with other packages. I thought I would having to bui=
+ld an alternative python would much be much easier than upgrading one. Anyw=
+ays I'll try that as well.</div>
+
+--4gyQIKlqvTM4tdvukttD--
 
