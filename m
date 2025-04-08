@@ -1,86 +1,115 @@
-Return-Path: <alex.kanavin@gmail.com>
+Return-Path: <proffesionaladdress2@duck.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 68D71C3600C
-	for <webhook@archiver.kernel.org>; Tue,  8 Apr 2025 07:40:38 +0000 (UTC)
-Received: from mail-qk1-f173.google.com (mail-qk1-f173.google.com [209.85.222.173])
- by mx.groups.io with SMTP id smtpd.web11.69350.1744098028127806241
+	by smtp.lore.kernel.org (Postfix) with ESMTP id C2E29C3600C
+	for <webhook@archiver.kernel.org>; Tue,  8 Apr 2025 08:59:58 +0000 (UTC)
+Received: from smtp-outbound9.duck.com (smtp-outbound9.duck.com [20.67.221.12])
+ by mx.groups.io with SMTP id smtpd.web10.70777.1744102791200617029
  for <yocto@lists.yoctoproject.org>;
- Tue, 08 Apr 2025 00:40:28 -0700
+ Tue, 08 Apr 2025 01:59:51 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20230601 header.b=XNWnST0o;
- spf=pass (domain: gmail.com, ip: 209.85.222.173, mailfrom: alex.kanavin@gmail.com)
-Received: by mail-qk1-f173.google.com with SMTP id af79cd13be357-7c5ba363f1aso727526785a.0
-        for <yocto@lists.yoctoproject.org>; Tue, 08 Apr 2025 00:40:27 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1744098027; x=1744702827; darn=lists.yoctoproject.org;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=gAT6OhvZeZejZ7YddN68DYOCknDkWWabGefG4qJun88=;
-        b=XNWnST0oTc45WcdhmeaBWwyG0LS/E+jfLRpCq8DbeUc2KFEGPDzLhjec049LkQFqL4
-         VfH2s1L/fH92WT16SZBdUtkXY8amQHg6tuPmE0Yodp5jiGSjg8sNbE9J4FF4TuGuyTsW
-         gt0mXFJQ+QPJc4x6pTkuXVjo3m9OaSXtgbuGF2YMrBGqNnGXrN8ASRVnyxmW+Xfg0IHy
-         kpMgunTPi++faTctCLX8cBHr/LJFzJDzkx666/F9KlTtbur1rw6e51pl9Nepjo2JLLc3
-         gW2uXBPaVy1jdAExSwPvECxnQP98JtQoaM3oKtQ/4MhPnwFFJ49ZU1/2o5Fz1QaX4fyH
-         b+Og==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1744098027; x=1744702827;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=gAT6OhvZeZejZ7YddN68DYOCknDkWWabGefG4qJun88=;
-        b=EmKUA8xAI99g7P+mFvOuhHUj7evA3LEKDGzFu4MTMuI5yRHUXOXcse3tIRuxC773h8
-         k6AiVj+6d+w6nnZpS+bDNJ3/Aq7si95AX2EBqIHqjmPI6WPBe2Leh07y27qSaWsFZtm+
-         cgcY80E4ctdDD5KYoKC12aRJHyxHKGPM21idUSIQl33uxK1FVZ3cFzdjhaYBYW9ip8Vq
-         iFFBXHBMqTPJvjHSEbRp6dO8nWZtEfpPH4Hsis3rXLDrPI6lZpAJRgo/Vqy0ljFAjmIz
-         uzOYhIYx3WyRrV+e+OSZd/ioCIUAkyYKN3aLRNHvfCr7b7tMBtnXjra6gjJdE9h7dE5O
-         UctA==
-X-Gm-Message-State: AOJu0YxtyQMMJ1/99pL5P0qkACH0uP9iyGSaS4Vff+SMbgyk3l4DuS5u
-	t0OxEOyIXmw93N+ZKdCyJyOJ6VqPED0qsihhzdYy5gT/2yvw8b9JeoWIzYnvRF036PUsPqn64Wv
-	VYBcrS5WEm5PtApnu0FtoPp0e0+m0bg==
-X-Gm-Gg: ASbGncvu6sTJqAxdx6OqtFsw0Z8FS1Utdi3FUSlhmx1OUhG6vEAj7h9p3ZaJDLETZ6o
-	Hy1LvLorHfk1Zh1MeWZ5DpVxtLi1l6s1J6dqnPiFPeRURIqEjAI7sXSanKdB4mpeK0c6ezFpSsN
-	7ZVSxTpt7HUlrxkxAarfCXUEwziS7BgO/ft5C/8WKY5dsIOXPo4k12fSsMGhQXz2F9zEKPe9c=
-X-Google-Smtp-Source: AGHT+IG+LqC/v+8QWDblRLMvyPbHN5b5UpQWBAb5gknEFtdpk4r0x7ZeNcKA8PzO3RRr+aYAVJTS2gkigK+e+ljJmmU=
-X-Received: by 2002:ad4:4eed:0:b0:6d4:238e:35b0 with SMTP id
- 6a1803df08f44-6f00df142femr243419206d6.17.1744098027197; Tue, 08 Apr 2025
- 00:40:27 -0700 (PDT)
+ dkim=pass header.i=@duck.com header.s=postal-KpyQVw header.b=ZFIhaJNL;
+ spf=pass (domain: duck.com, ip: 20.67.221.12, mailfrom: proffesionaladdress2@duck.com)
+References: <r40e.1743754517240171829.1oOU@lists.yoctoproject.org> <E63C2FBD-D303-4686-B29D-D8306CB27A80.1@smtp-inbound1.duck.com>
+Subject: warn if a variable is not used
 MIME-Version: 1.0
-References: <CAJo0Az5-Wy8RyJMcNG=0XynEaJ30YUr9eRXno0ZC6yKB4bQYLg@mail.gmail.com>
- <183447646FA7BED4.31078@lists.yoctoproject.org>
-In-Reply-To: <183447646FA7BED4.31078@lists.yoctoproject.org>
-From: Alexander Kanavin <alex.kanavin@gmail.com>
-Date: Tue, 8 Apr 2025 09:40:15 +0200
-X-Gm-Features: ATxdqUEES9Mj6khOtz8L2I4gjFT8AxdqpPdqZvTwszPx3Sf7goGH7Aj1SlhmP1w
-Message-ID: <CANNYZj95YOjb4aJV0nL+DZohQ2zdiHuh1xzQ8T9gQgpB3UwBxw@mail.gmail.com>
-Subject: Re: [yocto] [auh] Setting up AUH for non pypi recipes
-To: yocto@lists.yoctoproject.org, alex.kanavin@gmail.com
-Cc: Tom Geelen <t.f.g.geelen@gmail.com>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: multipart/alternative;
+	boundary="=_tk6s5mG6H1DZNNah/GUuYf_="
+X-Rspamd-Bar: -
+X-Rspamd-Report: DMARC_POLICY_ALLOW(-0.5) MIME_GOOD(-0.1) R_DKIM_ALLOW(-0.2) R_SPF_ALLOW(-0.2)
+X-Rspamd-Score: -1
+X-Rspamd-Action: no action
+To: yocto at lists yoctoproject org proffesionaladdress2 <yocto@lists.yoctoproject.org>
+Received: by smtp-inbound1.duck.com; Tue, 08 Apr 2025 04:59:49 -0400
+Message-ID: <DC0C7CC4-DC00-435D-AF68-749C79388DDD.1@smtp-inbound1.duck.com>
+Date: Tue, 08 Apr 2025 04:59:49 -0400
+From: proffesionaladdress2@duck.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=duck.com; h=From:
+ Date: Message-ID: To: Content-Type: MIME-Version: Subject: References;
+ q=dns/txt; s=postal-KpyQVw; t=1744102790;
+ bh=dhcXm/Cr22sngp+dRITiYKvB+lfag9pMG8mZls/BjHw=;
+ b=ZFIhaJNL0xehJR8uplMVkY7MxiE9xvEedCobqVdIdLLqeaaMVBr5ZqZiqL63q0rKBXcHW3EHj
+ OFtUdaLsi6p2BVM0GmGp71ufKFwnG5EmwMjRH3LkQrq4IbM/hQ+yLfmZxqzqsmG5tFrvVIAGwOm
+ jnMb8zTrcK8/hizDWfnmEHE=
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Tue, 08 Apr 2025 07:40:38 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/65115
+ <yocto@lists.yoctoproject.org>; Tue, 08 Apr 2025 08:59:58 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/65116
 
-On Tue, 8 Apr 2025 at 09:30, Alexander Kanavin via
-lists.yoctoproject.org <alex.kanavin=gmail.com@lists.yoctoproject.org>
-wrote:
->
-> On Tue, 8 Apr 2025 at 08:51, Tom Geelen <t.f.g.geelen@gmail.com> wrote:
-> > The git configuration necessary for AUH is correct (otherwise other
-> > recipes should also fail). The hash it uses is correct. So can someone
-> > point me in the right direction?
->
-> S = "${UNPACKDIR}/git"
->
-> This is not correct. S should never point to inside UNPACKDIR.
+--=_tk6s5mG6H1DZNNah/GUuYf_=
+Content-Type: text/plain;
+	charset=utf-8
+Content-Transfer-Encoding: 7bit
 
-On second thought, maybe it's actually ok, and the bug is in devtool
-upgrade. I'll look into why it gets confused.
+Hello, 
 
-Meanwhile, set S as advised.
+In a .bbappend file, I want to send a warning if a variable is not set/exist and set it to a default value. 
+I use BitBake Build Tool Core version 2.0.0. 
 
-Alex
+If I try to test it like: 
+
+if [[ -z "${MY_VARIABLE}" ]] 
+
+I get an error like: 
+
+Log data follows: 
+| DEBUG: Executing shell function do_compile 
+| /<path>/run.do_compile.352486: 153: MY_VARIABLE: not found 
+| WARNING: exit code 127 from a shell command. 
+ERROR: Task (/<path>/rpi-u-boot-scr.bb:do_compile) failed with exit code '1' 
+
+When I use: 
+isempty="${@bb.utils.contains('MY_VARIABLE', '', 'false', 'true', d)}" 
+bbwarn "isempty=$isempty" 
+if [[ $isempty == true ]]; then 
+MY_VARIABLE = "value" 
+bbwarn "MY_VARIABLE is not defined, used default: ${MY_VARIABLE}" 
+else 
+bbwarn "?????" 
+fi 
+
+it print: 
+WARNING: rpi-u-boot-scr-1.0-r0 do_compile: isempty=true 
+WARNING: rpi-u-boot-scr-1.0-r0 do_compile: ????? 
+
+I already try with quote or not, but when I test it in a shell by setting the isempty variable it work properly. 
+
+Best regards. 
+
+--=_tk6s5mG6H1DZNNah/GUuYf_=
+Content-Type: text/html;
+	charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+
+<html><head></head><body><div style=3D"font-family: arial, helvetica, =
+sans-serif; font-size: 12pt; color: #000000"><div>Hello,</div><div><br =
+data-mce-bogus=3D"1"></div><div>In a .bbappend file, I want to send a =
+warning if a variable is not set/exist and set it to a default value.=
+</div><div>I use BitBake Build Tool Core version 2.0.0.</div><div><br =
+data-mce-bogus=3D"1"></div><div>If I try to test it like:</div><div><br =
+data-mce-bogus=3D"1"></div><div>if [[ -z "${MY_VARIABLE}" ]]</div><div><br =
+data-mce-bogus=3D"1"></div><div>I get an error like:</div><div><br =
+data-mce-bogus=3D"1"></div><div>Log data follows:<br>| DEBUG: Executing =
+shell function do_compile<br>| /&lt;path&gt;/run.do_compile.352486: 153: =
+MY_VARIABLE: not found<br>| WARNING: exit code 127 from a shell command.=
+<br>ERROR: Task (/&lt;path&gt;/rpi-u-boot-scr.bb:do_compile) failed with =
+exit code '1'</div><div><br data-mce-bogus=3D"1"></div><div>When I =
+use:</div><div>isempty=3D"${@bb.utils.contains('MY_VARIABLE', '', 'false', =
+'true', d)}"<br>bbwarn "isempty=3D$isempty"<br>if [[ $isempty =3D=3D true =
+]]; then<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  =
+MY_VARIABLE =3D "value"<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
+&nbsp;&nbsp;&nbsp; bbwarn "MY_VARIABLE is not defined, used default: =
+${MY_VARIABLE}"<br>else<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
+&nbsp;&nbsp;&nbsp; bbwarn "?????"<br>fi</div><div><br =
+data-mce-bogus=3D"1"></div><div>it print:</div><div>WARNING: =
+rpi-u-boot-scr-1.0-r0 do_compile: isempty=3Dtrue<br>WARNING: =
+rpi-u-boot-scr-1.0-r0 do_compile: ?????</div><div><br =
+data-mce-bogus=3D"1"></div><div>I already try with quote or not, but when I=
+ test it in a shell by setting the isempty variable it work properly.=
+</div><div><br data-mce-bogus=3D"1"></div><div>Best regards.=
+</div></div></body></html>
+
+--=_tk6s5mG6H1DZNNah/GUuYf_=--
 
