@@ -1,81 +1,107 @@
-Return-Path: <ross.burton@arm.com>
+Return-Path: <t.f.g.geelen@gmail.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 4482AC369A1
-	for <webhook@archiver.kernel.org>; Tue,  8 Apr 2025 19:00:46 +0000 (UTC)
-Received: from smtp-outbound7.duck.com (smtp-outbound7.duck.com [20.67.222.12])
- by mx.groups.io with SMTP id smtpd.web11.74272.1744117978093446734
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 3C50AC369A1
+	for <webhook@archiver.kernel.org>; Tue,  8 Apr 2025 19:16:26 +0000 (UTC)
+Received: from mail-pg1-f172.google.com (mail-pg1-f172.google.com [209.85.215.172])
+ by mx.groups.io with SMTP id smtpd.web10.4502.1744139779332406815
  for <yocto@lists.yoctoproject.org>;
- Tue, 08 Apr 2025 06:12:58 -0700
+ Tue, 08 Apr 2025 12:16:19 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@duck.com header.s=postal-KpyQVw header.b=LKgTbUDr;
- spf=pass (domain: duck.com, ip: 20.67.222.12, mailfrom: proffesionaladdress2@duck.com)
-References: <r40e.1743754517240171829.1oOU@lists.yoctoproject.org> <E63C2FBD-D303-4686-B29D-D8306CB27A80.1@smtp-inbound1.duck.com> <DC0C7CC4-DC00-435D-AF68-749C79388DDD.1@smtp-inbound1.duck.com> <aa127e87-0a7f-4c5a-9467-675d1cf1df03@gmail.com> <7A2D6367-3CD1-460F-9655-69A8B0D980A7.1@smtp-inbound1.duck.com>
-Subject: Re: [yocto] warn if a variable is not used
+ dkim=pass header.i=@gmail.com header.s=20230601 header.b=SGFdH3gk;
+ spf=pass (domain: gmail.com, ip: 209.85.215.172, mailfrom: t.f.g.geelen@gmail.com)
+Received: by mail-pg1-f172.google.com with SMTP id 41be03b00d2f7-af519c159a8so5407228a12.3
+        for <yocto@lists.yoctoproject.org>; Tue, 08 Apr 2025 12:16:19 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1744139779; x=1744744579; darn=lists.yoctoproject.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=bJoUh65DSOvJzphKlb0IXPG08xq1TvHkTYNcC2WesYc=;
+        b=SGFdH3gkjEreGDWJHEj4kxyhas6WamcuUtCKR2/Gx32PooG1u4HNC1ZFRauZndFe41
+         nDMZESNbOTEQWoOFA1j6Qq6CLY0LPsDbsxnKAvQYi6Tz5AjAO3fIlLwx/pRS2pq4vYoc
+         KH0Q/dFs6EfJKO1MhKeYfxwpeyaxtsPzJ1TofeN+f5MG6hkURdMHJvgJ2vM0xKmbcJam
+         wS7ELrmk115O1Lh1Jg6Gx7kcO/AFNdKi7jL2xpQYGL/W5NF8eL2VShUKqxnyS9B1z7gq
+         TxjVpeBWtSKwqVW8cL1eUtw8YGxNJrUg8TJ9jwWk11mc/0S0pDxW5y8TNPRNJfy4y3M/
+         jWPA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1744139779; x=1744744579;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=bJoUh65DSOvJzphKlb0IXPG08xq1TvHkTYNcC2WesYc=;
+        b=qlnU1mGGRmhHXdlALsUrMOhhiBugqDKXpcI1Rc9ZoMdTDeyjQmoXT96r6+3mUOyQRc
+         76piAUNv47o7zFSssQXJoaUotUoLcUeqVvtzc+YkjOsl5bUGNY5yMDgq/a+36KiebqxR
+         VirUL997LdqX95joBMQmfqXuz9G//98gRJ9gQLhNfGAefwY529hRgwDRsy1TYLpln4mz
+         A8M6fMCwqs59ByEI7xLTODq5kgXx3VDsb3n/QHVm4wNaIv6FZz5hclUDGFl3+FUENUpw
+         ORXYsRAZibqYAGO7p0FnxbcTOVlQP2oTL/5B6rmOe7wjiR2+QG4iHSySsT+EOY4nP8/q
+         /sVw==
+X-Gm-Message-State: AOJu0YyB1HS836/8aQlDSj89FPOtGgij/drZZMPuJ+pczXH0I01e8Mx5
+	Lnbn3liAGC44wICgs4JLtrwotJ8TsSsT/xTFJghvLitgV23SmmSyAD5OL1cVTKc9objBosgBk12
+	FLfIWvRTTunjeG+UD89H3GgXyNqg=
+X-Gm-Gg: ASbGnctY/MPivKx5q19fTEjvaIu6CdJiAipTnTgayKb22cmiX+UctjrFHG2DqbpScW6
+	bZYWYZZOLWN3Ez5y0Tsdb76UGk2XcLV93DGmW4x5iz88h3W/0bqomLx9yOjoMTgNMQt2AAa9WzL
+	zIX51CkxMVaPQySyTB8MQ9qK9m0LvqDgpb5wM=
+X-Google-Smtp-Source: AGHT+IHzSRt59SclK1RhitvKdEBOem8cuF6K8tZa5efGQSGslZFXL93w+A6EnyBKZFMfwCKl5Viq5EihsclER3v76Ds=
+X-Received: by 2002:a17:90b:582f:b0:2fc:b40:339a with SMTP id
+ 98e67ed59e1d1-306dbb90e5emr527783a91.10.1744139778728; Tue, 08 Apr 2025
+ 12:16:18 -0700 (PDT)
 MIME-Version: 1.0
-X-Rspamd-Bar: -
-X-Rspamd-Report: DMARC_POLICY_ALLOW(-0.5) MIME_GOOD(-0.1) R_DKIM_ALLOW(-0.2) R_SPF_ALLOW(-0.2)
-X-Rspamd-Score: -1
-X-Rspamd-Action: no action
-To: Gyorgy Sarvari <skandigraun@gmail.com>
-Cc: yocto at lists yoctoproject org proffesionaladdress2 <yocto@lists.yoctoproject.org>,
- proffesionaladdress2@duck.com
-Received: by smtp-inbound1.duck.com; Tue, 08 Apr 2025 09:12:56 -0400
-Message-ID: <A1FCA99A-D1F4-45C5-9174-3D1F7F2D8082.1@smtp-inbound1.duck.com>
-Date: Tue, 08 Apr 2025 09:12:56 -0400
-From: proffesionaladdress2@duck.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=duck.com; h=From:
- Date: Message-ID: Cc: To: Content-Transfer-Encoding: Content-Type:
- MIME-Version: Subject: References; q=dns/txt; s=postal-KpyQVw;
- t=1744117977; bh=TOwEDi8mlLSAwxqjgXQkeRhS8n4xHfqVuojNbpJU6iU=;
- b=LKgTbUDrWzuE5XzS4bMYzM6YhZUeqDPumVFFkuScIPU/Uiq/pLMI1R+jmeKTNufnKPlrGz2Tp
- nvSwLJOSmw/VbSrT+BNxr7OSEkBvSyjOtY3nt0BuzyTrtdGA659Z6Op5qJDBlD6AfU+7yULQ3tW
- mTR6Ns8OTBeQyeYVKaDZNls=
-Content-Type: text/plain;
-	charset=utf-8
+References: <CAJo0Az5-Wy8RyJMcNG=0XynEaJ30YUr9eRXno0ZC6yKB4bQYLg@mail.gmail.com>
+ <183447646FA7BED4.31078@lists.yoctoproject.org> <183447EA8991BD5A.31078@lists.yoctoproject.org>
+ <CANNYZj9ZEiVebtxiaXEsFSR_2EmYDq5Qx4M3wskpKdL0mZMvXg@mail.gmail.com>
+In-Reply-To: <CANNYZj9ZEiVebtxiaXEsFSR_2EmYDq5Qx4M3wskpKdL0mZMvXg@mail.gmail.com>
+From: Tom Geelen <t.f.g.geelen@gmail.com>
+Date: Tue, 8 Apr 2025 21:16:17 +0200
+X-Gm-Features: ATxdqUHvYfDdSlE4nNgdXVlNksYwpKm_Ppz7SboNAxrPdWk12e18YTf82Zi4ynI
+Message-ID: <CAJo0Az703ob3hXzqYGHCxVQ=L9RLpc_yYf2uOsTskkZ3g3JZ+A@mail.gmail.com>
+Subject: Re: [yocto] [auh] Setting up AUH for non pypi recipes
+To: Alexander Kanavin <alex.kanavin@gmail.com>
+Cc: yocto@lists.yoctoproject.org
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Tue, 08 Apr 2025 19:00:46 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/65126
+ <yocto@lists.yoctoproject.org>; Tue, 08 Apr 2025 19:16:26 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/65127
 
-Thank you, but branch is never reached because the previous condition is =
-never true in this code (and I don't know why).
-Even if bbwarn print 'WARNING: rpi-u-boot-scr-1.0-r0 do_compile: =
-isempty=3Dtrue'.
+Ah nice additional thing indeed. I will keep it as UNPACKDIR as I
+believe that is now the preferred place.
 
-isempty=3D"${@bb.utils.contains('MY_VARIABLE', '', 'false', 'true', d)}"
-bbwarn "isempty=3D$isempty"
-if [[ $isempty =3D=3D true ]]; then
-           MY_VARIABLE =3D "value"
-            bbwarn "MY_VARIABLE is not defined, used default: =
-${MY_VARIABLE}"
-else
-            bbwarn "?????"
-fi
+Other than that, does anyone have a clue on why devtool (via AUH)
+always seems to throw a git error when it tries to upgrade a github
+based recipe?
 
-But maybe bitbake provide some syntax to print a warning when a variable is=
- not set outside bash code.
-Or it is easier to use some python code.
-
------ Mail original -----
-De: "Gyorgy Sarvari" <skandigraun_at_gmail.com_proffesionaladdress2@duck.=
-com>
-=C3=80: "yocto at lists yoctoproject org proffesionaladdress2" =
-<yocto_at_lists.yoctoproject.org_proffesionaladdress2@duck.com>, =
-proffesionaladdress2@duck.com
-Envoy=C3=A9: Mardi 8 Avril 2025 14:56:24
-Objet: Re: [yocto] warn if a variable is not used
-
+On Tue, Apr 8, 2025 at 12:01=E2=80=AFPM Alexander Kanavin
+<alex.kanavin@gmail.com> wrote:
 >
-> | /<path>/run.do_compile.352486: 153: MY_VARIABLE: not found
-<snip>
-> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 MY_VARIABLE =
-=3D "value"
-Note that when you are in do_compile, that's a shell script. You
-shouldn't put space around the equal sign here, because that's not a
-valid syntax to assign a value to a variable in shell.
-
+> On Tue, 8 Apr 2025 at 09:40, Alexander Kanavin via
+> lists.yoctoproject.org <alex.kanavin=3Dgmail.com@lists.yoctoproject.org>
+> wrote:
+> > On second thought, maybe it's actually ok, and the bug is in devtool
+> > upgrade. I'll look into why it gets confused.
+>
+> For the record, devtool was never updated to handle S pointing to
+> inside UNPACKDIR properly, particularly here:
+>
+> meta/classes/devtool-source.bbclass
+>     if os.path.dirname(srcsubdir) !=3D workdir:
+>         # Handle if S is set to a subdirectory of the source
+>         srcsubdir =3D os.path.join(workdir, os.path.relpath(srcsubdir,
+> workdir).split(os.sep)[0])
+>
+> scripts/lib/devtool/standard.py
+> def get_real_srctree(srctree, s, workdir):
+>     # Check that recipe isn't using a shared workdir
+>     s =3D os.path.abspath(s)
+>     workdir =3D os.path.abspath(workdir)
+>     if s.startswith(workdir) and s !=3D workdir and os.path.dirname(s) !=
+=3D workdir:
+> ...
+>
+> I'll see if I can tweak them without too much pain.
+>
+> Alex
 
