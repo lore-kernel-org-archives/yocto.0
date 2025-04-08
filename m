@@ -1,42 +1,42 @@
-Return-Path: <proffesionaladdress2@duck.com>
+Return-Path: <ross.burton@arm.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id C2E29C3600C
-	for <webhook@archiver.kernel.org>; Tue,  8 Apr 2025 08:59:58 +0000 (UTC)
-Received: from smtp-outbound9.duck.com (smtp-outbound9.duck.com [20.67.221.12])
- by mx.groups.io with SMTP id smtpd.web10.70777.1744102791200617029
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 3737DC3600C
+	for <webhook@archiver.kernel.org>; Tue,  8 Apr 2025 09:48:09 +0000 (UTC)
+Received: from smtp-outbound5.duck.com (smtp-outbound5.duck.com [20.67.223.11])
+ by mx.groups.io with SMTP id smtpd.web10.70755.1744102707708919446
  for <yocto@lists.yoctoproject.org>;
- Tue, 08 Apr 2025 01:59:51 -0700
+ Tue, 08 Apr 2025 01:58:28 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@duck.com header.s=postal-KpyQVw header.b=ZFIhaJNL;
- spf=pass (domain: duck.com, ip: 20.67.221.12, mailfrom: proffesionaladdress2@duck.com)
+ dkim=pass header.i=@duck.com header.s=postal-KpyQVw header.b=VejP9QSt;
+ spf=pass (domain: duck.com, ip: 20.67.223.11, mailfrom: proffesionaladdress2@duck.com)
 References: <r40e.1743754517240171829.1oOU@lists.yoctoproject.org> <E63C2FBD-D303-4686-B29D-D8306CB27A80.1@smtp-inbound1.duck.com>
 Subject: warn if a variable is not used
 MIME-Version: 1.0
-Content-Type: multipart/alternative;
-	boundary="=_tk6s5mG6H1DZNNah/GUuYf_="
 X-Rspamd-Bar: -
 X-Rspamd-Report: DMARC_POLICY_ALLOW(-0.5) MIME_GOOD(-0.1) R_DKIM_ALLOW(-0.2) R_SPF_ALLOW(-0.2)
 X-Rspamd-Score: -1
 X-Rspamd-Action: no action
 To: yocto at lists yoctoproject org proffesionaladdress2 <yocto@lists.yoctoproject.org>
-Received: by smtp-inbound1.duck.com; Tue, 08 Apr 2025 04:59:49 -0400
-Message-ID: <DC0C7CC4-DC00-435D-AF68-749C79388DDD.1@smtp-inbound1.duck.com>
-Date: Tue, 08 Apr 2025 04:59:49 -0400
+Received: by smtp-inbound1.duck.com; Tue, 08 Apr 2025 04:58:26 -0400
+Message-ID: <9B190FE2-BD37-497B-8A02-5A474EF4FD62.1@smtp-inbound1.duck.com>
+Date: Tue, 08 Apr 2025 04:58:26 -0400
 From: proffesionaladdress2@duck.com
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=duck.com; h=From:
  Date: Message-ID: To: Content-Type: MIME-Version: Subject: References;
- q=dns/txt; s=postal-KpyQVw; t=1744102790;
+ q=dns/txt; s=postal-KpyQVw; t=1744102706;
  bh=dhcXm/Cr22sngp+dRITiYKvB+lfag9pMG8mZls/BjHw=;
- b=ZFIhaJNL0xehJR8uplMVkY7MxiE9xvEedCobqVdIdLLqeaaMVBr5ZqZiqL63q0rKBXcHW3EHj
- OFtUdaLsi6p2BVM0GmGp71ufKFwnG5EmwMjRH3LkQrq4IbM/hQ+yLfmZxqzqsmG5tFrvVIAGwOm
- jnMb8zTrcK8/hizDWfnmEHE=
+ b=VejP9QStLp67wFaIO4ceBGQZ5yXHmRfc8EqnqnmHNFWrOyQnhcZaM8/xazihMnARVRdorRFSO
+ zeFv+3UNlJ85h4GRR04XOinafgkLXZ686DsBSSho+3+kxzunsziXB5vhYaCyaQ4nJ9RmUuQPm7b
+ UDBtHmzItJH6zeF6i80VmRI=
+Content-Type: multipart/alternative;
+	boundary="=_tk6s5mG6H1DZNNah/GUuYf_="
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Tue, 08 Apr 2025 08:59:58 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/65116
+ <yocto@lists.yoctoproject.org>; Tue, 08 Apr 2025 09:48:09 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/65117
 
 --=_tk6s5mG6H1DZNNah/GUuYf_=
 Content-Type: text/plain;
