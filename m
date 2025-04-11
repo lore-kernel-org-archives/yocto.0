@@ -1,93 +1,83 @@
-Return-Path: <kanakshilledar111@protonmail.com>
+Return-Path: <philip.dawson@datapath.co.uk>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id D4701C36010
-	for <webhook@archiver.kernel.org>; Fri, 11 Apr 2025 09:35:49 +0000 (UTC)
-Received: from mail-43167.protonmail.ch (mail-43167.protonmail.ch [185.70.43.167])
- by mx.groups.io with SMTP id smtpd.web10.21827.1744364143567462033
- for <yocto@lists.yoctoproject.org>;
- Fri, 11 Apr 2025 02:35:43 -0700
-Authentication-Results: mx.groups.io;
- dkim=pass header.i=@protonmail.com header.s=protonmail3 header.b=UCjRHtaH;
- spf=pass (domain: protonmail.com, ip: 185.70.43.167, mailfrom: kanakshilledar111@protonmail.com)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=protonmail.com;
-	s=protonmail3; t=1744364141; x=1744623341;
-	bh=KMtB+2dDSiX+Pjg5OtMmLXwoTqvDBi4evFIx4X7mhL4=;
-	h=Date:To:From:Subject:Message-ID:Feedback-ID:From:To:Cc:Date:
-	 Subject:Reply-To:Feedback-ID:Message-ID:BIMI-Selector:
-	 List-Unsubscribe:List-Unsubscribe-Post;
-	b=UCjRHtaHbAQXtZxwq3OvMFPwUP7DIK6ox0gnOZQLNwtn5Y/WdFQWoy1fO+I9mlvtQ
-	 IUiIAvW5IJDsvJrGT1ziNkGODPgSv74MrPtOfb5yPeqxNvMuiRiHgK3L1FWW26mvxj
-	 RGKGoe7OKdusmY4qeF7P1o3lCZ4p4UAv12ghfS21pIMX7bxNE7BIUYu5WrfTYs9Rcm
-	 dC2B5Z09QF/g0Qytcf51P09TDC20ifJWFjdkbzLnwrTyjKj4lRQxM3BgD4Be1S+4fM
-	 Kq+XYSUeIFOWLMD/fd/6oKz4WLs2RfxhhgEYod/xoBUMVaqRLrXqDz+56P1/Aq5qAM
-	 cxh+BuGnRWTqg==
-Date: Fri, 11 Apr 2025 09:35:34 +0000
-To: "yocto@lists.yoctoproject.org" <yocto@lists.yoctoproject.org>
-From: Kanak Shilledar <kanakshilledar111@protonmail.com>
-Subject: Recipe fetches always the latest kernel while building
-Message-ID: <tKIHWnniqyKbGr3pmpXnMAtt19UwC1FoWVQjYEoP_OaMYYUju5C10Z2duqK18grooGwMrqGw0xeJdFRcHMBuftdCp84cApraC13a1TL7uYU=@protonmail.com>
-Feedback-ID: 26271244:user:proton
-X-Pm-Message-ID: 4560e85f47e70ce35c9132afaaf1cb027ff51aea
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 709EBC369A8
+	for <webhook@archiver.kernel.org>; Fri, 11 Apr 2025 10:48:50 +0000 (UTC)
+Subject: Re: [yocto] nativesdk-mesa do_configure fails with PACKAGECONFIG:append=" gallium gallium-llvm"
+To: "Gyorgy Sarvari" <skandigraun@gmail.com>, yocto@lists.yoctoproject.org
+From: philip.dawson@datapath.co.uk
+X-Originating-Location: Paddington, England, GB (212.69.51.233)
+X-Originating-Platform: Windows Firefox 137
+User-Agent: GROUPS.IO Web Poster
 MIME-Version: 1.0
-Content-Type: multipart/alternative;
- boundary="b1=_pXIm7Q1HzkbMd8n0wY7KgnwsCXLYr5ruAbEw3lcvQ"
+Date: Fri, 11 Apr 2025 03:48:42 -0700
+References: <e94223d8-84c3-450a-87c2-80719c252744@gmail.com>
+In-Reply-To: <e94223d8-84c3-450a-87c2-80719c252744@gmail.com>
+Message-ID: <2395.1744368522156524259@lists.yoctoproject.org>
+Content-Type: multipart/alternative; boundary="1rUDcF0zVZu8Glp3YBrc"
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Fri, 11 Apr 2025 09:35:49 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/65137
+ <yocto@lists.yoctoproject.org>; Fri, 11 Apr 2025 10:48:50 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/65138
 
---b1=_pXIm7Q1HzkbMd8n0wY7KgnwsCXLYr5ruAbEw3lcvQ
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: base64
+--1rUDcF0zVZu8Glp3YBrc
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
 
-SGksClRoZSBbbGludXgtYmVhZ2xldi1kZXYuYmJdKGh0dHBzOi8vZ2l0aHViLmNvbS9yaXNjdi9t
-ZXRhLXJpc2N2L2Jsb2IvbWFzdGVyL3JlY2lwZXMta2VybmVsL2xpbnV4L2xpbnV4LWJlYWdsZXYt
-ZGV2LmJiKSBhbHdheXMgZmV0Y2hlcyB0aGUgbGF0ZXN0IGtlcm5lbCBmcm9tIHRoZSBtYXN0ZXIg
-YnJhbmNoIGV2ZW4gYWZ0ZXIgc3BlY2lmeWluZyB0aGUgY29tbWl0IGhhc2guIElzIHRoZXJlIGFu
-eSB3YXkgdG8gZml4IHRoaXMgYmVoYXZpb3I/CgpTZWNvbmRseSwgdGhlIGBkb19iZWFnbGV2X2lt
-Z19kZXBsb3koKWAgdGFzayBpbiB0aGUgcmVjaXBlIGRvZXNuJ3QgcnVuIGF1dG9tYXRpY2FsbHku
-IEkgaGF2ZSB0byBtYW51YWxseSB0cmlnZ2VyIGl0IGJ5IHJ1bm5pbmcgYGJpdGJha2UgbGludXgt
-YmVhZ2xldi1kZXZgLiBUaGlzIHRhc2sgaXMgdXNlZCB0byBidWlsZCB0aGUgYm9vdCBwYXJ0aXRp
-b24gZm9yIHRoZSBib2FyZC4gSG93IHRvIHJlY3RpZnkgdGhpcyBpc3N1ZT8KClRoYW5rcyBhbmQg
-UmVnYXJkcywKS2FuYWsgU2hpbGxlZGFy
+As an update to this in case anyone comes looking here later,
 
---b1=_pXIm7Q1HzkbMd8n0wY7KgnwsCXLYr5ruAbEw3lcvQ
-Content-Type: text/html; charset=utf-8
-Content-Transfer-Encoding: base64
+I tested across branches kirkstone, langdale, mickledore, nanbield, scarthg=
+ap and only got the failing build in langdale.
+I couldn't get it to build by copying the do_install:class-native ( https:/=
+/web.git.yoctoproject.org/poky/tree/meta/recipes-devtools/llvm/llvm_git.bb?=
+id=3D8f41af0ee94e87b673aa75ee2ecb7cf5a43b0d3d&h=3Dlangdale#n124 ) as class-=
+nativesdk but this pointed me to a patch in mickledore: https://web.git.yoc=
+toproject.org/poky/commit/meta/recipes-devtools/llvm/llvm_git.bb?h=3Dmickle=
+dore&id=3D8cf1c4cd42cd632b68ab4195471d23d9188f2bcd this changes the do_inst=
+all:class-native to a do install:append:class-native so the library install=
+ation in do_install is also done for the native build so the libraries end =
+up in recipe-sysroot-native for llvm-config to find.
 
-PGRpdiBzdHlsZT0iZm9udC1mYW1pbHk6IEhlbHZldGljYSwgc2Fucy1zZXJpZjsgZm9udC1zaXpl
-OiAxNHB4OyBjb2xvcjogcmdiKDAsIDAsIDApOyBiYWNrZ3JvdW5kLWNvbG9yOiByZ2IoMjU1LCAy
-NTUsIDI1NSk7Ij5IaSw8YnI+VGhlIFtsaW51eC1iZWFnbGV2LWRldi5iYl0oPHNwYW4+PGEgdGFy
-Z2V0PSJfYmxhbmsiIHJlbD0ibm9yZWZlcnJlciBub2ZvbGxvdyBub29wZW5lciIgaHJlZj0iaHR0
-cHM6Ly9naXRodWIuY29tL3Jpc2N2L21ldGEtcmlzY3YvYmxvYi9tYXN0ZXIvcmVjaXBlcy1rZXJu
-ZWwvbGludXgvbGludXgtYmVhZ2xldi1kZXYuYmIiPmh0dHBzOi8vZ2l0aHViLmNvbS9yaXNjdi9t
-ZXRhLXJpc2N2L2Jsb2IvbWFzdGVyL3JlY2lwZXMta2VybmVsL2xpbnV4L2xpbnV4LWJlYWdsZXYt
-ZGV2LmJiPC9hPikgYWx3YXlzIGZldGNoZXMgdGhlIGxhdGVzdCBrZXJuZWwgZnJvbSB0aGUgbWFz
-dGVyIGJyYW5jaCBldmVuIGFmdGVyIHNwZWNpZnlpbmcgdGhlIGNvbW1pdCBoYXNoLiBJcyB0aGVy
-ZSBhbnkgd2F5IHRvIGZpeCB0aGlzIGJlaGF2aW9yPzwvc3Bhbj48L2Rpdj48ZGl2IHN0eWxlPSJm
-b250LWZhbWlseTogSGVsdmV0aWNhLCBzYW5zLXNlcmlmOyBmb250LXNpemU6IDE0cHg7IGNvbG9y
-OiByZ2IoMCwgMCwgMCk7IGJhY2tncm91bmQtY29sb3I6IHJnYigyNTUsIDI1NSwgMjU1KTsiPjxz
-cGFuPjxicj48L3NwYW4+PC9kaXY+PGRpdiBzdHlsZT0iZm9udC1mYW1pbHk6IEhlbHZldGljYSwg
-c2Fucy1zZXJpZjsgZm9udC1zaXplOiAxNHB4OyBjb2xvcjogcmdiKDAsIDAsIDApOyBiYWNrZ3Jv
-dW5kLWNvbG9yOiByZ2IoMjU1LCAyNTUsIDI1NSk7Ij48c3Bhbj5TZWNvbmRseSwgdGhlIGA8c3Bh
-bj5kb19iZWFnbGV2X2ltZ19kZXBsb3koKTwvc3Bhbj5gIHRhc2sgaW4gdGhlIHJlY2lwZSBkb2Vz
-bid0IHJ1biBhdXRvbWF0aWNhbGx5LiBJIGhhdmUgdG8gbWFudWFsbHkgdHJpZ2dlciBpdCBieSBy
-dW5uaW5nIGBiaXRiYWtlIGxpbnV4LWJlYWdsZXYtZGV2YC4gVGhpcyB0YXNrIGlzIHVzZWQgdG8g
-YnVpbGQgdGhlIGJvb3QgcGFydGl0aW9uIGZvciB0aGUgYm9hcmQuIEhvdyB0byByZWN0aWZ5IHRo
-aXMgaXNzdWU/PC9zcGFuPjwvZGl2PjxkaXYgc3R5bGU9ImZvbnQtZmFtaWx5OiBIZWx2ZXRpY2Es
-IHNhbnMtc2VyaWY7IGZvbnQtc2l6ZTogMTRweDsgY29sb3I6IHJnYigwLCAwLCAwKTsgYmFja2dy
-b3VuZC1jb2xvcjogcmdiKDI1NSwgMjU1LCAyNTUpOyI+PHNwYW4+PGJyPjwvc3Bhbj48L2Rpdj48
-ZGl2IHN0eWxlPSJmb250LWZhbWlseTogSGVsdmV0aWNhLCBzYW5zLXNlcmlmOyBmb250LXNpemU6
-IDE0cHg7IGNvbG9yOiByZ2IoMCwgMCwgMCk7IGJhY2tncm91bmQtY29sb3I6IHJnYigyNTUsIDI1
-NSwgMjU1KTsiPjxzcGFuPlRoYW5rcyBhbmQgUmVnYXJkcyw8L3NwYW4+PC9kaXY+PGRpdiBzdHls
-ZT0iZm9udC1mYW1pbHk6IEhlbHZldGljYSwgc2Fucy1zZXJpZjsgZm9udC1zaXplOiAxNHB4OyBj
-b2xvcjogcmdiKDAsIDAsIDApOyBiYWNrZ3JvdW5kLWNvbG9yOiByZ2IoMjU1LCAyNTUsIDI1NSk7
-Ij48c3Bhbj5LYW5hayBTaGlsbGVkYXI8L3NwYW4+PC9kaXY+
+I'm still not confident enough to say this is 100% the right answer but it =
+seems to work so will do for me for now!
 
+Thank you once again for your help.
 
---b1=_pXIm7Q1HzkbMd8n0wY7KgnwsCXLYr5ruAbEw3lcvQ--
+Best Regards,
+Phil
 
+--1rUDcF0zVZu8Glp3YBrc
+Content-Type: text/html; charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div>As an update to this in case anyone comes looking here later,</div>
+<div><br />I tested across branches kirkstone, langdale, mickledore, nanbie=
+ld, scarthgap and only got the failing build in langdale.</div>
+<div>I couldn't get it to build by copying the do_install:class-native (<a =
+href=3D"https://web.git.yoctoproject.org/poky/tree/meta/recipes-devtools/ll=
+vm/llvm_git.bb?id=3D8f41af0ee94e87b673aa75ee2ecb7cf5a43b0d3d&amp;h=3Dlangda=
+le#n124" target=3D"_blank" rel=3D"noopener">https://web.git.yoctoproject.or=
+g/poky/tree/meta/recipes-devtools/llvm/llvm_git.bb?id=3D8f41af0ee94e87b673a=
+a75ee2ecb7cf5a43b0d3d&amp;h=3Dlangdale#n124</a>) as class-nativesdk but thi=
+s pointed me to a patch in mickledore: <a href=3D"https://web.git.yoctoproj=
+ect.org/poky/commit/meta/recipes-devtools/llvm/llvm_git.bb?h=3Dmickledore&a=
+mp;id=3D8cf1c4cd42cd632b68ab4195471d23d9188f2bcd" target=3D"_blank" rel=3D"=
+noopener">https://web.git.yoctoproject.org/poky/commit/meta/recipes-devtool=
+s/llvm/llvm_git.bb?h=3Dmickledore&amp;id=3D8cf1c4cd42cd632b68ab4195471d23d9=
+188f2bcd</a> this changes the do_install:class-native to a do install:appen=
+d:class-native so the library installation in do_install is also done for t=
+he native build so the libraries end up in recipe-sysroot-native for llvm-c=
+onfig to find.</div>
+<div>&nbsp;</div>
+<div>I'm still not confident enough to say this is 100% the right answer bu=
+t it seems to work so will do for me for now!</div>
+<div>&nbsp;</div>
+<div>Thank you once again for your help.</div>
+<div>&nbsp;</div>
+<div>Best Regards,</div>
+<div>Phil</div>
+
+--1rUDcF0zVZu8Glp3YBrc--
 
