@@ -1,110 +1,107 @@
-Return-Path: <skandigraun@gmail.com>
+Return-Path: <raj.khem@gmail.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 0AC35C369A1
-	for <webhook@archiver.kernel.org>; Sat, 12 Apr 2025 06:57:36 +0000 (UTC)
-Received: from mail-ed1-f49.google.com (mail-ed1-f49.google.com [209.85.208.49])
- by mx.groups.io with SMTP id smtpd.web10.6030.1744441050434253411
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 17F8FC369A1
+	for <webhook@archiver.kernel.org>; Sat, 12 Apr 2025 07:07:06 +0000 (UTC)
+Received: from mail-oo1-f52.google.com (mail-oo1-f52.google.com [209.85.161.52])
+ by mx.groups.io with SMTP id smtpd.web11.6086.1744441621094242449
  for <yocto@lists.yoctoproject.org>;
- Fri, 11 Apr 2025 23:57:30 -0700
+ Sat, 12 Apr 2025 00:07:01 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20230601 header.b=ebS/wMV6;
- spf=pass (domain: gmail.com, ip: 209.85.208.49, mailfrom: skandigraun@gmail.com)
-Received: by mail-ed1-f49.google.com with SMTP id 4fb4d7f45d1cf-5e5e0caa151so4512618a12.0
-        for <yocto@lists.yoctoproject.org>; Fri, 11 Apr 2025 23:57:30 -0700 (PDT)
+ dkim=pass header.i=@gmail.com header.s=20230601 header.b=ePNSQ4w4;
+ spf=pass (domain: gmail.com, ip: 209.85.161.52, mailfrom: raj.khem@gmail.com)
+Received: by mail-oo1-f52.google.com with SMTP id 006d021491bc7-6042c04fd18so1355817eaf.2
+        for <yocto@lists.yoctoproject.org>; Sat, 12 Apr 2025 00:07:00 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1744441048; x=1745045848; darn=lists.yoctoproject.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:to:subject:user-agent:mime-version:date:message-id:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=QXmr6OtoqZF1GYi6c9JO4UzlJ8z8kKhTZwGz7mHJSbI=;
-        b=ebS/wMV68mzpk5h3/5IbKR8WrYoe51liBq+2e+xZXhbRGvP3aZGjaLov+hNxCv+Fu7
-         rQJg1MBXJqEh0csNmfTSeVE+0YgDgMjDaLKpLOWC+mxoyd9a6upIUwCkxBpjp7Cxpxkh
-         Q0aywjro42ayPhjdA/X9KVExlBgbyEtBW2fJKuXoC4aagKdjEEIZkaGepSpmHDqiXSuF
-         mW6SoC2PMjJSAC3eU6nZOrk6pA4vwSd+iM1ODBr1dBFada0o5XEUBaNPfl5T/0HjE6Uy
-         RJeHuozOtz5kLSa7MOQhxNZiJTvs99Vkd9IpCI9MU2fKhBf9fu3jtlpQBp9BSCaEko+D
-         r2eg==
+        d=gmail.com; s=20230601; t=1744441620; x=1745046420; darn=lists.yoctoproject.org;
+        h=content-transfer-encoding:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=f+vwlD24L+xT4XcCUt/GPN4KwpBAyd5ZqqhaHcHRl6k=;
+        b=ePNSQ4w4cPffb3EFAQQwRNpweDhHqsaVaubDtGOu3pAmeMZQRBcN8xW50DN/1CfdpO
+         ZkGOdAFRy2oG2otElVnVYDUQvBkAJRTc0GYJ3TcMU8btvqVRpkWrgrPJ/BdPfYNcyTpg
+         TgJ8xhxP5Bdq+jGfi6cE3dWFmKbGKNNiTLqSEpSG6uTPibpGsft0j/PC4R/rSOd3bnuS
+         t0oWec+ogAJaZ4Ga+sb6JlRi6gKUgd6K0o2JW258WrUO+gX34S43Y1KKVJfWForH9lQf
+         M9Vfpro7vmdpXLUSG6qKIvoZHrrDaKX482X/c1TIZlxQNmIO1pZQ//ZFSOW8mSUL5EEX
+         tEdQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1744441048; x=1745045848;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=QXmr6OtoqZF1GYi6c9JO4UzlJ8z8kKhTZwGz7mHJSbI=;
-        b=JEtaV4PC2hQ75fTm4OwrROBqthdrNaIcnlQYYeZ46+ROvOTQitTU9e4KC73BmJzb6P
-         k/thEFbyp6kQJazI9BCVB36TWa5YfRykYwVTnKW0ZMJ+yr4kOsyH6Vk5wkbshEan6MUu
-         I6Ex7rOLRJKaixTcn58OMFsdJpgOCDIhtJ1k1ARHQDv52AI9a2GhegJ88mbgGywAUmKA
-         Jcvg4PmrBLANZnKzcwEIrIx4CZivDUi768X7BbfhWIVZApfsTlr3TQK/KODmrgzkrBFo
-         jFldONkyOpdiPqGP56ZqcuOQ5KtAFXrsMevteDJ9jTVUUgnapJ5gCe1Mxv+FsB6CFz/v
-         bOIw==
-X-Gm-Message-State: AOJu0YwzUWu8KZJMk8MlP/9vSjSxD6QHmCGl8xlYMpIR/dh5ds9l1928
-	1udApHx3zZvrWe8UA46tIoxH5I8Sh7mPj7X5/Uk5R+2baeqKlDEP8fYIWQ==
-X-Gm-Gg: ASbGncvsYPAuy4P1CPMOSuL7cLlJ24EWK7VmECRwjiaHJz3hDfewHuOJBOgzGAZPFtO
-	xqRkqNxpnrh4NPbHOlOIEWvTQ2dliAgHvO0uPGDEUj4isO1ZsBfIPGxk/BupfPwrFAu4rY4btFm
-	YeJfIrWaToR7uDiTJ3RkzWLijTVxXyOjvwF4GqiU0r+nauMC210c2JoWEazfOzonv5cKZVpzm6Z
-	ut9mkGpd91j2VqeqFV4o+rrjN5tZ2mBXAxuJpWn5y3TjQYV2e+zGmgd2XuyFOtPcdGZ2JSuBC27
-	G5YSyFZ66Ez9zeuWNcR63BvpifsAgnIQVuareY8xr2aRE3Bh
-X-Google-Smtp-Source: AGHT+IH7eoKodF401GeIgMgsAc7RFyg7kPcLqzeaG3XfRuP6+8L9NTylqGweYdK400ONtAq5wvoBKg==
-X-Received: by 2002:a17:906:c107:b0:ac7:3916:327d with SMTP id a640c23a62f3a-acad36dca0amr415802966b.60.1744441048105;
-        Fri, 11 Apr 2025 23:57:28 -0700 (PDT)
-Received: from [192.168.1.106] ([51.154.145.205])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-acaa1cb422asm555165866b.115.2025.04.11.23.57.27
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 11 Apr 2025 23:57:27 -0700 (PDT)
-Message-ID: <4c7b6a13-6bee-40ba-b3ca-8479e35437a5@gmail.com>
-Date: Sat, 12 Apr 2025 08:57:26 +0200
+        d=1e100.net; s=20230601; t=1744441620; x=1745046420;
+        h=content-transfer-encoding:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=f+vwlD24L+xT4XcCUt/GPN4KwpBAyd5ZqqhaHcHRl6k=;
+        b=lvJHg9bdWCsknPBR82rX7w7vOdooVN8UxR/fZthML3tZu7jLbeY6o7rNN8QZV2m98S
+         uWQ39r4VvzwO2K74+YMZmqK370C03n2vv3Sr2KpjJWLSdIwSpR6/bJSlB9fbdbeJM8Jg
+         UFYREJqwN7zBVvbDjqnH/WtX7gKeI275/N5e5Z5nLs5oIsWWZ2cBPNbbw1K/ofoXy8ue
+         EiQ9qiVA9h4+9AhgLP6HZfyfxucqpurVTF119ixQVWXWfub3yVRSmEEjnkw73+mi4AhA
+         dVvUg6rBLzP1nhPVxlez7BRVE4TEL+8pFxxIpi0DvoKw0WVmUkJN/QUWED+yi4C3xuBQ
+         ZplQ==
+X-Gm-Message-State: AOJu0YxZDqUkN1cdWsQfQdQA13UXjaqvT96QAnwZnHptVV1HPCavsauk
+	nNWZ2cDZPWjdjjo+Apvwa7/USc4Or/g+UYA+UxnxfN2f9V4QdUW+coY+E9TYXAbYC1gH9hzVXbH
+	uKCnJLk6MWAkMS6l9vqJIXp5U8PWVQnXg
+X-Gm-Gg: ASbGnctWaLIzDshvioOFJfXjCWO4Lxdkj3e6hsuju2PvZKw20OmlXwR2/MqS2vWfGxH
+	voOjqdX36zqod5vdZdL9uNlQbT7rWeTcgBdgU7jvV7WG2GXoMv/Hbk5Wp7siujXPmpQBN/AWUIa
+	urTDJRcXbgBtSDTa+yIvBzEw==
+X-Google-Smtp-Source: AGHT+IE6+KoC48u035KgqBCKUTEy6TrtEyPhis42RjnN+bRgbNrFlgV5Y/Sk276Ur7pPEFbehW7Sk5BPyB8Hb1/ct/E=
+X-Received: by 2002:a4a:c183:0:b0:604:710a:1955 with SMTP id
+ 006d021491bc7-604710a196bmr1865986eaf.0.1744441619778; Sat, 12 Apr 2025
+ 00:06:59 -0700 (PDT)
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [yocto] A new member
-To: yocto@lists.yoctoproject.org, nguyenthaithuanalg@gmail.com,
- Alexander Kanavin <alex.kanavin@gmail.com>
-References: <CANNYZj_ByYJvDTLYgwiia1Krezaj8wq=tEKWnZ=A8Q=RZGj2eQ@mail.gmail.com>
- <31887.1744428532602150053@lists.yoctoproject.org>
-Content-Language: en-US
-From: Gyorgy Sarvari <skandigraun@gmail.com>
-In-Reply-To: <31887.1744428532602150053@lists.yoctoproject.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+References: <20250412055805.3647089-1-jan.vermaete@gmail.com>
+In-Reply-To: <20250412055805.3647089-1-jan.vermaete@gmail.com>
+From: Khem Raj <raj.khem@gmail.com>
+Date: Sat, 12 Apr 2025 00:06:33 -0700
+X-Gm-Features: ATxdqUGhAAYOkCdDebo7LSMO-EcVBqvhPk9rl0sfVyeO6hFEqQ58EeNYijGSDCI
+Message-ID: <CAMKF1spG9PK5d44cfwfzk+71edj87mqPCZMSOjSceJCp5ZMLXg@mail.gmail.com>
+Subject: Re: [yocto] [meta-raspberrypi][PATCH] doc: added raspberrypi5 to the
+ list of supported machines
+To: yocto@lists.yoctoproject.org, jan.vermaete@gmail.com
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Sat, 12 Apr 2025 06:57:36 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/65150
+ <yocto@lists.yoctoproject.org>; Sat, 12 Apr 2025 07:07:06 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/65151
 
-It is not a good idea to hijack other, unrelated discussions - please
-keep the issues in their own threads.
-
-This is a voluntary mailing list, definitely not real time and people
-are answering request in their free time, and having to wait a day or
-even more is expected, especially at weekends.
-
-Quentin has sent you a link with useful info about contributing, please
-go through it. It is mentioned in it that new contributions should be
-based on the master branch (not Scarthgap, nor other branches. Releases
-are for end-users, master branch is for development). Release branches
-don't accept new recipes, only bug- and security fixes.
-
-In the readme of the layer it is also explained how it accepts
-contributions: preferably send a mail with your patch to the relevant
-mailing list with git send-email (even the command is mentioned there),
-or open a Github Pull Request.
-
-On 4/12/25 05:28, Thuận Nguyễn-Thái via lists.yoctoproject.org wrote:
-> Thank  Alex, Gyorgy,
-> Now I added a recipe:
-> https://github.com/thuanalg/meta-openembedded/tree/scarthgap/meta-oe/recipes-libsimplelog/libsimplelog,
-> and verify of building on my local PC.
-> What should I do next? So sorry if it disturbs you, but I am new one
-> the many thing is strange/new with me.
-> Best regards,
-> Thuan Nguyen Thai
+On Fri, Apr 11, 2025 at 10:58=E2=80=AFPM Jan Vermaete via
+lists.yoctoproject.org <jan.vermaete=3Dgmail.com@lists.yoctoproject.org>
+wrote:
 >
-> -=-=-=-=-=-=-=-=-=-=-=-
+> Signed-off-by: Jan Vermaete <jan.vermaete@gmail.com>
+> ---
+>  docs/layer-contents.md | 1 +
+>  1 file changed, 1 insertion(+)
+>
+> diff --git a/docs/layer-contents.md b/docs/layer-contents.md
+> index 3882339..78d66e3 100644
+> --- a/docs/layer-contents.md
+> +++ b/docs/layer-contents.md
+> @@ -11,6 +11,7 @@
+>  * raspberrypi3-64 (64 bit kernel & userspace)
+>  * raspberrypi4
+>  * raspberrypi4-64 (64 bit kernel & userspace)
+> +* raspberrypi5
+>  * raspberrypi-cm (dummy alias for raspberrypi)
+>  * raspberrypi-cm3
+>
+
+Looks ok. You should create a PR on github
+
+> --
+> 2.39.5
+>
+>
+> -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
 > Links: You receive all messages sent to this group.
-> View/Reply Online (#65146): https://lists.yoctoproject.org/g/yocto/message/65146
-> Mute This Topic: https://lists.yoctoproject.org/mt/112169356/6084445
+> You automatically follow any topics you start or reply to.
+> View/Reply Online (#65148): https://lists.yoctoproject.org/g/yocto/messag=
+e/65148
+> Mute This Topic: https://lists.yoctoproject.org/mt/112223350/1997914
 > Group Owner: yocto+owner@lists.yoctoproject.org
-> Unsubscribe: https://lists.yoctoproject.org/g/yocto/unsub [skandigraun@gmail.com]
-> -=-=-=-=-=-=-=-=-=-=-=-
+> Unsubscribe: https://lists.yoctoproject.org/g/yocto/unsub [raj.khem@gmail=
+.com]
+> -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
 >
 
