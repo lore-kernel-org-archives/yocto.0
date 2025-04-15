@@ -1,100 +1,82 @@
-Return-Path: <ross.burton@arm.com>
+Return-Path: <kanakshilledar111@protonmail.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 58918C369B4
-	for <webhook@archiver.kernel.org>; Tue, 15 Apr 2025 14:38:19 +0000 (UTC)
-Received: from mail-ej1-f54.google.com (mail-ej1-f54.google.com [209.85.218.54])
- by mx.groups.io with SMTP id smtpd.web11.21538.1744727235347510254
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 4AA70C369AB
+	for <webhook@archiver.kernel.org>; Tue, 15 Apr 2025 14:43:59 +0000 (UTC)
+Received: from mail-24429.protonmail.ch (mail-24429.protonmail.ch [109.224.244.29])
+ by mx.groups.io with SMTP id smtpd.web11.21975.1744728233751101640
  for <yocto@lists.yoctoproject.org>;
- Tue, 15 Apr 2025 07:27:15 -0700
+ Tue, 15 Apr 2025 07:43:54 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20230601 header.b=Z7HCLazr;
- spf=pass (domain: gmail.com, ip: 209.85.218.54, mailfrom: kasper.sloth99@gmail.com)
-Received: by mail-ej1-f54.google.com with SMTP id a640c23a62f3a-ac73723b2d5so1120719266b.3
-        for <yocto@lists.yoctoproject.org>; Tue, 15 Apr 2025 07:27:15 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1744727234; x=1745332034; darn=lists.yoctoproject.org;
-        h=to:in-reply-to:cc:references:message-id:date:subject:mime-version
-         :content-transfer-encoding:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=2ByrUfem+QCiE1nhb+zg7svqIQ47rQlVIdhX/uHvodE=;
-        b=Z7HCLazrUOYdFvB5MAwd4NJapHrSgaZI3vCJ90zKRhQaQ1/zGk29rUvkPffmpF2Da8
-         yi3jqTEw/X5c8CNqL35m2WuFdKOJTvrw8+bPPhL7DYd+XuhejNpobFU74QV+/28zFoSX
-         gsoCrTZYlTWBjFZrjC/K7FSy655kZVlcaAq33G6ASdFeqoiGczSGvHRDDy7G9CdnoQr6
-         7z4QPf6Ag7h+JlSuP6yNEdt9ZcI19IPTcaRPGoull06ef4f6A73iD4Xl85DXaGv8+L5E
-         m51YWzJe94olfR6sCHT+eUt8k/c8fmGZon3RpnQIX+uminHf3Hl1w71vZD+aJZ7HQKUp
-         uD/Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1744727234; x=1745332034;
-        h=to:in-reply-to:cc:references:message-id:date:subject:mime-version
-         :content-transfer-encoding:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=2ByrUfem+QCiE1nhb+zg7svqIQ47rQlVIdhX/uHvodE=;
-        b=BYH4qMieFJZ4TWpnmpMT2bBCXcEiepkRM4bMhgPfZZw8FwAyH17ISVKASx0dprh0Ih
-         LWjE/ELtsBhZwR9f5TBJ3Stdajezyxhlpa78sJn39wm+QIsyOKl4kaEM/dQ6t0HvfKwo
-         EhhXx7LpmXLQA01YIZxDXqn18cu83iy24k80TjFr8W3mC6bN/80dJ0Ts7dbuEf8LRMiq
-         zYBX0hvWDep6LgXcdDMR1iJ0K5Oo4L1WjXX7B67ERazrWPCHGCzw376s+nnEcg2IJTiC
-         CqIeYupYrq3I/n66M7CDeDSyRidbKExI9xgM5Rs4vaci017gAR0JqBljQWWLDG4yYum1
-         7sKA==
-X-Forwarded-Encrypted: i=1; AJvYcCXjkfIAzUt1BCcOQ4rOUt/uYU3J44OhhVQxgxhxs9AMEaNsONfGHpf0g+zNBue5qrC8kO8l0g==@lists.yoctoproject.org
-X-Gm-Message-State: AOJu0YxiElctWyuXNqOj6wE6+qrw1bz7fKr2+PxxzNiMEa/moPwUg2PE
-	ORytPZODsoinP0dRGax/R0yLa1KOA0Zubthho806Oaqgl6MfN6a+
-X-Gm-Gg: ASbGncsE8dpmsgySH8yVl2ysFQ9faI3IdzBbCJ3BXmizyLAQEXaexPXzsQYONowRNx9
-	qlZ5+mC+5peYAO91IMKYf9sdJEBCGCvdPj1bcZJoBJ+tzBl44h0yq9TXpgJck6AdELIr1l+cTYV
-	Hjr5Q8ILdHTTbkLgbQcuXPVSkzSfKcFxXt6q5/OYjv9ZvMTKohq7enU0/hHudOz5DGjlKUxRsiL
-	lkF1Kwt2SZXsI1OB807pf82eFfq9jqynOl7bd7lI8r62S2HtSm4IAm6zuGxCor8OokcX73VPXB+
-	aT95G9h+ig4rokbIpsAElY7x378qL4+o7KUXgE46ONZ9/XruoQX4MZLTwTu1hw==
-X-Google-Smtp-Source: AGHT+IETezb9cx7RBDzfU6VZoCPdxQ0E5MgQSeqdla4wpvOhScH3k215M32azZ6IJ8e0cVgpO3HQFQ==
-X-Received: by 2002:a17:906:730d:b0:ac8:1cf7:7aa7 with SMTP id a640c23a62f3a-acad348ddb8mr1558334566b.15.1744727233490;
-        Tue, 15 Apr 2025 07:27:13 -0700 (PDT)
-Received: from smtpclient.apple ([37.96.90.214])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-acaa1be9c27sm1115104166b.68.2025.04.15.07.27.12
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 15 Apr 2025 07:27:12 -0700 (PDT)
-From: kasper.sloth99@gmail.com
-X-Google-Original-From: Kasper Sloth <Kasper.Sloth99@gmail.com>
-Mime-Version: 1.0 (1.0)
-Subject: Re: [yocto] sdktest.bbclass does not find custom sdk tests
-Date: Tue, 15 Apr 2025 16:27:01 +0200
-Message-Id: <C55E1981-0449-42C4-AFB0-85D121496CFB@gmail.com>
-References: <60eb4d60-1462-4fef-8939-5fda25f6e0bc@gmail.com>
-Cc: Ross Burton <Ross.Burton@arm.com>, yocto@lists.yoctoproject.org
-In-Reply-To: <60eb4d60-1462-4fef-8939-5fda25f6e0bc@gmail.com>
+ dkim=pass header.i=@protonmail.com header.s=protonmail3 header.b=D/kj0Nm1;
+ spf=pass (domain: protonmail.com, ip: 109.224.244.29, mailfrom: kanakshilledar111@protonmail.com)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=protonmail.com;
+	s=protonmail3; t=1744728231; x=1744987431;
+	bh=BuRxUA5u+DLfcgiXJKHDm6OvcgAqFgKt3bS7ZjU0PPc=;
+	h=Date:To:From:Cc:Subject:Message-ID:In-Reply-To:References:
+	 Feedback-ID:From:To:Cc:Date:Subject:Reply-To:Feedback-ID:
+	 Message-ID:BIMI-Selector:List-Unsubscribe:List-Unsubscribe-Post;
+	b=D/kj0Nm1BiFncWym3lMJY7+dNZyTZweN8Nxbuu0gvDghX+rzdpObDDlBrFpkdI+Uy
+	 R0TmxI3nqVlKFSQK9OGuBRcjPKY8FKyb3jcYIt+ucyXyq2kru1C/taSY0hDbIjxG+n
+	 2hjsh2MjW0+lOk94SjW/Hfd44gxTh1739I8hemecT5bI6SPRv0SvYAVGKmGlG9AJdo
+	 VCBJcd9bpW3kMAd53e7JGMZS7WA0oJ+eeEAUGjKiy+TR6TQTk9FHw7EYd4zLpzFAaY
+	 turTSx5oQ8FOLpLnG1xz8FTx69N4VITgzfRWA+ZZUvnnKLqNnD0jrxq2Iniay0Tfkq
+	 FQ9bSjT9ZmSQQ==
+Date: Tue, 15 Apr 2025 14:43:47 +0000
 To: Gyorgy Sarvari <skandigraun@gmail.com>
-X-Mailer: iPhone Mail (21G93)
+From: Kanak Shilledar <kanakshilledar111@protonmail.com>
+Cc: yocto@lists.yoctoproject.org
+Subject: Re: [yocto] Recipe fetches always the latest kernel while building
+Message-ID: <9BneOrzm9SKaeYWYFSxdV9L_W9dZ4KIbJN8Z5s_EuSER2NdBN14Q23A2O4udE_qEx-GT5VNOpjjw7Rvc_ERUSsgVi1WO693Z2xaFdB6aYpQ=@protonmail.com>
+In-Reply-To: <f646cd7f-cb85-4da9-b346-a7d4ca0e9614@gmail.com>
+References: <tKIHWnniqyKbGr3pmpXnMAtt19UwC1FoWVQjYEoP_OaMYYUju5C10Z2duqK18grooGwMrqGw0xeJdFRcHMBuftdCp84cApraC13a1TL7uYU=@protonmail.com> <f646cd7f-cb85-4da9-b346-a7d4ca0e9614@gmail.com>
+Feedback-ID: 26271244:user:proton
+X-Pm-Message-ID: fc253d2dee6001aa1eb168d152ecb47556a23515
+MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: quoted-printable
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Tue, 15 Apr 2025 14:38:19 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/65173
+ <yocto@lists.yoctoproject.org>; Tue, 15 Apr 2025 14:43:59 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/65174
 
-It would be nice with a patch. Will you backport it to scarthgap?
+> > Secondly, the `do_beaglev_img_deploy()` task in the recipe doesn't run
+> > automatically. I have to manually trigger it by running `bitbake linux-=
+beaglev-dev`. This task is used to build the boot partition for
+> > the board. How to rectify this issue?
+>=20
+>=20
+> This task seems to be an extension of do_deploy. To make it behave like
+> do_deploy, it should be configured similarly to do_deploy[1].
+> Personally, however, instead of having a custom task for this, I would
+> just rename it to do_deploy:append(), and add 'do_deploy[depends] +=3D
+> "opensbi:do_deploy"' to the recipe.
+>=20
+> [1]:
+> https://web.git.yoctoproject.org/poky/tree/meta/classes-recipe/deploy.bbc=
+lass
 
-Kasper
+I tried your suggestion and I keep on getting stuck at the following error:
 
-> Den 15. apr. 2025 kl. 12.26 skrev Gyorgy Sarvari <skandigraun@gmail.com>:
->=20
-> =EF=BB=BFOn 4/15/25 11:29, Ross Burton wrote:
->>>> On 15 Apr 2025, at 08:28, Gyorgy Sarvari via lists.yoctoproject.org <sk=
-andigraun=3Dgmail.com@lists.yoctoproject.org> wrote:
->>>=20
->>> After having some sleep, the problem is still the same, but I realized
->>> that it can be solved much easier.
->>> Forget what I wrote in my previous email, and add the following to your
->>> image recipe[1]:
->> Whilst that works, I consider this a bug in testsdk.  If someone could fi=
-le a bug (or send a patch!) to unify the test case lookup then that would be=
- great.
->>=20
->> Ross
->=20
-> Yeah, it occurred to me also, just wasn't sure how well it would be
-> received considering that it took quite some time for someone to want it.
->=20
-> But with you altogether, that's 2 (at least). Will try to send a patch
-> in the afternoon.
->=20
+```
+| cp: cannot stat '/home/rapey/Documents/yocto-projects/poky/beaglev-ahead/=
+tmp/deploy/images/beaglev-ahead/th1520-beaglev-ahead.dtb': No such file or =
+directory
+| WARNING: exit code 1 from a shell command.
+ERROR: Task (/home/rapey/Documents/yocto-projects/poky/meta-riscv/recipes-k=
+ernel/linux/linux-beaglev-dev.bb:do_deploy) failed with exit code '1'
+```
+the similar one follows for the linux kernel Image as well.
+
+I investigated further, the DTB and kernel Image gets added after the do_de=
+ploy() task is finished. Just having do_deploy:append() is causing the
+"no such file or directory" errors. Is there any workaround for this issue?
+Having the custom function doesn't build the boot partition automatically, =
+I have to trigger it manually or atleast run the recipe again.
+
+Thanks and Regards,
+Kanak Shilledar
+
 
