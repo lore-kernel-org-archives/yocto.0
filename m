@@ -1,253 +1,351 @@
-Return-Path: <fabian.hanke@bosch.com>
+Return-Path: <sbarthelemy@aldebaran.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 5F46AC369B2
-	for <webhook@archiver.kernel.org>; Thu, 17 Apr 2025 11:14:57 +0000 (UTC)
-Received: from DUZPR83CU001.outbound.protection.outlook.com (DUZPR83CU001.outbound.protection.outlook.com [52.101.67.3])
- by mx.groups.io with SMTP id smtpd.web11.6162.1744888487785843655
+	by smtp.lore.kernel.org (Postfix) with ESMTP id A00D6C369CF
+	for <webhook@archiver.kernel.org>; Fri, 18 Apr 2025 08:19:25 +0000 (UTC)
+Received: from PR0P264CU014.outbound.protection.outlook.com (PR0P264CU014.outbound.protection.outlook.com [40.107.161.102])
+ by mx.groups.io with SMTP id smtpd.web11.7776.1744964357924617180
  for <yocto@lists.yoctoproject.org>;
- Thu, 17 Apr 2025 04:14:49 -0700
+ Fri, 18 Apr 2025 01:19:18 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@bosch.com header.s=selector1 header.b=uWJ8Bhr0;
- spf=pass (domain: bosch.com, ip: 52.101.67.3, mailfrom: fabian.hanke@bosch.com)
+ dkim=none (message not signed); spf=pass (domain: aldebaran.com, ip: 40.107.161.102, mailfrom: sbarthelemy@aldebaran.com)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=KscU4L3w0LRh5/SPCCYzP/X2DsPK3QVKDDi2U8QszLUgBLWGSYZkwdTwPas5RTnTxaPwHLuCGP8bySSEtXXdrF7GhbEyhx1c/LvxTMdPJvav7PIrx4y3YZb96YGcaIM8cTZSejm+RtLb6pqlwpqnFfj39TfbgdjlIeQxGtYlEfH+SowasJ5lqZX/P9ryTJfHE1tpuuaCrHDu48dNKWUIgT75H8Vi8kGRhb48ryc6yD5AA55HdwWyBiyhwc+v4bxzoyAxhHSe7AAQq+Y4t4V8eYnJx5QvAejQYuauD3H8KVC5IYjNejN1mhrkj5SZZhCokcn9TH/F9AeruLgSKeQ//g==
+ b=igO+y0o/tWzySKFznTqBZ83ekJKhyc6cv1Kx3TQCyKO3Q/iqgRBtspCB3VxfgD4mK5/otOvR6mocaglSWRu50y1LUx0Hk2FhU7bQk0L5mOeEcwUYpMK64sttSCBFfgZcxG6LQSj2vR0Q5fwoVBjcE0ORc3UmsWoah6cX+wvyVZx6c5m3WuN+AAdueSalAJ6ZJHnLaMd+PAwqrPgGI9J0pSCanYiuMPVx3m13qrllfbh7QYt4nevGIM36rhkv5XetpuoPOfgOYg8UNfjI1lGX5WhqI8fyE07uEYStPBsgiao0R8dPZp5biqGiX6nKjFka7THBZKVsCO/Dwb49hEE4aA==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=+CI/tauzRNxoX7mWkNaF/E/8MavvH/vT13m4HYeZ0N4=;
- b=ms4bRZBGMM+QFpaMti8/MzDdeCzydZOEjNyMf0jfVJieEr1hVhnwqgSY/krXNCoXSvcrUuBFqjTgbNRwnBScfwXZ0PRZmdU6ynkqMh9ntCNI8JOzF8TD+5lrU1lNHT99njCx1c8lrUAtr159/GGKvK2Prnk/ssV1FMbY3a6yt1vuV/A9oAFk5bmCV8r9j85xSSB+tzIVeW0Pw02X4htiod3thfMv+3ZIZLl6kVng1jgjEmMYFyrjgYqDuX25brkA+WCyBcoDgYJ4OVwNFRhgq+Y4bvHJ5per7T1Y8M/D74yU55bcNgwmf1OWhzVyXC06HW6RSH0jT+Ticu8DgCdIEA==
+ bh=bJDiauWai4SGPmpU4b0QYfg23BJ7V6qkNkdlvFiB95M=;
+ b=ZKFTfspjOOfdm8JrHTzMZEi9YTBkCBRR/jqCKksz90VEMyNKNvsqQEUmj8vmH2xBXvU2awAvx14RXHfxVBHIaKgE6fGJT4i21WYI7nbJvQM6KkUHaON42vwckPgoc+vLQ7KjTyMiPTj7lHsHgvwwqnmNJlQ9VOszdcZWMwK4Ypdhjoxd/mXWFNsuAdkAlDFZqzoyYomBfMcL15pstJ8pVkeAopzRi2WJjODuMdCQWvS2gE/lnHWZp1wcf9WpnxYEMFtogHlsrxm+RycFaT5eyIa2Qjw9dmqW7ixTMyBTpGVoEFF+kdRw7qltx9UInSOB7oy+Vz7YAp/CHh3hrLk6NA==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=bosch.com; dmarc=pass action=none header.from=bosch.com;
- dkim=pass header.d=bosch.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bosch.com;
- s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=+CI/tauzRNxoX7mWkNaF/E/8MavvH/vT13m4HYeZ0N4=;
- b=uWJ8Bhr0iKpOXJPUPuRazhiVxQwJFJVKTcib28NrgAgJ/6d7nJKEcf+myCz31I2KmJp0ktejrdRVxP5UPWJPz+AsCfoWnKF3FOBSd9fXoQowBnJHi7DjoDTI1WHPljEVq5IJrPtT1z2ouAFKyZd7ibEAT91ohh1QskiqlmvfoFuUOZdGGfP2XtRqkCzZISOCNnibEhiU7caSPwBvht+5ak+pJUsjWYUPRcDzRcwXKHiihuHh/uDZMswPbjv5uNl3aqi+deeZW0m1ryKcQnSv9DL/pa+hdqWraVzg83Bt20u7ZkvYRqCOguhq+a80D9+3N9uLsBvN8khGkFXfbTLijg==
-Received: from AM8PR10MB4625.EURPRD10.PROD.OUTLOOK.COM (2603:10a6:20b:356::18)
- by AM8PR10MB4081.EURPRD10.PROD.OUTLOOK.COM (2603:10a6:20b:1ca::7) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8606.33; Thu, 17 Apr
- 2025 11:14:45 +0000
-Received: from AM8PR10MB4625.EURPRD10.PROD.OUTLOOK.COM
- ([fe80::659c:52f4:cf5f:c5ba]) by AM8PR10MB4625.EURPRD10.PROD.OUTLOOK.COM
- ([fe80::659c:52f4:cf5f:c5ba%4]) with mapi id 15.20.8632.035; Thu, 17 Apr 2025
- 11:14:45 +0000
-From: "Hanke Fabian (DC/PAN-St)" <fabian.hanke@bosch.com>
-To: Richard Purdie <richard.purdie@linuxfoundation.org>,
-	"yocto@lists.yoctoproject.org" <yocto@lists.yoctoproject.org>,
-	"vinhtruong.huynh@stud.h-da.de" <vinhtruong.huynh@stud.h-da.de>
-Subject: RE: [yocto] GPL License Compliance - Automatically detect linking
- against GPL libraries
-Thread-Topic: [yocto] GPL License Compliance - Automatically detect linking
- against GPL libraries
-Thread-Index: AQHasnraGxtnFHUy2kSzfhf6ywFVYbGxX0h0gfhKnDA=
-Date: Thu, 17 Apr 2025 11:14:45 +0000
+ smtp.mailfrom=aldebaran.com; dmarc=pass action=none
+ header.from=aldebaran.com; dkim=pass header.d=aldebaran.com; arc=none
+Received: from MRZP264MB2072.FRAP264.PROD.OUTLOOK.COM (2603:10a6:501:d::24) by
+ MR1P264MB2754.FRAP264.PROD.OUTLOOK.COM (2603:10a6:501:37::17) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.8655.26; Fri, 18 Apr 2025 08:19:13 +0000
+Received: from MRZP264MB2072.FRAP264.PROD.OUTLOOK.COM
+ ([fe80::d7bf:9ad7:b035:d61c]) by MRZP264MB2072.FRAP264.PROD.OUTLOOK.COM
+ ([fe80::d7bf:9ad7:b035:d61c%5]) with mapi id 15.20.8655.027; Fri, 18 Apr 2025
+ 08:19:13 +0000
+From: Sebastien BARTHELEMY | Aldebaran <sbarthelemy@aldebaran.com>
+To: "yocto@lists.yoctoproject.org" <yocto@lists.yoctoproject.org>
+Subject: sharing shared-state cache between OEBasicHash/OEEquivHash users
+Thread-Topic: sharing shared-state cache between OEBasicHash/OEEquivHash users
+Thread-Index: AQHbsC/9ecRAlC7ETUmxaWH/2DrT+Q==
+Date: Fri, 18 Apr 2025 08:19:13 +0000
 Message-ID: 
- <AM8PR10MB4625642EA199728C718B868BABBC2@AM8PR10MB4625.EURPRD10.PROD.OUTLOOK.COM>
-References: <1572b957-1e36-442b-885f-a4d575afcca2@denx.de>
-	 <918.1717162801361364915@lists.yoctoproject.org>
- <a738afa77c76f1214e8cee06f3915931d7b13589.camel@linuxfoundation.org>
-In-Reply-To: 
- <a738afa77c76f1214e8cee06f3915931d7b13589.camel@linuxfoundation.org>
+ <MRZP264MB2072F57ED0D5A64361708F5DA1BF2@MRZP264MB2072.FRAP264.PROD.OUTLOOK.COM>
 Accept-Language: en-US
 Content-Language: en-US
-X-Mentions: vinhtruong.huynh@stud.h-da.de
 X-MS-Has-Attach: 
 X-MS-TNEF-Correlator: 
+msip_labels: 
 authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=bosch.com;
-x-ms-exchange-messagesentrepresentingtype: 1
+ header.d=none;dmarc=none action=none header.from=aldebaran.com;
 x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: AM8PR10MB4625:EE_|AM8PR10MB4081:EE_
-x-ms-office365-filtering-correlation-id: 4908b6b2-bab2-4720-69a2-08dd7da10efb
+x-ms-traffictypediagnostic: MRZP264MB2072:EE_|MR1P264MB2754:EE_
+x-ms-office365-filtering-correlation-id: 22f64050-1f1a-4e44-a58f-08dd7e51b41f
 x-ms-exchange-senderadcheck: 1
 x-ms-exchange-antispam-relay: 0
 x-microsoft-antispam: 
- BCL:0;ARA:13230040|376014|366016|1800799024|13003099007|38070700018;
+ BCL:0;ARA:13230040|366016|1800799024|376014|8096899003|13003099007|38070700018;
 x-microsoft-antispam-message-info: 
- =?iso-8859-1?Q?f1PYJwTi9U497viOc+d7tBP+4RuqFxC1ttWUZIzdcIazTht2snOWbWqTa9?=
- =?iso-8859-1?Q?ITX1a/TCxYat0DbzwraN3jFbDlwAvrDm7hOWrWdZP3hU4YnfCU2W7yBiX7?=
- =?iso-8859-1?Q?l+tkEZKo/ePfFr5XWz5pk+6QHgmYXB46m7mfssBTA/3MBPH70QrCR6f0c6?=
- =?iso-8859-1?Q?HAGZ4yQcp5t1Jf8ZnEiyL2/7xCC5hgEo/U3kmaWkFeiz/1fAt/ku/qzX8w?=
- =?iso-8859-1?Q?AiBesR7zoIj85+6nsIwer+0O97MqF070dqIWXNCriZ3PNNOgLgupSJC8f5?=
- =?iso-8859-1?Q?VwUsFkEruhVnJWUWRG+FzauMw28IIjWbA/FPNqcLon596Otl6z2InsYc/p?=
- =?iso-8859-1?Q?a1t01+vylu/i18SlYAAfH9tFaU2a+Y7FY0XSDGX40/zePjaNTydBYmzakm?=
- =?iso-8859-1?Q?pPeYBSMvXbE8qPQM1PYV2kzTOZf0Qs3oDKp4+BTQHfWeyDp309eMS5g0LK?=
- =?iso-8859-1?Q?H9/6/HvZ1oHkNtu0stsxvbqk2HSGvJMGYJgQvInsqJg9OlfgZXcKk2O7B+?=
- =?iso-8859-1?Q?pzJzfSIgq9d2mAMZ1/HLviAeY+mqjWa2K/ToDTUhRMbwJqSmpVzZiITt05?=
- =?iso-8859-1?Q?3+CDy3H0qyhc1ze3J8/dwOUPpkkWISiZ8PGxLpNmq4H6DY2ORlSQy/mrg1?=
- =?iso-8859-1?Q?/Ay4O27cRwKL17/qSU+GU92NN7HLefX+26JBCUcFCpus8p5GEGnxyF34+M?=
- =?iso-8859-1?Q?21fcPo0NUvBATfMdJYBV8spW7neLRNgl+suwCCHH/uhKX6nUNY5o972gWl?=
- =?iso-8859-1?Q?U3UEdY7yeceh/toFSIWzp7NXWkYPckLWW2A4anDsjqaCxK5raWK7DY/K3J?=
- =?iso-8859-1?Q?VUwtL/HXWvuCYQNu5M4kpTJfRtvho996jlXfxuokZjRGzN0qyZyrr+Jyv3?=
- =?iso-8859-1?Q?nAb3401jFpTuGKCa5Nft5AAzilWaiI2dunIvkNvXup+wfEqLUgGWmhT7DT?=
- =?iso-8859-1?Q?3I4czMPd087d4JPCGtNG9m2+tIuI3OFygg05BtQuSvSxSiBBDMxXBsoeaJ?=
- =?iso-8859-1?Q?blZogN0OLq48plbKcy8fx/ufP2uIsH53lYAtDiNDoVx0GGF+NTE9nv/lPY?=
- =?iso-8859-1?Q?xAX/Q2DJul1nQH7QJlyyubKjnQ1FKH7cIurdV9z6LDFNS5ZZeTO/ZYgbAM?=
- =?iso-8859-1?Q?+PTf8vJfCbH4uqbrXgUOmow03amfvuiehI3Dg14t26YoEPgaD4TGKgZ6TX?=
- =?iso-8859-1?Q?fL5T3DSVgFtIvzC+VG1+5Ic0bDRx1sdbVUpH0WE79zhHG7Zn+UPK2X2E83?=
- =?iso-8859-1?Q?TUh3jVSFTPs84J6kWxzJU+3az6FcGQQ8Epiu3XlAo5m3DyB1k5pIZrEDv0?=
- =?iso-8859-1?Q?6PY9GlC16wqC65gxEIc68egNpIvSmCpwac/yZRMppTE7azsQpwEtsUCvB9?=
- =?iso-8859-1?Q?nvwM4hoxH6PKMHedUcIHImL5cv9MC8q3dqTl98eyeRgIcyLL5aPYCvLxmq?=
- =?iso-8859-1?Q?VNtVUwkEa0urq8v1hyKhUDoUp4oZ1RgIFp68DHuLNdQRmpXM6/cdtnIcKA?=
- =?iso-8859-1?Q?o=3D?=
+ =?iso-8859-1?Q?zynaKFRa/yBTP0qj1dx9Rgl3X9VgS7KK7dS00nEhvNXNsW+6LCWhbMF/fu?=
+ =?iso-8859-1?Q?QIGZWR54NrZ6EBak1uZ+AzwS94eFGa02JF9jJ/eMvZarQLNz+cKISXoVbY?=
+ =?iso-8859-1?Q?amkXKNdqr8qhRT359Mo5HpdoPiSE5ONNSFF1P7I6utRPneASMHfAaQnpVk?=
+ =?iso-8859-1?Q?3rC6/kmFhmNSfjrYB7gAlAPUbrW98mtl+Ja4GE4r1WHg7UgsLMSbpLa6e9?=
+ =?iso-8859-1?Q?lFz0/Dy9PzHs7CGrkxTiOr7RF59lLKG3hc9/ZL7hztOiGf1zTGiK8TalWu?=
+ =?iso-8859-1?Q?GuLYrpfERMdvu1Wn3w21f5u/KgpjUFyxynq3ImifuGRHKWqjM3VPnDgD2O?=
+ =?iso-8859-1?Q?h7hyFOwPMB9Ux+f3eEbczNcm8/+ST/9YvvvPJ3bWoIAukY0AQVLEBq01M2?=
+ =?iso-8859-1?Q?HYYHkQxGSUjuzyXioYzviEEDB7hqG9fQL7TIfhRBNYMWmIieKKEHf5FEHQ?=
+ =?iso-8859-1?Q?j6e6/OtbLqPWkT3e/1lC2ARxP8V06csCSQh/l1y3WPP8zLE+H95aRA3lL6?=
+ =?iso-8859-1?Q?zrCfmSjdX93p/xF7cR0yaeYxU3hNiy0Jp489t1bqd1qRcZIMAckLuhm8gc?=
+ =?iso-8859-1?Q?5JXlSJDTxvgpV/14Apu3dxsWiC3+CxLMt/y5HGjbXBXq04MklGB39muLdY?=
+ =?iso-8859-1?Q?vjSTkWF52JpJHMp4aUuTPB8yT8+gXZetaBV2FGtBV6+orauzeJgoKg7uET?=
+ =?iso-8859-1?Q?A8/CjQ2nQgP+pVHtwrRaSW6c42OINEdtBKZBPb+KaY0QZNsRz1fnN2QB4x?=
+ =?iso-8859-1?Q?2tZiS351/mfws6w4PfkmMeWEnO+tNHrTWqcGsPD5Ja5yK8Oxh1c0OETvyU?=
+ =?iso-8859-1?Q?KODqgO87rvKu0SUT2GLK+115r/pwQiHkt71qIGiI91Otbno2YuizwvhnmJ?=
+ =?iso-8859-1?Q?NvEjyv5WIOxn7ifvjpInaQfZBs1Ey397DngWjbB4PB5b9S8t1RPeHKRz4j?=
+ =?iso-8859-1?Q?mV5+/RZm2VownH/3XiR+mChukf9X2h3h04M33WX9ofmTb2ICYCN3i727ub?=
+ =?iso-8859-1?Q?Gz/CNDYGp29goGSvQn9AyTaSBdmdeNkx+Xd+SwiAG9OkTM7DK+tkVCjsMS?=
+ =?iso-8859-1?Q?XXKpVtFuYPi1UDHCNV8+2/leaBO7V848pKPuMlwPAAKn5Eaf79LORBmiJF?=
+ =?iso-8859-1?Q?uhfjsAa/+2o4YJjP1tUFoRRt2//tPPzMsGZ/NeiCK3xgKMLMgmDuFfHe19?=
+ =?iso-8859-1?Q?A+cBxC06wqrj5ddGIxQ+utC/2MS1aBD+MqNx0yvMUkdMIBz3xCdYTL/6+g?=
+ =?iso-8859-1?Q?hunbhu4doV1lkhMgYyN4LCKOvWHWHmu5ZufM+zESwqraQRado9Gtw9DaBa?=
+ =?iso-8859-1?Q?ul1DYMkx9iOEueV+bOBxz8wMaYfGhQYK/6aCal7iHwUHIAq7CNGuy9cOGU?=
+ =?iso-8859-1?Q?4dt0rnY1Bsf90VgyQyWH8TYrme2GnU7hbnUuWr9Llv+ky1i5w2XtkdpQpC?=
+ =?iso-8859-1?Q?aholrDAT/pEp2c5lKnv8lx88tvHZzCZEGUMAr3z/H1AjWlmQ/6r55+n1sC?=
+ =?iso-8859-1?Q?A=3D?=
 x-forefront-antispam-report: 
- CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AM8PR10MB4625.EURPRD10.PROD.OUTLOOK.COM;PTR:;CAT:NONE;SFS:(13230040)(376014)(366016)(1800799024)(13003099007)(38070700018);DIR:OUT;SFP:1101;
+ CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:MRZP264MB2072.FRAP264.PROD.OUTLOOK.COM;PTR:;CAT:NONE;SFS:(13230040)(366016)(1800799024)(376014)(8096899003)(13003099007)(38070700018);DIR:OUT;SFP:1102;
 x-ms-exchange-antispam-messagedata-chunkcount: 1
 x-ms-exchange-antispam-messagedata-0: 
- =?iso-8859-1?Q?C6Qipg/r3lDB8qYc4oaBfXvIxe/0XcuzMN2NG9ddk1UOUKLyr01wufX+Tg?=
- =?iso-8859-1?Q?DSf/NKJ8iLxwh2iCW7csCtI53gHqW/umNCepjVgY07zIjR+gg0+kf2p10L?=
- =?iso-8859-1?Q?PBF5Yb3E8dLBpdtU9o7Eqk1gPmcHkI7XdMeKSzCLcZIPnbY5q89ZN4OzbS?=
- =?iso-8859-1?Q?ntxf6n/XTv3SR9M7hbFcOkNhDJ/N4pKDJUH2NlDkO7rORTc9Osy8iuvt53?=
- =?iso-8859-1?Q?ml3UB1TBNCpvy7bDtuK481yNyyuPuN9D95PEs3PxpkMS5eIjKH8BpY0w60?=
- =?iso-8859-1?Q?v4qrGzmUKR0CzkF5R8PWpTBO29lpx7RmEZ6ET1tT6zVIkzpBFHR9UGvTsl?=
- =?iso-8859-1?Q?Z3Go+XOBN1MpzBjBgHGaKFoq8sP/B6sduCSNKGV++GLLUKm3Tj2OcKybMx?=
- =?iso-8859-1?Q?lLiuDA0ulWXrMj+sa2+gB7ZMgcm0auYwJDFdXoAt2YWQrNI8r8F39NqUDX?=
- =?iso-8859-1?Q?FWzGhVqOxIwppTh21YFoSvdMwtNeuwdXN3FIk50g4IiA9PyG0lZFyLw654?=
- =?iso-8859-1?Q?0B/KtlX5txebzs53NcESPoH0N3vN4eETggBm1KrKu6gCIzeBJdsLXVy0sE?=
- =?iso-8859-1?Q?J6LbxLm8BRPmkt5RNfdEbd18JdAGi5NRv91q3VdZBhD/5rcT5wvRWfTlz2?=
- =?iso-8859-1?Q?CsJPu+8Qf5p3Z93Cv1QyEV3/y0oi9EtnJOd8xfH7lws0WBFBmCRp6Dzn6m?=
- =?iso-8859-1?Q?0U6rJb/WiZaRoESOa0q275715U7Y1P0JFVjUxUlfRGfMv85B9PINwNEkVB?=
- =?iso-8859-1?Q?+4OcQR/USYt6qYlUUAWykKk9Lg4rp9X9GKgGKaGQcrbkofWsocJb4jwV1g?=
- =?iso-8859-1?Q?2DKMtpCPwaHHqRsy2XqlKGjd0mO4KT8Y01x14KywyHvkrZdrcNlCqFK2G+?=
- =?iso-8859-1?Q?LPxkinm1GBWINSvKUs7EP9EO3ZpH3sZntA3Ut2pA50aYlO9I8icTEEpuou?=
- =?iso-8859-1?Q?kE832M79TjbrGgqdHDHUO7SNpeQNKJjPzJtMy6C99mQRYVJ4/V6nwmM14G?=
- =?iso-8859-1?Q?GhWJgp3wO1ceq3LUI2tFsKEVbxKI60PH+V4A6ToSGpZ+vTdJOabf6Mu2bL?=
- =?iso-8859-1?Q?F3V7hm7xO6iZzrBaeqOjvkOBgSIHXzAbOXkBmmgPS0I0byGDe0BY8PoNSz?=
- =?iso-8859-1?Q?ha35sZk5P2xz2gV5NYW5caUfd+i0LGtSwNuPVlwDxwv1VI2gRlgm/xJ7zX?=
- =?iso-8859-1?Q?CIASnesKNJ7FAxBFC80vw7TFqrdHZsvNGNkRQnKIOat4EXU2imvdMGlfuk?=
- =?iso-8859-1?Q?idZZqrErwfAaoecF1ccAgss5VJze5uSQdqb+3iim4OJW6m0zxYYx0dwl3J?=
- =?iso-8859-1?Q?eNRDBHddp3k6Zv9CpatSUU/tK3N6lUWBoxg4kNsPqI/kHucXBDpo/selRM?=
- =?iso-8859-1?Q?0wHqSl80Dh0A5fRL70sf7jLuwbbMNo316/ZfGJNsQ6tsCFH/ljNv+YicwF?=
- =?iso-8859-1?Q?mlaStSfc5lqvOqoj3aiQrq1n5brxBXZe7cOqfem9UzoDvxhOY6IB+pyt7Z?=
- =?iso-8859-1?Q?XOb+I2xSwwKJ/GPIWD3qqK1jdqYbjb2MdPJQy2Fqw7oqpqLknhdYXBoYyK?=
- =?iso-8859-1?Q?79X7K4OOk+8TbRpLy80oWeBjOzJvon++25nSsWZcPbt3oFmPgL3aF5CX+q?=
- =?iso-8859-1?Q?oVIIr6R5ZAaFQ=3D?=
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+ =?iso-8859-1?Q?ALqZmsISRrhJxsBDhnfdcsckRbnFvKPmUIBOzSCsVYbDoO+jY3B86hquOj?=
+ =?iso-8859-1?Q?kPcE4tIpjsN3HTdCPHbRGdkfZjUwOtuGnM90ZuogodDZM4J27WW8+4tqN+?=
+ =?iso-8859-1?Q?oIrgT4GpvA2rP4WXJMe4JW7XnSgVpPa+dfntWLEFmnE+qoYmZDRnMGyseB?=
+ =?iso-8859-1?Q?H1mYoruBhaK23M6f0HLo9LzqjgNEmVTCqo1dynD0YM2PSHDmjRw9cDqpFu?=
+ =?iso-8859-1?Q?gU/bCN1aDlDkryM5kr2T5ZdKS4EIxaFW/ACE8F+h3jwJ+bovQicVsJgIkP?=
+ =?iso-8859-1?Q?jWomwS0QBFg58vTMas5gHas/QBgqhtN2dQy1tQaP4ev9szK1r+7dE5NWa2?=
+ =?iso-8859-1?Q?NetTULmHcPH+Bft1kWq08V+a2spmkn5NAvjHeS+mBBi15gWwX8XhG9NK/g?=
+ =?iso-8859-1?Q?a0fbGJtofEfW4CnnWHRbD/zf5SzbWc7Gak09FCse72fW8eKBiREIg/4m5u?=
+ =?iso-8859-1?Q?T/dRpn9tE2Cn1lNFWXofwZLmyds/GYbPl9jNrpPNr/c2YxXyX+B+HIn5ni?=
+ =?iso-8859-1?Q?wfSQ+vm7m3RYMj0qp+sQ1h9G0va9GLHzmkUBzXnsgL6ZlgPKs9mzDALbgZ?=
+ =?iso-8859-1?Q?5sKY8LO8v1FKDeIm4hhTunZn9k9+zb0gac0142vS5M2EsoSWEqWGWObNCh?=
+ =?iso-8859-1?Q?cBXLG1lUNiJ3ZOp2gnfiaIqKZiLIzJXsSLnm4VcwfOlNGYt7aezB31uObt?=
+ =?iso-8859-1?Q?+zuL+zbS1BsWd6gwk0hk0F2GuIwb5w6VPo8uV1ozVHwnnPqiWz85YI+5nC?=
+ =?iso-8859-1?Q?WxaKJrYPlzFX3vPZvI0pVkX6Xk+Oy5gp76IOFvzgd+Eu2xb76jc3eWGvZv?=
+ =?iso-8859-1?Q?/IPmE+hgwYp52Mzqi9N/KLp9i7pXTdy77gxqSZmYOd0Lzo0n9r5DX1KOJl?=
+ =?iso-8859-1?Q?TEHWafJcBddZAnRGpweyJNreAu6RqK96Qc8uMgRUVQSR5pTNTgqV31ilsr?=
+ =?iso-8859-1?Q?SdAHRCcyeOGYyRdGwvfH9nNgdptTphxqt2Gt5Z9muK3PG7vJSGRr6NtCvZ?=
+ =?iso-8859-1?Q?kH2+rXmSPbPoOO5GKqUbchJMi/teC2IWQya5kcYqkDw6USMxhK8OnKpLoj?=
+ =?iso-8859-1?Q?SmlOipuFj3vJuILDFUF7oHy7bxVTBygCqtmrwhnZiAErV2cqFXPdUZDQn2?=
+ =?iso-8859-1?Q?TBnDyyFP2ZWwTsJwv+Uolq6h8ldoSamTEMSHSjiMjXz24+EH33fpIdQVUt?=
+ =?iso-8859-1?Q?mTf0D2Abwy4JUmTK9jkRq0c2tzlFXaBvbgd19pSzz2mYcM7O6tVkpvmxNs?=
+ =?iso-8859-1?Q?ABhc/DaMaDZYeZL4utVkRfnAQpaKs67LCCgUZeDomrB5MqAPiE0WZEiNIj?=
+ =?iso-8859-1?Q?m/zON6XIbmjYq7BvP0iIIHRpTcJqd8xwYiB1fBVo965TRfJgIH1VZWcGOv?=
+ =?iso-8859-1?Q?n/WmUKGS8039pTerfkM/ocrqn99FbfVbDggCGHwtvTUZdRyj82c2ec9Jiq?=
+ =?iso-8859-1?Q?XJcJSIxmCZuOHk+NfPHFzzoicVAxodGpBQa8/j4t64ilZJQi+rNJHEh2Q8?=
+ =?iso-8859-1?Q?brQr/oJuHSPhbpnildFAXHVWkBAHwOuKL4HhwA07NbfASGC/77GJKXsisS?=
+ =?iso-8859-1?Q?SNnc/RwRSehaeEm2felh6+wxbGeZqYXmD9X/i7lrMa3HnRcNqK8H/pSzVI?=
+ =?iso-8859-1?Q?C9ElxIrN2t1gvfU3Q4YODX+pf62jp8Fra0?=
+Content-Type: multipart/alternative;
+	boundary="_000_MRZP264MB2072F57ED0D5A64361708F5DA1BF2MRZP264MB2072FRAP_"
 MIME-Version: 1.0
-X-OriginatorOrg: bosch.com
+X-OriginatorOrg: aldebaran.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: AM8PR10MB4625.EURPRD10.PROD.OUTLOOK.COM
-X-MS-Exchange-CrossTenant-Network-Message-Id: 4908b6b2-bab2-4720-69a2-08dd7da10efb
-X-MS-Exchange-CrossTenant-originalarrivaltime: 17 Apr 2025 11:14:45.1008
+X-MS-Exchange-CrossTenant-AuthSource: MRZP264MB2072.FRAP264.PROD.OUTLOOK.COM
+X-MS-Exchange-CrossTenant-Network-Message-Id: 22f64050-1f1a-4e44-a58f-08dd7e51b41f
+X-MS-Exchange-CrossTenant-originalarrivaltime: 18 Apr 2025 08:19:13.5678
  (UTC)
 X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 0ae51e19-07c8-4e4b-bb6d-648ee58410f4
+X-MS-Exchange-CrossTenant-id: d82c76c3-c488-42ad-b6b7-cdbcb7613c9f
 X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: eGfpxKBbvWgsVnJ5TmkCnh0n/mqHnSlMiqTB6m3bZ7w3n8/a/LykLgFSNejiNb6fIeAULOXhCAIAT8oYINGGOg==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: AM8PR10MB4081
+X-MS-Exchange-CrossTenant-userprincipalname: x6f2E9LQalQ10xIUodZ5GtoigS0VEFghPrBrKGtECaUGAVTTJgDESRq7fKoQhtTYw1EVzyVjbXDrUW9DDpF15Sg5DwLo8NQ90Ep539gfAno=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MR1P264MB2754
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Thu, 17 Apr 2025 11:14:57 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/65201
+ <yocto@lists.yoctoproject.org>; Fri, 18 Apr 2025 08:19:25 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/65202
+
+--_000_MRZP264MB2072F57ED0D5A64361708F5DA1BF2MRZP264MB2072FRAP_
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 
 Hello,
 
-I would like to pick up this topic. We want to invest more time and effort =
-trying to solve the linking compliance withing Yocto which we would also be=
- very happy to contribute. @vinhtruong.huynh@stud.h-da.de  wants to researc=
-h and implement a solution as part of his master thesis.
+we are experimenting with sharing the shared-state cache  over S3.
+We would like to have
+* several gitlab runners invoking bitbake, reading from, then uploading to =
+the S3 bucket (concurrently)
+* several devs invoking bitbake, reading from the bucket, but not writing t=
+o it.
 
-We were wondering if there is some further documentation or helpful materia=
-l about the architecture design of bitbake? Is there someone Hunyh could co=
-ntact about this topic?
+Setting up a hash server and keeping it in sync with the bucket seems compl=
+ex, so the runners have the following configuration:
 
-Best regards
+SSTATE_MIRRORS =3D "file://.* https://mybucket.s3.amazonaws.com/PATH;downlo=
+adfilename=3DPATH"
+BB_HASHSERVE =3D ""
+BB_SIGNATURE_HANDLER =3D "OEBasicHash"
 
-Fabian Hanke
-Product Area New Business Hub Stuttgart DC/PAN-St
+after running bitbake the do
+s5cmd cp --no-clobber --exclude '*.lock' $SSTATE_DIR/ s3://mybucket
+which uploads the whole local cacheto the bucket, skipping files which alre=
+ady exist in the bucket.
 
-Mobile +49 152 22843520
-Fabian.Hanke@de.bosch.com
-www.boschrexroth.com
+It seems to work, even with concurrent writes, thanks to the way files are =
+named in the cache.
 
-Bosch Rexroth AG
-Gr=F6nerstra=DFe 5/1
-71636 Ludwigsburg
-GERMANY
+I wonder if the devs (who do not push to the mirror) are required to use th=
+e OEBasicHash signature handler too, or if they can keep using the default
 
-Registered Office: Stuttgart, Registration Court: Amtsgericht Stuttgart HRB=
- 23192
-Executive Board: Dr. Steffen Haack (President), Roland Bittenauer, Thomas F=
-echner, Dr. Christina Franke, Holger von Hebel
-Chairman of the Supervisory Board: Dr. Tanja R=FCckert
+BB_HASHSERVE =3D "auto"
+BB_SIGNATURE_HANDLER =3D "OEEquivHash"
+with
+SSTATE_MIRRORS =3D "file://.* https://mybucket.s3.amazonaws.com/PATH;downlo=
+adfilename=3DPATH"
 
-> -----Original Message-----
-> From: Richard Purdie <richard.purdie@linuxfoundation.org>
-> Sent: Friday, May 31, 2024 3:55 PM
-> To: yocto@lists.yoctoproject.org; Hanke Fabian (DC/PAN-St)
-> <fabian.hanke@bosch.com>; Stefano Babic <sbabic@denx.de>
-> Subject: Re: [yocto] GPL License Compliance - Automatically detect linkin=
-g
-> against GPL libraries
->=20
-> On Fri, 2024-05-31 at 06:40 -0700, Hanke Fabian (DC/PAR) via
-> lists.yoctoproject.org wrote:
-> > Hello,
-> >
-> > thank you for all the responses so far. I guess we will have a look at
-> > fossology and fossas, but we would prefer a solution which does not
-> > require an additional thirdparty service. We know that there are
-> > different types of GPL licenses which bring different obligations.
-> >
-> > We are searching for an automatic mechanism to detect linking to a
-> > shared library from a GPL package. We thought there might be a way to
-> > utilize the build system's shared library resolver which is used for
-> > the automatic runtime added runtime dependencies [1].
-> >
-> > For static libraries we found that they are disabled by default [2].
-> >
-> > [1]
-> >
-> https://eur03.safelinks.protection.outlook.com/?url=3Dhttps%3A%2F%2Fdocs
-> > .yoctoproject.org%2Foverview-manual%2Fconcepts.html%23automatically-
-> ad
-> > ded-runtime-
-> dependencies&data=3D05%7C02%7Cfabian.hanke%40bosch.com%7C7b9
-> >
-> 9b3a05dca4f3fdbff08dc81793e6a%7C0ae51e1907c84e4bbb6d648ee58410
-> f4%7C0%7
-> >
-> C0%7C638527604970412048%7CUnknown%7CTWFpbGZsb3d8eyJWIjoiMC
-> 4wLjAwMDAiLC
-> >
-> JQIjoiV2luMzIiLCJBTiI6Ik1haWwiLCJXVCI6Mn0%3D%7C0%7C%7C%7C&sdata
-> =3DSLcY5%
-> > 2B0gwkYYDv3HbgttS9B%2FFM1t9MlweJ1h7OLSFbQ%3D&reserved=3D0
-> > [2]
-> >
-> https://eur03.safelinks.protection.outlook.com/?url=3Dhttps%3A%2F%2Fdocs
-> > .yoctoproject.org%2Fdev%2Fdev-manual%2Flicenses.html%23compliance-
-> limi
-> > tations-with-executables-built-from-static-libraries&data=3D05%7C02%7Cf=
-a
-> >
-> bian.hanke%40bosch.com%7C7b99b3a05dca4f3fdbff08dc81793e6a%7C0ae
-> 51e1907
-> >
-> c84e4bbb6d648ee58410f4%7C0%7C0%7C638527604970422301%7CUnkn
-> own%7CTWFpbG
-> >
-> Zsb3d8eyJWIjoiMC4wLjAwMDAiLCJQIjoiV2luMzIiLCJBTiI6Ik1haWwiLCJXVCI6
-> Mn0%
-> >
-> 3D%7C0%7C%7C%7C&sdata=3Dp1Q9TwRCgFDhHWI1yVYjdXbDJM%2BXxn8P5
-> zWeqJ3LDas%3D
-> > &reserved=3D0
->=20
-> It can definitely be done and we have a lot of the information there.
-> Our packaging code does already look at linking as you mention. Nobody ha=
-s
-> proposed a solution that could be merged to OE-Core though. I'd love to s=
-ee
-> one.
->=20
-> Cheers,
->=20
-> Richard
+Put another way (and if understand the whole thing correctly), I wonder if =
+OEEquivHash and OEBasicHash share the same task hash as a key to name sstat=
+e object files.
+
+bitbake warns against using BB_HASHSERVE =3D "auto" with a SSTATE_MIRRORS:
+
+WARNING: You are using a local hash equivalence server but have configured =
+an sstate mirror. This will likely mean no sstate will match from the mirro=
+r. You may wish to disable the hash equivalence use (BB_HASHSERVE), or use =
+a hash equivalence server alongside the sstate mirror.
+
+but I suspect it is overcautious.
+
+Thank you.
+
+--_000_MRZP264MB2072F57ED0D5A64361708F5DA1BF2MRZP264MB2072FRAP_
+Content-Type: text/html; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
+
+<html>
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Diso-8859-=
+1">
+<style type=3D"text/css" style=3D"display:none;"> P {margin-top:0;margin-bo=
+ttom:0;} </style>
+</head>
+<body dir=3D"ltr">
+<div class=3D"elementToProof" style=3D"line-height: 19px; font-family: Apto=
+s, Aptos_EmbeddedFont, Aptos_MSFontService, Calibri, Helvetica, sans-serif;=
+ font-size: 12pt; color: rgb(0, 0, 0);">
+Hello,<br>
+<br>
+we are experimenting with sharing the shared-state cache &nbsp;over S3.</di=
+v>
+<div class=3D"elementToProof" style=3D"line-height: 19px; font-family: Apto=
+s, Aptos_EmbeddedFont, Aptos_MSFontService, Calibri, Helvetica, sans-serif;=
+ font-size: 12pt; color: rgb(0, 0, 0);">
+We would like to have</div>
+<div class=3D"elementToProof" style=3D"line-height: 19px; font-family: Apto=
+s, Aptos_EmbeddedFont, Aptos_MSFontService, Calibri, Helvetica, sans-serif;=
+ font-size: 12pt; color: rgb(0, 0, 0);">
+*&nbsp;several gitlab runners invoking bitbake, reading from, then uploadin=
+g to the S3 bucket (concurrently)</div>
+<div class=3D"elementToProof" style=3D"line-height: 19px; font-family: Apto=
+s, Aptos_EmbeddedFont, Aptos_MSFontService, Calibri, Helvetica, sans-serif;=
+ font-size: 12pt; color: rgb(0, 0, 0);">
+*&nbsp;several devs invoking bitbake, reading from the bucket, but not writ=
+ing to it.</div>
+<div class=3D"elementToProof" style=3D"line-height: 19px; font-family: Apto=
+s, Aptos_EmbeddedFont, Aptos_MSFontService, Calibri, Helvetica, sans-serif;=
+ font-size: 12pt; color: rgb(0, 0, 0);">
+<br>
+</div>
+<div class=3D"elementToProof" style=3D"line-height: 19px; font-family: Apto=
+s, Aptos_EmbeddedFont, Aptos_MSFontService, Calibri, Helvetica, sans-serif;=
+ font-size: 12pt; color: rgb(0, 0, 0);">
+Setting up a hash server and keeping it in sync with the bucket seems compl=
+ex, so the runners have the following configuration:</div>
+<div class=3D"elementToProof" style=3D"line-height: 19px; font-family: Apto=
+s, Aptos_EmbeddedFont, Aptos_MSFontService, Calibri, Helvetica, sans-serif;=
+ font-size: 12pt; color: rgb(0, 0, 0);">
+<br>
+</div>
+<div class=3D"elementToProof" style=3D"line-height: 19px; font-family: Apto=
+s, Aptos_EmbeddedFont, Aptos_MSFontService, Calibri, Helvetica, sans-serif;=
+ font-size: 12pt; color: rgb(0, 0, 0);">
+SSTATE_MIRRORS =3D &quot;file://.* https://mybucket.s3.amazonaws.com/PATH;d=
+ownloadfilename=3DPATH&quot;</div>
+<div class=3D"elementToProof" style=3D"line-height: 19px; font-family: Apto=
+s, Aptos_EmbeddedFont, Aptos_MSFontService, Calibri, Helvetica, sans-serif;=
+ font-size: 12pt; color: rgb(0, 0, 0);">
+BB_HASHSERVE =3D &quot;&quot;</div>
+<div class=3D"elementToProof" style=3D"line-height: 19px; font-family: Apto=
+s, Aptos_EmbeddedFont, Aptos_MSFontService, Calibri, Helvetica, sans-serif;=
+ font-size: 12pt; color: rgb(0, 0, 0);">
+BB_SIGNATURE_HANDLER =3D &quot;OEBasicHash&quot;</div>
+<div class=3D"elementToProof" style=3D"line-height: 19px; font-family: Apto=
+s, Aptos_EmbeddedFont, Aptos_MSFontService, Calibri, Helvetica, sans-serif;=
+ font-size: 12pt; color: rgb(0, 0, 0);">
+<br>
+</div>
+<div class=3D"elementToProof" style=3D"line-height: 19px; font-family: Apto=
+s, Aptos_EmbeddedFont, Aptos_MSFontService, Calibri, Helvetica, sans-serif;=
+ font-size: 12pt; color: rgb(0, 0, 0);">
+after running bitbake the do</div>
+<div class=3D"elementToProof" style=3D"line-height: 19px; font-family: Apto=
+s, Aptos_EmbeddedFont, Aptos_MSFontService, Calibri, Helvetica, sans-serif;=
+ font-size: 12pt; color: rgb(0, 0, 0);">
+s5cmd cp --no-clobber --exclude '*.lock' $SSTATE_DIR/ s3://mybucket</div>
+<div class=3D"elementToProof" style=3D"line-height: 19px; font-family: Apto=
+s, Aptos_EmbeddedFont, Aptos_MSFontService, Calibri, Helvetica, sans-serif;=
+ font-size: 12pt; color: rgb(0, 0, 0);">
+which uploads the whole local cacheto the bucket, skipping files which alre=
+ady exist in the bucket.</div>
+<div class=3D"elementToProof" style=3D"line-height: 19px; font-family: Apto=
+s, Aptos_EmbeddedFont, Aptos_MSFontService, Calibri, Helvetica, sans-serif;=
+ font-size: 12pt; color: rgb(0, 0, 0);">
+<br>
+</div>
+<div class=3D"elementToProof" style=3D"line-height: 19px; font-family: Apto=
+s, Aptos_EmbeddedFont, Aptos_MSFontService, Calibri, Helvetica, sans-serif;=
+ font-size: 12pt; color: rgb(0, 0, 0);">
+It seems to work, even with concurrent writes, thanks to the way files are =
+named in the cache.&nbsp;</div>
+<div class=3D"elementToProof" style=3D"line-height: 19px; font-family: Apto=
+s, Aptos_EmbeddedFont, Aptos_MSFontService, Calibri, Helvetica, sans-serif;=
+ font-size: 12pt; color: rgb(0, 0, 0);">
+<br>
+</div>
+<div class=3D"elementToProof" style=3D"line-height: 19px; font-family: Apto=
+s, Aptos_EmbeddedFont, Aptos_MSFontService, Calibri, Helvetica, sans-serif;=
+ font-size: 12pt; color: rgb(0, 0, 0);">
+I wonder if the devs (who do not push to the mirror) are required to use th=
+e OEBasicHash&nbsp;signature handler too, or if they can keep using the def=
+ault</div>
+<div class=3D"elementToProof" style=3D"line-height: 19px; font-family: Apto=
+s, Aptos_EmbeddedFont, Aptos_MSFontService, Calibri, Helvetica, sans-serif;=
+ font-size: 12pt; color: rgb(0, 0, 0);">
+<br>
+</div>
+<div class=3D"elementToProof" style=3D"line-height: 19px; font-family: Apto=
+s, Aptos_EmbeddedFont, Aptos_MSFontService, Calibri, Helvetica, sans-serif;=
+ font-size: 12pt; color: rgb(0, 0, 0);">
+BB_HASHSERVE =3D &quot;auto&quot;</div>
+<div class=3D"elementToProof" style=3D"line-height: 19px; font-family: Apto=
+s, Aptos_EmbeddedFont, Aptos_MSFontService, Calibri, Helvetica, sans-serif;=
+ font-size: 12pt; color: rgb(0, 0, 0);">
+BB_SIGNATURE_HANDLER =3D &quot;OEEquivHash&quot;</div>
+<div class=3D"elementToProof" style=3D"text-align: left; text-indent: 0px; =
+line-height: 19px; margin: 0px; font-family: Aptos, Aptos_EmbeddedFont, Apt=
+os_MSFontService, Calibri, Helvetica, sans-serif; font-size: 12pt; color: r=
+gb(0, 0, 0);">
+with<br>
+SSTATE_MIRRORS =3D &quot;file://.* https://mybucket.s3.amazonaws.com/PATH;d=
+ownloadfilename=3DPATH&quot;</div>
+<div class=3D"elementToProof" style=3D"font-family: Aptos, Aptos_EmbeddedFo=
+nt, Aptos_MSFontService, Calibri, Helvetica, sans-serif; font-size: 12pt; c=
+olor: rgb(0, 0, 0);">
+<br>
+</div>
+<div class=3D"elementToProof" style=3D"line-height: 19px; font-family: Apto=
+s, Aptos_EmbeddedFont, Aptos_MSFontService, Calibri, Helvetica, sans-serif;=
+ font-size: 12pt; color: rgb(0, 0, 0);">
+Put another way (and if understand&nbsp;the whole thing&nbsp;correctly), I =
+wonder if OEEquivHash and OEBasicHash&nbsp;share the same task hash as a ke=
+y to name sstate object files.</div>
+<div class=3D"elementToProof" style=3D"line-height: 19px; font-family: Apto=
+s, Aptos_EmbeddedFont, Aptos_MSFontService, Calibri, Helvetica, sans-serif;=
+ font-size: 12pt; color: rgb(0, 0, 0);">
+<br>
+</div>
+<div class=3D"elementToProof" style=3D"line-height: 19px; font-family: Apto=
+s, Aptos_EmbeddedFont, Aptos_MSFontService, Calibri, Helvetica, sans-serif;=
+ font-size: 12pt; color: rgb(0, 0, 0);">
+bitbake warns against using BB_HASHSERVE =3D &quot;auto&quot; with a SSTATE=
+_MIRRORS:<br>
+<br>
+</div>
+<div class=3D"elementToProof" style=3D"line-height: 19px; font-family: Apto=
+s, Aptos_EmbeddedFont, Aptos_MSFontService, Calibri, Helvetica, sans-serif;=
+ font-size: 12pt; color: rgb(0, 0, 0);">
+WARNING: You are using a local hash equivalence server but have configured =
+an sstate mirror. This will likely mean no sstate will match from the mirro=
+r. You may wish to disable the hash equivalence use (BB_HASHSERVE), or use =
+a hash equivalence server alongside
+ the sstate mirror.</div>
+<div class=3D"elementToProof" style=3D"line-height: 19px; font-family: Apto=
+s, Aptos_EmbeddedFont, Aptos_MSFontService, Calibri, Helvetica, sans-serif;=
+ font-size: 12pt; color: rgb(0, 0, 0);">
+<br>
+</div>
+<div class=3D"elementToProof" style=3D"line-height: 19px; font-family: Apto=
+s, Aptos_EmbeddedFont, Aptos_MSFontService, Calibri, Helvetica, sans-serif;=
+ font-size: 12pt; color: rgb(0, 0, 0);">
+but I suspect it is overcautious.<br>
+<br>
+Thank you.</div>
+</body>
+</html>
+
+--_000_MRZP264MB2072F57ED0D5A64361708F5DA1BF2MRZP264MB2072FRAP_--
 
