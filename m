@@ -2,25 +2,25 @@ Return-Path: <richard.purdie@linuxfoundation.org>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 47C57C369C2
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 3F08AC369AB
 	for <webhook@archiver.kernel.org>; Mon, 21 Apr 2025 12:30:47 +0000 (UTC)
-Subject: Issue while building YOCTO for Intel tiger lake UP3 processor
+Subject: Issue while building YOCTO for Intel tiger lake UP3 processor #ubuntu #yocto
 To: yocto@lists.yoctoproject.org
 From: "ar825" <arehman.signatics.solutions@gmail.com>
 X-Originating-Location: Islamabad, PK (206.84.142.53)
 X-Originating-Platform: Windows Chrome 135
 User-Agent: GROUPS.IO Web Poster
 MIME-Version: 1.0
-Date: Mon, 21 Apr 2025 01:45:42 -0700
-Message-ID: <55tR.1745225142145558285.p0A7@lists.yoctoproject.org>
-Content-Type: multipart/alternative; boundary="LW88ThpsI0a0SJuc1q6E"
+Date: Mon, 21 Apr 2025 01:35:49 -0700
+Message-ID: <XnIC.1745224549095117020.MUK4@lists.yoctoproject.org>
+Content-Type: multipart/alternative; boundary="MZb2vY5kMYTpV9yTj7pE"
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
  <yocto@lists.yoctoproject.org>; Mon, 21 Apr 2025 12:30:47 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/65207
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/65208
 
---LW88ThpsI0a0SJuc1q6E
+--MZb2vY5kMYTpV9yTj7pE
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: quoted-printable
 
@@ -81,7 +81,7 @@ fs/tags/*' on yocto-kernel-cache failed
 stdout: fatal: unable to access 'https://git.yoctoproject.org/git/yocto-ker=
 nel-cache/': Could not resolve host: git.yoctoproject.org
 
---LW88ThpsI0a0SJuc1q6E
+--MZb2vY5kMYTpV9yTj7pE
 Content-Type: text/html; charset="utf-8"
 Content-Transfer-Encoding: quoted-printable
 
@@ -208,5 +208,5 @@ oject.org</div>
 </div>
 </div>
 
---LW88ThpsI0a0SJuc1q6E--
+--MZb2vY5kMYTpV9yTj7pE--
 
