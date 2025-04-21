@@ -1,458 +1,218 @@
-Return-Path: <chee.yang.lee@intel.com>
+Return-Path: <liuyd.fnst@fujitsu.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 676DCC369AB
-	for <webhook@archiver.kernel.org>; Mon, 21 Apr 2025 06:43:15 +0000 (UTC)
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
- by mx.groups.io with SMTP id smtpd.web10.10284.1745217790757703793
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 0BC56C369AB
+	for <webhook@archiver.kernel.org>; Mon, 21 Apr 2025 09:01:36 +0000 (UTC)
+Received: from esa12.fujitsucc.c3s2.iphmx.com (esa12.fujitsucc.c3s2.iphmx.com [216.71.156.125])
+ by mx.groups.io with SMTP id smtpd.web11.11517.1745226093239592996
  for <yocto@lists.yoctoproject.org>;
- Sun, 20 Apr 2025 23:43:11 -0700
+ Mon, 21 Apr 2025 02:01:33 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@intel.com header.s=Intel header.b=cBU1qX7F;
- spf=pass (domain: intel.com, ip: 198.175.65.9, mailfrom: chee.yang.lee@intel.com)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1745217791; x=1776753791;
-  h=from:to:subject:date:message-id:mime-version;
-  bh=RbxLl3LvvgQrVCN/1NtwkTGv443mH9m9uddV5p44GwY=;
-  b=cBU1qX7F4LmesVJbs3K7XbTYQtGR0vNNbZkFqgEYyFGR4FZGDhRlPn2M
-   AjAcdaLfpRAXrQ0ISABRiaWE+RbNFBi55pF45UboEhgLXc8+eoG9b5RJI
-   kxSEOn17BhZZfWhPiK51JfFelDBl6wxaUbijoGcOiMb5T+wKhibZKqJQ7
-   QOvaOeB/ZDBA5mFIM/06Z3gXgGd8jd94yb8rVH73i5ZPY65c6ZPLeipgw
-   xYPKbWa38dlsxxqF/jiRdwc1waUI+08coWk+mFUSoktSr3y2ZJ5hxwxkJ
-   zCUprvkfXEz4DbgPHUdauMe1WRnAbn2rBljpsI9nOIUEV4penwVayo3xp
-   w==;
-X-CSE-ConnectionGUID: Ts49t2VoQiCPhkGPega3cA==
-X-CSE-MsgGUID: Ij3aqAYETwSX0Fe5YuN/Ew==
-X-IronPort-AV: E=McAfee;i="6700,10204,11409"; a="69239230"
-X-IronPort-AV: E=Sophos;i="6.15,227,1739865600"; 
-   d="scan'208,217";a="69239230"
-Received: from fmviesa009.fm.intel.com ([10.60.135.149])
-  by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 20 Apr 2025 23:43:10 -0700
-X-CSE-ConnectionGUID: 5ND18c7jSu2Qy/qTnBfD6g==
-X-CSE-MsgGUID: B/APacWfTnSPlCSBD/z3dg==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.15,227,1739865600"; 
-   d="scan'208,217";a="132520515"
-Received: from orsmsx903.amr.corp.intel.com ([10.22.229.25])
-  by fmviesa009.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 20 Apr 2025 23:43:09 -0700
-Received: from ORSMSX901.amr.corp.intel.com (10.22.229.23) by
- ORSMSX903.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1544.14; Sun, 20 Apr 2025 23:43:08 -0700
-Received: from orsedg603.ED.cps.intel.com (10.7.248.4) by
- ORSMSX901.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1544.14 via Frontend Transport; Sun, 20 Apr 2025 23:43:08 -0700
-Received: from NAM10-DM6-obe.outbound.protection.outlook.com (104.47.58.49) by
- edgegateway.intel.com (134.134.137.100) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.44; Sun, 20 Apr 2025 23:43:08 -0700
+ dkim=pass header.i=@fujitsu.com header.s=fj1 header.b=tsIuOMtR;
+ spf=neutral (domain: fujitsu.com, ip: 216.71.156.125, mailfrom: liuyd.fnst@fujitsu.com)
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
+  d=fujitsu.com; i=@fujitsu.com; q=dns/txt; s=fj1;
+  t=1745226094; x=1776762094;
+  h=from:to:cc:subject:date:message-id:mime-version;
+  bh=mXTl2aM2BPFr/K48HT0iZzpfVaLwO9k/rhzGDmn74Nc=;
+  b=tsIuOMtRZJvxW2OTS9FEehRjVO94YlUUgMu6LccDFzVWnTCH+5N5F7NQ
+   ht+8pP5qMz7GAsC2nyVT1VkFUj/+6iTWwUMNr8fz1tT4uYBw5zjhyLOoN
+   nmZgImhukT3lGhrhccGnKKdPyDvDyUnjOS9ZM9t7IfD+DtqW9NWaWKX99
+   uXm+DtDQyymxoiMqM2kb6qilQx3vWGFxkj8SatcBemPNqpFvp9gm5ZggO
+   gKaDWdBHY1p8eE3cbGX3la6ypTACbl0CfXzunfv7nv3zaPQbYnAZ/AhDF
+   gHMs5UuDZ0zIdq0P+KRg5uocSn8SYJqLXze581EnY//Ao9m4ssuBwkcBJ
+   A==;
+X-CSE-ConnectionGUID: I1FYBVQQQ5CgxUHymaRRiQ==
+X-CSE-MsgGUID: pvNXd0WVQ8qiz+7KAjc5fQ==
+X-IronPort-AV: E=McAfee;i="6700,10204,11409"; a="153526733"
+X-IronPort-AV: E=Sophos;i="6.15,227,1739804400"; 
+   d="scan'208,217";a="153526733"
+Received: from mail-japanwestazlp17010007.outbound.protection.outlook.com (HELO OS0P286CU011.outbound.protection.outlook.com) ([40.93.130.7])
+  by ob1.fujitsucc.c3s2.iphmx.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 21 Apr 2025 18:01:31 +0900
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=yP7oowd8MkX/lVpgNq137FtqX4HjKzzvZN1H16XW7AGYfcHt8MEGpkb2Imtt60Ac2H7O2ID6e8ZgGBGPT0h6bc4XW84PXgUBG6IEDAXh8yGymjXipOjy+PGfe4Dayu87gJbvZhqxtdf7s+UvmAWTmPNQ+GIEk0Fj11z9J5ljeuOZB0mNbvM0R6P7P0pmKDsx6MEjOfMAo+pdXpl32G/BSoG85bVV0sWkJA2Gm095PyXDP56CPT4eo4Svv8ovGcUtPnRDoUB3NpfCYpqe1TdQyG4Q/PP9OalCURA7yFDLEmiOICf0uT9pBRWedTOMVWm/7SlsWnvKCFrSyt0mWILsJw==
+ b=JudENx5EZE/gLGIYyDhR12WDykjHcJJ7Dy17YmQqprVVs/evJJ6Y/+eQrhPtU2F1JE3Rr4lLfwz0y0CQMmlllqlPPhap/2kwPu+Vz/D1I/LlBH+rGjVEJqMRLnWipsgOTtRGK4ktO42MPcAUC4GJITO1gdhhpfZvYwi9Rx3HMklZ08Z9wdD1coYSrKGk75yiKtQoPMH9tNwcV8u4SbboPLmgsjCo5yX1iitzKXw52jnLMm4l5HvIMgsZztXMTqPiPg1qOWR1POJRrb6RSAXZMw0MmjGQpS9KVFL2DY4nH8lsVslgR7SjS3SMJloHUhebUJhJYalEgfdeCMd6sm25Rg==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=bxvn0htld+PJzdpllTfNpdvXte1Xs3szqD+MG2UGBfQ=;
- b=Ql7R+bo3FvULJ8lJkHl407jctZNrZm9Vl9tRYXuPeM3LLj08nnwDPf0QLkbvIfN3qnxP7zpPDFEG62YqZEWq7eOtmnUM55v8YwQpkwZGKRlS3qsgIOH43URu9Zu09OsJPsb5JRlTZ03cLbdRmrvu5Y9GRJLCECvbG45g8bbH9who1MstZwBJz51xoM5O6INdkMdNDajjMXIMZp/LypHmwzmpaZjApX+8KXnV63Ult/l/MRbHgNWK9x9iFLWV5g8K8t7aysk6XLDUNFNlx7r4fxi0u3qVluKw3oMzIEcmTuXFdAcdcEb1jkyAIeviqmxWXV3ZbbY2LdV03xMqw8Q2qg==
+ bh=SY+L+ZXGn5MFT6W9DiamJ1E/TUkgXyVpXWr63MfLKZk=;
+ b=cxvzVjg7GM9teYxieKq2ld+mLztgAyk9yO381YTdbRX7jKM0aMfeC5WX412d4ABZ3cqVqZZAaHvyhUKSLejOiBmyEEhUab0+NrHYkaB3Xm8t0GHVhiHJzMR2ZQlMYwsKe8rkDvEixo4rhdgC++MM13oFt8qnlZ9ZNBUM47z+K8H3sXu75D8mpGhVXOjSRVX2tzuqahGlt2PDWBFbTCu7sd9TWzneh0P6w/YfMCyBHTqsSGpdeRXoj5d3eED2aLxzjzVbr/VlUEzE/3pTl3L0vQ9fxeG7vE3DnOYo3ihCzP2papGC+XwKN3593bz923Fe6m32Q280yHq3PahJqGkDeA==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Received: from BL4PR11MB8797.namprd11.prod.outlook.com (2603:10b6:208:5a7::8)
- by MN0PR11MB6109.namprd11.prod.outlook.com (2603:10b6:208:3cf::18) with
- Microsoft SMTP Server (version=TLS1_2,
+ smtp.mailfrom=fujitsu.com; dmarc=pass action=none header.from=fujitsu.com;
+ dkim=pass header.d=fujitsu.com; arc=none
+Received: from OSRPR01MB11597.jpnprd01.prod.outlook.com
+ (2603:1096:604:22f::12) by OS7PR01MB14430.jpnprd01.prod.outlook.com
+ (2603:1096:604:38e::13) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8655.35; Mon, 21 Apr
- 2025 06:42:24 +0000
-Received: from BL4PR11MB8797.namprd11.prod.outlook.com
- ([fe80::311e:565b:ccfd:f4c8]) by BL4PR11MB8797.namprd11.prod.outlook.com
- ([fe80::311e:565b:ccfd:f4c8%7]) with mapi id 15.20.8655.031; Mon, 21 Apr 2025
- 06:42:24 +0000
-From: "Lee, Chee Yang" <chee.yang.lee@intel.com>
-To: "yocto-announce@lists.yoctoproject.org"
-	<yocto-announce@lists.yoctoproject.org>, "yocto@lists.yoctoproject.org"
-	<yocto@lists.yoctoproject.org>
-Subject: [ANNOUNCEMENT] Yocto Project 4.0.26 (Kirkstone-4.0.26) is Released
-Thread-Topic: [ANNOUNCEMENT] Yocto Project 4.0.26 (Kirkstone-4.0.26) is
- Released
-Thread-Index: AduygwH7ZjIt0po6SiWLtULGIrBwbg==
-Date: Mon, 21 Apr 2025 06:42:24 +0000
-Message-ID: <BL4PR11MB879702BB57439BE0116AF312B9B82@BL4PR11MB8797.namprd11.prod.outlook.com>
-Accept-Language: en-SG, en-US
-Content-Language: en-US
+ 2025 09:01:23 +0000
+Received: from OSRPR01MB11597.jpnprd01.prod.outlook.com
+ ([fe80::cb27:d71e:9f8a:8014]) by OSRPR01MB11597.jpnprd01.prod.outlook.com
+ ([fe80::cb27:d71e:9f8a:8014%5]) with mapi id 15.20.8632.035; Mon, 21 Apr 2025
+ 09:01:23 +0000
+From: "Yiding Liu (Fujitsu)" <liuyd.fnst@fujitsu.com>
+To: Khem Raj <raj.khem@gmail.com>
+CC: "yocto@lists.yoctoproject.org" <yocto@lists.yoctoproject.org>
+Subject: QA Issue: /usr/lib/libmozjs-128.so uses 32-bit api 'stat64'
+ [32bit-time]
+Thread-Topic: QA Issue: /usr/lib/libmozjs-128.so uses 32-bit api 'stat64'
+ [32bit-time]
+Thread-Index: Aduym+XoOa+DIbr8RuqRtowU6IJD2A==
+Date: Mon, 21 Apr 2025 09:01:23 +0000
+Message-ID: 
+ <OSRPR01MB1159744545F10E644D8DB24CE9BB82@OSRPR01MB11597.jpnprd01.prod.outlook.com>
+Accept-Language: zh-CN, en-US
+Content-Language: zh-CN
 X-MS-Has-Attach: 
 X-MS-TNEF-Correlator: 
+msip_labels: 
+ MSIP_Label_1e92ef73-0ad1-40c5-ad55-46de3396802f_ActionId=b95584b6-d808-4130-afc6-40800556bb7c;MSIP_Label_1e92ef73-0ad1-40c5-ad55-46de3396802f_ContentBits=0;MSIP_Label_1e92ef73-0ad1-40c5-ad55-46de3396802f_Enabled=true;MSIP_Label_1e92ef73-0ad1-40c5-ad55-46de3396802f_Method=Privileged;MSIP_Label_1e92ef73-0ad1-40c5-ad55-46de3396802f_Name=FUJITSU-PUBLIC?;MSIP_Label_1e92ef73-0ad1-40c5-ad55-46de3396802f_SetDate=2025-04-21T09:01:19Z;MSIP_Label_1e92ef73-0ad1-40c5-ad55-46de3396802f_SiteId=a19f121d-81e1-4858-a9d8-736e267fd4c7;MSIP_Label_1e92ef73-0ad1-40c5-ad55-46de3396802f_Tag=10,
+ 0, 1, 1;
 authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
+ header.d=none;dmarc=none action=none header.from=fujitsu.com;
 x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: BL4PR11MB8797:EE_|MN0PR11MB6109:EE_
-x-ms-office365-filtering-correlation-id: 2f429cfe-6c58-41f4-5ff6-08dd809facec
+x-ms-traffictypediagnostic: OSRPR01MB11597:EE_|OS7PR01MB14430:EE_
+x-ms-office365-filtering-correlation-id: cc085810-83dc-4f97-234c-08dd80b3173b
 x-ms-exchange-senderadcheck: 1
 x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;ARA:13230040|1800799024|10070799003|366016|376014|8096899003|13003099007|38070700018;
-x-microsoft-antispam-message-info: =?us-ascii?Q?XH9/sR54H3cJnYeLZL6JLvZt/y5TZ5vFwoX5hGlBzLgYYGzu7ACV1k7atdIm?=
- =?us-ascii?Q?GREiXIPuUTIjMhxAnLYip5YuMVMf0ej7ajRDxxDASR6dxHZrtYhgGcJ0wlpR?=
- =?us-ascii?Q?D+Bgh27j5arYaG9p9wYUdoh2Hhz5gje05NzkapTRIOiCYl4ASVT5SUxYba0a?=
- =?us-ascii?Q?ErpxhM+LTDnzvcfanIOwzmVNj1gD2lkjPc3BbM74lHd+zVECXFEkdmm26jZY?=
- =?us-ascii?Q?KgBp13zcMOOCPqmgw3raUrAJGXRB77rDtVnLEcd3a/FDBmq2lzji1H2bAe+J?=
- =?us-ascii?Q?R8Li4Z82+2sMruy2EJaQO37JQ1h4+VWsVgOqaixJdVFkwMpRxNjfFm6CwC9E?=
- =?us-ascii?Q?tOV+QVOkRfpqmAPLLn5EeDlQcWXZM2f+DKH/43aDZ6R29bQcqqVuHcvcfwxM?=
- =?us-ascii?Q?ToMUIWSWFwzuEXlsVQAOXKqtvUIQumg6flzqTgHmhlNNIB8yP6vyed6DRpLO?=
- =?us-ascii?Q?sQZOV9l624ijT6n9YuZ91Gib0NfDJJ3mMHzF1i8jUhPDLPrYCIjoj+4FeNVb?=
- =?us-ascii?Q?qLXoEJvm+LxusoJueGnhz0O5+tPPwk3lAcfga7l78TFh0PJ3M61BtAMP50sa?=
- =?us-ascii?Q?LouvDYB3iWghLag93+RbEhYCa0En2wu/OFThROlgLJoepPHhDLwjqCGE+b+H?=
- =?us-ascii?Q?anSqKjtp9hc8rYcFRm38i6ApCZaQosARyMzAY8RtdNeCPT3V/ilaUy2RETGf?=
- =?us-ascii?Q?qKaPu6Yis6j7lXHvQRWXmpFwZoEUKPpd8Mm5i8pb0KD2d+VYqR+Qidgo48Xb?=
- =?us-ascii?Q?wihpDZd0wlXysvCA1X8I2LclDOK8I159yp4bBKCq8pFHJCci3LMnI6OlEzaP?=
- =?us-ascii?Q?InCXrWE6PWf+Bu7Iit3e+s6RbaQMHvx1ikpuX89hiJB4cknuLlKlQ8EKK9H5?=
- =?us-ascii?Q?XlYIl3/dgs7HoqCDJzGQOrNmUDRTwxYglOzzumjIEIh+SzLwetpWHYafV2oM?=
- =?us-ascii?Q?O4SjZiK+plGuZs1jttKA81yqxYWSuQLpLna6V8G/Gb99yCZTJd3zuWIZaHvl?=
- =?us-ascii?Q?lwsIkt4XF5gZafsORJ/OHNjYVsypTMlUPpAyN5Pzpy4bowewq2/Szri9xGP1?=
- =?us-ascii?Q?WXZd7fGPTIsk7yjZxPHROUh8RHBNHpzxHjaCSFfhLTB8qmbAvASe+/STH8E/?=
- =?us-ascii?Q?85OzYN4RSXvbNULkKVZkzPlcK8zMmX5RHLUtUsO2KOkdxwUHbhfpscBIk3Tx?=
- =?us-ascii?Q?CIpU7E6ncZ2KB04n0YXDNvQtK9dTw6uNk2NO9oT7HhOEUtbxna0oFs+9gJZQ?=
- =?us-ascii?Q?R6kxedHFXZPEJQ0SFBI2Zdsc8BXtdZwOh3HnLlnUS4/X4T2bjLATSxR30gdf?=
- =?us-ascii?Q?grgr0sLaNEX4W5TC0+CQ8MrZ5KDBVuMzggfWTVE15r6yebvhViGkt7NShOjX?=
- =?us-ascii?Q?pv7QLtWGoHTH7nGleijWiA1xIh7NFk/8V/1Ur3/dU+BpH3a+fJHPQ14LpB9Q?=
- =?us-ascii?Q?MRP5VOtctP8=3D?=
-x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:BL4PR11MB8797.namprd11.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(1800799024)(10070799003)(366016)(376014)(8096899003)(13003099007)(38070700018);DIR:OUT;SFP:1101;
+x-microsoft-antispam: 
+ BCL:0;ARA:13230040|376014|1800799024|366016|8096899003|1580799027|38070700018;
+x-microsoft-antispam-message-info: 
+ =?gb2312?B?TFN0eXZGT3ZRRVFjbFBmZnZTVGFqc29MRUdDNU04czBKVWVCMFhsWEM3MUJB?=
+ =?gb2312?B?Q1A2R1JRZENUYnlEMjlSNnc3bjhlQ2FOcXRCYmpNWlNpU0VQelduUzdOQ3l0?=
+ =?gb2312?B?dDV6OVk2aG5aS3dxM3hrM3BzaHllU0laNkdFcnBKNVZyOURGc2lCQW9xRjRY?=
+ =?gb2312?B?ckQydUQzRUw2VlFJem1BVzFyUXJJUWlNZWxrL1g2elI4MlVyMVVQWkl0c0xY?=
+ =?gb2312?B?MXlaUlAyNzRCOHZzOEt4TTJQcDl2c29HY2VCZjROa1dpL1NNM2hWR092ZFpD?=
+ =?gb2312?B?YWhJeG1VWVlZTVJRUzkzdGxnY3NwVVdqb2JXSUFwMzNUdGpSc3hoL2xsYWpF?=
+ =?gb2312?B?ZjF1aGF6aGVtNlNZb1o5Q0FyTEVtNk5hNFBvM2E1Y0NFNXA3Z2w0YzZuZHZt?=
+ =?gb2312?B?aTd5T1Nya3VBaXRqYkZwUUplQ05KUkxUTGZrTE5MZEdQZDZmWGI4RHpJeTNw?=
+ =?gb2312?B?TXdYZFB1dFpCODAvMlIwZjM0ckxoekdPM25aTkxveUFpVzJLVFduWUQyalJw?=
+ =?gb2312?B?OU56bTF4RHNJdURWWlFDdmFHMmY0WkE4WHpqNVJJY1JSV3VkTmx6TU1pVnV1?=
+ =?gb2312?B?UnNYTE9oeDJnQjlvN1RlR3dPNHZIR1J3d0lEZ0tzSzEyMVNESjVicXo4YTVJ?=
+ =?gb2312?B?eXV5aUR6ODViMjBTaGd3ZkNvYWJVVEgxZzU5TDgxa25HQWtVWC9xc3NYSSs1?=
+ =?gb2312?B?aTBFVVNyazZDSXR0cEVsUGdJam5NTldpQzRON0hoemw3a2JQeFJEZlFrSzU4?=
+ =?gb2312?B?SmRpazBaS2F2aUlWaEpFdVBxSGY0U0ZtRHZ2TVh3UjgzdGFEZDl5aDUrZ3pD?=
+ =?gb2312?B?bVU1dGJtYjl0SUhxbzJVS1JiekVEUll0dWsrTVhqWCt2c3NGTjZZQkVObXlE?=
+ =?gb2312?B?aU91anFTeStHRkVKblJFS1Y2V3BDTmtmWHAyeFZrN1JORllETWNnZG5zcGVk?=
+ =?gb2312?B?N3BaQU4xQXVFKzlhN2ZoZHlhRFd3OXA3RWxURnhXRm5VdDBKdzYxa1RIU0dy?=
+ =?gb2312?B?TXc0YjRRczk1cVhHajRtK0liWnlXb1dBRHBMWVdHZ1NGMHNwaFM2UWQzMnZz?=
+ =?gb2312?B?d3Q4Vm9oc3VUOWxDazBjN21hdkdKWXNCdThpU3F1REZSY2ZSeExHek1aVWZv?=
+ =?gb2312?B?UDFwNUlScXpmSkwwT2Roc1E4S0pOaWd4R1hFdkdhQ1ZuY3h4Y081MlVKYmJh?=
+ =?gb2312?B?dFJmQmdrTDFEemxBS3ZFeVVERkZEZndKVU1KejJpcFFoSnZQMjNQVlRqaVcv?=
+ =?gb2312?B?eHhwOXh4bU5ZOS9FRXBTd0o5b1dKazh0dUplSFR4STZvKzBnSC9yZElacFBZ?=
+ =?gb2312?B?dWkrRXRudTB4YmhxTVdvQXd5VHJYUEdZdVYvOGtnaTBjQWRmRzRyditjS3dL?=
+ =?gb2312?B?T0ZKcUMrZUxza01HRVVGZEwxdGJLOExHM3F1STJ3S2FDZGZ2dUdCNm5ZblZz?=
+ =?gb2312?B?d2FlLzdEenZuZGhrQnJEbjBvNkxqRGVmNjB0OGtaUW02bWdFUmpIdURiT0Ex?=
+ =?gb2312?B?TWFER3pzL1kzaVF4ZU01ZFJveTBZTWduMjhmNEg4QTM4UEVDNmF4R1p5RGVy?=
+ =?gb2312?B?KzFqKy9WU2NQSXJDOUhhT3E5U0o5SThuMDFNc0haNmlZRGxlL2I4cG4xTzYw?=
+ =?gb2312?B?dkZKMEYxc3RUdjcza3ZBYVBDQWhCZkFFN2FMbmNkTjlMdm1ZT3RsTlNoa1BB?=
+ =?gb2312?B?Q0RYMUxsUnlGbFV0N1ltY1UzeE5pUDZzSDJndG5qeUZiRy9rQzE2ZFFodVVT?=
+ =?gb2312?B?dUFLRmlHVStGSjdyU0N1d2x0WnBzcGc1bXRLdnhMbGJWVTFLRE9HMXo5cXZE?=
+ =?gb2312?B?ZzRFSUpJRlF6K1BDb1VqYWExdnM0dlUrNzgyaDJ0ZmM1T2JFazh0bUFPQUUx?=
+ =?gb2312?B?Q0VENyswYnpBczJWSWs0Rm9IcGN3aFAzNkVOUHVoRElhbGhuMjZVd0R3cFpz?=
+ =?gb2312?B?VHdhUTExaHRCaThnYnhxcGxJNE1zRmZqZC9heENaU1J2Z0dwenhQczNtczE5?=
+ =?gb2312?B?TXNkSVVwNjUzYW8wL0tXQWdJeTRzeHkwbnl3SDJzMDhLVmxELzVMNmgwYkho?=
+ =?gb2312?Q?y3G55I?=
+x-forefront-antispam-report: 
+ CIP:255.255.255.255;CTRY:;LANG:zh-cn;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:OSRPR01MB11597.jpnprd01.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(376014)(1800799024)(366016)(8096899003)(1580799027)(38070700018);DIR:OUT;SFP:1101;
 x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?NVPrEO8Nyvk2YiX9S+fgdcUtD+3p2q7g9aRJLyQFfj4NHioWbEsuIWgnU5EI?=
- =?us-ascii?Q?Tyjz6JqMIasSgKIgr2NQXTDhbn0QH4RbxEn/8ED95jfJUVJLPfxmSaWqDA5R?=
- =?us-ascii?Q?2AU03tD8yvWx/7EvUzMvhX9bxjeKNwSvnO2uf5uKEfsrHAmd1e6lbr3MvMkf?=
- =?us-ascii?Q?8NnZID1rQmrPXW6KU1MM63bFih3hYyWhZP15ESUL4giSX4r2xwqNlgjneVMw?=
- =?us-ascii?Q?loPoDuqA7CZGqA5vsvDeO1VV+ciiQxMfCaM8/PuKWtqAFFWG0ZAtmXuCRLvI?=
- =?us-ascii?Q?rzyF3h+YfywSYIAs7ZT2vRMoYdxdtWX5q5HVLjBXtgcOnHaJuuZD818leaEP?=
- =?us-ascii?Q?0vBsElg+GtHiAMVCGiOZjawpOEY1OHfyX+a/XxcYPivf/Wpbb/bG5N/0B4VY?=
- =?us-ascii?Q?tnb54f4+daI3YwgC2JfEJh+EKxXeBzbjX0Tw/AUYTemTVivdDz953hn7Ha32?=
- =?us-ascii?Q?kPs7bbbC9SYos1Ropld6IPAir4/wF7xx9Sh9XGqzmBpf96C1zvmNHkCKn4pg?=
- =?us-ascii?Q?QXg8yt6jK1ZeLG4ZXLRl+S1Fy39m4+kRI7r8RHAzmucygyG+hJjQOmsGWdky?=
- =?us-ascii?Q?zPX0bIUKbDwgaW4jZ44Q/OGU7ZPg8tv92G+v62EqS1Aanb9OR4Fc1i0XtNGi?=
- =?us-ascii?Q?3YGqPfWWwgcBlkxDN7dNj6yxBYzZSU4T9/rOKKNyabIgqRv8CyhuctyGhkCJ?=
- =?us-ascii?Q?s9UagRYJQnUVP++4WNmLuWYVSgcefiqe4zcqiig+0dV2T4wkrvXLbZCQgJqX?=
- =?us-ascii?Q?jh6aQobsOVxrTBqoBOdqSFglbn1KGN6nxTtQR7aGADtXFOS28wT9RLeJ8tls?=
- =?us-ascii?Q?lGozx4gxrevISKkXI6vLiqBQNgGiaey6lhxjh4hxCUeiyct/xXFOSKajcA38?=
- =?us-ascii?Q?xfjCqjUdFbcLUjcTWhcnx0n4n1ggrwr5BmHpJP5zCkPrEifqXe2X0a7bV/ZX?=
- =?us-ascii?Q?B01bhXHFZ2K0VdworHtNhgCuYvglbtE7iieFRtInEJsb3OgCXCNMqYnZr/z3?=
- =?us-ascii?Q?SW5Sftdaxy1+YIv7v+k2AH01SyOHuaI/FEcF1nnLP4Thte8/8GixJ+a3eDek?=
- =?us-ascii?Q?90SdcMbrPSVwM42ao7ulkTC9iQDku1SMmSxNR2IaieHmv5hKMqlME5PxXPxz?=
- =?us-ascii?Q?kccTWcGAnP7eEAxxSuy3xDcjXN0MSeAn7b0tSXivFPwLSmjY8z/syNGO2vRt?=
- =?us-ascii?Q?0G1cvxqGChnp0gwP6O80Cazed/fHzTtk2uCWzebkTmSxZg7SpmVlnoByISpT?=
- =?us-ascii?Q?h2hyTG4dRpBsW5kLpKcOWV7ftIb2TRVNHIXIl1vmfmaaAZr2I/WeiJhwl4mc?=
- =?us-ascii?Q?KIorcCIkhzUWAYAaJ7VAFufsBj4U+O07fO3aj+Hkac1itZZzLEdbhqVWuMwg?=
- =?us-ascii?Q?dbcX96aCxj8Ix+ZAhu5cz+j889+pp5RaYq3l1OJWQBvbODUlIQK436o1/MaN?=
- =?us-ascii?Q?uZYQ1UuXQjbM4kN7eBB2Nkuu7A4U6DJE4gbNn9+KqBvwJ6+IW7021xfqruue?=
- =?us-ascii?Q?3p+hlhM8Sy83pbhMBNGzmDHYAqo4CNqHHE1T0HsPV2VHkF0x+15AgK/sAfAc?=
- =?us-ascii?Q?jltVKK7XpKViMrfHRtYj2FC5MwPVjrBGF35j40rDnrpK04f1T23xNxDhAvob?=
- =?us-ascii?Q?VShwBa7HU5JVEuF8EtM+NBYjo4zQ5swr6aPn1RyO43m0?=
+x-ms-exchange-antispam-messagedata-0: 
+ =?gb2312?B?MkhJV2UxYktsdXlZb1dmUFJ6RE9vTkQrYms1aVVEUlJyMWhyVk50QlErcDdl?=
+ =?gb2312?B?TUxiTHRwd2U5SDdFNjRDaGZiZ2ZUc21GUU5rTDE2UG93eHNOSjJPeU5DNTlz?=
+ =?gb2312?B?WXJjem1xNjNnNld1Uk42ZjQ1d3hicTAyYy9BMVg3TGgwWDRaNTE5YkVyd3d2?=
+ =?gb2312?B?S1JGTUxPQ3NZVWlFRjY3MlJDSWRWL0RaR1QrRk9WcnhNQll0cm05RDZTbkI1?=
+ =?gb2312?B?eUZaVFBWZGxRVnFTSnJpbkJ2TENSMjMwdURGakFVSDhvWmVOSnJ1MFFjbnM5?=
+ =?gb2312?B?K3VsRis0U3ZJZ3E2RzdkUmJFWUg3d01XcUdCcXpyUzlPc2FBVy9oUUpRUHlx?=
+ =?gb2312?B?RDlhbjRhd0g5ZWw3ZXh0bnFuZFpqWWExLzVqZmNvV3FGdnBKWWVtc3pEQ3FE?=
+ =?gb2312?B?bytBcEpYVmNZQ0hUN0YxR2hPZzZRVmxHVURzbTB0QllyaXNqRW9WdVNLT3l1?=
+ =?gb2312?B?ZGNUZWtXMGtFbTY0QW1ETE1USTNXMy9GMWdudDZScDVDY2c4RkQ4V2l4UitQ?=
+ =?gb2312?B?WGlNd2JESmFOZ0JqeU5tL0RMbE1XSUdkSHg2dC9jVDU3c0hTTDg4NUR2dmVz?=
+ =?gb2312?B?ZWd6R0RmckdJWXJvU1lpY1hFUXFzM2xsUXpjVXM3ak1lR2FOdy9WRVllOUFK?=
+ =?gb2312?B?aStMTmEyeHlQenF4MVM4c09kb0FZVFFhWFVQOVd1YncvWHhmRTJRd2dXWnM0?=
+ =?gb2312?B?SDFwSEFDTjh0N0I3M0NCcFllSU5Eek5GaVU5eWQxUEsyK25GNHAzSy9WUS9i?=
+ =?gb2312?B?M3RuRDJxd0dsS3BoWVdCK2lKOFA4TG5ValVTMCsvK0VneHNsdCtZZ2k0bSt0?=
+ =?gb2312?B?ZnJpVFkwMFpVYjEvV1c1QlRTVVNYMFp6RFJIQWFrSzZsTy9KMDBpTkYyRmVE?=
+ =?gb2312?B?eHU2cFdrcHcwQmZzaWNSeEdzckFqeTFOZ3ZnbDY2OEVkdm5keU9RWHpETXpM?=
+ =?gb2312?B?L0pyWW93L0tUUDZMd3JaSk5BT01OOXd6VHcraGlxY3lhdTMzN08xZ2U0ZStn?=
+ =?gb2312?B?enRCMW5EaUZta0FJUy83dUNUVXMrMDg3YkZ5bXZFQ1VMcGQ5cGtTVXBYbjNz?=
+ =?gb2312?B?TlN5aEZBSUhvck5IdGZkbGN3bnRmN0hXVVpCYTNNNGxiMlEzNTdoNlVyUHY1?=
+ =?gb2312?B?VUp1dWREa3luV1hkOUNUN2IwcDNmNWRydVdOTXVBaE02aVVwdkVxS3k3ZzNW?=
+ =?gb2312?B?REF1Q09QMWc3TG1USXNaLzU5VUtzZjZGUmlORktyaUUzWVFhL0ZjOGpwY3NJ?=
+ =?gb2312?B?UkdZZ2xDRVF2blMvSEVKLzNGNWVWeWpVT0pxTXNPOFI3b2NyWDR0d091aStn?=
+ =?gb2312?B?TEJPdGNVejNjWFBsdHBYS1FGSGdPdEpxMVhhSXpyVTJ6QWFpVjg5Vk8yamp6?=
+ =?gb2312?B?ays5SVQrTm9QZlZxMkpUMjJKTTJyeURIbWNyditxWUdEMzhWWjhGN2pJaE9X?=
+ =?gb2312?B?YVhPdmIyT0ZGaWcrK2QrNkdQdFJrR1p6L1RpckxYSzhBNnNjREZnUkExK0gx?=
+ =?gb2312?B?SkJhN2N5TXJmZzhuUjhFRFQ3RnczbnhoRmYwYVVPazkwVlFqV0ZmSjZoWFlm?=
+ =?gb2312?B?NzdmMGYvZjZsSHRpSXVGdmpQTk5QdnpZbWkzeENoY3lLNXJiNGRWZGc4dEtG?=
+ =?gb2312?B?U2R3azEvVmVSSHlTSGw1bTFsc244ekkrbVEyd3p1eEZKSDY3MDE2WkJXZjFx?=
+ =?gb2312?B?dnJuNkJJRkNUUnFXMkg3bWpxR0RVQ005aE5QaGtNeHY5V0xWWCs5Q0x6UWVV?=
+ =?gb2312?B?SmFTMDVaMktBRlZaRzBGTkw0dVo1UnpjSUFiUlQ1NFlLRWhxRXY2N2xjSHd0?=
+ =?gb2312?B?OW9KbnhKeDV6WVExaitqRUV6bmVXYkYxUmhiazNrUXVsZTR2S0htTllLaitx?=
+ =?gb2312?B?MDBxSGF2cEpSVnh6RnQ1Y0Rtcmk0V3QxcGJTZ0pnMm1rczMrb1MwQ3pURDhZ?=
+ =?gb2312?B?N0lJMEllU00vWTNuSFN5RHJvVUgyYi9VUjJrUklvbWtldzJBckp3and3N2Mv?=
+ =?gb2312?B?M1RXcUFWZlM1eDc3WUhUNHBpbWF5Qi9rS2JvU3BEb00xa29MV3pydjFEQWpZ?=
+ =?gb2312?B?T0ZRUXBJb042czNIOEV5UFdlT1d0cklEelFSei8vMHpIMnpZNlh6MjdLZTI5?=
+ =?gb2312?Q?t4WrNTTp7HeNf2WQ0TsuoMPWZ?=
 Content-Type: multipart/alternative;
-	boundary="_000_BL4PR11MB879702BB57439BE0116AF312B9B82BL4PR11MB8797namp_"
+	boundary="_000_OSRPR01MB1159744545F10E644D8DB24CE9BB82OSRPR01MB11597jp_"
 MIME-Version: 1.0
+X-MS-Exchange-AntiSpam-ExternalHop-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-ExternalHop-MessageData-0: 
+	mL70BodFtLus3fGV5Q6vZqYOvhSldgAl3byvlxq7/+71Kk4RE7UG/CqKIw5FAyHX6/Igssa+7bc6q0U0T8pCN3OMIk9kwA+nLNJ1fXht/3RujlMRWlHqLn9e/yOKNlaCIaXlqLbNek+/apzfIaVcwZnBfFR0vITRrFxBgkUGE8fdPlEWhpaXw+y3bFqwQiqVHb5IMOhdGPtAe2GVgtTeq+RXwWcTMHkyLGIVy3PNvzoLwMjYqfjlQ37dRh2DcrW627pansfN6O0Ci1aWgR/cU2DMSoZs+demY8pQiIx3nMQrV+kgz4sninPZvD/0e0v0iDlE/xt3aH7s2pNj9tvLvEPNJ46Ki8mWfoQ+hWn7OghDIbjsHiw3KwwERUjySxGwnOIrMfTwOLTg1TSxT+cyVGYtXsJ6JJBC2IyWHv2eQoUijE7Hv7KVhM4R60C/lYOqENB6Tl0UGmvV3IrQD6SiX4lzQo88xsBiD/CIPS62AqdnA7q3DcXjojJK6djxEEl/25dqRlFZbTIsAPiQFCA09W/P0nigNmOodmtQYsun5tPL1jcgk4UKXwRYku7RTwv3UoI30jZvioljUpX/5egSTuZJuD+DnQMM7yilTSZMyIV53diQx/6xvnUpyVXhaz/0
+X-OriginatorOrg: fujitsu.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: BL4PR11MB8797.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 2f429cfe-6c58-41f4-5ff6-08dd809facec
-X-MS-Exchange-CrossTenant-originalarrivaltime: 21 Apr 2025 06:42:24.5501
+X-MS-Exchange-CrossTenant-AuthSource: OSRPR01MB11597.jpnprd01.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: cc085810-83dc-4f97-234c-08dd80b3173b
+X-MS-Exchange-CrossTenant-originalarrivaltime: 21 Apr 2025 09:01:23.3516
  (UTC)
 X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-id: a19f121d-81e1-4858-a9d8-736e267fd4c7
 X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: skj0k7iSLsGI9qniSO+3wap8xNrnrC2nM3qUjy/J16ERboseCkbH1/s1qgdhMfjTrwsFlVourYzEVgqSAYw20w==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: MN0PR11MB6109
-X-OriginatorOrg: intel.com
+X-MS-Exchange-CrossTenant-userprincipalname: wV3kYT2VHlUG1Jze+119KYSojxxtDOsn6hAoSMhHiheuteeE2VRdwn7S7lgjmZPTJb09xyb89YGhBybGqcnFWg==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: OS7PR01MB14430
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Mon, 21 Apr 2025 06:43:15 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/65205
+ <yocto@lists.yoctoproject.org>; Mon, 21 Apr 2025 09:01:36 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/65206
 
---_000_BL4PR11MB879702BB57439BE0116AF312B9B82BL4PR11MB8797namp_
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+--_000_OSRPR01MB1159744545F10E644D8DB24CE9BB82OSRPR01MB11597jp_
+Content-Type: text/plain; charset="gb2312"
+Content-Transfer-Encoding: base64
 
-Hi,
+SGkgS2hlbSBSYWoNCmNjIGFsbA0KDQpXaGVuIEkgYnVpbGQgbGliMzItbW96anMtMTI4IHdoaWNo
+IGlzIDMyYml0IG9mIG1ldGEtb3BlbmVtYmVkZGVkL21ldGEtb2UvcmVjaXBlcy1leHRlbmRlZC9t
+b3pqcy9tb3pqcy0xMjhfMTI4LjUuMi5iYiwgbWV0IGZvbGxvd2luZyBpc3N1ZToNCldBUk5JTkc6
+IGxpYjMyLW1vempzLTEyOC0xMjguNS4yLXIwIGRvX3BhY2thZ2VfcWE6IFFBIElzc3VlOiAvdXNy
+L2xpYi9saWJtb3pqcy0xMjguc28gdXNlcyAzMi1iaXQgYXBpICdzdGF0NjQnIFszMmJpdC10aW1l
+XQ0KV0FSTklORzogbGliMzItbW96anMtMTI4LTEyOC41LjItcjAgZG9fcGFja2FnZV9xYTogUUEg
+SXNzdWU6IC91c3IvbGliL2xpYm1vempzLTEyOC5zbyB1c2VzIDMyLWJpdCBhcGkgJ2ZzdGF0NjQn
+IFszMmJpdC10aW1lXQ0KV0FSTklORzogbGliMzItbW96anMtMTI4LTEyOC41LjItcjAgZG9fcGFj
+a2FnZV9xYTogUUEgSXNzdWU6IFN1cHByZXNzIHdpdGggSU5TQU5FX1NLSVAgPSAiMzJiaXQtdGlt
+ZSIgWzMyYml0LXRpbWVdDQpXQVJOSU5HOiBsaWIzMi1tb3pqcy0xMjgtMTI4LjUuMi1yMCBkb19w
+YWNrYWdlX3FhOiBRQSBJc3N1ZTogL3Vzci9iaW4vanMxMjggdXNlcyAzMi1iaXQgYXBpICdzdGF0
+NjQnIFszMmJpdC10aW1lXQ0KV0FSTklORzogbGliMzItbW96anMtMTI4LTEyOC41LjItcjAgZG9f
+cGFja2FnZV9xYTogUUEgSXNzdWU6IC91c3IvYmluL2pzMTI4IHVzZXMgMzItYml0IGFwaSAnZnN0
+YXQ2NCcgWzMyYml0LXRpbWVdDQpXQVJOSU5HOiBsaWIzMi1tb3pqcy0xMjgtMTI4LjUuMi1yMCBk
+b19wYWNrYWdlX3FhOiBRQSBJc3N1ZTogU3VwcHJlc3Mgd2l0aCBJTlNBTkVfU0tJUCA9ICIzMmJp
+dC10aW1lIiBbMzJiaXQtdGltZV0NCg0KSSBhbSBwcmV0dHkgbXVjaCBzdXJlIHRoYXQgIi1EX1RJ
+TUVfQklUUz02NCAtRF9GSUxFX09GRlNFVF9CSVRTPTY0IiBoYXMgYmVlbiBlbmFibGVkIGJ5IGNo
+ZWNraW5nIGxvZy5kb19jb21waWxlDQoNCkkgY2FuIG9ubHkgZmluZCBzb21lIHRvbyBtdWNoIG9s
+ZCBwYXRjaGVzIHRvIHNvbHZlIHRoaXMga2luZCBvZiBpc3N1ZXMgYnkgbWFudWFsbHkgcmVwbGFj
+aW5nIG9mZjY0X3Qtc3RhdDY0IHdpdGggb2ZmX3Qtc3RhdDoNCm1ldGEtb3BlbmVtYmVkZGVkL21l
+dGEtZmlsZXN5c3RlbXMvcmVjaXBlcy11dGlscy94ZnNwcm9ncy9maWxlcy8wMDA1LVJlcGxhY2Ut
+b2ZmNjRfdC1zdGF0NjQtd2l0aC1vZmZfdC1zdGF0LnBhdGNoDQptZXRhLWZpbGVzeXN0ZW1zL3Jl
+Y2lwZXMtdXRpbHMveGZzcHJvZ3MvZmlsZXMvMDAwNS1SZXBsYWNlLW9mZjY0X3Qtc3RhdDY0LXdp
+dGgtb2ZmX3Qtc3RhdC5wYXRjaA0KDQoNCkJ1dCB0aGVyZSBhcmUgZG96ZW5zIG9mIHN0YXQ2NCgp
+IG9yIGZzdGF0NjQgaW4gZmlyZWZveC0xMjguNS4yIHNvdXJjZSBjb2RlLg0KQ2FuIHlvdSBnaXZl
+IG1lIHNvbWUgc3VnZ2VzdGlvbnMgdG8gc29sdmUgdGhpcyBpc3N1ZT8NCg0KDQpQczogQmVsb3cg
+YXJlIHJlcHJvZHVjZSBzdGVwczoNCg0KICAxLiAgQWRkIGluIGxvY2FsLmNvbmYgdGhlIGZvbGxv
+d2luZyBsaW5lczoNCiBNQUNISU5FID89ICJxZW11eDg2LTY0Ig0KIHJlcXVpcmUgY29uZi9tdWx0
+aWxpYi5jb25mDQogTVVMVElMSUJTID89ICJtdWx0aWxpYjpsaWIzMiINCiBERUZBVUxUVFVORTp2
+aXJ0Y2xhc3MtbXVsdGlsaWItbGliMzIgPz0gImNvcmUyLTMyIg0KDQoNCiAgMS4gIGJpdGJha2Ug
+bGliMzItbW96anMtMTI4DQoNCg0KVGhhbmsgeW91DQpMaXUgWWlkaW5nDQoNCg==
 
-We are pleased to announce the Yocto Project 4.0.26 Release is now availabl=
-e for download.
-
-https://downloads.yoctoproject.org/releases/yocto/yocto-4.0.26/poky-d70d287=
-a77d5026b698ac237ab865b2dafd36bb8.tar.bz2
-https://mirrors.kernel.org/yocto/yocto/yocto-4.0.26/poky-d70d287a77d5026b69=
-8ac237ab865b2dafd36bb8.tar.bz2
-
-A gpg signed version of these release notes is available at:
-
-https://downloads.yoctoproject.org/releases/yocto/yocto-4.0.26/RELEASENOTES
-
-Full Test Report:
-
-https://downloads.yoctoproject.org/releases/yocto/yocto-4.0.26/testreport.t=
-xt
-
-Thank you for everyone's contributions to this release.
-
-Chee Yang
-chee.yang.lee@intel.com<mailto:chee.yang.lee@intel.com>
-Yocto Project Build and Release
-
-
---------------------------
-yocto-4.0.26 Release Notes
---------------------------
-
-
---------------------------
-Repositories/Downloads
---------------------------
-
-Repository Name: poky
-Repository Location: https://git.yoctoproject.org/poky
-Branch: kirkstone
-Tag: yocto-4.0.26
-Git Revision: d70d287a77d5026b698ac237ab865b2dafd36bb8
-Release Artefact: poky-d70d287a77d5026b698ac237ab865b2dafd36bb8
-sha: 3ebfadb8bff4c1ca12b3cf3e4ef6e3ac2ce52b73570266daa98436c9959249f2
-Download Locations:
-https://downloads.yoctoproject.org/releases/yocto/yocto-4.0.26/poky-d70d287=
-a77d5026b698ac237ab865b2dafd36bb8.tar.bz2
-https://mirrors.kernel.org/yocto/yocto/yocto-4.0.26/poky-d70d287a77d5026b69=
-8ac237ab865b2dafd36bb8.tar.bz2
-
-Repository Name: openembedded-core
-Repository Location: https://git.openembedded.org/openembedded-core
-Branch: kirkstone
-Tag: yocto-4.0.26
-Git Revision: 1efbe1004bc82e7c14c1e8bd4ce644f5015c3346
-Release Artefact: oecore-1efbe1004bc82e7c14c1e8bd4ce644f5015c3346
-sha: d3805e034dabd0865dbf55488b2c16d4ea0351d37aa826f0054a6bfdde5a8be9
-Download Locations:
-https://downloads.yoctoproject.org/releases/yocto/yocto-4.0.26/oecore-1efbe=
-1004bc82e7c14c1e8bd4ce644f5015c3346.tar.bz2
-https://mirrors.kernel.org/yocto/yocto/yocto-4.0.26/oecore-1efbe1004bc82e7c=
-14c1e8bd4ce644f5015c3346.tar.bz2
-
-Repository Name: meta-mingw
-Repository Location: https://git.yoctoproject.org/meta-mingw
-Branch: kirkstone
-Tag: yocto-4.0.26
-Git Revision: 87c22abb1f11be430caf4372e6b833dc7d77564e
-Release Artefact: meta-mingw-87c22abb1f11be430caf4372e6b833dc7d77564e
-sha: f0bc4873e2e0319fb9d6d6ab9b98eb3f89664d4339a167d2db6a787dd12bc1a8
-Download Locations:
-https://downloads.yoctoproject.org/releases/yocto/yocto-4.0.26/meta-mingw-8=
-7c22abb1f11be430caf4372e6b833dc7d77564e.tar.bz2
-https://mirrors.kernel.org/yocto/yocto/yocto-4.0.26/meta-mingw-87c22abb1f11=
-be430caf4372e6b833dc7d77564e.tar.bz2
-
-Repository Name: meta-gplv2
-Repository Location: https://git.yoctoproject.org/meta-gplv2
-Branch: kirkstone
-Tag: yocto-4.0.26
-Git Revision: d2f8b5cdb285b72a4ed93450f6703ca27aa42e8a
-Release Artefact: meta-gplv2-d2f8b5cdb285b72a4ed93450f6703ca27aa42e8a
-sha: c386f59f8a672747dc3d0be1d4234b6039273d0e57933eb87caa20f56b9cca6d
-Download Locations:
-https://downloads.yoctoproject.org/releases/yocto/yocto-4.0.26/meta-gplv2-d=
-2f8b5cdb285b72a4ed93450f6703ca27aa42e8a.tar.bz2
-https://mirrors.kernel.org/yocto/yocto/yocto-4.0.26/meta-gplv2-d2f8b5cdb285=
-b72a4ed93450f6703ca27aa42e8a.tar.bz2
-
-Repository Name: bitbake
-Repository Location: https://git.openembedded.org/bitbake
-Branch: 2.0
-Tag: yocto-4.0.26
-Git Revision: 046871d9fd76efdca7b72718b328d8f545523f7e
-Release Artefact: bitbake-046871d9fd76efdca7b72718b328d8f545523f7e
-sha: e9df0a9f5921b583b539188d66b23f120e1751000e7822e76c3391d5c76ee21a
-Download Locations:
-https://downloads.yoctoproject.org/releases/yocto/yocto-4.0.26/bitbake-0468=
-71d9fd76efdca7b72718b328d8f545523f7e.tar.bz2
-https://mirrors.kernel.org/yocto/yocto/yocto-4.0.26/bitbake-046871d9fd76efd=
-ca7b72718b328d8f545523f7e.tar.bz2
-
-Repository Name: yocto-docs
-Repository Location: https://git.yoctoproject.org/yocto-docs
-Branch: kirkstone
-Tag: yocto-4.0.26
-Git Revision: 9b4c36f7b02dd4bedfec90206744a1e90e37733c
-
-
----------------
-Contributors
----------------
-Aleksandar Nikolic
-Alessio Cascone
-Antonin Godard
-Archana Polampalli
-Ashish Sharma
-Bruce Ashfield
-Carlos Dominguez
-Deepesh Varatharajan
-Divya Chellam
-Guocai He
-Hitendra Prajapati
-Hongxu Jia
-Jiaying Song
-Johannes Kauffmann
-Kai Kang
-Lee Chee Yang
-Libo Chen
-Marta Rybczynska
-Michael Halstead
-Mingli Yu
-Moritz Haase
-Narpat Mali
-Paulo Neves
-Peter Marko
-Priyal Doshi
-Richard Purdie
-Robert Yang
-Ross Burton
-Sakib Sajal
-Steve Sakoman
-Vijay Anusuri
-Yogita Urade
-Zhang Peng
-
-
----------------
-Known Issues
----------------
-N/A
-
-
----------------
-Security Fixes
----------------
-bind: Fix CVE-2024-11187 CVE-2024-12705
-binutils: Fix CVE-2025-0840
-elfutils: Fix CVE-2025-1352 CVE-2025-1372
-ffmpeg: Fix CVE-2024-28661 CVE-2024-35369 CVE-2024-36613 CVE-2024-36616 CVE=
--2024-36617 CVE-2024-36618 CVE-2025-0518 CVE-2025-25473
-ffmpeg: Ignore CVE-2023-46407 CVE-2023-47470 CVE-2024-7272 CVE-2024-22860 C=
-VE-2024-22861 CVE-2024-22862
-freetype: Fix CVE-2025-27363
-gnutls: Fix CVE-2024-12243
-grub: Fix CVE-2024-45774 CVE-2024-45775 CVE-2024-45776 CVE-2024-45777 CVE-2=
-024-45778 CVE-2024-45779 CVE-2024-45780 CVE-2024-45781 CVE-2024-45782 CVE-2=
-024-45783 CVE-2024-56737 CVE-2025-0622 CVE-2025-0624 CVE-2025-0677 CVE-2025=
--0684 CVE-2025-0685 CVE-2025-0686 CVE-2025-0689 CVE-2025-0678 CVE-2025-0690=
- CVE-2025-1118 CVE-2025-1125
-gstreamer1.0-rtsp-server: fix CVE-2024-44331
-libarchive: Fix CVE-2025-25724
-libarchive: Ignore CVE-2025-1632
-libcap: Fix CVE-2025-1390
-linux-yocto/5.10: Fix CVE-2024-36476 CVE-2024-43098 CVE-2024-47143 CVE-2024=
--48881 CVE-2024-50051 CVE-2024-50074 CVE-2024-50082 CVE-2024-50083 CVE-2024=
--50099 CVE-2024-50115 CVE-2024-50116 CVE-2024-50117 CVE-2024-50142 CVE-2024=
--50148 CVE-2024-50150 CVE-2024-50151 CVE-2024-50167 CVE-2024-50168 CVE-2024=
--50171 CVE-2024-50185 CVE-2024-50192 CVE-2024-50193 CVE-2024-50194 CVE-2024=
--50195 CVE-2024-50198 CVE-2024-50201 CVE-2024-50202 CVE-2024-50205 CVE-2024=
--50208 CVE-2024-50209 CVE-2024-50229 CVE-2024-50230 CVE-2024-50233 CVE-2024=
--50234 CVE-2024-50236 CVE-2024-50237 CVE-2024-50251 CVE-2024-50262 CVE-2024=
--50264 CVE-2024-50265 CVE-2024-50267 CVE-2024-50268 CVE-2024-50269 CVE-2024=
--50273 CVE-2024-50278 CVE-2024-50279 CVE-2024-50282 CVE-2024-50287 CVE-2024=
--50292 CVE-2024-50296 CVE-2024-50299 CVE-2024-50301 CVE-2024-50302 CVE-2024=
--53042 CVE-2024-53052 CVE-2024-53057 CVE-2024-53059 CVE-2024-53060 CVE-2024=
--53061 CVE-2024-53063 CVE-2024-53066 CVE-2024-53096 CVE-2024-53097 CVE-2024=
--53101 CVE-2024-53103 CVE-2024-53104 CVE-2024-53145 CVE-2024-53146 CVE-2024=
--53150 CVE-2024-53155 CVE-2024-53156 CVE-2024-53157 CVE-2024-53161 CVE-2024=
--53165 CVE-2024-53171 CVE-2024-53173 CVE-2024-53174 CVE-2024-53194 CVE-2024=
--53197 CVE-2024-53217 CVE-2024-53226 CVE-2024-53227 CVE-2024-53237 CVE-2024=
--53239 CVE-2024-55916 CVE-2024-56548 CVE-2024-56558 CVE-2024-56567 CVE-2024=
--56568 CVE-2024-56569 CVE-2024-56572 CVE-2024-56574 CVE-2024-56581 CVE-2024=
--56587 CVE-2024-56593 CVE-2024-56595 CVE-2024-56596 CVE-2024-56598 CVE-2024=
--56600 CVE-2024-56601 CVE-2024-56602 CVE-2024-56603 CVE-2024-56605 CVE-2024=
--56606 CVE-2024-56615 CVE-2024-56619 CVE-2024-56623 CVE-2024-56629 CVE-2024=
--56634 CVE-2024-56642 CVE-2024-56643 CVE-2024-56648 CVE-2024-56650 CVE-2024=
--56659 CVE-2024-56662 CVE-2024-56670 CVE-2024-56688 CVE-2024-56698 CVE-2024=
--56704 CVE-2024-56716 CVE-2024-56720 CVE-2024-56723 CVE-2024-56724 CVE-2024=
--56728 CVE-2024-56739 CVE-2024-56746 CVE-2024-56747 CVE-2024-56748 CVE-2024=
--56754 CVE-2024-56756 CVE-2024-56770 CVE-2024-56779 CVE-2024-56780 CVE-2024=
--56781 CVE-2024-56785 CVE-2024-57802 CVE-2024-57807 CVE-2024-57850 CVE-2024=
--57874 CVE-2024-57890 CVE-2024-57896 CVE-2024-57900 CVE-2024-57901 CVE-2024=
--57902 CVE-2024-57910 CVE-2024-57911 CVE-2024-57913 CVE-2024-57922 CVE-2024=
--57938 CVE-2024-57939 CVE-2024-57946 CVE-2024-57951 CVE-2025-21638 CVE-2025=
--21687 CVE-2025-21689 CVE-2025-21692 CVE-2025-21694 CVE-2025-21697 CVE-2025=
--21699
-linux-yocto/5.15: Fix CVE-2024-57979 CVE-2024-58034 CVE-2024-58052 CVE-2024=
--58055 CVE-2024-58058 CVE-2024-58063 CVE-2024-58069 CVE-2024-58071 CVE-2024=
--58076 CVE-2024-58083 CVE-2025-21700 CVE-2025-21703 CVE-2025-21715 CVE-2025=
--21722 CVE-2025-21727 CVE-2025-21731 CVE-2025-21753 CVE-2025-21756 CVE-2025=
--21760 CVE-2025-21761 CVE-2025-21762 CVE-2025-21763 CVE-2025-21764 CVE-2025=
--21796 CVE-2025-21811 CVE-2025-21887 CVE-2025-21898 CVE-2025-21904 CVE-2025=
--21905 CVE-2025-21912 CVE-2025-21917 CVE-2025-21919 CVE-2025-21920 CVE-2025=
--21922 CVE-2025-21934 CVE-2025-21943 CVE-2025-21948 CVE-2025-21951
-libpcre2: Ignore CVE-2022-1586
-libtasn1: Fix CVE-2024-12133
-libxml2: Fix CVE-2022-49043 CVE-2024-56171 CVE-2025-24928 CVE-2025-27113
-libxslt: Fix CVE-2024-55549 CVE-2025-24855
-llvm: Fix CVE-2024-0151
-mpg123: Fix CVE-2024-10573
-openssh: Fix CVE-2025-26465
-ovmf: Revert Fix for CVE-2023-45236 CVE-2023-45237
-perl: Ignore CVE-2023-47038
-puzzles: Ignore CVE-2024-13769 CVE-2024-13770 CVE-2025-0837
-python3: Fix CVE-2025-0938
-ruby: Fix CVE-2024-41946 CVE-2025-27219 CVE-2025-27220
-subversion: Ignore CVE-2024-45720
-systemd: Fix CVE-2022-3821 CVE-2022-4415 CVE-2022-45873 CVE-2023-7008
-tiff: mark CVE-2023-30774 as patched with existing patch
-u-boot: Fix CVE-2022-2347 CVE-2022-30767 CVE-2022-30790 CVE-2024-57254 CVE-=
-2024-57255 CVE-2024-57256 CVE-2024-57257 CVE-2024-57258 CVE-2024-57259
-vim: Fix CVE-2025-1215 CVE-2025-22134  CVE-2025-24014 CVE-2025-26603  CVE-2=
-025-27423  CVE-2025-29768
-xserver-xorg: Fix CVE-2022-49737 CVE-2025-26594 CVE-2025-26595 CVE-2025-265=
-96 CVE-2025-26597 CVE-2025-26598 CVE-2025-26599 CVE-2025-26600 CVE-2025-266=
-01
-xwayland: Fix CVE-2022-49737 CVE-2024-9632 CVE-2024-21885 CVE-2024-21886 CV=
-E-2024-31080 CVE-2024-31081 CVE-2024-31083 CVE-2025-26594 CVE-2025-26595 CV=
-E-2025-26596 CVE-2025-26597 CVE-2025-26598 CVE-2025-26599 CVE-2025-26600 CV=
-E-2025-26601
-zlib: Fix CVE-2014-9485
-
-
----------------
-Fixes
----------------
-bind: Upgrade to 9.18.33
-bitbake: cache: bump cache version
-bitbake: siggen.py: Improve taskhash reproducibility
-boost: fix do_fetch error
-build-appliance-image: Update to kirkstone head revision
-contributor-guide/submit-changes: add policy on AI generated code
-cve-update-nvd2-native: handle missing vulnStatus
-docs: Add favicon for the documentation html
-docs: Remove all mention of core-image-lsb
-libtasn1: upgrade to 4.20.0
-libxcrypt-compat: Remove libcrypt.so to fix conflict with libcrypt
-libxml2: fix compilation of explicit child axis in pattern
-linux-yocto/5.10: update to v5.10.234
-linux-yocto/5.15: update to v5.15.179
-mesa: Fix missing GLES3 headers in SDK sysroot
-mesa: Update SRC_URI
-meta: Enable '-o pipefail' for the SDK installer
-migration-guides: add release notes for 4.0.25
-poky.conf: add ubuntu2404 to SANITY_TESTED_DISTROS
-poky.conf: bump version for 4.0.26
-procps: replaced one use of fputs(3) with a write(2) call
-ref-manual: don't refer to poky-lsb
-scripts/install-buildtools: Update to 4.0.24
-scritps/runqemu: Ensure we only have two serial ports
-systemd: upgrade to 250.14
-tzcode-native: Fix compiler setting from 2023d version
-tzcode: Update SRC_URI
-tzdata/tzcode-native: upgrade 2025a
-vim: Upgrade to 9.1.1198
-virglrenderer: fix do_fetch error
-vulnerabilities/classes: remove references to cve-check text format
-xz: Update SRC_URI
-yocto-uninative: Update to 4.7 for glibc 2.41
-
-
-
-
---_000_BL4PR11MB879702BB57439BE0116AF312B9B82BL4PR11MB8797namp_
-Content-Type: text/html; charset="us-ascii"
+--_000_OSRPR01MB1159744545F10E644D8DB24CE9BB82OSRPR01MB11597jp_
+Content-Type: text/html; charset="gb2312"
 Content-Transfer-Encoding: quoted-printable
 
 <html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
@@ -460,46 +220,116 @@ osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
 xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" xmlns=3D"http:=
 //www.w3.org/TR/REC-html40">
 <head>
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
->
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dgb2312">
 <meta name=3D"Generator" content=3D"Microsoft Word 15 (filtered medium)">
 <style><!--
 /* Font Definitions */
 @font-face
+	{font-family:=CB=CE=CC=E5;
+	panose-1:2 1 6 0 3 1 1 1 1 1;}
+@font-face
 	{font-family:"Cambria Math";
 	panose-1:2 4 5 3 5 4 6 3 2 4;}
 @font-face
-	{font-family:DengXian;
+	{font-family:=B5=C8=CF=DF;
 	panose-1:2 1 6 0 3 1 1 1 1 1;}
 @font-face
-	{font-family:Aptos;}
+	{font-family:"\@=B5=C8=CF=DF";
+	panose-1:2 1 6 0 3 1 1 1 1 1;}
 @font-face
-	{font-family:Consolas;
-	panose-1:2 11 6 9 2 2 4 3 2 4;}
-@font-face
-	{font-family:"\@DengXian";
+	{font-family:"\@=CB=CE=CC=E5";
 	panose-1:2 1 6 0 3 1 1 1 1 1;}
 /* Style Definitions */
 p.MsoNormal, li.MsoNormal, div.MsoNormal
 	{margin:0cm;
-	font-size:12.0pt;
-	font-family:"Aptos",sans-serif;
+	font-size:11.0pt;
+	font-family:=B5=C8=CF=DF;
 	mso-ligatures:standardcontextual;}
-a:link, span.MsoHyperlink
-	{mso-style-priority:99;
-	color:#467886;
-	text-decoration:underline;}
+p.MsoListParagraph, li.MsoListParagraph, div.MsoListParagraph
+	{mso-style-priority:34;
+	margin-top:0cm;
+	margin-right:0cm;
+	margin-bottom:0cm;
+	margin-left:36.0pt;
+	font-size:11.0pt;
+	font-family:=B5=C8=CF=DF;
+	mso-ligatures:standardcontextual;}
 span.EmailStyle17
 	{mso-style-type:personal-compose;
-	font-family:"Aptos",sans-serif;
+	font-family:=B5=C8=CF=DF;
 	color:windowtext;}
 .MsoChpDefault
 	{mso-style-type:export-only;}
+/* Page Definitions */
 @page WordSection1
 	{size:612.0pt 792.0pt;
-	margin:72.0pt 72.0pt 72.0pt 72.0pt;}
+	margin:72.0pt 90.0pt 72.0pt 90.0pt;}
 div.WordSection1
 	{page:WordSection1;}
+/* List Definitions */
+@list l0
+	{mso-list-id:1509714220;
+	mso-list-type:hybrid;
+	mso-list-template-ids:-1530231592 -1232975384 67698713 67698715 67698703 6=
+7698713 67698715 67698703 67698713 67698715;}
+@list l0:level1
+	{mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	margin-left:18.0pt;
+	text-indent:-18.0pt;}
+@list l0:level2
+	{mso-level-number-format:alpha-lower;
+	mso-level-text:"%2\)";
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	margin-left:44.0pt;
+	text-indent:-22.0pt;}
+@list l0:level3
+	{mso-level-number-format:roman-lower;
+	mso-level-tab-stop:none;
+	mso-level-number-position:right;
+	margin-left:66.0pt;
+	text-indent:-22.0pt;}
+@list l0:level4
+	{mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	margin-left:88.0pt;
+	text-indent:-22.0pt;}
+@list l0:level5
+	{mso-level-number-format:alpha-lower;
+	mso-level-text:"%5\)";
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	margin-left:110.0pt;
+	text-indent:-22.0pt;}
+@list l0:level6
+	{mso-level-number-format:roman-lower;
+	mso-level-tab-stop:none;
+	mso-level-number-position:right;
+	margin-left:132.0pt;
+	text-indent:-22.0pt;}
+@list l0:level7
+	{mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	margin-left:154.0pt;
+	text-indent:-22.0pt;}
+@list l0:level8
+	{mso-level-number-format:alpha-lower;
+	mso-level-text:"%8\)";
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	margin-left:176.0pt;
+	text-indent:-22.0pt;}
+@list l0:level9
+	{mso-level-number-format:roman-lower;
+	mso-level-tab-stop:none;
+	mso-level-number-position:right;
+	margin-left:198.0pt;
+	text-indent:-22.0pt;}
+ol
+	{margin-bottom:0cm;}
+ul
+	{margin-bottom:0cm;}
 --></style><!--[if gte mso 9]><xml>
 <o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
 </xml><![endif]--><!--[if gte mso 9]><xml>
@@ -507,515 +337,86 @@ div.WordSection1
 <o:idmap v:ext=3D"edit" data=3D"1" />
 </o:shapelayout></xml><![endif]-->
 </head>
-<body lang=3D"EN-MY" link=3D"#467886" vlink=3D"#96607D" style=3D"word-wrap:=
-break-word">
+<body lang=3D"ZH-CN" link=3D"#467886" vlink=3D"#96607D" style=3D"word-wrap:=
+break-word;text-justify-trim:punctuation">
 <div class=3D"WordSection1">
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt">Hi,<br>
-<br>
-<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt">We are pleased to a=
-nnounce the Yocto Project 4.0.26 Release is now available for download.<o:p=
-></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt"><o:p>&nbsp;</o:p></=
-span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt"><a href=3D"https://=
-downloads.yoctoproject.org/releases/yocto/yocto-4.0.26/poky-d70d287a77d5026=
-b698ac237ab865b2dafd36bb8.tar.bz2">https://downloads.yoctoproject.org/relea=
-ses/yocto/yocto-4.0.26/poky-d70d287a77d5026b698ac237ab865b2dafd36bb8.tar.bz=
-2</a><o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt"><a href=3D"https://=
-mirrors.kernel.org/yocto/yocto/yocto-4.0.26/poky-d70d287a77d5026b698ac237ab=
-865b2dafd36bb8.tar.bz2">https://mirrors.kernel.org/yocto/yocto/yocto-4.0.26=
-/poky-d70d287a77d5026b698ac237ab865b2dafd36bb8.tar.bz2</a><o:p></o:p></span=
-></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt"><o:p>&nbsp;</o:p></=
-span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt">A gpg signed versio=
-n of these release notes is available at:<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt"><o:p>&nbsp;</o:p></=
-span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt"><a href=3D"https://=
-downloads.yoctoproject.org/releases/yocto/yocto-4.0.26/RELEASENOTES">https:=
-//downloads.yoctoproject.org/releases/yocto/yocto-4.0.26/RELEASENOTES</a><o=
-:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt"><o:p>&nbsp;</o:p></=
-span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt">Full Test Report:<o=
-:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt"><o:p>&nbsp;</o:p></=
-span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt"><a href=3D"https://=
-downloads.yoctoproject.org/releases/yocto/yocto-4.0.26/testreport.txt">http=
-s://downloads.yoctoproject.org/releases/yocto/yocto-4.0.26/testreport.txt</=
-a><o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt"><o:p>&nbsp;</o:p></=
-span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt">Thank you for every=
-one's contributions to this release.<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt"><o:p>&nbsp;</o:p></=
-span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt">Chee Yang<o:p></o:p=
-></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt"><a href=3D"mailto:c=
-hee.yang.lee@intel.com">chee.yang.lee@intel.com</a><o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt">Yocto Project Build=
- and Release<br>
-<br>
-<br>
-<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt">-------------------=
--------<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt">yocto-4.0.26 Releas=
-e Notes<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt">-------------------=
--------<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt"><o:p>&nbsp;</o:p></=
-span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt"><o:p>&nbsp;</o:p></=
-span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt">-------------------=
--------<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt">Repositories/Downlo=
-ads<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt">-------------------=
--------<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt"><o:p>&nbsp;</o:p></=
-span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt">Repository Name: po=
-ky<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt">Repository Location=
-: https://git.yoctoproject.org/poky<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt">Branch: kirkstone<o=
-:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt">Tag: yocto-4.0.26<o=
-:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt">Git Revision: d70d2=
-87a77d5026b698ac237ab865b2dafd36bb8<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt">Release Artefact: p=
-oky-d70d287a77d5026b698ac237ab865b2dafd36bb8<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt">sha: 3ebfadb8bff4c1=
-ca12b3cf3e4ef6e3ac2ce52b73570266daa98436c9959249f2<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt">Download Locations:=
-<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt">https://downloads.y=
-octoproject.org/releases/yocto/yocto-4.0.26/poky-d70d287a77d5026b698ac237ab=
-865b2dafd36bb8.tar.bz2<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt">https://mirrors.ker=
-nel.org/yocto/yocto/yocto-4.0.26/poky-d70d287a77d5026b698ac237ab865b2dafd36=
-bb8.tar.bz2<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt"><o:p>&nbsp;</o:p></=
-span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt">Repository Name: op=
-enembedded-core<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt">Repository Location=
-: https://git.openembedded.org/openembedded-core<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt">Branch: kirkstone<o=
-:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt">Tag: yocto-4.0.26<o=
-:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt">Git Revision: 1efbe=
-1004bc82e7c14c1e8bd4ce644f5015c3346<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt">Release Artefact: o=
-ecore-1efbe1004bc82e7c14c1e8bd4ce644f5015c3346<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt">sha: d3805e034dabd0=
-865dbf55488b2c16d4ea0351d37aa826f0054a6bfdde5a8be9<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt">Download Locations:=
-<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt">https://downloads.y=
-octoproject.org/releases/yocto/yocto-4.0.26/oecore-1efbe1004bc82e7c14c1e8bd=
-4ce644f5015c3346.tar.bz2<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt">https://mirrors.ker=
-nel.org/yocto/yocto/yocto-4.0.26/oecore-1efbe1004bc82e7c14c1e8bd4ce644f5015=
-c3346.tar.bz2<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt"><o:p>&nbsp;</o:p></=
-span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt">Repository Name: me=
-ta-mingw<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt">Repository Location=
-: https://git.yoctoproject.org/meta-mingw<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt">Branch: kirkstone<o=
-:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt">Tag: yocto-4.0.26<o=
-:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt">Git Revision: 87c22=
-abb1f11be430caf4372e6b833dc7d77564e<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt">Release Artefact: m=
-eta-mingw-87c22abb1f11be430caf4372e6b833dc7d77564e<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt">sha: f0bc4873e2e031=
-9fb9d6d6ab9b98eb3f89664d4339a167d2db6a787dd12bc1a8<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt">Download Locations:=
-<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt">https://downloads.y=
-octoproject.org/releases/yocto/yocto-4.0.26/meta-mingw-87c22abb1f11be430caf=
-4372e6b833dc7d77564e.tar.bz2<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt">https://mirrors.ker=
-nel.org/yocto/yocto/yocto-4.0.26/meta-mingw-87c22abb1f11be430caf4372e6b833d=
-c7d77564e.tar.bz2<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt"><o:p>&nbsp;</o:p></=
-span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt">Repository Name: me=
-ta-gplv2<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt">Repository Location=
-: https://git.yoctoproject.org/meta-gplv2<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt">Branch: kirkstone<o=
-:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt">Tag: yocto-4.0.26<o=
-:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt">Git Revision: d2f8b=
-5cdb285b72a4ed93450f6703ca27aa42e8a<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt">Release Artefact: m=
-eta-gplv2-d2f8b5cdb285b72a4ed93450f6703ca27aa42e8a<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt">sha: c386f59f8a6727=
-47dc3d0be1d4234b6039273d0e57933eb87caa20f56b9cca6d<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt">Download Locations:=
-<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt">https://downloads.y=
-octoproject.org/releases/yocto/yocto-4.0.26/meta-gplv2-d2f8b5cdb285b72a4ed9=
-3450f6703ca27aa42e8a.tar.bz2<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt">https://mirrors.ker=
-nel.org/yocto/yocto/yocto-4.0.26/meta-gplv2-d2f8b5cdb285b72a4ed93450f6703ca=
-27aa42e8a.tar.bz2<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt"><o:p>&nbsp;</o:p></=
-span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt">Repository Name: bi=
-tbake<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt">Repository Location=
-: https://git.openembedded.org/bitbake<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt">Branch: 2.0<o:p></o=
-:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt">Tag: yocto-4.0.26<o=
-:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt">Git Revision: 04687=
-1d9fd76efdca7b72718b328d8f545523f7e<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt">Release Artefact: b=
-itbake-046871d9fd76efdca7b72718b328d8f545523f7e<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt">sha: e9df0a9f5921b5=
-83b539188d66b23f120e1751000e7822e76c3391d5c76ee21a<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt">Download Locations:=
-<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt">https://downloads.y=
-octoproject.org/releases/yocto/yocto-4.0.26/bitbake-046871d9fd76efdca7b7271=
-8b328d8f545523f7e.tar.bz2<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt">https://mirrors.ker=
-nel.org/yocto/yocto/yocto-4.0.26/bitbake-046871d9fd76efdca7b72718b328d8f545=
-523f7e.tar.bz2<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt"><o:p>&nbsp;</o:p></=
-span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt">Repository Name: yo=
-cto-docs<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt">Repository Location=
-: https://git.yoctoproject.org/yocto-docs<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt">Branch: kirkstone<o=
-:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt">Tag: yocto-4.0.26<o=
-:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt">Git Revision: 9b4c3=
-6f7b02dd4bedfec90206744a1e90e37733c<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt"><o:p>&nbsp;</o:p></=
-span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt"><o:p>&nbsp;</o:p></=
-span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt">---------------<o:p=
-></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt">Contributors<o:p></=
-o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt">---------------<o:p=
-></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt">Aleksandar Nikolic<=
-o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt">Alessio Cascone<o:p=
-></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt">Antonin Godard<o:p>=
-</o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt">Archana Polampalli<=
-o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt">Ashish Sharma<o:p><=
-/o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt">Bruce Ashfield<o:p>=
-</o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt">Carlos Dominguez<o:=
-p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt">Deepesh Varatharaja=
-n<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt">Divya Chellam<o:p><=
-/o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt">Guocai He<o:p></o:p=
-></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt">Hitendra Prajapati<=
-o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt">Hongxu Jia<o:p></o:=
-p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt">Jiaying Song<o:p></=
-o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt">Johannes Kauffmann<=
-o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt">Kai Kang<o:p></o:p>=
+<p class=3D"MsoNormal"><span lang=3D"EN-US">Hi Khem Raj<o:p></o:p></span></=
+p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US">cc all<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US"><o:p>&nbsp;</o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US">When I build lib32-mozjs-128 wh=
+ich is 32bit of meta-openembedded/meta-oe/recipes-extended/mozjs/mozjs-128_=
+128.5.2.bb, met following issue:<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US">WARNING: lib32-mozjs-128-128.5.=
+2-r0 do_package_qa: QA Issue: /usr/lib/libmozjs-128.so uses 32-bit api 'sta=
+t64' [32bit-time]<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US">WARNING: lib32-mozjs-128-128.5.=
+2-r0 do_package_qa: QA Issue: /usr/lib/libmozjs-128.so uses 32-bit api 'fst=
+at64' [32bit-time]<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US">WARNING: lib32-mozjs-128-128.5.=
+2-r0 do_package_qa: QA Issue: Suppress with INSANE_SKIP =3D &quot;32bit-tim=
+e&quot; [32bit-time]<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US">WARNING: lib32-mozjs-128-128.5.=
+2-r0 do_package_qa: QA Issue: /usr/bin/js128 uses 32-bit api 'stat64' [32bi=
+t-time]<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US">WARNING: lib32-mozjs-128-128.5.=
+2-r0 do_package_qa: QA Issue: /usr/bin/js128 uses 32-bit api 'fstat64' [32b=
+it-time]<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US">WARNING: lib32-mozjs-128-128.5.=
+2-r0 do_package_qa: QA Issue: Suppress with INSANE_SKIP =3D &quot;32bit-tim=
+e&quot; [32bit-time]<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US"><o:p>&nbsp;</o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US">I am pretty much sure that &quo=
+t;-D_TIME_BITS=3D64 -D_FILE_OFFSET_BITS=3D64&quot; has been enabled by chec=
+king log.do_compile<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US"><o:p>&nbsp;</o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US">I can only find some too much o=
+ld patches to solve this kind of issues by manually replacing off64_t-stat6=
+4 with off_t-stat:<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US">meta-openembedded/meta-filesyst=
+ems/recipes-utils/xfsprogs/files/0005-Replace-off64_t-stat64-with-off_t-sta=
+t.patch<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US">meta-filesystems/recipes-utils/=
+xfsprogs/files/0005-Replace-off64_t-stat64-with-off_t-stat.patch<o:p></o:p>=
 </span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt">Lee Chee Yang<o:p><=
-/o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt">Libo Chen<o:p></o:p=
-></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt">Marta Rybczynska<o:=
-p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt">Michael Halstead<o:=
-p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt">Mingli Yu<o:p></o:p=
-></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt">Moritz Haase<o:p></=
-o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt">Narpat Mali<o:p></o=
-:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt">Paulo Neves<o:p></o=
-:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt">Peter Marko<o:p></o=
-:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt">Priyal Doshi<o:p></=
-o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt">Richard Purdie<o:p>=
-</o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt">Robert Yang<o:p></o=
-:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt">Ross Burton<o:p></o=
-:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt">Sakib Sajal<o:p></o=
-:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt">Steve Sakoman<o:p><=
-/o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt">Vijay Anusuri<o:p><=
-/o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt">Yogita Urade<o:p></=
-o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt">Zhang Peng<o:p></o:=
-p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt"><o:p>&nbsp;</o:p></=
-span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt"><o:p>&nbsp;</o:p></=
-span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt">---------------<o:p=
-></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt">Known Issues<o:p></=
-o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt">---------------<o:p=
-></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt">N/A<o:p></o:p></spa=
-n></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt"><o:p>&nbsp;</o:p></=
-span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt"><o:p>&nbsp;</o:p></=
-span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt">---------------<o:p=
-></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt">Security Fixes<o:p>=
-</o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt">---------------<o:p=
-></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt">bind: Fix CVE-2024-=
-11187 CVE-2024-12705<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt">binutils: Fix CVE-2=
-025-0840<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt">elfutils: Fix CVE-2=
-025-1352 CVE-2025-1372<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt">ffmpeg: Fix CVE-202=
-4-28661 CVE-2024-35369 CVE-2024-36613 CVE-2024-36616 CVE-2024-36617 CVE-202=
-4-36618 CVE-2025-0518 CVE-2025-25473<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt">ffmpeg: Ignore CVE-=
-2023-46407 CVE-2023-47470 CVE-2024-7272 CVE-2024-22860 CVE-2024-22861 CVE-2=
-024-22862<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt">freetype: Fix CVE-2=
-025-27363<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt">gnutls: Fix CVE-202=
-4-12243<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt">grub: Fix CVE-2024-=
-45774 CVE-2024-45775 CVE-2024-45776 CVE-2024-45777 CVE-2024-45778 CVE-2024-=
-45779 CVE-2024-45780 CVE-2024-45781 CVE-2024-45782 CVE-2024-45783 CVE-2024-=
-56737 CVE-2025-0622 CVE-2025-0624 CVE-2025-0677
- CVE-2025-0684 CVE-2025-0685 CVE-2025-0686 CVE-2025-0689 CVE-2025-0678 CVE-=
-2025-0690 CVE-2025-1118 CVE-2025-1125<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt">gstreamer1.0-rtsp-s=
-erver: fix CVE-2024-44331<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt">libarchive: Fix CVE=
--2025-25724<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt">libarchive: Ignore =
-CVE-2025-1632<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt">libcap: Fix CVE-202=
-5-1390<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt">linux-yocto/5.10: F=
-ix CVE-2024-36476 CVE-2024-43098 CVE-2024-47143 CVE-2024-48881 CVE-2024-500=
-51 CVE-2024-50074 CVE-2024-50082 CVE-2024-50083 CVE-2024-50099 CVE-2024-501=
-15 CVE-2024-50116 CVE-2024-50117 CVE-2024-50142
- CVE-2024-50148 CVE-2024-50150 CVE-2024-50151 CVE-2024-50167 CVE-2024-50168=
- CVE-2024-50171 CVE-2024-50185 CVE-2024-50192 CVE-2024-50193 CVE-2024-50194=
- CVE-2024-50195 CVE-2024-50198 CVE-2024-50201 CVE-2024-50202 CVE-2024-50205=
- CVE-2024-50208 CVE-2024-50209 CVE-2024-50229
- CVE-2024-50230 CVE-2024-50233 CVE-2024-50234 CVE-2024-50236 CVE-2024-50237=
- CVE-2024-50251 CVE-2024-50262 CVE-2024-50264 CVE-2024-50265 CVE-2024-50267=
- CVE-2024-50268 CVE-2024-50269 CVE-2024-50273 CVE-2024-50278 CVE-2024-50279=
- CVE-2024-50282 CVE-2024-50287 CVE-2024-50292
- CVE-2024-50296 CVE-2024-50299 CVE-2024-50301 CVE-2024-50302 CVE-2024-53042=
- CVE-2024-53052 CVE-2024-53057 CVE-2024-53059 CVE-2024-53060 CVE-2024-53061=
- CVE-2024-53063 CVE-2024-53066 CVE-2024-53096 CVE-2024-53097 CVE-2024-53101=
- CVE-2024-53103 CVE-2024-53104 CVE-2024-53145
- CVE-2024-53146 CVE-2024-53150 CVE-2024-53155 CVE-2024-53156 CVE-2024-53157=
- CVE-2024-53161 CVE-2024-53165 CVE-2024-53171 CVE-2024-53173 CVE-2024-53174=
- CVE-2024-53194 CVE-2024-53197 CVE-2024-53217 CVE-2024-53226 CVE-2024-53227=
- CVE-2024-53237 CVE-2024-53239 CVE-2024-55916
- CVE-2024-56548 CVE-2024-56558 CVE-2024-56567 CVE-2024-56568 CVE-2024-56569=
- CVE-2024-56572 CVE-2024-56574 CVE-2024-56581 CVE-2024-56587 CVE-2024-56593=
- CVE-2024-56595 CVE-2024-56596 CVE-2024-56598 CVE-2024-56600 CVE-2024-56601=
- CVE-2024-56602 CVE-2024-56603 CVE-2024-56605
- CVE-2024-56606 CVE-2024-56615 CVE-2024-56619 CVE-2024-56623 CVE-2024-56629=
- CVE-2024-56634 CVE-2024-56642 CVE-2024-56643 CVE-2024-56648 CVE-2024-56650=
- CVE-2024-56659 CVE-2024-56662 CVE-2024-56670 CVE-2024-56688 CVE-2024-56698=
- CVE-2024-56704 CVE-2024-56716 CVE-2024-56720
- CVE-2024-56723 CVE-2024-56724 CVE-2024-56728 CVE-2024-56739 CVE-2024-56746=
- CVE-2024-56747 CVE-2024-56748 CVE-2024-56754 CVE-2024-56756 CVE-2024-56770=
- CVE-2024-56779 CVE-2024-56780 CVE-2024-56781 CVE-2024-56785 CVE-2024-57802=
- CVE-2024-57807 CVE-2024-57850 CVE-2024-57874
- CVE-2024-57890 CVE-2024-57896 CVE-2024-57900 CVE-2024-57901 CVE-2024-57902=
- CVE-2024-57910 CVE-2024-57911 CVE-2024-57913 CVE-2024-57922 CVE-2024-57938=
- CVE-2024-57939 CVE-2024-57946 CVE-2024-57951 CVE-2025-21638 CVE-2025-21687=
- CVE-2025-21689 CVE-2025-21692 CVE-2025-21694
- CVE-2025-21697 CVE-2025-21699 <o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt">linux-yocto/5.15: F=
-ix CVE-2024-57979 CVE-2024-58034 CVE-2024-58052 CVE-2024-58055 CVE-2024-580=
-58 CVE-2024-58063 CVE-2024-58069 CVE-2024-58071 CVE-2024-58076 CVE-2024-580=
-83 CVE-2025-21700 CVE-2025-21703 CVE-2025-21715
- CVE-2025-21722 CVE-2025-21727 CVE-2025-21731 CVE-2025-21753 CVE-2025-21756=
- CVE-2025-21760 CVE-2025-21761 CVE-2025-21762 CVE-2025-21763 CVE-2025-21764=
- CVE-2025-21796 CVE-2025-21811 CVE-2025-21887 CVE-2025-21898 CVE-2025-21904=
- CVE-2025-21905 CVE-2025-21912 CVE-2025-21917
- CVE-2025-21919 CVE-2025-21920 CVE-2025-21922 CVE-2025-21934 CVE-2025-21943=
- CVE-2025-21948 CVE-2025-21951<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt">libpcre2: Ignore CV=
-E-2022-1586<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt">libtasn1: Fix CVE-2=
-024-12133<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt">libxml2: Fix CVE-20=
-22-49043 CVE-2024-56171 CVE-2025-24928 CVE-2025-27113<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt">libxslt: Fix CVE-20=
-24-55549 CVE-2025-24855<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt">llvm: Fix CVE-2024-=
-0151<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt">mpg123: Fix CVE-202=
-4-10573<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt">openssh: Fix CVE-20=
-25-26465<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt">ovmf: Revert Fix fo=
-r CVE-2023-45236 CVE-2023-45237<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt">perl: Ignore CVE-20=
-23-47038<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt">puzzles: Ignore CVE=
--2024-13769 CVE-2024-13770 CVE-2025-0837<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt">python3: Fix CVE-20=
-25-0938<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt">ruby: Fix CVE-2024-=
-41946 CVE-2025-27219 CVE-2025-27220<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt">subversion: Ignore =
-CVE-2024-45720<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt">systemd: Fix CVE-20=
-22-3821 CVE-2022-4415 CVE-2022-45873 CVE-2023-7008<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt">tiff: mark CVE-2023=
--30774 as patched with existing patch<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt">u-boot: Fix CVE-202=
-2-2347 CVE-2022-30767 CVE-2022-30790 CVE-2024-57254 CVE-2024-57255 CVE-2024=
--57256 CVE-2024-57257 CVE-2024-57258 CVE-2024-57259<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt">vim: Fix CVE-2025-1=
-215 CVE-2025-22134&nbsp; CVE-2025-24014 CVE-2025-26603&nbsp; CVE-2025-27423=
-&nbsp; CVE-2025-29768<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt">xserver-xorg: Fix C=
-VE-2022-49737 CVE-2025-26594 CVE-2025-26595 CVE-2025-26596 CVE-2025-26597 C=
-VE-2025-26598 CVE-2025-26599 CVE-2025-26600 CVE-2025-26601<o:p></o:p></span=
-></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt">xwayland: Fix CVE-2=
-022-49737 CVE-2024-9632 CVE-2024-21885 CVE-2024-21886 CVE-2024-31080 CVE-20=
-24-31081 CVE-2024-31083 CVE-2025-26594 CVE-2025-26595 CVE-2025-26596 CVE-20=
-25-26597 CVE-2025-26598 CVE-2025-26599
- CVE-2025-26600 CVE-2025-26601<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt">zlib: Fix CVE-2014-=
-9485<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt"><o:p>&nbsp;</o:p></=
-span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt"><o:p>&nbsp;</o:p></=
-span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt">---------------<o:p=
-></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt">Fixes<o:p></o:p></s=
-pan></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt">---------------<o:p=
-></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt">bind: Upgrade to 9.=
-18.33<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt">bitbake: cache: bum=
-p cache version<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt">bitbake: siggen.py:=
- Improve taskhash reproducibility<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt">boost: fix do_fetch=
- error<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt">build-appliance-ima=
-ge: Update to kirkstone head revision<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt">contributor-guide/s=
-ubmit-changes: add policy on AI generated code<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt">cve-update-nvd2-nat=
-ive: handle missing vulnStatus<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt">docs: Add favicon f=
-or the documentation html<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt">docs: Remove all me=
-ntion of core-image-lsb<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt">libtasn1: upgrade t=
-o 4.20.0<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt">libxcrypt-compat: R=
-emove libcrypt.so to fix conflict with libcrypt<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt">libxml2: fix compil=
-ation of explicit child axis in pattern<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt">linux-yocto/5.10: u=
-pdate to v5.10.234<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt">linux-yocto/5.15: u=
-pdate to v5.15.179<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt">mesa: Fix missing G=
-LES3 headers in SDK sysroot<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt">mesa: Update SRC_UR=
-I<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt">meta: Enable '-o pi=
-pefail' for the SDK installer<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt">migration-guides: a=
-dd release notes for 4.0.25<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt">poky.conf: add ubun=
-tu2404 to SANITY_TESTED_DISTROS<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt">poky.conf: bump ver=
-sion for 4.0.26<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt">procps: replaced on=
-e use of fputs(3) with a write(2) call<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt">ref-manual: don't r=
-efer to poky-lsb<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt">scripts/install-bui=
-ldtools: Update to 4.0.24<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt">scritps/runqemu: En=
-sure we only have two serial ports<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt">systemd: upgrade to=
- 250.14<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt">tzcode-native: Fix =
-compiler setting from 2023d version<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt">tzcode: Update SRC_=
-URI<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt">tzdata/tzcode-nativ=
-e: upgrade 2025a<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt">vim: Upgrade to 9.1=
-.1198<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt">virglrenderer: fix =
-do_fetch error<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt">vulnerabilities/cla=
-sses: remove references to cve-check text format<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt">xz: Update SRC_URI<=
+<p class=3D"MsoNormal"><span lang=3D"EN-US"><o:p>&nbsp;</o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US"><o:p>&nbsp;</o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US">But there are dozens of stat64(=
+) or fstat64 in firefox-128.5.2 source code.<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US">Can you give me some suggestion=
+s to solve this issue?<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US"><o:p>&nbsp;</o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US"><o:p>&nbsp;</o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US">Ps: Below are reproduce steps:<=
 o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt">yocto-uninative: Up=
-date to 4.7 for glibc 2.41<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt"><br>
-<br>
-<br>
-<o:p></o:p></span></p>
+<ol style=3D"margin-top:0cm" start=3D"1" type=3D"1">
+<li class=3D"MsoListParagraph" style=3D"margin-left:-18.0pt;mso-list:l0 lev=
+el1 lfo1">
+<span lang=3D"EN-US">Add in local.conf the following lines:<o:p></o:p></spa=
+n></li></ol>
+<p class=3D"MsoNormal"><span lang=3D"EN-US">&nbsp;MACHINE ?=3D &quot;qemux8=
+6-64&quot;<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US">&nbsp;require conf/multilib.con=
+f<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US">&nbsp;MULTILIBS ?=3D &quot;mult=
+ilib:lib32&quot;<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US">&nbsp;DEFAULTTUNE:virtclass-mul=
+tilib-lib32 ?=3D &quot;core2-32&quot;<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US"><o:p>&nbsp;</o:p></span></p>
+<ol style=3D"margin-top:0cm" start=3D"2" type=3D"1">
+<li class=3D"MsoListParagraph" style=3D"margin-left:-18.0pt;mso-list:l0 lev=
+el1 lfo1">
+<span lang=3D"EN-US">bitbake lib32-mozjs-128<o:p></o:p></span></li></ol>
+<p class=3D"MsoNormal"><span lang=3D"EN-US"><o:p>&nbsp;</o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US"><o:p>&nbsp;</o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US">Thank you <o:p></o:p></span></p=
+>
+<p class=3D"MsoNormal"><span lang=3D"EN-US">Liu Yiding<o:p></o:p></span></p=
+>
+<p class=3D"MsoNormal"><span lang=3D"EN-US"><o:p>&nbsp;</o:p></span></p>
 </div>
 </body>
 </html>
 
---_000_BL4PR11MB879702BB57439BE0116AF312B9B82BL4PR11MB8797namp_--
+--_000_OSRPR01MB1159744545F10E644D8DB24CE9BB82OSRPR01MB11597jp_--
 
