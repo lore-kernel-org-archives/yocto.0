@@ -1,88 +1,109 @@
-Return-Path: <philip@balister.org>
+Return-Path: <aleksandar.nikolic010@gmail.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 59634C369AB
-	for <webhook@archiver.kernel.org>; Tue, 22 Apr 2025 01:57:31 +0000 (UTC)
-Received: from smtp7.emailarray.com (smtp7.emailarray.com [65.39.216.66])
- by mx.groups.io with SMTP id smtpd.web11.30593.1745287040928974848
- for <yocto@lists.yoctoproject.org>;
- Mon, 21 Apr 2025 18:57:21 -0700
-Authentication-Results: mx.groups.io;
- dkim=none (message not signed); spf=pass (domain: balister.org, ip: 65.39.216.66, mailfrom: philip@balister.org)
-Received: (qmail 97007 invoked by uid 89); 22 Apr 2025 01:57:20 -0000
-X-Orig-Sender: philip@balister.org
-Received: from unknown (HELO ?172.20.7.171?) (cGhpbGlwQGJhbGlzdGVyLm9yZ0AxMi4xNTUuMTE4LjM=) (POLARISLOCAL)  
-  by smtp7.emailarray.com with SMTP; 22 Apr 2025 01:57:20 -0000
-Content-Type: multipart/mixed; boundary="------------NMMpSXtp7jUEcH44mqkLNlig"
-Message-ID: <bb44f3ab-d0ed-4b33-ad0c-b9c082341e74@balister.org>
-Date: Mon, 21 Apr 2025 21:57:19 -0400
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 30948C369C2
+	for <webhook@archiver.kernel.org>; Tue, 22 Apr 2025 04:41:32 +0000 (UTC)
+Subject: Re: [yocto] GPL License Compliance - Automatically detect linking against GPL libraries
+To: "Hanke Fabian (DC/PAR)" <fabian.hanke@bosch.com>, yocto@lists.yoctoproject.org
+From: "Aleksandar Nikolic" <aleksandar.nikolic010@gmail.com>
+X-Originating-Location: CH (147.161.251.101)
+X-Originating-Platform: Windows Chrome 135
+User-Agent: GROUPS.IO Web Poster
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Fwd: Yocto Project at Embedded Recipes Call for Participation
-References: <183880D1D6A9AD79.2510@lists.openembedded.org>
-Content-Language: en-US
-To: yocto Project <yocto@lists.yoctoproject.org>
-From: Philip Balister <philip@balister.org>
-In-Reply-To: <183880D1D6A9AD79.2510@lists.openembedded.org>
-X-Forwarded-Message-Id: <183880D1D6A9AD79.2510@lists.openembedded.org>
+Date: Mon, 21 Apr 2025 21:41:26 -0700
+References: <918.1717162801361364915@lists.yoctoproject.org>
+In-Reply-To: <918.1717162801361364915@lists.yoctoproject.org>
+Message-ID: <24438.1745296886216583159@lists.yoctoproject.org>
+Content-Type: multipart/alternative; boundary="yy2Wm9Z6DoRG7GDqHjpW"
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Tue, 22 Apr 2025 01:57:31 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/65216
+ <yocto@lists.yoctoproject.org>; Tue, 22 Apr 2025 04:41:32 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/65217
 
-This is a multi-part message in MIME format.
---------------NMMpSXtp7jUEcH44mqkLNlig
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+--yy2Wm9Z6DoRG7GDqHjpW
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
 
+On Fri, May 31, 2024 at 03:40 PM, Hanke Fabian (DC/PAR) wrote:
 
+>=20
+> Hello,
+>=20
+> thank you for all the responses so far. I guess we will have a look at
+> fossology and fossas, but we would prefer a solution which does not
+> require an additional thirdparty service. We know that there are differen=
+t
+> types of GPL licenses which bring different obligations.
+>=20
+> We are searching for an automatic mechanism to detect linking to a shared
+> library from a GPL package. We thought there might be a way to utilize th=
+e
+> build system=E2=80=99s shared library resolver which is used for the auto=
+matic
+> runtime added runtime dependencies [1].
+>=20
+> For static libraries we found that they are disabled by default [2].
 
+Could someone explain what it means that static libraries are disabled? Doe=
+s this refer to staticdev-pkgs in IMAGE_FEATURES?
 
--------- Forwarded Message --------
-Subject: Yocto Project at Embedded Recipes Call for Participation
-Resent-Date: Mon, 21 Apr 2025 18:48:14 -0700
-Resent-From: philip@balister.org
-Date: Mon, 21 Apr 2025 21:48:10 -0400
-From: Philip Balister <philip@balister.org>
-To: Yocto Project <yocto@yoctoproject.org>, openembedded-architecture 
-<openembedded-architecture@lists.openembedded.org>, 
-openembedded-members@lists.openembedded.org 
-<openembedded-members@lists.openembedded.org>
+Cheers,
+Aleksandar
 
-The Yocto Project is hosting a one day workshop on May 16 after Embedded 
-Recipes. It is free to attend but you will need to register.
+>=20
+>=20
+> [1] https://docs.yoctoproject.org/overview-manual/concepts.html#automatic=
+ally-added-runtime-dependencies
+>=20
+> [2] https://docs.yoctoproject.org/dev/dev-manual/licenses.html#compliance=
+-limitations-with-executables-built-from-static-libraries
+>=20
+> --------------------------------
+>=20
+> Bosch Rexroth AG
+>=20
+> Registered Office: Stuttgart, Registration Court: Amtsgericht Stuttgart
+> HRB 23192 Executive Board: Dr. Steffen Haack (President), Roland
+> Bittenauer, Thomas Fechner, Holger von Hebel, Reinhard Sch=C3=A4fer Chair=
+man of
+> the Supervisory Board: Dr. Markus Forschner
 
-https://pretalx.com/yocto-workshop-at-embedded-recipes-2025/
+--yy2Wm9Z6DoRG7GDqHjpW
+Content-Type: text/html; charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
 
-The CFP is open until April 24 so please get your submissions in ASAP!
+<div>On Fri, May 31, 2024 at 03:40 PM, Hanke Fabian (DC/PAR) wrote:</div>
+<div>
+<blockquote>Hello,<br /><br />thank you for all the responses so far. I gue=
+ss we will have a look at fossology and fossas, but we would prefer a solut=
+ion which does not require an additional thirdparty service. We know that t=
+here are different types of GPL licenses which bring different obligations.=
+ <br /><br />We are searching for an automatic mechanism to detect linking =
+to a shared library from a GPL package. We thought there might be a way to =
+utilize the build system&rsquo;s shared library resolver which is used for =
+the automatic runtime added runtime dependencies [1].<br /><br />For static=
+ libraries we found that they are disabled by default [2].</blockquote>
+Could someone explain what it means that static libraries are disabled? Doe=
+s this refer to staticdev-pkgs in IMAGE_FEATURES?</div>
+<div>&nbsp;</div>
+<div>Cheers,</div>
+<div>Aleksandar<br />
+<blockquote><br />[1] <a href=3D"https://docs.yoctoproject.org/overview-man=
+ual/concepts.html#automatically-added-runtime-dependencies" target=3D"_blan=
+k" rel=3D"noopener">https://docs.yoctoproject.org/overview-manual/concepts.=
+html#automatically-added-runtime-dependencies</a><br />[2] <a href=3D"https=
+://docs.yoctoproject.org/dev/dev-manual/licenses.html#compliance-limitation=
+s-with-executables-built-from-static-libraries" target=3D"_blank" rel=3D"no=
+opener">https://docs.yoctoproject.org/dev/dev-manual/licenses.html#complian=
+ce-limitations-with-executables-built-from-static-libraries</a><br />------=
+--------------------------<br /><br />Bosch Rexroth AG<br /><br />Registere=
+d Office: Stuttgart, Registration Court: Amtsgericht Stuttgart HRB 23192 Ex=
+ecutive Board: Dr. Steffen Haack (President), Roland Bittenauer, Thomas Fec=
+hner, Holger von Hebel, Reinhard Sch&auml;fer Chairman of the Supervisory B=
+oard: Dr. Markus Forschner</blockquote>
+</div>
 
-https://pretalx.com/yocto-workshop-at-embedded-recipes-2025/cfp
-
-More info on Embedded Recipes and registration is at:
-
-https://embedded-recipes.org/2025/
-
-We are looking forward to seeing everyone there!
-
-Thanks,
-
-Philip
-
---------------NMMpSXtp7jUEcH44mqkLNlig
-Content-Type: text/plain; charset=UTF-8; name="Attached Message Part"
-Content-Disposition: attachment; filename="Attached Message Part"
-Content-Transfer-Encoding: base64
-
-Ci09LT0tPS09LT0tPS09LT0tPS09LT0tCkxpbmtzOiBZb3UgcmVjZWl2ZSBhbGwgbWVzc2Fn
-ZXMgc2VudCB0byB0aGlzIGdyb3VwLgpWaWV3L1JlcGx5IE9ubGluZSAoIzIwMTIpOiBodHRw
-czovL2xpc3RzLm9wZW5lbWJlZGRlZC5vcmcvZy9vcGVuZW1iZWRkZWQtbWVtYmVycy9tZXNz
-YWdlLzIwMTIKTXV0ZSBUaGlzIFRvcGljOiBodHRwczovL2xpc3RzLm9wZW5lbWJlZGRlZC5v
-cmcvbXQvMTEyMzg3OTU2LzM4NDQyNQpHcm91cCBPd25lcjogb3BlbmVtYmVkZGVkLW1lbWJl
-cnMrb3duZXJAbGlzdHMub3BlbmVtYmVkZGVkLm9yZwpVbnN1YnNjcmliZTogaHR0cHM6Ly9s
-aXN0cy5vcGVuZW1iZWRkZWQub3JnL2cvb3BlbmVtYmVkZGVkLW1lbWJlcnMvdW5zdWIgW3Bo
-aWxpcEBiYWxpc3Rlci5vcmddCi09LT0tPS09LT0tPS09LT0tPS09LT0tCgoK
-
---------------NMMpSXtp7jUEcH44mqkLNlig--
+--yy2Wm9Z6DoRG7GDqHjpW--
 
