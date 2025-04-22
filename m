@@ -1,109 +1,208 @@
-Return-Path: <aleksandar.nikolic010@gmail.com>
+Return-Path: <sjolley.yp.pm@gmail.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 30948C369C2
-	for <webhook@archiver.kernel.org>; Tue, 22 Apr 2025 04:41:32 +0000 (UTC)
-Subject: Re: [yocto] GPL License Compliance - Automatically detect linking against GPL libraries
-To: "Hanke Fabian (DC/PAR)" <fabian.hanke@bosch.com>, yocto@lists.yoctoproject.org
-From: "Aleksandar Nikolic" <aleksandar.nikolic010@gmail.com>
-X-Originating-Location: CH (147.161.251.101)
-X-Originating-Platform: Windows Chrome 135
-User-Agent: GROUPS.IO Web Poster
+	by smtp.lore.kernel.org (Postfix) with ESMTP id BD555C369CB
+	for <webhook@archiver.kernel.org>; Tue, 22 Apr 2025 06:48:42 +0000 (UTC)
+Received: from mail-pg1-f170.google.com (mail-pg1-f170.google.com [209.85.215.170])
+ by mx.groups.io with SMTP id smtpd.web10.34163.1745304519543465307
+ for <yocto@lists.yoctoproject.org>;
+ Mon, 21 Apr 2025 23:48:39 -0700
+Authentication-Results: mx.groups.io;
+ dkim=pass header.i=@gmail.com header.s=20230601 header.b=fFsD95wk;
+ spf=pass (domain: gmail.com, ip: 209.85.215.170, mailfrom: sjolley.yp.pm@gmail.com)
+Received: by mail-pg1-f170.google.com with SMTP id 41be03b00d2f7-b0b2d0b2843so3655768a12.2
+        for <yocto@lists.yoctoproject.org>; Mon, 21 Apr 2025 23:48:39 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1745304519; x=1745909319; darn=lists.yoctoproject.org;
+        h=to:subject:message-id:date:from:mime-version:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=ienkZAMHwNwaJEMVePQQmUzgOl+2/Zrfd5mvgGkvUvY=;
+        b=fFsD95wkx9za+IMmbpkz5YGU3zLlPXlOQud28EUTP5xcFQk0KjEQnJ3Vpi4eX1uZC4
+         J1Y2zfiusYv2SjczuPGxbZbqwpBjzJQBm2UyrtitwI8rx/j78OLSIEAX0xmr7XGL3N40
+         EmX/7jrYhmS4dceBdAqiGR6+n+HLqEIS+q5HSJRjialln0Gs9BH6dI8ADwlZ6BXcHzJR
+         hn1R5SlCpWWn16gXdAOJ0+7/h8XyUALx1U2Rwjr8FH+ZdDb1+YfhMctA0yuU+1PijPHy
+         8rzI2PfIoAahhKw9eetX4TuYUaMePLcnYyrxIXTlkCuxjuHK0vz5dMrtZOg3Rg1e69+8
+         2jkA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1745304519; x=1745909319;
+        h=to:subject:message-id:date:from:mime-version:x-gm-message-state
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=ienkZAMHwNwaJEMVePQQmUzgOl+2/Zrfd5mvgGkvUvY=;
+        b=pBc5DBudVLyDLL49KXjzbZl2rAxkOIc3yYYtDOElvAEKktiPsMym/fLX0RMwYZLRFn
+         N+aWWFh7KAF146WkefF7MFxp0hOY/YHZ7bqQtoMkFSV6ogzLGI/6BspkWDqb3+trsJ3k
+         StGFluk6ksvkzxPauihVi9bBPtT8LojqnG71U1qze4PvsnIP7AAKml9QAPmiKp7mnWZS
+         c9uNaS5XkOhtTPrO7+nIh+NEZUiDKfgbsL+jKhPbCuu0Oo15EtwVEya99tAUMKaA2Ytd
+         MyCbvxoCEexqmgR1rftWDIU+2bBlCDHOAsmGDxRxCSdWTtoIndFL9ySRiCTuTIc/sK6z
+         pcYA==
+X-Forwarded-Encrypted: i=1; AJvYcCVFMtHDmynm1Gcs0sRDJo4j7xAN6UfwdQUAowd4PGnFWiedGayO/2yTkMWn2rwhiOtWqMVGbw==@lists.yoctoproject.org
+X-Gm-Message-State: AOJu0YxftniRXo+vaWcUwqngWN/lSGkSyT/GM/mZJ1Aegz/X65sQlKbm
+	JHpVepWTPBwOL8tEmwsxj8SXkyAy5tCF5YLgyHMT5PBl86kXAZZQk9RkZo8eBaBvSEyk/ULC/gv
+	2d2pNdj9xxx400blgSHDZG+P35f4=
+X-Gm-Gg: ASbGncvIy5Qq/xPIrALcfJgTqMhkXyA6ZWzucYx9dG6du2y3+S/UBwjLgp5bUgYokK+
+	4kRIRqn7ZISbW30KeRrh0Bk4hxEaG8ltl5GaDWCiYqkgYJSLIpEvfY+Lm1SMAEv8YLC9DHRHpEy
+	iT23YuoI85EaIWYauGgAJo4zzrVHFtWZWvG0yobxvWpE/O7CO8IGBaNUQ=
+X-Google-Smtp-Source: AGHT+IEFnozBu5sZ+J0TpZUTswAbA7L9XDChzo/sGztAhgPwXl/lcFiHGfjgSLZF6+1qWOAXnXb/s2VfjtivGTYTZzM=
+X-Received: by 2002:a17:90b:586f:b0:2fe:955d:cdb1 with SMTP id
+ 98e67ed59e1d1-3087bba2748mr17666751a91.23.1745304518807; Mon, 21 Apr 2025
+ 23:48:38 -0700 (PDT)
 MIME-Version: 1.0
-Date: Mon, 21 Apr 2025 21:41:26 -0700
-References: <918.1717162801361364915@lists.yoctoproject.org>
-In-Reply-To: <918.1717162801361364915@lists.yoctoproject.org>
-Message-ID: <24438.1745296886216583159@lists.yoctoproject.org>
-Content-Type: multipart/alternative; boundary="yy2Wm9Z6DoRG7GDqHjpW"
+From: Stephen K Jolley <sjolley.yp.pm@gmail.com>
+Date: Mon, 21 Apr 2025 23:48:27 -0700
+X-Gm-Features: ATxdqUHtSD-iYvcCh8AfVU3DS72jdCRzbcNLOFxoHpDrI2IC1xnawpJTD7expzw
+Message-ID: <CAK5yBb_88dXHaHFAEYN2RNYj7S2EwJ0BQdM2uK5NG6Rw=QZrCw@mail.gmail.com>
+Subject: Yocto Project Newcomer & Unassigned Bugs - Help Needed
+To: openembedded-devel@lists.openembedded.org, 
+	Yocto-mailing-list <yocto@lists.yoctoproject.org>
+Content-Type: multipart/alternative; boundary="000000000000de56fb0633585ff2"
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Tue, 22 Apr 2025 04:41:32 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/65217
+ <yocto@lists.yoctoproject.org>; Tue, 22 Apr 2025 06:48:42 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/65218
 
---yy2Wm9Z6DoRG7GDqHjpW
-Content-Type: text/plain; charset="utf-8"
+--000000000000de56fb0633585ff2
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-On Fri, May 31, 2024 at 03:40 PM, Hanke Fabian (DC/PAR) wrote:
+All,
 
->=20
-> Hello,
->=20
-> thank you for all the responses so far. I guess we will have a look at
-> fossology and fossas, but we would prefer a solution which does not
-> require an additional thirdparty service. We know that there are differen=
-t
-> types of GPL licenses which bring different obligations.
->=20
-> We are searching for an automatic mechanism to detect linking to a shared
-> library from a GPL package. We thought there might be a way to utilize th=
-e
-> build system=E2=80=99s shared library resolver which is used for the auto=
-matic
-> runtime added runtime dependencies [1].
->=20
-> For static libraries we found that they are disabled by default [2].
+The triage team is starting to try and collect up and classify bugs which a
+newcomer to the project would be able to work on in a way which means
+people can find them. They're being listed on the triage page under the
+appropriate heading:
+https://wiki.yoctoproject.org/wiki/Bug_Triage#Newcomer_Bugs Also please
+review:
+https://www.openembedded.org/wiki/How_to_submit_a_patch_to_OpenEmbedded and
+how to create a bugzilla account at:
+https://bugzilla.yoctoproject.org/createaccount.cgi
 
-Could someone explain what it means that static libraries are disabled? Doe=
-s this refer to staticdev-pkgs in IMAGE_FEATURES?
+The idea is these bugs should be straight forward for a person to help work
+on who doesn't have deep experience with the project. If anyone can help,
+please take ownership of the bug and send patches! If anyone needs
+help/advice there are people on irc who can likely do so, or some of the
+more experienced contributors will likely be happy to help too.
 
-Cheers,
-Aleksandar
+Also, the triage team meets weekly and does its best to handle the bugs
+reported into the Bugzilla. The number of people attending that meeting has
+fallen, as have the number of people available to help fix bugs. One of the
+things we hear users report is they don't know how to help. We (the triage
+team) are therefore going to start reporting out the currently 438
+unassigned or newcomer bugs.
 
->=20
->=20
-> [1] https://docs.yoctoproject.org/overview-manual/concepts.html#automatic=
-ally-added-runtime-dependencies
->=20
-> [2] https://docs.yoctoproject.org/dev/dev-manual/licenses.html#compliance=
--limitations-with-executables-built-from-static-libraries
->=20
-> --------------------------------
->=20
-> Bosch Rexroth AG
->=20
-> Registered Office: Stuttgart, Registration Court: Amtsgericht Stuttgart
-> HRB 23192 Executive Board: Dr. Steffen Haack (President), Roland
-> Bittenauer, Thomas Fechner, Holger von Hebel, Reinhard Sch=C3=A4fer Chair=
-man of
-> the Supervisory Board: Dr. Markus Forschner
+We're hoping people may be able to spare some time now and again to help
+out with these. Bugs are split into two types, "true bugs" where things
+don't work as they should and "enhancements" which are features we'd want
+to add to the system. There are also roughly four different "priority"
+classes right now, =E2=80=9C5.2=E2=80=9D, =E2=80=9C5.3", "5.99" and "Future=
+", the more
+pressing/urgent issues being in "5.2" and then =E2=80=9C5.3=E2=80=9D.
 
---yy2Wm9Z6DoRG7GDqHjpW
-Content-Type: text/html; charset="utf-8"
+Please review this link and if a bug is something you would be able to help
+with either take ownership of the bug, or send me (sjolley.yp.pm@gmail.com)
+an e-mail with the bug number you would like and I will assign it to you
+(please make sure you have a Bugzilla account). The list is at:
+https://wiki.yoctoproject.org/wiki/Bug_Triage_Archive#Unassigned_or_Newcome=
+r_Bugs
+
+Thanks,
+
+
+
+*Stephen K. Jolley*
+
+*Yocto Project Program Manager*
+
+(    *Cell*:                (208) 244-4460
+
+* *Email*:                 *s
+<stephen.k.jolley@intel.com>jolley.yp.pm@gmail.com <jolley.yp.pm@gmail.com>=
+*
+
+--000000000000de56fb0633585ff2
+Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-<div>On Fri, May 31, 2024 at 03:40 PM, Hanke Fabian (DC/PAR) wrote:</div>
-<div>
-<blockquote>Hello,<br /><br />thank you for all the responses so far. I gue=
-ss we will have a look at fossology and fossas, but we would prefer a solut=
-ion which does not require an additional thirdparty service. We know that t=
-here are different types of GPL licenses which bring different obligations.=
- <br /><br />We are searching for an automatic mechanism to detect linking =
-to a shared library from a GPL package. We thought there might be a way to =
-utilize the build system&rsquo;s shared library resolver which is used for =
-the automatic runtime added runtime dependencies [1].<br /><br />For static=
- libraries we found that they are disabled by default [2].</blockquote>
-Could someone explain what it means that static libraries are disabled? Doe=
-s this refer to staticdev-pkgs in IMAGE_FEATURES?</div>
-<div>&nbsp;</div>
-<div>Cheers,</div>
-<div>Aleksandar<br />
-<blockquote><br />[1] <a href=3D"https://docs.yoctoproject.org/overview-man=
-ual/concepts.html#automatically-added-runtime-dependencies" target=3D"_blan=
-k" rel=3D"noopener">https://docs.yoctoproject.org/overview-manual/concepts.=
-html#automatically-added-runtime-dependencies</a><br />[2] <a href=3D"https=
-://docs.yoctoproject.org/dev/dev-manual/licenses.html#compliance-limitation=
-s-with-executables-built-from-static-libraries" target=3D"_blank" rel=3D"no=
-opener">https://docs.yoctoproject.org/dev/dev-manual/licenses.html#complian=
-ce-limitations-with-executables-built-from-static-libraries</a><br />------=
---------------------------<br /><br />Bosch Rexroth AG<br /><br />Registere=
-d Office: Stuttgart, Registration Court: Amtsgericht Stuttgart HRB 23192 Ex=
-ecutive Board: Dr. Steffen Haack (President), Roland Bittenauer, Thomas Fec=
-hner, Holger von Hebel, Reinhard Sch&auml;fer Chairman of the Supervisory B=
-oard: Dr. Markus Forschner</blockquote>
-</div>
+<div dir=3D"ltr"><div><span style=3D"font-size:11pt;font-family:Calibri,Ari=
+al">All,<br><br>The triage team is starting to try and collect up and class=
+ify bugs which a newcomer to the project would be able to work on in a way =
+which means people can find them. They&#39;re being listed on the triage pa=
+ge under the appropriate heading: <a href=3D"https://wiki.yoctoproject.org/=
+wiki/Bug_Triage#Newcomer_Bugs">https://wiki.yoctoproject.org/wiki/Bug_Triag=
+e#Newcomer_Bugs</a>  Also please review: <a href=3D"https://www.openembedde=
+d.org/wiki/How_to_submit_a_patch_to_OpenEmbedded">https://www.openembedded.=
+org/wiki/How_to_submit_a_patch_to_OpenEmbedded</a> and how to create a bugz=
+illa account at: <a href=3D"https://bugzilla.yoctoproject.org/createaccount=
+.cgi">https://bugzilla.yoctoproject.org/createaccount.cgi</a><br><br>The id=
+ea is these bugs should be straight forward for a person to help work on wh=
+o doesn&#39;t have deep experience with the project.  If anyone can help, p=
+lease take ownership of the bug and send patches!  If anyone needs help/adv=
+ice there are people on irc who can likely do so, or some of the more exper=
+ienced contributors will likely be happy to help too.<br><br>Also, the tria=
+ge team meets weekly and does its best to handle the bugs reported into the=
+ Bugzilla. The number of people attending that meeting has fallen, as have =
+the number of people available to help fix bugs. One of the things we hear =
+users report is they don&#39;t know how to help. We (the triage team) are t=
+herefore going to start reporting out the currently 438 unassigned or newco=
+mer bugs.<br><br>We&#39;re hoping people may be able to spare some time now=
+ and again to help out with these.  Bugs are split into two types, &quot;tr=
+ue bugs&quot; where things don&#39;t work as they should and &quot;enhancem=
+ents&quot; which are features we&#39;d want to add to the system.  There ar=
+e also roughly four different &quot;priority&quot; classes right now, =E2=
+=80=9C5.2=E2=80=9D, =E2=80=9C5.3&quot;, &quot;5.99&quot; and &quot;Future&q=
+uot;, the more pressing/urgent issues being in &quot;5.2&quot; and then =E2=
+=80=9C5.3=E2=80=9D.<br><br>Please review this link and if a bug is somethin=
+g you would be able to help with either take ownership of the bug, or send =
+me (<a href=3D"mailto:sjolley.yp.pm@gmail.com">sjolley.yp.pm@gmail.com</a>)=
+ an e-mail with the bug number you would like and I will assign it to you (=
+please make sure you have a Bugzilla account).  The list is at: <a href=3D"=
+https://wiki.yoctoproject.org/wiki/Bug_Triage_Archive#Unassigned_or_Newcome=
+r_Bugs">https://wiki.yoctoproject.org/wiki/Bug_Triage_Archive#Unassigned_or=
+_Newcomer_Bugs</a></span></div><div dir=3D"ltr" class=3D"gmail_signature" d=
+ata-smartmail=3D"gmail_signature"><div dir=3D"ltr"><div dir=3D"ltr"><p clas=
+s=3D"MsoNormal" style=3D"background-image:initial;background-position:initi=
+al;background-repeat:initial"><span style=3D"font-size:12pt;font-family:Ari=
+al,sans-serif">Thanks,<span></span></span></p>
 
---yy2Wm9Z6DoRG7GDqHjpW--
+<p class=3D"MsoNormal" style=3D"background-image:initial;background-positio=
+n:initial;background-repeat:initial"><span style=3D"font-size:12pt;font-fam=
+ily:Arial,sans-serif">=C2=A0<span></span></span></p>
+
+<p class=3D"MsoNormal" style=3D"background-image:initial;background-positio=
+n:initial;background-repeat:initial"><b><i><span style=3D"font-size:16pt;co=
+lor:purple">Stephen K. Jolley</span></i></b><span style=3D"font-size:12pt;f=
+ont-family:Arial,sans-serif"><span></span></span></p>
+
+<p class=3D"MsoNormal" style=3D"background-image:initial;background-positio=
+n:initial;background-repeat:initial"><b><span style=3D"font-size:8pt;font-f=
+amily:&quot;Courier New&quot;;color:blue">Yocto Project Program Manager</sp=
+an></b></p>
+
+<p class=3D"MsoNormal" style=3D"background-image:initial;background-positio=
+n:initial;background-repeat:initial"><span style=3D"font-size:9pt;font-fami=
+ly:Wingdings;color:black">(</span><span style=3D"font-size:9pt;font-family:=
+&quot;MS Sans Serif&quot;,serif;color:teal">=C2=A0=C2=A0=C2=A0=C2=A0</span>=
+<b><span style=3D"font-size:8pt;font-family:&quot;Comic Sans MS&quot;;color=
+:teal">Cell</span></b><span style=3D"font-size:9pt;font-family:&quot;MS San=
+s Serif&quot;,serif;color:teal">:=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 </span><span style=3D"font=
+-size:9pt;font-family:&quot;MS Sans Serif&quot;,serif">(208) 244-4460</span=
+><span style=3D"font-size:12pt;font-family:Arial,sans-serif"><span></span><=
+/span></p>
+
+<p class=3D"MsoNormal" style=3D"background-image:initial;background-positio=
+n:initial;background-repeat:initial"><span style=3D"font-size:9pt;font-fami=
+ly:Wingdings">*=C2=A0</span><b><span lang=3D"FR" style=3D"font-size:8pt;fon=
+t-family:&quot;Comic Sans MS&quot;;color:teal">Email</span></b><span lang=
+=3D"FR" style=3D"font-size:9pt;font-family:&quot;MS Sans Serif&quot;,serif;=
+color:teal">:</span><span lang=3D"FR" style=3D"font-size:9pt;font-family:&q=
+uot;MS Sans Serif&quot;,serif">=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0</span><u><span=
+ lang=3D"FR" style=3D"font-size:9pt;font-family:&quot;MS Sans Serif&quot;,s=
+erif;color:blue"><span style=3D"color:rgb(17,85,204)"><a href=3D"mailto:ste=
+phen.k.jolley@intel.com" target=3D"_blank">s</a><a href=3D"mailto:jolley.yp=
+.pm@gmail.com" target=3D"_blank">jolley.yp.pm@gmail.com</a></span></span></=
+u></p></div></div></div></div>
+
+--000000000000de56fb0633585ff2--
 
