@@ -1,151 +1,190 @@
-Return-Path: <fntoth@gmail.com>
+Return-Path: <denisova.olga.k@yandex.ru>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id F093AC369AB
-	for <webhook@archiver.kernel.org>; Thu, 24 Apr 2025 20:18:15 +0000 (UTC)
-Received: from mail-ed1-f47.google.com (mail-ed1-f47.google.com [209.85.208.47])
- by mx.groups.io with SMTP id smtpd.web11.3831.1745525890188080310
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 77A9CC369D1
+	for <webhook@archiver.kernel.org>; Fri, 25 Apr 2025 06:02:06 +0000 (UTC)
+Received: from forward101b.mail.yandex.net (forward101b.mail.yandex.net [178.154.239.148])
+ by mx.groups.io with SMTP id smtpd.web11.1169.1745560920377557076
  for <yocto@lists.yoctoproject.org>;
- Thu, 24 Apr 2025 13:18:10 -0700
+ Thu, 24 Apr 2025 23:02:01 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20230601 header.b=af6rCInW;
- spf=pass (domain: gmail.com, ip: 209.85.208.47, mailfrom: fntoth@gmail.com)
-Received: by mail-ed1-f47.google.com with SMTP id 4fb4d7f45d1cf-5f6c3f7b0b0so2715434a12.0
-        for <yocto@lists.yoctoproject.org>; Thu, 24 Apr 2025 13:18:09 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1745525888; x=1746130688; darn=lists.yoctoproject.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:to:subject:user-agent:mime-version:date:message-id:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=Oil+qQoy0AxU7VUy1+pzkMXXjVuvGnZuM4MgzgxjUtI=;
-        b=af6rCInWa26caJRnNA8+rT0VIU+jxCBmei0ddE6WPMn4cisgcca7LHojP2nmRc4BDm
-         V8tHfPpW/neSQc3PJ2RkK9qZerAtL1vcmWbOjBmiTVwsxKOQvVsHl5CXAkZVzZ4an5oD
-         VdpLqu0PFQZfCXVqwhvPaMr27rlYvgco88UWrpVxHGWQwA03nFkXgMbdmlngMNHJNv3R
-         HpP3m+coYdqUVdpStXMo/UzT3Ug32kF0NeGh1X/97Yt5dwjASjUufTg7xP5wfYYwkYSy
-         MfA0PYZbNkF4ElZah3erw3TqnKoYqw8ZVg3rCHEQSr3olnbITtGiHluy3uIjXfRei3xe
-         wjBQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1745525888; x=1746130688;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=Oil+qQoy0AxU7VUy1+pzkMXXjVuvGnZuM4MgzgxjUtI=;
-        b=r9ZVw+9akYqf/eJ/Rb9xqhbNT94YC6rC7BBECERNU13Dgm8GvSP+lEPXMIH6LL+j8O
-         DPyx7hXbDwXGlkwqmG5tuHPvfgNwPy015QOGHJG8f8uuEm2kLQrBx9TobLcG5EDVOzf5
-         meqXtm6B0s9JKLrixPT7kjwCMk+j+9MTTeXdd03+Cz11/pcyyjiQ09u/wPsnbCTUNZjv
-         of4pBDxpm86+t0MTJ3WKypla8BjWrQWFGfGfSBc4PlwVdBuPdgf6Izav6x7TCRP1+QKI
-         L3A5ThqY5ziC0GXdlb1hVxdn0fu00TUumymeqxSYae5PiedU7qSoKWufdB/b/wTchv1o
-         uCUg==
-X-Forwarded-Encrypted: i=1; AJvYcCXj3tolMTSyeroWotb0HKnx3NPOzbSWDGiLGMGrU+UnwUZPK2KOCZa92KmphmdFbHdUC/K1Zg==@lists.yoctoproject.org
-X-Gm-Message-State: AOJu0Yy+YMct8UEM/le0nRyn9jCBwEaz/YOmWOfFao6bME5qZ4sSM9oy
-	PMjcojLD08ycnfTLaU331WuKWzvq+gn/gWJgh1MoYJpsbRbZ66tg
-X-Gm-Gg: ASbGnctnuK7StooeZsgLkI9NVhvR8lPZxLuTKvH4Quv9f9MpRhMHyEcpcFF2Vsb+uIn
-	Sx/uBCJpNaTg5+awLB0FktXfMqLk8sfaI3Z/Vho69FmXT8Ig7A9bcG3CZbqSnrE8Wfsx3d5aGCK
-	mYrk7frBrJzJO6vTWx3dhsyMyUKXfxSR5ZfQIikhuCOwg2xNA/TmooqJWf2YrAuAOy7nwa7DIls
-	LuQ+1g8mkfxjFo/jsIDR0myNzp4b97sv0t0oY1d0qSefveULQYAxJIMRXmxQ/ibiUUqYF01nyX8
-	4zE57bVDoqvD1l00PHmfxW1Z+Ev0//Go3DqQXsuJXsmook/3UsX+A+zHFM8JOxURkKO+qFybCQn
-	wcBFOn55955u2U6LX5uIHx4VTJRajNoCTNmtcz3wqu+uRA/EWzMw+lVumyNcDfg==
-X-Google-Smtp-Source: AGHT+IFsNYl1xLOCJtglORfniJj3UhOT2fmoclaJh89LBVFMqEs/B9kk+xtcHD0c/azKIugbg1+FbA==
-X-Received: by 2002:a17:907:3c96:b0:aca:d48f:4d48 with SMTP id a640c23a62f3a-ace5746281emr407853966b.60.1745525888104;
-        Thu, 24 Apr 2025 13:18:08 -0700 (PDT)
-Received: from ?IPV6:2a02:a466:68ed:1:e82f:dba5:732c:3d0a? (2a02-a466-68ed-1-e82f-dba5-732c-3d0a.fixed6.kpn.net. [2a02:a466:68ed:1:e82f:dba5:732c:3d0a])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-ace6e4e6498sm15946666b.42.2025.04.24.13.18.07
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 24 Apr 2025 13:18:07 -0700 (PDT)
-Message-ID: <6c8ec705-3a92-47a3-bbb3-f43686234b6b@gmail.com>
-Date: Thu, 24 Apr 2025 22:18:07 +0200
+ dkim=fail reason="dkim: body hash did not verify" header.i=@yandex.ru header.s=mail header.b=AOl4s1ir;
+ spf=pass (domain: yandex.ru, ip: 178.154.239.148, mailfrom: denisova.olga.k@yandex.ru)
+Received: from mail-nwsmtp-smtp-production-main-73.sas.yp-c.yandex.net (mail-nwsmtp-smtp-production-main-73.sas.yp-c.yandex.net [IPv6:2a02:6b8:c37:f37c:0:640:1e45:0])
+	by forward101b.mail.yandex.net (Yandex) with ESMTPS id 269D860B52;
+	Fri, 25 Apr 2025 09:01:57 +0300 (MSK)
+Received: by mail-nwsmtp-smtp-production-main-73.sas.yp-c.yandex.net (smtp/Yandex) with ESMTPSA id u1KCLB8LoKo0-0JnQP6fO;
+	Fri, 25 Apr 2025 09:01:56 +0300
+X-Yandex-Fwd: 1
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yandex.ru; s=mail;
+	t=1745560916; bh=pcYjdZE8hZkUriZoIFMbpb630V2A8z2rWUEgsXXln9o=;
+	h=Message-Id:Date:Cc:Subject:To:From;
+	b=AOl4s1irlvE50i601nKTeC6MO8wzJE67FKjaaeEHLxeeJLPYEv93zO+J+lMVz6Y3f
+	 IDSO29Ee+aus2pdhQSRQBWzpEAAUMZz8DP/S21nlPJRx95goqlIGgTJ1BqX6FWL8Rg
+	 dIU6p40bDTLbsmD9TPQMqd3RNDXrRy5e5Hcfbr9Y=
+Authentication-Results: mail-nwsmtp-smtp-production-main-73.sas.yp-c.yandex.net; dkim=pass header.i=@yandex.ru
+From: denisova-ok <denisova.olga.k@yandex.ru>
+To: yocto@lists.yoctoproject.org
+Cc: gavrilov.andrew1999@yandex.ru,
+	tinyakovx@gmail.com,
+	sider123456789101112131415@gmail.com,
+	denisova-ok <denisova.olga.k@yandex.ru>
+Subject: [PATCH v2 0/3] Add support for index files in SSTATE_MIRRORS
+Date: Fri, 25 Apr 2025 09:01:16 +0300
+Message-Id: <20250425060119.5092-1-denisova.olga.k@yandex.ru>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [yocto] Btrfs root filesystem permission issue
-To: Gyorgy Sarvari <skandigraun@gmail.com>, yocto@lists.yoctoproject.org,
- landervanloock@gmail.com
-References: <tRtu.1740682678597454399.5171@lists.yoctoproject.org>
- <1adcf6c5-d4be-4701-948c-3a6425f3da07@gmail.com>
-Content-Language: en-US
-From: Ferry Toth <fntoth@gmail.com>
-In-Reply-To: <1adcf6c5-d4be-4701-948c-3a6425f3da07@gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Thu, 24 Apr 2025 20:18:15 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/65245
+ <yocto@lists.yoctoproject.org>; Fri, 25 Apr 2025 06:02:06 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/65246
 
-Hi,
+Description of Changes
+When building an image, the system uses a cache to avoid re-running tasks=
+. When the sstate-cache directory is empty or the required cache file is =
+missing, the system searches for files on sstate mirrors defined in SSTAT=
+E_MIRRORS. However, the system's lack of information about the distributi=
+on of cache files among sstate mirrors results in requests for files bein=
+g sent to all specified cache mirrors. This increases the number of reque=
+sts, especially if the number of mirrors is large.
+Frequent rebuilds can make even small delays noticeable in the developmen=
+t workflow. This patchset improves the efficiency of locating cache files=
+ across sstate mirrors, reducing lookup time. It also makes the lookup ti=
+me independent of the number of sstate mirrors specified in the configura=
+tion.
+The patchset addresses this issue by pre-fetching index files from each s=
+state mirror before checking for the presence of cache files. The index f=
+ile contains data about the contents of the sstate mirror, allowing the s=
+ystem to send requests directly to the relevant sstate mirrors, reducing =
+the overall number of requests and making them independent of the number =
+of sstate mirrors specified in the configuration.
+The performance improvement is illustrated by the timing results chart av=
+ailable here:
+https://drive.google.com/file/d/1kH3E3jRAqJ_1VR2b-20V9BS-uTAfoYKv/view?us=
+p=3Ddrive_link
 
-Op 01-03-2025 om 15:35 schreef Gyorgy Sarvari:
-> The reason seems to be this[1] update of btrfs-tools, which included
-> this[2] commit. The important change is that previously mkfs.btrfs was
-> using lstat syscall to get file stats, but then it switched to nftw libc
-> function to do the same. Pseudo[3] however doesn't support this call -
-> it "knows" that it exists (at least nftw64), but there seems to be no
-> implementation.
-> 
-> Possibilities at the first sight:
-> 1 - Downgrade btrfs-tools in your custom layer (unless you need any of
-> the new functions)
-> 2 - Revert the change with a patch in a bbappend
-> 3 - Make pseudo support nftw
-> 
-> #1 and #2 would be a fast change.
+Behavior Types Based on Index File Presense, Validity and Invalidity
+The patchset supports two operating modes: full trust mode and recheck mo=
+de. The mode selection is done by setting the ` RELY_ON_INDEX_FILES ` var=
+iable in ` local.conf `. If this variable is set to "1", the trust mode i=
+s enabled, where only the information from the index files is used. Other=
+wise, if the variable is not set or has a different value, the recheck mo=
+de is activated.
 
-There is a problem with mkfs.btrfs that creates a file system with 
-errors if there are hardlinks out of the the rootfs (as we have). You 
-can this easily by running btrfs check on the image file.
+The patchset's algorithm includes the following steps:
+1. Sending requests to retrieve index files from all cache mirrors specif=
+ied in ` SSTATE_MIRRORS `
+    - 1.1. If the request is successful, the information about the cache =
+files from the mirror is considered, and the mirror is added to the list =
+of checked mirrors.
+    - 1.2. If the request is unsuccessful, nothing happens.
+2. Analyzing the information about cache files present on the cache mirro=
+rs to match the required build tasks. Complete information is gathered ab=
+out which tasks are found on the cache mirrors through the analysis of in=
+dex files, and on which mirrors they are located. Also, sets of found and=
+ not found tasks are collected to search for the remaining tasks not foun=
+d (the specific algorithm depends on the mode).
+3. If trust mode (` RELY_ON_INDEX_FILES =3D=3D "1" `) was set, then:
+    - 3.1. If some of the cache mirrors specified in ` SSTATE_MIRRORS ` r=
+emain unchecked (e.g., the index file was missing on the mirror), these m=
+irrors are then checked using the classic algorithm for the presence of c=
+ache files corresponding to the not found tasks. The found tasks are adde=
+d to those already found using the index files.
+    - 3.2. If all mirrors were successfully checked, the mirrors checking=
+ process ends.
+4. If recheck mode was set, then:
+    - 4.1. If some tasks remain not found, the classic algorithm will sen=
+d requests to search for cache files corresponding to these tasks on all =
+cache mirrors specified in ` SSTATE_MIRRORS `. Thus, the situation where =
+the index file is somewhat outdated (a cache file appeared on the cache m=
+irror, but there is no information about it in the index file) is taken i=
+nto account.
+    - 4.2. If all tasks are found, or all requests for not found tasks ar=
+e completed, the algorithm ends.
+5. Cache file download stage:
+    - 5.1. If information about the location of the desired cache file is=
+ available, the request is sent to the corresponding cache mirror.
+        - 5.1.1. If the cache file is found on the specified cache mirror=
+, it is downloaded.
+        - 5.1.2. If the request to the required cache mirror is unsuccess=
+ful for some reason, all cache mirrors specified in ` SSTATE_MIRRORS ` ar=
+e then queried. Thus, the situation where the cache mirror became unavail=
+able after the mirrors checking, but the necessary cache file can be obta=
+ined from another cache mirror, is taken into account.
+    - 5.2. If there is no information about the location of the desired c=
+ache file, requests will be sent to all cache mirrors from ` SSTATE_MIRRO=
+RS ` according to the classic algorithm.
 
-The change if fixed after btrfs-tools v6.12
+Architecture of Changes
+1. Addition of the ` compose_index_files ` function:
+    - Implemented in the ` meta/classes-global/sstate.bbclass`  class to =
+send requests for retrieving index files from cache mirrors.
+    - The call to this function is integrated into the process before sta=
+rting the hash check (` BB_HASHCHECK_FUNCTION `) in the ` bitbake/lib/bb/=
+runqueue.py ` file.
 
-See this thread (Errors on newly created file system):
-https://lore.kernel.org/linux-btrfs/d98ffb69-195b-4c07-ac56-8ae1f811af32@gmail.com/T/#m30ef7259fe280660c55733a7ba37c356d292fe10
+2. Modification of the ` sstate_checkhashes ` function (` meta/classes-gl=
+obal/sstate.bbclass `):
+    - The function now analyzes the information about cache files obtaine=
+d from index files and forms a new data structure =E2=80=94 ` file_mirror=
+_map `. This structure stores information about the distribution of cache=
+ files across cache mirrors and is written to the storage.
+    - The logic for handling tasks not found using index files varies dep=
+ending on the selected mode and is described in the section "Behavior Typ=
+es Based on Index File Presence, Validity, and Invalidity" (points 3, 4).
+3. Use of the ` file_mirror_map ` structure:
+    - After formation and saving, the structure is then read in bitbake/l=
+ib/bb/runqueue.py for passing to the bitbake-worker function.
+    - In ` /bitbake/bin/bitbake-worker `, the ` file_mirror_map ` structu=
+re is received and used to pass information about the location of cache f=
+iles. This ensures the availability of information about the location of =
+cache files during subsequent downloads.
+4. Modification of the pstaging_fetch function (` meta/classes-global/sst=
+ate.bbclass `):
+    - If the location of the cache file is known, the request is sent dir=
+ectly to the cache mirror specified in ` file_mirror_map `.
+    - If the location is unknown, requests are sent in order to all cache=
+ mirrors according to the ` SSTATE_MIRRORS`  list.
 
-> #3 would be the best of course (it seems to be a nice extension, I might
-> try to look at it over the weekend - though chances are that it won't
-> happen or I will give up/fail. So feel free, anyone.).
-> 
-> [1]:
-> https://git.yoctoproject.org/poky/commit/?id=2ff9d40ccb493967151bfed6aed889de45bdd464
-> [2]:
-> https://web.git.kernel.org/pub/scm/linux/kernel/git/kdave/btrfs-progs.git/commit/?id=c6464d3f99ed1dabceff1168eabb207492c37624
-> [3]: https://git.yoctoproject.org/poky/tree/meta/recipes-devtools/pseudo
-> 
-> On 27.02.25 19:57, Lander0606 via lists.yoctoproject.org wrote:
->> Hi guys,
->>   
->> For my project, I changed the filesystem from ext4 to btrfs. The image
->> builds and flashes fine, but when booting the system some mount
->> problems occur because the root filesystem has UID 1000 all over it.
->> So, when creating the filesystem, the directories are not created with
->> /root:root/ as owner. Some important notes:
->>   
->>
->>    * Currently I'm on the master branch to use the newest kernel 6.12,
->>      but when switching back to the /scarthgap/ branch, the issue with
->>      permissions doesn't exist for a btrfs image. The filesystem mounts
->>      fine.
->>    * I use Fedora 41 with a btrfs filesystem as build host, but I
->>      checked on an Ubuntu 24.04 machine with an ext4 filesystem as well
->>      and the issue still persists.
->>    * I tried adding a fix with /do_image[postfuncs] /to run /chown -R
->>      root:root/ on all directories, but the issue still persists...
->>    * To test, I just mount the generated btrfs filesystem to my Fedora
->>      host and check the permissions with /ls -lah/
->>
->>   
->> Has anyone experienced similar problems with btrfs? Or does anyone
->> have an idea how to patch this?
->>   
->> Any help is appreciated! Thanks in advance!
->>
->> -=-=-=-=-=-=-=-=-=-=-=-
->> Links: You receive all messages sent to this group.
->> View/Reply Online (#64889): https://lists.yoctoproject.org/g/yocto/message/64889
->> Mute This Topic: https://lists.yoctoproject.org/mt/111420988/6084445
->> Group Owner: yocto+owner@lists.yoctoproject.org
->> Unsubscribe: https://lists.yoctoproject.org/g/yocto/unsub [skandigraun@gmail.com]
->> -=-=-=-=-=-=-=-=-=-=-=-
->>
-> 
+Enabling Patchset Functionality
+1. Apply the patchset.
+2. Add the line  `SSTATE_MIRRORS_INDEX_FILES =3D "1" ` to ` local.conf ` =
+to enable support for index files.
+3. Additionally, to activate trust mode, add ` RELY_ON_INDEX_FILES =3D "1=
+" `.
+
+Patchset's Limitations
+1. Retrieval of the index file is only available over http/https and ftp =
+protocols.
+2. The patchset does not consider situations where cache mirrors with the=
+ desired cache file were available at the time of checking but became una=
+vailable when attempting to retrieve the cache file. Additionally, it doe=
+s not account for situations where index files indicate the presence of a=
+ file that is actually missing from all cache mirrors (if it exists on at=
+ least one cache mirror, it will be retrieved).
+
+Index File Update
+The person deploying the cache mirror is responsible for updating/refresh=
+ing the index file.
+
+Olga Denisova (3):
+  bitbake-worker: support file_mirror_map transfer from runqueue for
+    optimized cache fetch
+  runqueue: initialize collection and forwarding of cache distribution
+    from SSTATE_MIRRORS
+  sstate.bbclass: collect and process index file data, update fetch
+    logic
+
+ bitbake/bin/bitbake-worker         |   4 +
+ bitbake/lib/bb/runqueue.py         |  34 ++++++--
+ meta/classes-global/sstate.bbclass | 135 +++++++++++++++++++++++++----
+ 3 files changed, 151 insertions(+), 22 deletions(-)
+
+--=20
+2.34.1
 
 
