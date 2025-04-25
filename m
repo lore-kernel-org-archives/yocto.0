@@ -2,27 +2,27 @@ Return-Path: <denisova.olga.k@yandex.ru>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 78A0BC369D7
-	for <webhook@archiver.kernel.org>; Fri, 25 Apr 2025 06:02:06 +0000 (UTC)
-Received: from forward101b.mail.yandex.net (forward101b.mail.yandex.net [178.154.239.148])
- by mx.groups.io with SMTP id smtpd.web10.1241.1745560925209948862
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 5A2A1C369D1
+	for <webhook@archiver.kernel.org>; Fri, 25 Apr 2025 06:02:16 +0000 (UTC)
+Received: from forward100b.mail.yandex.net (forward100b.mail.yandex.net [178.154.239.147])
+ by mx.groups.io with SMTP id smtpd.web10.1242.1745560929231303225
  for <yocto@lists.yoctoproject.org>;
- Thu, 24 Apr 2025 23:02:05 -0700
+ Thu, 24 Apr 2025 23:02:09 -0700
 Authentication-Results: mx.groups.io;
- dkim=fail reason="dkim: body hash did not verify" header.i=@yandex.ru header.s=mail header.b=vVSa0O49;
- spf=pass (domain: yandex.ru, ip: 178.154.239.148, mailfrom: denisova.olga.k@yandex.ru)
+ dkim=fail reason="dkim: body hash did not verify" header.i=@yandex.ru header.s=mail header.b=mIQ1snGJ;
+ spf=pass (domain: yandex.ru, ip: 178.154.239.147, mailfrom: denisova.olga.k@yandex.ru)
 Received: from mail-nwsmtp-smtp-production-main-73.sas.yp-c.yandex.net (mail-nwsmtp-smtp-production-main-73.sas.yp-c.yandex.net [IPv6:2a02:6b8:c37:f37c:0:640:1e45:0])
-	by forward101b.mail.yandex.net (Yandex) with ESMTPS id A25D460E5D;
-	Fri, 25 Apr 2025 09:02:03 +0300 (MSK)
-Received: by mail-nwsmtp-smtp-production-main-73.sas.yp-c.yandex.net (smtp/Yandex) with ESMTPSA id u1KCLB8LoKo0-z00xcn2H;
-	Fri, 25 Apr 2025 09:02:03 +0300
+	by forward100b.mail.yandex.net (Yandex) with ESMTPS id 3531860E4E;
+	Fri, 25 Apr 2025 09:02:06 +0300 (MSK)
+Received: by mail-nwsmtp-smtp-production-main-73.sas.yp-c.yandex.net (smtp/Yandex) with ESMTPSA id u1KCLB8LoKo0-8k37FMWR;
+	Fri, 25 Apr 2025 09:02:05 +0300
 X-Yandex-Fwd: 1
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yandex.ru; s=mail;
-	t=1745560923; bh=VY3CwHIfRm1BicUmgaN84Xky2vlDJkkJjEG+jliok88=;
+	t=1745560925; bh=3hZfiQ028AkvO3VCKWB5CiLDjqcarfPcnykh+9VaPt4=;
 	h=Message-Id:Date:In-Reply-To:Cc:Subject:References:To:From;
-	b=vVSa0O49TCK9OuLh5VwrcirH9JEhwAQ7a6ju7mslXKzT5vNeG3l7EfRRgAgWkIw7z
-	 lAYNeHoOaKh3TvAg628VX/cgpTd0eUkCoTotqRLv23x1r+u5o2lruvEhghAzb8SZCz
-	 /UMePAOOihlLhvfiDq9Ku7QDPhRdAeI6jECszX+A=
+	b=mIQ1snGJtGaCckcas5RcIkjta0IYWYgW6jCtURBPDOnc/Ux8CBEbwtGBgK4JVgBUD
+	 TE0N61ayRB7lvjB71LyJ51QcD4wpEDaMjLNZ+AviGn1kxt1uGefwjRIX5MSCWbwyEE
+	 XxUX4M4KhrZwhl7VjkNT7Bj9dIp/CJv2iAYfYjTs=
 Authentication-Results: mail-nwsmtp-smtp-production-main-73.sas.yp-c.yandex.net; dkim=pass header.i=@yandex.ru
 From: denisova-ok <denisova.olga.k@yandex.ru>
 To: yocto@lists.yoctoproject.org
@@ -30,9 +30,9 @@ Cc: gavrilov.andrew1999@yandex.ru,
 	tinyakovx@gmail.com,
 	sider123456789101112131415@gmail.com,
 	Olga Denisova <denisova.olga.k@yandex.ru>
-Subject: [bitbake][PATCH 1/3] bitbake-worker: support file_mirror_map transfer from runqueue for optimized cache fetch
-Date: Fri, 25 Apr 2025 09:01:17 +0300
-Message-Id: <20250425060119.5092-2-denisova.olga.k@yandex.ru>
+Subject: [bitbake][PATCH 2/3] runqueue: initialize collection and forwarding of cache distribution from SSTATE_MIRRORS
+Date: Fri, 25 Apr 2025 09:01:18 +0300
+Message-Id: <20250425060119.5092-3-denisova.olga.k@yandex.ru>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20250425060119.5092-1-denisova.olga.k@yandex.ru>
 References: <20250425060119.5092-1-denisova.olga.k@yandex.ru>
@@ -41,52 +41,150 @@ Content-Transfer-Encoding: quoted-printable
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Fri, 25 Apr 2025 06:02:06 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/65247
+ <yocto@lists.yoctoproject.org>; Fri, 25 Apr 2025 06:02:16 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/65248
 
 From: Olga Denisova <denisova.olga.k@yandex.ru>
 
 This change is part of the patchset that introduces index file support fo=
-r SSTATE_MIRRORS. In this specific part, bitbake-worker is modified to re=
-ceive and forward the file_mirror_map structure provided by the runqueue.
+r SSTATE_MIRRORS. Specifically in runqueue, this commit implements logic =
+to call the function specified in BB_COMPOSE_INDEXES_FUNCTION. This funct=
+ion collects information about available cache files on all configured SS=
+TATE_MIRRORS based on their index files.
 
-The file_mirror_map contains information about which cache files are avai=
-lable
-on which SSTATE_MIRRORS, allowing downstream fetch logic to make informed=
- decisions when retrieving sstate artifacts.
+The gathered metadata is then passed to the function defined in
+BB_HASHCHECK_FUNCTION, which constructs the file_mirror_map structure. Th=
+is structure describes which cache mirror contains which sstate cache fil=
+e needed for the current build.
+
+After BB_HASHCHECK_FUNCTION completes, file_mirror_map is read in runqueu=
+e and passed to bitbake-worker as part of the task execution context. Thi=
+s information is used downstream during sstate artifact retrieval to redu=
+ce redundant mirror requests and improve performance in configurations wi=
+th multiple SSTATE_MIRRORS.
 
 Signed-off-by: denisova-ok <denisova.olga.k@yandex.ru>
 ---
- bin/bitbake-worker | 4 ++++
- 1 file changed, 4 insertions(+)
+ lib/bb/runqueue.py | 34 +++++++++++++++++++++++++++-------
+ 1 file changed, 27 insertions(+), 7 deletions(-)
 
-diff --git a/bin/bitbake-worker b/bin/bitbake-worker
-index 35fa1ab62b..15bbf2e30e 100755
---- a/bin/bitbake-worker
-+++ b/bin/bitbake-worker
-@@ -165,6 +165,8 @@ def fork_off_task(cfg, data, databuilder, workerdata,=
- extraconfigdata, runtask):
-     layername =3D runtask['layername']
-     taskdepdata =3D runtask['taskdepdata']
-     quieterrors =3D runtask['quieterrors']
-+    filemirror =3D runtask.get('filemirror', {})
-+
-     # We need to setup the environment BEFORE the fork, since
-     # a fork() or exec*() activates PSEUDO...
+diff --git a/lib/bb/runqueue.py b/lib/bb/runqueue.py
+index 8fadc8338e..cf937e7c6d 100644
+--- a/lib/bb/runqueue.py
++++ b/lib/bb/runqueue.py
+@@ -1336,6 +1336,7 @@ class RunQueue:
 =20
-@@ -279,6 +281,8 @@ def fork_off_task(cfg, data, databuilder, workerdata,=
- extraconfigdata, runtask):
-                 the_data =3D databuilder.parseRecipe(fn, appends, layern=
-ame)
-                 the_data.setVar('BB_TASKHASH', taskhash)
-                 the_data.setVar('BB_UNIHASH', unihash)
-+                the_data.setVar('FILE_MIRROR_MAP', filemirror)
-+
-                 bb.parse.siggen.setup_datacache_from_datastore(fn, the_d=
-ata)
+         self.hashvalidate =3D cfgData.getVar("BB_HASHCHECK_FUNCTION") or=
+ None
+         self.depvalidate =3D cfgData.getVar("BB_SETSCENE_DEPVALID") or N=
+one
++        self.composeindex =3D cfgData.getVar("BB_COMPOSE_INDEXES_FUNCTIO=
+N") or None
 =20
-                 bb.utils.set_process_name("%s:%s" % (the_data.getVar("PN=
-"), taskname.replace("do_", "")))
+         self.state =3D runQueuePrepare
+=20
+@@ -1351,6 +1352,7 @@ class RunQueue:
+         self.rqexe =3D None
+         self.worker =3D {}
+         self.fakeworker =3D {}
++        self.file_mirror_map =3D None
+=20
+     @staticmethod
+     def send_pickled_data(worker, data, name):
+@@ -1522,7 +1524,18 @@ class RunQueue:
+             cache[tid] =3D iscurrent
+         return iscurrent
+=20
+-    def validate_hashes(self, tocheck, data, currentcount=3D0, siginfo=3D=
+False, summary=3DTrue):
++    def compose_indexes(self, d):
++        indexfile =3D {}
++        if self.composeindex:
++            indexfile =3D self.compose_index(d)
++        return indexfile
++
++    def compose_index(self, d):
++        locs =3D {"d": d}
++        call =3D self.composeindex + "(d)"
++        return bb.utils.better_eval(call, locs)
++
++    def validate_hashes(self, tocheck, data, currentcount=3D0, siginfo=3D=
+False, summary=3DTrue, cacheinfo=3DNone):
+         valid =3D set()
+         if self.hashvalidate:
+             sq_data =3D {}
+@@ -1535,15 +1548,16 @@ class RunQueue:
+                 sq_data['hashfn'][tid] =3D self.rqdata.dataCaches[mc].ha=
+shfn[taskfn]
+                 sq_data['unihash'][tid] =3D self.rqdata.runtaskentries[t=
+id].unihash
+=20
+-            valid =3D self.validate_hash(sq_data, data, siginfo, current=
+count, summary)
++            valid =3D self.validate_hash(sq_data, data, siginfo, current=
+count, summary, cacheinfo)
++            self.file_mirror_map =3D self.cfgData.getVar("FILE_MIRROR_MA=
+P")
+=20
+         return valid
+=20
+-    def validate_hash(self, sq_data, d, siginfo, currentcount, summary):
+-        locs =3D {"sq_data" : sq_data, "d" : d, "siginfo" : siginfo, "cu=
+rrentcount" : currentcount, "summary" : summary}
++    def validate_hash(self, sq_data, d, siginfo, currentcount, summary, =
+cacheinfo):
++        locs =3D {"sq_data" : sq_data, "d" : d, "siginfo" : siginfo, "cu=
+rrentcount" : currentcount, "summary" : summary, "cacheinfo": cacheinfo}
+=20
+         # Metadata has **kwargs so args can be added, sq_data can also g=
+ain new fields
+-        call =3D self.hashvalidate + "(sq_data, d, siginfo=3Dsiginfo, cu=
+rrentcount=3Dcurrentcount, summary=3Dsummary)"
++        call =3D self.hashvalidate + "(sq_data, d, siginfo=3Dsiginfo, cu=
+rrentcount=3Dcurrentcount, summary=3Dsummary, cacheinfo=3Dcacheinfo)"
+=20
+         return bb.utils.better_eval(call, locs)
+=20
+@@ -2265,6 +2279,7 @@ class RunQueueExecute:
+                         logger.debug2("Setscene task %s is unskippable" =
+% nexttask)
+                     task =3D nexttask
+                     break
++
+         if task is not None:
+             (mc, fn, taskname, taskfn) =3D split_tid_mcfn(task)
+             taskname =3D taskname + "_setscene"
+@@ -2307,7 +2322,8 @@ class RunQueueExecute:
+                 'taskdep': taskdep,
+                 'fakerootenv' : self.rqdata.dataCaches[mc].fakerootenv[t=
+askfn],
+                 'fakerootdirs' : self.rqdata.dataCaches[mc].fakerootdirs=
+[taskfn],
+-                'fakerootnoenv' : self.rqdata.dataCaches[mc].fakerootnoe=
+nv[taskfn]
++                'fakerootnoenv' : self.rqdata.dataCaches[mc].fakerootnoe=
+nv[taskfn],
++                'filemirror': self.rq.file_mirror_map
+             }
+=20
+             if 'fakeroot' in taskdep and taskname in taskdep['fakeroot']=
+ and not self.cooker.configuration.dry_run:
+@@ -3169,7 +3185,11 @@ def update_scenequeue_data(tids, sqdata, rqdata, r=
+q, cooker, stampcache, sqrq, s
+=20
+         tocheck.add(tid)
+=20
+-    sqdata.valid |=3D rq.validate_hashes(tocheck, cooker.data, len(sqdat=
+a.stamppresent), False, summary=3Dsummary)
++    cacheinfo =3D {}
++    if cooker.data.getVar("SSTATE_MIRRORS_INDEX_FILES") =3D=3D "1":
++        cacheinfo =3D rq.compose_indexes(cooker.data)
++    sqdata.valid |=3D rq.validate_hashes(tocheck, cooker.data, len(sqdat=
+a.stamppresent), False, summary=3Dsummary, cacheinfo=3Dcacheinfo)
++
+=20
+     for tid in tids:
+         if tid in sqdata.stamppresent:
 --=20
 2.34.1
 
