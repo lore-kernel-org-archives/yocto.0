@@ -1,93 +1,160 @@
-Return-Path: <alex.kanavin@gmail.com>
+Return-Path: <thomas.perrot@bootlin.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 6CF8AC369C2
-	for <webhook@archiver.kernel.org>; Fri, 25 Apr 2025 09:11:57 +0000 (UTC)
-Received: from mail-qv1-f43.google.com (mail-qv1-f43.google.com [209.85.219.43])
- by mx.groups.io with SMTP id smtpd.web10.2786.1745572309888237627
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 09DFAC369C2
+	for <webhook@archiver.kernel.org>; Fri, 25 Apr 2025 14:35:40 +0000 (UTC)
+Received: from relay5-d.mail.gandi.net (relay5-d.mail.gandi.net [217.70.183.197])
+ by mx.groups.io with SMTP id smtpd.web10.7936.1745591732136538044
  for <yocto@lists.yoctoproject.org>;
- Fri, 25 Apr 2025 02:11:50 -0700
+ Fri, 25 Apr 2025 07:35:32 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20230601 header.b=EEcUk8bX;
- spf=pass (domain: gmail.com, ip: 209.85.219.43, mailfrom: alex.kanavin@gmail.com)
-Received: by mail-qv1-f43.google.com with SMTP id 6a1803df08f44-6e8f8657f29so19479376d6.3
-        for <yocto@lists.yoctoproject.org>; Fri, 25 Apr 2025 02:11:49 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1745572309; x=1746177109; darn=lists.yoctoproject.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=8GXjU/cMRuDPR7vmU1WdDt+P1M2Y62DC4Td1ERGYUps=;
-        b=EEcUk8bXeteVsN7SuCy11eIpVuXp9eRSWNG3YbR7RB5/ABrE08s57sHjrixGF5DopU
-         VNlEBOCwD5Y6X0Yw2kJRZBXTlmzTkM24FDatgPJQFyXPvwZpbJ93+Du+MMkSWxe5UL2b
-         zHlRpISNE9S7q3p5/lNz1hi4KuDAGGnT9/BZ6CV+3eGUNY0A8Ydqfp7JTXKiYJuy6lui
-         GctzraqNONnjkifcQGhpexNsYfzC+CHWtBVYpntAji69CNYx0ycrYHRtDzFwxeJ2lLLm
-         nHj6/L0aamHj3fsDysLnPAEd+K7SaOV08867JMJCyLZVW7ZdJBlgjbpwHoNcPUxNhqzv
-         2nXQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1745572309; x=1746177109;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=8GXjU/cMRuDPR7vmU1WdDt+P1M2Y62DC4Td1ERGYUps=;
-        b=GTzpV/Tan6qMLF98+0XUpgDk/UyAdSDnJWzfxQuQdklfRQbQM6gD0Z5ZX3DTeY3sc3
-         W9Dbcu6SC5kdVxxo4fU11G6Plef5HuyIcGzJ1DLIvCIKAuGXPmLPmKiLiO41q8Q/h0FR
-         Aob5k6VXUF5PY2tNYsVp6DHFE4LfEbSgcB+Y+mw8+Re+caMIzs1XlJITVSOF/OHvX3Cq
-         Sdv65FuhV7knbJ/u2WmaFWgnNfvkuAszx7tcOsMzaFI6MBC2l3XfuTERJHfGMkTxu+Oi
-         qTNTkwCo9hYWrS9U6PlQA8E6xFZV6tebJ9nsXQCi3Aw9zv8teM9TEvRh2vlNuWxHcr3A
-         xW1Q==
-X-Gm-Message-State: AOJu0YzDe7PyYpH8xGL7kwrU7jHfz7QMTkuj2JEV/+3k0ORpdX7i5nAS
-	bal4MuT+Ss322/gMApoHQXVRj1rB6Na6Z5IJtPEGm4hgzVwGCuysdUjl4eGKfeaN4yBrKAzy0Zx
-	spxKWcH0PP5wbg9KczkiRClW8wZZtow==
-X-Gm-Gg: ASbGncv7zhSCq8BnNrsYHARJOzLbCcCWNZ6qvnVh4GQFzAhYIC0u/tnAhJPPW9RjB32
-	H8rvy37KU9rYPPf+A4ILqHFPmFuCOiu4kD09jHYXywU06M/bgYyT6l535DCEIBhYzS3o1PR60wr
-	mheLJVyZSspmA1fjZaebqw0KoVwix3WytgJYSIipVnodKH2h9xvjDBhqIo
-X-Google-Smtp-Source: AGHT+IEbqoRM6bdy4wQcn7Jyifux/pT1hzgtL/6HXM5SCP1L3YuzbJ28qjZZDmvw1bQ2Gz+vN2janymyjwfzVF14KVc=
-X-Received: by 2002:a05:6214:ca7:b0:6e8:9321:87cd with SMTP id
- 6a1803df08f44-6f4cbb59f54mr21639926d6.40.1745572308797; Fri, 25 Apr 2025
- 02:11:48 -0700 (PDT)
+ dkim=pass header.i=@bootlin.com header.s=gm1 header.b=JcCIVcH9;
+ spf=pass (domain: bootlin.com, ip: 217.70.183.197, mailfrom: thomas.perrot@bootlin.com)
+Received: by mail.gandi.net (Postfix) with ESMTPSA id F31B543A2B;
+	Fri, 25 Apr 2025 14:35:28 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+	t=1745591730;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
+	bh=Q+d/ymVD/hbiKQ6gZdbLXW+qpTGtOv6K9lfxRCqQWgA=;
+	b=JcCIVcH9h5/rKVFWzr6rGD7xm2OiQRfAmI/2ssq1o8l2qi44h4zLnCXWMgf3JuPA3o3axL
+	CtwX/cu2uHSesrhAOSBkmEqlWzdmmss+aBaf9LbdSrkcUzg03yOyvTYnc6zf9g6+CHUzPc
+	Cxkuiy+ok9Y8PBowLRwPQBd1bModlAUHjgfchS97RObVMKv2hozV7FrfknN2WrRa6+EWQB
+	dT5DMuIOHk6Z+7gBmi83zB3m5DD7a5tO+BLVyVpI0Ptd2Dd2bYjt1hZ4Q2cHY2fT3IBa/V
+	//A0hN4hTEw9ASFyFmCRTAsfmfAWpbfTJrxnPxbpl6BPUStpRCiUn+AFPDp3kg==
+Message-ID: <05e18f350130899b5ad4888aad299c0a8958da31.camel@bootlin.com>
+Subject: Re: [yocto] [error-report-web][PATCH] views: Increased
+ send-error-report version check scalability
+From: Thomas Perrot <thomas.perrot@bootlin.com>
+To: yocto@lists.yoctoproject.org, youngseok1.jeong@lge.com
+Cc: thomas.perrot@bootlin.com
+Date: Fri, 25 Apr 2025 16:35:27 +0200
+In-Reply-To: <20250425084830.741984-1-youngseok1.jeong@lge.com>
+References: <20250425084830.741984-1-youngseok1.jeong@lge.com>
+Autocrypt: addr=thomas.perrot@bootlin.com; prefer-encrypt=mutual;
+ keydata=mQGNBF+/ZOUBDAC2DghCjZvmgYcve02OG7dGZ7Iy58uEwne3LB7w7nRwdAxKw7ZaiVqwY
+ O+yNGVi+GVx7oA6Wn4pv46z+QDRLQiq6OseuXhkSGCg7U/yBCUq12B/GRGO1Qt2Qi1mJJT1s+1qZ5
+ Gxv6Nypz9qKVn94GM2bR1hXBga0t87vBpebThOHmX5d/0dqIcVxRCM7onNb0dDyRoVgLS5rBhQzrL
+ CMrJaCy39xZUy0J1SOlH4Mgk6EhJIPYY4wlzikGX6urg+Tc9EjGd78ry0e0p5U5qgjFR5QGJDy1Gn
+ U3CfwbT9sowdCASDbQDUoltlv2iWJCLa0xl97KVchCa0pr7HKbFA3J5SLKqFYUBCkFL+5WudYlz2n
+ XxiUgyviMQxyK+ij66kEi6/2zFDAecd43pHV7790ptqZBC3Jc67Emj7Vo3ShX6RXPPxxbeCTOF2uk
+ I45aJ9XcVFH/MFE96NjXj8uahnIsiTPyuCUoJu8tj7TSQyue874qJqVQvqlFyt2aZYJZ8ruq8AEQE
+ AAbQpVGhvbWFzIFBlcnJvdCA8dGhvbWFzLnBlcnJvdEBib290bGluLmNvbT6JAc4EEwEIADgCGwMF
+ CwkIBwIGFQoJCAsCBBYCAwECHgECF4AWIQSHQHfGpqMKIwOoEiGfwAsFcf4K7QUCX79mdwAKCRCfw
+ AsFcf4K7fhbC/wP0kSl6id2E/K3+UdXk6CLMVRbCFLCREzQs5WFpQ6l/I0WGOamhrOgegdszheiVF
+ orlUP8d37XSpFAqydhKGaN78V5Dps0Wmwm4lIlS4MtQXJtSLUHXDJLIZLW0pw8tiPLKsd1o/yDkXE
+ dnpsjJTRG6SdDSHnyOB2/gh4p+yTaLytFdARk/r4/P26+L+FiH0fFl+RnBt19LPklfKgeDc7GwIif
+ ja+nIWpp3W23DAUuI6xduEut25Q89yu7Ci8CliLfAiLy9bIGjBQWU2Y+1/j/7KuPj6VbBsZWLTZY0
+ hUmpJSTnWAqc9SMsNxo7NSQuddgviz5e2tqucaRqxP02FGzNa8U4NAKdWaXrlHG5Dglj9XH0DK+SH
+ +c96qqFewYD8VPQ6XAGxQcXbrtJmiMor1R2DfziispLRvJcfYs8xqabbCtoS3ouXB9XRi8hn7A2kh
+ ME1ryS+Oh63JshXHnw6bmjCpVd/p+fGLIGU6A47pJOpviKR4jEO84pl2ejtDZ3Tc=
+Content-Type: multipart/signed; micalg="pgp-sha256";
+	protocol="application/pgp-signature"; boundary="=-EI8pZIIFHFmUUs9Xl3OL"
+User-Agent: Evolution 3.54.3 (3.54.3-1.fc41) 
 MIME-Version: 1.0
-References: <20250425060119.5092-1-denisova.olga.k@yandex.ru>
-In-Reply-To: <20250425060119.5092-1-denisova.olga.k@yandex.ru>
-From: Alexander Kanavin <alex.kanavin@gmail.com>
-Date: Fri, 25 Apr 2025 11:11:37 +0200
-X-Gm-Features: ATxdqUFW85RaF82IHdicxpRB2O-NzwLKrjdudtrmDEkGV60g_aSXWhE3FFuWsIk
-Message-ID: <CANNYZj-f+LsCv=Ez-NPo4M-vh1V4nK2t3tFh3X38pZXYmJnuZQ@mail.gmail.com>
-Subject: Re: [yocto] [PATCH v2 0/3] Add support for index files in SSTATE_MIRRORS
-To: yocto@lists.yoctoproject.org, denisova.olga.k@yandex.ru
-Cc: gavrilov.andrew1999@yandex.ru, tinyakovx@gmail.com, 
-	sider123456789101112131415@gmail.com
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+X-GND-State: clean
+X-GND-Score: 0
+X-GND-Cause: gggruggvucftvghtrhhoucdtuddrgeefvddrtddtgddvhedvheelucetufdoteggodetrfdotffvucfrrhhofhhilhgvmecuifetpfffkfdpucggtfgfnhhsuhgsshgtrhhisggvnecuuegrihhlohhuthemuceftddunecunecujfgurhepkffuhffvveffjghftggfggesghdtreertderjeenucfhrhhomhepvfhhohhmrghsucfrvghrrhhothcuoehthhhomhgrshdrphgvrhhrohhtsegsohhothhlihhnrdgtohhmqeenucggtffrrghtthgvrhhnpeeljeeigeeuudeuhfehtdelteehvedtkeevgeejleehtdfhleduhffftdegueekfeenucffohhmrghinhephihotghtohhprhhojhgvtghtrdhorhhgpdhkvghrnhgvlhdrohhrghdpsghoohhtlhhinhdrtghomhenucfkphepledtrdekledrudeifedruddvjeenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepihhnvghtpeeltddrkeelrdduieefrdduvdejpdhhvghloheplgduledvrdduieekrddtrddvgedtngdpmhgrihhlfhhrohhmpehthhhomhgrshdrphgvrhhrohhtsegsohhothhlihhnrdgtohhmpdhnsggprhgtphhtthhopeefpdhrtghpthhtohephihotghtoheslhhishhtshdrhihotghtohhprhhojhgvtghtrdhorhhgpdhrtghpthhtohephihouhhnghhsvghokhdurdhjvghonhhgsehlghgvrdgtohhmpdhrtghpthhtohepthhhohhmrghsrdhpvghrrhhothessghoohhtlhhinhdrtghomh
+X-GND-Sasl: thomas.perrot@bootlin.com
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Fri, 25 Apr 2025 09:11:57 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/65252
+ <yocto@lists.yoctoproject.org>; Fri, 25 Apr 2025 14:35:40 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/65253
 
-On Fri, 25 Apr 2025 at 08:02, =D0=9E=D0=BB=D1=8C=D0=B3=D0=B0 =D0=94=D0=B5=
-=D0=BD=D0=B8=D1=81=D0=BE=D0=B2=D0=B0 via
-lists.yoctoproject.org
-<denisova.olga.k=3Dyandex.ru@lists.yoctoproject.org> wrote:
-> The performance improvement is illustrated by the timing results chart av=
-ailable here:
-> https://drive.google.com/file/d/1kH3E3jRAqJ_1VR2b-20V9BS-uTAfoYKv/view?us=
-p=3Ddrive_link
 
-This chart shows zero times when using the index regardless of the
-amount of servers, how can it be correct? What was the methodology
-used to produce it?
+--=-EI8pZIIFHFmUUs9Xl3OL
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Also it doesn't really address the questions: how is your setup
-configured? What exactly is the source of the slowdown? Is it network
-turnaround times? Or file existance checks on servers? Why does it
-affect you to the level that all this complicated code was written,
-but no one else in the yocto ecosystem until now had the urge to do
-it?
+Hello,
 
-You really should to start a conversation about this, rather than just
-resend the patches with a dubious looking chart added on.
+On Fri, 2025-04-25 at 17:48 +0900, youngseok1.jeong via
+lists.yoctoproject.org wrote:
+> From: Youngseok Jeong <youngseok1.jeong@lge.com>
+>=20
+> The following error occurs due to incorrect url encoding caused by
+> the
+> version increase (0.4) of send-error-report.
+> ERROR: HTTP Error 500: OK
+> DEBUG: Response Content: {"error": "Invalid json"}
+>=20
+> This patch changes the version checking to be a bit more extensible.
 
-Alex
+I also submitted a patch to fix it a few days ago:
+https://lore.kernel.org/all/20250416172309.671562-1-thomas.perrot@bootlin.c=
+om/
+
+Kind regards,
+Thomas
+
+>=20
+> Signed-off-by: Youngseok Jeong <youngseok1.jeong@lge.com>
+> ---
+> =C2=A0Post/views.py | 3 ++-
+> =C2=A01 file changed, 2 insertions(+), 1 deletion(-)
+>=20
+> diff --git a/Post/views.py b/Post/views.py
+> index 3575c1d..9d24686 100644
+> --- a/Post/views.py
+> +++ b/Post/views.py
+> @@ -50,8 +50,9 @@ def addData(request, return_json=3DFalse):
+> =C2=A0=C2=A0=C2=A0=C2=A0 response =3D ''
+> =C2=A0=C2=A0=C2=A0=C2=A0 if request.method =3D=3D 'POST':
+> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 user_agent =3D request.M=
+ETA.get("HTTP_USER_AGENT", "")
+> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 user_agent_version =3D user_a=
+gent.split("/")[-1]
+> =C2=A0
+> -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 if "send-error-report/0.3" in=
+ user_agent:
+> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 if user_agent_version >=3D "0=
+.3":
+> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 =
+data =3D request.body
+> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 else:
+> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 =
+# Backward compatibility with send-error-report < 0.3
+>=20
+> -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
+> Links: You receive all messages sent to this group.
+> View/Reply Online (#65251):
+> https://lists.yoctoproject.org/g/yocto/message/65251
+> Mute This Topic: https://lists.yoctoproject.org/mt/112447890/5443093
+> Group Owner: yocto+owner@lists.yoctoproject.org
+> Unsubscribe:
+> https://lists.yoctoproject.org/g/yocto/unsub=C2=A0[thomas.perrot@bootlin.=
+com
+> ]
+> -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
+>=20
+
+--=20
+Thomas Perrot, Bootlin
+Embedded Linux and kernel engineering
+https://bootlin.com
+
+
+--=-EI8pZIIFHFmUUs9Xl3OL
+Content-Type: application/pgp-signature; name="signature.asc"
+Content-Description: This is a digitally signed message part
+
+-----BEGIN PGP SIGNATURE-----
+
+iQGzBAABCAAdFiEEh0B3xqajCiMDqBIhn8ALBXH+Cu0FAmgLna8ACgkQn8ALBXH+
+Cu1z3wwAlRo+OfNG+cZiBmsxd+yHYvSte24zMqPGprxadOMoeFslSC1S3LTTQR06
+9GEE+RvwIz0YVWZ205T2p/GsRa1nz8NXmH63JuIuen2ZhGJdPHVZqCmzmrcgGyIE
+irefSV3lulOECXPcrdC19X0ofm9Hn00MQpMufGZmDrklb6xNOqQtUyAPV+tH+ekE
+Z34joyE/SICkaGOFpiwnUpogll7ZTYNb1I7dNUdH5Fq6OlZaHil1kaZ5CYzgObZ7
+RwHlQYy1ESD+KGEybA12UUjkJRcGzSjhIz37YuugzYMVcUWzChSjP9lAdUsCbOBI
+9F4St8CIR+p5R6mSinvgdgJPFIBawQR/zdLCdxfTg2ujEE3BG6YMKO7gcSeYIGR5
+Hr9s+reHo4qTToZEfdABxj9EwjDO5Ege4drvKeeT35T9CuvYW3yky3JxgX1REGCP
+ozvegrWp3mmjr/AWikPBaPHts40e3RElT2ESWhjk5ORTK54IwWEO+E/O5aFxUnuW
+MUjnVwLV
+=/Ddz
+-----END PGP SIGNATURE-----
+
+--=-EI8pZIIFHFmUUs9Xl3OL--
 
