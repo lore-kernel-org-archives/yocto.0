@@ -1,282 +1,164 @@
-Return-Path: <denisova.olga.k@yandex.ru>
+Return-Path: <skandigraun@gmail.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 5A2DBC369D3
-	for <webhook@archiver.kernel.org>; Fri, 25 Apr 2025 06:02:16 +0000 (UTC)
-Received: from forward100b.mail.yandex.net (forward100b.mail.yandex.net [178.154.239.147])
- by mx.groups.io with SMTP id smtpd.web10.1243.1745560929997452393
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 90A74C369D1
+	for <webhook@archiver.kernel.org>; Fri, 25 Apr 2025 06:21:26 +0000 (UTC)
+Received: from mail-ed1-f50.google.com (mail-ed1-f50.google.com [209.85.208.50])
+ by mx.groups.io with SMTP id smtpd.web11.1297.1745562081076823050
  for <yocto@lists.yoctoproject.org>;
- Thu, 24 Apr 2025 23:02:10 -0700
+ Thu, 24 Apr 2025 23:21:21 -0700
 Authentication-Results: mx.groups.io;
- dkim=fail reason="dkim: body hash did not verify" header.i=@yandex.ru header.s=mail header.b=ot+K9HEj;
- spf=pass (domain: yandex.ru, ip: 178.154.239.147, mailfrom: denisova.olga.k@yandex.ru)
-Received: from mail-nwsmtp-smtp-production-main-73.sas.yp-c.yandex.net (mail-nwsmtp-smtp-production-main-73.sas.yp-c.yandex.net [IPv6:2a02:6b8:c37:f37c:0:640:1e45:0])
-	by forward100b.mail.yandex.net (Yandex) with ESMTPS id 76A5460E5E;
-	Fri, 25 Apr 2025 09:02:08 +0300 (MSK)
-Received: by mail-nwsmtp-smtp-production-main-73.sas.yp-c.yandex.net (smtp/Yandex) with ESMTPSA id u1KCLB8LoKo0-J8DDp1yw;
-	Fri, 25 Apr 2025 09:02:08 +0300
-X-Yandex-Fwd: 1
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yandex.ru; s=mail;
-	t=1745560928; bh=egG1U0KY81bw4cAdDmOu3Vi8QR9la1tcwmmi63tQsiU=;
-	h=Message-Id:Date:In-Reply-To:Cc:Subject:References:To:From;
-	b=ot+K9HEjlyvTMbHqHWVFaKs7NF3oWf747AAA/XRGUdyI4EckRHsBlikecl4XfBIlW
-	 JkCGW+r5FHD22ZP6tBoWuXk4VXrsAhPt7G99hHWv805uk5k3oDQ3L81lq4NtO3ZMTf
-	 Cb6ukBwFC2uzkDe3aHQRAs2YSsQJ3DT7ipeEJ6dM=
-Authentication-Results: mail-nwsmtp-smtp-production-main-73.sas.yp-c.yandex.net; dkim=pass header.i=@yandex.ru
-From: denisova-ok <denisova.olga.k@yandex.ru>
-To: yocto@lists.yoctoproject.org
-Cc: gavrilov.andrew1999@yandex.ru,
-	tinyakovx@gmail.com,
-	sider123456789101112131415@gmail.com,
-	Olga Denisova <denisova.olga.k@yandex.ru>
-Subject: [meta][PATCH 3/3] sstate.bbclass: collect and process index file data, update fetch logic
-Date: Fri, 25 Apr 2025 09:01:19 +0300
-Message-Id: <20250425060119.5092-4-denisova.olga.k@yandex.ru>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20250425060119.5092-1-denisova.olga.k@yandex.ru>
-References: <20250425060119.5092-1-denisova.olga.k@yandex.ru>
+ dkim=pass header.i=@gmail.com header.s=20230601 header.b=M2Kv/K5A;
+ spf=pass (domain: gmail.com, ip: 209.85.208.50, mailfrom: skandigraun@gmail.com)
+Received: by mail-ed1-f50.google.com with SMTP id 4fb4d7f45d1cf-5e5dce099f4so2405970a12.1
+        for <yocto@lists.yoctoproject.org>; Thu, 24 Apr 2025 23:21:20 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1745562079; x=1746166879; darn=lists.yoctoproject.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:to:subject:user-agent:mime-version:date:message-id:from
+         :to:cc:subject:date:message-id:reply-to;
+        bh=B9fWhsrU6GVLfifFq4N3wNo5zWfzRAgoQsQh2GN076A=;
+        b=M2Kv/K5ADXI+94HH04IcIlEmb1jSGhzgZaDh0K3wiZ5KyIGVMa4STrlAD1KcOuGphu
+         j2Lbh71Beq4pf75RBMB/tNCRXM66CeqJG7n19/eBP+KiaeD788IoIOI145pT32DNsAZ0
+         bMrBHieq8k0ZJkna+HtHHn8JgrEQHhM2/DPMql1v7cZj7UinXtaHPgVtUL+pjR1vdG2r
+         otnQvmPy1rRywOPu7eizU99r612WuCLbK2JOWNuwfSq49gjg5w4eblW2gUxjMhZ0oDRm
+         HgZu8vEMoZWCHybQfJRaSG7cTNSB5bFFN6nepIZ66zSdI5XO39klIyKfemM7ghE/KV9i
+         kx1A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1745562079; x=1746166879;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=B9fWhsrU6GVLfifFq4N3wNo5zWfzRAgoQsQh2GN076A=;
+        b=KywYzVyF2lePvS9HoX+Z08RXbdiZh+R4p1S8uYj3cyIlBjJRCy2gdttG+x4kjlltWq
+         6Z1McpEPnu6KiLRE2FeUhwtPmVzImbPEWGY6GvoP+WxVFJIOlwz6RTNt/QcCh6N9rZo6
+         JbNPCct68juVeI1IqZpnhfUz1O66HZVWRj9GO4dMHJQ8HUBPM+7IVkLgZQrxbaP2egC2
+         qRbvt75k6t+8LOSdeubYHMjUmeMQ4uTQTJMe4sxPvbBoveWzWMJNgldGKdMOimGfsBnW
+         cuUPRVNYkMolenzzsQq9ua1zkSQDWfqKTjMJqQNU0TgSnLjaOTmBVJLxwVP4dLZLOSLE
+         hBNQ==
+X-Forwarded-Encrypted: i=1; AJvYcCXGDq7GyKT91cbEY+2bz8XooW/9FewiuAhmvZcw4vocs8mXooyFZ/fG4g1D8CNjj16itq/NkA==@lists.yoctoproject.org
+X-Gm-Message-State: AOJu0Yy02uRqkr18CWwcC1Mo9uWYTdFb3xdrUTsydzWBakuA8xz+dtCh
+	C3zNSC6ojhHRN5AGM/VMJiUIvv5ryYwpRI9p+B+xb8XrEmC4opXU
+X-Gm-Gg: ASbGncvxgGcLDWjkyPkmng/8ubPmIxoZRxCH6uFyvpNCBGVoT46V10VX9egQ1tsPPxB
+	5oUCOiPTfusdUZ5aogKZ02pEewtOb4MlEx1vzgx4WrAXnpt17BQnVPNvRNzUOvVq/4LvrPnI4nO
+	ElUpFW0liJqYZn529dguHJyqij/oGMqRObcp2cx5qlReEkDHXuDmn/0p/UwWaJHbEvkayPY/ooa
+	RpJfyLzld8vNlNiGv1bl6BOnY1Zv931HMJHL0YgORk0vkT2E40LuZLgAKZRI7UIQZ9iqxanu6F7
+	YqkKHOmLAUgNxPeLGN4TL7GXYxOQaglcmWc8DheREg+pHQP+
+X-Google-Smtp-Source: AGHT+IEbLsO6FasdtQiAhFUAxDqfnCPbXPHKpjl9f5JHmrfCCoJLSCsINquH5teUd9tvgh+IXYLJWw==
+X-Received: by 2002:a17:906:da88:b0:ac1:e881:8997 with SMTP id a640c23a62f3a-ace710482demr126566166b.3.1745562079064;
+        Thu, 24 Apr 2025 23:21:19 -0700 (PDT)
+Received: from [192.168.1.106] ([51.154.145.205])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-ace6e587093sm82022766b.80.2025.04.24.23.21.18
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 24 Apr 2025 23:21:18 -0700 (PDT)
+Message-ID: <33176f93-ccb4-48e1-a322-3be9ae04ac6a@gmail.com>
+Date: Fri, 25 Apr 2025 08:21:17 +0200
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla Thunderbird
+Subject: Re: [yocto] Btrfs root filesystem permission issue
+To: Ferry Toth <fntoth@gmail.com>, yocto@lists.yoctoproject.org,
+ landervanloock@gmail.com
+References: <tRtu.1740682678597454399.5171@lists.yoctoproject.org>
+ <1adcf6c5-d4be-4701-948c-3a6425f3da07@gmail.com>
+ <6c8ec705-3a92-47a3-bbb3-f43686234b6b@gmail.com>
+Content-Language: en-US
+From: Gyorgy Sarvari <skandigraun@gmail.com>
+In-Reply-To: <6c8ec705-3a92-47a3-bbb3-f43686234b6b@gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Fri, 25 Apr 2025 06:02:16 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/65249
+ <yocto@lists.yoctoproject.org>; Fri, 25 Apr 2025 06:21:26 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/65250
 
-From: Olga Denisova <denisova.olga.k@yandex.ru>
 
-This change is part of a patchset introducing support for index files in =
-SSTATE_MIRRORS.
 
-In this file, the function referenced by BB_COMPOSE_INDEXES_FUNCTION is d=
-efined. It fetches index files from SSTATE_MIRRORS and collects informati=
-on about which cache files are present on each mirror. This data is then =
-passed to the function specified in BB_HASHCHECK_FUNCTION.
+On 4/24/25 22:18, Ferry Toth wrote:
+> Hi,
+>
+> Op 01-03-2025 om 15:35 schreef Gyorgy Sarvari:
+>> The reason seems to be this[1] update of btrfs-tools, which included
+>> this[2] commit. The important change is that previously mkfs.btrfs was
+>> using lstat syscall to get file stats, but then it switched to nftw libc
+>> function to do the same. Pseudo[3] however doesn't support this call -
+>> it "knows" that it exists (at least nftw64), but there seems to be no
+>> implementation.
+>>
+>> Possibilities at the first sight:
+>> 1 - Downgrade btrfs-tools in your custom layer (unless you need any of
+>> the new functions)
+>> 2 - Revert the change with a patch in a bbappend
+>> 3 - Make pseudo support nftw
+>>
+>> #1 and #2 would be a fast change.
+> There is a problem with mkfs.btrfs that creates a file system with 
+> errors if there are hardlinks out of the the rootfs (as we have). You 
+> can this easily by running btrfs check on the image file.
+>
+> The change if fixed after btrfs-tools v6.12
+>
+> See this thread (Errors on newly created file system):
+> https://lore.kernel.org/linux-btrfs/d98ffb69-195b-4c07-ac56-8ae1f811af32@gmail.com/T/#m30ef7259fe280660c55733a7ba37c356d292fe10
 
-Inside BB_HASHCHECK_FUNCTION, using the received data and the current tas=
-klist,
-the file_mirror_map structure is constructed. This structure maps require=
-d
-sstate cache files to the specific mirrors where they are located, allowi=
-ng
-targeted cache retrieval for the current build.
+So old btrfs generates bad FS, a new one has pseudo problems... Trouble
+never comes alone, does it? :)
 
-Additionally, the pstaging_fetch function is modified to read the
-file_mirror_map. If information about a file's location is available,
-pstaging_fetch attempts to download the cache file directly from the
-corresponding mirror, improving efficiency and reducing unnecessary reque=
-sts.
+I have submitted a pseudo patch[1] some time ago, though there isn't a
+lot of enthusiasm about it. It works on my machine (TM), and if you want
+you are free to try it of course, though I don't think it will be merged.
 
-Signed-off-by: denisova-ok <denisova.olga.k@yandex.ru>
----
- classes-global/sstate.bbclass | 135 ++++++++++++++++++++++++++++++----
- 1 file changed, 120 insertions(+), 15 deletions(-)
+[1]:
+https://lore.kernel.org/yocto-patches/20250407191414.2992785-2-skandigraun@gmail.com/T/#mfd5a2338ea6fefc5ed734c0beb85ac26806b8684
 
-diff --git a/classes-global/sstate.bbclass b/classes-global/sstate.bbclas=
-s
-index 2c259a6657..3f25860551 100644
---- a/classes-global/sstate.bbclass
-+++ b/classes-global/sstate.bbclass
-@@ -168,6 +168,7 @@ python () {
-         d.setVarFlag(task + "_setscene", 'network', '1')
- }
-=20
-+
- def sstate_init(task, d):
-     ss =3D {}
-     ss['task'] =3D task
-@@ -725,6 +726,12 @@ def pstaging_fetch(sstatefetch, d):
-     # Copy the data object and override DL_DIR and SRC_URI
-     localdata =3D bb.data.createCopy(d)
-=20
-+    file_mirror_map =3D d.getVar('FILE_MIRROR_MAP')
-+    if file_mirror_map:
-+        relevant_mirror =3D file_mirror_map[sstatefetch]
-+        if relevant_mirror:
-+            mirrors =3D 'file://.* ' + relevant_mirror + ' ' + mirrors
-+
-     dldir =3D localdata.expand("${SSTATE_DIR}")
-     bb.utils.mkdirhier(dldir)
-=20
-@@ -933,13 +940,67 @@ sstate_unpack_package () {
- 	[ ! -e ${SSTATE_PKG}.siginfo ] || touch --no-dereference ${SSTATE_PKG}.=
-siginfo 2>/dev/null || true
- }
-=20
-+
-+BB_COMPOSE_INDEXES_FUNCTION =3D "compose_index_files"
-+
-+def compose_index_files(d):
-+    import requests
-+    from ftplib import FTP
-+
-+    mirrors =3D d.getVar("SSTATE_MIRRORS")
-+    if not mirrors:
-+        return None
-+
-+    mirrors =3D (mirrors or '').replace('\n', ' ').split()
-+    if len(mirrors) % 2 !=3D 0:
-+        bb.warn('Invalid mirror data %s, should have paired members.' % =
-mirrors)
-+        return None
-+
-+    mirrors =3D [mirrors[i] for i in range(len(mirrors)) if i % 2]
-+    mirrors_missed =3D mirrors.copy()
-+
-+    cache_tasks =3D {}
-+
-+    for mirror in mirrors:
-+        if 'http' in mirror:
-+            url =3D 'http://' +  str(str(mirror.split('//')[1]).split('/=
-')[0]) + '/sstate-cache'
-+            response =3D requests.get(f'{url}/index.txt')
-+
-+            if response.status_code =3D=3D 200:
-+                cache_tasks.update({mirror: set(response.text.split('\n'=
-))})
-+                mirrors_missed.remove(mirror)
-+
-+
-+        if 'ftp' in mirror:
-+            try:
-+                ftp =3D FTP()
-+                ip, port =3D str(str(mirror.split('//')[1]).split('/')[0=
-]).split(':')
-+                port =3D int(port)
-+                ftp.connect(ip, port)
-+                ftp.login()
-+
-+                with open('index.txt', 'wb') as local_file:
-+                    ftp.retrbinary('RETR /sstate-cache/index.txt', local=
-_file.write)
-+                ftp.quit()
-+
-+                with open('index.txt', 'r') as local_file:
-+                    content =3D set(local_file.read().split('\n'))
-+                    cache_tasks.update({mirror: content})
-+                mirrors_missed.remove(mirror)
-+
-+            except:
-+                pass
-+    return {'mirrors_missed': mirrors_missed, 'cache_tasks': cache_tasks=
-}
-+
-+
- BB_HASHCHECK_FUNCTION =3D "sstate_checkhashes"
-=20
--def sstate_checkhashes(sq_data, d, siginfo=3DFalse, currentcount=3D0, su=
-mmary=3DTrue, **kwargs):
-+def sstate_checkhashes(sq_data, d, siginfo=3DFalse, currentcount=3D0, su=
-mmary=3DTrue, cacheinfo=3DNone, **kwargs):
-     import itertools
-=20
-     found =3D set()
-     missed =3D set()
-+    file_mirror_map =3D {}
-=20
-     def gethash(task):
-         return sq_data['unihash'][task]
-@@ -1041,9 +1102,8 @@ def sstate_checkhashes(sq_data, d, siginfo=3DFalse,=
- currentcount=3D0, summary=3DTrue,
-             sstatefile =3D d.expand(getsstatefile(tid, siginfo, d))
-             tasklist.append((tid, sstatefile))
-=20
--        if tasklist:
--            nproc =3D min(int(d.getVar("BB_NUMBER_THREADS")), len(taskli=
-st))
-=20
-+        if tasklist:
-             ## thread-safe counter
-             cnt_tasks_done =3D itertools.count(start =3D 1)
-             progress =3D len(tasklist) >=3D 100
-@@ -1051,18 +1111,63 @@ def sstate_checkhashes(sq_data, d, siginfo=3DFals=
-e, currentcount=3D0, summary=3DTrue,
-                 msg =3D "Checking sstate mirror object availability"
-                 bb.event.fire(bb.event.ProcessStarted(msg, len(tasklist)=
-), d)
-=20
--            # Have to setup the fetcher environment here rather than in =
-each thread as it would race
--            fetcherenv =3D bb.fetch2.get_fetcher_environment(d)
--            with bb.utils.environment(**fetcherenv):
--                bb.event.enable_threadlock()
--                import concurrent.futures
--                from queue import Queue
--                connection_cache_pool =3D Queue(nproc)
--                checkstatus_init()
--                with concurrent.futures.ThreadPoolExecutor(max_workers=3D=
-nproc) as executor:
--                    executor.map(checkstatus, tasklist.copy())
--                checkstatus_end()
--                bb.event.disable_threadlock()
-+            cache_tasks =3D {}
-+
-+            mirrors =3D (mirrors or '').replace('\n', ' ').split()
-+            mirrors_copy =3D mirrors.copy()
-+
-+            if len(mirrors) % 2 !=3D 0:
-+                bb.warn('Invalid mirror data %s, should have paired memb=
-ers.' % mirrors)
-+
-+            mirrors =3D [mirrors[i] for i in range(len(mirrors)) if i % =
-2]
-+            mirrors_missed =3D mirrors.copy()
-+
-+            if cacheinfo:
-+                cache_tasks =3D cacheinfo["cache_tasks"]
-+                mirrors_missed =3D cacheinfo["mirrors_missed"]
-+
-+            tasklist_copy =3D tasklist.copy()
-+            for arg in tasklist:
-+                (tid, sstatefile) =3D arg
-+                srcuri =3D sstatefile
-+                for m, files in cache_tasks.items():
-+                    if srcuri in files:
-+                        found.add(tid)
-+                        missed.remove(tid)
-+                        file_mirror_map.update({srcuri: m})
-+                        tasklist_copy.remove(arg)
-+                        if progress:
-+                            bb.event.fire(bb.event.ProcessProgress(msg, =
-next(cnt_tasks_done)), d)
-+
-+            d.setVar("FILE_MIRROR_MAP", file_mirror_map)
-+
-+            if d.getVar("RELY_ON_INDEX_FILES") =3D=3D "1":
-+                criteria =3D mirrors_missed
-+                mirrors_new =3D ''
-+                for i in range(len(mirrors_missed)):
-+                    index =3D mirrors_copy.index(mirrors_missed[i])
-+                    mirrors_new +=3D mirrors_copy[index - 1] + ' '
-+                    mirrors_new +=3D mirrors_copy[index] + ' '
-+            else:
-+                criteria =3D missed
-+                mirrors_new =3D d.getVar("SSTATE_MIRRORS") or ''
-+
-+            if criteria:
-+                localdata.setVar('PREMIRRORS', mirrors_new)
-+                nproc =3D min(int(d.getVar("BB_NUMBER_THREADS")), len(ta=
-sklist_copy))
-+
-+                # Have to setup the fetcher environment here rather than=
- in each thread as it would race
-+                fetcherenv =3D bb.fetch2.get_fetcher_environment(d)
-+                with bb.utils.environment(**fetcherenv):
-+                    bb.event.enable_threadlock()
-+                    import concurrent.futures
-+                    from queue import Queue
-+                    connection_cache_pool =3D Queue(nproc)
-+                    checkstatus_init()
-+                    with concurrent.futures.ThreadPoolExecutor(max_worke=
-rs=3Dnproc) as executor:
-+                        executor.map(checkstatus, tasklist_copy.copy())
-+                    checkstatus_end()
-+                    bb.event.disable_threadlock()
-=20
-             if progress:
-                 bb.event.fire(bb.event.ProcessFinished(msg), d)
---=20
-2.34.1
+
+>
+>> #3 would be the best of course (it seems to be a nice extension, I might
+>> try to look at it over the weekend - though chances are that it won't
+>> happen or I will give up/fail. So feel free, anyone.).
+>>
+>> [1]:
+>> https://git.yoctoproject.org/poky/commit/?id=2ff9d40ccb493967151bfed6aed889de45bdd464
+>> [2]:
+>> https://web.git.kernel.org/pub/scm/linux/kernel/git/kdave/btrfs-progs.git/commit/?id=c6464d3f99ed1dabceff1168eabb207492c37624
+>> [3]: https://git.yoctoproject.org/poky/tree/meta/recipes-devtools/pseudo
+>>
+>> On 27.02.25 19:57, Lander0606 via lists.yoctoproject.org wrote:
+>>> Hi guys,
+>>>   
+>>> For my project, I changed the filesystem from ext4 to btrfs. The image
+>>> builds and flashes fine, but when booting the system some mount
+>>> problems occur because the root filesystem has UID 1000 all over it.
+>>> So, when creating the filesystem, the directories are not created with
+>>> /root:root/ as owner. Some important notes:
+>>>   
+>>>
+>>>    * Currently I'm on the master branch to use the newest kernel 6.12,
+>>>      but when switching back to the /scarthgap/ branch, the issue with
+>>>      permissions doesn't exist for a btrfs image. The filesystem mounts
+>>>      fine.
+>>>    * I use Fedora 41 with a btrfs filesystem as build host, but I
+>>>      checked on an Ubuntu 24.04 machine with an ext4 filesystem as well
+>>>      and the issue still persists.
+>>>    * I tried adding a fix with /do_image[postfuncs] /to run /chown -R
+>>>      root:root/ on all directories, but the issue still persists...
+>>>    * To test, I just mount the generated btrfs filesystem to my Fedora
+>>>      host and check the permissions with /ls -lah/
+>>>
+>>>   
+>>> Has anyone experienced similar problems with btrfs? Or does anyone
+>>> have an idea how to patch this?
+>>>   
+>>> Any help is appreciated! Thanks in advance!
+>>>
+>>> -=-=-=-=-=-=-=-=-=-=-=-
+>>> Links: You receive all messages sent to this group.
+>>> View/Reply Online (#64889): https://lists.yoctoproject.org/g/yocto/message/64889
+>>> Mute This Topic: https://lists.yoctoproject.org/mt/111420988/6084445
+>>> Group Owner: yocto+owner@lists.yoctoproject.org
+>>> Unsubscribe: https://lists.yoctoproject.org/g/yocto/unsub [skandigraun@gmail.com]
+>>> -=-=-=-=-=-=-=-=-=-=-=-
+>>>
 
 
