@@ -1,111 +1,292 @@
-Return-Path: <richard.purdie@linuxfoundation.org>
+Return-Path: <skandigraun@gmail.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 80BC4C369D3
-	for <webhook@archiver.kernel.org>; Fri, 25 Apr 2025 15:20:00 +0000 (UTC)
-Received: from mail-wr1-f47.google.com (mail-wr1-f47.google.com [209.85.221.47])
- by mx.groups.io with SMTP id smtpd.web10.9060.1745594395656415716
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 0AA32C369CB
+	for <webhook@archiver.kernel.org>; Sat, 26 Apr 2025 18:17:53 +0000 (UTC)
+Received: from mail-ej1-f46.google.com (mail-ej1-f46.google.com [209.85.218.46])
+ by mx.groups.io with SMTP id smtpd.web10.13748.1745691465868953481
  for <yocto@lists.yoctoproject.org>;
- Fri, 25 Apr 2025 08:19:56 -0700
+ Sat, 26 Apr 2025 11:17:46 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@linuxfoundation.org header.s=google header.b=gDE0KB9p;
- spf=pass (domain: linuxfoundation.org, ip: 209.85.221.47, mailfrom: richard.purdie@linuxfoundation.org)
-Received: by mail-wr1-f47.google.com with SMTP id ffacd0b85a97d-3914bc3e01aso1439515f8f.2
-        for <yocto@lists.yoctoproject.org>; Fri, 25 Apr 2025 08:19:55 -0700 (PDT)
+ dkim=pass header.i=@gmail.com header.s=20230601 header.b=fnKfIH8H;
+ spf=pass (domain: gmail.com, ip: 209.85.218.46, mailfrom: skandigraun@gmail.com)
+Received: by mail-ej1-f46.google.com with SMTP id a640c23a62f3a-acb415dd8faso475137666b.2
+        for <yocto@lists.yoctoproject.org>; Sat, 26 Apr 2025 11:17:45 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linuxfoundation.org; s=google; t=1745594394; x=1746199194; darn=lists.yoctoproject.org;
-        h=mime-version:user-agent:content-transfer-encoding:references
-         :in-reply-to:date:cc:to:from:subject:message-id:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=Apr2rshq5AwidJ8CIH9g9d3CfOJctRFqhkCDsHcMRPo=;
-        b=gDE0KB9pxnk2M+TTcYSLhJfTqc8N4w0uhiyTEZzrLLr0fRVwft1PS6dv01b7SXZAe8
-         0ESDuMOpGEv9QixMKFDfIgCGYeB8lnMQIWR4Ltt45lvWbxeV+BHcb49m0bcJCG6GUtmH
-         WV4v26naJO6XRDJey1i7MOuZLpLlNZJjmLVaI=
+        d=gmail.com; s=20230601; t=1745691464; x=1746296264; darn=lists.yoctoproject.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:to:subject:user-agent:mime-version:date:message-id:from
+         :to:cc:subject:date:message-id:reply-to;
+        bh=zqrSFuzUHr+UUQkimRnqlvFOMd9pWnq9hc9aeGseqKA=;
+        b=fnKfIH8HqSTxGQwT+N022uVQY2R8nMTJsjVXnmjKbJn5GdhCKrPQOFPqXYz+wYLDse
+         lL+fLfdFCLSDnmcx66yKvzb+FgU2WFo6X3VITSPQPN5orjdY317v+4gnawTrlshqbV+A
+         4RNzvlB/uz2XwVLxk5asi9ByliZNNbW45biP5Z7kk98UmgQIHw9Qm6dtH2IkOAHKIUDL
+         xCdXrxVp5mPqYCLOADnJBJjWFnh/ogLyvXrIcC7x/Sz5EFb/zDkYBj6QlsMkAisDLkwl
+         C6GgZA1Ioac22BlsoHpa2tTtDZ+mPalR6rq3j1s+ArXPgS6cXjiC49ooNk0AwlsR7GbC
+         2cPg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1745594394; x=1746199194;
-        h=mime-version:user-agent:content-transfer-encoding:references
-         :in-reply-to:date:cc:to:from:subject:message-id:x-gm-message-state
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=Apr2rshq5AwidJ8CIH9g9d3CfOJctRFqhkCDsHcMRPo=;
-        b=FEpTPAJXB7rSWYVxpRuK26BbN3vM4fmCTagjwI2P9G+OMlCx9YrBil3DxpVZTjQZgU
-         6dwf7QJw5k+th23l8z2tXSDvXLracTpbJoGrIC4RLZnzdjfAYy2uOyWFqG4cal3ZhLsd
-         LKVSIocs2D1uY7Ku0xFWxFWH+Mimvwf8OLVhwGrXbZ8F99+mzzWxAeAxybWWEf7A+99R
-         ItW42lQLtKrBV+ZKYHr6YiuuFNA6NtuYbEYtob/CyLiwgK80WSJnbBb1WsBrOVqt5MeP
-         dXRp/dJ7nSphp8zQ17ewN9NtosZGsgopwW7iYq5qrf319KUm84HR1SZM6U+QrtTDwwGj
-         6Rvg==
-X-Gm-Message-State: AOJu0YxKWy1f31aBEbEm1O6utKQtfHHLiMGjduK56ewtagU5/40pbvHi
-	VRgvifQO2tJFZKyR1VJ3NWmCAiCwtMhhFiKGGwnktZ+hRRhESvLWXzc7WtEHS2I=
-X-Gm-Gg: ASbGncvR5ycEyYG3fQGZPoeoHCppy/Mk/TkR/G3gU+Q4oMYGuyltR7RUrNsfnsnMNO5
-	Oa16YYBgIECYUKAMPnRg5D6w8Z5+mpH+kK58IL576BaZBHKuEfSI4ISyprjtmMRf4Tk0xJBR0QD
-	A+y6sa3q388OghmueGIy7f9l+bCvglufzSQher8nT0LaDJOSPiDIVXIAAW5wikkmhDnw8gq2Rly
-	0LmewtiEl7hp4ewm97mJJtMgWsV92y7ww3CqLOLQtP2B63vHPnRW/4OVZKYn9vbE7H+pT7BxKUV
-	thNZTXHvZspn5gPetO/vulAGKcX8uzjwt3IYdNtPWqZmWQBBQYcyKPtyPMIFFyvdWBYQWSAnAxb
-	bmT3ljdceXV5UTHlhqH9ur9g9FfDZRQ==
-X-Google-Smtp-Source: AGHT+IEI/gpSkZgBW59oWe/nkSq2KUcQYwHphpecs29vqicTUsAQyOWarY+QjXO3HsgAQQ3396FcYw==
-X-Received: by 2002:a05:6000:2485:b0:39e:e588:672a with SMTP id ffacd0b85a97d-3a074e0f0c0mr2238792f8f.7.1745594393949;
-        Fri, 25 Apr 2025 08:19:53 -0700 (PDT)
-Received: from ?IPv6:2001:8b0:aba:5f3c:4b43:cc8c:5e78:12c1? ([2001:8b0:aba:5f3c:4b43:cc8c:5e78:12c1])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3a073cc4025sm2685528f8f.56.2025.04.25.08.19.53
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 25 Apr 2025 08:19:53 -0700 (PDT)
-Message-ID: <e8cb10fbf0d0bb9e20241059fb75083501d7fa8b.camel@linuxfoundation.org>
-Subject: Re: [OE-core][PATCH v2] send-error-report: improve debugging
-From: Richard Purdie <richard.purdie@linuxfoundation.org>
-To: thomas.perrot@bootlin.com, skandigraun@gmail.com, 
-	openembedded-core@lists.openembedded.org
-Cc: yocto@lists.yoctoproject.org, helpdesk <helpdesk@yoctoproject.org>
-Date: Fri, 25 Apr 2025 16:19:52 +0100
-In-Reply-To: <b422d462b12c51ac9f50eb0fe4f673ace665a29d.camel@bootlin.com>
-References: <20250418133504.932848-1-thomas.perrot@bootlin.com>
-		 <39feaeb4-a937-408d-9e2d-90d2460acbf9@gmail.com>
-	 <b422d462b12c51ac9f50eb0fe4f673ace665a29d.camel@bootlin.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.56.0-1 
+        d=1e100.net; s=20230601; t=1745691464; x=1746296264;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=zqrSFuzUHr+UUQkimRnqlvFOMd9pWnq9hc9aeGseqKA=;
+        b=VNi9QkApS61nVcbPSKWYukJD+S8gXL6YEKel7N/WDHzBdWjihKKq1+6RJcxJiaS5Fl
+         qQQmknXsCNwNfvkW3HbGQYkw9baXidjxzULBKlT1/gicTz2DXDfvBfdpK15Jq+j+JJAa
+         zJAmVmMh3SRXK83UJH0n1OY1fwKb0DUUI2XrY9XHB4s17PvuWXbEvibcHKHa51UKsuRx
+         4g5UXTiCCPfJDdZEFcTxgRkl19QrbJvQmLGJ5GSsc8IogT/1himTEEUeRtccZYr7I/rU
+         3McxcfdZo5+hWud/og4zcUK4GqStmJ0NNomnKwZGOb0EjzjmnHHIdlLMCqt8JF3oDg0G
+         Y5pA==
+X-Gm-Message-State: AOJu0YyMfldJIXe6YlWh8Hx9CKr8mcIZ1Rj1D/rTTf8aKvH43r+I+DYU
+	m3hhZJ3tpttji2IxGxWmYbTyMykq2BWS/AkzAWe3b1xM3NoUVlB+11mMeg==
+X-Gm-Gg: ASbGncsShFLt4Dblf0DsQCRwBUwpYI7MSjWa00nNyE8ncCsGZs2GOEu5RoIVRhueagN
+	GDEcBuNVizlcVMo5Phst7vJ5jB+2wL4t8GF5tGQXvjTYIvbDZpQkjKrmtp04IKYsN+7ROwWOayl
+	ovHoyXeJ3+CJyzSdUAsYMw/YAte5cjvaU4US/gSEIMSDBtbDUsnA4HhboSPx4q1lkyT7N/JEFnK
+	de4csBdrmUIUTB8DrgjKGP3s/L7Tvx/7T2E79zZs2gfql5wmE2mInFUZzBtoP20hJHpHlnrjns8
+	4dMPcCw7u9yf2IgDan72bLo2Lbmy+u9/HiR89kqqqX9u2GqM
+X-Google-Smtp-Source: AGHT+IGeWltJyYpMTPxb9bO5Ww1e39r7jZk7f8KBWPVog00lGn0uc+dA/iEZ0/J6rMPQ2+qt+zWW6Q==
+X-Received: by 2002:a17:906:c111:b0:acb:6ec0:12ec with SMTP id a640c23a62f3a-ace7116473fmr541131466b.35.1745691463779;
+        Sat, 26 Apr 2025 11:17:43 -0700 (PDT)
+Received: from [192.168.1.106] ([51.154.145.205])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-ace6e4e69efsm321583266b.46.2025.04.26.11.17.42
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sat, 26 Apr 2025 11:17:43 -0700 (PDT)
+Message-ID: <cc106560-2930-44bd-b160-c19cee3bd6ab@gmail.com>
+Date: Sat, 26 Apr 2025 20:17:42 +0200
 MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [yocto] Migration of BSP from kirkstone to scarthgap : size of
+ binaries increased a lot, why ? gcc ? relro option ?
+To: yocto@lists.yoctoproject.org, jguittet.opensource@witekio.com
+References: <FNzF.1745507465452371172.YxgL@lists.yoctoproject.org>
+Content-Language: en-US
+From: Gyorgy Sarvari <skandigraun@gmail.com>
+In-Reply-To: <FNzF.1745507465452371172.YxgL@lists.yoctoproject.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Fri, 25 Apr 2025 15:20:00 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/65255
+ <yocto@lists.yoctoproject.org>; Sat, 26 Apr 2025 18:17:53 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/65256
 
-On Fri, 2025-04-25 at 17:02 +0200, Thomas Perrot via
-lists.openembedded.org wrote:
+
+
+On 4/24/25 17:11, Joel GUITTET via lists.yoctoproject.org wrote:
 > Hello,
->=20
-> On Sun, 2025-04-20 at 12:44 +0200, Gyorgy Sarvari via
-> lists.openembedded.org wrote:
-> > I noticed that this (or at least v1) was applied on master - would
-> > like
-> > to call some attention to a related discussion[1] in a neighboring
-> > list,
-> > and some patches[2][3][4] that followed it - at least [3] is a
-> > pre-requisite for this patch (error-report-web has hardcoded the
-> > version
-> > of the script to 0.3).
-> >=20
-> > [1]: https://lists.yoctoproject.org/g/yocto/message/65184
-> > [2]: https://lists.yoctoproject.org/g/yocto/message/65188
-> > [3]: https://lists.yoctoproject.org/g/yocto/message/65199
-> > [4]: https://lists.yoctoproject.org/g/yocto/message/65200
-> >=20
->=20
-> Can you revert the patch v1 and then apply patch v2, at least after
-> patch [3] has been applied to error-report-web?
+>  
+> We are currently migrating a BSP from kirkstone 4.0.17 to scarthgap 5.0.8.
+> We observed the size of the BSP has increased a lot. It becomes a
+> problem as the QSPI size is limited, so increasing the size of the BSP
+> means less free space for the app.
+> After a small investigation we observed not a lot of changes in the
+> rootfs. The main reason the BSP is growing is the size of the binaries
+> is growing (executable and libraries).
+> It seams an extra padding has been added with scarthgap.
+>  
+> Example with an objdump -h of libattr.so.1.1.2501 on scarthgap:
+>  
+>
+>
+>     Sections:
+>     Idx Name          Size      VMA               LMA              
+>     File off  Algn
+>       0 .note.gnu.property 00000020  0000000000000238
+>      0000000000000238  00000238  2**3
+>                       CONTENTS, ALLOC, LOAD, READONLY, DATA
+>       1 .note.gnu.build-id 00000024  0000000000000258
+>      0000000000000258  00000258  2**2
+>                       CONTENTS, ALLOC, LOAD, READONLY, DATA
+>       2 .gnu.hash     00000178  0000000000000280  0000000000000280
+>      00000280  2**3
+>                       CONTENTS, ALLOC, LOAD, READONLY, DATA
+>       3 .dynsym       000006a8  00000000000003f8  00000000000003f8
+>      000003f8  2**3
+>                       CONTENTS, ALLOC, LOAD, READONLY, DATA
+>       4 .dynstr       0000027a  0000000000000aa0  0000000000000aa0
+>      00000aa0  2**0
+>                       CONTENTS, ALLOC, LOAD, READONLY, DATA
+>       5 .gnu.version  0000008e  0000000000000d1a  0000000000000d1a
+>      00000d1a  2**1
+>                       CONTENTS, ALLOC, LOAD, READONLY, DATA
+>       6 .gnu.version_d 000000a4  0000000000000da8  0000000000000da8
+>      00000da8  2**3
+>                       CONTENTS, ALLOC, LOAD, READONLY, DATA
+>       7 .gnu.version_r 00000040  0000000000000e50  0000000000000e50
+>      00000e50  2**3
+>                       CONTENTS, ALLOC, LOAD, READONLY, DATA
+>       8 .rela.dyn     00000108  0000000000000e90  0000000000000e90
+>      00000e90  2**3
+>                       CONTENTS, ALLOC, LOAD, READONLY, DATA
+>       9 .rela.plt     000003f0  0000000000000f98  0000000000000f98
+>      00000f98  2**3
+>                       CONTENTS, ALLOC, LOAD, READONLY, DATA
+>      10 .init         0000001c  0000000000001388  0000000000001388
+>      00001388  2**2
+>                       CONTENTS, ALLOC, LOAD, READONLY, CODE
+>      11 .plt          000002c0  00000000000013b0  00000000000013b0
+>      000013b0  2**4
+>                       CONTENTS, ALLOC, LOAD, READONLY, CODE
+>      12 .text         00002258  0000000000001670  0000000000001670
+>      00001670  2**4
+>                       CONTENTS, ALLOC, LOAD, READONLY, CODE
+>      13 .fini         00000018  00000000000038c8  00000000000038c8
+>      000038c8  2**2
+>                       CONTENTS, ALLOC, LOAD, READONLY, CODE
+>      14 .rodata       00000106  00000000000038e0  00000000000038e0
+>      000038e0  2**3
+>                       CONTENTS, ALLOC, LOAD, READONLY, DATA
+>      15 .eh_frame_hdr 00000114  00000000000039e8  00000000000039e8
+>      000039e8  2**2
+>                       CONTENTS, ALLOC, LOAD, READONLY, DATA
+>      16 .eh_frame     00000694  0000000000003b00  0000000000003b00
+>      00003b00  2**3
+>                       CONTENTS, ALLOC, LOAD, READONLY, DATA
+>      17 .init_array   00000008  000000000001fc10  000000000001fc10
+>      0000fc10  2**3
+>                       CONTENTS, ALLOC, LOAD, DATA
+>      18 .fini_array   00000008  000000000001fc18  000000000001fc18
+>      0000fc18  2**3
+>                       CONTENTS, ALLOC, LOAD, DATA
+>      19 .dynamic      00000230  000000000001fc20  000000000001fc20
+>      0000fc20  2**3
+>                       CONTENTS, ALLOC, LOAD, DATA
+>      20 .got          000001b0  000000000001fe50  000000000001fe50
+>      0000fe50  2**3
+>                       CONTENTS, ALLOC, LOAD, DATA
+>      21 .data         00000008  0000000000020000  0000000000020000
+>      00010000  2**3
+>                       CONTENTS, ALLOC, LOAD, DATA
+>      22 .bss          00000010  0000000000020008  0000000000020008
+>      00010008  2**3
+>                       ALLOC
+>      23 .gnu_debuglink 00000018  0000000000000000  0000000000000000
+>      00010008  2**2
+>                       CONTENTS, READONLY
+>      
+>
+>  
+> The same objdump -h of libattr.so.1.1.2501 on kirkstone:
+>  
+>
+>     Sections:
+>     Idx Name          Size      VMA               LMA              
+>     File off  Algn
+>       0 .note.gnu.property 00000020  0000000000000238
+>      0000000000000238  00000238  2**3
+>                       CONTENTS, ALLOC, LOAD, READONLY, DATA
+>       1 .note.gnu.build-id 00000024  0000000000000258
+>      0000000000000258  00000258  2**2
+>                       CONTENTS, ALLOC, LOAD, READONLY, DATA
+>       2 .gnu.hash     00000178  0000000000000280  0000000000000280
+>      00000280  2**3
+>                       CONTENTS, ALLOC, LOAD, READONLY, DATA
+>       3 .dynsym       000006a8  00000000000003f8  00000000000003f8
+>      000003f8  2**3
+>                       CONTENTS, ALLOC, LOAD, READONLY, DATA
+>       4 .dynstr       0000027a  0000000000000aa0  0000000000000aa0
+>      00000aa0  2**0
+>                       CONTENTS, ALLOC, LOAD, READONLY, DATA
+>       5 .gnu.version  0000008e  0000000000000d1a  0000000000000d1a
+>      00000d1a  2**1
+>                       CONTENTS, ALLOC, LOAD, READONLY, DATA
+>       6 .gnu.version_d 000000a4  0000000000000da8  0000000000000da8
+>      00000da8  2**3
+>                       CONTENTS, ALLOC, LOAD, READONLY, DATA
+>       7 .gnu.version_r 00000040  0000000000000e50  0000000000000e50
+>      00000e50  2**3
+>                       CONTENTS, ALLOC, LOAD, READONLY, DATA
+>       8 .rela.dyn     00000108  0000000000000e90  0000000000000e90
+>      00000e90  2**3
+>                       CONTENTS, ALLOC, LOAD, READONLY, DATA
+>       9 .rela.plt     000003f0  0000000000000f98  0000000000000f98
+>      00000f98  2**3
+>                       CONTENTS, ALLOC, LOAD, READONLY, DATA
+>      10 .init         0000001c  0000000000001388  0000000000001388
+>      00001388  2**2
+>                       CONTENTS, ALLOC, LOAD, READONLY, CODE
+>      11 .plt          000002c0  00000000000013b0  00000000000013b0
+>      000013b0  2**4
+>                       CONTENTS, ALLOC, LOAD, READONLY, CODE
+>      12 .text         000022d8  0000000000001670  0000000000001670
+>      00001670  2**4
+>                       CONTENTS, ALLOC, LOAD, READONLY, CODE
+>      13 .fini         00000018  0000000000003948  0000000000003948
+>      00003948  2**2
+>                       CONTENTS, ALLOC, LOAD, READONLY, CODE
+>      14 .rodata       00000106  0000000000003960  0000000000003960
+>      00003960  2**3
+>                       CONTENTS, ALLOC, LOAD, READONLY, DATA
+>      15 .eh_frame_hdr 00000114  0000000000003a68  0000000000003a68
+>      00003a68  2**2
+>                       CONTENTS, ALLOC, LOAD, READONLY, DATA
+>      16 .eh_frame     000006a4  0000000000003b80  0000000000003b80
+>      00003b80  2**3
+>                       CONTENTS, ALLOC, LOAD, READONLY, DATA
+>      17 .init_array   00000008  0000000000014c10  0000000000014c10
+>      00004c10  2**3
+>                       CONTENTS, ALLOC, LOAD, DATA
+>      18 .fini_array   00000008  0000000000014c18  0000000000014c18
+>      00004c18  2**3
+>                       CONTENTS, ALLOC, LOAD, DATA
+>      19 .dynamic      00000230  0000000000014c20  0000000000014c20
+>      00004c20  2**3
+>                       CONTENTS, ALLOC, LOAD, DATA
+>      20 .got          000001b0  0000000000014e50  0000000000014e50
+>      00004e50  2**3
+>                       CONTENTS, ALLOC, LOAD, DATA
+>      21 .data         00000008  0000000000015000  0000000000015000
+>      00005000  2**3
+>                       CONTENTS, ALLOC, LOAD, DATA
+>      22 .bss          00000010  0000000000015008  0000000000015008
+>      00005008  2**3
+>                       ALLOC
+>      23 .gnu_debuglink 00000018  0000000000000000  0000000000000000
+>      00005008  2**2
+>                       CONTENTS, READONLY
+>      
+>
+>  
+> Difference at the init_array offset with about 50kB unused spaces,
+> plenty of zeros in the binary.
+> Multiple executable/libraries with additional 50kB = several Mega Bytes.
+>  
+> I suspect the evolution of GCC is the cause of this difference (GCC11
+> vs GCC13), and I don't see any changes related to this in Yocto. I
+> have to check if GCC changed his behavior or if some options have been
+> introduced. Any flag we should add maybe in the build to keep small
+> binaries in the rootfs ? I remember similar stuff related to relro
+> option, not sure...
 
-It would be helpful to address that to the person who maintains the
-repo. I've updated to the v2 of your patch.
+Is it possible that you have stumbled upon a fix[1] for a binutils
+issue[2]? It does pad relro segment with 0s up to the next MAXPAGESIZE
+boundary, and was added in version 2.39 - ~50kB extra sounds about right
+on some arches.
 
-I've queued your patch for the server but updating the instance is
-beyond my access/skills. I also queued a django and python3 upgrade on
-master-next there which it would be good to test.
+If this is what you found, then unfortunately it's like that. There is a
+bug[3] for binutils to fix this size increase, but when/if there will
+there be any outcome, is hard to tell.
 
-Copying helpdesk to see if they can schedule in some help in updating
-the instance either to master (easier) or ultimately to test master-
-next and move to that.
+You can easily verify if this is really what's affecting you by testing
+it with reverting this commit, but reverting it permanently wouldn't be
+wise considering that it's a security fix at its heart.
 
-Cheers,
+[1]:
+https://sourceware.org/git/gitweb.cgi?p=binutils-gdb.git;h=9833b7757d246f22db4eb24b8e5db7eb5e05b6d9
+[2]: https://sourceware.org/bugzilla/show_bug.cgi?id=28824
+[3]: https://sourceware.org/bugzilla/show_bug.cgi?id=30612
 
-Richard
+>  
+> Thanks for the feedbacks!
+> Joel
+>
+> -=-=-=-=-=-=-=-=-=-=-=-
+> Links: You receive all messages sent to this group.
+> View/Reply Online (#65244): https://lists.yoctoproject.org/g/yocto/message/65244
+> Mute This Topic: https://lists.yoctoproject.org/mt/112434747/6084445
+> Group Owner: yocto+owner@lists.yoctoproject.org
+> Unsubscribe: https://lists.yoctoproject.org/g/yocto/unsub [skandigraun@gmail.com]
+> -=-=-=-=-=-=-=-=-=-=-=-
+>
+
 
