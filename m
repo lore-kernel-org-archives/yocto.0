@@ -1,115 +1,362 @@
-Return-Path: <mikko.rapeli@linaro.org>
+Return-Path: <miriam.rico@enigmedia.es>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id DBF66C369DC
-	for <webhook@archiver.kernel.org>; Wed, 30 Apr 2025 09:45:19 +0000 (UTC)
-Received: from mail-lf1-f45.google.com (mail-lf1-f45.google.com [209.85.167.45])
- by mx.groups.io with SMTP id smtpd.web11.12987.1746006316765331426
- for <yocto@lists.yoctoproject.org>;
- Wed, 30 Apr 2025 02:45:17 -0700
-Authentication-Results: mx.groups.io;
- dkim=pass header.i=@linaro.org header.s=google header.b=cikPefM7;
- spf=pass (domain: linaro.org, ip: 209.85.167.45, mailfrom: mikko.rapeli@linaro.org)
-Received: by mail-lf1-f45.google.com with SMTP id 2adb3069b0e04-54d6f93316dso8034767e87.2
-        for <yocto@lists.yoctoproject.org>; Wed, 30 Apr 2025 02:45:16 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1746006315; x=1746611115; darn=lists.yoctoproject.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=UmsQocl3bHARv+SFZcl1euUz8wbE8H8Ojs/9srBbKpY=;
-        b=cikPefM7O1Il331sOnEbTSpxE0EpdfGOASDI17ID0CkmL1VVjrRRU/I4Gbm7Wz2mUc
-         vX8/ISJXlOt0Z8W+ODEgaeRB95Z+ve3hOGai3sFnjmLDMky04Og5JeI0sdgI3dCN5K70
-         g3dzu35pQ9bxiWkbSQHS2YhvS98Oxd2L0lnf9fKsRh4tAFSWIEwOcNy9Z+WmPqS5k0Kz
-         kbNnkxF5HY+jxFNSsD0L03wuH669R6zprCOS8yLFc6lfS8Tewpj3dnv903LCLQ8uWzdd
-         zS8BhkdaJ+yoTRYyMuWUZwsRzaeSKXHh8DEdQXKbY5t7EQgWVBSVrqLK8tSD0dJ+x5eu
-         6xyg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1746006315; x=1746611115;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=UmsQocl3bHARv+SFZcl1euUz8wbE8H8Ojs/9srBbKpY=;
-        b=UDzP5xiDTs3Tzo6YT7MKmwAEgYmbZXbAkbdx/D6w/7LNRoE1viybu1YgdU17iRf/Ai
-         bxGNUE4BDx5PueISQA3MaBUnJ8QDl4cr4SvfAveM111sUbDe8N+mNY0Td1cZwgOxXTjT
-         0N8LkJWhURCge25jgGso0UICmWw+9qkePCKNrlrDCF96Yd66nPWTqH3/TINMcUTTBc2q
-         E6aAfMTkX73AsDVTbgfR9+Y15kxPfyLcPeDTGR5BOZM3YA5ZMKy2Xv6zoK8abAvKcWH7
-         oO6+uu/15oXZLRhJ+n3OUMqE1spHhIw2x9qjG+e0z+0W/TwN5QKulWsmGImWNXofx+Xp
-         inSQ==
-X-Gm-Message-State: AOJu0YysadcDT4JBmRySsuho/Q8KhyqiMqmeDXFNduqZ+XRg3qxDuoFC
-	zYOQFI7t5NYOsMiVoBWjPcTX3aAhOTqm8lJ6i8b8DaY8sI9lzhDB1HfS7M7ArLOD8dBWJUxy3I6
-	rqCA=
-X-Gm-Gg: ASbGncuVAqWO5lTzqpYuM9tud+tCwVyIDQhj0kYL+9CFm8UkwGNtfFOxDIU6Ynu9JJ1
-	zaItfiC6cg9dnyG8LnZjrq+TzX6HQxCMwjQHa9OMM109qaBy7sUUGThE12g4vAXn8cqMBEJqkmC
-	zfSFVhy8R47ZRp9E2FYhmL96DXx9OejpH0IFZJ1DZ9I98CIdphKaZ5QHJbmqcCyvN08tHl960HX
-	4XI/VenEJZcyP3zseGprawKoLNo8sAG09UIcY3jzuAht6gy19EsU/Q2RYvL6M+gE7e0xL1Nr82E
-	twgB8oSFfWVr6/r81j7Zbq5DGAZDuxIhd5kth/leNJ5QVvszuOL5XCOU2LzjbB/y5HY/bhYDZg=
-	=
-X-Google-Smtp-Source: AGHT+IGKAnP32I7tdOkD86lO3MKYn/U2sIgpVMbz1MijhHlLE8WNaRFoQ120v3KeNZ1bCTGClcVi7A==
-X-Received: by 2002:a05:6512:31c1:b0:549:b28b:17ca with SMTP id 2adb3069b0e04-54ea33ae4b8mr808743e87.37.1746006314858;
-        Wed, 30 Apr 2025 02:45:14 -0700 (PDT)
-Received: from nuoska (87-100-218-141.bb.dnainternet.fi. [87.100.218.141])
-        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-54e7cb3a671sm2103756e87.75.2025.04.30.02.45.14
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 30 Apr 2025 02:45:14 -0700 (PDT)
-Date: Wed, 30 Apr 2025 12:45:12 +0300
-From: Mikko Rapeli <mikko.rapeli@linaro.org>
-To: yocto@lists.yoctoproject.org, jairo.mejiaaponte@belden.com
-Subject: Re: [yocto] How can I increase the size of /dev/root in QEMU using
- runqemu
-Message-ID: <aBHxKPwwol8Jw7Kz@nuoska>
-References: <MW3PR18MB3513AD1432554BA95BFA34208B832@MW3PR18MB3513.namprd18.prod.outlook.com>
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 6FF85C3ABAC
+	for <webhook@archiver.kernel.org>; Wed, 30 Apr 2025 15:03:16 +0000 (UTC)
+Subject: Re: [yocto] Yocto Kirkstone IMA Kernel Flags #kernel #kirkstone
+To: miriam.rico@enigmedia.es, yocto@lists.yoctoproject.org
+From: miriam.rico@enigmedia.es
+X-Originating-Location: Hernani, Basque Country, ES (88.14.145.92)
+X-Originating-Platform: Linux Chrome 135
+User-Agent: GROUPS.IO Web Poster
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <MW3PR18MB3513AD1432554BA95BFA34208B832@MW3PR18MB3513.namprd18.prod.outlook.com>
+Date: Wed, 30 Apr 2025 08:03:13 -0700
+References: <6565.1744012964281221070@lists.yoctoproject.org>
+In-Reply-To: <6565.1744012964281221070@lists.yoctoproject.org>
+Message-ID: <9295.1746025393396122245@lists.yoctoproject.org>
+Content-Type: multipart/alternative; boundary="P45rLmLSACT7vKjVTVKO"
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Wed, 30 Apr 2025 09:45:19 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/65270
+ <yocto@lists.yoctoproject.org>; Wed, 30 Apr 2025 15:03:16 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/65271
 
-Hi,
+--P45rLmLSACT7vKjVTVKO
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
 
-On Wed, Apr 30, 2025 at 08:24:30AM +0000, Jairo Mejia Aponte via lists.yoctoproject.org wrote:
-> Hi all,
-> 
-> I want to be able to use devtool to deploy a recipe on a running QEMU instance to avoid creating always an image for the QEMU while I am working as I normally do on Hardware. However, I got always the same error
-> 
-> ERROR: insufficient space on target
-> 
-> I tried to use the variables of Yocto to increase the size of the rootfs like IMAGE_OVERHEAD_FACTOR but it does not change the size of QEMU itself. Is there a way from the runqemu command to increase that size? At this point I found some QEMU commands to do the process, but they used another executable. I thought to use qemuparams parameter for the trick, but I don't know which QEMU commands are supported, and which command should I use for that.
-> 
-> Any help is welcome, thank you for your time,
+Hi again,
 
-This depends on which image type you use. For wic the default is that
-there is no extra space on the image and all configured partitions
-are created. If you want to, for example, extend the rootfs on target
-to fill the disk but still build minimal images, then this can happen
-with wic and systemd repart configuration, but the default wic images
-will not contain space for that unlike real HW which may have larger
-mmc/sdcard or other block storage.
+I have IMA working with the appraisal default policy
 
-My workaround for wic and runqemu has been in image recipe to:
+>=20
+> appraise func=3DMODULE_CHECK appraise_type=3Dimasig
+> appraise func=3DFIRMWARE_CHECK appraise_type=3Dimasig
+> appraise func=3DKEXEC_KERNEL_CHECK appraise_type=3Dimasig
+>=20
 
-IMAGE_EMPTY_SPACE_FOR_ROOTFS ?= "+10G"
-IMAGE_CMD:wic:append() {
-    set -x
-    # to resize image before bz2 or qcow2 are created from plain .wic
-    qemu-img resize "$out.wic" "${IMAGE_EMPTY_SPACE_FOR_ROOTFS}"
-}
+And now, I want to add a custom policy with measure and appraisal rules. Th=
+e purpose of the custom policy is to measure all binary files and, in case =
+the signature does not match, prevent opening those binaries. I have create=
+d the following policy:
 
-This will add 10Gb of empty space to the generated wic image. Compressed
-wic images will see no size increase but runqemu will see the empty space
-and can then run systemd repart and increase the size just like on
-real HW with bigger block storage. Using "snapshot" option to runqemu
-is possibly needed as well to keep the original .wic intact and discard
-all changes for each runqemu invocation.
+>=20
+> measure func=3DBPRM_CHECK mask=3DMAY_EXEC
+> appraise func=3DBPRM_CHECK mask=3DMAY_EXEC
+>=20
 
-Alternatively the qemu-img resize trick can be done outside of bitbake
-build if the tool is available, for example in testing environment.
+I have the following Kernel flags regarding
 
-Hope this helps,
+>=20
+> CONFIG_IMA=3Dy
+> CONFIG_IMA_MEASURE_PCR_IDX=3D10
+> # CONFIG_IMA_NG_TEMPLATE is not set
+> CONFIG_IMA_SIG_TEMPLATE=3Dy
+> CONFIG_IMA_DEFAULT_TEMPLATE=3D"ima-sig"
+> # CONFIG_IMA_DEFAULT_HASH_SHA1 is not set
+> CONFIG_IMA_DEFAULT_HASH_SHA256=3Dy
+> # CONFIG_IMA_DEFAULT_HASH_SHA512 is not set
+> CONFIG_IMA_DEFAULT_HASH=3D"sha256"
+> CONFIG_IMA_WRITE_POLICY=3Dy
+> CONFIG_IMA_READ_POLICY=3Dy
+> CONFIG_IMA_APPRAISE=3Dy
+> # CONFIG_IMA_ARCH_POLICY is not set
+> CONFIG_IMA_APPRAISE_BUILD_POLICY=3Dy
+> CONFIG_IMA_APPRAISE_REQUIRE_FIRMWARE_SIGS=3Dy
+> CONFIG_IMA_APPRAISE_REQUIRE_KEXEC_SIGS=3Dy
+> CONFIG_IMA_APPRAISE_REQUIRE_MODULE_SIGS=3Dy
+> CONFIG_IMA_APPRAISE_REQUIRE_POLICY_SIGS=3Dy
+> CONFIG_IMA_APPRAISE_BOOTPARAM=3Dy
+> CONFIG_IMA_APPRAISE_MODSIG=3Dy
+> CONFIG_IMA_TRUSTED_KEYRING=3Dy
+> # CONFIG_IMA_BLACKLIST_KEYRING is not set
+> CONFIG_IMA_LOAD_X509=3Dy
+> CONFIG_IMA_X509_PATH=3D"/etc/keys/x509_ima.der"
+> CONFIG_IMA_APPRAISE_SIGNED_INIT=3Dy
+> CONFIG_IMA_MEASURE_ASYMMETRIC_KEYS=3Dy
+> CONFIG_IMA_QUEUE_EARLY_BOOT_KEYS=3Dy
+> # CONFIG_IMA_SECURE_AND_OR_TRUSTED_BOOT is not set
+> # CONFIG_IMA_DISABLE_HTABLE is not set
+>=20
 
--Mikko
+And a recipe that copies the ima policy to the roots of initramfs:
+
+>=20
+> install -m 0644 ${WORKDIR}/ima-policy =C2=A0${D}/etc/ima/ima-policy
+>=20
+
+But I am not able to load it. I have added the policy to the initramfs, but=
+ when booting the machine, I always get the same error:
+
+>=20
+> ima: signed policy file (specified as an absolute pathname) required.
+> audit: type=3D1802 audit(1744809469.971:2): pid: 624 uid=3D0 auid=3D42949=
+67295
+> ses=3D4294967295 op=3Dupdate_policy cause=3Dsigned policy required comm=
+=3D"init"
+> res=3D0 errno=3D0
+>=20
+
+I tried to sign the policy using evmctl during initramfs build process, but=
+ it gives me the following error:
+
+>=20
+> setaxttr failed: /etc/ima/ima-policy
+> errno: Operation not supported (95)
+>=20
+
+So I tried to sign the policy using the IMA init script of meta-integrity l=
+ayer (https://git.yoctoproject.org/meta-security/tree/meta-integrity/recipe=
+s-core/initrdscripts/initramfs-framework-ima/ima?h=3Dkirkstone), I modified=
+ it to sign the policy, but the same error appeared. I added the following =
+line to the script after the mount process and before keyctl use:
+
+>=20
+> ...
+> if [ ! -d /sys/kernel/security/ima ]; then
+> fatal "No /sys/kernel/security/ima. Cannot proceed without IMA enabled in
+> the kernel."
+> fi
+>=20
+> *if [ -f /etc/ima/ima-policy ] && [ -f /etc/ima/ima_privkey.pem ]; then*
+> *evmctl ima_sign --hashalgo sha256 --key /etc/ima/ima_privkey.pem
+> /etc/ima/ima-policy*
+> *fi*
+>=20
+> for kind in ima evm; do
+> ...
+>=20
+
+I checked the Kernel flags to ensure that xattr flags are enabled. I have t=
+hese flags regarding xattr:
+
+>=20
+> CONFIG_DEVTMPFS=3Dy
+> CONFIG_DEVTMPFS_MOUNT=3Dy
+> CONFIG_TMPFS=3Dy
+> CONFIG_TMPFS_POSIX_ACL=3Dy
+> CONFIG_TMPFS_XATTR=3Dy
+> # CONFIG_TMPFS_INODE64 is not set
+> CONFIG_SECURITY=3Dy
+> CONFIG_SECURITYFS=3Dy
+>=20
+
+Also, I tried to sign the policy on my machine, but the same error occurred=
+.
+
+So I decided to disable the IMA policy sign kernel flag. Now, my flags are:
+
+>=20
+> CONFIG_IMA=3Dy
+> CONFIG_IMA_MEASURE_PCR_IDX=3D10
+> # CONFIG_IMA_NG_TEMPLATE is not set
+> CONFIG_IMA_SIG_TEMPLATE=3Dy
+> CONFIG_IMA_DEFAULT_TEMPLATE=3D"ima-sig"
+> # CONFIG_IMA_DEFAULT_HASH_SHA1 is not set
+> CONFIG_IMA_DEFAULT_HASH_SHA256=3Dy
+> # CONFIG_IMA_DEFAULT_HASH_SHA512 is not set
+> CONFIG_IMA_DEFAULT_HASH=3D"sha256"
+> CONFIG_IMA_WRITE_POLICY=3Dy
+> CONFIG_IMA_READ_POLICY=3Dy
+> CONFIG_IMA_APPRAISE=3Dy
+> # CONFIG_IMA_ARCH_POLICY is not set
+> CONFIG_IMA_APPRAISE_BUILD_POLICY=3Dy
+> CONFIG_IMA_APPRAISE_REQUIRE_FIRMWARE_SIGS=3Dy
+> CONFIG_IMA_APPRAISE_REQUIRE_KEXEC_SIGS=3Dy
+> CONFIG_IMA_APPRAISE_REQUIRE_MODULE_SIGS=3Dy
+> # CONFIG_IMA_APPRAISE_REQUIRE_POLICY_SIGS is not set
+> CONFIG_IMA_APPRAISE_BOOTPARAM=3Dy
+> CONFIG_IMA_APPRAISE_MODSIG=3Dy
+> CONFIG_IMA_TRUSTED_KEYRING=3Dy
+> # CONFIG_IMA_BLACKLIST_KEYRING is not set
+> CONFIG_IMA_LOAD_X509=3Dy
+> CONFIG_IMA_X509_PATH=3D"/etc/keys/x509_ima.der"
+> CONFIG_IMA_APPRAISE_SIGNED_INIT=3Dy
+> CONFIG_IMA_MEASURE_ASYMMETRIC_KEYS=3Dy
+> CONFIG_IMA_QUEUE_EARLY_BOOT_KEYS=3Dy
+> # CONFIG_IMA_SECURE_AND_OR_TRUSTED_BOOT is not set
+> # CONFIG_IMA_DISABLE_HTABLE is not set
+> CONFIG_SECURITY=3Dy
+> CONFIG_SECURITYFS=3Dy
+>=20
+
+But when I try to load my custom policy, I receive the following error:
+
+>=20
+> audit: type=3D1807 audit(1746014631.946:2); UNKNOWN=3DWriting res=3D0
+> write error: Invalid argumentaudit: type=3D1802 audit(1746014631.946:3):
+> pid=3D640 uid=3D0 auid=3D429467295 ses=3D4294967295 op=3Dupdate_policy
+> cause=3Dinvalid-policy comm=3D"init" res=3D0 errno=3D0
+>=20
+
+I also tried creating an ima-policy with the same policy rules as the defau=
+lt one. And the same error appeared.
+
+What am I doing wrong? How can I load my custom policy? How can I sign the =
+policy? Can the policy be signed during the compile or install process on Y=
+octo? Or during the boot process (initramfs)?
+
+Thank you so much,
+
+Miriam
+
+--P45rLmLSACT7vKjVTVKO
+Content-Type: text/html; charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div>Hi again,</div>
+<div>&nbsp;</div>
+<div>I have IMA working with the appraisal default policy</div>
+<div>&nbsp;</div>
+<blockquote>
+<div>appraise func=3DMODULE_CHECK appraise_type=3Dimasig&nbsp;<br />apprais=
+e func=3DFIRMWARE_CHECK appraise_type=3Dimasig&nbsp;<br />appraise func=3DK=
+EXEC_KERNEL_CHECK appraise_type=3Dimasig</div>
+</blockquote>
+<div>&nbsp;</div>
+<div>And now, I want to add a custom policy with measure and appraisal rule=
+s. The purpose of the custom policy is to measure all binary files and, in =
+case the signature does not match, prevent opening those binaries. I have c=
+reated the following policy:</div>
+<div>&nbsp;</div>
+<blockquote>
+<div>measure func=3DBPRM_CHECK mask=3DMAY_EXEC&nbsp;<br />appraise func=3DB=
+PRM_CHECK mask=3DMAY_EXEC</div>
+</blockquote>
+<div>&nbsp;</div>
+<div>I have the following Kernel flags regarding&nbsp;</div>
+<div>&nbsp;</div>
+<blockquote>
+<div>CONFIG_IMA=3Dy<br />CONFIG_IMA_MEASURE_PCR_IDX=3D10<br /># CONFIG_IMA_=
+NG_TEMPLATE is not set<br />CONFIG_IMA_SIG_TEMPLATE=3Dy<br />CONFIG_IMA_DEF=
+AULT_TEMPLATE=3D"ima-sig"<br /># CONFIG_IMA_DEFAULT_HASH_SHA1 is not set<br=
+ />CONFIG_IMA_DEFAULT_HASH_SHA256=3Dy<br /># CONFIG_IMA_DEFAULT_HASH_SHA512=
+ is not set<br />CONFIG_IMA_DEFAULT_HASH=3D"sha256"<br />CONFIG_IMA_WRITE_P=
+OLICY=3Dy<br />CONFIG_IMA_READ_POLICY=3Dy<br />CONFIG_IMA_APPRAISE=3Dy<br /=
+># CONFIG_IMA_ARCH_POLICY is not set<br />CONFIG_IMA_APPRAISE_BUILD_POLICY=
+=3Dy<br />CONFIG_IMA_APPRAISE_REQUIRE_FIRMWARE_SIGS=3Dy<br />CONFIG_IMA_APP=
+RAISE_REQUIRE_KEXEC_SIGS=3Dy<br />CONFIG_IMA_APPRAISE_REQUIRE_MODULE_SIGS=
+=3Dy<br />CONFIG_IMA_APPRAISE_REQUIRE_POLICY_SIGS=3Dy<br />CONFIG_IMA_APPRA=
+ISE_BOOTPARAM=3Dy<br />CONFIG_IMA_APPRAISE_MODSIG=3Dy<br />CONFIG_IMA_TRUST=
+ED_KEYRING=3Dy<br /># CONFIG_IMA_BLACKLIST_KEYRING is not set<br />CONFIG_I=
+MA_LOAD_X509=3Dy<br />CONFIG_IMA_X509_PATH=3D"/etc/keys/x509_ima.der"<br />=
+CONFIG_IMA_APPRAISE_SIGNED_INIT=3Dy<br />CONFIG_IMA_MEASURE_ASYMMETRIC_KEYS=
+=3Dy<br />CONFIG_IMA_QUEUE_EARLY_BOOT_KEYS=3Dy<br /># CONFIG_IMA_SECURE_AND=
+_OR_TRUSTED_BOOT is not set<br /># CONFIG_IMA_DISABLE_HTABLE is not set</di=
+v>
+</blockquote>
+<div>&nbsp;</div>
+<div>And a recipe that copies the ima policy to the roots of initramfs:</di=
+v>
+<div>&nbsp;</div>
+<blockquote>
+<div>install -m 0644 ${WORKDIR}/ima-policy &nbsp;${D}/etc/ima/ima-policy</d=
+iv>
+</blockquote>
+<div>&nbsp;</div>
+<div>But I am not able to load it. I have added the policy to the initramfs=
+, but when booting the machine, I always get the same error:</div>
+<div>&nbsp;</div>
+<blockquote>
+<div>ima: signed policy file (specified as an absolute pathname) required.<=
+br />audit: type=3D1802 audit(1744809469.971:2): pid: 624 uid=3D0 auid=3D42=
+94967295 ses=3D4294967295 op=3Dupdate_policy cause=3Dsigned policy required=
+ comm=3D"init" res=3D0 errno=3D0</div>
+</blockquote>
+<div>&nbsp;</div>
+<div>I tried to sign the policy using evmctl during initramfs build process=
+, but it gives me the following error:</div>
+<div>&nbsp;</div>
+<div>
+<blockquote>
+<div>setaxttr failed: /etc/ima/ima-policy<br />errno: Operation not support=
+ed (95)</div>
+</blockquote>
+<div><br />So I tried to sign the policy using the IMA init script of meta-=
+integrity layer (https://git.yoctoproject.org/meta-security/tree/meta-integ=
+rity/recipes-core/initrdscripts/initramfs-framework-ima/ima?h=3Dkirkstone),=
+ I modified it to sign the policy, but the same error appeared. I added the=
+ following line to the script after the mount process and before keyctl use=
+:</div>
+</div>
+<div>
+<div>&nbsp;</div>
+<blockquote>
+<div>...</div>
+<div>if [ ! -d /sys/kernel/security/ima ]; then<br />&nbsp; &nbsp; fatal "N=
+o /sys/kernel/security/ima. Cannot proceed without IMA enabled in the kerne=
+l."<br />fi</div>
+<div>&nbsp;</div>
+<div><strong>if [ -f /etc/ima/ima-policy ] &amp;&amp; [ -f /etc/ima/ima_pri=
+vkey.pem ]; then</strong></div>
+<div><strong>&nbsp; &nbsp; evmctl ima_sign --hashalgo sha256 --key /etc/ima=
+/ima_privkey.pem /etc/ima/ima-policy</strong></div>
+<div><strong>fi</strong></div>
+<div>&nbsp;</div>
+<div>for kind in ima evm; do</div>
+<div>...</div>
+</blockquote>
+</div>
+<div>&nbsp;</div>
+<div>I checked the Kernel flags to ensure that xattr flags are enabled. I h=
+ave these flags regarding xattr:</div>
+<div>&nbsp;</div>
+<blockquote>
+<div>CONFIG_DEVTMPFS=3Dy<br />CONFIG_DEVTMPFS_MOUNT=3Dy<br />CONFIG_TMPFS=
+=3Dy<br />CONFIG_TMPFS_POSIX_ACL=3Dy<br />CONFIG_TMPFS_XATTR=3Dy<br /># CON=
+FIG_TMPFS_INODE64 is not set</div>
+<div>CONFIG_SECURITY=3Dy</div>
+<div>CONFIG_SECURITYFS=3Dy</div>
+</blockquote>
+<div>&nbsp;</div>
+<div>Also, I tried to sign the policy on my machine, but the same error occ=
+urred.&nbsp;</div>
+<div>&nbsp;</div>
+<div>So I decided to disable the IMA policy sign kernel flag. Now, my flags=
+ are:<br /><br /></div>
+<blockquote>
+<div>CONFIG_IMA=3Dy<br />CONFIG_IMA_MEASURE_PCR_IDX=3D10<br /># CONFIG_IMA_=
+NG_TEMPLATE is not set<br />CONFIG_IMA_SIG_TEMPLATE=3Dy<br />CONFIG_IMA_DEF=
+AULT_TEMPLATE=3D"ima-sig"<br /># CONFIG_IMA_DEFAULT_HASH_SHA1 is not set<br=
+ />CONFIG_IMA_DEFAULT_HASH_SHA256=3Dy<br /># CONFIG_IMA_DEFAULT_HASH_SHA512=
+ is not set<br />CONFIG_IMA_DEFAULT_HASH=3D"sha256"<br />CONFIG_IMA_WRITE_P=
+OLICY=3Dy<br />CONFIG_IMA_READ_POLICY=3Dy<br />CONFIG_IMA_APPRAISE=3Dy<br /=
+># CONFIG_IMA_ARCH_POLICY is not set<br />CONFIG_IMA_APPRAISE_BUILD_POLICY=
+=3Dy<br />CONFIG_IMA_APPRAISE_REQUIRE_FIRMWARE_SIGS=3Dy<br />CONFIG_IMA_APP=
+RAISE_REQUIRE_KEXEC_SIGS=3Dy<br />CONFIG_IMA_APPRAISE_REQUIRE_MODULE_SIGS=
+=3Dy<br /># CONFIG_IMA_APPRAISE_REQUIRE_POLICY_SIGS is not set<br />CONFIG_=
+IMA_APPRAISE_BOOTPARAM=3Dy<br />CONFIG_IMA_APPRAISE_MODSIG=3Dy<br />CONFIG_=
+IMA_TRUSTED_KEYRING=3Dy<br /># CONFIG_IMA_BLACKLIST_KEYRING is not set<br /=
+>CONFIG_IMA_LOAD_X509=3Dy<br />CONFIG_IMA_X509_PATH=3D"/etc/keys/x509_ima.d=
+er"<br />CONFIG_IMA_APPRAISE_SIGNED_INIT=3Dy<br />CONFIG_IMA_MEASURE_ASYMME=
+TRIC_KEYS=3Dy<br />CONFIG_IMA_QUEUE_EARLY_BOOT_KEYS=3Dy<br /># CONFIG_IMA_S=
+ECURE_AND_OR_TRUSTED_BOOT is not set<br /># CONFIG_IMA_DISABLE_HTABLE is no=
+t set</div>
+<div>CONFIG_SECURITY=3Dy<br />CONFIG_SECURITYFS=3Dy</div>
+</blockquote>
+<div>&nbsp;</div>
+<div>But when I try to load my custom policy, I receive the following error=
+:<br /><br /></div>
+<blockquote>
+<div>audit: type=3D1807 audit(1746014631.946:2); UNKNOWN=3DWriting res=3D0<=
+/div>
+<div>write error: Invalid argumentaudit: type=3D1802 audit(1746014631.946:3=
+): pid=3D640 uid=3D0 auid=3D429467295 ses=3D4294967295 op=3Dupdate_policy c=
+ause=3Dinvalid-policy comm=3D"init" res=3D0 errno=3D0</div>
+</blockquote>
+<div>&nbsp;</div>
+<div>I also tried creating an ima-policy with the same policy rules as the =
+default one. And the same error appeared.</div>
+<div>&nbsp;</div>
+<div>What am I doing wrong? How can I load my custom policy? How can I sign=
+ the policy? Can the policy be signed during the compile or install process=
+ on Yocto? Or during the boot process (initramfs)?</div>
+<div>&nbsp;</div>
+<div>Thank you so much,</div>
+<div>&nbsp;</div>
+<div>Miriam</div>
+<div>&nbsp;</div>
+
+--P45rLmLSACT7vKjVTVKO--
 
