@@ -1,252 +1,232 @@
-Return-Path: <u.apeiron@gmail.com>
+Return-Path: <omri.sarig13@gmail.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 9F2E2C369C2
-	for <webhook@archiver.kernel.org>; Sat,  3 May 2025 20:27:43 +0000 (UTC)
-Received: from mail-ej1-f49.google.com (mail-ej1-f49.google.com [209.85.218.49])
- by mx.groups.io with SMTP id smtpd.web11.17973.1746304056938038620
- for <yocto@lists.yoctoproject.org>;
- Sat, 03 May 2025 13:27:37 -0700
-Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20230601 header.b=FtNOhzs+;
- spf=pass (domain: gmail.com, ip: 209.85.218.49, mailfrom: u.apeiron@gmail.com)
-Received: by mail-ej1-f49.google.com with SMTP id a640c23a62f3a-ac25520a289so535611566b.3
-        for <yocto@lists.yoctoproject.org>; Sat, 03 May 2025 13:27:36 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1746304055; x=1746908855; darn=lists.yoctoproject.org;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=MHM+3gPQeqd1hS7oY2fPXo2BTL0jYqADBxlKhCCEO2k=;
-        b=FtNOhzs+T11Xyyv/CACoIbsPXGzwBKkLA6DEvQelAt8dYy8YSq4kPnwuKqDZ2oSS0R
-         iqEAhbm2UDip8iir9QvaQiX3HeAJulaBAz5lpjO7eueqs8psArnhcGzXJgH8cqcyxKu4
-         c7Oe4zDhC890K+V91JFtFLW9rLB9RlFyeNbPKDaFibfQBbSG1eRKsXMsZMxRLGatDK2P
-         q7CLrLtN1v3x7BPq2A5j4hKIvOhdP0l3P1jw43Bx7VF0g8GopzwbfMFNZ7FO/jhNo8gL
-         tg1e7gaWbmbJtpeOcgGVgoYKC23x7frcs8v0nbdVZFHyQHvbzv4/EUGAInVBEPxkh22s
-         UkzQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1746304055; x=1746908855;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=MHM+3gPQeqd1hS7oY2fPXo2BTL0jYqADBxlKhCCEO2k=;
-        b=mo4WJQrYRI90NJCLYnnyBD8U77HxdvQ6ApqbMbA+tRu0JK4aHidFrUZDZ+XpS28eZq
-         A9Lmf+NWE8bbWOv1lB70FzaZPuCCKsisez3WqxJQCmOtCHYjffoU3p5qrIrSPLRVcyc4
-         CQ5BqaSzq61sFTqA2gO/C3/CQAWNGsnlFXCXOfcwF2E0KaxNwDOWx5VenIlDIIN7fnyL
-         YM6nKDuyjuobTewdMu//IIgA40ranRXCkb1P3PsIaQYqbqG2qF/TyCM2Jc0YXNCooRAq
-         oeXhBqqNzMMjRXVLtoFjMxG9QXmu2OyQfpzC84nVfLDp+j3ZE8yn3hm9RaBLZdFz7pnC
-         sycQ==
-X-Gm-Message-State: AOJu0YzQRukOrucphRKcI50stW7twCBo9ih2n/aYD4I3XSjzRvt+BbZV
-	6zX6JRakoQMUkri7h5cBKsgaPh21LVI4ibcsBjrMmfKn3Z0cJcxQ7ksmgfw/67BhOMJ+NBu3BIE
-	Adn3U8PEZh4MX/glO8CaS/efro60=
-X-Gm-Gg: ASbGncuAULH5VhVWrajDHihmn+J2Sm/PMUKdx6wRL+9HR2LCOqId1T+Tu3/V612fNZE
-	+Wbl11vEwBz4wSVFmhXtlo+/w918Rca4Nlbm86VAR4JiSNRnybFOpIVQPGpl7wRnqrTb9BdGe8J
-	/7FNBt/koVNZrx7IX8fp1gNeINVtB8M6UJ8xEBp2YKbNLV8Dv77xxs
-X-Google-Smtp-Source: AGHT+IHTn2JDCHtR/ANHKmquoKwGYLBJZ/4ntQDjM5+DO27ufq+7aIUweWAMwvbygb2IVd+qW72BDwSFGbU7xd6cuyE=
-X-Received: by 2002:a17:906:c10e:b0:aca:a687:a409 with SMTP id
- a640c23a62f3a-ad1a48eaa40mr203306266b.17.1746304054993; Sat, 03 May 2025
- 13:27:34 -0700 (PDT)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 5B46FC3ABB6
+	for <webhook@archiver.kernel.org>; Mon,  5 May 2025 12:40:17 +0000 (UTC)
+Subject: Styhead: openssh-9.8p1 sshd.socket does not work with tpm-provider enabled
+To: yocto@lists.yoctoproject.org
+From: "Omri Sarig" <omri.sarig13@gmail.com>
+X-Originating-Location: =?UTF-8?B?TW90YWxhLCDDlnN0ZXJnw7Z0bGFuZCBDb3VudHksIFNF?= (81.216.59.226)
+X-Originating-Platform: Linux Firefox 138
+User-Agent: GROUPS.IO Web Poster
 MIME-Version: 1.0
-References: <CAK+BxzQUexgV-5nznCWkpdCxu_xkuuf8Qry-8AyXs17Ew+i9TQ@mail.gmail.com>
- <c473c4cad723aa3d40cdcb3b86b08a77758513d9.camel@bootlin.com>
-In-Reply-To: <c473c4cad723aa3d40cdcb3b86b08a77758513d9.camel@bootlin.com>
-From: "Ulises V." <u.apeiron@gmail.com>
-Date: Sat, 3 May 2025 14:27:24 -0600
-X-Gm-Features: ATxdqUEMIJ_X2wcq-ddn7mLAt2cTPo77BSI_LxjmYtmr17k9dKVPivPS_yoXftc
-Message-ID: <CAK+BxzSdtSuG3WqCjZZTqfOx+kaKYMTX0WhjXRkY53-2ex2igA@mail.gmail.com>
-Subject: Re: [yocto] How to generate an initrd.img in yocto recipe.
-To: Thomas Perrot <thomas.perrot@bootlin.com>
-Cc: yocto@lists.yoctoproject.org
-Content-Type: multipart/alternative; boundary="000000000000de288b06344118d8"
+Date: Mon, 05 May 2025 05:40:13 -0700
+Message-ID: <xa9G.1746448813120620239.tvXx@lists.yoctoproject.org>
+Content-Type: multipart/alternative; boundary="f4abrv0XziGkFBVmffTr"
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Sat, 03 May 2025 20:27:43 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/65279
+ <yocto@lists.yoctoproject.org>; Mon, 05 May 2025 12:40:17 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/65280
 
---000000000000de288b06344118d8
-Content-Type: text/plain; charset="UTF-8"
+--f4abrv0XziGkFBVmffTr
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: quoted-printable
 
-Thanks Thomas I'll try to do this if I can't I'll come back with more
-questions.
+Hello,
 
-Ulises
+I have a project where I have a Yocto system built over an RPi CM4.
+My project was originally based over the Scarthgap release, and now I'm in =
+the
+process of upgrading it to the Styhead release of meta-poky.
 
+After upgrading the relevant layers to the Styhead branch, I have problems =
+with
+accessing the device over SSH with the default settings available through
+the recipe in meta-poky.
 
-On Mon, Apr 28, 2025 at 1:22=E2=80=AFAM Thomas Perrot <thomas.perrot@bootli=
-n.com>
-wrote:
+I've a solution, but I don't understand the problem, so I'd really apprecia=
+te
+some tips as to how to debug the problem further, if anyone experienced
+anything similar.
 
-> Hello Ulises,
->
-> On Sun, 2025-04-27 at 13:39 -0600, Ulises Vega via lists.yoctoproject.org
-> wrote:
->
-> Hello everyone,
->
-> I want to generate an initrd.img for booting a beaglebone-ai for the
-> automotive grade linux which works with both yocto scrathgap and kirkston=
-e.
->
-> I added the below lines to my local.conf file:
->
-> #################
-> INITRAMFS_IMAGE =3D "core-image-tiny-initramfs"
->
->
-> To build an initramfs, you only need to specify the initramfs image (e.g.=
-,
-> INITRAMFS_IMAGE_NAME) and its type (e.g., INITRAMFS_FSTYPES). For example=
+The Setup:
+
+The setup I'm using is based over a raspberry-pi compute module 4, where I =
+have
+TPM attached to it.
+
+I have a tpm-provider enabled for openssl:
+
+>=20
+> --- a/apps/openssl.cnf
+> +++ b/apps/openssl.cnf
+> @@ -56,6 +56,7 @@ providers =3D provider_sect
+> # List of providers to load
+> [provider_sect]
+> default =3D default_sect
+> +tpm2provider =3D tpm2provider_sect
+> # The fips section name should match the section name inside the
+> # included fipsmodule.cnf.
+> # fips =3D fips_sect
+> @@ -69,8 +70,11 @@ default =3D default_sect
+> # OpenSSL may not work correctly which could lead to significant system
+> # problems including inability to remotely access the system.
+> [default_sect]
+> -# activate =3D 1
+> +activate =3D 1
+>=20
+> +[tpm2provider_sect]
+> +activate =3D 1
+> +module =3D /usr/lib/ossl-modules/tpm2.so
+>=20
+
+And I'm using openssh version 9.8p1 (openssl version 3.3.1, but I don't thi=
+nk
+it is relevant), which is the enabled version from meta-poky.
+
+The Problem:
+
+When using the above setup, when I try to ssh into the device, the ssh proc=
+ess
+is blocked for 2 minutes, before it dies (without connection).
+
+Workarounds:
+
+I've found out that any of the following changes make the problem disappear=
 :
->
-> INITRAMFS_IMAGE =3D "core-image-tiny-initramfs"
-> INITRAMFS_FSTYPES =3D "cpio.gz"
->
-> Moreover, the kernel features required to load and uncompress the
-> initramfs must be enabled in the defconfig of your kernel. For example:
->
-> CONFIG_BLK_DEV_INITRD=3Dy
-> CONFIG_INITRAMFS_SOURCE=3D""
-> CONFIG_RD_GZIP=3Dy
-> CONFIG_DECOMPRESS_GZIP=3Dy
->
-> INITRAMFS_IMAGE_BUNDLE =3D "1"
->
->
-> This is only necessary if you want the initramfs to be packaged into the
-> kernel binary instead of being a separate binary (or a different image no=
-de
-> of a kernel fitimage).
->
-> Kind regards,
-> Thomas
->
-> INITRAMFS_IMAGE_NAME ?=3D "${INITRAMFS_IMAGE}-${MACHINE}"
-> INITRAMFS_KERNEL_IMAGE=3D"${KERNEL_IMAGETYPE}-initramfs-${MACHINE}.bin"
-> VIRTUAL-RUNTIME_dev_manager =3D "busybox-mdev"
-> IMAGE_BOOT_FILES:append =3D " ${INITRAMFS_KERNEL_IMAGE};${KERNEL_IMAGETYP=
-E}"
->
-> INIT_MANAGER ?=3D "systemd"
->
-> IMAGE_ROOTFS_MAXSIZE ?=3D "4294967296"
-> ROOTFS_PARTITION_SIZE ?=3D "4294967296"
->
-> SDCARD_ROOTFS ?=3D "${DEPLOY_DIR_IMAGE}/${IMAGE_NAME}.rootfs.ext4"
->
-> IMAGE_FSTYPES:append =3D " ext4 cpio.gz"
-> ##################
->
-> This is what I found on the web about what I needed to add to generate
-> that image. Maybe my initrd.img is being generated but is being named
-> "core-image-tiny-initramfs" as the variable INITRAMFS_IMAGE indicates.
->
-> I would like to know if I'm writing the correct variables to generate the
-> initrd.img.
->
-> Thanks.
->
-> Ulises Vega
->
-> -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
-> Links: You receive all messages sent to this group.
-> View/Reply Online (#65257):
-> https://lists.yoctoproject.org/g/yocto/message/65257
-> Mute This Topic: https://lists.yoctoproject.org/mt/112488442/5443093
-> Group Owner: yocto+owner@lists.yoctoproject.org
-> Unsubscribe: https://lists.yoctoproject.org/g/yocto/unsub [
-> thomas.perrot@bootlin.com]
-> -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
->
->
-> --
->
-> Thomas Perrot, Bootlin
-> Embedded Linux and kernel engineeringhttps://bootlin.com
->
->
 
---000000000000de288b06344118d8
-Content-Type: text/html; charset="UTF-8"
+* Downgrading openssh to version 9.7p1 (as available in commit 0c03d6aeb7 i=
+n
+meta-poky).
+* Disabling the tpm-provider in openssl.cnf.
+* Killing the sshd.socket service, and manually running `/usr/sbin/sshd` on=
+ the
+device.
+
+The Current Solution:
+
+I've seen there are 2 different ways to run sshd through systemd: either as=
+ a
+socket service, or run sshd directly.
+
+By setting the PACKAGECONFIG of the recipe to run the sshd directly (instea=
+d of
+as a socket), this problem is being solved.
+
+This results in the following addition to my machine.conf:
+
+>=20
+> PACKAGECONFIG:remove:pn-openssh =3D "systemd-sshd-socket-mode"
+> PACKAGECONFIG:append:pn-openssh =3D " systemd-sshd-service-mode "
+>=20
+
+As I wrote above, I have a solution that works for my system. However, as I
+don't understand the problem, I'm not confident that by doing the current f=
+ix
+I'm not creating future problems.
+
+I couldn't find any other mention of such problems online, or any relevant
+mention in the release-notes for openssh-9.8, and as the problem happens on=
+ly
+when the TPM provider is enabled, I'm not sure how many other people have
+encountered/are affected by it.
+
+It can be really helpful if anyone with any relevant experience and can poi=
+nt
+me in the right direction for more debugging or relevant documentation that=
+ I
+can do.
+
+Thank you!
+With Kind Regards,
+Omri
+
+--f4abrv0XziGkFBVmffTr
+Content-Type: text/html; charset="utf-8"
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr"><div>Thanks Thomas I&#39;ll try to do this if I can&#39;t =
-I&#39;ll come back with more questions.<br></div><div><br></div><div>Ulises=
-</div><br></div><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gm=
-ail_attr">On Mon, Apr 28, 2025 at 1:22=E2=80=AFAM Thomas Perrot &lt;<a href=
-=3D"mailto:thomas.perrot@bootlin.com" target=3D"_blank">thomas.perrot@bootl=
-in.com</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote" style=3D"m=
-argin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left=
-:1ex"><div><div><div>Hello Ulises,</div><div><br></div><div>On Sun, 2025-04=
--27 at 13:39 -0600, Ulises Vega via <a href=3D"http://lists.yoctoproject.or=
-g" target=3D"_blank">lists.yoctoproject.org</a> wrote:</div><blockquote typ=
-e=3D"cite" style=3D"margin:0px 0px 0px 0.8ex;border-left:2px solid rgb(114,=
-159,207);padding-left:1ex"><div dir=3D"ltr"><div>Hello everyone,</div><div>=
-<br></div><div>I want to generate an initrd.img for booting a beaglebone-ai=
- for the automotive grade linux which works with both yocto scrathgap and k=
-irkstone.</div><div><br></div><div>I added the below lines to my local.conf=
- file:</div><div><br></div><div>#################<br>INITRAMFS_IMAGE =3D &q=
-uot;core-image-tiny-initramfs&quot;</div></div></blockquote><div><br></div>=
-<div><div>To build an initramfs, you only need to specify the initramfs ima=
-ge=20
-(e.g., INITRAMFS_IMAGE_NAME) and its type (e.g., INITRAMFS_FSTYPES). For
- example:</div></div><div><br></div><div><div>INITRAMFS_IMAGE =3D &quot;cor=
-e-image-tiny-initramfs&quot;</div></div><div>INITRAMFS_FSTYPES =3D &quot;cp=
-io.gz&quot;</div><div><br></div><div style=3D"color:rgb(0,0,0);font-family:=
-Cantarell;font-style:normal;font-variant-caps:normal;font-weight:400;letter=
--spacing:normal;text-align:start;text-indent:0px;text-transform:none;white-=
-space:normal;word-spacing:0px;text-decoration:none"><div>Moreover, the kern=
-el features required to load and uncompress the initramfs must be enabled i=
-n the defconfig of your kernel. For example:</div></div><div style=3D"color=
-:rgb(0,0,0);font-family:Cantarell;font-style:normal;font-variant-caps:norma=
-l;font-weight:400;letter-spacing:normal;text-align:start;text-indent:0px;te=
-xt-transform:none;white-space:normal;word-spacing:0px;text-decoration:none"=
-><br><div>CONFIG_BLK_DEV_INITRD=3Dy</div><div>CONFIG_INITRAMFS_SOURCE=3D&qu=
-ot;&quot;</div><div>CONFIG_RD_GZIP=3Dy</div><div>CONFIG_DECOMPRESS_GZIP=3Dy=
-</div></div><div><br></div><blockquote type=3D"cite" style=3D"margin:0px 0p=
-x 0px 0.8ex;border-left:2px solid rgb(114,159,207);padding-left:1ex"><div d=
-ir=3D"ltr"><div>INITRAMFS_IMAGE_BUNDLE =3D &quot;1&quot;</div></div></block=
-quote><div><br></div><div><div>This is only necessary if you want the initr=
-amfs to be packaged into the
- kernel binary instead of being a separate binary (or a different image=20
-node of a kernel fitimage).</div></div><div><br></div><div>Kind regards,</d=
-iv><div>Thomas</div><div><br></div><blockquote type=3D"cite" style=3D"margi=
-n:0px 0px 0px 0.8ex;border-left:2px solid rgb(114,159,207);padding-left:1ex=
-"><div dir=3D"ltr"><div>INITRAMFS_IMAGE_NAME ?=3D &quot;${INITRAMFS_IMAGE}-=
-${MACHINE}&quot;<br>INITRAMFS_KERNEL_IMAGE=3D&quot;${KERNEL_IMAGETYPE}-init=
-ramfs-${MACHINE}.bin&quot;<br>VIRTUAL-RUNTIME_dev_manager =3D &quot;busybox=
--mdev&quot;<br>IMAGE_BOOT_FILES:append =3D &quot; ${INITRAMFS_KERNEL_IMAGE}=
-;${KERNEL_IMAGETYPE}&quot;<br><br>INIT_MANAGER ?=3D &quot;systemd&quot;<br>=
-<br>IMAGE_ROOTFS_MAXSIZE ?=3D &quot;4294967296&quot;<br>ROOTFS_PARTITION_SI=
-ZE ?=3D &quot;4294967296&quot;<br><br>SDCARD_ROOTFS ?=3D &quot;${DEPLOY_DIR=
-_IMAGE}/${IMAGE_NAME}.rootfs.ext4&quot;<br><br>IMAGE_FSTYPES:append =3D &qu=
-ot; ext4 cpio.gz&quot;<br>##################<br></div><div><br></div><div>T=
-his is what I found on the web about what I needed to add to generate that =
-image. Maybe my initrd.img is being generated but is being named &quot;core=
--image-tiny-initramfs&quot; as the variable INITRAMFS_IMAGE indicates.</div=
-><div><br></div><div>I would like to know if I&#39;m writing the correct va=
-riables to generate the initrd.img.</div><div><br></div><div>Thanks.</div><=
-div><br></div><div>Ulises Vega</div></div><div><br></div><div>-=3D-=3D-=3D-=
-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-<br></div><div>Links: You receive all messa=
-ges sent to this group.<br></div><div>View/Reply Online (#65257): <a href=
-=3D"https://lists.yoctoproject.org/g/yocto/message/65257" target=3D"_blank"=
->https://lists.yoctoproject.org/g/yocto/message/65257</a><br></div><div>Mut=
-e This Topic: <a href=3D"https://lists.yoctoproject.org/mt/112488442/544309=
-3" target=3D"_blank">https://lists.yoctoproject.org/mt/112488442/5443093</a=
-><br></div><div>Group Owner: <a href=3D"mailto:yocto+owner@lists.yoctoproje=
-ct.org" target=3D"_blank">yocto+owner@lists.yoctoproject.org</a><br></div><=
-div>Unsubscribe: <a href=3D"https://lists.yoctoproject.org/g/yocto/unsub" t=
-arget=3D"_blank">https://lists.yoctoproject.org/g/yocto/unsub</a>=C2=A0[<a =
-href=3D"mailto:thomas.perrot@bootlin.com" target=3D"_blank">thomas.perrot@b=
-ootlin.com</a>]<br></div><div>-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=
-<br></div><div><br></div></blockquote><div><br></div><div><span><pre>-- <br=
-></pre><pre>Thomas Perrot, Bootlin
-Embedded Linux and kernel engineering
-<a href=3D"https://bootlin.com" target=3D"_blank">https://bootlin.com</a>
+<div>
+<div>Hello,</div>
+<div>&nbsp;</div>
+<div>I have a project where I have a Yocto system built over an RPi CM4.<br=
+ />My project was originally based over the Scarthgap release, and now I'm =
+in the<br />process of upgrading it to the Styhead release of meta-poky.</d=
+iv>
+<div>&nbsp;</div>
+<div>After upgrading the relevant layers to the Styhead branch, I have prob=
+lems with<br />accessing the device over SSH with the default settings avai=
+lable through<br />the recipe in meta-poky.</div>
+<div><br />I've a solution, but I don't understand the problem, so I'd real=
+ly appreciate<br />some tips as to how to debug the problem further, if any=
+one experienced<br />anything similar.</div>
+<div>&nbsp;</div>
+<div><span style=3D"text-decoration: underline;">The Setup:</span></div>
+<div>&nbsp;</div>
+<div>The setup I'm using is based over a raspberry-pi compute module 4, whe=
+re I have<br />TPM attached to it.</div>
+<div>&nbsp;</div>
+<div>I have a tpm-provider enabled for openssl:</div>
+<div>&nbsp;</div>
+<blockquote>
+<div>--- a/apps/openssl.cnf<br />+++ b/apps/openssl.cnf<br />@@ -56,6 +56,7=
+ @@ providers =3D provider_sect<br />&nbsp;# List of providers to load<br /=
+>&nbsp;[provider_sect]<br />&nbsp;default =3D default_sect<br />+tpm2provid=
+er =3D tpm2provider_sect<br />&nbsp;# The fips section name should match th=
+e section name inside the<br />&nbsp;# included fipsmodule.cnf.<br />&nbsp;=
+# fips =3D fips_sect<br />@@ -69,8 +70,11 @@ default =3D default_sect<br />=
+&nbsp;# OpenSSL may not work correctly which could lead to significant syst=
+em<br />&nbsp;# problems including inability to remotely access the system.=
+<br />&nbsp;[default_sect]<br />-# activate =3D 1<br />+activate =3D 1<br /=
+>&nbsp;<br />+[tpm2provider_sect]<br />+activate =3D 1<br />+module =3D /us=
+r/lib/ossl-modules/tpm2.so</div>
+</blockquote>
+<div>&nbsp;</div>
+<div>And I'm using openssh version 9.8p1 (openssl version 3.3.1, but I don'=
+t think<br />it is relevant), which is the enabled version from meta-poky.<=
+/div>
+<div>&nbsp;</div>
+<div><span style=3D"text-decoration: underline;">The Problem:</span></div>
+<div>&nbsp;</div>
+<div>When using the above setup, when I try to ssh into the device, the ssh=
+ process<br />is blocked for 2 minutes, before it dies (without connection)=
+.</div>
+<div>&nbsp;</div>
+<div><span style=3D"text-decoration: underline;">Workarounds:</span></div>
+<div>&nbsp;</div>
+<div>I've found out that any of the following changes make the problem disa=
+ppear:</div>
+<div>&nbsp;</div>
+<div>* Downgrading openssh to version 9.7p1 (as available in commit 0c03d6a=
+eb7 in<br />meta-poky).<br />* Disabling the tpm-provider in openssl.cnf.<b=
+r />* Killing the sshd.socket service, and manually running `/usr/sbin/sshd=
+` on the<br />&nbsp; device.</div>
+<div>&nbsp;</div>
+<div><span style=3D"text-decoration: underline;">The Current Solution:</spa=
+n></div>
+<div>&nbsp;</div>
+<div>I've seen there are 2 different ways to run sshd through systemd: eith=
+er as a<br />socket service, or run sshd directly.</div>
+<div>&nbsp;</div>
+<div>By setting the PACKAGECONFIG of the recipe to run the sshd directly (i=
+nstead of<br />as a socket), this problem is being solved.</div>
+<div>&nbsp;</div>
+<div>This results in the following addition to my machine.conf:</div>
+<div>&nbsp;</div>
+<blockquote>
+<div>PACKAGECONFIG:remove:pn-openssh =3D "systemd-sshd-socket-mode"<br />PA=
+CKAGECONFIG:append:pn-openssh =3D " systemd-sshd-service-mode "</div>
+</blockquote>
+<div>&nbsp;</div>
+<div><hr /></div>
+<div>&nbsp;</div>
+<div>As I wrote above, I have a solution that works for my system. However,=
+ as I<br />don't understand the problem, I'm not confident that by doing th=
+e current fix<br />I'm not creating future problems.</div>
+<div>&nbsp;</div>
+<div>I couldn't find any other mention of such problems online, or any rele=
+vant<br />mention in the release-notes for openssh-9.8, and as the problem =
+happens only<br />when the TPM provider is enabled, I'm not sure how many o=
+ther people have<br />encountered/are affected by it.</div>
+<div>&nbsp;</div>
+<div>It can be really helpful if anyone with any relevant experience and ca=
+n point<br />me in the right direction for more debugging or relevant docum=
+entation that I<br />can do.</div>
+<div>&nbsp;</div>
+<div>Thank you!</div>
+<div>With Kind Regards,<br />Omri</div>
+</div>
 
-</pre></span></div></div>
-</div></blockquote></div>
-
---000000000000de288b06344118d8--
+--f4abrv0XziGkFBVmffTr--
 
