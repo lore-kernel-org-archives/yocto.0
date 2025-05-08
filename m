@@ -1,231 +1,107 @@
-Return-Path: <jan.kiszka@siemens.com>
+Return-Path: <alex.kanavin@gmail.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id D3A9CC3ABBE
-	for <webhook@archiver.kernel.org>; Thu,  8 May 2025 05:53:50 +0000 (UTC)
-Received: from AM0PR02CU008.outbound.protection.outlook.com (AM0PR02CU008.outbound.protection.outlook.com [52.101.72.59])
- by mx.groups.io with SMTP id smtpd.web10.8930.1746683620078479427
+	by smtp.lore.kernel.org (Postfix) with ESMTP id D549AC3ABC0
+	for <webhook@archiver.kernel.org>; Thu,  8 May 2025 08:31:11 +0000 (UTC)
+Received: from mail-qv1-f51.google.com (mail-qv1-f51.google.com [209.85.219.51])
+ by mx.groups.io with SMTP id smtpd.web10.10652.1746693068933780643
  for <yocto@lists.yoctoproject.org>;
- Wed, 07 May 2025 22:53:40 -0700
+ Thu, 08 May 2025 01:31:09 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@siemens.com header.s=selector2 header.b=XTtZpmDu;
- spf=pass (domain: siemens.com, ip: 52.101.72.59, mailfrom: jan.kiszka@siemens.com)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=uuhJuU2nAk6P4e1WrQNDVg5DhdtMZCjzipxCeSicl7Hg6L/2v+YZX8QSDR41BSsesrjujhDrgiAjArjtVRsbz8IXEwds4MLSOqhUjzYp1EOQt2SjSVYExNBosnUZugl+qKpxXVJCn/yDBu48Rx3hOi8oF7tWHJXsxwOsvA7exP35bKsdk38tawotbcXUOIUp3m3fhrIrz0zrtTOrxM8BP5tpoWUiPyhefmU4LGnRQIixzqd4vDOKmnzmupO9disNgZRwLcUJX9ePesZROHi/z1AZ7cquNynnVxSWAGOoWrqKQpIM09Efo1w3HyFlPn04e/q/Td2HeMsEa8DmH0yDqg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=vfKv2CeUewrA8CLmynqjO1z4nTEL6tXc/jdlx5vOZVI=;
- b=JYOD6p1Zzien3II42vxZxvh2sj43eJocyNlAeyJ1v4ga3hpswUlobhQtttx5+3gsKecF1C6gemEB0d4rtSOwc5v60YZWHJKt+A/IPFk8i3oj0Zb2a4f6wVOO4PMirkCbJZcF5ZfyCy5E4L1VIC8+PIuUAYA2UGrUG51msaVPY0yq8l05C32qzms7ZoOLTACZ8cooO4uRmmZxGgpmOTHuArWw9LqnRUMsA/6mNWz9+ZfB2smRqavzPnEqq3+M9zDsYCHCI1zwyJyzV6sJoV4D+XRAXckrW5noVUn6qO7U+WwXGO1HtaGExPjT6wdUw+piTe8EkJmersfQuy4xecisuw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=siemens.com; dmarc=pass action=none header.from=siemens.com;
- dkim=pass header.d=siemens.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=siemens.com;
- s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=vfKv2CeUewrA8CLmynqjO1z4nTEL6tXc/jdlx5vOZVI=;
- b=XTtZpmDuhAHOCyY1letzrFsshaeIIlhqxN7lijdTVG8+IXknj9FgYCZ7dU2N/x6NcUXgUqbwLktYRMthOWF5Q4s4G2aCb00WatU2Qg3uRh3XR1Z6+5ViDHTUvcaEpQR4YcfGcvukL9Trfi6FbgvZ+05AzsMSJLeDNdOuf4ux1NhmtwjhrDrX8lcDV7oeley/MZHZrGhHr+lo3ofengtXvYtwn7p/GhmxHKNmrhD09kbWiawngd4ac3Am4/wNNz4cdJepK+5lNBmdLb9RaEJ3mkslWx1AjP5u3row/f7/isulTGfHbvRxCsJT7cIjOpALZOUN1ZyG7toF1OGgSP+f2w==
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=siemens.com;
-Received: from AS4PR10MB6181.EURPRD10.PROD.OUTLOOK.COM (2603:10a6:20b:588::19)
- by AS4PR10MB5548.EURPRD10.PROD.OUTLOOK.COM (2603:10a6:20b:4ce::16) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8699.25; Thu, 8 May
- 2025 05:53:35 +0000
-Received: from AS4PR10MB6181.EURPRD10.PROD.OUTLOOK.COM
- ([fe80::8fe1:7e71:cf4a:7408]) by AS4PR10MB6181.EURPRD10.PROD.OUTLOOK.COM
- ([fe80::8fe1:7e71:cf4a:7408%5]) with mapi id 15.20.8699.026; Thu, 8 May 2025
- 05:53:35 +0000
-Message-ID: <a4f78cb8-033e-42a7-968a-abfd890e06b2@siemens.com>
-Date: Thu, 8 May 2025 07:53:34 +0200
-User-Agent: Mozilla Thunderbird
-Subject: Re: Status of bitbake-setup and kas?
-To: "Bird, Tim" <Tim.Bird@sony.com>,
- Yocto-mailing-list <yocto@lists.yoctoproject.org>,
- Alexander Kanavin <alex.kanavin@gmail.com>
-Cc: Felix Moessbauer <felix.moessbauer@siemens.com>
-References: <MW5PR13MB5632A56007A8DF3CFD6C3CF6FD88A@MW5PR13MB5632.namprd13.prod.outlook.com>
-From: Jan Kiszka <jan.kiszka@siemens.com>
-Content-Language: en-US
-Autocrypt: addr=jan.kiszka@siemens.com; keydata=
- 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
-In-Reply-To: <MW5PR13MB5632A56007A8DF3CFD6C3CF6FD88A@MW5PR13MB5632.namprd13.prod.outlook.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: FR4P281CA0347.DEUP281.PROD.OUTLOOK.COM
- (2603:10a6:d10:f4::15) To AS4PR10MB6181.EURPRD10.PROD.OUTLOOK.COM
- (2603:10a6:20b:588::19)
+ dkim=pass header.i=@gmail.com header.s=20230601 header.b=lHPNnIA7;
+ spf=pass (domain: gmail.com, ip: 209.85.219.51, mailfrom: alex.kanavin@gmail.com)
+Received: by mail-qv1-f51.google.com with SMTP id 6a1803df08f44-6f54d3f3607so5781696d6.0
+        for <yocto@lists.yoctoproject.org>; Thu, 08 May 2025 01:31:08 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1746693068; x=1747297868; darn=lists.yoctoproject.org;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=S10N84RgJH9X6qf2twkvddK8APYrGXNv+lmUU1gT/Z4=;
+        b=lHPNnIA730G7rJMAEXEgvxDZkYwY/9imJMILB0qrRQE3vbAbrdVPoA650u6Jlibm52
+         0gEJJswGL8PJMM9yJbzSxxrdNmqoi5+fFHFP3P7CKkMza6PTGVmaCqOaOQ+vtE4EaF+B
+         dZF3L2s8OyU5Xtf/npl7Lfj3S2qvANjWIQ1/gHpl4xbk9vg3Ywk8LrvRlPgewWyZOxuX
+         s1oH6UbLILO6tXVFmWHCll+b6BGPGD4E7fboYsiCxcpcd1KeOO6p9W5R9ZW/2CDRiiKT
+         1rXzLQXAJ0lvqxNHCRO7CkV6zii+LnIvXuzHS7uXxbNrkfQcxylx2Q1PB+twXV8yXNVT
+         RB2A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1746693068; x=1747297868;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=S10N84RgJH9X6qf2twkvddK8APYrGXNv+lmUU1gT/Z4=;
+        b=NMsFUkvLHU30/yInL/P02lB1wfx6sRnG7PWE8KcjHUs17XGbgth+T1o8YMq7X84Qvz
+         /JL77eLlB2HdFqznpEc8nEhx8LK5ZDClF9ey0rjQ9FgNuZszBVqIurFMJKtnBMsvHml/
+         G7z7AyGNUg8AhtAdm4XtGL/1672ExgZc11qFfX7aiycax+AVYVjXjs+Ab/MhnrI9lENN
+         9hzrVIIv8kaLXBthSnPw5ikzv6QUva15coUEkKO/VGwvf54oMZB/ozTrfcQWMAKNPZ3s
+         xJneLCm6sxLaDrqvNV0hBJbbFkhvxOHOrpFgw46QSMwamUs2K4G+s66l0FHYFRkUHCf5
+         4OXw==
+X-Gm-Message-State: AOJu0YzxTrzdvhTj5+MTjuyqbvfZa9S9dvoyO0eG3wA1HYIGr1OOlZxa
+	wtfnNfGaSfiy4RCyKnjiul9DAXj8A0osIDGoHUa92bQohpJqinLfx9UUL62leIszgmaPx6sZPCH
+	Q1v20t0+NbNxAFpx1RAvL7UduPCc=
+X-Gm-Gg: ASbGncuuX9JSz1U5uHRd4aO7BMHOYhIP/uyeKcNrjUyDf+NV6N8AdWFpxjPCnkK7QN5
+	o8nKK6ksS5K22MG3KyykY+87VQyEOtAbLmNBiclZid0LUiLR+EsT34P+og06+G/aI/SIlpiEZg6
+	j2tyN2vYl06ZIZS72tW0LJ1Gs=
+X-Google-Smtp-Source: AGHT+IHS5/2RwOk2+eC95S7nna2GUiJVdwjHwhWct7tRQ+KXVcIE1FQroiyoNKhMgsjoU/bnIBDkn3LhDTpZgynlNKQ=
+X-Received: by 2002:a05:6214:e8c:b0:6e8:f166:b19e with SMTP id
+ 6a1803df08f44-6f542a0684cmr106029796d6.17.1746693067838; Thu, 08 May 2025
+ 01:31:07 -0700 (PDT)
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: AS4PR10MB6181:EE_|AS4PR10MB5548:EE_
-X-MS-Office365-Filtering-Correlation-Id: 6d0ac061-9bbd-4ff1-54c4-08dd8df4abcb
-X-MS-Exchange-AtpMessageProperties: SA
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|1800799024|366016|376014;
-X-Microsoft-Antispam-Message-Info: 
-	=?utf-8?B?SkdSWjdnelJqRWF6OFNqalRLb2lkbFNKRTQrQVZYUSs4K0tHUVZkV2dUNXI2?=
- =?utf-8?B?a2l0S1UweEl2S2h1Nk9Ec01IVkxVaWJ1R3dJV05OOVNKaTlZVjIvNWI0SUw0?=
- =?utf-8?B?K1FmVHFBWFdOSTBvaFB0TlpTUHprZWs5d1VqRDVRa1JPVHg1d2xMSEQ4bE5W?=
- =?utf-8?B?TmFJSWZNTi9oVWdYMk54dkVjMjNLTjlId2NEVGRlUzgxZkQ1VThSeDcwYk02?=
- =?utf-8?B?cXFWWWFyTnpPVmxORkxvR3ZaRUhCMWN4K01zWFc3ME1Gc3RJQUtFVS9DOWZp?=
- =?utf-8?B?VzlSS29kZVFDUVBJQlBaeEhHdmhnMEs4cFVGMTlGekFTeUxOOXQwdWtER3cy?=
- =?utf-8?B?cy9VdDlwcTRoQVdMajA2UGFiMDIrb0tBaXpzTEc5UTdYNysrU2YrdlNNai9U?=
- =?utf-8?B?ekNrenNYNzFlWFVVSmI1QjRjWDc4SWkzMXlBK3g5d2RuZGFtTk1aUG1qaXFl?=
- =?utf-8?B?RTU2OFlZUEJod2cvWEFrbVhiS1FVdUU4QVlNTS9CSFZPakZXa3FVVnVrb1NC?=
- =?utf-8?B?VTRwSnV3eFlvWmhSU2IrbVQrS0tqaUJTcGxiTnJGc1huVDdQRFd6U0pNS2NS?=
- =?utf-8?B?emJSKzVVdkhTY2tLWld1WnEzdDJyc0NOcE9SbGpWOXlkbkxZdnF5b0cvQ2cw?=
- =?utf-8?B?SmNXbmFTai9uL1FJdTM5V2hua2swSXVWTlVsaUk1b0J1VEVTa1FGelNrRzkw?=
- =?utf-8?B?aVd0N2Z1Z3lxNFVyS3VXZnRCRHo2OGpjL0EwSVpkZEViMmtJQ01lOXRWNVRP?=
- =?utf-8?B?MmQ4TFlPQ3NLdHhNVUZRSDhidmd4R2tad3B3MmJJOEdZSDdvTW5PMTVMTWpm?=
- =?utf-8?B?TEJwOWpPWW9Na0dqK2hzM085OGY5NTA2WEYxWk1Fa0NxUVNQb3Ewc0NBNk8y?=
- =?utf-8?B?bWtET1RHVHpTQ2RjekJsUld6dTc2RmZLTytzUDNyWDA1R3hjM3dXRFNEKzNa?=
- =?utf-8?B?MWRhQ3FSMDFzeGlXWlBXcWZkbkdUbkl2NWo2SmtvUTFoVC9DVUFUREVqYjBB?=
- =?utf-8?B?VStLbGNuZjM5L0tZWHRMTGs2TVB2WTd1RHl2Q0cxNDdpMTVwcFRXclNvbGxT?=
- =?utf-8?B?QVQ1dXFGT1BoQU55MXUxQTBXeTFhM0NqeTlKd1RhUnB5RUM3elBYZmNrUUdo?=
- =?utf-8?B?dDd2SFZUaEZwcHMrOWZRbzJKYmNxK21WaW9uRER3bWorV2dqQm9TNXpuakpC?=
- =?utf-8?B?QW8xb2xiSFUwRDdKN1duWS82cDNEcUYzSEJMbzk3QmJQSjNkSEQ5TzRpTjVp?=
- =?utf-8?B?RXlONWhjNmFRZWtEN1YxUGpockJsUWoxUVRhRUJYa040NUtVVzhyK0ZpT0hl?=
- =?utf-8?B?OWIyNnQ4S1QyMjF0dXM5a2wvbU9qa1JRV05JazB5NkYzNldNK3JWSXRtVDBT?=
- =?utf-8?B?ZVpGQWRvdEk5L1I2a0lMMlVKbjBUZkxhenZPWnhqWW1jeW5yQmZMcVpnR0cv?=
- =?utf-8?B?VlFSdnBlMy9ORFRHSEhaQTdoRjhaWkZBMkRnMkp0NVV2eGgydGdTTS85RElm?=
- =?utf-8?B?VDRSNmtBVktyWkNCOVJ6ckttanliNTMzTGdsMlBqeHkzUTI4SUlqMWRQMnk3?=
- =?utf-8?B?OWhqbmZFS0hMNTFZTWNOeG8wV0c0Tk1rUTBJclJFMzBRUC9IOUhRa3RTWmFP?=
- =?utf-8?B?ajl6V2hTbk5PZHYvL2xoaXR2dW14OU5ka28waEZGUEtGWUh0d2xNSENZNWVB?=
- =?utf-8?B?OE9vOFE4MDBCWEJlSWZZdmdNRmRicWlYb1JqMzNRZnl4enhFVjJoUGlRbStE?=
- =?utf-8?B?NEYySFlHLzlzcjNFNEZYVkFEd2JnMldleTlTd3pCelpLT3UyL0pCbU5XaFpT?=
- =?utf-8?Q?zrUtPUblquMOpBaJhAhKo83xtOveW+ECRbu3A=3D?=
-X-Forefront-Antispam-Report: 
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AS4PR10MB6181.EURPRD10.PROD.OUTLOOK.COM;PTR:;CAT:NONE;SFS:(13230040)(1800799024)(366016)(376014);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: 
-	=?utf-8?B?TkVDS1lCOWZ6ay8yVDNKSllwRGN0K3BUajRwRFUxTmY3ODNqK2hId2pHYUE2?=
- =?utf-8?B?WC82TEU5dllWdkpzVFlacWJidG5aemdETTJiTlRwd2pCU2xYVlllTGpSd3RW?=
- =?utf-8?B?T1pkYW1Tak1YWndjSVlETFRETnF5cURMaUxuck1Kdjg2bHJRUitzUGowWS93?=
- =?utf-8?B?R2RFZTBOcnE0ckd6ZTV3YnVOKzF4bW5HdFI3L3M2MDFLN2thTkVOdXpZWTFK?=
- =?utf-8?B?Si9EdCtNR1AxSWhPcUZrWXEwMVZ3N2MyY01XNmtYVkhwOXhHMlFHdVFIRGM3?=
- =?utf-8?B?TWw1VDh4SG8xVjFtcEV3NTRvK2pldVdJTVNQbEMyc1NPZTZqVktaUFpURWNP?=
- =?utf-8?B?OFVpSnB1L2xHckJjN2QwV1JBMkxuazlHbEovU2ltMkZHc3Fxb0V4RGpqa1F3?=
- =?utf-8?B?dkRvVlVpOHFLUnVIblJZZ3dGdVM3YmRCaVF1bEQyWWh6TGZHUVlHV1ZTVmpD?=
- =?utf-8?B?MXB3Wnd5VFgxZVZFbmdJMGtLZWNncy9FcWRkeUVLdE5GZVQwYjRJYlpwNVRD?=
- =?utf-8?B?UWhrWmNxNHJUNW9KalhrUWRWeUoxQlhIZ2NMMjRvQ1pYTHVjY2x5aElrcVc3?=
- =?utf-8?B?RThxdUpoMTQyRGUvMnJYNVJMNXB5RXBCY0QxTE5LUEJKbllGOCs4cnd0cVFO?=
- =?utf-8?B?YkFTVndZUzdITVVtMjN6TWZtbUZWWmlNTHR0UE9paEV0QS9NRW5DUkQxeWYv?=
- =?utf-8?B?d0xwVWt1N0FPaTZ4cU1Ua2s4bjVBaTczcVJXVlR2bGFxOFQ4cXNBeUxaZG5j?=
- =?utf-8?B?blQvYnhvdWYyb1ZIM2ZBSTJWR1RrOHByMmhOaE0wMEcvRWc2R0VrRFgwQVZS?=
- =?utf-8?B?TGRoSjJqRUNMdmR3Vm10OU1ZVWdpTFdPQ1A4NmJFNU1KbTlyNGc3b2RYcTYx?=
- =?utf-8?B?K01KdCtZZkxyZ1d5OVRwaW9nT3MyUmpYS1pPSHZnWkhmRUhSeVJyeXBCbzdw?=
- =?utf-8?B?THZYVVlTM0s1MG1CcWJBbk1rQkhhbXg3QVVKRFBZMGVVOU1MRGVyOGhMN1A1?=
- =?utf-8?B?M0oyZzlMN2ZFTmh4eklWRERKSDArVnpNWXNsb1lrNk1zYXBMM3ZVcWpTaXpZ?=
- =?utf-8?B?TksrazRQdjB5Tlp5YjFSZVZPbklWZHdQUWhKSC90UGNlSTVob1hGejF0QkY0?=
- =?utf-8?B?Vkxvak90OGRTZWVNOGdlR0l3dW9CcHY4YTd3Nnc4RXMrNzkvQUJOcUoxSHQ2?=
- =?utf-8?B?UFNOS0NFRUhhMCtmUnpNQ2xzamxaZE5KREV3eEdZZGZvY1BNMHpkaHZrUXo3?=
- =?utf-8?B?WFEwRU9QVXhBL21ra1B2TnlSNFJQNGh4RGgyaWxEbzFJKy85OHNvM1hPam0w?=
- =?utf-8?B?RG9JOUlDN1RrdUp5STZqUDBXaEhHSDZndnhSRHJKRy9HZVdQNmlJQ2pFeEdi?=
- =?utf-8?B?bVFWaGNML3I3WlY2clova0xMYVNGZHFlQ1M5aDhjMi9TZTA0U212QWRnU3Bj?=
- =?utf-8?B?THlDQ1BualN5M2JTaFlicURJTmhtQVhJZzZPUDZSZ0g3K1p0WklZNzlobVVu?=
- =?utf-8?B?cmxJSm94STFmMTFoNmF5M21YTyszeFJkcEE5M1ZHM00zU1l0dHJsYXhIeHB3?=
- =?utf-8?B?ZGF6UDhodDVXcjF3Ym1rWmsrWVhKQ2FrVXVVb1NoQmphNGFiTTkyRjd2LzUy?=
- =?utf-8?B?aTJ5YWZGdG1kcVkwRTlTalRRWGRjcmNZZ0NQSUhUK2VaWnU2enpLeER0L29I?=
- =?utf-8?B?L2IwMnZ6bXhPUjIwZzNuRURlOHQ1VkpDcEFRQVVjNHNHSGlCak4zQmVPNS9p?=
- =?utf-8?B?Si9wa1NkUExlR2lub1I3Rkh3T0haWGVVUnRSUVd0dEx2c0twakZQRGs5WWpH?=
- =?utf-8?B?d1hHV0x6N0hOR3VHdWZMUEoyUWxVcFhEV25FZmdvWDEyaElud0FXQVFlaE0w?=
- =?utf-8?B?R3RXcEF3ZHprVDVYYVBRSzBta204Qm5NMjRkanN1RC9QVWhRU2ZNTHJWaUJv?=
- =?utf-8?B?OGNYRkVoRlpWbzgwYzN5dFVqT2pTc1FLNDMzYk1yamp3RkY2ZXk2Y1lGR2l5?=
- =?utf-8?B?TjJLdloxTzdVMldQMFZLK2ttR0pwbGgrQUl5SEY5N09hdU93ekYxQzRwM3pn?=
- =?utf-8?B?WHg5amNBSCt4QXB4elBSTktMWVVnYjlZNCsxU2JNQitOUkh2dDRvUTBOMFVp?=
- =?utf-8?Q?4LieO6cr3aAgXcKTUxOux8RUX?=
-X-OriginatorOrg: siemens.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 6d0ac061-9bbd-4ff1-54c4-08dd8df4abcb
-X-MS-Exchange-CrossTenant-AuthSource: AS4PR10MB6181.EURPRD10.PROD.OUTLOOK.COM
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 08 May 2025 05:53:35.1869
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 38ae3bcd-9579-4fd4-adda-b42e1495d55a
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: P1QNoEodS7EfwHJaHMbiwOC34JVRJSFeQyPXnN8j8D0NmuehwVCvrPrNSW3dn/1OQQuel7AuV0EAK5g2sszH4A==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: AS4PR10MB5548
+References: <MW5PR13MB5632A56007A8DF3CFD6C3CF6FD88A@MW5PR13MB5632.namprd13.prod.outlook.com>
+In-Reply-To: <MW5PR13MB5632A56007A8DF3CFD6C3CF6FD88A@MW5PR13MB5632.namprd13.prod.outlook.com>
+From: Alexander Kanavin <alex.kanavin@gmail.com>
+Date: Thu, 8 May 2025 10:30:56 +0200
+X-Gm-Features: ATxdqUEncEyOVBVR15rKve5an95LMEUj62iztGbQLS7dhXn4Y0S9GMNKD7n7iUM
+Message-ID: <CANNYZj_m08-F8B5K6-URB8nex0dJC7v04Jwt+jNff253Nfz6=g@mail.gmail.com>
+Subject: Re: Status of bitbake-setup and kas?
+To: "Bird, Tim" <Tim.Bird@sony.com>
+Cc: Yocto-mailing-list <yocto@lists.yoctoproject.org>, Jan Kiszka <jan.kiszka@siemens.com>
+Content-Type: text/plain; charset="UTF-8"
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Thu, 08 May 2025 05:53:50 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/65298
+ <yocto@lists.yoctoproject.org>; Thu, 08 May 2025 08:31:11 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/65299
 
-On 07.05.25 19:08, Bird, Tim wrote:
-> Hello yocto developers,
-> 
+On Wed, 7 May 2025 at 19:08, Bird, Tim <Tim.Bird@sony.com> wrote:
 > What is the current status of bitbake-setup?
-> 
+>
 > I'm basing this question on this email from January: https://lists.yoctoproject.org/g/yocto/topic/bitbake_setup_where_we_re/110666239
-> 
+>
 > Has this been integrated into the upstream yocto project yet?  Is it on track to be?
-> 
+
+Various lower level pieces that enable bitbake-setup have been
+integrated upstream:
+
+- openembedded template tooling (oe-setup-build, template creation)
+- formats and tools for layer fetching
+- openembedded config fragments (this is most recent and only
+available in latest yocto release)
+- pipelines and tests for sstate population on content delivery networks
+- smaller tweaks in bitbake, buildtools-tarball installation, etc.
+
+Also see the proposal for 'providing official yocto build
+configurations via bitbake-setup':
+https://lists.openembedded.org/g/openembedded-architecture/message/2126
+
+Implementing that proposal and getting bitbake-setup merged into
+bitbake repository are the two last missing pieces. Bitbake-setup ties
+it all together with about 500 lines of python code (which is far less
+than kas :). The code is as good as I can make it, given the initial
+set of features, it has tests, and has been ready for review since a
+few weeks ago, but everyone's too distracted (as seen in the other
+responses to you). On the other hand, I can't ask people to use it for
+'real work' before it officially merges. I hope Richard Purdie finds
+time for it in this release cycle.
+
 > Also, what is the situation with the 'kas' tool?
 > Will kas be submitted for upstream use?
-> 
-
-The messages I received so far were that kas uses an approach that would
-not be compatible with yocto principles. Therefore, the kas community
-has currently no plans in that direction.
-
+>
 > Is there any relationship between bitbake-setup and kas?
 
-My offer still stands to explain/discuss design decisions of kas and how
-the underlying use cases could be mapped on a yocto-native approach. But
-I have to admit that I would need a gentle kick as I'm currently lacking
-the time to follow bitbake-setup actively. Fact is that kas continuously
-receives contributions (*) which keeps me fairly busy already.
+kas is successful and widely used, but it will remain an external 3rd
+party project. We'll pick up the best ideas from it, once
+bitbake-setup starts gaining users and feedback from them.
 
-Jan
-
-(*) recently: tag signature validation, container enhancements like
-latest Ubuntu support or rootless docker, lock file improvements
-including diff'ing, buildtool management and more
-
--- 
-Siemens AG, Foundational Technologies
-Linux Expert Center
+Alex
 
