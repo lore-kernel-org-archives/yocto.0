@@ -1,282 +1,247 @@
-Return-Path: <david.daniel@vrag.ch>
+Return-Path: <JPEWhacker@gmail.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 69125C3ABC3
-	for <webhook@archiver.kernel.org>; Fri,  9 May 2025 12:13:56 +0000 (UTC)
-Received: from ZRZP278CU001.outbound.protection.outlook.com (ZRZP278CU001.outbound.protection.outlook.com [40.107.167.40])
- by mx.groups.io with SMTP id smtpd.web11.12823.1746792830668388228
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 4208CC3ABC3
+	for <webhook@archiver.kernel.org>; Fri,  9 May 2025 14:26:23 +0000 (UTC)
+Received: from mail-lf1-f47.google.com (mail-lf1-f47.google.com [209.85.167.47])
+ by mx.groups.io with SMTP id smtpd.web11.1.1746800774334024182
  for <yocto@lists.yoctoproject.org>;
- Fri, 09 May 2025 05:13:51 -0700
+ Fri, 09 May 2025 07:26:14 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@vrag.onmicrosoft.com header.s=selector1-vrag-onmicrosoft-com header.b=GVL+KBY3;
- spf=pass (domain: vrag.ch, ip: 40.107.167.40, mailfrom: david.daniel@vrag.ch)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=WNkjaYguGvzf7HnXs7nrZdoqHCgvw6DXjjiJfJQE8HuKFZCW0iEl34gAaS0BBcJcd2lTmYMvQs7RhsL9+483HzkMXg9LncKHuEDe6C4NfCYuUDecjjS8/FlJ/Vpn1McR5Q1XkDZ227hX12R1fJTbK6/u8NDDcayevfXJQiHzC64Yd8VgMJYrMyccKjZnkyXksXYl8nJLAbjIA3eVz0nIUjSA7/vR0nRuvgKNZvn7dEo5AcYNtUHstqTIwO7iGosvuXZPQktv74vMFJ8CzNW7b6Sdp08zJfjSXoyS1CzLUspWjJAAhT3Dr/pbGPrpnLAEBfrPf7QsOQVyZQJjiA+cGg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=C/QdLPY4MrrgrmO+lYZkKSzJSpo7215OKNRkVqK3rYM=;
- b=OhoI+HMRIqdOTKRk2DOHWQ9vX4K4aPhPOIhavpI/UWn9SZMzGztwzCcBn1eZLcekU2/EQ8h6cc25iBajjUebCpJ3sJd/Yim72sXad9SdneqN4ApGXZJRt9DpBYzHWvCKpEDcaBsqBL2gkehjMWwX8iEmKN2RNrIDb13rGArex4PXHIpiGdAkMi6I/XGObHed59ifYot4oKcvTzJlq+9tWIwAhPCpskVwv4nK6Txyj50oNp/QhLR04pgAF839XA2oPMv0GHy83Or9ZRX2TGF5NzAnmo3NzHtW9rsXnr42M+DfrUsz5zLeJ4SEXpMxgJxlEoqRzeCiyuKfMl0W09WkdA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=vrag.ch; dmarc=pass action=none header.from=vrag.ch; dkim=pass
- header.d=vrag.ch; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=vrag.onmicrosoft.com;
- s=selector1-vrag-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=C/QdLPY4MrrgrmO+lYZkKSzJSpo7215OKNRkVqK3rYM=;
- b=GVL+KBY3WnJKi88kSDPB0PE4Bxn1vb9ALXFmmEaRgIVD4UzVNI3/ud+/Mt/swFQ1/6nrk3kSsm/T9ucrbVxIHTGdO/qfmSX0CMLnxSpfNmDt1uHAYSTtlU3RCLDnnJ+5m6W6fGaouqql+Rtfy0zwmZ6A8ygV91c/PnAwK7IehWw=
-Received: from GVAP278MB0085.CHEP278.PROD.OUTLOOK.COM (2603:10a6:710:21::12)
- by GV0P278MB0179.CHEP278.PROD.OUTLOOK.COM (2603:10a6:710:35::13) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8722.24; Fri, 9 May
- 2025 12:13:45 +0000
-Received: from GVAP278MB0085.CHEP278.PROD.OUTLOOK.COM
- ([fe80::9006:220c:1d6b:47dd]) by GVAP278MB0085.CHEP278.PROD.OUTLOOK.COM
- ([fe80::9006:220c:1d6b:47dd%4]) with mapi id 15.20.8722.021; Fri, 9 May 2025
- 12:13:44 +0000
-From: David Daniel <david.daniel@vrag.ch>
-To: "yocto@lists.yoctoproject.org" <yocto@lists.yoctoproject.org>
-Subject: Re: [yocto] meta-mingw - how to use the SDK on Windows
-Thread-Topic: [yocto] meta-mingw - how to use the SDK on Windows
-Thread-Index: AQHbwMANXJRkQjpFCUi9lPjpQkS6CrPKNh0A
-Date: Fri, 9 May 2025 12:13:44 +0000
-Message-ID: <313eaa317c8b09936c20623afaa8087f0bb97c3a.camel@vrag.ch>
-References: <183DCFFB81DE0E31.22015@lists.yoctoproject.org>
-In-Reply-To: <183DCFFB81DE0E31.22015@lists.yoctoproject.org>
-Accept-Language: de-CH, en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=vrag.ch;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: GVAP278MB0085:EE_|GV0P278MB0179:EE_
-x-ms-office365-filtering-correlation-id: 01363e22-9d35-42f3-8796-08dd8ef2f1ea
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: 
- BCL:0;ARA:13230040|4022899009|376014|1800799024|366016|38070700018;
-x-microsoft-antispam-message-info: 
- =?utf-8?B?ZDZCZFZrNHoyQSt2TDNmWnAraVRVVEh2ajFuUW0wSkY1V0ZNNnJoaDlSSmU5?=
- =?utf-8?B?OThjcHUraWh0eVJFajVRUXYxOStRblAxSjI5dklJWWFzV0QvVHoxeFdaeGFy?=
- =?utf-8?B?eWc5MWhEblV0ZmVjQjlqRXU4N1RZTmhFL0llY2h2SHd0Uk0vQ2NDNjltTzBy?=
- =?utf-8?B?ODRFcS90Q24xY2lHWGpSbENHNHJjazRESGk1NUNGa0tqZ0I2TzNjdG9peGw0?=
- =?utf-8?B?UzhQYWtldTlLNjdjeE1FaVhNL3k2NkIya1dRblV4L0oyZ3NNdWUrZ0FDTXNZ?=
- =?utf-8?B?Ri9teTBkMUlQM1NDcm1XMUZ6RklRWHorMkY4ZGNIeld3TlVVT09PdnRnRUxL?=
- =?utf-8?B?UEhvcmZMNjM1UzY1Tk9Sb1hZaXVJWGpIdXdwaDY0QTBVbmFLWmJ4ZnkyZXVp?=
- =?utf-8?B?YzZzMTJ6VVpmbWhOdVB2SzFHZlViWlVTUlpaNTBUM0hsdjltN2xGZnY1WFRs?=
- =?utf-8?B?b2g4cEpqWnQ0NFA0QjNuTEJUdHkzMkxBUjdKbkVoNkM0QmJBekJWSjBrbWE4?=
- =?utf-8?B?dVR6U09UVjNvZDNaUUpVY3lQR0MvV0NCZXRoRjhjVms2ME1qY0ZrY1JuaXJM?=
- =?utf-8?B?bzBWZUo3Si82Vko1dkdUb0N4KzAveEFTaXpQMUg3ODEwU3RWTzhoeHRTWkVY?=
- =?utf-8?B?QmpOMGp5QzFVZmhnU28xakNFclhXM3ppV2dpU0Y2UnRlbFFKTFEycTFRNFlv?=
- =?utf-8?B?Y1VUMWU4bmYrN3gzK3lMTFhwWGdPVW4rY3NYSG9BUUdvZHlXV0hLVkhsVnpx?=
- =?utf-8?B?TG1QUzFkbGRNKzc1UU81alRrenFSVFNwS2x5RlV3NDFSTDRnNUZOSndXYjFq?=
- =?utf-8?B?OVl3c3FCcEljL3NJVEFYME1NcXBleWMwczRrZ0EvV2FDZVpiWWFSSkRBQURU?=
- =?utf-8?B?c0NSdHlWbUFQajUwNUN0MXQxbHhNR2VMNFJoZVNJZFNvUGdjWnBnZ01GT0VP?=
- =?utf-8?B?NWt3dmYzMEJ5TWg2RWlzd2txWk4wZ01mSGNJR3lEb0o1eUpNWEUwRE02YUF6?=
- =?utf-8?B?VEZhOFpWR2NsRDFsb005U0x6dXBHa3B2VHU2czhRSVhxV2FEbEtxK0lnWVJa?=
- =?utf-8?B?dHA2WFVMU0xlY0xaRmVMRlRLdzIrWG4vRnNLNDFxZnJybjFQd0E4b1Y2Z013?=
- =?utf-8?B?cGdNeUZ6QTZka1YxVnZ3MldJTkxWYzRmVkI3ODdlbUpTNDJYTkVCdnJwdGpo?=
- =?utf-8?B?ajloQVcwL2ZtaXR0MjhWSEQyQVZYYUk4aWdaK0RsQXRNa1dEbkRCbFREWWU5?=
- =?utf-8?B?QzBIR2F5QzdacVREUFpqMkFmU2dRSEQrMndTYkRrRURTRVp6YkljMUV5NHpG?=
- =?utf-8?B?endFL3pRRVkvNXhTVHdCRzBZOXg2UFZJMDR0RXlDQUJiS3cwOUo5Qi9QUmlZ?=
- =?utf-8?B?Nk16R1N5QjRmM05CNWcyZnMraDI4Z1kxdnFGS2lTeTJWNWszRmZGSFluTFEw?=
- =?utf-8?B?OHJ2WEpLRnV1SHhPU2x2aWtKUmYrTk1IT0JLTlNyRzJjbWdOZnV6eExyNm9u?=
- =?utf-8?B?dzhJcVZQRDM0cWNJMHExRHE5NHRqY0haRk1acDdpZzc0L054YUNkM1NycTJF?=
- =?utf-8?B?S081dG5JZnpuckVocEJJOGVoOHN6K1p6V1hhQmhWUitVN013bk1TdFNtM1Ev?=
- =?utf-8?B?RFhGOXdNTkJJUEtqS1NLQjhpSzdFLzdITkFoYkNZeUF2Zy8rMlNVK0cyVnhp?=
- =?utf-8?B?Tlg1VWZMZENDVGZhQ2lDNDNqTGVobzVZRkl0Y3hBWjYxY2YvbFVMaXlOQ2hM?=
- =?utf-8?B?QVJXamYwdTY4eFhLVDd3WlgyMDRkTWVKNjlUR3pYYUJ1TFM0S1pHWVBHVzdm?=
- =?utf-8?B?cDZVdC9ZY0pUbW1CbUVzK3haVVZUV3k3ZDZSSHlVMlZNRjY1dC9WRnpuUWs0?=
- =?utf-8?B?YTUyMm9SL1VpZzF6VTRUeUJkbjVDc0pWNUdRQm5BMTZ3L3Y5dWk4WTg2SXli?=
- =?utf-8?Q?LqkzQF+D+f4=3D?=
-x-forefront-antispam-report: 
- CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:GVAP278MB0085.CHEP278.PROD.OUTLOOK.COM;PTR:;CAT:NONE;SFS:(13230040)(4022899009)(376014)(1800799024)(366016)(38070700018);DIR:OUT;SFP:1101;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: 
- =?utf-8?B?cWF3bUpkN251ZitBL1QvRkxYNTFyeDlOYXpWZlNjZitoQmwxVWxWbWp4Umt0?=
- =?utf-8?B?NXBCQ3V4dDRqSGpzYW1uVWo2ZmU1Q1R0T04zWmI3R3VVUUxPNUxEQ0h3dys4?=
- =?utf-8?B?YTEyR29sdGs4eXlETzVCYThzaTVTWm5JN0JsRzFFMnhZZTNqMVVJZTFramdQ?=
- =?utf-8?B?ZW50QTMwMFRGUUxjelVucjBMb3I2K284MzFFenh5VFd3am53RHJubW5YbWlw?=
- =?utf-8?B?b0dZZGJJbUVJeHBNYjJXcTZ5MEZZZlJwNXZVNi9yMjA3TDkzOWdmZ0hQM2pi?=
- =?utf-8?B?Z0tFQ2NUTHQ3Y1doOHB2UE5GSnJmVFpQWG1xNWJnS2JNSlZacHE1QlJXdy93?=
- =?utf-8?B?UWd3LzRjZ2Vua3Y5c1pvZ3hyYjhpb3c3WHVhSS9ucVNiQ04rRGo1Ym5mTW1Z?=
- =?utf-8?B?Q1J2Y1l3Z1pPbjBIa29XSGJRdzNaUG5ramxmTXlINHkwdlN3ajN5UFVYb1Yv?=
- =?utf-8?B?cDlXaVo4SDhCR01rdjY2Z2dkcENjak5nRG1rbjFFK2VlZHJSQ2dDZW55ejM4?=
- =?utf-8?B?TEV5NUg2b1BnaUswcm1LWHV3a0NLa01FUWQ3Z0FweDI5Vnd6MThyd0xYOHZQ?=
- =?utf-8?B?U0YwdVVYNXlKeUFiWmY5aCthMkM5MGx1WW4vUkVSZk02Qnh1L1QybFg3UEg3?=
- =?utf-8?B?b1RKNDNEZFc4VHNJTVhpQWJXSkRINzFvVUROUE1DL3haRUZhSis1czZhVEI4?=
- =?utf-8?B?dVEzMkRQcDZkZFROcHFFNlN1eFpiOGJlMUdTUktoZ1hBUXRNMkhtMEtNdlFQ?=
- =?utf-8?B?WWM4TjlPS3dhTmxVcGllQmxVQVI4VGp4bFB5dHR6ZW0wQ05ma3NmUXJCZlRs?=
- =?utf-8?B?V2FDQUtKcFB5SmVoLzd2RjRhak8xWjBBeTBzQjkycmkwcVc4QkhxRGx1VEky?=
- =?utf-8?B?SlpvZFphYWlkLzd2QmgwWmp2VTVZRHdBdUlYWFZWZzhHbjVWajYxQ1YyeEt4?=
- =?utf-8?B?UDkyYUJkL0Fobzd0ZWR3ZllPeFFIQUNicWcrcndtS2cwdlk0SzhZcnpCOUtm?=
- =?utf-8?B?ZjJPKzhWaGlSaEhXa2o0dStSM1ZETExTamlIMW1nK1hYVHF1Kzg0TEZuRXVY?=
- =?utf-8?B?ME9iQzA4bU5OdnltdUhpSytUOXlmbW1EQUo2YkN2ZE96MHJVVndmMUF2aEx5?=
- =?utf-8?B?WWFaOWVRaG84ZEFuaHZKdVNKaGkyUUVVeEtzTG92aVA5bDRJTm9jT3c5d2RX?=
- =?utf-8?B?U3pkQXBVdlYwNVB6RzQya29KUGZjbGJsOTFNKzkySHB2OGFFNk1tdGtDVEph?=
- =?utf-8?B?QVVKOW1BYmNtanRtekV5MTB3UHJxYmROL2RjZTJzOWsxVjdWT2Mrc09jUVJX?=
- =?utf-8?B?RjZzSmFJV3lBU3kzSjBUTmZMNzh2dENZYWJiWDhxSHN3L0Z1Q0UrTFBsa0Y0?=
- =?utf-8?B?R1BWM0UycEZZMU5DZmNrdHU2d0xvT0RDTEF2ZDFIMzBVc3FEVFFkTlBxT2kr?=
- =?utf-8?B?SGVVbkFqcVdya0t0cVhCdHpXOE5KZ0lETzB1U29LS1pURG5iL0NHcnJOVjdD?=
- =?utf-8?B?ZHlhK0VIL1dPcHNIbGdPUnI4dGNXL3pCTStLdHNuanVabnJSSHlLdm8rdjFW?=
- =?utf-8?B?RHgxcW83WU9LaEUzWVhPZFM0S29qMzRsK082OHV6aXJaK0pWNG5hVTFwdWFl?=
- =?utf-8?B?OWhxaW1jOWFmTnNYZ2RhUzBVV3pWVVJGdm02d0FHS1o1TTllVG1TOXFoZ0RG?=
- =?utf-8?B?THZZV01ZOUtOeDY3b1JxL3NLM0x4eXF1eDc3WFhTb2tlclptY2huN3hyRTJI?=
- =?utf-8?B?RExvTmJmekxhd29OdEdLOGEyVHJ4THc1amRyUDdCRU5vczZkWnpOK0xwZC95?=
- =?utf-8?B?UHJrQlpUR3h1cGFGL3ZPZXNja2lvV2JmZiswSzBKSmVGc3Z3M2pheHdpSnAr?=
- =?utf-8?B?cnhIbGFmV1YzNFdoM2JCdmpscWMrVTh1MG9pM1p6MXhMb1ZXWjg0Y0VYR3p5?=
- =?utf-8?B?NzBaR0wxMXJSakJrT1B3bWw0UG9scU9EUjBzM2gvbGJ0YXpDSEdTUGdHbU5R?=
- =?utf-8?B?S2w0VkVEeSsvN0liNk1RK1VKN3Z0UFlpZkJMZ1F5cG9ueW52NHNiaEJQZkR1?=
- =?utf-8?B?Ynh5azZibTZyQW5ZQkFsVmVua0xadkFucEVwaVlCSERCM3hNemxhR3owd2lG?=
- =?utf-8?Q?5P7b+6OQjeBWoA5tZRZ1hEM/Z?=
-Content-Type: text/plain; charset="utf-8"
-Content-ID: <B0933F29D5D32D458F37CB69613F88FF@CHEP278.PROD.OUTLOOK.COM>
-Content-Transfer-Encoding: base64
+ dkim=pass header.i=@gmail.com header.s=20230601 header.b=h3qrCWpz;
+ spf=pass (domain: gmail.com, ip: 209.85.167.47, mailfrom: jpewhacker@gmail.com)
+Received: by mail-lf1-f47.google.com with SMTP id 2adb3069b0e04-54addb5a139so2580498e87.0
+        for <yocto@lists.yoctoproject.org>; Fri, 09 May 2025 07:26:14 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1746800771; x=1747405571; darn=lists.yoctoproject.org;
+        h=content-transfer-encoding:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=cc2LRTZ5F4x0UssIrcaF6xqGX2imdJsbiMde2nSWM3Q=;
+        b=h3qrCWpzU7iJ4MNCkpuWXR/y9MFmldUf/7bj8HKCUiCITXUGYGl/nz9X496TofZdns
+         gesBE8sGWGzPzR7IszEuZQU0vWUBl25eGtcU9YNIVxNRwZv9LTAKYuuC8A1zgfvplQbQ
+         zqPwPinADjPR9/oUmHciVVK6RkR4erRnRQcxZJgMLzotwYP3/DPY7YUM9QObVnAn9Sm2
+         7bYkNfGF9zAk3HLbotzaIbFkklJEZRJiS2jovYglv7vvM17UAIkEY1LjvBpeq+wPlRCN
+         W2/QoacrTHV3Dp3s0lVEDgQDf4SZX3+7y5Nq5vQfPJMG7FN5k0M3bGGthmCnuu3HDEwU
+         KQNA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1746800771; x=1747405571;
+        h=content-transfer-encoding:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=cc2LRTZ5F4x0UssIrcaF6xqGX2imdJsbiMde2nSWM3Q=;
+        b=NDLTOY6YEm2npOwmKOyufdR2LFEgPXN/25HU4VexOL7Iwz3mQh8+9JM5UjLNv9TrCY
+         9SbeTW0Y/VymUfoweN3fygM/jqahk6YPwnohdhdf1y0F5YPzXlysOC9RxyHrb0160XTs
+         8XdKj37FKcHDA2hAmIIWtu9YMXFmocM3Fa5bmLvpoWXmlkX3g3B0I6LHA4VEmYQ/Gfrl
+         CVJuxR01AeaBZUV+U9HcC1casQ1QbDcu1l2oiXVBeFA8xO0130H/tOKnBTcvrtFgJSml
+         kvrZu0MI/QFtcbOuQ3XQ6ff+IMTArc/WjtxY212aFnan3ghjpeVp9z6C2uU6jFwdwEAR
+         DMew==
+X-Gm-Message-State: AOJu0Yy6wiuMUOm2sfX+6eT6KtNsKBC2QcCRcyCPHFu0mpfs2XbJ1UEr
+	SJYywEUvGrO6L2tG39mU6510YjF8a8qS9VXgKg8Ti8RGbYGdlaLG4hjiUkoG9PsEMsA3Lco4GCl
+	P4g4sCWGk7AEnvHfFBkvVjNUusMk/GQ==
+X-Gm-Gg: ASbGncvD4dUSVZ6N6dXj06T6+6deyZ8AWuTgi+Q2xr7MDV1wCUdH44m8Yykl+au/QzG
+	BtoBPRKpj99sAwv0qBMCupwEknL548l/LBx/R++uKRJk9diAjN67q51tmTTjdz62RXHRt6KuADo
+	pEQNh0ZxDOh/uVUp4vMbeNvuiixO6TtQ7/OueOYz1MbBNTM1Q=
+X-Google-Smtp-Source: AGHT+IFY7cI1QkP7tYrSp2uly2qdQqbdURB2onYb/QMogMsE15RE6b41kdIsVIbGTJxE6K4QcXu0X45fGkkDwLrgc0c=
+X-Received: by 2002:a05:6512:3c96:b0:54f:c1cd:c63d with SMTP id
+ 2adb3069b0e04-54fc67e4683mr1446278e87.54.1746800770477; Fri, 09 May 2025
+ 07:26:10 -0700 (PDT)
 MIME-Version: 1.0
-X-OriginatorOrg: vrag.ch
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: GVAP278MB0085.CHEP278.PROD.OUTLOOK.COM
-X-MS-Exchange-CrossTenant-Network-Message-Id: 01363e22-9d35-42f3-8796-08dd8ef2f1ea
-X-MS-Exchange-CrossTenant-originalarrivaltime: 09 May 2025 12:13:44.8064
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 71bd83c1-ce5c-4e57-8993-45bae4514c77
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: 79tBNEDc8H0OEJv0FEHq6plPcDZHFl7A0yry7PpP0MsH9Dta6tNfV3QUqxykzfwEQQvOJUeOzp8FooNTRtPKXA==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: GV0P278MB0179
+References: <183DCFFB81DE0E31.22015@lists.yoctoproject.org> <313eaa317c8b09936c20623afaa8087f0bb97c3a.camel@vrag.ch>
+In-Reply-To: <313eaa317c8b09936c20623afaa8087f0bb97c3a.camel@vrag.ch>
+From: Joshua Watt <jpewhacker@gmail.com>
+Date: Fri, 9 May 2025 08:25:57 -0600
+X-Gm-Features: AX0GCFsHfDdCBHmB6HWj1OloY_t2wQmmuFe1Gxz4nYYvggN36Tcdz8bVapqUOK0
+Message-ID: <CAJdd5Gb0=dN0_63sAWUTOLD+Zw5BT6Crzjq2DJfJLQztWG9-KA@mail.gmail.com>
+Subject: Re: [yocto] meta-mingw - how to use the SDK on Windows
+To: yocto@lists.yoctoproject.org, david.daniel@vrag.ch
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Fri, 09 May 2025 12:13:56 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/65301
+ <yocto@lists.yoctoproject.org>; Fri, 09 May 2025 14:26:23 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/65302
 
-V2hhdCBJIHJlYWxpemUgaXMgdGhhdCBvbiBMaW51eCBJIGdldCBhIHNjcmlwdCB0byBleGVjdXRl
-IHRoYXQgdGhlbg0KcmVsb2NhdGVzIHRoZSBTREssIHJld3JpdGVzIHBhdGhzIGV0Yy4gVGhlIHdp
-bmRvd3MgU0RLIGlzIGp1c3QgYW4NCmFyY2hpdmUsIHRoZXJlIGlzIG5vIGluc3RhbGxlciBzY3Jp
-cHQuIE5ldmVydGhlbGVzcyBpdCBjb250YWlucyBwb3N0LQ0KcmVsb2NhdGUtc2V0dXAuc2ggLSBi
-dXQgbm8gV2luZG93cyBiYXRjaCBmaWxlLg0KDQpEbyBteSBwcm9ibGVtcyBzdGVtIGZyb20gdGhl
-IGZhY3QgdGhhdCB0aGUgU0RLIGlzIG5vdCBzZXR1cCBjb3JyZWN0bHk/DQpTbyBJIGFtIG1pc3Np
-bmcgYW4gaW5zdGFsbGF0aW9uIG9yIHBvc3QtZGVjb21wcmVzcyBzdGVwPw0KDQpTdGlsbCBzdHJ1
-Z2dsaW5nLCB0aGFua3MgZm9yIGFueSBoaW50cyENCg0KQlINCkRhdmUNCg0KQW0gRnJlaXRhZywg
-ZGVtIDA5LjA1LjIwMjUgdW0gMDg6NTUgKzAwMDAgc2NocmllYiBEYXZpZCBEYW5pZWwgdmlhDQps
-aXN0cy55b2N0b3Byb2plY3Qub3JnOg0KPiBIaSB0aGVyZQ0KPiANCj4gSSBoYXZlIHRyb3VibGUg
-dXNpbmcgdGhlIFNESyBvbiBXaW5kb3dzIGdlbmVyYXRlZCBieSBtZXRhLW1pbmd3Lg0KPiBUaGVy
-ZQ0KPiBhcmUgYSBmZXcgbWlub3IgY2hhbmdlcyB0aGF0IG5lZWQgdG8gYmUgbWFkZSB0byB0aGUg
-ZW52aXJvbm1lbnQgc2V0dXANCj4gZmlsZSwgbmFtZWx5IHRoZSBTREtST09UIHZhcmlhYmxlIG5l
-ZWRzIHRvIGJlIG1vZGlmaWVkIHRvIG9ubHkNCj4gY29udGFpbg0KPiBmb3J3YXJkIHNsYXNoZXMg
-LSB0aG9zZSBwYXRocyBnZXQgcGFzc2VkIHRvIGdjYy4gU28gSSBtb2RpZmllZCB0aGlzDQo+IGFj
-Y29yZGluZyB0byBzb21lIGxpbmsgSSBmb3VuZDrCoA0KPiANCj4gaHR0cHM6Ly9naXRodWIuY29t
-L2RhcmtvMzEveW9jdG9fY3Jvc3NfY29tcGlsZV9zZGsvYmxvYi9tYWluL3JlYWRtZV93aW4ubWQN
-Cj4gDQo+IEJ5IHJlcGxhY2luZyB0aGUgZmlyc3QgbGluZSB3aXRoDQo+IA0KPiDCoMKgwqAgc2V0
-IFNES1JPT1Q9JX5kcDAlDQo+IMKgwqDCoCBzZXQgIlNES1JPT1Q9JVNES1JPT1Q6XD0vJSINCj4g
-DQo+IFRoZSBzZWNvbmQgdGhpbmcgd2FzIHRoYXQgdGhlIGNtYWtlLmJhdCBmaWxlIHdhcyBtaXNz
-aW5nIGluIHRoZQ0KPiB3aW5kb3dzDQo+IHN5c3Jvb3RzIGVudmlyb25tZW50LmQgZm9sZGVyLCB0
-aGVyZSB3YXMgb25seSBhIGNtYWtlLnNoIGZpbGUuIEJ1dA0KPiBpdHMNCj4gZWFzeSB0byBjcmVh
-dGUgaXQgd2l0aA0KPiANCj4gwqDCoMKgIHNldA0KPiBDTUFLRV9UT09MQ0hBSU5fRklMRT0lT0VD
-T1JFX05BVElWRV9TWVNST09UJS91c3Ivc2hhcmUvY21ha2UvT0VUb29sY2gNCj4gYWluQ29uZmln
-LmNtYWtlDQo+IMKgwqDCoCBzZXQgT0VfQ01BS0VfRklORF9MSUJSQVJZX0NVU1RPTV9MSUJfU1VG
-RklYPTY0DQo+IA0KPiBUaGUgdGhpcmQgdGhpbmcgd2FzIHRoYXQgd2l0aGluIHRoZSBXaW5kb3dz
-IHN5c3Jvb3RzIHVzci9zaGFyZS9jbWFrZQ0KPiBmb2xkZXIgdGhlcmUgd2FzIG5vIGdlbmVyYXRl
-ZCB0b29sY2hhaW4gZmlsZSB0aGF0IGNhbWUgZnJvbSB0aGUNCj4gdGVtcGxhdGUuIFNvIHRoZXJl
-IHdlcmUgb25seSB0d28gZmlsZXM6DQo+IA0KPiAtIE9FVG9vbGNoYWluQ29uZmlnLmNtYWtlDQo+
-IC0gU0RLVG9vbGNoYWluQ29uZmlnLmNtYWtlLnRlbXBsYXRlDQo+IA0KPiBXaGVyZWFzIGluIHRo
-ZSBsaW51eCBTREsgdGhlcmUgaXMgYSB0aGlyZCBmaWxlIHRoYXQgd2FzIGdlbmVyYXRlZCBieQ0K
-PiB0aGUgU0RLVG9vbGNoYWluQ29uZmlnLmNtYWtlLnRlbXBsYXRlIGZpbGUuDQo+IA0KPiBCdXQg
-ZXZlbiB3aGVuIEkgZml4IHRoZSBhYm92ZSBJIGNhbm5vdCBzdWNjZWVkIHRvIGNvbmZpZ3VyZSBh
-IGJ1aWxkDQo+IHdpdGggY21ha2UgYW5kIHRoZSB0b29sY2hhaW4uIEkgYWx3YXlzIGdldCB0aGUg
-ZXJyb3IgImlzIG5vdCBhYmxlIHRvDQo+IGNvbXBpbGUgYSBzaW1wbGUgdGVzdCBwcm9ncmFtLiIg
-d2l0aCBjb21wbGFpbnRzIHRoYXQgbGlicyBhbmQgb2JqZWN0cw0KPiBjYW5ub3QgYmUgZm91bmQg
-KGNhbm5vdCBmaW5kIFNjcnQxLm8sIGNhbm5vdCBmaW5kIGNydGkubywgY2Fubm90IGZpbmQNCj4g
-Y3J0YmViaW5TLm8sIGNhbm5vdCBmaW5kIC1sZ2NjKS4NCj4gDQo+IEkgc2ltcGx5IGNhbGw6DQo+
-IA0KPiDCoMKgIGNtYWtlIC1HIE5pbmphIC0tdG9vbGNoYWluICVDTUFLRV9UT09MQ0hBSU5fRklM
-RSUgLUIgYnVpbGQgLVMgLg0KPiANCj4gQW5kIEkgZ2V0DQo+IMKgwqDCoCANCj4gwqDCoMKgIC0t
-IFRoZSBDWFggY29tcGlsZXIgaWRlbnRpZmljYXRpb24gaXMgR05VIDE0LjIuMA0KPiDCoMKgwqAg
-LS0gRGV0ZWN0aW5nIENYWCBjb21waWxlciBBQkkgaW5mbw0KPiDCoMKgwqAgLS0gRGV0ZWN0aW5n
-IENYWCBjb21waWxlciBBQkkgaW5mbyAtIGZhaWxlZA0KPiDCoMKgwqAgLS0gQ2hlY2sgZm9yIHdv
-cmtpbmcgQ1hYIGNvbXBpbGVyOg0KPiBDOi9kZXYvc2RrL2JmMTMzL3N5c3Jvb3RzL3g4Nl82NC13
-NjQtbWluZ3czMi91c3IvYmluL3Bvd2VycGM2NC1iZjEzMy0NCj4gbGludXgvcG93ZXJwYzY0LWJm
-MTMzLWxpbnV4LWcrKy5leGUNCj4gwqDCoMKgIC0tIENoZWNrIGZvciB3b3JraW5nIENYWCBjb21w
-aWxlcjoNCj4gQzovZGV2L3Nkay9iZjEzMy9zeXNyb290cy94ODZfNjQtdzY0LW1pbmd3MzIvdXNy
-L2Jpbi9wb3dlcnBjNjQtYmYxMzMtDQo+IGxpbnV4L3Bvd2VycGM2NC1iZjEzMy1saW51eC1nKysu
-ZXhlIC0gYnJva2VuDQo+IMKgwqDCoCBDTWFrZSBFcnJvciBhdCBDOi9kZXYvc2RrL2JmMTMzL3N5
-c3Jvb3RzL3g4Nl82NC13NjQtDQo+IG1pbmd3MzIvdXNyL3NoYXJlL2NtYWtlLTMuMzEvTW9kdWxl
-cy9DTWFrZVRlc3RDWFhDb21waWxlci5jbWFrZTo3Mw0KPiAobWVzc2FnZSk6DQo+IMKgwqDCoMKg
-wqAgVGhlIEMrKyBjb21waWxlcg0KPiANCj4gwqDCoMKgwqDCoMKgwqAgIkM6L2Rldi9zZGsvYmYx
-MzMvc3lzcm9vdHMveDg2XzY0LXc2NC0NCj4gbWluZ3czMi91c3IvYmluL3Bvd2VycGM2NC1iZjEz
-My1saW51eC9wb3dlcnBjNjQtYmYxMzMtbGludXgtZysrLmV4ZSINCj4gDQo+IMKgwqDCoMKgwqAg
-aXMgbm90IGFibGUgdG8gY29tcGlsZSBhIHNpbXBsZSB0ZXN0IHByb2dyYW0uDQo+IA0KPiDCoMKg
-wqDCoMKgIEl0IGZhaWxzIHdpdGggdGhlIGZvbGxvd2luZyBvdXRwdXQ6DQo+IA0KPiDCoMKgwqDC
-oMKgwqDCoCBDaGFuZ2UgRGlyOg0KPiAnQzovZGV2L25ldGNhbi9idWlsZC9DTWFrZUZpbGVzL0NN
-YWtlU2NyYXRjaC9UcnlDb21waWxlLTlhbWdjYicNCj4gDQo+IMKgwqDCoMKgwqDCoMKgIFJ1biBC
-dWlsZCBDb21tYW5kKHMpOiBDOi9QUk9HUkF+MS9uaW5qYS9uaW5qYS5leGUgLXYNCj4gY21UQ18w
-MTg5MA0KPiDCoMKgwqDCoMKgwqDCoCBbMS8yXSBDOlxkZXZcc2RrXGJmMTMzXHN5c3Jvb3RzXHg4
-Nl82NC13NjQtDQo+IG1pbmd3MzJcdXNyXGJpblxwb3dlcnBjNjQtYmYxMzMtbGludXhccG93ZXJw
-YzY0LWJmMTMzLWxpbnV4LWcrKy5leGXCoMKgDQo+IC1tYmlnLWVuZGlhbiAtbWhhcmQtZmxvYXQg
-LW02NCAtbWNwdT1lNTUwMCAtZnN0YWNrLXByb3RlY3Rvci1zdHJvbmfCoA0KPiAtTzIgLURfRk9S
-VElGWV9TT1VSQ0U9MiAtV2Zvcm1hdCAtV2Zvcm1hdC1zZWN1cml0eSAtV2Vycm9yPWZvcm1hdC0N
-Cj4gc2VjdXJpdHkgLS1zeXNyb290PUM6L2Rldi9zZGsvYmYxMzMvc3lzcm9vdHMvcHBjNjRlNTUw
-MC1iZjEzMy1saW51eCAtDQo+IC1zeXNyb290PUM6L2Rldi9zZGsvYmYxMzMvc3lzcm9vdHMvcHBj
-NjRlNTUwMC1iZjEzMy1saW51eMKgwqAgLU8yIC1nwqAgLQ0KPiBwaXBlIC1vIENNYWtlRmlsZXMv
-Y21UQ18wMTg5MC5kaXIvdGVzdENYWENvbXBpbGVyLmN4eC5vIC1jDQo+IEM6L2Rldi9uZXRjYW4v
-YnVpbGQvQ01ha2VGaWxlcy9DTWFrZVNjcmF0Y2gvVHJ5Q29tcGlsZS0NCj4gOWFtZ2NiL3Rlc3RD
-WFhDb21waWxlci5jeHgNCj4gwqDCoMKgwqDCoMKgwqAgWzIvMl0gQzpcV2luZG93c1xzeXN0ZW0z
-MlxjbWQuZXhlIC9DICJjZCAuICYmDQo+IEM6XGRldlxzZGtcYmYxMzNcc3lzcm9vdHNceDg2XzY0
-LXc2NC1taW5ndzMyXHVzclxiaW5ccG93ZXJwYzY0LWJmMTMzLQ0KPiBsaW51eFxwb3dlcnBjNjQt
-YmYxMzMtbGludXgtZysrLmV4ZcKgwqAgLW1iaWctZW5kaWFuIC1taGFyZC1mbG9hdCAtbTY0DQo+
-IC1tY3B1PWU1NTAwIC1mc3RhY2stcHJvdGVjdG9yLXN0cm9uZ8KgIC1PMiAtRF9GT1JUSUZZX1NP
-VVJDRT0yIC0NCj4gV2Zvcm1hdCAtV2Zvcm1hdC1zZWN1cml0eSAtV2Vycm9yPWZvcm1hdC1zZWN1
-cml0eSAtLQ0KPiBzeXNyb290PUM6L2Rldi9zZGsvYmYxMzMvc3lzcm9vdHMvcHBjNjRlNTUwMC1i
-ZjEzMy1saW51eCAtLQ0KPiBzeXNyb290PUM6L2Rldi9zZGsvYmYxMzMvc3lzcm9vdHMvcHBjNjRl
-NTUwMC1iZjEzMy1saW51eCAtTzIgLWfCoCAtDQo+IHBpcGUgLVdsLC1PMSAtV2wsLS1oYXNoLXN0
-eWxlPWdudSAtV2wsLS1hcy1uZWVkZWTCoCAtV2wsLXoscmVscm8sLQ0KPiB6LG5vdyBDTWFrZUZp
-bGVzL2NtVENfMDE4OTAuZGlyL3Rlc3RDWFhDb21waWxlci5jeHgubyAtbyBjbVRDXzAxODkwwqDC
-oA0KPiAmJiBjZCAuIg0KPiDCoMKgwqDCoMKgwqDCoCBGQUlMRUQ6IGNtVENfMDE4OTANCj4gwqDC
-oMKgwqDCoMKgwqAgQzpcV2luZG93c1xzeXN0ZW0zMlxjbWQuZXhlIC9DICJjZCAuICYmDQo+IEM6
-XGRldlxzZGtcYmYxMzNcc3lzcm9vdHNceDg2XzY0LXc2NC1taW5ndzMyXHVzclxiaW5ccG93ZXJw
-YzY0LWJmMTMzLQ0KPiBsaW51eFxwb3dlcnBjNjQtYmYxMzMtbGludXgtZysrLmV4ZcKgwqAgLW1i
-aWctZW5kaWFuIC1taGFyZC1mbG9hdCAtbTY0DQo+IC1tY3B1PWU1NTAwIC1mc3RhY2stcHJvdGVj
-dG9yLXN0cm9uZ8KgIC1PMiAtRF9GT1JUSUZZX1NPVVJDRT0yIC0NCj4gV2Zvcm1hdCAtV2Zvcm1h
-dC1zZWN1cml0eSAtV2Vycm9yPWZvcm1hdC1zZWN1cml0eSAtLQ0KPiBzeXNyb290PUM6L2Rldi9z
-ZGsvYmYxMzMvc3lzcm9vdHMvcHBjNjRlNTUwMC1iZjEzMy1saW51eCAtLQ0KPiBzeXNyb290PUM6
-L2Rldi9zZGsvYmYxMzMvc3lzcm9vdHMvcHBjNjRlNTUwMC1iZjEzMy1saW51eCAtTzIgLWfCoCAt
-DQo+IHBpcGUgLVdsLC1PMSAtV2wsLS1oYXNoLXN0eWxlPWdudSAtV2wsLS1hcy1uZWVkZWTCoCAt
-V2wsLXoscmVscm8sLQ0KPiB6LG5vdyBDTWFrZUZpbGVzL2NtVENfMDE4OTAuZGlyL3Rlc3RDWFhD
-b21waWxlci5jeHgubyAtbyBjbVRDXzAxODkwwqDCoA0KPiAmJiBjZCAuIg0KPiDCoMKgwqDCoMKg
-wqDCoCBDOi9kZXYvc2RrL2JmMTMzL3N5c3Jvb3RzL3g4Nl82NC13NjQtDQo+IG1pbmd3MzIvdXNy
-L2Jpbi9wb3dlcnBjNjQtYmYxMzMtbGludXgvLi4vLi4vbGliZXhlYy9wb3dlcnBjNjQtYmYxMzMt
-DQo+IGxpbnV4L2djYy9wb3dlcnBjNjQtYmYxMzMtbGludXgvMTQuMi4wL2xkLmV4ZTogY2Fubm90
-IGZpbmQgU2NydDEubzoNCj4gTm8gc3VjaCBmaWxlIG9yIGRpcmVjdG9yeQ0KPiDCoMKgwqDCoMKg
-wqDCoCBDOi9kZXYvc2RrL2JmMTMzL3N5c3Jvb3RzL3g4Nl82NC13NjQtDQo+IG1pbmd3MzIvdXNy
-L2Jpbi9wb3dlcnBjNjQtYmYxMzMtbGludXgvLi4vLi4vbGliZXhlYy9wb3dlcnBjNjQtYmYxMzMt
-DQo+IGxpbnV4L2djYy9wb3dlcnBjNjQtYmYxMzMtbGludXgvMTQuMi4wL2xkLmV4ZTogY2Fubm90
-IGZpbmQgY3J0aS5vOiBObw0KPiBzdWNoIGZpbGUgb3IgZGlyZWN0b3J5DQo+IMKgwqDCoMKgwqDC
-oMKgIEM6L2Rldi9zZGsvYmYxMzMvc3lzcm9vdHMveDg2XzY0LXc2NC0NCj4gbWluZ3czMi91c3Iv
-YmluL3Bvd2VycGM2NC1iZjEzMy1saW51eC8uLi8uLi9saWJleGVjL3Bvd2VycGM2NC1iZjEzMy0N
-Cj4gbGludXgvZ2NjL3Bvd2VycGM2NC1iZjEzMy1saW51eC8xNC4yLjAvbGQuZXhlOiBjYW5ub3Qg
-ZmluZA0KPiBjcnRiZWdpblMubzogTm8gc3VjaCBmaWxlIG9yIGRpcmVjdG9yeQ0KPiDCoMKgwqDC
-oMKgwqDCoCBDOi9kZXYvc2RrL2JmMTMzL3N5c3Jvb3RzL3g4Nl82NC13NjQtDQo+IG1pbmd3MzIv
-dXNyL2Jpbi9wb3dlcnBjNjQtYmYxMzMtbGludXgvLi4vLi4vbGliZXhlYy9wb3dlcnBjNjQtYmYx
-MzMtDQo+IGxpbnV4L2djYy9wb3dlcnBjNjQtYmYxMzMtbGludXgvMTQuMi4wL2xkLmV4ZTogY2Fu
-bm90IGZpbmQgLWxnY2M6IE5vDQo+IHN1Y2ggZmlsZSBvciBkaXJlY3RvcnkNCj4gwqDCoMKgwqDC
-oMKgwqAgY29sbGVjdDIuZXhlOiBlcnJvcjogbGQgcmV0dXJuZWQgMSBleGl0IHN0YXR1cw0KPiDC
-oMKgwqDCoMKgwqDCoCBuaW5qYTogYnVpbGQgc3RvcHBlZDogc3ViY29tbWFuZCBmYWlsZWQuDQo+
-IA0KPiANCj4gwqDCoMKgwqDCoCBDTWFrZSB3aWxsIG5vdCBiZSBhYmxlIHRvIGNvcnJlY3RseSBn
-ZW5lcmF0ZSB0aGlzIHByb2plY3QuDQo+IMKgwqDCoCBDYWxsIFN0YWNrIChtb3N0IHJlY2VudCBj
-YWxsIGZpcnN0KToNCj4gwqDCoMKgwqDCoCBDTWFrZUxpc3RzLnR4dDoyIChwcm9qZWN0KQ0KPiAN
-Cj4gwqDCoMKgIC0tIENvbmZpZ3VyaW5nIGluY29tcGxldGUsIGVycm9ycyBvY2N1cnJlZCENCj4g
-DQo+IA0KPiBBbSBJIGRvaW5nIHNvbWV0aGluZyB3cm9uZz8gQXJlIHRoZXJlIGFkZGl0aW9uYWwg
-cmVxdWlyZW1lbnRzIGZvciB0aGUNCj4gV2luZG93cyBTREsgZXhjZXB0IHRoZSBjb25maWd1cmF0
-aW9uIG9mIFNES01BQ0hJTkU/DQo+IA0KPiBUaGFua3MgZm9yIGFueSBoaW50cywgd2Uga2VlcCBz
-dHJ1Z2dsaW5nIHdpdGggdGhpcy4gSSdkIHJhdGhlciBoYXZlDQo+IG15DQo+IGNvbGxlYWd1ZXMg
-dXNlIExpbnV4IGJ1dCBJIGNhbm5vdCBjaGFuZ2UgdGhhdCwgdW5mb3J0dW5hdGVseS4NCj4gDQo+
-IEJSDQo+IERhdmUNCj4gDQo+IC09LT0tPS09LT0tPS09LT0tPS09LT0tDQo+IExpbmtzOiBZb3Ug
-cmVjZWl2ZSBhbGwgbWVzc2FnZXMgc2VudCB0byB0aGlzIGdyb3VwLg0KPiBWaWV3L1JlcGx5IE9u
-bGluZSAoIzY1MzAwKToNCj4gaHR0cHM6Ly9saXN0cy55b2N0b3Byb2plY3Qub3JnL2cveW9jdG8v
-bWVzc2FnZS82NTMwMA0KPiBNdXRlIFRoaXMgVG9waWM6IGh0dHBzOi8vbGlzdHMueW9jdG9wcm9q
-ZWN0Lm9yZy9tdC8xMTI4OTUzNzAvNzgwMTQ2NQ0KPiBHcm91cCBPd25lcjogeW9jdG8rb3duZXJA
-bGlzdHMueW9jdG9wcm9qZWN0Lm9yZw0KPiBVbnN1YnNjcmliZToNCj4gaHR0cHM6Ly9saXN0cy55
-b2N0b3Byb2plY3Qub3JnL2cveW9jdG8vdW5zdWLCoFtkYXZpZC5kYW5pZWxAdnJhZy5jaF0NCj4g
-LT0tPS09LT0tPS09LT0tPS09LT0tPS0NCg==
+There is no setup script on Windows to "install" the SDK like there is
+on Linux, so there's not really anything missing. There shouldn't be
+any relocation that needs to happen, but it's also possible cmake
+isn't working in the MinGW SDK for some reason.
+
+On Fri, May 9, 2025 at 6:13=E2=80=AFAM David Daniel via lists.yoctoproject.=
+org
+<david.daniel=3Dvrag.ch@lists.yoctoproject.org> wrote:
+>
+> What I realize is that on Linux I get a script to execute that then
+> relocates the SDK, rewrites paths etc. The windows SDK is just an
+> archive, there is no installer script. Nevertheless it contains post-
+> relocate-setup.sh - but no Windows batch file.
+>
+> Do my problems stem from the fact that the SDK is not setup correctly?
+> So I am missing an installation or post-decompress step?
+>
+> Still struggling, thanks for any hints!
+>
+> BR
+> Dave
+>
+> Am Freitag, dem 09.05.2025 um 08:55 +0000 schrieb David Daniel via
+> lists.yoctoproject.org:
+> > Hi there
+> >
+> > I have trouble using the SDK on Windows generated by meta-mingw.
+> > There
+> > are a few minor changes that need to be made to the environment setup
+> > file, namely the SDKROOT variable needs to be modified to only
+> > contain
+> > forward slashes - those paths get passed to gcc. So I modified this
+> > according to some link I found:
+> >
+> > https://github.com/darko31/yocto_cross_compile_sdk/blob/main/readme_win=
+.md
+> >
+> > By replacing the first line with
+> >
+> >     set SDKROOT=3D%~dp0%
+> >     set "SDKROOT=3D%SDKROOT:\=3D/%"
+> >
+> > The second thing was that the cmake.bat file was missing in the
+> > windows
+> > sysroots environment.d folder, there was only a cmake.sh file. But
+> > its
+> > easy to create it with
+> >
+> >     set
+> > CMAKE_TOOLCHAIN_FILE=3D%OECORE_NATIVE_SYSROOT%/usr/share/cmake/OEToolch
+> > ainConfig.cmake
+> >     set OE_CMAKE_FIND_LIBRARY_CUSTOM_LIB_SUFFIX=3D64
+> >
+> > The third thing was that within the Windows sysroots usr/share/cmake
+> > folder there was no generated toolchain file that came from the
+> > template. So there were only two files:
+> >
+> > - OEToolchainConfig.cmake
+> > - SDKToolchainConfig.cmake.template
+> >
+> > Whereas in the linux SDK there is a third file that was generated by
+> > the SDKToolchainConfig.cmake.template file.
+> >
+> > But even when I fix the above I cannot succeed to configure a build
+> > with cmake and the toolchain. I always get the error "is not able to
+> > compile a simple test program." with complaints that libs and objects
+> > cannot be found (cannot find Scrt1.o, cannot find crti.o, cannot find
+> > crtbebinS.o, cannot find -lgcc).
+> >
+> > I simply call:
+> >
+> >    cmake -G Ninja --toolchain %CMAKE_TOOLCHAIN_FILE% -B build -S .
+> >
+> > And I get
+> >
+> >     -- The CXX compiler identification is GNU 14.2.0
+> >     -- Detecting CXX compiler ABI info
+> >     -- Detecting CXX compiler ABI info - failed
+> >     -- Check for working CXX compiler:
+> > C:/dev/sdk/bf133/sysroots/x86_64-w64-mingw32/usr/bin/powerpc64-bf133-
+> > linux/powerpc64-bf133-linux-g++.exe
+> >     -- Check for working CXX compiler:
+> > C:/dev/sdk/bf133/sysroots/x86_64-w64-mingw32/usr/bin/powerpc64-bf133-
+> > linux/powerpc64-bf133-linux-g++.exe - broken
+> >     CMake Error at C:/dev/sdk/bf133/sysroots/x86_64-w64-
+> > mingw32/usr/share/cmake-3.31/Modules/CMakeTestCXXCompiler.cmake:73
+> > (message):
+> >       The C++ compiler
+> >
+> >         "C:/dev/sdk/bf133/sysroots/x86_64-w64-
+> > mingw32/usr/bin/powerpc64-bf133-linux/powerpc64-bf133-linux-g++.exe"
+> >
+> >       is not able to compile a simple test program.
+> >
+> >       It fails with the following output:
+> >
+> >         Change Dir:
+> > 'C:/dev/netcan/build/CMakeFiles/CMakeScratch/TryCompile-9amgcb'
+> >
+> >         Run Build Command(s): C:/PROGRA~1/ninja/ninja.exe -v
+> > cmTC_01890
+> >         [1/2] C:\dev\sdk\bf133\sysroots\x86_64-w64-
+> > mingw32\usr\bin\powerpc64-bf133-linux\powerpc64-bf133-linux-g++.exe
+> > -mbig-endian -mhard-float -m64 -mcpu=3De5500 -fstack-protector-strong
+> > -O2 -D_FORTIFY_SOURCE=3D2 -Wformat -Wformat-security -Werror=3Dformat-
+> > security --sysroot=3DC:/dev/sdk/bf133/sysroots/ppc64e5500-bf133-linux -
+> > -sysroot=3DC:/dev/sdk/bf133/sysroots/ppc64e5500-bf133-linux   -O2 -g  -
+> > pipe -o CMakeFiles/cmTC_01890.dir/testCXXCompiler.cxx.o -c
+> > C:/dev/netcan/build/CMakeFiles/CMakeScratch/TryCompile-
+> > 9amgcb/testCXXCompiler.cxx
+> >         [2/2] C:\Windows\system32\cmd.exe /C "cd . &&
+> > C:\dev\sdk\bf133\sysroots\x86_64-w64-mingw32\usr\bin\powerpc64-bf133-
+> > linux\powerpc64-bf133-linux-g++.exe   -mbig-endian -mhard-float -m64
+> > -mcpu=3De5500 -fstack-protector-strong  -O2 -D_FORTIFY_SOURCE=3D2 -
+> > Wformat -Wformat-security -Werror=3Dformat-security --
+> > sysroot=3DC:/dev/sdk/bf133/sysroots/ppc64e5500-bf133-linux --
+> > sysroot=3DC:/dev/sdk/bf133/sysroots/ppc64e5500-bf133-linux -O2 -g  -
+> > pipe -Wl,-O1 -Wl,--hash-style=3Dgnu -Wl,--as-needed  -Wl,-z,relro,-
+> > z,now CMakeFiles/cmTC_01890.dir/testCXXCompiler.cxx.o -o cmTC_01890
+> > && cd ."
+> >         FAILED: cmTC_01890
+> >         C:\Windows\system32\cmd.exe /C "cd . &&
+> > C:\dev\sdk\bf133\sysroots\x86_64-w64-mingw32\usr\bin\powerpc64-bf133-
+> > linux\powerpc64-bf133-linux-g++.exe   -mbig-endian -mhard-float -m64
+> > -mcpu=3De5500 -fstack-protector-strong  -O2 -D_FORTIFY_SOURCE=3D2 -
+> > Wformat -Wformat-security -Werror=3Dformat-security --
+> > sysroot=3DC:/dev/sdk/bf133/sysroots/ppc64e5500-bf133-linux --
+> > sysroot=3DC:/dev/sdk/bf133/sysroots/ppc64e5500-bf133-linux -O2 -g  -
+> > pipe -Wl,-O1 -Wl,--hash-style=3Dgnu -Wl,--as-needed  -Wl,-z,relro,-
+> > z,now CMakeFiles/cmTC_01890.dir/testCXXCompiler.cxx.o -o cmTC_01890
+> > && cd ."
+> >         C:/dev/sdk/bf133/sysroots/x86_64-w64-
+> > mingw32/usr/bin/powerpc64-bf133-linux/../../libexec/powerpc64-bf133-
+> > linux/gcc/powerpc64-bf133-linux/14.2.0/ld.exe: cannot find Scrt1.o:
+> > No such file or directory
+> >         C:/dev/sdk/bf133/sysroots/x86_64-w64-
+> > mingw32/usr/bin/powerpc64-bf133-linux/../../libexec/powerpc64-bf133-
+> > linux/gcc/powerpc64-bf133-linux/14.2.0/ld.exe: cannot find crti.o: No
+> > such file or directory
+> >         C:/dev/sdk/bf133/sysroots/x86_64-w64-
+> > mingw32/usr/bin/powerpc64-bf133-linux/../../libexec/powerpc64-bf133-
+> > linux/gcc/powerpc64-bf133-linux/14.2.0/ld.exe: cannot find
+> > crtbeginS.o: No such file or directory
+> >         C:/dev/sdk/bf133/sysroots/x86_64-w64-
+> > mingw32/usr/bin/powerpc64-bf133-linux/../../libexec/powerpc64-bf133-
+> > linux/gcc/powerpc64-bf133-linux/14.2.0/ld.exe: cannot find -lgcc: No
+> > such file or directory
+> >         collect2.exe: error: ld returned 1 exit status
+> >         ninja: build stopped: subcommand failed.
+> >
+> >
+> >       CMake will not be able to correctly generate this project.
+> >     Call Stack (most recent call first):
+> >       CMakeLists.txt:2 (project)
+> >
+> >     -- Configuring incomplete, errors occurred!
+> >
+> >
+> > Am I doing something wrong? Are there additional requirements for the
+> > Windows SDK except the configuration of SDKMACHINE?
+> >
+> > Thanks for any hints, we keep struggling with this. I'd rather have
+> > my
+> > colleagues use Linux but I cannot change that, unfortunately.
+> >
+> > BR
+> > Dave
+> >
+> >
+>
+> -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
+> Links: You receive all messages sent to this group.
+> View/Reply Online (#65301): https://lists.yoctoproject.org/g/yocto/messag=
+e/65301
+> Mute This Topic: https://lists.yoctoproject.org/mt/112895370/3616693
+> Group Owner: yocto+owner@lists.yoctoproject.org
+> Unsubscribe: https://lists.yoctoproject.org/g/yocto/unsub [JPEWhacker@gma=
+il.com]
+> -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
+>
 
