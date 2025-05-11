@@ -1,247 +1,81 @@
-Return-Path: <JPEWhacker@gmail.com>
+Return-Path: <edahlseng@yahoo.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 4208CC3ABC3
-	for <webhook@archiver.kernel.org>; Fri,  9 May 2025 14:26:23 +0000 (UTC)
-Received: from mail-lf1-f47.google.com (mail-lf1-f47.google.com [209.85.167.47])
- by mx.groups.io with SMTP id smtpd.web11.1.1746800774334024182
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 60AABC3ABC5
+	for <webhook@archiver.kernel.org>; Sun, 11 May 2025 04:37:23 +0000 (UTC)
+Received: from sonic306-22.consmr.mail.ne1.yahoo.com (sonic306-22.consmr.mail.ne1.yahoo.com [66.163.189.84])
+ by mx.groups.io with SMTP id smtpd.web10.24053.1746938233823658800
  for <yocto@lists.yoctoproject.org>;
- Fri, 09 May 2025 07:26:14 -0700
+ Sat, 10 May 2025 21:37:13 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20230601 header.b=h3qrCWpz;
- spf=pass (domain: gmail.com, ip: 209.85.167.47, mailfrom: jpewhacker@gmail.com)
-Received: by mail-lf1-f47.google.com with SMTP id 2adb3069b0e04-54addb5a139so2580498e87.0
-        for <yocto@lists.yoctoproject.org>; Fri, 09 May 2025 07:26:14 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1746800771; x=1747405571; darn=lists.yoctoproject.org;
-        h=content-transfer-encoding:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=cc2LRTZ5F4x0UssIrcaF6xqGX2imdJsbiMde2nSWM3Q=;
-        b=h3qrCWpzU7iJ4MNCkpuWXR/y9MFmldUf/7bj8HKCUiCITXUGYGl/nz9X496TofZdns
-         gesBE8sGWGzPzR7IszEuZQU0vWUBl25eGtcU9YNIVxNRwZv9LTAKYuuC8A1zgfvplQbQ
-         zqPwPinADjPR9/oUmHciVVK6RkR4erRnRQcxZJgMLzotwYP3/DPY7YUM9QObVnAn9Sm2
-         7bYkNfGF9zAk3HLbotzaIbFkklJEZRJiS2jovYglv7vvM17UAIkEY1LjvBpeq+wPlRCN
-         W2/QoacrTHV3Dp3s0lVEDgQDf4SZX3+7y5Nq5vQfPJMG7FN5k0M3bGGthmCnuu3HDEwU
-         KQNA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1746800771; x=1747405571;
-        h=content-transfer-encoding:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=cc2LRTZ5F4x0UssIrcaF6xqGX2imdJsbiMde2nSWM3Q=;
-        b=NDLTOY6YEm2npOwmKOyufdR2LFEgPXN/25HU4VexOL7Iwz3mQh8+9JM5UjLNv9TrCY
-         9SbeTW0Y/VymUfoweN3fygM/jqahk6YPwnohdhdf1y0F5YPzXlysOC9RxyHrb0160XTs
-         8XdKj37FKcHDA2hAmIIWtu9YMXFmocM3Fa5bmLvpoWXmlkX3g3B0I6LHA4VEmYQ/Gfrl
-         CVJuxR01AeaBZUV+U9HcC1casQ1QbDcu1l2oiXVBeFA8xO0130H/tOKnBTcvrtFgJSml
-         kvrZu0MI/QFtcbOuQ3XQ6ff+IMTArc/WjtxY212aFnan3ghjpeVp9z6C2uU6jFwdwEAR
-         DMew==
-X-Gm-Message-State: AOJu0Yy6wiuMUOm2sfX+6eT6KtNsKBC2QcCRcyCPHFu0mpfs2XbJ1UEr
-	SJYywEUvGrO6L2tG39mU6510YjF8a8qS9VXgKg8Ti8RGbYGdlaLG4hjiUkoG9PsEMsA3Lco4GCl
-	P4g4sCWGk7AEnvHfFBkvVjNUusMk/GQ==
-X-Gm-Gg: ASbGncvD4dUSVZ6N6dXj06T6+6deyZ8AWuTgi+Q2xr7MDV1wCUdH44m8Yykl+au/QzG
-	BtoBPRKpj99sAwv0qBMCupwEknL548l/LBx/R++uKRJk9diAjN67q51tmTTjdz62RXHRt6KuADo
-	pEQNh0ZxDOh/uVUp4vMbeNvuiixO6TtQ7/OueOYz1MbBNTM1Q=
-X-Google-Smtp-Source: AGHT+IFY7cI1QkP7tYrSp2uly2qdQqbdURB2onYb/QMogMsE15RE6b41kdIsVIbGTJxE6K4QcXu0X45fGkkDwLrgc0c=
-X-Received: by 2002:a05:6512:3c96:b0:54f:c1cd:c63d with SMTP id
- 2adb3069b0e04-54fc67e4683mr1446278e87.54.1746800770477; Fri, 09 May 2025
- 07:26:10 -0700 (PDT)
-MIME-Version: 1.0
-References: <183DCFFB81DE0E31.22015@lists.yoctoproject.org> <313eaa317c8b09936c20623afaa8087f0bb97c3a.camel@vrag.ch>
-In-Reply-To: <313eaa317c8b09936c20623afaa8087f0bb97c3a.camel@vrag.ch>
-From: Joshua Watt <jpewhacker@gmail.com>
-Date: Fri, 9 May 2025 08:25:57 -0600
-X-Gm-Features: AX0GCFsHfDdCBHmB6HWj1OloY_t2wQmmuFe1Gxz4nYYvggN36Tcdz8bVapqUOK0
-Message-ID: <CAJdd5Gb0=dN0_63sAWUTOLD+Zw5BT6Crzjq2DJfJLQztWG9-KA@mail.gmail.com>
-Subject: Re: [yocto] meta-mingw - how to use the SDK on Windows
-To: yocto@lists.yoctoproject.org, david.daniel@vrag.ch
-Content-Type: text/plain; charset="UTF-8"
+ dkim=pass header.i=@yahoo.com header.s=s2048 header.b=McKohQby;
+ spf=neutral (domain: yahoo.com, ip: 66.163.189.84, mailfrom: edahlseng@yahoo.com)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yahoo.com; s=s2048; t=1746938233; bh=Kcc5yqUBn9lAVx+KNv6jhR/s7b2e9cguhfgqOm7jau4=; h=From:Subject:Date:To:References:From:Subject:Reply-To; b=McKohQby2x4XuHmnnSFom9HZCF4P17dUcKJgxf0UXtvMsgkFfXn7tKg7IhA8qyxzv+7LJGnD36sOVjZBUeCvzUOaTFkbA4wBIbTEsUQB4U8F8bZrYFdqEuQ/pKKHMkNspgWwgYmdmCK+hV13Z2K20SZT2sUT4WEf4wgfAifa+8PpHHIaus2FGW4pusqQOhCdEtByb3hiISKMe1bK5VHqTuM9DGc8m0Z3yWWGqAoUzVYwnItsyu/+2MzW8zTZW5nIQcU6AMZehmxpW/8mG76TjsrdGMjQd6yWxo6lAEIqvvPMk2ED+bscaNOjejV+0ZEWYuyULNZ93m6BsG7BSWiDgA==
+X-SONIC-DKIM-SIGN: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yahoo.com; s=s2048; t=1746938233; bh=TvGqNvSqoCa11uyPFgKPF53WxNIUvpo4722UEOK1IFl=; h=X-Sonic-MF:From:Subject:Date:To:From:Subject; b=CByULNPWPPCa/eCNlKC9jeEUh72KCUp3aZ+Ub9ZDB1bxjJkztdLhQAWd3zitNgf6jDTFk6dWfyIEwpwNi8uXAkVJij/bwxJrhcNFA7+XeCBKLuY4c3qTyy/DcFq6qi5rb+infwdunhbmNIqV6WlrOrUHol8+Fuws0NNk99ALrUKwEChJ7oTxeOJpJYFSgMg4hBCIue0+9ZIUu+dPL5KlslPyLdwTnqmScACHw+Web/vQ3ZMILhKmmSbOJyZAWUfsAspgyd6itdnedbM0DSNTK4bFG2pL77GsWK2yWnvf9mSVvDaao8d0U6Sfy2yTpr1y/npfaCtLqnT6YkoQmq74GA==
+X-YMail-OSG: orZG3h4VM1n8eTSRdVGw7j2aW80D6YJDSit156Zjey8I__62A7ui_6k9zV0kYrg
+ wZAr3vahj8ilvIbUuoRjJgW8kQpbJnO1aFUAwVqxFwJZUZ4ASPsDnF7sO6E8O1Fh19k8t_.homcO
+ nd_srM16b.BL.Sc10tCRWcfvOPQF1R2lJf3ZoBO7O4AXK_gsN_fOi_7gkNzrBcUbKP0PpxWQk5_8
+ aXlUcp9MCwIqT7fPm54ImNTEjugIj0npMo6gLxNuGJXdLJ9DBkME0F1Oico0g3lin70Doswf.WEy
+ zMipOPtF6ZPOTDIMxTWPNB.y8lvV1MyGMTwer3LwcgOddhL7PxXOm7OZJm1csAmcy_n5czIM3a3G
+ Wr0TYDQJ9CAxQlafdUR.3TOt5s8qQkpZJubpHZnuCe1GMM3RCigBpyMGil3IL6XYNbygtFAPbO0u
+ OI95zQ9lsRQoTiZPbUIPtSbHWYl0xaVVxYiLm_0GLR5IIyMiD42Y0KRzt0ik8CMlWp5.Q9uPdYiQ
+ fcVPBBZR_xXLV_AAPC_AHNCC6nBN_.PFhxMBqx93Fzs7DfyL5WWjKUVb1itkMBmsTnheu.9utiNJ
+ BcrhjT0ToNeNveiSQ2qqJggJQqRBaeqg7uQckJKcPNmP7t0xlOjQYlDQtEJiDeHAsLvyexObeUGh
+ pnIrJnbVu66DFJj4Ns5T3m_CDDPMGUJ.ybGVgqGnwMb2oN0zEaIPzFylBrxGYOWKOGIiGIp7D4qb
+ iGR6LxC2tETIklUq7M6deh5SQzjp2EQnwWekxbiVCTBRXnVh1jEpnUFo0PvQkIB_LK5rj.EzcHed
+ 5PgJZR657ZtqKmse0L2BOXVHedWAcTuCKnl7LZqKhKE0scaIwUwwEIE5EO9PAV5l2231ncvcwioq
+ Y52cQeBTBwoVvaaAXdm5cflDC0skItwI9IZp3cnQvyLnEVtAOxSqUNcQdCPlZMYd.iGqYTaG5HBo
+ Yre3cEfyQNrGiYPN2BoH90U5yxPf8EBJRq05.jS_fi0X_I1xuBZgm8lOiZebHAwGfiHLBy45uGjR
+ u5LRG7NacgtO2N7uwC7bZq9fGUYdlL.2mN8MjW0F9aebb4ne_lFJfoUkAY8S4M.mAS1qo9lRrdgz
+ zKOkF4waaFcuFc4L3MMI_XvsFqg7jwjHPU4CpR2yN_VpAXY6nGLH4rFnYSg6FrsvUnUDoQ1ahCQS
+ fmPS6RAVim4t46FOIlaIQ.lp00viUyMt8ovLp8LBwh10qlpoRwfySdJZ93HqTx2enjIMGxKiTBLM
+ WAVNjciUIUyHGHHFoEh_uJx1mKg92XRKbmuuQAJ1i_Wc_4M9WxSL4y1EaNncR5T_GztQ8GQLtSZm
+ ._a2hMvAqZjX9hb64otkgtTSocvR9EocLYrE5poa1ZIAci7rEaxsws7FW35P_C6YoUT4bS7uGtbj
+ f3zKxobmxV0dB3WLihsdn34uep0.FDbSW5QV66jEtket1iDfFbA044abnH9lO0Qk10YywwngH8h1
+ 6ZCkTxAwie1.0QdXuVIyEI6lFW34wPzGnRX5BdAmk7L4ZhUyVc31Z_vzY47f10..H1v703p21XGO
+ cukuazS3iTWnG5rGZbu9IwzS0lWF5oiA_GQX5FfbYiWcZAwB33DEsLhT.SJd9o7JtgaXLkPmgv1Y
+ PikEaCQK1U1TdA7747V51EqY.tfrSEes_9u7I1NoKuZ4VDnAhgz0ArjQspSphri_QyJPhsTp_ZFq
+ Y1QFO4zGl64MYXMpkL97ZrItt5pxgkYYajWppTLuTeflOrson2S0sStrqoPuZ6BJcWPJ15hLMrNb
+ wg.RMC2giS9ZtijJbMrV75eyUpfe.6C5m8C7qqWdpCvydR24VjI7LfSZcbrio5tmcfM_DOLlxgdG
+ qB1HooPtiKOIbmm1d9BRotYW8E2qgr4l_GArWNudGYMJ.PImlkMtwyEXNy_k_ZFk7uWvMoXowzq0
+ xU.sxs3n.V_0TmDzRxJzKfx0tH3QGbt8uCjTyx_sOZHDxMqvKswBn0tauOWKr5b8EXLFuDdjczZp
+ OkF367PYxgDCwhU7p7LmdHPSqHR5bUtgt.ISblQq3S8gDD4EHEkpTzbVD.ykGboSN5DxtUALJyFF
+ anoyn3lf9alXPY7eXTfPl0q_ChO0bQwqNOWJNm3YAAHmZXMXrkDCOsnzGygWtHZSIMStaAh3DUIc
+ G6IUjGXMHl.8wuvRVlokr8uMvULzJILppEnnBxP_f9p_HLf58vtWxUWhR.32S_wpHk0F0eViQh90
+ tAlzcX1AefsQoav9chcCij_D0hoLQkLgtgFwT5IFLxcK5NEfDsDKOtCXeQqk-
+X-Sonic-MF: <edahlseng@yahoo.com>
+X-Sonic-ID: 2b4063d4-c6e7-4d94-86c5-69e4fb91d6c0
+Received: from sonic.gate.mail.ne1.yahoo.com by sonic306.consmr.mail.ne1.yahoo.com with HTTP; Sun, 11 May 2025 04:37:13 +0000
+Received: by hermes--production-gq1-74d64bb7d7-fddgg (Yahoo Inc. Hermes SMTP Server) with ESMTPA ID 461522482283c3a7019719d106163167;
+          Sun, 11 May 2025 04:37:10 +0000 (UTC)
+Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: quoted-printable
+From: Eric Dahlseng <edahlseng@yahoo.com>
+Mime-Version: 1.0 (1.0)
+Subject: How to include author/maintainer in SBOM
+Message-Id: <6C44564C-884B-4618-A2E4-0FDE612FC330@yahoo.com>
+Date: Sat, 10 May 2025 21:36:59 -0700
+To: yocto@lists.yoctoproject.org
+X-Mailer: iPhone Mail (22E252)
+References: <6C44564C-884B-4618-A2E4-0FDE612FC330.ref@yahoo.com>
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Fri, 09 May 2025 14:26:23 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/65302
+ <yocto@lists.yoctoproject.org>; Sun, 11 May 2025 04:37:23 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/65303
 
-There is no setup script on Windows to "install" the SDK like there is
-on Linux, so there's not really anything missing. There shouldn't be
-any relocation that needs to happen, but it's also possible cmake
-isn't working in the MinGW SDK for some reason.
+=EF=BB=BFHi everyone,
 
-On Fri, May 9, 2025 at 6:13=E2=80=AFAM David Daniel via lists.yoctoproject.=
-org
-<david.daniel=3Dvrag.ch@lists.yoctoproject.org> wrote:
->
-> What I realize is that on Linux I get a script to execute that then
-> relocates the SDK, rewrites paths etc. The windows SDK is just an
-> archive, there is no installer script. Nevertheless it contains post-
-> relocate-setup.sh - but no Windows batch file.
->
-> Do my problems stem from the fact that the SDK is not setup correctly?
-> So I am missing an installation or post-decompress step?
->
-> Still struggling, thanks for any hints!
->
-> BR
-> Dave
->
-> Am Freitag, dem 09.05.2025 um 08:55 +0000 schrieb David Daniel via
-> lists.yoctoproject.org:
-> > Hi there
-> >
-> > I have trouble using the SDK on Windows generated by meta-mingw.
-> > There
-> > are a few minor changes that need to be made to the environment setup
-> > file, namely the SDKROOT variable needs to be modified to only
-> > contain
-> > forward slashes - those paths get passed to gcc. So I modified this
-> > according to some link I found:
-> >
-> > https://github.com/darko31/yocto_cross_compile_sdk/blob/main/readme_win=
-.md
-> >
-> > By replacing the first line with
-> >
-> >     set SDKROOT=3D%~dp0%
-> >     set "SDKROOT=3D%SDKROOT:\=3D/%"
-> >
-> > The second thing was that the cmake.bat file was missing in the
-> > windows
-> > sysroots environment.d folder, there was only a cmake.sh file. But
-> > its
-> > easy to create it with
-> >
-> >     set
-> > CMAKE_TOOLCHAIN_FILE=3D%OECORE_NATIVE_SYSROOT%/usr/share/cmake/OEToolch
-> > ainConfig.cmake
-> >     set OE_CMAKE_FIND_LIBRARY_CUSTOM_LIB_SUFFIX=3D64
-> >
-> > The third thing was that within the Windows sysroots usr/share/cmake
-> > folder there was no generated toolchain file that came from the
-> > template. So there were only two files:
-> >
-> > - OEToolchainConfig.cmake
-> > - SDKToolchainConfig.cmake.template
-> >
-> > Whereas in the linux SDK there is a third file that was generated by
-> > the SDKToolchainConfig.cmake.template file.
-> >
-> > But even when I fix the above I cannot succeed to configure a build
-> > with cmake and the toolchain. I always get the error "is not able to
-> > compile a simple test program." with complaints that libs and objects
-> > cannot be found (cannot find Scrt1.o, cannot find crti.o, cannot find
-> > crtbebinS.o, cannot find -lgcc).
-> >
-> > I simply call:
-> >
-> >    cmake -G Ninja --toolchain %CMAKE_TOOLCHAIN_FILE% -B build -S .
-> >
-> > And I get
-> >
-> >     -- The CXX compiler identification is GNU 14.2.0
-> >     -- Detecting CXX compiler ABI info
-> >     -- Detecting CXX compiler ABI info - failed
-> >     -- Check for working CXX compiler:
-> > C:/dev/sdk/bf133/sysroots/x86_64-w64-mingw32/usr/bin/powerpc64-bf133-
-> > linux/powerpc64-bf133-linux-g++.exe
-> >     -- Check for working CXX compiler:
-> > C:/dev/sdk/bf133/sysroots/x86_64-w64-mingw32/usr/bin/powerpc64-bf133-
-> > linux/powerpc64-bf133-linux-g++.exe - broken
-> >     CMake Error at C:/dev/sdk/bf133/sysroots/x86_64-w64-
-> > mingw32/usr/share/cmake-3.31/Modules/CMakeTestCXXCompiler.cmake:73
-> > (message):
-> >       The C++ compiler
-> >
-> >         "C:/dev/sdk/bf133/sysroots/x86_64-w64-
-> > mingw32/usr/bin/powerpc64-bf133-linux/powerpc64-bf133-linux-g++.exe"
-> >
-> >       is not able to compile a simple test program.
-> >
-> >       It fails with the following output:
-> >
-> >         Change Dir:
-> > 'C:/dev/netcan/build/CMakeFiles/CMakeScratch/TryCompile-9amgcb'
-> >
-> >         Run Build Command(s): C:/PROGRA~1/ninja/ninja.exe -v
-> > cmTC_01890
-> >         [1/2] C:\dev\sdk\bf133\sysroots\x86_64-w64-
-> > mingw32\usr\bin\powerpc64-bf133-linux\powerpc64-bf133-linux-g++.exe
-> > -mbig-endian -mhard-float -m64 -mcpu=3De5500 -fstack-protector-strong
-> > -O2 -D_FORTIFY_SOURCE=3D2 -Wformat -Wformat-security -Werror=3Dformat-
-> > security --sysroot=3DC:/dev/sdk/bf133/sysroots/ppc64e5500-bf133-linux -
-> > -sysroot=3DC:/dev/sdk/bf133/sysroots/ppc64e5500-bf133-linux   -O2 -g  -
-> > pipe -o CMakeFiles/cmTC_01890.dir/testCXXCompiler.cxx.o -c
-> > C:/dev/netcan/build/CMakeFiles/CMakeScratch/TryCompile-
-> > 9amgcb/testCXXCompiler.cxx
-> >         [2/2] C:\Windows\system32\cmd.exe /C "cd . &&
-> > C:\dev\sdk\bf133\sysroots\x86_64-w64-mingw32\usr\bin\powerpc64-bf133-
-> > linux\powerpc64-bf133-linux-g++.exe   -mbig-endian -mhard-float -m64
-> > -mcpu=3De5500 -fstack-protector-strong  -O2 -D_FORTIFY_SOURCE=3D2 -
-> > Wformat -Wformat-security -Werror=3Dformat-security --
-> > sysroot=3DC:/dev/sdk/bf133/sysroots/ppc64e5500-bf133-linux --
-> > sysroot=3DC:/dev/sdk/bf133/sysroots/ppc64e5500-bf133-linux -O2 -g  -
-> > pipe -Wl,-O1 -Wl,--hash-style=3Dgnu -Wl,--as-needed  -Wl,-z,relro,-
-> > z,now CMakeFiles/cmTC_01890.dir/testCXXCompiler.cxx.o -o cmTC_01890
-> > && cd ."
-> >         FAILED: cmTC_01890
-> >         C:\Windows\system32\cmd.exe /C "cd . &&
-> > C:\dev\sdk\bf133\sysroots\x86_64-w64-mingw32\usr\bin\powerpc64-bf133-
-> > linux\powerpc64-bf133-linux-g++.exe   -mbig-endian -mhard-float -m64
-> > -mcpu=3De5500 -fstack-protector-strong  -O2 -D_FORTIFY_SOURCE=3D2 -
-> > Wformat -Wformat-security -Werror=3Dformat-security --
-> > sysroot=3DC:/dev/sdk/bf133/sysroots/ppc64e5500-bf133-linux --
-> > sysroot=3DC:/dev/sdk/bf133/sysroots/ppc64e5500-bf133-linux -O2 -g  -
-> > pipe -Wl,-O1 -Wl,--hash-style=3Dgnu -Wl,--as-needed  -Wl,-z,relro,-
-> > z,now CMakeFiles/cmTC_01890.dir/testCXXCompiler.cxx.o -o cmTC_01890
-> > && cd ."
-> >         C:/dev/sdk/bf133/sysroots/x86_64-w64-
-> > mingw32/usr/bin/powerpc64-bf133-linux/../../libexec/powerpc64-bf133-
-> > linux/gcc/powerpc64-bf133-linux/14.2.0/ld.exe: cannot find Scrt1.o:
-> > No such file or directory
-> >         C:/dev/sdk/bf133/sysroots/x86_64-w64-
-> > mingw32/usr/bin/powerpc64-bf133-linux/../../libexec/powerpc64-bf133-
-> > linux/gcc/powerpc64-bf133-linux/14.2.0/ld.exe: cannot find crti.o: No
-> > such file or directory
-> >         C:/dev/sdk/bf133/sysroots/x86_64-w64-
-> > mingw32/usr/bin/powerpc64-bf133-linux/../../libexec/powerpc64-bf133-
-> > linux/gcc/powerpc64-bf133-linux/14.2.0/ld.exe: cannot find
-> > crtbeginS.o: No such file or directory
-> >         C:/dev/sdk/bf133/sysroots/x86_64-w64-
-> > mingw32/usr/bin/powerpc64-bf133-linux/../../libexec/powerpc64-bf133-
-> > linux/gcc/powerpc64-bf133-linux/14.2.0/ld.exe: cannot find -lgcc: No
-> > such file or directory
-> >         collect2.exe: error: ld returned 1 exit status
-> >         ninja: build stopped: subcommand failed.
-> >
-> >
-> >       CMake will not be able to correctly generate this project.
-> >     Call Stack (most recent call first):
-> >       CMakeLists.txt:2 (project)
-> >
-> >     -- Configuring incomplete, errors occurred!
-> >
-> >
-> > Am I doing something wrong? Are there additional requirements for the
-> > Windows SDK except the configuration of SDKMACHINE?
-> >
-> > Thanks for any hints, we keep struggling with this. I'd rather have
-> > my
-> > colleagues use Linux but I cannot change that, unfortunately.
-> >
-> > BR
-> > Dave
-> >
-> >
->
-> -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
-> Links: You receive all messages sent to this group.
-> View/Reply Online (#65301): https://lists.yoctoproject.org/g/yocto/messag=
-e/65301
-> Mute This Topic: https://lists.yoctoproject.org/mt/112895370/3616693
-> Group Owner: yocto+owner@lists.yoctoproject.org
-> Unsubscribe: https://lists.yoctoproject.org/g/yocto/unsub [JPEWhacker@gma=
-il.com]
-> -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
->
+I=E2=80=99m working on a Yocto project in a regulated space and need to docu=
+ment an SBOM containing name, version, and =E2=80=9Cmanufacturer=E2=80=9D fo=
+r all components. I generated an SBOM for our project with the create-spdx c=
+lass, but I do not see any =E2=80=9Cmanufacturer=E2=80=9D/author/maintainer i=
+nformation included in the output. Is there a way to add anything like that t=
+o the SBOM output? This particular project is still on Kirkstone in case tha=
+t makes a difference.
+
+Thanks in advance for your help!
+Eric=
+
 
