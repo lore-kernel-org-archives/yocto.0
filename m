@@ -1,97 +1,81 @@
-Return-Path: <hassanchattarki@gmail.com>
+Return-Path: <alex.kanavin@gmail.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 788E4C3ABBC
-	for <webhook@archiver.kernel.org>; Mon, 12 May 2025 08:06:11 +0000 (UTC)
-Received: from mail-ej1-f43.google.com (mail-ej1-f43.google.com [209.85.218.43])
- by mx.groups.io with SMTP id smtpd.web11.45096.1747037169189714229
+	by smtp.lore.kernel.org (Postfix) with ESMTP id B8F36C3ABBC
+	for <webhook@archiver.kernel.org>; Mon, 12 May 2025 08:55:31 +0000 (UTC)
+Received: from mail-qv1-f47.google.com (mail-qv1-f47.google.com [209.85.219.47])
+ by mx.groups.io with SMTP id smtpd.web10.45773.1747040127346163912
  for <yocto@lists.yoctoproject.org>;
- Mon, 12 May 2025 01:06:09 -0700
+ Mon, 12 May 2025 01:55:27 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20230601 header.b=SWjkdoNI;
- spf=pass (domain: gmail.com, ip: 209.85.218.43, mailfrom: hassanchattarki@gmail.com)
-Received: by mail-ej1-f43.google.com with SMTP id a640c23a62f3a-acb39c45b4eso677870766b.1
-        for <yocto@lists.yoctoproject.org>; Mon, 12 May 2025 01:06:08 -0700 (PDT)
+ dkim=pass header.i=@gmail.com header.s=20230601 header.b=CmPDMvcs;
+ spf=pass (domain: gmail.com, ip: 209.85.219.47, mailfrom: alex.kanavin@gmail.com)
+Received: by mail-qv1-f47.google.com with SMTP id 6a1803df08f44-6f5496972d3so40574396d6.0
+        for <yocto@lists.yoctoproject.org>; Mon, 12 May 2025 01:55:27 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1747037167; x=1747641967; darn=lists.yoctoproject.org;
-        h=to:subject:message-id:date:from:mime-version:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=/r2+pFEkOEYCsRs3YdwdYD4X1fvXEJl2dYw0DQaA+PQ=;
-        b=SWjkdoNITV0hhGdFWIX4RIXvIDOQUcz7bldrMzoy2sSFcA5q8ZgJs0mZzK414pK6ok
-         XMVt6HA+kPWFHT/jzQxueMksr18miF9AgtOVkXCzJoikv0MAszLIEcpSQ475lZorrRw4
-         dAAy/uKXsqKdfDZNgmBl2uNoKgJLAnbl2CBF0517MQBu6aWRpUU99OZSxGyl8PuG6Kgl
-         DsRmzYmxX0odeztGScyVGLdBHcuhFlahHZaX/hDdd9nq84B9ojLwP+s8eF3dL8ewJLuD
-         ePpQMwh0kgoDc7SqBI2kxzZD4KkMNMfCPSL4ihlc+JGReoFqmNa7YJYpp2Z6B2vrbj2j
-         bKmQ==
+        d=gmail.com; s=20230601; t=1747040126; x=1747644926; darn=lists.yoctoproject.org;
+        h=content-transfer-encoding:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=IU6G0sv64SybW62Hag537IvbBltKN9OmQ3YJhqal8QU=;
+        b=CmPDMvcs2rdXA5Q3BP2lSSJZhQnPFfNF4+FlSeZxFopWPEa/HJ4mGi61qNgNsFa+TZ
+         D3BxTh29Vnn7UODLMcW0Vl3sF3pTB6QAWYrGMyoFkaatwPbPnMCIF5bo4Ndt9BjDRc9y
+         CMEDe5j2lhuI1fDfOUDTh0Fh0T5NNtkPbQSIYstsMx8xJXTjVUOwCCKpP9gqwEDl3dOc
+         2ZiuFfw8JaOVWL2KEmzMfD7lVOm0g0fPIzwmaLr17MAY82KQa9reEdzcsSEVH2hoTDTa
+         ZOUlsmkd/2dZD9PLcOl99sBm4a4lrQJDc8DNEAGvIjLPU0dfxuxikpEhqvAXHnlYXmXY
+         rVAg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1747037167; x=1747641967;
-        h=to:subject:message-id:date:from:mime-version:x-gm-message-state
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=/r2+pFEkOEYCsRs3YdwdYD4X1fvXEJl2dYw0DQaA+PQ=;
-        b=BxH7bl0sZ9b9WZZi7GYUpk342ipCUcbjouXqHEL3ixqrV6VkntNRDXTxRhdEXvLQBf
-         YCx63cHbMGTYbIqtyhFQE03Sg7x9tZnPIJdSQu5wEOpm0ACIdpMc6Bjq9Noxh+nWmEhc
-         M9HS8z20nQb5tR4P8CeK3MxvsMWF5K7ieSnkYM37YTtjlF0KureYMOmRGiaZOlSkeoDF
-         w+Ok/+XJHjO+D1mlMgA0Qgs/FdxCLnGRkFmwzQDurqM+9E4kAbzD7XaK31bgd4FWiZ4A
-         ARkM9JJpvfK11k4HvzgFNfZfJOObOhu2osgD4tetP5n2RtvNT36u5ihg1LFIEqVl9bck
-         +oSw==
-X-Gm-Message-State: AOJu0YwUFrtjOtRF3HS1y7ooX5h4kzpBB4VJjEknNSkkDD3KdQMDl5il
-	NRjb9kZHvDQ5r2l1TcnyLsnVEVonF2ueIt+3WTFed1oTXumcJdNuNSyaXC8o0UHZANdStVAemeP
-	4uu2jqHrypSdxnwa5IcNkY3hGD5QftTgz
-X-Gm-Gg: ASbGncttbNAywsCubSiFzWXgrS0RNpdHrLHk6bKwl+sYTEPCP4vq2E02BrD0gxC5ji1
-	apXt1BGojPFU6GLGHg60MnoX3nJzv1+3eWJbBAWUS3SneMFC/1FxjyLgke48ve6236jATcD9Zel
-	DTpm8i4qE5bGHwoHQK91ld90VayZqRlg==
-X-Google-Smtp-Source: AGHT+IGSrWYRmQo6b7SGfDEN6e2zkId9gXiMQ4rj2RYhIUPAd1H5Fb2lKmO0SbMjGWTEDxAS3ADrc20uwmBMYr/Hv6w=
-X-Received: by 2002:a17:907:d402:b0:ad2:46b2:78b2 with SMTP id
- a640c23a62f3a-ad246b285famr516936966b.18.1747037167169; Mon, 12 May 2025
- 01:06:07 -0700 (PDT)
+        d=1e100.net; s=20230601; t=1747040126; x=1747644926;
+        h=content-transfer-encoding:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=IU6G0sv64SybW62Hag537IvbBltKN9OmQ3YJhqal8QU=;
+        b=f+RFWo7DN2XTGRSx4o4GKLk4GvFU9yHVlI58pth+jFcYLReB6huzZNlMsaFnWnNA0j
+         aUwNtRgkecslVedTCs0wZ/HxPmqZNHcdVt+naZ2awdZx8DLxAbwbpiSzlLiOpW3SLoO6
+         y984aMnuOlgtDFsBEJgQjEqcabBFCph0L1+LfwgKFEeT7X54wRBRuI+pvC/3U+ZVI6et
+         2ytk/oZJ8rGsoRAW7Pj6C6tqZqGocUukiHHp42+JDHIfxDYzQsgAgUDtyTIsylA5wVFp
+         RqfePAJbvuFtpijRqsoJxCxK70dMIz6g9n30rsCoPX/1BusBEtAYwY4xqbiyhko68dD8
+         MPqw==
+X-Gm-Message-State: AOJu0YzMJDHY9uXs6g4ByJdU3IzU3oltqr+BnXsgUj2y8c/i9bysR0da
+	gKVFATL2NjeXgWi5oQm4h2vBL+mbhcYgciioFw4JCRn7ZNjRlLzpFK8E27HDIrkBAJWunxc98te
+	YbIc+sG9uueVFFHX+Pmbxtfjz4rf0rA==
+X-Gm-Gg: ASbGnctPoUUbyDHmbM0iAd27LxW16Rld+mZgKA7mMCw9A2XRgaBer1zqq2nymI0jTsl
+	VwtrAHKH444TItzQD91sbBiaB3r/viRrKv284mP2LlATKYOO/HAxh48NySCIZ5eWYIZGckhRtXt
+	2HeZ6TH/XJE8C4MDtfzBqQHqapC1LY0ave/Q==
+X-Google-Smtp-Source: AGHT+IFMl5foCwb1lnn5bd6PBAVqdmQ+/fZlaJx7Qc46yI/ff0FvxY1ideQlE9whHfqhSwf8RK3m5Ocytf1SRHXf0eg=
+X-Received: by 2002:a05:6214:242e:b0:6ef:3de:5ff7 with SMTP id
+ 6a1803df08f44-6f6e47e760amr210260326d6.15.1747040126293; Mon, 12 May 2025
+ 01:55:26 -0700 (PDT)
 MIME-Version: 1.0
-From: MOHAMMED HASSAN <hassanchattarki@gmail.com>
-Date: Mon, 12 May 2025 13:35:55 +0530
-X-Gm-Features: AX0GCFuxhyJOOWoQtvW_xYyaJRAeTE76RyA3ktqaPYjd0EBT_42MRgeUY0-F2co
-Message-ID: <CAPJWBnjKUfZ4EYtWNq0AxhrEADs3Eb9NXBvEfW7pRdzYcw_cHw@mail.gmail.com>
-Subject: Size of production os image
-To: yocto@lists.yoctoproject.org
-Content-Type: multipart/alternative; boundary="000000000000c235fd0634ebc91e"
+References: <6C44564C-884B-4618-A2E4-0FDE612FC330.ref@yahoo.com> <6C44564C-884B-4618-A2E4-0FDE612FC330@yahoo.com>
+In-Reply-To: <6C44564C-884B-4618-A2E4-0FDE612FC330@yahoo.com>
+From: Alexander Kanavin <alex.kanavin@gmail.com>
+Date: Mon, 12 May 2025 10:55:16 +0200
+X-Gm-Features: AX0GCFul0lgm5DslV_rpsYwaZlRbb9sJLJHkT7QxqWyhW_eSJcyWqWPbEjKiv8k
+Message-ID: <CANNYZj8NVkJo7_gskB-FxwmdtLBXo+53tyvr+NnGty643rZp5A@mail.gmail.com>
+Subject: Re: [yocto] How to include author/maintainer in SBOM
+To: yocto@lists.yoctoproject.org, edahlseng@yahoo.com
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Mon, 12 May 2025 08:06:11 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/65306
+ <yocto@lists.yoctoproject.org>; Mon, 12 May 2025 08:55:31 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/65307
 
---000000000000c235fd0634ebc91e
-Content-Type: text/plain; charset="UTF-8"
+On Sun, 11 May 2025 at 06:37, Eric Dahlseng via lists.yoctoproject.org
+<edahlseng=3Dyahoo.com@lists.yoctoproject.org> wrote:
+> I=E2=80=99m working on a Yocto project in a regulated space and need to d=
+ocument an SBOM containing name, version, and =E2=80=9Cmanufacturer=E2=80=
+=9D for all components. I generated an SBOM for our project with the create=
+-spdx class, but I do not see any =E2=80=9Cmanufacturer=E2=80=9D/author/mai=
+ntainer information included in the output. Is there a way to add anything =
+like that to the SBOM output? This particular project is still on Kirkstone=
+ in case that makes a difference.
 
-Hi guys,
-My os image size is generally around 1 gb. I am working on  IOT gateway
-product. The funny thing is my actual bodies application is around 100MB
-including node modules. I know that yocto is mostly used for smaller
-footprint images but seems like I am doing something wrong. I have tried
-removing other irrelevant packages related to hdmi, audio, video and so on.
-Can you guys attest to this?
+It probably does. Kirkstone is three years old at this point, so you
+might want to set up master poky and check what happens there.
 
-On a side note can you guys let me know the os image size for your devices.
-
-I use yocto dunfell and kirkstone.
-
-Thanks,
-Hassan
-
---000000000000c235fd0634ebc91e
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-Hi guys,<div dir=3D"auto">My os image size is generally around 1 gb. I am w=
-orking on =C2=A0IOT gateway product. The funny thing is my actual bodies ap=
-plication is around 100MB including node modules. I know that yocto is most=
-ly used for smaller footprint images but seems like I am doing something=C2=
-=A0wrong. I have tried removing other irrelevant packages related to hdmi, =
-audio, video and so on.</div><div dir=3D"auto">Can you guys attest to this?=
-</div><div dir=3D"auto"><br></div><div dir=3D"auto">On a side note can you =
-guys let me know the os image size for your devices.</div><div dir=3D"auto"=
-><br></div><div dir=3D"auto">I use yocto dunfell and kirkstone.</div><div d=
-ir=3D"auto"><br></div><div dir=3D"auto">Thanks,</div><div dir=3D"auto">Hass=
-an</div>
-
---000000000000c235fd0634ebc91e--
+Alex
 
