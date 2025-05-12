@@ -1,783 +1,341 @@
-Return-Path: <u.apeiron@gmail.com>
+Return-Path: <david.daniel@vrag.ch>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 09678C3ABBC
-	for <webhook@archiver.kernel.org>; Mon, 12 May 2025 03:14:10 +0000 (UTC)
-Received: from mail-ej1-f42.google.com (mail-ej1-f42.google.com [209.85.218.42])
- by mx.groups.io with SMTP id smtpd.web11.41874.1747019644583971730
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 468E2C3ABC3
+	for <webhook@archiver.kernel.org>; Mon, 12 May 2025 07:15:41 +0000 (UTC)
+Received: from ZR1P278CU001.outbound.protection.outlook.com (ZR1P278CU001.outbound.protection.outlook.com [40.107.168.58])
+ by mx.groups.io with SMTP id smtpd.web10.44532.1747034139957521576
  for <yocto@lists.yoctoproject.org>;
- Sun, 11 May 2025 20:14:05 -0700
+ Mon, 12 May 2025 00:15:40 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20230601 header.b=eeJGIWwA;
- spf=pass (domain: gmail.com, ip: 209.85.218.42, mailfrom: u.apeiron@gmail.com)
-Received: by mail-ej1-f42.google.com with SMTP id a640c23a62f3a-ad221e3e5a2so393297466b.1
-        for <yocto@lists.yoctoproject.org>; Sun, 11 May 2025 20:14:04 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1747019642; x=1747624442; darn=lists.yoctoproject.org;
-        h=to:subject:message-id:date:from:mime-version:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=/3RX+Cvy67Udp30o+V4KuFllntGDaQPBoLpf1JN+pNI=;
-        b=eeJGIWwA35xXojY0Un/LeA4JLJKiNTOAWv/VhZFI3CdGhbco44kxguWL4s+YyPZOHb
-         7Mc/WRBjBl20CMFUQjOexrd/K82nCxXOjBwlXDSZF+KpylztuGGg2NJCeoaDN2QMwHf3
-         LgaakL0mp/eCVIJEWlJ9LtBKlVG8X3YYs5ER3alAe1sIbrPM/wzlW6Zg9/4N83crPE34
-         wQZ0Ofz+CbZl81sqidPEX+V6hpiQ4pSU2S98l4CCUlEXFJS1KL0KRkpvEJ+oVo1n/itl
-         bsxQ/alhVQ4QIH/YFH+DLKkePYYyuOvo+qbzo0KnvZMwI3K9sJ4WUnXLbUY0YIAcjBz+
-         pqBw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1747019642; x=1747624442;
-        h=to:subject:message-id:date:from:mime-version:x-gm-message-state
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=/3RX+Cvy67Udp30o+V4KuFllntGDaQPBoLpf1JN+pNI=;
-        b=sRzNl3saVZC2v3I9cXTBlPYf/WAJ23pz8FQy6ZVHSbZZhGdYSwT8RZKFq5tvdyBmwJ
-         hKKW2+OfZX32EdGveBPulI+spXXxayo5L7rUmFhox/+j2Wm6lphEJUD5kYemtVB9EAdF
-         u4y5hqD9FQLnVC167HxTm76XY3X4B8UB5qbwEY6TdyzJVfL4OiBJS8zyEtf0AUp+2NuX
-         +qyUcGkQjOsoAf5lJEnVzUycJUeR3Udqzew5OxZWhZPphs5eg6Z0PTnoedeLgQ7E88cp
-         dxY7Dl0tjCVJfdVDhm80Yt/Z74GqioZRLVWaqao9VxRw+p7pl4zFqEWc5zhfhETIrtLu
-         9d1w==
-X-Gm-Message-State: AOJu0YxTwsctav42LPWNAIvabVLTqAEIw7jzBP1yTI8WYImeBRmENB4R
-	Zserq9OfX99y052fil21rtMFXe6aqq0pqkmemVelRM+LZ1BXO9OF68Rry3VYClKz1xGkmmnYKU9
-	qcREIGMHdk6ZQuq0vpcVNO7UtOE4dlrhO
-X-Gm-Gg: ASbGncvdy9Oje/89WGFas/6BlK2JtpL2mYIHQs2oGstOFEvq/yaT7TuiUKiw9gBkvxO
-	90BmGmULpkZQ7Vrgu+hA6MiXt0alXFQtAMI2PJLr84s3XclqDP92BNVHeYSRYITa5SisGeJA+OX
-	omiTBenTq/GhmHk7a444UuBK3N0AsUNlV/Z8revFghsGuHV0JEkHuRmi0JUPvue4g=
-X-Google-Smtp-Source: AGHT+IHeOtGL/rTyJOHz79zDupNRphpLsU4KD22ZMEX9+YImlm2WCVFDRgzyzF7Y5J7eHxJriHglI8lFkY2ysH4fdTE=
-X-Received: by 2002:a17:907:1c91:b0:ad2:3eab:4998 with SMTP id
- a640c23a62f3a-ad23eab4c5cmr577954066b.32.1747019641831; Sun, 11 May 2025
- 20:14:01 -0700 (PDT)
+ dkim=pass header.i=@vrag.onmicrosoft.com header.s=selector1-vrag-onmicrosoft-com header.b=jnNi/ILV;
+ spf=pass (domain: vrag.ch, ip: 40.107.168.58, mailfrom: david.daniel@vrag.ch)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=CsykSd/kJ/cqNVv8yrzSDkdqDFpyyQ+mQ5JzlzjkQ9NgD+gmXDfptiIm7IkhQXlCcvEaw6s/3cyTSIr11EOjO3ZO4tg/aKKpEYkVkSiXCc98Q9Ih7t1GzSfPA3kGXkqQgv1v3nN133J4j4r65b/xwr35KJZBbV1Hq48TIe0CaGcHZ4/dz9PYa4l5T9Kx7GhqVzELU2a0AfGqUXTdcj7aaudkb2wRoOhwvWm820r3zqLijXxDuWZY4go0YpY+mXNB+goKKMOxw7jy6fak9yJ80HBmXjK+LNV6JXU/Q5yL29t7CTh2VmnQ0HGErLTqxxyeOaphINEs9QnhEhI4Q8yOMQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=9HuFZqpc8epN0l65jl018PpJUgz24xHRw2tDjo75Kqk=;
+ b=hHxWHemMTL647sXYcmKPbNy3jESEyzL3lXEulM4gOiGdRm2+gASGiqG2h8zNXab4McLJZAR+OaEY2RtX6azhYTPTHOwGmcBVZUVc7ska527dpAgANNt7L77xX8up+7VpiYr3RJMsyXiiK0q9D4YzMQcANSsqY4Lt/ylFbFs1VBgEQSDWkapk9eIQXwqZEZgr9c6jF3J7VlyLYBVbO2hn1k4ILBY9LtrZITHc4xxUnVO6fYfgKMBFGKaDGCuehm40U2yDkqeuiC5wy5GZFsxdR2eTFJPC6R0rUKacLHHWiz1OTx8eXKjrFJsKEQue61fpc+t5W+s19T6Co/uDNAN7fQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=vrag.ch; dmarc=pass action=none header.from=vrag.ch; dkim=pass
+ header.d=vrag.ch; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=vrag.onmicrosoft.com;
+ s=selector1-vrag-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=9HuFZqpc8epN0l65jl018PpJUgz24xHRw2tDjo75Kqk=;
+ b=jnNi/ILVRQ8ruKGqGZd/1ciVh27TNdkS7AhNFFdv6DbYxjbPfCTEpHdeygSS+BtkTISmoJenJy8xaOKx61mwU2MSiaZ13bZAh7blaq/4r9YBZFLluu8ZcBeLqn9pZN+5yF4bsmJG6s+PrctrH7zMZuGDeZLcRryy2OtnNKYz9Go=
+Received: from GVAP278MB0085.CHEP278.PROD.OUTLOOK.COM (2603:10a6:710:21::12)
+ by ZR2PPFCC3A7FE42.CHEP278.PROD.OUTLOOK.COM (2603:10a6:918::2ec) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8722.28; Mon, 12 May
+ 2025 07:15:35 +0000
+Received: from GVAP278MB0085.CHEP278.PROD.OUTLOOK.COM
+ ([fe80::9006:220c:1d6b:47dd]) by GVAP278MB0085.CHEP278.PROD.OUTLOOK.COM
+ ([fe80::9006:220c:1d6b:47dd%4]) with mapi id 15.20.8722.027; Mon, 12 May 2025
+ 07:15:34 +0000
+From: David Daniel <david.daniel@vrag.ch>
+To: "yocto@lists.yoctoproject.org" <yocto@lists.yoctoproject.org>
+Subject: Re: [yocto] meta-mingw - how to use the SDK on Windows
+Thread-Topic: [yocto] meta-mingw - how to use the SDK on Windows
+Thread-Index: AQHbwMANXJRkQjpFCUi9lPjpQkS6CrPKNh0AgAAk8YCABD6+gA==
+Date: Mon, 12 May 2025 07:15:34 +0000
+Message-ID: <118c5c506e861d9d8015767304ef13292c000953.camel@vrag.ch>
+References: <183DCFFB81DE0E31.22015@lists.yoctoproject.org>
+		 <313eaa317c8b09936c20623afaa8087f0bb97c3a.camel@vrag.ch>
+	 <CAJdd5Gb0=dN0_63sAWUTOLD+Zw5BT6Crzjq2DJfJLQztWG9-KA@mail.gmail.com>
+In-Reply-To: 
+ <CAJdd5Gb0=dN0_63sAWUTOLD+Zw5BT6Crzjq2DJfJLQztWG9-KA@mail.gmail.com>
+Accept-Language: de-CH, en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=vrag.ch;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: GVAP278MB0085:EE_|ZR2PPFCC3A7FE42:EE_
+x-ms-office365-filtering-correlation-id: 7ee8f6c0-e15d-4917-b69d-08dd9124c98d
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: 
+ BCL:0;ARA:13230040|376014|4022899009|1800799024|366016|38070700018;
+x-microsoft-antispam-message-info: 
+ =?utf-8?B?MUlWYm5nUk4wU0M2S09IUjRtOXpKSUFGNDM1M3lPMzJUY0Q3SE13bUgwYi94?=
+ =?utf-8?B?aTEwTmVQSmJDUTJTWXFPdFozQTVJemxFMVZZL2VqMHdOa01KUWVwZmpKMjE2?=
+ =?utf-8?B?UFBxY1V0Uy9ERUxIN3A0bC9CK3RVcUhweXkyQkNMK2Q2UTlJZytEaDUyWGlO?=
+ =?utf-8?B?eDN0R2tvUzJ6MmVYS1JxbzJ2M3dXUGNFQTlwUHlnZEtmSXgyQVlWUG5rUkgw?=
+ =?utf-8?B?dTR1eFBFTjZRaTBkM0JKWHhoWitIc2NHS1VMSDczaXpYdFNJeSt1NE0wQTc5?=
+ =?utf-8?B?d0wzRTdPdGp6R1o1Yk5mWFQyV0R0SXl6RWNPQ1ZsOCswd0NIVElMeU5YeFNY?=
+ =?utf-8?B?cUFNVkdOU1RpdzlTN3pjMjR3YmxvTE8rK2RObW1lWVplM1FnMFcwODdxQW96?=
+ =?utf-8?B?WG5tbEhlUmoreHk3YVp6UFhjQ001Y1M1TXRLczUzZytBYmFlc1RUYk1uODFy?=
+ =?utf-8?B?RTNkK0dNeUc1QUNpcFI0UnY2YWxGK2RBclBNQ2oyZXd2a0d3VUxpMEVuc0hM?=
+ =?utf-8?B?QWdlUSttZG45Rkh4ckF0QXRFbWNXNzhkcUVFb2ZDTEJUb1Jjd2FadDkwRFox?=
+ =?utf-8?B?bytkVWpMV3RoWWJKa0xrdGJ2a3kvRE9DZE5KOGVUV2ZnV1NYVlVsTTA5RzNa?=
+ =?utf-8?B?S2JiRGhTSzhubW5Pam5jVEptd2VGYkFnNDdnalU0WGZNTjhLS1p2cmxkRUg0?=
+ =?utf-8?B?WlkyVnFQbUVQTksyNWlTN2w2eWg0Zk9VSFkyK3J4U3h2VGgxQkh4VnVlNk4w?=
+ =?utf-8?B?SVFnekFhSkJ2S2dCRWxnaWJGUnRvQ3FHWGdaYlBVL252Uy90NHp1dzZiYXpC?=
+ =?utf-8?B?V0xqekhRWktuRno1Vytmd1B4USt6ekl2S09nNldWTkdTWHFvUHhKOUVLUVhU?=
+ =?utf-8?B?MEhvaTZxWU5kUGlWRHRST292RTYycVJpNE1wTDJST0YxQjNnWWQ0TGZKekt0?=
+ =?utf-8?B?ZVhVRlhLTUYzQ1ZuajV1Qm9KUERleXRIbGlzUmppNld3U2hsL0JtdEJpU2pC?=
+ =?utf-8?B?THRFQVVvQU1EbkRjQlJjTEZFeTBhbDQrbXcvZUlEakRXTDVtVVR5OW51T1Jj?=
+ =?utf-8?B?aEplODR2c1FvY0h6Qk9WK0pmNVQ0WEtvQzVJUVFwWnh3SmczZFNIa21NT0RC?=
+ =?utf-8?B?L0ZSZmllR2c5eGI1MXRJM1VEUmovSXQ4cUExTDFaTDRrNkUrS21EYUJ2a2FG?=
+ =?utf-8?B?LzREbk1oRXZScXZxWS9odDBHTUd3eXdCUE56ek9maDB0TlQvMThaUHhIdURO?=
+ =?utf-8?B?U3hzaHdEeEdVM1oxaDh0dUhNTmM5cjBVZEdSMnoyQzZzYjExMVp0VVBBcWtE?=
+ =?utf-8?B?QWV3TE1UVkJzWXBZWVVKbXJrQ0djcWNWaXEyUE95Q3p4U3FKQXZhQUhYWjF3?=
+ =?utf-8?B?WngxajlBVG9MUG9XU3gzcUpNcW1JQUQzd1Vjcm1yQUkzaU4ybmdibm5IUTVO?=
+ =?utf-8?B?UXFXTm5Nd0NiSzBLN3JaWEgrSG9ud3JOVVhCNFBrN0o3Z2lLelFDNWFORVRx?=
+ =?utf-8?B?dDd0dzVvYzd5eW1TdU9SNi9mblVtY083ckQ1UzZmb1dkVXIvcmFDT1ErRG5C?=
+ =?utf-8?B?dkdJc0dUbFdiNHp1bzlUV3NIUWpFMHhRYk8yUG9DRElCck5IN0F6WjVzMHlF?=
+ =?utf-8?B?OUVheUZ1UEpIR2VmSUNaMGVyMmp6K0loOGRvV1M3aWcxNDZmK0JKajB6ckRH?=
+ =?utf-8?B?aVhGQ1cvamQ1Mm5yU3ZZQUg5S3U5R2Nvc3Z1Wmh6MXg1b1NlRndtY2pxYVlW?=
+ =?utf-8?B?Q1lhV0p2NjVUcWgwcGRNMi9meFo1YUxqVXo1cXZyNzQ4NVN1enBubE9WMnQv?=
+ =?utf-8?B?Z3NRNFpsMTNpMzZGd3pCR3MrQVpQanZBLzE2dUZySmRHbEpmTjRONERLMVdV?=
+ =?utf-8?B?VmticllDRXBqY2JvR1pVUWRuSGZKY0FZRjN5TnlRTkIxdkVFQ3U4QU1WZUJi?=
+ =?utf-8?Q?aYLGBDoo3ew=3D?=
+x-forefront-antispam-report: 
+ CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:GVAP278MB0085.CHEP278.PROD.OUTLOOK.COM;PTR:;CAT:NONE;SFS:(13230040)(376014)(4022899009)(1800799024)(366016)(38070700018);DIR:OUT;SFP:1101;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: 
+ =?utf-8?B?bXRicGFYZUxHUTVzK1BuZ3pBVVVYWlF1TUU5UXgyc2lDYjBIaEpVYUhITFVq?=
+ =?utf-8?B?VVdFT1B3eEVBcVNsYStkcGNqL0hraTV4M21RdWNOSXd1WG1SWVg5VngwbHJX?=
+ =?utf-8?B?SW1QQUV0aXhZd01jUHpMcWs4M0p4Qm1DOTVhQlRsWHBmenVrNlpsWk9JZ3l3?=
+ =?utf-8?B?K3c0WVRML1ZXRnJ5bFB4RFJjM2czRVBUdk0zRGgreTNrUUc4WXdUQVQzMHNx?=
+ =?utf-8?B?TVdqeS8yaWxvMmlsaExZZEZBb1FaWTBhYjJRb0RSL044REQvdDdyR1pUV0lk?=
+ =?utf-8?B?amlYNGdWM3p6TWRENnB0Wk5rQWhlaXV4MXo3ZVhTKzRXUHIxSGFHUDkwVTBJ?=
+ =?utf-8?B?OUVpYmdnOFlYR2Y5OFdTbGgxMFBpOHZ0ZHlsYmJSeFhhdlltLys5K0pGa3E5?=
+ =?utf-8?B?YUJMSS9SSXdUZndBTnBsNWFGQmFKdEk1RXVuY2ZsYjdYTDlFVW9OUER1V1Vn?=
+ =?utf-8?B?UFBCY0F5VXlrazNJZzBndDZEVHU0clFmY1NtRGw1K2EzWXlMdWs4bG94eFg4?=
+ =?utf-8?B?N24vUzExUmZzbXhmTG5Xa1ZYY3M1Q1FxK2cyZnlOU1htcDZaYzA1cHFneDR5?=
+ =?utf-8?B?Qm9CNUJ5RURleHN1WTV4QllJTHlEUlVYTWMzblBZTit2VmgwQjNtRDBnMXVG?=
+ =?utf-8?B?OEM3SzFiNTE4aVhpbGtzckFuNXp6elFpUjcrVTR0cFA0YWhNNFNycGgvR2py?=
+ =?utf-8?B?cjd1UWROcTVyM1Bvc3N6ZGsxNzdZSnNCVkhIVS9ud1VXdDZIQlpSRXNJMzc2?=
+ =?utf-8?B?cCtwSnlzOHNtZjZhSGRibzUyNjRLcnowaE5WM28reXJ3VldONUUwczM0Y2hh?=
+ =?utf-8?B?N2NQVHBadmlUR2NPWUMyTUJYWFZ4OGo2cE1VR1ovSDRaeXFpQWhPTHVDalB5?=
+ =?utf-8?B?TkZ1L2N5V1lIRGhnZS9LTDBLRDhKU1BvZUVyRTdTb2Ewa0V3K3lyNWJpZnpF?=
+ =?utf-8?B?bUdBaVozYnZhR1E2cEMxTzhtK2lVQWlOS2pPWmRFa28raXdWTnMvL3E1N1Mv?=
+ =?utf-8?B?QjlwTGpqQ2JEQzcrOU81RE04VUUvc0NhNlBScmlmdEpUSVVwVEhtdmg1cWEr?=
+ =?utf-8?B?Y0lxOTlzS3laTy95MWxpTklKRUtxYktrMW1oVVZsQ3d5RzVGRTdOMXRCck9s?=
+ =?utf-8?B?Mkc0eVljS1BPMEcwR25pemp4cVU3bU5UMUM1cGxrV0hFRks4U0E5N21rUXps?=
+ =?utf-8?B?bmNmQXlFNXpERDcwTUhRUUxtQmJZdlR4ZlBLd0lkOUdvaTg5SUhEanZucGdO?=
+ =?utf-8?B?UjkyZHVmaWlhYWtvbTJkWWlIZjY2bnhWRWJmUUpvaCtaOTdwWDVxcFFDTERn?=
+ =?utf-8?B?MHFYTEJkdUZ2QW9wdTFTeUNtbHBHc3NrMTNBOXpJWFU0R1RhUVZ6VWdCNXZE?=
+ =?utf-8?B?aE1od3ZFb0VhSGNDTFBpRzBlN3Vwem0ydjRNanJMOFdOd0dwbllGVlBXK1BC?=
+ =?utf-8?B?VStnbnNvV3R2SVBYalVHK1VQajNodWt6d1ZWNk94WnFxRVJ2clQvRDdUNHBP?=
+ =?utf-8?B?ZTJvbHcvR0l5VmgvL0JZNm45R3pIUFo2dXRCOFZ4dXJQVHRRQld5L25CRWZq?=
+ =?utf-8?B?ZzdHTE5ncHlvNnhHNmo5WmJIMktuTWJJRmpPQ1RwelQ1SmRJTTdaRXZyMnk2?=
+ =?utf-8?B?bDF4RjNsMnJSNGtER0t3VEJkYVI3Wi9aQ0NGTTN3Y2NDdi82Z09iY3FTcDdR?=
+ =?utf-8?B?M202aW1LdU9sVmhkRDhvQm01QUNoVHRVU3J1ZTIwVGJLcmR4dEZoMVpqS0Y4?=
+ =?utf-8?B?dEdMeG1USlNFQXhUbm1CQm1TOS93OFpUbkJvVjRXaHFvdnh6VjIrcWx6ZkVT?=
+ =?utf-8?B?bGs3OUwrWU1QT2R2cGdFWTVzMW5adVpHWGlWRUorUkN6Z3hpR2ZhdDhDQ3J2?=
+ =?utf-8?B?RFRBN3ptVkJ2bUF4SGxUL29ad2ZQaC9ROFlLbWl4c3UwcnpHc000OUlSVjBx?=
+ =?utf-8?B?VWpydWYxZ3RydExoOGhFRmQ2SEJMRitJcjdlT2dONGRoTEVSdzRNMnoxRHli?=
+ =?utf-8?B?UXkxU3d4RU0rMXFHcEJGeEEzWGpuRG54Vnc5Y2FkT1dBOE9JWVJsMDlwb3VO?=
+ =?utf-8?B?Wm1NdWxwbUp2YWZ5MXlGL2hTcENsdUtha3F1N2RzWUl3UFlyelROZGZwY3M5?=
+ =?utf-8?Q?T2Mno5NeNf1pg2I5mF8sbbrV6?=
+Content-Type: text/plain; charset="utf-8"
+Content-ID: <17F761B4692F1B418BB86277F8696476@CHEP278.PROD.OUTLOOK.COM>
+Content-Transfer-Encoding: base64
 MIME-Version: 1.0
-From: "Ulises V." <u.apeiron@gmail.com>
-Date: Sun, 11 May 2025 21:13:50 -0600
-X-Gm-Features: AX0GCFukWOPE4Dz--bG0Nt_ehIuaAtNv_UhUI9Am1aISQbyFACKCyZ6n0NM3UHc
-Message-ID: <CAK+BxzQtWjgzkNR83Hnhz83ncOj6KMsVNWQYt+G5CpW9q_-7HQ@mail.gmail.com>
-Subject: [yocto][scarthgap][5.0.1] Help to boot BBAI-64 for AGL from SD Card
- and init-live.sh.
-To: yocto@lists.yoctoproject.org
-Content-Type: multipart/alternative; boundary="0000000000002ac3580634e7b5ae"
+X-OriginatorOrg: vrag.ch
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: GVAP278MB0085.CHEP278.PROD.OUTLOOK.COM
+X-MS-Exchange-CrossTenant-Network-Message-Id: 7ee8f6c0-e15d-4917-b69d-08dd9124c98d
+X-MS-Exchange-CrossTenant-originalarrivaltime: 12 May 2025 07:15:34.2400
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 71bd83c1-ce5c-4e57-8993-45bae4514c77
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: m6UkNB9GDxdd4CHzTJhU02Zar9hRzhMWI+uKDZ/Q8TYCxOcBx8XcAZ86SVMAZ98rzDwasKRT+MVX3fnlUJSF6g==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: ZR2PPFCC3A7FE42
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Mon, 12 May 2025 03:14:10 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/65304
-
---0000000000002ac3580634e7b5ae
-Content-Type: text/plain; charset="UTF-8"
-
-Hello everyone,
-
-I'm working to bring Automotive Grade Linux on BBAI-64 with the following
-yocto project version
-
-DISTRO_VERSION = "5.0.1"
-DISTRO_CODENAME = "scarthgap"
-
-It seems I'm having a problem at boot time due to a init-live.sh script
-from yocto project or my boot arguments are wrong in some way.
-
-I found in a public post that the file that configures this boot for
-yocto/poky is init-live.sh (
-https://community.nxp.com/t5/i-MX-Processors/Bundle-a-core-image-tiny-initramfs-to-a-core-image-minimal-wic/m-p/1045656#M154024
-)
-
-The BOOT_IMAGE= from /proc/cmdline has the parameters of below mentioned
-file grub.cfg. and BOOT_IMAGE has two values for two different
-circumstances.
-
-The current code available in the post as fix is almost identical to the
-current code available in agl/yocto/poky except for the fact that the
-/proc/cmdline and variable ROOT_DISK and flash_device have different
-behaviors depending on how the board boots. They are not empty when it runs
-BBAI_64 for AGL in normal boot up without stopping and booting with u-boot
-commands, but when I do the boot through u-boot command there is no
-BOOT_IMAGE= content in /proc/cmdline. The block devices are there but they
-are not being able to mount. In below lines "Ulises ..." means debugging
-output I wrote to print variable values on script init-live.sh ...
-
-Below is the log when BOOT_IMAGE= is empty in /proc/cmdline when booting
-the BBAI-64 using u-boot commands
-
-[    5.117840] mmc1: SDHCI controller on 4fb0000.mmc [4fb0000.mmc] using
-ADMA 64-bit
-[    5.192938] Freeing unused kernel memory: 128576K
-[    5.226576] Checked W+X mappings: passed, no W+X pages found
-[    5.232334] Run /init as init process
-Ulises early_setup: CMDLINE -><-
-
-Starting systemd-udevd version 255.4^
-[    5.282783] mmc1: new ultra high speed DDR50 SDHC card at address aaaa
-[    5.290072] mmcblk1: mmc1:aaaa SE32G 29.7 GiB
-[    5.300082]  mmcblk1: p1 p2
-Ulises read_args : CMDLINE -><-
-
-Waiting for removable media...
-Ulises ....
-...
-Ulises Mounted filesystemsi media
-Ulises Mounted filesystems ...
-rootfs on / type rootfs (rw,size=1770760k,nr_inodes=442690,inode64)
-proc on /proc type proc (rw,relatime)
-sysfs on /sys type sysfs (rw,relatime)
-none on /dev type devtmpfs
-(rw,relatime,size=1770760k,nr_inodes=442690,mode=755,inode64)
-Ulises Available block devices
-major minor  #blocks  name
-
- 179        0   15310848 mmcblk0
- 179        1     131072 mmcblk0p1
- 179        2   15178752 mmcblk0p2
- 179      256       4096 mmcblk0boot0
- 179      512       4096 mmcblk0boot1
- 179      768   31166976 mmcblk1
- 179      769    4193280 mmcblk1p1
- 179      770   26972160 mmcblk1p2
-Ulises ... /proc/cmdline
-
-Ulises ... backticks cat /proc/cmdlined
-Ulises ls /run/media...
-ls: /run/media: No such file or directory
-Ulises ls /run/media...
-ls: /run/media: No such file or directory
-Ulises before found == yes : ROOT_DISK -><- found ->yes<-
-/init: line 189: found: not found
-mount: /rootfs: failed to setup loop device for /run/media///rootfs.img.
-Could not mount rootfs image
-
-/bin/sh: can't access tty; job control turned off
-
-Below is the output when BOOT_IMAGE= when /proc/cmdline is not empty and
-has the parameters of grub.cfg (content shown some lines below) direct boot
-from configuration files without sending u-boot manual commands:
-
-[    4.270051] mmc1: CQHCI version 5.10
-[    4.279350] omap_rng 4e10000.rng: Random Number Generator ver. 241b34c
-[    4.279556] random: crng init done
-[    4.289526] input: gpio-keys as /devices/platform/gpio-keys/input/input0
-[    4.308328] ALSA device list:
-[    4.311311]   No soundcards found.
-[    5.339402] mmc1: SDHCI controller on 4fb0000.mmc [4fb0000.mmc] using
-ADMA 64-bit
-[    5.414848] Freeing unused kernel memory: 128576K
-[    5.448543] Checked W+X mappings: passed, no W+X pages found
-[    5.454304] Run /init as init process
-Ulises early_setup: CMDLINE -><-
-BOOT_IMAGE=/Image-initramfs-beaglebone-ai64.bin root=PARTUUID=dba7902b-02
-rootwait rootfstype=ext4
-Starting systemd-udevd version 255.4^
-[    5.504180] mmc1: new ultra high speed DDR50 SDHC card at address aaaa
-[    5.511494] mmcblk1: mmc1:aaaa SE32G 29.7 GiB
-[    5.521590]  mmcblk1: p1 p2
-Ulises read_args : CMDLINE -><-
-BOOT_IMAGE=/Image-initramfs-beaglebone-ai64.bin root=PARTUUID=dba7902b-02
-rootwait rootfstype=ext4
-Waiting for removable media...
-Ulises ....
-...
-Ulises Mounted filesystemsi media
-Ulises Mounted filesystems ...
-rootfs on / type rootfs (rw)
-proc on /proc type proc (rw,relatime)
-sysfs on /sys type sysfs (rw,relatime)
-none on /dev type devtmpfs
-(rw,relatime,size=1770552k,nr_inodes=442638,mode=755,inode64)
-Ulises Available block devices
-major minor  #blocks  name
-
- 179        0   15310848 mmcblk0
- 179        1     131072 mmcblk0p1
- 179        2   15178752 mmcblk0p2
- 179      256       4096 mmcblk0boot0
- 179      512       4096 mmcblk0boot1
- 179      768   31166976 mmcblk1
- 179      769    4193280 mmcblk1p1
- 179      770   26972160 mmcblk1p2
-Ulises ... /proc/cmdline
-BOOT_IMAGE=/Image-initramfs-beaglebone-ai64.bin root=PARTUUID=dba7902b-02
-rootwait rootfstype=ext4
-Ulises ... backticks cat /proc/cmdlined
-/init: line 183: BOOT_IMAGE=/Image-initramfs-beaglebone-ai64.bin: not found
-Ulises ls /run/media...
-ls: /run/media: No such file or directory
-Ulises ls /run/media...
-ls: /run/media: No such file or directory
-Ulises before found == yes : ROOT_DISK -><- found ->yes<-
-/init: line 189: found: not found
-mount: /rootfs: failed to setup loop device for /run/media///rootfs.img.
-Could not mount rootfs image
-
-/bin/sh: can't access tty; job control turned off
-
-I can confirm it is not booting from SD Card because of below lines says
-that "/" is device 179,2, which is mmcblk0p2=eMMC not SD Card=mmcblk1, and
-the content of /home is empty:
-
-# ls -la /dev/mmcblk*
-brw-rw----    1 root     disk      179,   0 Jan  1 00:00 /dev/mmcblk0
-brw-rw----    1 root     disk      179, 256 Jan  1 00:00 /dev/mmcblk0boot0
-brw-rw----    1 root     disk      179, 512 Jan  1 00:00 /dev/mmcblk0boot1
-brw-rw----    1 root     disk      179,   1 Jan  1 00:00 /dev/mmcblk0p1
-brw-rw----    1 root     disk      179,   2 Jan  1 00:00 /dev/mmcblk0p2
-crw-------    1 root     root      237,   0 Jan  1 00:00 /dev/mmcblk0rpmb
-brw-rw----    1 root     disk      179, 768 Jan  1 00:00 /dev/mmcblk1
-brw-rw----    1 root     disk      179, 769 Jan  1 00:00 /dev/mmcblk1p1
-brw-rw----    1 root     disk      179, 770 Jan  1 00:00 /dev/mmcblk1p2
-~ # stat /
-  File: /
-  Size: 440       Blocks: 0          IO Block: 4096   directory
-Device: 2h/2d Inode: 1           Links: 17
-Access: (0755/drwxr-xr-x)  Uid: (    0/    root)   Gid: (    0/    root)
-Access: 1970-01-01 00:00:39.264000000 +0000
-Modify: 1970-01-01 00:00:44.852000000 +0000
-Change: 1970-01-01 00:00:44.852000000 +0000
-~ # ls -la /hom
-~ # ls -la /home/
-drwxr-xr-x    2 root     root            40 Jun 10  2024 .
-drwxr-xr-x   17 root     root           440 Jan  1 00:00 ..
-~ #
-
-
-AGL through yocto creates the configuration for grub as follows:
-
-serial --unit=0 --speed=115200 --word=8 --parity=no --stop=1
-default=boot
-timeout=3
-menuentry 'boot'{
-linux /Image-initramfs-beaglebone-ai64.bin root=PARTUUID=dba7902b-02
-rootwait rootfstype=ext4
-}
-
-it is in the boot partition on EFI/BOOT/grub.cfg file.
-
-I added also an extlinux.conf configuration in order to enable the boot but
-it seems to be overwritten by this grub.cfg may be by priorities of boot
-mode in BBAI-64 following and advice in beagleboard forum:
-
-The content of boot partition is extlinux/extlinux.conf
-
-label Linux microSD
-    kernel /Image
-    append console=ttyS2,115200n8 earlycon=ns16550a,mmio32,0x02800000
-root=/dev/mmcblk1p2 rw rootfstype=ext4 rootwait net.ifnames=0
-    fdtdir /
-    #initrd /Image-initramfs-beaglebone-ai64.bin
-
-I used to have the following boot sequence where you could see the *ERROR:
-FDT image overlaps OS image (OS=0x82000000..0x8ba40000)* in below log:
-
-U-Boot 2021.01-gea96725b (Feb 16 2023 - 17:13:47 +0000)
-
-SoC:   J721E SR1.1 GP
-Model: Texas Instruments K3 J721E SoC
-Board: BBONEAI-64-B0- rev B0
-DRAM:  4 GiB
-Flash: 0 Bytes
-MMC:   sdhci@4f80000: 0, sdhci@4fb0000: 1
-Loading Environment from FAT... *** Warning - bad CRC, using default
-environment
-
-In:    serial@2800000
-Out:   serial@2800000
-Err:   serial@2800000
-am65_cpsw_nuss ethernet@46000000: K3 CPSW: nuss_ver: 0x6BA00101 cpsw_ver:
-0x6BA80100 ale_ver: 0x00293904 Ports:1 mdio_freq:1000000
-Net:   eth0: ethernet@46000000port@1
-Press SPACE to abort autoboot in 2 seconds
-board_name=[BBONEAI-64-B0-] ...
-name_fdt=[k3-j721e-beagleboneai64.dtb] ...
-i2c_write: error waiting for data ACK (status=0x116)
-pca953x gpio@22: Error reading output register
-switch to partitions #0, OK
-mmc1 is current device
-Scanning mmc 1:1...
-Found /extlinux/extlinux.conf
-Retrieving file: /extlinux/extlinux.conf
-232 bytes read in 18 ms (11.7 KiB/s)
-1: Linux microSD
-Retrieving file: /Image
-160465408 bytes read in 6633 ms (23.1 MiB/s)
-append: console=ttyS2,115200n8 earlycon=ns16550a,mmio32,0x02800000
-root=/dev/mmcblk1p2 rw rootfstype=ext4 rootwait net.ifnames=0
-Retrieving file: /k3-j721e-beagleboneai64.dtb
-103269 bytes read in 17 ms (5.8 MiB/s)
-## Flattened Device Tree blob at 88000000
-   Booting using the fdt blob at 0x88000000
-ERROR: FDT image overlaps OS image (OS=0x82000000..0x8ba40000)
-SCRIPT FAILED: continuing...
-103269 bytes read in 19 ms (5.2 MiB/s)
-Scanning disk sdhci@4f80000.blk...
-Scanning disk sdhci@4fb0000.blk...
-Found 6 disks
-No EFI system partition
-BootOrder not defined
-EFI boot manager: Cannot load any image
-Found EFI removable media binary efi/boot/bootaa64.efi
-741376 bytes read in 55 ms (12.9 MiB/s)
-Booting /efi\boot\bootaa64.efi
-error: no such device: ((hd0,msdos1)/efi/boot)/EFI/BOOT/grub.cfg.
-error: serial port `com0' isn't found.
-GNU GRUB  version 2.12
-
-I was able to correct it as follows:
-
-U-Boot 2021.01-gea96725b (Feb 16 2023 - 17:13:47 +0000)
-
-SoC:   J721E SR1.1 GP
-Model: Texas Instruments K3 J721E SoC
-Board: BBONEAI-64-B0- rev B0
-DRAM:  4 GiB
-Flash: 0 Bytes
-MMC:   sdhci@4f80000: 0, sdhci@4fb0000: 1
-Loading Environment from FAT... *** Warning - bad CRC, using default
-environment
-
-In:    serial@2800000
-Out:   serial@2800000
-Err:   serial@2800000
-am65_cpsw_nuss ethernet@46000000: K3 CPSW: nuss_ver: 0x6BA00101 cpsw_ver:
-0x6BA80100 ale_ver: 0x00293904 Ports:1 mdio_freq:1000000
-Net:   eth0: ethernet@46000000port@1
-Press SPACE to abort autoboot in 2 seconds
-=> mmc lixt st
-sdhci@4f80000: 0 (eMMC)
-sdhci@4fb0000: 1
-=> mmc dev 1
-i2c_write: error waiting for data ACK (status=0x116)
-pca953x gpio@22: Error reading output register
-switch to partitions #0, OK
-mmc1 is current device
-=> mmc list
-sdhci@4f80000: 0 (eMMC)
-sdhci@4fb0000: 1 (SD)
-=> mmc info
-Device: sdhci@4fb0000
-Manufacturer ID: 3
-OEM: 5344
-Name: SE32G
-Bus Speed: 50000000
-Mode: SD High Speed (50MHz)
-Rd Block Len: 512
-SD version 3.0
-High Capacity: Yes
-Capacity: 29.7 GiB
-Bus Width: 4-bit
-Erase Group Size: 512 Bytes
-=> mmc part
-
-Partition Map for MMC device 1  --   Partition Type: DOS
-
-Part Start Sector Num Sectors UUID Type
-  1 2048       8386560   5cafe3fe-01 06 Boot
-  2 8388608   53944320   5cafe3fe-02 83
-=> fatload mmc 1:1 0x0000000880000000 Image-initramfs-beaglebone-ai64.bin
-160465408 bytes read in 6637 ms (23.1 MiB/s)
-=> fatload mmc 11 :1 0x00000008A0000000 k3-j721e-beagleboneai64.dtb
-103269 bytes read in 17 ms (5.8 MiB/s)
-=> booti 0x0000000880000000 - 0x00000008A0000000
-## Flattened Device Tree blob at 8a0000000
-   Booting using the fdt blob at 0x8a0000000
-   Loading Device Tree to 000000008ffe3000, end 000000008ffff364 ... OK
-
-Starting kernel ...
-
-[    0.000000] Booting Linux on physical CPU 0x0000000000 [0x411fd080]
-[    0.000000] Linux version 6.1.69-ti (oe-user@oe-host)
-(aarch64-agl-linux-gcc (GCC) 13.2.0, GNU ld (GNU Binutils) 2.42.0.20240216)
-#1 SMP PREEMPT_DYNAMIC Mon Jun 10 06:13:20 UTC 2024
-[    0.000000] Machine model: BeagleBoard.org BeagleBone AI-64
-[    0.000000] efi: UEFI not found.
-
-As in the previous comment on AGL forum someone suggested a long time ago
-making more space between the kernel image and the dtb.
-
-Now there is no problem between the kernel image and the dtb memory ranges.
-as we can see from above log output:
-
-I can confirm I'm booting the right image kernel from this because we are
-booting agl image: aarch64-agl-linux-gcc from TI Linux version 6.1.69-ti ,
-and with the correct machine model: BBAI-64.
-
-[    0.000000] Linux version 6.1.69-ti (oe-user@oe-host)
-(aarch64-agl-linux-gcc (GCC) 13.2.0, GNU ld (GNU Binutils) 2.42.0.20240216)
-#1 SMP PREEMPT_DYNAMIC Mon Jun 10 06:13:20 UTC 2024
-[    0.000000] Machine model: BeagleBoard.org BeagleBone AI-64
-
-I still have the following errors,
-1)  The first one happens similarly when I switch to SD CARD/mmc device 1
-partition 1. It appears at boot (see above boot log, and inside u-boot line
-commands):
-
-boot log above:
-i2c_write: error waiting for data ACK (status=0x116)
-pca953x gpio@22: Error reading output register
-switch to partitions #0, OK
-
-u-boot command line log
-=> mmc dev 1
-i2c_write: error waiting for data ACK (status=0x116)
-pca953x gpio@22: Error reading output register
-switch to partitions #0, OK
-mmc1 is current device
-
-From below boot log lines it seems BBA-64 is booting as indicated by
-extlinux.conf file:
-
-Scanning mmc 1:1...
-Found /extlinux/extlinux.conf
-Retrieving file: /extlinux/extlinux.conf
-232 bytes read in 18 ms (11.7 KiB/s)
-1: Linux microSD
-Retrieving file: /Image
-160465408 bytes read in 6633 ms (23.1 MiB/s)
-append: console=ttyS2,115200n8 earlycon=ns16550a,mmio32,0x02800000
-root=/dev/mmcblk1p2 rw rootfstype=ext4 rootwait net.ifnames=0
-Retrieving file: /k3-j721e-beagleboneai64.dtb
-
-and grub load boot is discarded in below lines:
-
-Scanning disk sdhci@4f80000.blk...
-Scanning disk sdhci@4fb0000.blk...
-Found 6 disks
-No EFI system partition
-BootOrder not defined
-EFI boot manager: Cannot load any image
-Found EFI removable media binary efi/boot/bootaa64.efi
-741376 bytes read in 55 ms (12.9 MiB/s)
-Booting /efi\boot\bootaa64.efi
-error: no such device: ((hd0,msdos1)/efi/boot)/EFI/BOOT/grub.cfg.
-error: serial port `com0' isn't found.
-GNU GRUB  version 2.12
-
-but honestly I'm doubting it is following extlinux.conf since at least in
-one case BOOT_IMAGE has the parameters from grub.cfg.
-
-I'm really confused which and where are the booting params being obtained.
-
-Conclusions.
-
-1.- Booting is partially working.
-
-question 1.a.- I need to find out why when I boot BBAI-64 through u-boot
-commands above there is an empty /proc/cmdline, and when I let the board
-boot directly without stopping in u-boot with automatic variables
-/proc/cmdline is not empty. is it possible am I missing some boot params
-while sending commands to u-boot?
-
-question 1.b.- How do we make the changes in addresses for kernel, and dtb
-image permanent and allowing for possible increase of size, relocations in
-future developments?
-
-question 1.c.- I need to verify the source of error while switching/reading
-from the SD Card. I will get an extreme SD Card following comments from the
-beagleboard forum but I doubt the main problem is this one.
-
-2.- The real problem may reside in this init-live.sh script since the
-current version is not able to mount the SD Card / mmcblk1  as possibly
-ROOT_DISK inside init-live.sh. As a failure of this it is booting mmcblk0.
-
-question 2.- How do we modify init-live.sh so that it mounts properly from
-mmcblk1/SD Card and not mmcblk0.
-
-if the init-live.sh file is correct then everything comes back to booting
-params either in u-boot or in extlinux.conf or in grub.cfg
-
-I really appreciate your help with this. I know I write very long emails :).
-
-Ulises
-
---0000000000002ac3580634e7b5ae
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr"><div>Hello everyone,</div><div><br></div><div>I&#39;m work=
-ing to bring Automotive Grade Linux on BBAI-64 with the following yocto pro=
-ject version</div><div><br></div><div>DISTRO_VERSION =3D &quot;5.0.1&quot;<=
-br>DISTRO_CODENAME =3D &quot;scarthgap&quot;</div><div><br></div><div>It se=
-ems I&#39;m having a problem at boot time due to a init-live.sh script from=
- yocto project or my boot arguments are wrong in some way.</div><div><br></=
-div><div>I found in a public post that the file that configures this boot f=
-or yocto/poky is init-live.sh (<a href=3D"https://community.nxp.com/t5/i-MX=
--Processors/Bundle-a-core-image-tiny-initramfs-to-a-core-image-minimal-wic/=
-m-p/1045656#M154024" target=3D"_blank">https://community.nxp.com/t5/i-MX-Pr=
-ocessors/Bundle-a-core-image-tiny-initramfs-to-a-core-image-minimal-wic/m-p=
-/1045656#M154024</a>)</div><div><br></div><div><div>The BOOT_IMAGE=3D from =
-/proc/cmdline has the parameters of below
-mentioned file grub.cfg. and BOOT_IMAGE has two values for two different
- circumstances.</div><div><br></div><div>The
- current code available in the post as fix is almost identical to the curre=
-nt=20
-code available in agl/yocto/poky except for the fact that the=20
-/proc/cmdline and variable ROOT_DISK and flash_device have different=20
-behaviors depending on how the board boots. They are not empty when it runs=
-=20
-BBAI_64 for AGL in normal boot up without stopping and booting with u-boot =
-commands, but when I do the boot through u-boot command=20
-there is no BOOT_IMAGE=3D content in /proc/cmdline. The block devices are t=
-here=20
-but they are not being able to mount. In below lines &quot;Ulises ...&quot;=
- means=20
-debugging output I wrote to print variable values on script=20
-init-live.sh ...</div><div><br></div><div>Below is the log when BOOT_IMAGE=
-=3D is empty in /proc/cmdline when booting the BBAI-64 using u-boot command=
-s</div><div><br></div><div>[ =C2=A0 =C2=A05.117840] mmc1: SDHCI controller =
-on 4fb0000.mmc [4fb0000.mmc] using ADMA 64-bit<br>[ =C2=A0 =C2=A05.192938] =
-Freeing unused kernel memory: 128576K<br>[ =C2=A0 =C2=A05.226576] Checked W=
-+X mappings: passed, no W+X pages found<br>[ =C2=A0 =C2=A05.232334] Run /in=
-it as init process<br>Ulises early_setup: CMDLINE -&gt;&lt;-<br><br>Startin=
-g systemd-udevd version 255.4^<br>[ =C2=A0 =C2=A05.282783] mmc1: new ultra =
-high speed DDR50 SDHC card at address aaaa<br>[ =C2=A0 =C2=A05.290072] mmcb=
-lk1: mmc1:aaaa SE32G 29.7 GiB <br>[ =C2=A0 =C2=A05.300082] =C2=A0mmcblk1: p=
-1 p2<br>Ulises read_args : CMDLINE -&gt;&lt;-<br><br>Waiting for removable =
-media...<br>Ulises ....<br>...<br>Ulises Mounted filesystemsi media<br>Ulis=
-es Mounted filesystems ...<br>rootfs on / type rootfs (rw,size=3D1770760k,n=
-r_inodes=3D442690,inode64)<br>proc on /proc type proc (rw,relatime)<br>sysf=
-s on /sys type sysfs (rw,relatime)<br>none on /dev type devtmpfs (rw,relati=
-me,size=3D1770760k,nr_inodes=3D442690,mode=3D755,inode64)<br>Ulises Availab=
-le block devices<br>major minor =C2=A0#blocks =C2=A0name<br><br>=C2=A0179 =
-=C2=A0 =C2=A0 =C2=A0 =C2=A00 =C2=A0 15310848 mmcblk0<br>=C2=A0179 =C2=A0 =
-=C2=A0 =C2=A0 =C2=A01 =C2=A0 =C2=A0 131072 mmcblk0p1<br>=C2=A0179 =C2=A0 =
-=C2=A0 =C2=A0 =C2=A02 =C2=A0 15178752 mmcblk0p2<br>=C2=A0179 =C2=A0 =C2=A0 =
-=C2=A0256 =C2=A0 =C2=A0 =C2=A0 4096 mmcblk0boot0<br>=C2=A0179 =C2=A0 =C2=A0=
- =C2=A0512 =C2=A0 =C2=A0 =C2=A0 4096 mmcblk0boot1<br>=C2=A0179 =C2=A0 =C2=
-=A0 =C2=A0768 =C2=A0 31166976 mmcblk1<br>=C2=A0179 =C2=A0 =C2=A0 =C2=A0769 =
-=C2=A0 =C2=A04193280 mmcblk1p1<br>=C2=A0179 =C2=A0 =C2=A0 =C2=A0770 =C2=A0 =
-26972160 mmcblk1p2<br>Ulises ... /proc/cmdline<br><br>Ulises ... backticks =
-cat /proc/cmdlined<br>Ulises ls /run/media...<br>ls: /run/media: No such fi=
-le or directory<br>Ulises ls /run/media...<br>ls: /run/media: No such file =
-or directory<br>Ulises before found =3D=3D yes : ROOT_DISK -&gt;&lt;- found=
- -&gt;yes&lt;-<br>/init: line 189: found: not found<span class=3D"gmail-im"=
-><br>mount: /rootfs: failed to setup loop device for /run/media///rootfs.im=
-g.<br>Could not mount rootfs image<br><br>/bin/sh: can&#39;t access tty; jo=
-b control turned off<br></span></div><div><br></div><div>Below is the outpu=
-t when BOOT_IMAGE=3D when /proc/cmdline is not empty and has the parameters=
- of grub.cfg (content shown some lines below) direct boot from configuratio=
-n files without sending u-boot manual commands:</div><div><br></div><div>[ =
-=C2=A0 =C2=A04.270051] mmc1: CQHCI version 5.10<br>[ =C2=A0 =C2=A04.279350]=
- omap_rng 4e10000.rng: Random Number Generator ver. 241b34c<br>[ =C2=A0 =C2=
-=A04.279556] random: crng init done<br>[ =C2=A0 =C2=A04.289526] input: gpio=
--keys as /devices/platform/gpio-keys/input/input0<br>[ =C2=A0 =C2=A04.30832=
-8] ALSA device list:<br>[ =C2=A0 =C2=A04.311311] =C2=A0 No soundcards found=
-.<br>[ =C2=A0 =C2=A05.339402] mmc1: SDHCI controller on 4fb0000.mmc [4fb000=
-0.mmc] using ADMA 64-bit<br>[ =C2=A0 =C2=A05.414848] Freeing unused kernel =
-memory: 128576K<br>[ =C2=A0 =C2=A05.448543] Checked W+X mappings: passed, n=
-o W+X pages found<br>[ =C2=A0 =C2=A05.454304] Run /init as init process<br>=
-Ulises early_setup: CMDLINE -&gt;&lt;-<br>BOOT_IMAGE=3D/Image-initramfs-bea=
-glebone-ai64.bin root=3DPARTUUID=3Ddba7902b-02 rootwait rootfstype=3Dext4<b=
-r>Starting systemd-udevd version 255.4^<br>[ =C2=A0 =C2=A05.504180] mmc1: n=
-ew ultra high speed DDR50 SDHC card at address aaaa<br>[ =C2=A0 =C2=A05.511=
-494] mmcblk1: mmc1:aaaa SE32G 29.7 GiB <br>[ =C2=A0 =C2=A05.521590] =C2=A0m=
-mcblk1: p1 p2<br>Ulises read_args : CMDLINE -&gt;&lt;-<br>BOOT_IMAGE=3D/Ima=
-ge-initramfs-beaglebone-ai64.bin root=3DPARTUUID=3Ddba7902b-02 rootwait roo=
-tfstype=3Dext4<br>Waiting for removable media...<br>Ulises ....<br>...<br>U=
-lises Mounted filesystemsi media<br>Ulises Mounted filesystems ...<br>rootf=
-s on / type rootfs (rw)<br>proc on /proc type proc (rw,relatime)<br>sysfs o=
-n /sys type sysfs (rw,relatime)<br>none on /dev type devtmpfs (rw,relatime,=
-size=3D1770552k,nr_inodes=3D442638,mode=3D755,inode64)<br>Ulises Available =
-block devices<br>major minor =C2=A0#blocks =C2=A0name<br><br>=C2=A0179 =C2=
-=A0 =C2=A0 =C2=A0 =C2=A00 =C2=A0 15310848 mmcblk0<br>=C2=A0179 =C2=A0 =C2=
-=A0 =C2=A0 =C2=A01 =C2=A0 =C2=A0 131072 mmcblk0p1<br>=C2=A0179 =C2=A0 =C2=
-=A0 =C2=A0 =C2=A02 =C2=A0 15178752 mmcblk0p2<br>=C2=A0179 =C2=A0 =C2=A0 =C2=
-=A0256 =C2=A0 =C2=A0 =C2=A0 4096 mmcblk0boot0<br>=C2=A0179 =C2=A0 =C2=A0 =
-=C2=A0512 =C2=A0 =C2=A0 =C2=A0 4096 mmcblk0boot1<br>=C2=A0179 =C2=A0 =C2=A0=
- =C2=A0768 =C2=A0 31166976 mmcblk1<br>=C2=A0179 =C2=A0 =C2=A0 =C2=A0769 =C2=
-=A0 =C2=A04193280 mmcblk1p1<br>=C2=A0179 =C2=A0 =C2=A0 =C2=A0770 =C2=A0 269=
-72160 mmcblk1p2<br>Ulises ... /proc/cmdline<br>BOOT_IMAGE=3D/Image-initramf=
-s-beaglebone-ai64.bin root=3DPARTUUID=3Ddba7902b-02 rootwait rootfstype=3De=
-xt4<br>Ulises ... backticks cat /proc/cmdlined<br>/init: line 183: BOOT_IMA=
-GE=3D/Image-initramfs-beaglebone-ai64.bin: not found<br>Ulises ls /run/medi=
-a...<br>ls: /run/media: No such file or directory<br>Ulises ls /run/media..=
-.<br>ls: /run/media: No such file or directory<br>Ulises before found =3D=
-=3D yes : ROOT_DISK -&gt;&lt;- found -&gt;yes&lt;-<br>/init: line 189: foun=
-d: not found<span class=3D"gmail-im"><br>mount: /rootfs: failed to setup lo=
-op device for /run/media///rootfs.img.<br>Could not mount rootfs image<br><=
-br>/bin/sh: can&#39;t access tty; job control turned off<br></span></div><d=
-iv><br></div><div>I
- can confirm it is not booting from SD Card because of below lines says=20
-that &quot;/&quot; is device 179,2, which is mmcblk0p2=3DeMMC not SD Card=
-=3Dmmcblk1,=20
-and the content of /home is empty:</div><div><br></div><div># ls -la /dev/m=
-mcblk*<br>brw-rw---- =C2=A0 =C2=A01 root =C2=A0 =C2=A0 disk =C2=A0 =C2=A0 =
-=C2=A0179, =C2=A0 0 Jan =C2=A01 00:00 /dev/mmcblk0<br>brw-rw---- =C2=A0 =C2=
-=A01 root =C2=A0 =C2=A0 disk =C2=A0 =C2=A0 =C2=A0179, 256 Jan =C2=A01 00:00=
- /dev/mmcblk0boot0<br>brw-rw---- =C2=A0 =C2=A01 root =C2=A0 =C2=A0 disk =C2=
-=A0 =C2=A0 =C2=A0179, 512 Jan =C2=A01 00:00 /dev/mmcblk0boot1<br>brw-rw----=
- =C2=A0 =C2=A01 root =C2=A0 =C2=A0 disk =C2=A0 =C2=A0 =C2=A0179, =C2=A0 1 J=
-an =C2=A01 00:00 /dev/mmcblk0p1<br>brw-rw---- =C2=A0 =C2=A01 root =C2=A0 =
-=C2=A0 disk =C2=A0 =C2=A0 =C2=A0179, =C2=A0 2 Jan =C2=A01 00:00 /dev/mmcblk=
-0p2<br>crw------- =C2=A0 =C2=A01 root =C2=A0 =C2=A0 root =C2=A0 =C2=A0 =C2=
-=A0237, =C2=A0 0 Jan =C2=A01 00:00 /dev/mmcblk0rpmb<br>brw-rw---- =C2=A0 =
-=C2=A01 root =C2=A0 =C2=A0 disk =C2=A0 =C2=A0 =C2=A0179, 768 Jan =C2=A01 00=
-:00 /dev/mmcblk1<br>brw-rw---- =C2=A0 =C2=A01 root =C2=A0 =C2=A0 disk =C2=
-=A0 =C2=A0 =C2=A0179, 769 Jan =C2=A01 00:00 /dev/mmcblk1p1<br>brw-rw---- =
-=C2=A0 =C2=A01 root =C2=A0 =C2=A0 disk =C2=A0 =C2=A0 =C2=A0179, 770 Jan =C2=
-=A01 00:00 /dev/mmcblk1p2<br>~ # stat /<br>=C2=A0 File: /<br>=C2=A0 Size: 4=
-40 =C2=A0 =C2=A0 =C2=A0 	Blocks: 0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0IO Blo=
-ck: 4096 =C2=A0 directory<br>Device: 2h/2d	Inode: 1 =C2=A0 =C2=A0 =C2=A0 =
-=C2=A0 =C2=A0 Links: 17<br>Access: (0755/drwxr-xr-x) =C2=A0Uid: ( =C2=A0 =
-=C2=A00/ =C2=A0 =C2=A0root) =C2=A0 Gid: ( =C2=A0 =C2=A00/ =C2=A0 =C2=A0root=
-)<br>Access: 1970-01-01 00:00:39.264000000 +0000<br>Modify: 1970-01-01 00:0=
-0:44.852000000 +0000<br>Change: 1970-01-01 00:00:44.852000000 +0000<br>~ # =
-ls -la /hom</div><div>~ # ls -la /home/ <br>drwxr-xr-x =C2=A0 =C2=A02 root =
-=C2=A0 =C2=A0 root =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A040 Jun 10 =C2=
-=A02024 .<br>drwxr-xr-x =C2=A0 17 root =C2=A0 =C2=A0 root =C2=A0 =C2=A0 =C2=
-=A0 =C2=A0 =C2=A0 440 Jan =C2=A01 00:00 ..<br>~ # <br></div></div><div><br>=
-</div><div><br></div><div><div class=3D"gmail_quote"><div>AGL through yocto=
- creates the configuration for grub as follows:</div><span class=3D"gmail-i=
-m"><div><br></div><div>serial --unit=3D0 --speed=3D115200 --word=3D8 --pari=
-ty=3Dno --stop=3D1<br>default=3Dboot<br>timeout=3D3<br>menuentry &#39;boot&=
-#39;{<br>linux /Image-initramfs-beaglebone-ai64.bin root=3DPARTUUID=3Ddba79=
-02b-02 rootwait rootfstype=3Dext4<br>}<br></div><div><br></div></span><div>=
-it is in the boot partition on EFI/BOOT/grub.cfg file.</div><div><br></div>=
-<div>I
- added also an extlinux.conf configuration in order to enable the boot=20
-but it seems to be overwritten by this grub.cfg may be by priorities of=20
-boot mode in BBAI-64 following and advice in beagleboard forum:</div><div><=
-br></div><div>The content of boot partition is extlinux/extlinux.conf</div>=
-<div>=C2=A0</div><div><span class=3D"gmail-im">label Linux microSD<br>=C2=
-=A0 =C2=A0 kernel /Image<br></span>=C2=A0 =C2=A0 append console=3DttyS2,115=
-200n8 earlycon=3Dns16550a,mmio32,0x02800000 root=3D/dev/mmcblk1p2 rw rootfs=
-type=3Dext4 rootwait net.ifnames=3D0<br>=C2=A0 =C2=A0 fdtdir /<br>=C2=A0 =
-=C2=A0 #initrd /Image-initramfs-beaglebone-ai64.bin<br></div><div><br></div=
-><div>I used to have the following boot sequence where you could see the <b=
->ERROR: FDT image overlaps OS image (OS=3D0x82000000..0x8ba40000)</b> in be=
-low log:</div><div><br></div><div><span class=3D"gmail-im">U-Boot 2021.01-g=
-ea96725b (Feb 16 2023 - 17:13:47 +0000)<br><br>SoC: =C2=A0 J721E SR1.1 GP<b=
-r>Model: Texas Instruments K3 J721E SoC<br>Board: BBONEAI-64-B0- rev B0<br>=
-DRAM: =C2=A04 GiB<br>Flash: 0 Bytes<br>MMC: =C2=A0 sdhci@4f80000: 0, sdhci@=
-4fb0000: 1<br>Loading Environment from FAT... *** Warning - bad CRC, using =
-default environment<br><br>In: =C2=A0 =C2=A0serial@2800000<br>Out: =C2=A0 s=
-erial@2800000<br>Err: =C2=A0 serial@2800000<br>am65_cpsw_nuss
- ethernet@46000000: K3 CPSW: nuss_ver: 0x6BA00101 cpsw_ver: 0x6BA80100=20
-ale_ver: 0x00293904 Ports:1 mdio_freq:1000000<br>Net: =C2=A0 eth0: ethernet=
-@46000000port@1<br>Press SPACE to abort autoboot in 2 seconds<br>board_name=
-=3D[BBONEAI-64-B0-] ...<br>name_fdt=3D[k3-j721e-</span>beagleboneai64.dtb] =
-...<span class=3D"gmail-im"><br>i2c_write: error waiting for data ACK (stat=
-us=3D0x116)<br>pca953x gpio@22: Error reading output register<br>switch to =
-partitions #0, OK<br>mmc1 is current device<br>Scanning mmc 1:1...<br>Found=
- /extlinux/extlinux.conf<br>Retrieving file: /extlinux/extlinux.conf<br></s=
-pan>232 bytes read in 18 ms (11.7 KiB/s)<span class=3D"gmail-im"><br>1:	Lin=
-ux microSD<br>Retrieving file: /Image<br></span>160465408 bytes read in 663=
-3 ms (23.1 MiB/s)<br>append: console=3DttyS2,115200n8 earlycon=3Dns16550a,m=
-mio32,0x02800000 root=3D/dev/mmcblk1p2 rw rootfstype=3Dext4 rootwait net.if=
-names=3D0<br>Retrieving file: /k3-j721e-beagleboneai64.dtb<br>103269 bytes =
-read in 17 ms (5.8 MiB/s)<span class=3D"gmail-im"><br>## Flattened Device T=
-ree blob at 88000000<br>=C2=A0 =C2=A0Booting using the fdt blob at 0x880000=
-00<br></span>ERROR: FDT image overlaps OS image (OS=3D0x82000000..0x8ba4000=
-0)<br>SCRIPT FAILED: continuing...<br>103269 bytes read in 19 ms (5.2 MiB/s=
-)<br>Scanning disk sdhci@4f80000.blk...<br>Scanning disk sdhci@4fb0000.blk.=
-..<br>Found 6 disks<br>No EFI system partition<br>BootOrder not defined<br>=
-EFI boot manager: Cannot load any image<br>Found EFI removable media binary=
- efi/boot/bootaa64.efi<br>741376 bytes read in 55 ms (12.9 MiB/s)<br>Bootin=
-g /efi\boot\bootaa64.efi<br>error: no such device: ((hd0,msdos1)/efi/boot)/=
-EFI/BOOT/grub.cfg.<span class=3D"gmail-im"><br>error: serial port `com0&#39=
-; isn&#39;t found.<br>GNU GRUB =C2=A0version 2.12<br></span></div><div><br>=
-</div><div>I was able to correct it as follows:</div><span class=3D"gmail-i=
-m"><div><br></div>U-Boot 2021.01-gea96725b (Feb 16 2023 - 17:13:47 +0000)<b=
-r><br>SoC: =C2=A0 J721E SR1.1 GP<br>Model: Texas Instruments K3 J721E SoC<b=
-r>Board: BBONEAI-64-B0- rev B0<br>DRAM: =C2=A04 GiB<br>Flash: 0 Bytes<br>MM=
-C: =C2=A0 sdhci@4f80000: 0, sdhci@4fb0000: 1<br>Loading Environment from FA=
-T... *** Warning - bad CRC, using default environment<br><br>In: =C2=A0 =C2=
-=A0serial@2800000<br>Out: =C2=A0 serial@2800000<br>Err: =C2=A0 serial@28000=
-00<br>am65_cpsw_nuss
- ethernet@46000000: K3 CPSW: nuss_ver: 0x6BA00101 cpsw_ver: 0x6BA80100=20
-ale_ver: 0x00293904 Ports:1 mdio_freq:1000000<br>Net: =C2=A0 eth0: ethernet=
-@46000000port@1<br>Press SPACE to abort autoboot in 2 seconds<br></span>=3D=
-&gt; mmc lixt      st<br>sdhci@4f80000: 0 (eMMC)<br>sdhci@4fb0000: 1<br>=3D=
-&gt; mmc dev 1<span class=3D"gmail-im"><br>i2c_write: error waiting for dat=
-a ACK (status=3D0x116)<br>pca953x gpio@22: Error reading output register<br=
->switch to partitions #0, OK<br>mmc1 is current device<br></span>=3D&gt; mm=
-c list<br>sdhci@4f80000: 0 (eMMC)<br>sdhci@4fb0000: 1 (SD)<br>=3D&gt; mmc i=
-nfo<br>Device: sdhci@4fb0000<br>Manufacturer ID: 3<br>OEM: 5344<br>Name: SE=
-32G <br>Bus Speed: 50000000<br>Mode: SD High Speed (50MHz)<br>Rd Block Len:=
- 512<br>SD version 3.0<br>High Capacity: Yes<br>Capacity: 29.7 GiB<br>Bus W=
-idth: 4-bit<br>Erase Group Size: 512 Bytes<br>=3D&gt; mmc part<br><br>Parti=
-tion Map for MMC device 1 =C2=A0-- =C2=A0 Partition Type: DOS<br><br>Part	S=
-tart Sector	Num Sectors	UUID		Type<br>=C2=A0 1	2048 =C2=A0 =C2=A0 =C2=A0	83=
-86560 =C2=A0 	5cafe3fe-01	06 Boot<br>=C2=A0 2	8388608 =C2=A0 	53944320 =C2=
-=A0	5cafe3fe-02	83<br>=3D&gt; fatload mmc 1:1 0x0000000880000000 Image-init=
-ramfs-beaglebone-ai64.bin <br>160465408 bytes read in 6637 ms (23.1 MiB/s)<=
-br>=3D&gt; fatload mmc 11   :1  0x00000008A0000000 k3-j721e-beagleboneai64.=
-dtb <br>103269 bytes read in 17 ms (5.8 MiB/s)<br>=3D&gt; booti 0x000000088=
-0000000 - 0x00000008A0000000<br>## Flattened Device Tree blob at 8a0000000<=
-br>=C2=A0 =C2=A0Booting using the fdt blob at 0x8a0000000<br>=C2=A0 =C2=A0L=
-oading Device Tree to 000000008ffe3000, end 000000008ffff364 ... OK<br><div=
-><br></div><div>Starting kernel ...<br><br>[ =C2=A0 =C2=A00.000000] Booting=
- Linux on physical CPU 0x0000000000 [0x411fd080]<span class=3D"gmail-im"><b=
-r>[
- =C2=A0 =C2=A00.000000] Linux version 6.1.69-ti (oe-user@oe-host)=20
-(aarch64-agl-linux-gcc (GCC) 13.2.0, GNU ld (GNU Binutils)=20
-2.42.0.20240216) #1 SMP PREEMPT_DYNAMIC Mon Jun 10 06:13:20 UTC 2024<br></s=
-pan>[ =C2=A0 =C2=A00.000000] Machine model: BeagleBoard.org BeagleBone AI-6=
-4<br>[ =C2=A0 =C2=A00.000000] efi: UEFI not found.</div><div><br>As in the =
-previous comment on AGL forum someone suggested a long time ago making more=
- space between the kernel image and the dtb.</div></div><div class=3D"gmail=
-_quote"><div><br></div><div>Now there is no problem between the kernel imag=
-e and the dtb memory ranges. as we can see from above log output:</div><div=
-><br></div><div>I
- can confirm I&#39;m booting the right image kernel from this because we ar=
-e
- booting agl image: aarch64-agl-linux-gcc from TI Linux version=20
-6.1.69-ti , and with the correct machine model: BBAI-64.</div><div><br></di=
-v><div>[ =C2=A0 =C2=A00.000000] Linux version 6.1.69-ti (oe-user@oe-host)=
-=20
-(aarch64-agl-linux-gcc (GCC) 13.2.0, GNU ld (GNU Binutils)=20
-2.42.0.20240216) #1 SMP PREEMPT_DYNAMIC Mon Jun 10 06:13:20 UTC 2024</div><=
-div>[ =C2=A0 =C2=A00.000000] Machine model: BeagleBoard.org BeagleBone AI-6=
-4</div><div><br></div><div>I still have the following errors,=C2=A0</div><d=
-iv>1)=C2=A0
- The first one happens similarly when I switch to SD CARD/mmc device 1=20
-partition 1. It appears at boot (see above boot log, and inside u-boot=20
-line commands):</div><div><br></div><div>boot log above:</div><span class=
-=3D"gmail-im"><div>i2c_write: error waiting for data ACK (status=3D0x116)<b=
-r>pca953x gpio@22: Error reading output register<br>switch to partitions #0=
-, OK</div><div><br></div></span><div>u-boot command line log</div><div>=3D&=
-gt; mmc dev 1<span class=3D"gmail-im"><br>i2c_write: error waiting for data=
- ACK (status=3D0x116)<br>pca953x gpio@22: Error reading output register<br>=
-switch to partitions #0, OK<br>mmc1 is current device<br><br></span></div><=
-div>From below boot log lines it seems BBA-64 is booting as indicated by ex=
-tlinux.conf file:</div><div><br></div><div><span class=3D"gmail-im">Scannin=
-g mmc 1:1...<br>Found /extlinux/extlinux.conf<br>Retrieving file: /extlinux=
-/extlinux.conf<br></span>232 bytes read in 18 ms (11.7 KiB/s)<span class=3D=
-"gmail-im"><br>1:	Linux microSD<br>Retrieving file: /Image<br></span>160465=
-408 bytes read in 6633 ms (23.1 MiB/s)<br>append: console=3DttyS2,115200n8 =
-earlycon=3Dns16550a,mmio32,0x02800000 root=3D/dev/mmcblk1p2 rw rootfstype=
-=3Dext4 rootwait net.ifnames=3D0<br>Retrieving file: /k3-j721e-beagleboneai=
-64.dtb</div><div><br></div><div>and grub load boot is discarded in below li=
-nes:</div><div><br></div><div>Scanning disk sdhci@4f80000.blk...<br>Scannin=
-g disk sdhci@4fb0000.blk...<br>Found 6 disks<br>No EFI system partition<br>=
-BootOrder not defined<br>EFI boot manager: Cannot load any image<br>Found E=
-FI removable media binary efi/boot/bootaa64.efi<br>741376 bytes read in 55 =
-ms (12.9 MiB/s)<br>Booting /efi\boot\bootaa64.efi<br>error: no such device:=
- ((hd0,msdos1)/efi/boot)/EFI/BOOT/grub.cfg.<span class=3D"gmail-im"><br>err=
-or: serial port `com0&#39; isn&#39;t found.<br>GNU GRUB =C2=A0version 2.12<=
-/span></div></div><div class=3D"gmail_quote"><br></div><div class=3D"gmail_=
-quote">but honestly I&#39;m doubting it is following extlinux.conf since at=
- least in one case BOOT_IMAGE has the parameters from grub.cfg.</div><div c=
-lass=3D"gmail_quote"><br></div><div class=3D"gmail_quote">I&#39;m really co=
-nfused which and where are the booting params being obtained.</div><div cla=
-ss=3D"gmail_quote"><br><div>Conclusions. <br></div><div><br></div><div>1.- =
-Booting is partially working.=C2=A0</div><div><br></div><div>question
- 1.a.- I need to find out why when I boot BBAI-64 through u-boot=20
-commands above there is an empty /proc/cmdline, and when I let the board
- boot directly without stopping in u-boot with automatic variables=20
-/proc/cmdline is not empty. is it possible am I missing some boot params
- while sending commands to u-boot?</div><div><br></div><div>question=20
-1.b.- How do we make the changes in addresses for kernel, and dtb image=20
-permanent and allowing for possible increase of size, relocations in=20
-future developments?</div><div><br></div><div>question 1.c.- I need to veri=
-fy the source of error while switching/reading from the SD
- Card. I will get an extreme SD Card following comments from the=20
-beagleboard forum but I doubt the main problem is this one. <br></div><div>=
-<br></div><div>2.-
- The real problem may reside in this init-live.sh script since the=20
-current version is not able to mount the SD Card / mmcblk1=C2=A0 as possibl=
-y=20
-ROOT_DISK inside init-live.sh. As a failure of this it is booting=20
-mmcblk0.=C2=A0</div><div><br></div><div>question 2.- How do we modify init-=
-live.sh so that it mounts properly from mmcblk1/SD Card and not mmcblk0.</d=
-iv><div><br></div><div>if
- the init-live.sh file is correct then everything comes back to booting=20
-params either in u-boot or in extlinux.conf or in grub.cfg</div><div><br></=
-div><div>I really appreciate your help with this. I know I write very long =
-emails :).</div><div><br></div><div>Ulises</div></div><br></div></div>
-
---0000000000002ac3580634e7b5ae--
+ <yocto@lists.yoctoproject.org>; Mon, 12 May 2025 07:15:41 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/65305
+
+VGhhbmtzIGZvciB0aGF0IGNsYXJpZmljYXRpb24uIEl0IHNlZW1zIHRoYXQgbGlua2luZyBpbiBn
+ZW5lcmFsIGRvZXMNCm5vdCB3b3JrOg0KDQogICAgcG93ZXJwYzY0LWJmMTMzLWxpbnV4LWdjYy5l
+eGUgLW1iaWctZW5kaWFuIC1taGFyZC1mbG9hdCAtbTY0IC1tY3B1PWU1NTAwIC1mc3RhY2stcHJv
+dGVjdG9yLXN0cm9uZyAgLU8yIC1EX0ZPUlRJRllfU09VUkNFPTIgLVdmb3JtYXQgLVdmb3JtYXQt
+c2VjdXJpdHkgLVdlcnJvcj1mb3JtYXQtc2VjdXJpdHkgLS1zeXNyb290PUM6L2Rldi9zZGsvYmYx
+MzMvc3lzcm9vdHMvcHBjNjRlNTUwMC1iZjEzMy1saW51eCAtTEM6L2Rldi9zZGsvYmYxMzMvc3lz
+cm9vdHMvcHBjNjRlNTUwMC1iZjEzMy1saW51eC91c3IvbGliNjQgICBtYWluLmMNCiAgICBDOi9k
+ZXYvc2RrL2JmMTMzL3N5c3Jvb3RzL3g4Nl82NC13NjQtbWluZ3czMi91c3IvYmluL3Bvd2VycGM2
+NC1iZjEzMy1saW51eC8uLi8uLi9saWJleGVjL3Bvd2VycGM2NC1iZjEzMy1saW51eC9nY2MvcG93
+ZXJwYzY0LWJmMTMzLWxpbnV4LzE0LjIuMC9sZC5leGU6IGNhbm5vdCBmaW5kIFNjcnQxLm86IE5v
+IHN1Y2ggZmlsZSBvciBkaXJlY3RvcnkNCiAgICBDOi9kZXYvc2RrL2JmMTMzL3N5c3Jvb3RzL3g4
+Nl82NC13NjQtbWluZ3czMi91c3IvYmluL3Bvd2VycGM2NC1iZjEzMy1saW51eC8uLi8uLi9saWJl
+eGVjL3Bvd2VycGM2NC1iZjEzMy1saW51eC9nY2MvcG93ZXJwYzY0LWJmMTMzLWxpbnV4LzE0LjIu
+MC9sZC5leGU6IGNhbm5vdCBmaW5kIGNydGkubzogTm8gc3VjaCBmaWxlIG9yIGRpcmVjdG9yeQ0K
+ICAgIEM6L2Rldi9zZGsvYmYxMzMvc3lzcm9vdHMveDg2XzY0LXc2NC1taW5ndzMyL3Vzci9iaW4v
+cG93ZXJwYzY0LWJmMTMzLWxpbnV4Ly4uLy4uL2xpYmV4ZWMvcG93ZXJwYzY0LWJmMTMzLWxpbnV4
+L2djYy9wb3dlcnBjNjQtYmYxMzMtbGludXgvMTQuMi4wL2xkLmV4ZTogY2Fubm90IGZpbmQgY3J0
+YmVnaW5TLm86IE5vIHN1Y2ggZmlsZSBvciBkaXJlY3RvcnkNCiAgICBDOi9kZXYvc2RrL2JmMTMz
+L3N5c3Jvb3RzL3g4Nl82NC13NjQtbWluZ3czMi91c3IvYmluL3Bvd2VycGM2NC1iZjEzMy1saW51
+eC8uLi8uLi9saWJleGVjL3Bvd2VycGM2NC1iZjEzMy1saW51eC9nY2MvcG93ZXJwYzY0LWJmMTMz
+LWxpbnV4LzE0LjIuMC9sZC5leGU6IGNhbm5vdCBmaW5kIC1sZ2NjOiBObyBzdWNoIGZpbGUgb3Ig
+ZGlyZWN0b3J5DQogICAgQzovZGV2L3Nkay9iZjEzMy9zeXNyb290cy94ODZfNjQtdzY0LW1pbmd3
+MzIvdXNyL2Jpbi9wb3dlcnBjNjQtYmYxMzMtbGludXgvLi4vLi4vbGliZXhlYy9wb3dlcnBjNjQt
+YmYxMzMtbGludXgvZ2NjL3Bvd2VycGM2NC1iZjEzMy1saW51eC8xNC4yLjAvbGQuZXhlOiBjYW5u
+b3QgZmluZCAtbGdjYzogTm8gc3VjaCBmaWxlIG9yIGRpcmVjdG9yeQ0KICAgIGNvbGxlY3QyLmV4
+ZTogZXJyb3I6IGxkIHJldHVybmVkIDEgZXhpdCBzdGF0dXMNCg0KDQpCdXQgdGhlIGZpbGVzIGFy
+ZSBwcmVzZW50IGluIEM6L2Rldi9zZGsvYmYxMzMvc3lzcm9vdHMvcHBjNjRlNTUwMC12cmFnLQ0K
+bGludXgvdXNyL2xpYjY0Lg0KDQpJdCBzZWVtcyB0aGVyZSBpcyBzb21ldGhpbmcgYnJva2VuIHdp
+dGggdGhlIFdpbmRvd3MgU0RLLiBUaGlzIGlzIGENCnNpbXBsZSBoZWxsbyB3b3JsZCBtYWluLiBU
+aGVyZSBpcyBubyBzdWNoIHByb2JsZW0gd2l0aCB0aGUgTGludXggU0RLLA0KdGhhdCBvbmUgd29y
+a3MgZmxhd2xlc3NseS4gSSBhbSBzdGlsbCBwdXp6bGVkIGhvdyB0byBzb2x2ZSB0aGlzLg0KDQoN
+CkFtIEZyZWl0YWcsIGRlbSAwOS4wNS4yMDI1IHVtIDA4OjI1IC0wNjAwIHNjaHJpZWIgSm9zaHVh
+IFdhdHQ6DQo+IFRoZXJlIGlzIG5vIHNldHVwIHNjcmlwdCBvbiBXaW5kb3dzIHRvICJpbnN0YWxs
+IiB0aGUgU0RLIGxpa2UgdGhlcmUNCj4gaXMNCj4gb24gTGludXgsIHNvIHRoZXJlJ3Mgbm90IHJl
+YWxseSBhbnl0aGluZyBtaXNzaW5nLiBUaGVyZSBzaG91bGRuJ3QgYmUNCj4gYW55IHJlbG9jYXRp
+b24gdGhhdCBuZWVkcyB0byBoYXBwZW4sIGJ1dCBpdCdzIGFsc28gcG9zc2libGUgY21ha2UNCj4g
+aXNuJ3Qgd29ya2luZyBpbiB0aGUgTWluR1cgU0RLIGZvciBzb21lIHJlYXNvbi4NCj4gDQo+IE9u
+IEZyaSwgTWF5IDksIDIwMjUgYXQgNjoxM+KAr0FNIERhdmlkIERhbmllbCB2aWENCj4gbGlzdHMu
+eW9jdG9wcm9qZWN0Lm9yZw0KPiA8ZGF2aWQuZGFuaWVsPXZyYWcuY2hAbGlzdHMueW9jdG9wcm9q
+ZWN0Lm9yZz4gd3JvdGU6DQo+ID4gDQo+ID4gV2hhdCBJIHJlYWxpemUgaXMgdGhhdCBvbiBMaW51
+eCBJIGdldCBhIHNjcmlwdCB0byBleGVjdXRlIHRoYXQgdGhlbg0KPiA+IHJlbG9jYXRlcyB0aGUg
+U0RLLCByZXdyaXRlcyBwYXRocyBldGMuIFRoZSB3aW5kb3dzIFNESyBpcyBqdXN0IGFuDQo+ID4g
+YXJjaGl2ZSwgdGhlcmUgaXMgbm8gaW5zdGFsbGVyIHNjcmlwdC4gTmV2ZXJ0aGVsZXNzIGl0IGNv
+bnRhaW5zDQo+ID4gcG9zdC0NCj4gPiByZWxvY2F0ZS1zZXR1cC5zaCAtIGJ1dCBubyBXaW5kb3dz
+IGJhdGNoIGZpbGUuDQo+ID4gDQo+ID4gRG8gbXkgcHJvYmxlbXMgc3RlbSBmcm9tIHRoZSBmYWN0
+IHRoYXQgdGhlIFNESyBpcyBub3Qgc2V0dXANCj4gPiBjb3JyZWN0bHk/DQo+ID4gU28gSSBhbSBt
+aXNzaW5nIGFuIGluc3RhbGxhdGlvbiBvciBwb3N0LWRlY29tcHJlc3Mgc3RlcD8NCj4gPiANCj4g
+PiBTdGlsbCBzdHJ1Z2dsaW5nLCB0aGFua3MgZm9yIGFueSBoaW50cyENCj4gPiANCj4gPiBCUg0K
+PiA+IERhdmUNCj4gPiANCj4gPiBBbSBGcmVpdGFnLCBkZW0gMDkuMDUuMjAyNSB1bSAwODo1NSAr
+MDAwMCBzY2hyaWViIERhdmlkIERhbmllbCB2aWENCj4gPiBsaXN0cy55b2N0b3Byb2plY3Qub3Jn
+Og0KPiA+ID4gSGkgdGhlcmUNCj4gPiA+IA0KPiA+ID4gSSBoYXZlIHRyb3VibGUgdXNpbmcgdGhl
+IFNESyBvbiBXaW5kb3dzIGdlbmVyYXRlZCBieSBtZXRhLW1pbmd3Lg0KPiA+ID4gVGhlcmUNCj4g
+PiA+IGFyZSBhIGZldyBtaW5vciBjaGFuZ2VzIHRoYXQgbmVlZCB0byBiZSBtYWRlIHRvIHRoZSBl
+bnZpcm9ubWVudA0KPiA+ID4gc2V0dXANCj4gPiA+IGZpbGUsIG5hbWVseSB0aGUgU0RLUk9PVCB2
+YXJpYWJsZSBuZWVkcyB0byBiZSBtb2RpZmllZCB0byBvbmx5DQo+ID4gPiBjb250YWluDQo+ID4g
+PiBmb3J3YXJkIHNsYXNoZXMgLSB0aG9zZSBwYXRocyBnZXQgcGFzc2VkIHRvIGdjYy4gU28gSSBt
+b2RpZmllZA0KPiA+ID4gdGhpcw0KPiA+ID4gYWNjb3JkaW5nIHRvIHNvbWUgbGluayBJIGZvdW5k
+Og0KPiA+ID4gDQo+ID4gPiBodHRwczovL2dpdGh1Yi5jb20vZGFya28zMS95b2N0b19jcm9zc19j
+b21waWxlX3Nkay9ibG9iL21haW4vcmVhZG1lX3dpbi5tZA0KPiA+ID4gDQo+ID4gPiBCeSByZXBs
+YWNpbmcgdGhlIGZpcnN0IGxpbmUgd2l0aA0KPiA+ID4gDQo+ID4gPiDCoMKgwqAgc2V0IFNES1JP
+T1Q9JX5kcDAlDQo+ID4gPiDCoMKgwqAgc2V0ICJTREtST09UPSVTREtST09UOlw9LyUiDQo+ID4g
+PiANCj4gPiA+IFRoZSBzZWNvbmQgdGhpbmcgd2FzIHRoYXQgdGhlIGNtYWtlLmJhdCBmaWxlIHdh
+cyBtaXNzaW5nIGluIHRoZQ0KPiA+ID4gd2luZG93cw0KPiA+ID4gc3lzcm9vdHMgZW52aXJvbm1l
+bnQuZCBmb2xkZXIsIHRoZXJlIHdhcyBvbmx5IGEgY21ha2Uuc2ggZmlsZS4NCj4gPiA+IEJ1dA0K
+PiA+ID4gaXRzDQo+ID4gPiBlYXN5IHRvIGNyZWF0ZSBpdCB3aXRoDQo+ID4gPiANCj4gPiA+IMKg
+wqDCoCBzZXQNCj4gPiA+IENNQUtFX1RPT0xDSEFJTl9GSUxFPSVPRUNPUkVfTkFUSVZFX1NZU1JP
+T1QlL3Vzci9zaGFyZS9jbWFrZS9PRVRvDQo+ID4gPiBvbGNoDQo+ID4gPiBhaW5Db25maWcuY21h
+a2UNCj4gPiA+IMKgwqDCoCBzZXQgT0VfQ01BS0VfRklORF9MSUJSQVJZX0NVU1RPTV9MSUJfU1VG
+RklYPTY0DQo+ID4gPiANCj4gPiA+IFRoZSB0aGlyZCB0aGluZyB3YXMgdGhhdCB3aXRoaW4gdGhl
+IFdpbmRvd3Mgc3lzcm9vdHMNCj4gPiA+IHVzci9zaGFyZS9jbWFrZQ0KPiA+ID4gZm9sZGVyIHRo
+ZXJlIHdhcyBubyBnZW5lcmF0ZWQgdG9vbGNoYWluIGZpbGUgdGhhdCBjYW1lIGZyb20gdGhlDQo+
+ID4gPiB0ZW1wbGF0ZS4gU28gdGhlcmUgd2VyZSBvbmx5IHR3byBmaWxlczoNCj4gPiA+IA0KPiA+
+ID4gLSBPRVRvb2xjaGFpbkNvbmZpZy5jbWFrZQ0KPiA+ID4gLSBTREtUb29sY2hhaW5Db25maWcu
+Y21ha2UudGVtcGxhdGUNCj4gPiA+IA0KPiA+ID4gV2hlcmVhcyBpbiB0aGUgbGludXggU0RLIHRo
+ZXJlIGlzIGEgdGhpcmQgZmlsZSB0aGF0IHdhcyBnZW5lcmF0ZWQNCj4gPiA+IGJ5DQo+ID4gPiB0
+aGUgU0RLVG9vbGNoYWluQ29uZmlnLmNtYWtlLnRlbXBsYXRlIGZpbGUuDQo+ID4gPiANCj4gPiA+
+IEJ1dCBldmVuIHdoZW4gSSBmaXggdGhlIGFib3ZlIEkgY2Fubm90IHN1Y2NlZWQgdG8gY29uZmln
+dXJlIGENCj4gPiA+IGJ1aWxkDQo+ID4gPiB3aXRoIGNtYWtlIGFuZCB0aGUgdG9vbGNoYWluLiBJ
+IGFsd2F5cyBnZXQgdGhlIGVycm9yICJpcyBub3QgYWJsZQ0KPiA+ID4gdG8NCj4gPiA+IGNvbXBp
+bGUgYSBzaW1wbGUgdGVzdCBwcm9ncmFtLiIgd2l0aCBjb21wbGFpbnRzIHRoYXQgbGlicyBhbmQN
+Cj4gPiA+IG9iamVjdHMNCj4gPiA+IGNhbm5vdCBiZSBmb3VuZCAoY2Fubm90IGZpbmQgU2NydDEu
+bywgY2Fubm90IGZpbmQgY3J0aS5vLCBjYW5ub3QNCj4gPiA+IGZpbmQNCj4gPiA+IGNydGJlYmlu
+Uy5vLCBjYW5ub3QgZmluZCAtbGdjYykuDQo+ID4gPiANCj4gPiA+IEkgc2ltcGx5IGNhbGw6DQo+
+ID4gPiANCj4gPiA+IMKgwqAgY21ha2UgLUcgTmluamEgLS10b29sY2hhaW4gJUNNQUtFX1RPT0xD
+SEFJTl9GSUxFJSAtQiBidWlsZCAtUw0KPiA+ID4gLg0KPiA+ID4gDQo+ID4gPiBBbmQgSSBnZXQN
+Cj4gPiA+IA0KPiA+ID4gwqDCoMKgIC0tIFRoZSBDWFggY29tcGlsZXIgaWRlbnRpZmljYXRpb24g
+aXMgR05VIDE0LjIuMA0KPiA+ID4gwqDCoMKgIC0tIERldGVjdGluZyBDWFggY29tcGlsZXIgQUJJ
+IGluZm8NCj4gPiA+IMKgwqDCoCAtLSBEZXRlY3RpbmcgQ1hYIGNvbXBpbGVyIEFCSSBpbmZvIC0g
+ZmFpbGVkDQo+ID4gPiDCoMKgwqAgLS0gQ2hlY2sgZm9yIHdvcmtpbmcgQ1hYIGNvbXBpbGVyOg0K
+PiA+ID4gQzovZGV2L3Nkay9iZjEzMy9zeXNyb290cy94ODZfNjQtdzY0LW1pbmd3MzIvdXNyL2Jp
+bi9wb3dlcnBjNjQtDQo+ID4gPiBiZjEzMy0NCj4gPiA+IGxpbnV4L3Bvd2VycGM2NC1iZjEzMy1s
+aW51eC1nKysuZXhlDQo+ID4gPiDCoMKgwqAgLS0gQ2hlY2sgZm9yIHdvcmtpbmcgQ1hYIGNvbXBp
+bGVyOg0KPiA+ID4gQzovZGV2L3Nkay9iZjEzMy9zeXNyb290cy94ODZfNjQtdzY0LW1pbmd3MzIv
+dXNyL2Jpbi9wb3dlcnBjNjQtDQo+ID4gPiBiZjEzMy0NCj4gPiA+IGxpbnV4L3Bvd2VycGM2NC1i
+ZjEzMy1saW51eC1nKysuZXhlIC0gYnJva2VuDQo+ID4gPiDCoMKgwqAgQ01ha2UgRXJyb3IgYXQg
+QzovZGV2L3Nkay9iZjEzMy9zeXNyb290cy94ODZfNjQtdzY0LQ0KPiA+ID4gbWluZ3czMi91c3Iv
+c2hhcmUvY21ha2UtDQo+ID4gPiAzLjMxL01vZHVsZXMvQ01ha2VUZXN0Q1hYQ29tcGlsZXIuY21h
+a2U6NzMNCj4gPiA+IChtZXNzYWdlKToNCj4gPiA+IMKgwqDCoMKgwqAgVGhlIEMrKyBjb21waWxl
+cg0KPiA+ID4gDQo+ID4gPiDCoMKgwqDCoMKgwqDCoCAiQzovZGV2L3Nkay9iZjEzMy9zeXNyb290
+cy94ODZfNjQtdzY0LQ0KPiA+ID4gbWluZ3czMi91c3IvYmluL3Bvd2VycGM2NC1iZjEzMy1saW51
+eC9wb3dlcnBjNjQtYmYxMzMtbGludXgtDQo+ID4gPiBnKysuZXhlIg0KPiA+ID4gDQo+ID4gPiDC
+oMKgwqDCoMKgIGlzIG5vdCBhYmxlIHRvIGNvbXBpbGUgYSBzaW1wbGUgdGVzdCBwcm9ncmFtLg0K
+PiA+ID4gDQo+ID4gPiDCoMKgwqDCoMKgIEl0IGZhaWxzIHdpdGggdGhlIGZvbGxvd2luZyBvdXRw
+dXQ6DQo+ID4gPiANCj4gPiA+IMKgwqDCoMKgwqDCoMKgIENoYW5nZSBEaXI6DQo+ID4gPiAnQzov
+ZGV2L25ldGNhbi9idWlsZC9DTWFrZUZpbGVzL0NNYWtlU2NyYXRjaC9UcnlDb21waWxlLTlhbWdj
+YicNCj4gPiA+IA0KPiA+ID4gwqDCoMKgwqDCoMKgwqAgUnVuIEJ1aWxkIENvbW1hbmQocyk6IEM6
+L1BST0dSQX4xL25pbmphL25pbmphLmV4ZSAtdg0KPiA+ID4gY21UQ18wMTg5MA0KPiA+ID4gwqDC
+oMKgwqDCoMKgwqAgWzEvMl0gQzpcZGV2XHNka1xiZjEzM1xzeXNyb290c1x4ODZfNjQtdzY0LQ0K
+PiA+ID4gbWluZ3czMlx1c3JcYmluXHBvd2VycGM2NC1iZjEzMy1saW51eFxwb3dlcnBjNjQtYmYx
+MzMtbGludXgtDQo+ID4gPiBnKysuZXhlDQo+ID4gPiAtbWJpZy1lbmRpYW4gLW1oYXJkLWZsb2F0
+IC1tNjQgLW1jcHU9ZTU1MDAgLWZzdGFjay1wcm90ZWN0b3ItDQo+ID4gPiBzdHJvbmcNCj4gPiA+
+IC1PMiAtRF9GT1JUSUZZX1NPVVJDRT0yIC1XZm9ybWF0IC1XZm9ybWF0LXNlY3VyaXR5IC0NCj4g
+PiA+IFdlcnJvcj1mb3JtYXQtDQo+ID4gPiBzZWN1cml0eSAtLXN5c3Jvb3Q9QzovZGV2L3Nkay9i
+ZjEzMy9zeXNyb290cy9wcGM2NGU1NTAwLWJmMTMzLQ0KPiA+ID4gbGludXggLQ0KPiA+ID4gLXN5
+c3Jvb3Q9QzovZGV2L3Nkay9iZjEzMy9zeXNyb290cy9wcGM2NGU1NTAwLWJmMTMzLWxpbnV4wqDC
+oCAtTzIgLQ0KPiA+ID4gZ8KgIC0NCj4gPiA+IHBpcGUgLW8gQ01ha2VGaWxlcy9jbVRDXzAxODkw
+LmRpci90ZXN0Q1hYQ29tcGlsZXIuY3h4Lm8gLWMNCj4gPiA+IEM6L2Rldi9uZXRjYW4vYnVpbGQv
+Q01ha2VGaWxlcy9DTWFrZVNjcmF0Y2gvVHJ5Q29tcGlsZS0NCj4gPiA+IDlhbWdjYi90ZXN0Q1hY
+Q29tcGlsZXIuY3h4DQo+ID4gPiDCoMKgwqDCoMKgwqDCoCBbMi8yXSBDOlxXaW5kb3dzXHN5c3Rl
+bTMyXGNtZC5leGUgL0MgImNkIC4gJiYNCj4gPiA+IEM6XGRldlxzZGtcYmYxMzNcc3lzcm9vdHNc
+eDg2XzY0LXc2NC1taW5ndzMyXHVzclxiaW5ccG93ZXJwYzY0LQ0KPiA+ID4gYmYxMzMtDQo+ID4g
+PiBsaW51eFxwb3dlcnBjNjQtYmYxMzMtbGludXgtZysrLmV4ZcKgwqAgLW1iaWctZW5kaWFuIC1t
+aGFyZC1mbG9hdCAtDQo+ID4gPiBtNjQNCj4gPiA+IC1tY3B1PWU1NTAwIC1mc3RhY2stcHJvdGVj
+dG9yLXN0cm9uZ8KgIC1PMiAtRF9GT1JUSUZZX1NPVVJDRT0yIC0NCj4gPiA+IFdmb3JtYXQgLVdm
+b3JtYXQtc2VjdXJpdHkgLVdlcnJvcj1mb3JtYXQtc2VjdXJpdHkgLS0NCj4gPiA+IHN5c3Jvb3Q9
+QzovZGV2L3Nkay9iZjEzMy9zeXNyb290cy9wcGM2NGU1NTAwLWJmMTMzLWxpbnV4IC0tDQo+ID4g
+PiBzeXNyb290PUM6L2Rldi9zZGsvYmYxMzMvc3lzcm9vdHMvcHBjNjRlNTUwMC1iZjEzMy1saW51
+eCAtTzIgLWfCoA0KPiA+ID4gLQ0KPiA+ID4gcGlwZSAtV2wsLU8xIC1XbCwtLWhhc2gtc3R5bGU9
+Z251IC1XbCwtLWFzLW5lZWRlZMKgIC1XbCwteixyZWxybywtDQo+ID4gPiB6LG5vdyBDTWFrZUZp
+bGVzL2NtVENfMDE4OTAuZGlyL3Rlc3RDWFhDb21waWxlci5jeHgubyAtbw0KPiA+ID4gY21UQ18w
+MTg5MA0KPiA+ID4gJiYgY2QgLiINCj4gPiA+IMKgwqDCoMKgwqDCoMKgIEZBSUxFRDogY21UQ18w
+MTg5MA0KPiA+ID4gwqDCoMKgwqDCoMKgwqAgQzpcV2luZG93c1xzeXN0ZW0zMlxjbWQuZXhlIC9D
+ICJjZCAuICYmDQo+ID4gPiBDOlxkZXZcc2RrXGJmMTMzXHN5c3Jvb3RzXHg4Nl82NC13NjQtbWlu
+Z3czMlx1c3JcYmluXHBvd2VycGM2NC0NCj4gPiA+IGJmMTMzLQ0KPiA+ID4gbGludXhccG93ZXJw
+YzY0LWJmMTMzLWxpbnV4LWcrKy5leGXCoMKgIC1tYmlnLWVuZGlhbiAtbWhhcmQtZmxvYXQgLQ0K
+PiA+ID4gbTY0DQo+ID4gPiAtbWNwdT1lNTUwMCAtZnN0YWNrLXByb3RlY3Rvci1zdHJvbmfCoCAt
+TzIgLURfRk9SVElGWV9TT1VSQ0U9MiAtDQo+ID4gPiBXZm9ybWF0IC1XZm9ybWF0LXNlY3VyaXR5
+IC1XZXJyb3I9Zm9ybWF0LXNlY3VyaXR5IC0tDQo+ID4gPiBzeXNyb290PUM6L2Rldi9zZGsvYmYx
+MzMvc3lzcm9vdHMvcHBjNjRlNTUwMC1iZjEzMy1saW51eCAtLQ0KPiA+ID4gc3lzcm9vdD1DOi9k
+ZXYvc2RrL2JmMTMzL3N5c3Jvb3RzL3BwYzY0ZTU1MDAtYmYxMzMtbGludXggLU8yIC1nwqANCj4g
+PiA+IC0NCj4gPiA+IHBpcGUgLVdsLC1PMSAtV2wsLS1oYXNoLXN0eWxlPWdudSAtV2wsLS1hcy1u
+ZWVkZWTCoCAtV2wsLXoscmVscm8sLQ0KPiA+ID4geixub3cgQ01ha2VGaWxlcy9jbVRDXzAxODkw
+LmRpci90ZXN0Q1hYQ29tcGlsZXIuY3h4Lm8gLW8NCj4gPiA+IGNtVENfMDE4OTANCj4gPiA+ICYm
+IGNkIC4iDQo+ID4gPiDCoMKgwqDCoMKgwqDCoCBDOi9kZXYvc2RrL2JmMTMzL3N5c3Jvb3RzL3g4
+Nl82NC13NjQtDQo+ID4gPiBtaW5ndzMyL3Vzci9iaW4vcG93ZXJwYzY0LWJmMTMzLWxpbnV4Ly4u
+Ly4uL2xpYmV4ZWMvcG93ZXJwYzY0LQ0KPiA+ID4gYmYxMzMtDQo+ID4gPiBsaW51eC9nY2MvcG93
+ZXJwYzY0LWJmMTMzLWxpbnV4LzE0LjIuMC9sZC5leGU6IGNhbm5vdCBmaW5kDQo+ID4gPiBTY3J0
+MS5vOg0KPiA+ID4gTm8gc3VjaCBmaWxlIG9yIGRpcmVjdG9yeQ0KPiA+ID4gwqDCoMKgwqDCoMKg
+wqAgQzovZGV2L3Nkay9iZjEzMy9zeXNyb290cy94ODZfNjQtdzY0LQ0KPiA+ID4gbWluZ3czMi91
+c3IvYmluL3Bvd2VycGM2NC1iZjEzMy1saW51eC8uLi8uLi9saWJleGVjL3Bvd2VycGM2NC0NCj4g
+PiA+IGJmMTMzLQ0KPiA+ID4gbGludXgvZ2NjL3Bvd2VycGM2NC1iZjEzMy1saW51eC8xNC4yLjAv
+bGQuZXhlOiBjYW5ub3QgZmluZA0KPiA+ID4gY3J0aS5vOiBObw0KPiA+ID4gc3VjaCBmaWxlIG9y
+IGRpcmVjdG9yeQ0KPiA+ID4gwqDCoMKgwqDCoMKgwqAgQzovZGV2L3Nkay9iZjEzMy9zeXNyb290
+cy94ODZfNjQtdzY0LQ0KPiA+ID4gbWluZ3czMi91c3IvYmluL3Bvd2VycGM2NC1iZjEzMy1saW51
+eC8uLi8uLi9saWJleGVjL3Bvd2VycGM2NC0NCj4gPiA+IGJmMTMzLQ0KPiA+ID4gbGludXgvZ2Nj
+L3Bvd2VycGM2NC1iZjEzMy1saW51eC8xNC4yLjAvbGQuZXhlOiBjYW5ub3QgZmluZA0KPiA+ID4g
+Y3J0YmVnaW5TLm86IE5vIHN1Y2ggZmlsZSBvciBkaXJlY3RvcnkNCj4gPiA+IMKgwqDCoMKgwqDC
+oMKgIEM6L2Rldi9zZGsvYmYxMzMvc3lzcm9vdHMveDg2XzY0LXc2NC0NCj4gPiA+IG1pbmd3MzIv
+dXNyL2Jpbi9wb3dlcnBjNjQtYmYxMzMtbGludXgvLi4vLi4vbGliZXhlYy9wb3dlcnBjNjQtDQo+
+ID4gPiBiZjEzMy0NCj4gPiA+IGxpbnV4L2djYy9wb3dlcnBjNjQtYmYxMzMtbGludXgvMTQuMi4w
+L2xkLmV4ZTogY2Fubm90IGZpbmQgLWxnY2M6DQo+ID4gPiBObw0KPiA+ID4gc3VjaCBmaWxlIG9y
+IGRpcmVjdG9yeQ0KPiA+ID4gwqDCoMKgwqDCoMKgwqAgY29sbGVjdDIuZXhlOiBlcnJvcjogbGQg
+cmV0dXJuZWQgMSBleGl0IHN0YXR1cw0KPiA+ID4gwqDCoMKgwqDCoMKgwqAgbmluamE6IGJ1aWxk
+IHN0b3BwZWQ6IHN1YmNvbW1hbmQgZmFpbGVkLg0KPiA+ID4gDQo+ID4gPiANCj4gPiA+IMKgwqDC
+oMKgwqAgQ01ha2Ugd2lsbCBub3QgYmUgYWJsZSB0byBjb3JyZWN0bHkgZ2VuZXJhdGUgdGhpcyBw
+cm9qZWN0Lg0KPiA+ID4gwqDCoMKgIENhbGwgU3RhY2sgKG1vc3QgcmVjZW50IGNhbGwgZmlyc3Qp
+Og0KPiA+ID4gwqDCoMKgwqDCoCBDTWFrZUxpc3RzLnR4dDoyIChwcm9qZWN0KQ0KPiA+ID4gDQo+
+ID4gPiDCoMKgwqAgLS0gQ29uZmlndXJpbmcgaW5jb21wbGV0ZSwgZXJyb3JzIG9jY3VycmVkIQ0K
+PiA+ID4gDQo+ID4gPiANCj4gPiA+IEFtIEkgZG9pbmcgc29tZXRoaW5nIHdyb25nPyBBcmUgdGhl
+cmUgYWRkaXRpb25hbCByZXF1aXJlbWVudHMgZm9yDQo+ID4gPiB0aGUNCj4gPiA+IFdpbmRvd3Mg
+U0RLIGV4Y2VwdCB0aGUgY29uZmlndXJhdGlvbiBvZiBTREtNQUNISU5FPw0KPiA+ID4gDQo+ID4g
+PiBUaGFua3MgZm9yIGFueSBoaW50cywgd2Uga2VlcCBzdHJ1Z2dsaW5nIHdpdGggdGhpcy4gSSdk
+IHJhdGhlcg0KPiA+ID4gaGF2ZQ0KPiA+ID4gbXkNCj4gPiA+IGNvbGxlYWd1ZXMgdXNlIExpbnV4
+IGJ1dCBJIGNhbm5vdCBjaGFuZ2UgdGhhdCwgdW5mb3J0dW5hdGVseS4NCj4gPiA+IA0KPiA+ID4g
+QlINCj4gPiA+IERhdmUNCj4gPiA+IA0KPiA+ID4gDQo+ID4gDQo+ID4gLT0tPS09LT0tPS09LT0t
+PS09LT0tPS0NCj4gPiBMaW5rczogWW91IHJlY2VpdmUgYWxsIG1lc3NhZ2VzIHNlbnQgdG8gdGhp
+cyBncm91cC4NCj4gPiBWaWV3L1JlcGx5IE9ubGluZSAoIzY1MzAxKToNCj4gPiBodHRwczovL2xp
+c3RzLnlvY3RvcHJvamVjdC5vcmcvZy95b2N0by9tZXNzYWdlLzY1MzAxDQo+ID4gTXV0ZSBUaGlz
+IFRvcGljOg0KPiA+IGh0dHBzOi8vbGlzdHMueW9jdG9wcm9qZWN0Lm9yZy9tdC8xMTI4OTUzNzAv
+MzYxNjY5Mw0KPiA+IEdyb3VwIE93bmVyOiB5b2N0bytvd25lckBsaXN0cy55b2N0b3Byb2plY3Qu
+b3JnDQo+ID4gVW5zdWJzY3JpYmU6DQo+ID4gaHR0cHM6Ly9saXN0cy55b2N0b3Byb2plY3Qub3Jn
+L2cveW9jdG8vdW5zdWLCoFtKUEVXaGFja2VyQGdtYWlsLmNvbV0NCj4gPiAtPS09LT0tPS09LT0t
+PS09LT0tPS09LQ0KPiA+IA0K
 
