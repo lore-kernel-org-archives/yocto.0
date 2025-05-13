@@ -1,106 +1,208 @@
-Return-Path: <emailaddress.ashish@gmail.com>
+Return-Path: <sjolley.yp.pm@gmail.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id AA655C3ABC3
-	for <webhook@archiver.kernel.org>; Tue, 13 May 2025 03:42:49 +0000 (UTC)
-Subject: Re: [yocto] Size of production os image
-To: "MOHAMMED HASSAN" <hassanchattarki@gmail.com>, yocto@lists.yoctoproject.org
-From: "Ashish Mishra" <emailaddress.ashish@gmail.com>
-X-Originating-Location: Bengaluru, Karnataka, IN (106.222.201.197)
-X-Originating-Platform: Linux Firefox 136
-User-Agent: GROUPS.IO Web Poster
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 5B65DC3ABC3
+	for <webhook@archiver.kernel.org>; Tue, 13 May 2025 06:28:50 +0000 (UTC)
+Received: from mail-pl1-f175.google.com (mail-pl1-f175.google.com [209.85.214.175])
+ by mx.groups.io with SMTP id smtpd.web10.69789.1747117722136526633
+ for <yocto@lists.yoctoproject.org>;
+ Mon, 12 May 2025 23:28:42 -0700
+Authentication-Results: mx.groups.io;
+ dkim=pass header.i=@gmail.com header.s=20230601 header.b=UrgHU3IM;
+ spf=pass (domain: gmail.com, ip: 209.85.214.175, mailfrom: sjolley.yp.pm@gmail.com)
+Received: by mail-pl1-f175.google.com with SMTP id d9443c01a7336-22e09f57ed4so65258695ad.0
+        for <yocto@lists.yoctoproject.org>; Mon, 12 May 2025 23:28:42 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1747117721; x=1747722521; darn=lists.yoctoproject.org;
+        h=to:subject:message-id:date:from:mime-version:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=Q5U+dPI0PKLl39JpLyoRIcZ4q/7fm1B+CQhmtfhlqh4=;
+        b=UrgHU3IMIwgrXPF4kgnhLe8qrAlW9Jl6x4NpSDZrI7EXGx4EtzUb1Z33WYSg2TklIa
+         tNfOfrPVfRa0GTtOcE1LMp7u5ayvk1zL70mgb1Qd4+TyEZD5nnXLXiMd4EC/HDzWIs9+
+         E09+Vc4/Skhl2iEUtbQBkTr6W08l5lzKzDcBELndhtTaXO/DdW0WTtN5Ni0jAFCqdnZZ
+         bdWUy4cPkqiKSBNiAO4/9EXEeCF/xI5473uNluN4fJ96NhrtSzFt8YQYIYiU1R8H8BRl
+         pods4u++bDrkRFPQoTv3q/0PZRJneHqIfz+VZPLJAPbnjeol/MHCdSUYNygS9NPnUGGy
+         IpvQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1747117721; x=1747722521;
+        h=to:subject:message-id:date:from:mime-version:x-gm-message-state
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=Q5U+dPI0PKLl39JpLyoRIcZ4q/7fm1B+CQhmtfhlqh4=;
+        b=ru4AyyWi/UQegxUpIIYujQqYdJ02aYGXxvS4VTMDVLd90gtoLpvUrSznZ2cehk5LYY
+         Oqn8TrLX2kqwYHNBXpMMQjti3ntV56E5Dj6PAQqb0LBF0JGDk8ZKNreZ37IYN+MIdUR+
+         kV2lP5SntZ32r28GBANXME9VY7Y6Rv/nd1kmbkT2VuGlgPigThDkPmeZd1vutpZrnF49
+         JYWkUzo7FM0hyPx/egq8scyo9fG/xWYtHgcVGRxO1wF+2F5qxUExuJ51irm3yrMj1HWT
+         deHgErGIq2L24yMfqdd56EfLjhqlhythpABsJp0aGwvcFrOVHznz2v1ODj0C71vU2TmR
+         2U8g==
+X-Forwarded-Encrypted: i=1; AJvYcCV41q95/li4NNSuc9oWmoFEH7nljsa+fCGJbHR/y1ykcpbgEYPPLunE2UKV3dxsozSwzkOv7Q==@lists.yoctoproject.org
+X-Gm-Message-State: AOJu0YwY+w3El0IZtoWUr2h7bQjA+pP/rMaJiwKcWTBycOSVSnp3dudr
+	hClY2RtgG38oeqzlTi4GA79kopdj8Su39+3YSpcKIYSWRbAGeuNbh7uKg6IEk0kud5CoADj2AZP
+	8VVJ90eNXh6wzd7IvTzCfenlu1uw=
+X-Gm-Gg: ASbGncv3EDF/eL+eYg7+NXmVHrYg1IMN6qHfQhbVVYcshcqVi3c6ZHKvp2unFLCCjzS
+	viqEMGs+AWTyRZGOy1evsUlvdKR0SbnqygwdGDJHIfqH5P7J+nQ4ggK4xdTn2vpqpZyoYqm4rxu
+	YPE+jwpAQibIzV8KKwLO4uorMXotutxKMyeGgJ+xJN8dBX0ZOVQUVf2kYWumTmLbuVc28=
+X-Google-Smtp-Source: AGHT+IGNvH43BLVDkwYkAVtKcGYnVcDbAMbzncP+KPJKi2pbL25lDBd9qcim5sRM7YeMRBOt0xTLUh07kqHh1zHHMuw=
+X-Received: by 2002:a17:902:d103:b0:22e:16b0:ef8b with SMTP id
+ d9443c01a7336-2317caf3194mr20215855ad.7.1747117721406; Mon, 12 May 2025
+ 23:28:41 -0700 (PDT)
 MIME-Version: 1.0
-Date: Mon, 12 May 2025 20:42:43 -0700
-References: <CAPJWBngDN4qT+9mXVdiDLQfZn+-fQ7YkWfdDp28g+DBLRpD85w@mail.gmail.com>
-In-Reply-To: <CAPJWBngDN4qT+9mXVdiDLQfZn+-fQ7YkWfdDp28g+DBLRpD85w@mail.gmail.com>
-Message-ID: <1013.1747107763159555423@lists.yoctoproject.org>
-Content-Type: multipart/alternative; boundary="QL3cSJDAtzVTcFmPDN3s"
+From: Stephen K Jolley <sjolley.yp.pm@gmail.com>
+Date: Mon, 12 May 2025 23:28:30 -0700
+X-Gm-Features: AX0GCFv5fHyd3XDrrdGRVu23SpEUSNTxF3rV2T7X5iKgqySKJkdk-RcNRmRx_Yc
+Message-ID: <CAK5yBb9XQ+9BNbm8KJ4UiTkXLs8bkb4gA9Ubv9ELOsUGxPnWFg@mail.gmail.com>
+Subject: Yocto Project Newcomer & Unassigned Bugs - Help Needed
+To: openembedded-devel@lists.openembedded.org, 
+	Yocto-mailing-list <yocto@lists.yoctoproject.org>
+Content-Type: multipart/alternative; boundary="0000000000002a51690634fe8b7c"
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Tue, 13 May 2025 03:42:49 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/65319
+ <yocto@lists.yoctoproject.org>; Tue, 13 May 2025 06:28:50 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/65320
 
---QL3cSJDAtzVTcFmPDN3s
-Content-Type: text/plain; charset="utf-8"
+--0000000000002a51690634fe8b7c
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-Hi ,
+All,
 
-1) How much should be the size of RFS is not standard answer but depends on=
- packages you want to add on RFS
+The triage team is starting to try and collect up and classify bugs which a
+newcomer to the project would be able to work on in a way which means
+people can find them. They're being listed on the triage page under the
+appropriate heading:
+https://wiki.yoctoproject.org/wiki/Bug_Triage#Newcomer_Bugs Also please
+review:
+https://www.openembedded.org/wiki/How_to_submit_a_patch_to_OpenEmbedded and
+how to create a bugzilla account at:
+https://bugzilla.yoctoproject.org/createaccount.cgi
 
-2) Consider RFS as bucket. The size of bucket will be based on whats inside=
- the bucket .
-Hence two team can have very different size as their use case will be diffe=
-rent
+The idea is these bugs should be straight forward for a person to help work
+on who doesn't have deep experience with the project. If anyone can help,
+please take ownership of the bug and send patches! If anyone needs
+help/advice there are people on irc who can likely do so, or some of the
+more experienced contributors will likely be happy to help too.
 
-3) Just to give you an context , i just completed an project for Montavista=
- where
-i was able to bring the RFS size from 800MB to 250+MB i.e around 70% size r=
-eduction
+Also, the triage team meets weekly and does its best to handle the bugs
+reported into the Bugzilla. The number of people attending that meeting has
+fallen, as have the number of people available to help fix bugs. One of the
+things we hear users report is they don't know how to help. We (the triage
+team) are therefore going to start reporting out the currently 444
+unassigned or newcomer bugs.
 
-4) How you do is depending upon what package you are adding , whats the alt=
-ernate to existing package
-then you go in deep of specific module to reduce their size
+We're hoping people may be able to spare some time now and again to help
+out with these. Bugs are split into two types, "true bugs" where things
+don't work as they should and "enhancements" which are features we'd want
+to add to the system. There are also roughly four different "priority"
+classes right now, =E2=80=9C5.2=E2=80=9D, =E2=80=9C5.3", "5.99" and "Future=
+", the more
+pressing/urgent issues being in "5.2" and then =E2=80=9C5.3=E2=80=9D.
 
-5) The good starting point will be to enable "buildhistory" in your custom =
-build
+Please review this link and if a bug is something you would be able to help
+with either take ownership of the bug, or send me (sjolley.yp.pm@gmail.com)
+an e-mail with the bug number you would like and I will assign it to you
+(please make sure you have a Bugzilla account). The list is at:
+https://wiki.yoctoproject.org/wiki/Bug_Triage_Archive#Unassigned_or_Newcome=
+r_Bugs
 
-6) An quick vies of the file you shared below are few starting points to he=
-lp
-You can evaluate them :
-a) IMAGE_FEATURES:remove =3D " dbg-pkgs dev-pkgs "
-b) Seems you are adding bash & zip both , you can shave only one on target
-c) Remove VIM it can give you good saving
-d) You can remove alsa from Machine & Distro feature if you don't want audi=
-o
-e) Do you really require cpp ,cpio , cmake on target
-f) mariadb could be heavy
-g) Looks like many file system tools are being added in RFS , you can look =
-at them
+Thanks,
 
-It would be helpful to others if you share your image & installed-package f=
-iles as that gives clear idea as to what is going in RFS
 
-Thanks ,
-Ashish
 
---QL3cSJDAtzVTcFmPDN3s
-Content-Type: text/html; charset="utf-8"
+*Stephen K. Jolley*
+
+*Yocto Project Program Manager*
+
+(    *Cell*:                (208) 244-4460
+
+* *Email*:                 *s
+<stephen.k.jolley@intel.com>jolley.yp.pm@gmail.com <jolley.yp.pm@gmail.com>=
+*
+
+--0000000000002a51690634fe8b7c
+Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-<div>Hi ,</div>
-<div>&nbsp;</div>
-<div>1) How much should be the size of RFS is not standard answer but depen=
-ds on packages you want to add on RFS &nbsp;</div>
-<div><br />2) Consider RFS as bucket. The size of bucket will be based on w=
-hats inside the bucket .<br />&nbsp; &nbsp;Hence two team can have very dif=
-ferent size as their use case will be different&nbsp;</div>
-<div><br />3) Just to give you an context , i just completed an project for=
- Montavista where <br />&nbsp; &nbsp;&nbsp; i was able to bring the RFS siz=
-e from 800MB to 250+MB i.e around 70% size reduction&nbsp;</div>
-<div><br />4) How you do is depending upon what package you are adding , wh=
-ats the alternate to existing package&nbsp;<br />&nbsp; &nbsp;then you go i=
-n deep of specific module to reduce their size</div>
-<div><br />5) The good starting point will be to enable "buildhistory" in y=
-our custom build&nbsp;</div>
-<div><br />6) An quick vies of the file you shared below are few starting p=
-oints to help&nbsp;<br />&nbsp; &nbsp;You can evaluate them :<br />&nbsp; &=
-nbsp;a) IMAGE_FEATURES:remove =3D " dbg-pkgs dev-pkgs "<br />&nbsp; &nbsp;b=
-) Seems you are adding bash &amp; zip both , you can shave only one on targ=
-et&nbsp;<br />&nbsp; &nbsp;c) Remove VIM it can give you good saving&nbsp;<=
-br />&nbsp; &nbsp;d) You can remove alsa from Machine &amp; Distro feature =
-if you don't want audio&nbsp;<br />&nbsp; &nbsp;e) Do you really require cp=
-p ,cpio , cmake on target&nbsp;<br />&nbsp; &nbsp;f) mariadb could be heavy=
-&nbsp;<br />&nbsp; &nbsp;g) Looks like many file system tools are being add=
-ed in RFS , you can look at them&nbsp;<br />&nbsp; &nbsp;</div>
-<div>It would be helpful to others if you share your image &amp; installed-=
-package files as that gives clear idea as to what is going in RFS </div>
-<div>&nbsp;</div>
-<div>Thanks , </div>
-<div>Ashish <br />&nbsp; &nbsp;&nbsp;</div>
+<div dir=3D"ltr"><div><span style=3D"font-size:11pt;font-family:Calibri,Ari=
+al">All,<br><br>The triage team is starting to try and collect up and class=
+ify bugs which a newcomer to the project would be able to work on in a way =
+which means people can find them. They&#39;re being listed on the triage pa=
+ge under the appropriate heading: <a href=3D"https://wiki.yoctoproject.org/=
+wiki/Bug_Triage#Newcomer_Bugs">https://wiki.yoctoproject.org/wiki/Bug_Triag=
+e#Newcomer_Bugs</a>  Also please review: <a href=3D"https://www.openembedde=
+d.org/wiki/How_to_submit_a_patch_to_OpenEmbedded">https://www.openembedded.=
+org/wiki/How_to_submit_a_patch_to_OpenEmbedded</a> and how to create a bugz=
+illa account at: <a href=3D"https://bugzilla.yoctoproject.org/createaccount=
+.cgi">https://bugzilla.yoctoproject.org/createaccount.cgi</a><br><br>The id=
+ea is these bugs should be straight forward for a person to help work on wh=
+o doesn&#39;t have deep experience with the project.  If anyone can help, p=
+lease take ownership of the bug and send patches!  If anyone needs help/adv=
+ice there are people on irc who can likely do so, or some of the more exper=
+ienced contributors will likely be happy to help too.<br><br>Also, the tria=
+ge team meets weekly and does its best to handle the bugs reported into the=
+ Bugzilla. The number of people attending that meeting has fallen, as have =
+the number of people available to help fix bugs. One of the things we hear =
+users report is they don&#39;t know how to help. We (the triage team) are t=
+herefore going to start reporting out the currently 444 unassigned or newco=
+mer bugs.<br><br>We&#39;re hoping people may be able to spare some time now=
+ and again to help out with these.  Bugs are split into two types, &quot;tr=
+ue bugs&quot; where things don&#39;t work as they should and &quot;enhancem=
+ents&quot; which are features we&#39;d want to add to the system.  There ar=
+e also roughly four different &quot;priority&quot; classes right now, =E2=
+=80=9C5.2=E2=80=9D, =E2=80=9C5.3&quot;, &quot;5.99&quot; and &quot;Future&q=
+uot;, the more pressing/urgent issues being in &quot;5.2&quot; and then =E2=
+=80=9C5.3=E2=80=9D.<br><br>Please review this link and if a bug is somethin=
+g you would be able to help with either take ownership of the bug, or send =
+me (<a href=3D"mailto:sjolley.yp.pm@gmail.com">sjolley.yp.pm@gmail.com</a>)=
+ an e-mail with the bug number you would like and I will assign it to you (=
+please make sure you have a Bugzilla account).  The list is at: <a href=3D"=
+https://wiki.yoctoproject.org/wiki/Bug_Triage_Archive#Unassigned_or_Newcome=
+r_Bugs">https://wiki.yoctoproject.org/wiki/Bug_Triage_Archive#Unassigned_or=
+_Newcomer_Bugs</a></span></div><div dir=3D"ltr" class=3D"gmail_signature" d=
+ata-smartmail=3D"gmail_signature"><div dir=3D"ltr"><div dir=3D"ltr"><p clas=
+s=3D"MsoNormal" style=3D"background-image:initial;background-position:initi=
+al;background-repeat:initial"><span style=3D"font-size:12pt;font-family:Ari=
+al,sans-serif">Thanks,<span></span></span></p>
 
---QL3cSJDAtzVTcFmPDN3s--
+<p class=3D"MsoNormal" style=3D"background-image:initial;background-positio=
+n:initial;background-repeat:initial"><span style=3D"font-size:12pt;font-fam=
+ily:Arial,sans-serif">=C2=A0<span></span></span></p>
+
+<p class=3D"MsoNormal" style=3D"background-image:initial;background-positio=
+n:initial;background-repeat:initial"><b><i><span style=3D"font-size:16pt;co=
+lor:purple">Stephen K. Jolley</span></i></b><span style=3D"font-size:12pt;f=
+ont-family:Arial,sans-serif"><span></span></span></p>
+
+<p class=3D"MsoNormal" style=3D"background-image:initial;background-positio=
+n:initial;background-repeat:initial"><b><span style=3D"font-size:8pt;font-f=
+amily:&quot;Courier New&quot;;color:blue">Yocto Project Program Manager</sp=
+an></b></p>
+
+<p class=3D"MsoNormal" style=3D"background-image:initial;background-positio=
+n:initial;background-repeat:initial"><span style=3D"font-size:9pt;font-fami=
+ly:Wingdings;color:black">(</span><span style=3D"font-size:9pt;font-family:=
+&quot;MS Sans Serif&quot;,serif;color:teal">=C2=A0=C2=A0=C2=A0=C2=A0</span>=
+<b><span style=3D"font-size:8pt;font-family:&quot;Comic Sans MS&quot;;color=
+:teal">Cell</span></b><span style=3D"font-size:9pt;font-family:&quot;MS San=
+s Serif&quot;,serif;color:teal">:=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 </span><span style=3D"font=
+-size:9pt;font-family:&quot;MS Sans Serif&quot;,serif">(208) 244-4460</span=
+><span style=3D"font-size:12pt;font-family:Arial,sans-serif"><span></span><=
+/span></p>
+
+<p class=3D"MsoNormal" style=3D"background-image:initial;background-positio=
+n:initial;background-repeat:initial"><span style=3D"font-size:9pt;font-fami=
+ly:Wingdings">*=C2=A0</span><b><span lang=3D"FR" style=3D"font-size:8pt;fon=
+t-family:&quot;Comic Sans MS&quot;;color:teal">Email</span></b><span lang=
+=3D"FR" style=3D"font-size:9pt;font-family:&quot;MS Sans Serif&quot;,serif;=
+color:teal">:</span><span lang=3D"FR" style=3D"font-size:9pt;font-family:&q=
+uot;MS Sans Serif&quot;,serif">=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0</span><u><span=
+ lang=3D"FR" style=3D"font-size:9pt;font-family:&quot;MS Sans Serif&quot;,s=
+erif;color:blue"><span style=3D"color:rgb(17,85,204)"><a href=3D"mailto:ste=
+phen.k.jolley@intel.com" target=3D"_blank">s</a><a href=3D"mailto:jolley.yp=
+.pm@gmail.com" target=3D"_blank">jolley.yp.pm@gmail.com</a></span></span></=
+u></p></div></div></div></div>
+
+--0000000000002a51690634fe8b7c--
 
