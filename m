@@ -2,155 +2,115 @@ Return-Path: <alex.kanavin@gmail.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 532DAC3ABD8
-	for <webhook@archiver.kernel.org>; Wed, 14 May 2025 12:49:40 +0000 (UTC)
-Received: from mail-oi1-f172.google.com (mail-oi1-f172.google.com [209.85.167.172])
- by mx.groups.io with SMTP id smtpd.web10.101077.1747226979347177516
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 51E77C3ABCC
+	for <webhook@archiver.kernel.org>; Wed, 14 May 2025 12:53:30 +0000 (UTC)
+Received: from mail-qk1-f181.google.com (mail-qk1-f181.google.com [209.85.222.181])
+ by mx.groups.io with SMTP id smtpd.web10.101155.1747227209007609768
  for <yocto@lists.yoctoproject.org>;
- Wed, 14 May 2025 05:49:39 -0700
+ Wed, 14 May 2025 05:53:29 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20230601 header.b=nIwVx1pI;
- spf=pass (domain: gmail.com, ip: 209.85.167.172, mailfrom: alex.kanavin@gmail.com)
-Received: by mail-oi1-f172.google.com with SMTP id 5614622812f47-3feb0db95e6so4447703b6e.1
-        for <yocto@lists.yoctoproject.org>; Wed, 14 May 2025 05:49:39 -0700 (PDT)
+ dkim=pass header.i=@gmail.com header.s=20230601 header.b=kyzGJ5/2;
+ spf=pass (domain: gmail.com, ip: 209.85.222.181, mailfrom: alex.kanavin@gmail.com)
+Received: by mail-qk1-f181.google.com with SMTP id af79cd13be357-7c5675dec99so752143285a.0
+        for <yocto@lists.yoctoproject.org>; Wed, 14 May 2025 05:53:28 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1747226978; x=1747831778; darn=lists.yoctoproject.org;
-        h=content-transfer-encoding:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=HqMjyZ5/x/9fi4xG0oUtzbqNwvcQebspLf+edAROs48=;
-        b=nIwVx1pIBqb2uVvyWpLgKdamL+OOe/u6zhGDob1MXnIG4KveNkdO0kLm3/fNcadUXO
-         yxhzso+zWlf8QWSNKLF8o8k2kgpUKAKzkqqxLL31xp13jX0svNToRw2DQNlSNhA2fwXa
-         FKm0Z98foruf4HS7uOy7+5sLwnB6uPpejJNovQZ3AGe17adnpwr+Esl/u0bo49G5DSlm
-         sJAnv3nUtD6cvHTlOf3jbQSRIgcCwBpu5puxxhArnS33LAorhISUjaQZNExOt+Ijmod9
-         WXAGWJ2/YZzOKzo6HlDTKHpUvOGw2EDSXa0Gd59X5VGv5cQogHJIUpi2ISIisbgyH21L
-         c6kg==
+        d=gmail.com; s=20230601; t=1747227208; x=1747832008; darn=lists.yoctoproject.org;
+        h=to:subject:message-id:date:from:in-reply-to:references:mime-version
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=KGt8Ct5UDRJjx3jhRiF30kWQBwU9nDwmWEOq0/M7ik0=;
+        b=kyzGJ5/2ViFG2X3avX+sg1AYxmtNuwJpvPB1WmM4efPU0FvG01/iYY+RX78BralQPd
+         2cNsumVkF6lDiIt7TSs5/MbZzAVavRKJ4RV7DTOJ3pNZ14DRbSkNtlM6xm687Y9cLyik
+         0GDY1tahQ3Et5P2Z8ja8/HI97dw/oH8og3nWB/yI61+KQvzAzvZ/cpPTpO5i4XvjGnaI
+         QCptFYo63ydgjLq6YMwSrFAA5CrSPpMI5uOx65gVyldR7Zn/eQqJMUj7tmgkIY7UE72f
+         yHBV3tx7Ttteu48Ky0sQh8QMOHU+FSH70wOnXjpTBflyXobUNVbo+XScGJUGAFxGrrkI
+         f8qQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1747226978; x=1747831778;
-        h=content-transfer-encoding:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=HqMjyZ5/x/9fi4xG0oUtzbqNwvcQebspLf+edAROs48=;
-        b=Rp9jSR9Bss6cUlJOjB6HmocWfKeJ31YuEmwd+CwvGERl4DpgeVl8zNMNwlMeG4F7D2
-         oIWNxEvawINUTpVkxbqKWIWNPY9JsDmnb4UGZuOReyRCgXigMqAHHpcZKPHscjHwhsKU
-         Q4fljPCOh+fDQNlDOHLZRcMA3+FwYwkvCUed5qyfFt2lKUtYPGpICBPZBfXXs8PrsmYA
-         8UVMPsXXxoMTN+PrbQci+C6CzwLi5+6EwSHCu9XRggnhBIzJE6p/3woLp9FIF+bBWMos
-         MfCLEwHiU/8IRBT6ErxCuRjm5zbYOy1hf1sCbq/acdQkSJQCCIjvHHJHOBKscJJCD2CU
-         v6Eg==
-X-Gm-Message-State: AOJu0YxjZBLEEw34L3XGjFvw81xAiwB6nZs98PHFxoSvg0cLgIUfdo+0
-	mMBVv/YkEkUKRXEXzBUYvVsd1pKPdHPVp0MrohI/chkfdVST0mk2YY2MiegeWXd0rtEaZytPz3M
-	1W/Q3A1GYVAzVmyfQMJrE1CllRXJhY/R1v8M=
-X-Gm-Gg: ASbGncv4njfDG2jUq7fQROU9Rgyq4P/EMHeMqnc3rBqNKuWWZEWUSGWtsegjQ6OpUC1
-	qbT670vOWUCBVTzRF/jrS0bDrv1NG9vufkQbWccE0gzYZft3BkKDZ804Crb/Z8iuh03UJFzOO9x
-	0zctAXn1IBjBMWhyTOxcNhM4VeZfFtabzpjwZdAobFi9o=
-X-Google-Smtp-Source: AGHT+IHPNPyaUxU6SrzCCSxPvg+qkhxrpa0iFrBgR22I9r9QMJdKg3Y6XJClU45AplixW1e/xh3ifo1+yco+PgdyeTQ=
-X-Received: by 2002:ad4:5948:0:b0:6f6:e400:45d5 with SMTP id
- 6a1803df08f44-6f896e41872mr50311486d6.17.1747226967197; Wed, 14 May 2025
- 05:49:27 -0700 (PDT)
+        d=1e100.net; s=20230601; t=1747227208; x=1747832008;
+        h=to:subject:message-id:date:from:in-reply-to:references:mime-version
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=KGt8Ct5UDRJjx3jhRiF30kWQBwU9nDwmWEOq0/M7ik0=;
+        b=XAGQnGQnLj96UFgV3pHIENj94XaTINsxaffn45kSaZa3rFW7kWNP6sKSrrhOaLG2x0
+         G0amnLzgIo3zp8ILLVSp2Dq81XpqgY49WkZWlag+7H6fetQQ7DvSJFsoZVY7arFwPS7X
+         DQzcZsitCsIe81RcRU4YTAr8dGsJ/GR8OhP/OSiaOuM4Exd92O8rMNVBJ71sEQzmxVS0
+         DI+toG6j9AvZQ88E+5stXJWlzQMO51yYUz3tMhAfmkhuxvlQevBCrIobwYkcvraGvJN5
+         PIRgPw7LWe94D6A5PPUsF7ymia8aRGZArIk0zkBRqdUC2UQ9NPy4cHRPJ3O0LsqHbigL
+         NNag==
+X-Gm-Message-State: AOJu0YyYwQ6xIaS9R/28I2b/u1jLIIM41UoRE3F6p0M9sCSzBdZMueoI
+	keO5dFbcmogAynxOD5nXuE0kApywv1s7Nlih9+zF+TFiGlHgAzrdvLMcZTZuRNRdtmLcQoRUtlb
+	RlOVbYhiQD1ZvMl9bQ1pesShWDDGEP5SlZKU=
+X-Gm-Gg: ASbGncuMe1G6rRnp1C2IAYwCODE86tgGTh9BoaUbuh1sXHLlxS7KsPefwN23llFw7ME
+	7avIyFFTf40ys4s/5acJ9nz00wWWSz90iDHYz0Jkd3RpnMcBlO6SOHrNEOEawj2JuFjYGRDQTeh
+	Rme4yqWEDwKqHMLmagckzWW2l+tjJDl9Ch
+X-Google-Smtp-Source: AGHT+IFzEZkkXpFS8WTurGht7mppTbtw6805Vtn+UIc4NDa9YekprB0daI40Der19f/dfvM/v/dTWjb7KQawssfrh+Y=
+X-Received: by 2002:a05:6214:4105:b0:6f5:426c:1d1 with SMTP id
+ 6a1803df08f44-6f896ea6a31mr58413536d6.34.1747227208042; Wed, 14 May 2025
+ 05:53:28 -0700 (PDT)
 MIME-Version: 1.0
-References: <fRbk.1747071838718951014.U6ma@lists.yoctoproject.org>
-In-Reply-To: <fRbk.1747071838718951014.U6ma@lists.yoctoproject.org>
+References: <gg4i.1747142705749543284.68r8@lists.yoctoproject.org>
+In-Reply-To: <gg4i.1747142705749543284.68r8@lists.yoctoproject.org>
 From: Alexander Kanavin <alex.kanavin@gmail.com>
-Date: Wed, 14 May 2025 14:49:19 +0200
-X-Gm-Features: AX0GCFt5lhjxQtUD4zJlhO5nj5zq_xbZlzcj6XrqfH4uFgz_8DkgL5AM2hH2f9s
-Message-ID: <CANNYZj9uPw+U6fMq54QPWPyY1LwrS84NOjpYGzmV9ZH-jE=-rQ@mail.gmail.com>
-Subject: Re: [yocto] bb.fetch2.ParameterError....Unsupported dependency....
- #bitbake #devtool #npm
-To: yocto@lists.yoctoproject.org, joseph.maniaci@seagate.com
+Date: Wed, 14 May 2025 14:53:20 +0200
+X-Gm-Features: AX0GCFtV10IYhBeLq2L3KLuj0NnaFhjbDft2T-VGPs-7okdWKzDpoPEtZS7FpvE
+Message-ID: <CANNYZj-3JQ95MfUY0O4DKMnLYfM=7JYCBiCc+SGa-tzSan60rQ@mail.gmail.com>
+Subject: Re: [yocto] Whats the correct way to remove python-modules from RFS
+To: yocto@lists.yoctoproject.org, emailaddress.ashish@gmail.com
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Wed, 14 May 2025 12:49:40 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/65338
+ <yocto@lists.yoctoproject.org>; Wed, 14 May 2025 12:53:30 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/65339
 
-You probably need to try this with latest yocto master? Npm support
-has had plenty of fixes over time, and it isn't clear if you're on
-something outdated.
+If some packages get installed into an image, this means some other
+package has a dependency on them and is not going to function
+properly. The correct approach is to find out why they are pulled into
+the image, rather than try to hack the recipe that creates them.
 
 Alex
 
-On Mon, 12 May 2025 at 19:44, joseph.maniaci via
-lists.yoctoproject.org
-<joseph.maniaci=3Dseagate.com@lists.yoctoproject.org> wrote:
+On Tue, 13 May 2025 at 15:25, Ashish Mishra via lists.yoctoproject.org
+<emailaddress.ashish=gmail.com@lists.yoctoproject.org> wrote:
 >
-> Full error: bb.fetch2.ParameterError: URL: 'npmsw:///home/user/eps-yocto/=
-build/exos-x-vanadium-bmc/tmp/work/recipetool-uizo5dj0/source/git/npm-shrin=
-kwrap.json' has invalid parameters. Unsupported dependency: @babel/helper-s=
-tring-parser
+> Hi All ,
 >
-> I have a 15 year plus code base that my group wants me to try to get goin=
-g in another team's yocto setup. I'm pretty sure this issue mostly boils do=
-wn to this codebase being very incompatible with how yocto/bitbake does thi=
-ngs? It reaches out to install npm for example and various other web relate=
-d libraries. It's an old Makefile(I want to use these issues as an excuse t=
-o port to CMAKE) project.
+> We are trying to remove below modules from PYTHON
+>             "db",
+>             "debugger",
+>             "difflib",
+>             "doctest",
+>             "email",
+>             "ensurepip",
+>             "fcntl",
+>             "html",
+>             "idle",
+>             "image"
 >
-> I'm trying to use https://wiki.yoctoproject.org/wiki/images/f/f3/DD9_Devt=
-ool_NA20.pdf and  https://www.youtube.com/watch?v=3DCiD7rB35CRE to even do =
-a handful of steps and I fail to accomplish even that.
+> 1) The first approach was to remove the packages by IMAGE_INSTAL:remove which didn't helped
 >
-> I can bitbake what is currently in our repo, I can bitbake the sdk(non-ex=
-tended). I successfully added a workspace, and when I try to execute 'devto=
-ol add' to either remotely collect the git repo of my app, or a fresh local=
- version, both fail with the following backtrace. I know very little about =
-bitbake and to be honest, the documentation feels like trying to get a sip =
-of water from a fire hydrant. It wasn't until seeing devtool that it seemed=
- there was something that allowed someone to actually just dive in and I gu=
-ess that was wrong. All I know is that I was attempting to use devtool to p=
-rogrammatically generate my .bb for me, or at least get me started.
+> 2 ) Accordingly modified the python3-manifest.json  & place the same manually in "poky/meta/recipes-devtools/python/python3"
+>      we get the RFS with python modules removed as expected.
+>      Attached along is the manifest file & list of packages as installed-packages-with-change-using-manully-replacing.txt
 >
-> This npm-shrinkwrap.json doesn't exist in the repo permanently and appear=
-s to be something that gets created/destroyed as part of our npm check-out.
+> 3) We created a minimal recipe to update the same via Yocto.
+>     And can see the python3-manifest.json in build being updated to python3-manifest.json we provided by our patch
+>     But the compilation doesn't remove the modules we expected.
+>     Attached along is the patch & list of packages as installed-packages-with-change-using-recipe.txt
 >
-> Full trace:
-> Traceback (most recent call last):
->   File "/home/user/eps-yocto/scripts/recipetool", line 111, in <module>
->     ret =3D main()
->   File "/home/user/eps-yocto/scripts/recipetool", line 100, in main
->     ret =3D args.func(args)
->   File "/home/user/eps-yocto/poky/scripts/lib/recipetool/create.py", line=
- 758, in create_recipe
->     handler.process(srctree_use, classes, lines_before, lines_after, hand=
-led, extravalues)
->   File "/home/user/eps-yocto/poky/scripts/lib/recipetool/create_npm.py", =
-line 264, in process
->     fetcher =3D bb.fetch2.Fetch([url_local], d)
->   File "/home/user/eps-yocto/poky/bitbake/lib/bb/fetch2/__init__.py", lin=
-e 1794, in __init__
->     self.ud[url] =3D FetchData(url, d, localonly)
->   File "/home/user/eps-yocto/poky/bitbake/lib/bb/fetch2/__init__.py", lin=
-e 1346, in __init__
->     self.method.urldata_init(self, d)
->   File "/home/user/eps-yocto/poky/bitbake/lib/bb/fetch2/npmsw.py", line 2=
-10, in urldata_init
->     foreach_dependencies(shrinkwrap, _resolve_dependency, ud.dev)
->   File "/home/user/eps-yocto/poky/bitbake/lib/bb/fetch2/npmsw.py", line 6=
-9, in foreach_dependencies
->     callback(name, package_infos, package)
->   File "/home/user/eps-yocto/poky/bitbake/lib/bb/fetch2/npmsw.py", line 1=
-92, in _resolve_dependency
->     raise ParameterError("Unsupported dependency: %s" % name, ud.url)
-> bb.fetch2.ParameterError: URL: 'npmsw:///home/user/eps-yocto/build/exos-x=
--vanadium-bmc/tmp/work/recipetool-uizo5dj0/source/git/npm-shrinkwrap.json' =
-has invalid parameters. Unsupported dependency: @babel/helper-string-parser
-> ERROR: Command 'script -e -q -c "recipetool --color=3Dalways create --dev=
-tool -o /tmp/devtooli6tqqg15 'https://lco-sw-github-prod.colo.nlah.com/Syst=
-ems-FW/mclinux.git'  -x /home/user/eps-yocto/build/exos-x-vanadium-bmc/work=
-space/sources/devtoolsrc6qxi_qjz --srcbranch main" /dev/null' failed
+> Summary of problem (w.r.t  python3-manifest.json with md5sum d96fa72e6756aa052c55e246a000d8d1):
+>      a) If we place this file manually under poky/meta/recipes-devtools/python/python3 we get RFS with changes being reflected.
+>      b) If we place this file via recipe the changes are not reflected in RFS
 >
-> -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
+> Also please feel free to revert for any clarification suggest any pointers for the same.
+>
+> Thanks ,
+> Ashish
+>
+> -=-=-=-=-=-=-=-=-=-=-=-
 > Links: You receive all messages sent to this group.
-> View/Reply Online (#65316): https://lists.yoctoproject.org/g/yocto/messag=
-e/65316
-> Mute This Topic: https://lists.yoctoproject.org/mt/113075220/1686489
-> Mute #bitbake:https://lists.yoctoproject.org/g/yocto/mutehashtag/bitbake
-> Mute #devtool:https://lists.yoctoproject.org/g/yocto/mutehashtag/devtool
-> Mute #npm:https://lists.yoctoproject.org/g/yocto/mutehashtag/npm
+> View/Reply Online (#65326): https://lists.yoctoproject.org/g/yocto/message/65326
+> Mute This Topic: https://lists.yoctoproject.org/mt/113089484/1686489
 > Group Owner: yocto+owner@lists.yoctoproject.org
-> Unsubscribe: https://lists.yoctoproject.org/g/yocto/unsub [alex.kanavin@g=
-mail.com]
-> -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
+> Unsubscribe: https://lists.yoctoproject.org/g/yocto/unsub [alex.kanavin@gmail.com]
+> -=-=-=-=-=-=-=-=-=-=-=-
 >
 
