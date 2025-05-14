@@ -1,95 +1,156 @@
-Return-Path: <skandigraun@gmail.com>
+Return-Path: <alex.kanavin@gmail.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 71009C3ABD9
-	for <webhook@archiver.kernel.org>; Wed, 14 May 2025 09:58:39 +0000 (UTC)
-Received: from mail-wm1-f42.google.com (mail-wm1-f42.google.com [209.85.128.42])
- by mx.groups.io with SMTP id smtpd.web11.98876.1747216716916920418
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 532DAC3ABD8
+	for <webhook@archiver.kernel.org>; Wed, 14 May 2025 12:49:40 +0000 (UTC)
+Received: from mail-oi1-f172.google.com (mail-oi1-f172.google.com [209.85.167.172])
+ by mx.groups.io with SMTP id smtpd.web10.101077.1747226979347177516
  for <yocto@lists.yoctoproject.org>;
- Wed, 14 May 2025 02:58:37 -0700
+ Wed, 14 May 2025 05:49:39 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20230601 header.b=Jm/G4m9+;
- spf=pass (domain: gmail.com, ip: 209.85.128.42, mailfrom: skandigraun@gmail.com)
-Received: by mail-wm1-f42.google.com with SMTP id 5b1f17b1804b1-43cebe06e9eso50091735e9.3
-        for <yocto@lists.yoctoproject.org>; Wed, 14 May 2025 02:58:36 -0700 (PDT)
+ dkim=pass header.i=@gmail.com header.s=20230601 header.b=nIwVx1pI;
+ spf=pass (domain: gmail.com, ip: 209.85.167.172, mailfrom: alex.kanavin@gmail.com)
+Received: by mail-oi1-f172.google.com with SMTP id 5614622812f47-3feb0db95e6so4447703b6e.1
+        for <yocto@lists.yoctoproject.org>; Wed, 14 May 2025 05:49:39 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1747216715; x=1747821515; darn=lists.yoctoproject.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:to:subject:user-agent:mime-version:date:message-id:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=NNaADiNtQXzMhxeTEG2S5KKsyhUzyKicQmiPYpQGTPc=;
-        b=Jm/G4m9+SIbnKhs7TEbELKTIgNjIElePIilzOnK4zamBkPJGDZbTCCoQZad3mVSkN5
-         JfLEtRLn37HJOdn001CY55UhqmXbNZvffvfpg9fj+ek//3vT7ii/dvjc06zOI6GgIm7q
-         nAMmwG2Suz2s8lTAc4uSGTj1nzZBmRPRY4qBld6toBShYJylirGHVgeI6pN0xtZYMsf7
-         AJIPfbDO/XBPAQe8JAnhA34xMWRUHhZ66DtCixZQpXPk2U0UYrI8YjmdiTVtoPBJBvVD
-         hkWqr0VCHagii9I/iCkwGvMH/gv0zZ9NvzdqRskmj5Xn7jA2csax5cRRQ09oBbljc9Kq
-         PKnA==
+        d=gmail.com; s=20230601; t=1747226978; x=1747831778; darn=lists.yoctoproject.org;
+        h=content-transfer-encoding:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=HqMjyZ5/x/9fi4xG0oUtzbqNwvcQebspLf+edAROs48=;
+        b=nIwVx1pIBqb2uVvyWpLgKdamL+OOe/u6zhGDob1MXnIG4KveNkdO0kLm3/fNcadUXO
+         yxhzso+zWlf8QWSNKLF8o8k2kgpUKAKzkqqxLL31xp13jX0svNToRw2DQNlSNhA2fwXa
+         FKm0Z98foruf4HS7uOy7+5sLwnB6uPpejJNovQZ3AGe17adnpwr+Esl/u0bo49G5DSlm
+         sJAnv3nUtD6cvHTlOf3jbQSRIgcCwBpu5puxxhArnS33LAorhISUjaQZNExOt+Ijmod9
+         WXAGWJ2/YZzOKzo6HlDTKHpUvOGw2EDSXa0Gd59X5VGv5cQogHJIUpi2ISIisbgyH21L
+         c6kg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1747216715; x=1747821515;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=NNaADiNtQXzMhxeTEG2S5KKsyhUzyKicQmiPYpQGTPc=;
-        b=O28NjwVFqIhriwmMCdmjoW/ZOMJy8hnoju5XHMvqJCRT+eAYE+ET2M6H9O7hOicUHA
-         5tmnntuG4Q6zNu2LALWvMaTWKUCMCvgo3X+SwkyFmhm3+DJ5N7xAAnXSZ6H3MpSULd+s
-         dIn5D8vUSXM7Szd9inylRWXQqZFm64ycfipUO7q0+MjqisrbSbq9NzklC4e9unE71kvb
-         yvI/oyKM5XKnz2jVol8dcP9t1koIgE1ea6gfb4o5nktWymziFVtxs2FXaE+S0DjuUh28
-         DZCA6EiXJKwydhtQf7QiQur4RP02YruxEBuaKCE7BYGrSFv3Tt9D3cYLSuKeOHh/2d63
-         jtJg==
-X-Forwarded-Encrypted: i=1; AJvYcCUjDJ5ouY7tvSUnY4hxXqJIkIygZvkUPn9ULt88VhpkltFvqQmESAyLDUloXguJqc+409me4A==@lists.yoctoproject.org
-X-Gm-Message-State: AOJu0YyvqZfLTq9B4U7u5H7UddLBSCOGPPwYnyiiDRSYa9zZC++WGey/
-	dlZUkGj4olNc0VNJJMRRS1N80i5vPVcPuH3mRtzOH71cB4ybpcuQ
-X-Gm-Gg: ASbGncsjIn0ZIWeKMq7IXEaVTFBpJ+YjSSllA46gqBdu8g04jVXZrPQvoBe5ruJNQO1
-	AqGREu5ozFG5UPmT107z1ZcfaIXLCrkSFFNjtFrxtanvSTqkg1Gd3c9SNHcuSa7cgyFcdoTFbEU
-	JCm3MzVf8o702Xaly5kapJdaPCRFAgPE8O7BdgZ16cEHRIyaK+4roAVTNXM/YYlHisONIZInrY1
-	BOIW6eK6YLA1aw1In8K2vDtmG4RL4rrDme11g+Y34xTXwRKhKD88shX4POIfMx6JeTWnhewmYpj
-	qJNjWxukMjlJVRFnymcNWhB67zXOrk6h+mPTrYowHFMmbALjLIBOxSp5hd0=
-X-Google-Smtp-Source: AGHT+IGQiHT9RF2U8SQ48qRL+Xe6U+BnpLXZaMGUHVyl951Ck5hA7X799OEZVLrtv2SyEUX9bDeCYQ==
-X-Received: by 2002:a05:600c:1547:b0:43d:db5:7b1a with SMTP id 5b1f17b1804b1-442f20e4994mr21541085e9.12.1747216715040;
-        Wed, 14 May 2025 02:58:35 -0700 (PDT)
-Received: from [192.168.1.106] ([51.154.145.205])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-442f39e8578sm23424555e9.29.2025.05.14.02.58.34
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 14 May 2025 02:58:34 -0700 (PDT)
-Message-ID: <7546fef6-0d05-482a-8400-c0adf72d27dd@gmail.com>
-Date: Wed, 14 May 2025 11:58:34 +0200
+        d=1e100.net; s=20230601; t=1747226978; x=1747831778;
+        h=content-transfer-encoding:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=HqMjyZ5/x/9fi4xG0oUtzbqNwvcQebspLf+edAROs48=;
+        b=Rp9jSR9Bss6cUlJOjB6HmocWfKeJ31YuEmwd+CwvGERl4DpgeVl8zNMNwlMeG4F7D2
+         oIWNxEvawINUTpVkxbqKWIWNPY9JsDmnb4UGZuOReyRCgXigMqAHHpcZKPHscjHwhsKU
+         Q4fljPCOh+fDQNlDOHLZRcMA3+FwYwkvCUed5qyfFt2lKUtYPGpICBPZBfXXs8PrsmYA
+         8UVMPsXXxoMTN+PrbQci+C6CzwLi5+6EwSHCu9XRggnhBIzJE6p/3woLp9FIF+bBWMos
+         MfCLEwHiU/8IRBT6ErxCuRjm5zbYOy1hf1sCbq/acdQkSJQCCIjvHHJHOBKscJJCD2CU
+         v6Eg==
+X-Gm-Message-State: AOJu0YxjZBLEEw34L3XGjFvw81xAiwB6nZs98PHFxoSvg0cLgIUfdo+0
+	mMBVv/YkEkUKRXEXzBUYvVsd1pKPdHPVp0MrohI/chkfdVST0mk2YY2MiegeWXd0rtEaZytPz3M
+	1W/Q3A1GYVAzVmyfQMJrE1CllRXJhY/R1v8M=
+X-Gm-Gg: ASbGncv4njfDG2jUq7fQROU9Rgyq4P/EMHeMqnc3rBqNKuWWZEWUSGWtsegjQ6OpUC1
+	qbT670vOWUCBVTzRF/jrS0bDrv1NG9vufkQbWccE0gzYZft3BkKDZ804Crb/Z8iuh03UJFzOO9x
+	0zctAXn1IBjBMWhyTOxcNhM4VeZfFtabzpjwZdAobFi9o=
+X-Google-Smtp-Source: AGHT+IHPNPyaUxU6SrzCCSxPvg+qkhxrpa0iFrBgR22I9r9QMJdKg3Y6XJClU45AplixW1e/xh3ifo1+yco+PgdyeTQ=
+X-Received: by 2002:ad4:5948:0:b0:6f6:e400:45d5 with SMTP id
+ 6a1803df08f44-6f896e41872mr50311486d6.17.1747226967197; Wed, 14 May 2025
+ 05:49:27 -0700 (PDT)
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [yocto] Disabling APM Events from boot #kernel #scarthgap #uboot
- #yocto
-To: matt.holmes@zethon.com, yocto@lists.yoctoproject.org
-References: <5c5c21d7-4850-4558-947f-b15617b218f9@gmail.com>
- <1013.1747212908803788387@lists.yoctoproject.org>
-Content-Language: en-US
-From: Gyorgy Sarvari <skandigraun@gmail.com>
-In-Reply-To: <1013.1747212908803788387@lists.yoctoproject.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+References: <fRbk.1747071838718951014.U6ma@lists.yoctoproject.org>
+In-Reply-To: <fRbk.1747071838718951014.U6ma@lists.yoctoproject.org>
+From: Alexander Kanavin <alex.kanavin@gmail.com>
+Date: Wed, 14 May 2025 14:49:19 +0200
+X-Gm-Features: AX0GCFt5lhjxQtUD4zJlhO5nj5zq_xbZlzcj6XrqfH4uFgz_8DkgL5AM2hH2f9s
+Message-ID: <CANNYZj9uPw+U6fMq54QPWPyY1LwrS84NOjpYGzmV9ZH-jE=-rQ@mail.gmail.com>
+Subject: Re: [yocto] bb.fetch2.ParameterError....Unsupported dependency....
+ #bitbake #devtool #npm
+To: yocto@lists.yoctoproject.org, joseph.maniaci@seagate.com
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Wed, 14 May 2025 09:58:39 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/65337
+ <yocto@lists.yoctoproject.org>; Wed, 14 May 2025 12:49:40 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/65338
 
+You probably need to try this with latest yocto master? Npm support
+has had plenty of fixes over time, and it isn't clear if you're on
+something outdated.
 
-On 5/14/25 10:55, Matt via Lists.Yoctoproject.Org wrote:
-> Adding
+Alex
+
+On Mon, 12 May 2025 at 19:44, joseph.maniaci via
+lists.yoctoproject.org
+<joseph.maniaci=3Dseagate.com@lists.yoctoproject.org> wrote:
 >
-> EXTRA_OEMAKE:append := ' PVRSRV_APPHINT_ENABLEAPM=RGX_ACTIVEPM_FORCE_OFF'
->  
-> to my ti-img-rogue-driver_%.bbappend worked so thank you very much!
-> Unfortunately something is still having a performance impact on my
-> program but at least I can rule out APM events as the cause now.
+> Full error: bb.fetch2.ParameterError: URL: 'npmsw:///home/user/eps-yocto/=
+build/exos-x-vanadium-bmc/tmp/work/recipetool-uizo5dj0/source/git/npm-shrin=
+kwrap.json' has invalid parameters. Unsupported dependency: @babel/helper-s=
+tring-parser
 >
-> Also is the location of this config file documented anywhere? I had
-> already spent a long time searching for this sort of file and it would
-> be good to know for future reference if there is a better way of
-> searching for things like this
+> I have a 15 year plus code base that my group wants me to try to get goin=
+g in another team's yocto setup. I'm pretty sure this issue mostly boils do=
+wn to this codebase being very incompatible with how yocto/bitbake does thi=
+ngs? It reaches out to install npm for example and various other web relate=
+d libraries. It's an old Makefile(I want to use these issues as an excuse t=
+o port to CMAKE) project.
 >
+> I'm trying to use https://wiki.yoctoproject.org/wiki/images/f/f3/DD9_Devt=
+ool_NA20.pdf and  https://www.youtube.com/watch?v=3DCiD7rB35CRE to even do =
+a handful of steps and I fail to accomplish even that.
 >
-Not that I know of (which doesn't mean a lot). With such projects, which
-doesn't use a more easily comprehensible system (meson, cmake...)
-usually I start with running grep through the whole project, and hope
-that it displays at least a remotely useful starting point.
+> I can bitbake what is currently in our repo, I can bitbake the sdk(non-ex=
+tended). I successfully added a workspace, and when I try to execute 'devto=
+ol add' to either remotely collect the git repo of my app, or a fresh local=
+ version, both fail with the following backtrace. I know very little about =
+bitbake and to be honest, the documentation feels like trying to get a sip =
+of water from a fire hydrant. It wasn't until seeing devtool that it seemed=
+ there was something that allowed someone to actually just dive in and I gu=
+ess that was wrong. All I know is that I was attempting to use devtool to p=
+rogrammatically generate my .bb for me, or at least get me started.
+>
+> This npm-shrinkwrap.json doesn't exist in the repo permanently and appear=
+s to be something that gets created/destroyed as part of our npm check-out.
+>
+> Full trace:
+> Traceback (most recent call last):
+>   File "/home/user/eps-yocto/scripts/recipetool", line 111, in <module>
+>     ret =3D main()
+>   File "/home/user/eps-yocto/scripts/recipetool", line 100, in main
+>     ret =3D args.func(args)
+>   File "/home/user/eps-yocto/poky/scripts/lib/recipetool/create.py", line=
+ 758, in create_recipe
+>     handler.process(srctree_use, classes, lines_before, lines_after, hand=
+led, extravalues)
+>   File "/home/user/eps-yocto/poky/scripts/lib/recipetool/create_npm.py", =
+line 264, in process
+>     fetcher =3D bb.fetch2.Fetch([url_local], d)
+>   File "/home/user/eps-yocto/poky/bitbake/lib/bb/fetch2/__init__.py", lin=
+e 1794, in __init__
+>     self.ud[url] =3D FetchData(url, d, localonly)
+>   File "/home/user/eps-yocto/poky/bitbake/lib/bb/fetch2/__init__.py", lin=
+e 1346, in __init__
+>     self.method.urldata_init(self, d)
+>   File "/home/user/eps-yocto/poky/bitbake/lib/bb/fetch2/npmsw.py", line 2=
+10, in urldata_init
+>     foreach_dependencies(shrinkwrap, _resolve_dependency, ud.dev)
+>   File "/home/user/eps-yocto/poky/bitbake/lib/bb/fetch2/npmsw.py", line 6=
+9, in foreach_dependencies
+>     callback(name, package_infos, package)
+>   File "/home/user/eps-yocto/poky/bitbake/lib/bb/fetch2/npmsw.py", line 1=
+92, in _resolve_dependency
+>     raise ParameterError("Unsupported dependency: %s" % name, ud.url)
+> bb.fetch2.ParameterError: URL: 'npmsw:///home/user/eps-yocto/build/exos-x=
+-vanadium-bmc/tmp/work/recipetool-uizo5dj0/source/git/npm-shrinkwrap.json' =
+has invalid parameters. Unsupported dependency: @babel/helper-string-parser
+> ERROR: Command 'script -e -q -c "recipetool --color=3Dalways create --dev=
+tool -o /tmp/devtooli6tqqg15 'https://lco-sw-github-prod.colo.nlah.com/Syst=
+ems-FW/mclinux.git'  -x /home/user/eps-yocto/build/exos-x-vanadium-bmc/work=
+space/sources/devtoolsrc6qxi_qjz --srcbranch main" /dev/null' failed
+>
+> -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
+> Links: You receive all messages sent to this group.
+> View/Reply Online (#65316): https://lists.yoctoproject.org/g/yocto/messag=
+e/65316
+> Mute This Topic: https://lists.yoctoproject.org/mt/113075220/1686489
+> Mute #bitbake:https://lists.yoctoproject.org/g/yocto/mutehashtag/bitbake
+> Mute #devtool:https://lists.yoctoproject.org/g/yocto/mutehashtag/devtool
+> Mute #npm:https://lists.yoctoproject.org/g/yocto/mutehashtag/npm
+> Group Owner: yocto+owner@lists.yoctoproject.org
+> Unsubscribe: https://lists.yoctoproject.org/g/yocto/unsub [alex.kanavin@g=
+mail.com]
+> -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
+>
 
