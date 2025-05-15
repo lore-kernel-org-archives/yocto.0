@@ -1,278 +1,183 @@
-Return-Path: <sateesh0457@gmail.com>
+Return-Path: <skandigraun@gmail.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 98BC4C3ABC9
-	for <webhook@archiver.kernel.org>; Thu, 15 May 2025 08:30:57 +0000 (UTC)
-Received: from mail-yw1-f182.google.com (mail-yw1-f182.google.com [209.85.128.182])
- by mx.groups.io with SMTP id smtpd.web10.8067.1747297855437897644
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 76B76C2D0CD
+	for <webhook@archiver.kernel.org>; Thu, 15 May 2025 10:49:18 +0000 (UTC)
+Received: from mail-ej1-f53.google.com (mail-ej1-f53.google.com [209.85.218.53])
+ by mx.groups.io with SMTP id smtpd.web10.9708.1747306156891254927
  for <yocto@lists.yoctoproject.org>;
- Thu, 15 May 2025 01:30:55 -0700
+ Thu, 15 May 2025 03:49:17 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20230601 header.b=UCi2gojr;
- spf=pass (domain: gmail.com, ip: 209.85.128.182, mailfrom: sateesh0457@gmail.com)
-Received: by mail-yw1-f182.google.com with SMTP id 00721157ae682-709a4f97149so14199437b3.1
-        for <yocto@lists.yoctoproject.org>; Thu, 15 May 2025 01:30:55 -0700 (PDT)
+ dkim=pass header.i=@gmail.com header.s=20230601 header.b=RjjdGAol;
+ spf=pass (domain: gmail.com, ip: 209.85.218.53, mailfrom: skandigraun@gmail.com)
+Received: by mail-ej1-f53.google.com with SMTP id a640c23a62f3a-ad1f6aa2f84so167556266b.0
+        for <yocto@lists.yoctoproject.org>; Thu, 15 May 2025 03:49:16 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1747297854; x=1747902654; darn=lists.yoctoproject.org;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=sC+SdwBoqZuPtkv5xBVI16ClH5mHb5FqWIx5hHJe2Hg=;
-        b=UCi2gojrtSgztttGaz4HUL+Dnfehe+uAQ9yHAU8p5yWdhwtv+oLIDGJ1FSYNv7aYIR
-         urfY8eQFTqnQHY7svrBubcikGUNmqsr0I4yCTyEwa13iQq0glqr1RsZGc5tDKI1oVplF
-         iG06V9CgQrOBgMBJqe4vMWYz/0/DTIN/fX2SzYx0eqt5LgP59CQG5TKyrkqdikqjrrFW
-         r6FOkOh1px2wPkTM0XIHJ2oD258byDNPtArOuhw2Sn6wkl7UXuC39IteQRIazrpRn2eH
-         8bK6czBKThaRhUwWvaFb1r6suMoZBD4go8Jadq8tPiSJfFwgoWu+45EcbgzdwaYYH10g
-         vfNw==
+        d=gmail.com; s=20230601; t=1747306155; x=1747910955; darn=lists.yoctoproject.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=ImJtM1CbDAh4pdwPaVqgECZaktb40ulwV98O36jx2F0=;
+        b=RjjdGAolYoxEI5m2zWmdZCeiB7boiSvR8FvigszNwPuYVUCUJJSaBLsAgGoL7GZarD
+         KzZcMAWudilU2GJxErsAKuyYHAHRCe9d/jFEDw/Fr6nPfpL2RQbYZtCKiFVhHoWpyLrW
+         ng2EcWok3oQa3eK2P1tIuAhj50vKjCXsN0DF+FDPxVNymeNu73/dbl6hBCbbVcjRjiDp
+         cKmu3EA+bvAmBOyPo73vTxd8Ifc3/naG4iEB051TO+wAtQL+ILpYbtkUx8Wm+hoRi6K+
+         njZWZ8L9J5zFCYsrPjfeiTO3iU3aQoVcyrvtFRD4YBVzpT/amA/lctk6CqF4N2ASrUdR
+         D3CA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1747297854; x=1747902654;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=sC+SdwBoqZuPtkv5xBVI16ClH5mHb5FqWIx5hHJe2Hg=;
-        b=tgffxZDs8Mo4x9a9B1Ah4ggOMQ0gfJgWbtIvjCctn2gkxrb+DAmvfBKt9i5U2QCagK
-         VXmF90/+QCjwD+iFS+m4zRXlraUNGxyC8Q9Zp2v0k+oERaGzYdSeJtECw9uwHWTLcmJQ
-         WkIoJZ8XqecWxsAUjQ2LYdLAvt2CndhlOrqfXLRPoqvMBAMyf4uUF3kWP7xvTJedUcxw
-         BOJYwuIWLBlsqrV8ifyPfyl6Cg0PaJsadcwP63ZJ2Q+yH2FIP9l9zgo1xdv0rhzJ59TQ
-         7Pz+8Vg7Is24PNHvK4SQb9RRJuceRwjxsYHjNbHolnEewZ7enIcCnxgVFCVMM1+R+USg
-         tAoQ==
-X-Gm-Message-State: AOJu0YzKB6iZ9/K7z4I5m2vTHTQvX6YXPknty7z2d/sRPVHE7tB5DAyL
-	zOm1+UMEoxeoOwSy/Be0N16x0R9fZMezKcLSSXeRdPuHpjmwi4G0/Vbu8T8lKHE9hP9EEvGPi/Z
-	DN++87HmRjLWBHyEoOZ8kuEcB4iR3RqQ=
-X-Gm-Gg: ASbGncsylGpgqM3sMY0Ip85RFc+XC93s2QQxIOJUEdG1dmRS5xkeWD7s+qYOQywFc1G
-	NlNmAs4p2oxf7Q+/nyof9m1pgckh0M353jEXxIcJ2OgcuIA4Xg5Nh7wYoSqsGh4CRrI/k0Cx2rV
-	XAYhZO8G1M5S9svLl3H9VBCbXRdQt8Z/0u9OQA8SQ5aan4LoLD8JuWnQ+3Y0ww5BQ0Mmc=
-X-Google-Smtp-Source: AGHT+IGwa2hmzuRDU/IMKWsaymnBrdjHukMaYzOVpHJX82xU00pUBsP/oRdpM3BYxLaEm7nxUCiFLlATh9jisV0Y+d8=
-X-Received: by 2002:a05:690c:4a03:b0:706:ae3b:cc9d with SMTP id
- 00721157ae682-70c8fe235a2mr35021467b3.17.1747297854491; Thu, 15 May 2025
- 01:30:54 -0700 (PDT)
+        d=1e100.net; s=20230601; t=1747306155; x=1747910955;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=ImJtM1CbDAh4pdwPaVqgECZaktb40ulwV98O36jx2F0=;
+        b=mGmTunkLP/pAfZRyo6G1mBqc1G0coyH5fUVYeNuC3fVsJ8zPC4wGdaB/AtMvRDHflX
+         /AX7qGj1JOADDYeYDP0ZvQPrXXbsHNJnSptdXtx1boodwhUo3uxD9PzqKLxJzw9TbsqR
+         uNZzzlHbXAxKe4TGTEVpzeQxTQwsQd/8vtij3M32nUspYWBjnaraUbEa9JpXC16wpPMM
+         rUq7EFiRYVl+xfJVKP7r8NUbnS8EnsXa+BHggtOC62Is9tWTIL+GuPkVw8OiJDf524HZ
+         MmbWMJgzNyO+MmP3HOJOhSW+MLynNMu3+4LXIU4Ex00xYosYbZYwOCTCEZgeO+g+dMPr
+         qWzw==
+X-Gm-Message-State: AOJu0YwjgFugvi5xH4uV7T0kdLzKiToy4WHypS6jFQTC0k171XpCW4TW
+	bvs/Bv3OZ86Ozy7jsW5RtOkWQxy8wrvxhkQeUC7T1vSZgl/Ic/YZ
+X-Gm-Gg: ASbGncupt42C1+r6KBITAOZG12QMAXHPN7aYu7+Er6rNWw9AeG2xTLqhMO4qPAPFbyV
+	vsmD8/mvVldo5JGdu+tiSfpHemOx39ii9YFi4qH8Qf9BlFu6tOraqUZti1HYtYh0VG2JtfBuTBC
+	quuO1W9rpVT4Kok5iyfmKqFR/02mmPIhTQYUOm7VHxBKJmKLdMBA4kGreF0GgZvZmQZCVbFH1Y6
+	R87q95AZjBVoHzDoJxzQkHXPaFKeq0/yXglV81bJUhHvrTmTlGSIhk5Rwy+rSmlEiUhBUMTpVU9
+	02y4K1oHrssWyoBHjlRCTVqFGkPKb/E6jhz6f4YjulcU+ZyQym+TSKNmiz0=
+X-Google-Smtp-Source: AGHT+IGmNrJLKmrdXvDyMLF/Y8z3HQc09rsIRujToL0qeFkscaNed4GilnsvfBBfU0aMIwum5E4hkQ==
+X-Received: by 2002:a17:907:d406:b0:ad2:15cc:4888 with SMTP id a640c23a62f3a-ad50f69213amr244439266b.28.1747306154894;
+        Thu, 15 May 2025 03:49:14 -0700 (PDT)
+Received: from [192.168.1.106] ([51.154.145.205])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-ad21933be9esm1086943966b.46.2025.05.15.03.49.14
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 15 May 2025 03:49:14 -0700 (PDT)
+Message-ID: <1d046c6d-b9b4-488d-b41b-82866c1bf140@gmail.com>
+Date: Thu, 15 May 2025 12:49:13 +0200
 MIME-Version: 1.0
-References: <yoeb.1747283643576382007.FPXh@lists.yoctoproject.org> <42bc33b8-8b36-44a6-9cd0-0a447520876f@gmail.com>
-In-Reply-To: <42bc33b8-8b36-44a6-9cd0-0a447520876f@gmail.com>
-From: sateesh m <sateesh0457@gmail.com>
-Date: Thu, 15 May 2025 14:00:40 +0530
-X-Gm-Features: AX0GCFthKHW6-F7fqDtJWVmGByDf4to-tQI8W5QGj_TJHe4pKoV4Wk0wXCgOi7c
-Message-ID: <CACsETSur6ntPh9h_DUjsxe4N8POjpit1MbDffdYX=wXZ10v1yA@mail.gmail.com>
+User-Agent: Mozilla Thunderbird
 Subject: Re: [yocto] mozjs 60.9 CVE issues fix.
-To: Gyorgy Sarvari <skandigraun@gmail.com>
+To: sateesh m <sateesh0457@gmail.com>
 Cc: yocto@lists.yoctoproject.org
-Content-Type: multipart/alternative; boundary="000000000000ef16a20635287b4f"
+References: <yoeb.1747283643576382007.FPXh@lists.yoctoproject.org>
+ <42bc33b8-8b36-44a6-9cd0-0a447520876f@gmail.com>
+ <CACsETSur6ntPh9h_DUjsxe4N8POjpit1MbDffdYX=wXZ10v1yA@mail.gmail.com>
+Content-Language: en-US
+From: Gyorgy Sarvari <skandigraun@gmail.com>
+In-Reply-To: <CACsETSur6ntPh9h_DUjsxe4N8POjpit1MbDffdYX=wXZ10v1yA@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Thu, 15 May 2025 08:30:57 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/65343
+ <yocto@lists.yoctoproject.org>; Thu, 15 May 2025 10:49:18 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/65344
 
---000000000000ef16a20635287b4f
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+On 5/15/25 10:30, sateesh m wrote:
+>
+> Thank you for your response. But i am having some doubts If I want to
+> get upstream patches for the Firefox  60.9 version how to get it.
+>
+60.x ESR series is long abandoned, there are no upstream patches for it.
+What are you trying to do? If you are trying to make it up to date
+against today's known threats, that's realistically not doable. EOL
+Yocto releases/recipes in general are not suitable for this.
+If you have a more narrow goal, knowing it could help with getting
+targeted, more useful answer on this list.
+>
+> Thanks & Regards,
+> Satish M
+>
+>
+> On Thu, 15 May, 2025, 12:22 pm Gyorgy Sarvari, <skandigraun@gmail.com>
+> wrote:
+>
+>     On 5/15/25 06:34, sateesh m via lists.yoctoproject.org
+>     <http://lists.yoctoproject.org> wrote:
+>     >
+>     > Hi Team,
+>     >
+>     > I am currently working on CVE-related issues in the mozjs
+>     library that
+>     > need to be fixed for version 60.9. I am using the Dunfell
+>     branch, but
+>     > upon comparing it to the Gatesgarth branch, I noticed an additional
+>     > patch is available. The patch
+>     > |file://0014-fallback-to-2011-C++-standard.patch| has been removed,
+>     > and |0014-remove-JS_VOLATIME_ARM.patch| has been added instead.
+>     >
+>     > Could you confirm whether these changes need to be applied to my
+>     local
+>     > build as well? Additionally, I would like to understand the
+>     reason for
+>     > removing the fallback-to-2011 patch. If we retain it, could it
+>     lead to
+>     > any issues?
+>     >
+>     The patch comments look fairly descriptive. These are not security
+>     fixes, rather change gcc compatibility.
+>
+>     0014-fallback-to-2011-C++-standard.patch - it was introduced because
+>     Dunfell supported building on distros that came with an old gcc that
+>     couldn't compile without this patch. But later Yocto releases dropped
+>     support for these old distros, so this patch wasn't necessary. If your
+>     compiler supports c++14, then this patch is optional for you, and
+>     can be
+>     safely dropped. But you can also keep it.
+>
+>     0014-remove-JS_VOLATIME_ARM.patch - This patch removes a
+>     workaround that
+>     was added to fix an old gcc bug. If you are using old gcc, or very old
+>     Arm HW (that doesn't support aligned access), you shouldn't use
+>     this patch.
+>     >
+>     > I want to incorporate upstream patch changes related to the mozjs
+>     > library. Since version 60.9 is a tar bundle and not a Git source,
+>     > where can I find relevant solutions and reference links?
+>     >
+>     Mozilla primarily does development in their Mercurial repo, where you
+>     can also see the commit history[1]. Incidentally they have just
+>     announced hosting their code in their official Github repo also, where
+>     you can also browse the history[2] if you are more comfortable
+>     with that
+>     - mostly check in the js folder history.
+>
+>     Of course, security-wise the best would be if you could migrate to
+>     newer
+>     versions. All of these are pretty old, and most probably having
+>     lots of
+>     issues that weren't found back when developers were still fixing them.
+>     (Not only mozjs, but whole Dunfell)
+>
+>     [1]: https://hg-edge.mozilla.org/mozilla-central/
+>     [2]: https://github.com/mozilla-firefox/firefox
+>     >
+>     > I have reviewed Bugzilla IDs, and they indicate that the issue has
+>     > been fixed in example Firefox ESR78 and ESR128 and few mentioned <91
+>     > (Is that mean below 91 all versions may effect changes). However,
+>     > based on my understanding, adding those changes might result in
+>     > dependency package version issues, such as requiring a more recent
+>     > Python version (e.g., Python 3.10).
+>     >
+>     > I would appreciate any clarification on this matter.
+>     >
+>     > Thanks in advance.
+>     >
+>     > Best regards,
+>     >
+>     > Satish M
+>     >
+>     >
+>     > -=-=-=-=-=-=-=-=-=-=-=-
+>     > Links: You receive all messages sent to this group.
+>     > View/Reply Online (#65341):
+>     https://lists.yoctoproject.org/g/yocto/message/65341
+>     > Mute This Topic: https://lists.yoctoproject.org/mt/113122170/6084445
+>     > Group Owner: yocto+owner@lists.yoctoproject.org
+>     <mailto:yocto%2Bowner@lists.yoctoproject.org>
+>     > Unsubscribe: https://lists.yoctoproject.org/g/yocto/unsub
+>     [skandigraun@gmail.com]
+>     > -=-=-=-=-=-=-=-=-=-=-=-
+>     >
+>
 
-Thank you for your response. But i am having some doubts If I want to get
-upstream patches for the Firefox  60.9 version how to get it.
-
-Thanks & Regards,
-Satish M
-
-On Thu, 15 May, 2025, 12:22=E2=80=AFpm Gyorgy Sarvari, <skandigraun@gmail.c=
-om>
-wrote:
-
-> On 5/15/25 06:34, sateesh m via lists.yoctoproject.org wrote:
-> >
-> > Hi Team,
-> >
-> > I am currently working on CVE-related issues in the mozjs library that
-> > need to be fixed for version 60.9. I am using the Dunfell branch, but
-> > upon comparing it to the Gatesgarth branch, I noticed an additional
-> > patch is available. The patch
-> > |file://0014-fallback-to-2011-C++-standard.patch| has been removed,
-> > and |0014-remove-JS_VOLATIME_ARM.patch| has been added instead.
-> >
-> > Could you confirm whether these changes need to be applied to my local
-> > build as well? Additionally, I would like to understand the reason for
-> > removing the fallback-to-2011 patch. If we retain it, could it lead to
-> > any issues?
-> >
-> The patch comments look fairly descriptive. These are not security
-> fixes, rather change gcc compatibility.
->
-> 0014-fallback-to-2011-C++-standard.patch - it was introduced because
-> Dunfell supported building on distros that came with an old gcc that
-> couldn't compile without this patch. But later Yocto releases dropped
-> support for these old distros, so this patch wasn't necessary. If your
-> compiler supports c++14, then this patch is optional for you, and can be
-> safely dropped. But you can also keep it.
->
-> 0014-remove-JS_VOLATIME_ARM.patch - This patch removes a workaround that
-> was added to fix an old gcc bug. If you are using old gcc, or very old
-> Arm HW (that doesn't support aligned access), you shouldn't use this patc=
-h.
-> >
-> > I want to incorporate upstream patch changes related to the mozjs
-> > library. Since version 60.9 is a tar bundle and not a Git source,
-> > where can I find relevant solutions and reference links?
-> >
-> Mozilla primarily does development in their Mercurial repo, where you
-> can also see the commit history[1]. Incidentally they have just
-> announced hosting their code in their official Github repo also, where
-> you can also browse the history[2] if you are more comfortable with that
-> - mostly check in the js folder history.
->
-> Of course, security-wise the best would be if you could migrate to newer
-> versions. All of these are pretty old, and most probably having lots of
-> issues that weren't found back when developers were still fixing them.
-> (Not only mozjs, but whole Dunfell)
->
-> [1]: https://hg-edge.mozilla.org/mozilla-central/
-> [2]: https://github.com/mozilla-firefox/firefox
-> >
-> > I have reviewed Bugzilla IDs, and they indicate that the issue has
-> > been fixed in example Firefox ESR78 and ESR128 and few mentioned <91
-> > (Is that mean below 91 all versions may effect changes). However,
-> > based on my understanding, adding those changes might result in
-> > dependency package version issues, such as requiring a more recent
-> > Python version (e.g., Python 3.10).
-> >
-> > I would appreciate any clarification on this matter.
-> >
-> > Thanks in advance.
-> >
-> > Best regards,
-> >
-> > Satish M
-> >
-> >
-> > -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
-> > Links: You receive all messages sent to this group.
-> > View/Reply Online (#65341):
-> https://lists.yoctoproject.org/g/yocto/message/65341
-> > Mute This Topic: https://lists.yoctoproject.org/mt/113122170/6084445
-> > Group Owner: yocto+owner@lists.yoctoproject.org
-> > Unsubscribe: https://lists.yoctoproject.org/g/yocto/unsub [
-> skandigraun@gmail.com]
-> > -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
-> >
->
->
-
---000000000000ef16a20635287b4f
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-<p dir=3D"ltr">Thank you for your response. But i am having some doubts If =
-I want to get upstream patches for the Firefox=C2=A0 60.9 version how to ge=
-t it. </p>
-<p dir=3D"ltr">Thanks &amp; Regards,<br>
-Satish M</p>
-<br><div class=3D"gmail_quote gmail_quote_container"><div dir=3D"ltr" class=
-=3D"gmail_attr">On Thu, 15 May, 2025, 12:22=E2=80=AFpm Gyorgy Sarvari, &lt;=
-<a href=3D"mailto:skandigraun@gmail.com">skandigraun@gmail.com</a>&gt; wrot=
-e:<br></div><blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;bo=
-rder-left:1px #ccc solid;padding-left:1ex">On 5/15/25 06:34, sateesh m via =
-<a href=3D"http://lists.yoctoproject.org" rel=3D"noreferrer noreferrer" tar=
-get=3D"_blank">lists.yoctoproject.org</a> wrote:<br>
-&gt;<br>
-&gt; Hi Team,<br>
-&gt;<br>
-&gt; I am currently working on CVE-related issues in the mozjs library that=
-<br>
-&gt; need to be fixed for version 60.9. I am using the Dunfell branch, but<=
-br>
-&gt; upon comparing it to the Gatesgarth branch, I noticed an additional<br=
->
-&gt; patch is available. The patch<br>
-&gt; |file://0014-fallback-to-2011-C++-standard.patch| has been removed,<br=
->
-&gt; and |0014-remove-JS_VOLATIME_ARM.patch| has been added instead.<br>
-&gt;<br>
-&gt; Could you confirm whether these changes need to be applied to my local=
-<br>
-&gt; build as well? Additionally, I would like to understand the reason for=
-<br>
-&gt; removing the fallback-to-2011 patch. If we retain it, could it lead to=
-<br>
-&gt; any issues?<br>
-&gt;<br>
-The patch comments look fairly descriptive. These are not security<br>
-fixes, rather change gcc compatibility.<br>
-<br>
-0014-fallback-to-2011-C++-standard.patch - it was introduced because<br>
-Dunfell supported building on distros that came with an old gcc that<br>
-couldn&#39;t compile without this patch. But later Yocto releases dropped<b=
-r>
-support for these old distros, so this patch wasn&#39;t necessary. If your<=
-br>
-compiler supports c++14, then this patch is optional for you, and can be<br=
->
-safely dropped. But you can also keep it.<br>
-<br>
-0014-remove-JS_VOLATIME_ARM.patch - This patch removes a workaround that<br=
->
-was added to fix an old gcc bug. If you are using old gcc, or very old<br>
-Arm HW (that doesn&#39;t support aligned access), you shouldn&#39;t use thi=
-s patch.<br>
-&gt;<br>
-&gt; I want to incorporate upstream patch changes related to the mozjs<br>
-&gt; library. Since version 60.9 is a tar bundle and not a Git source,<br>
-&gt; where can I find relevant solutions and reference links?<br>
-&gt;<br>
-Mozilla primarily does development in their Mercurial repo, where you<br>
-can also see the commit history[1]. Incidentally they have just<br>
-announced hosting their code in their official Github repo also, where<br>
-you can also browse the history[2] if you are more comfortable with that<br=
->
-- mostly check in the js folder history.<br>
-<br>
-Of course, security-wise the best would be if you could migrate to newer<br=
->
-versions. All of these are pretty old, and most probably having lots of<br>
-issues that weren&#39;t found back when developers were still fixing them.<=
-br>
-(Not only mozjs, but whole Dunfell)<br>
-<br>
-[1]: <a href=3D"https://hg-edge.mozilla.org/mozilla-central/" rel=3D"norefe=
-rrer noreferrer" target=3D"_blank">https://hg-edge.mozilla.org/mozilla-cent=
-ral/</a><br>
-[2]: <a href=3D"https://github.com/mozilla-firefox/firefox" rel=3D"noreferr=
-er noreferrer" target=3D"_blank">https://github.com/mozilla-firefox/firefox=
-</a><br>
-&gt;<br>
-&gt; I have reviewed Bugzilla IDs, and they indicate that the issue has<br>
-&gt; been fixed in example Firefox ESR78 and ESR128 and few mentioned &lt;9=
-1<br>
-&gt; (Is that mean below 91 all versions may effect changes). However,<br>
-&gt; based on my understanding, adding those changes might result in<br>
-&gt; dependency package version issues, such as requiring a more recent<br>
-&gt; Python version (e.g., Python 3.10).<br>
-&gt;<br>
-&gt; I would appreciate any clarification on this matter.<br>
-&gt;<br>
-&gt; Thanks in advance.<br>
-&gt;<br>
-&gt; Best regards,<br>
-&gt;<br>
-&gt; Satish M<br>
-&gt;<br>
-&gt;<br>
-&gt; -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-<br>
-&gt; Links: You receive all messages sent to this group.<br>
-&gt; View/Reply Online (#65341): <a href=3D"https://lists.yoctoproject.org/=
-g/yocto/message/65341" rel=3D"noreferrer noreferrer" target=3D"_blank">http=
-s://lists.yoctoproject.org/g/yocto/message/65341</a><br>
-&gt; Mute This Topic: <a href=3D"https://lists.yoctoproject.org/mt/11312217=
-0/6084445" rel=3D"noreferrer noreferrer" target=3D"_blank">https://lists.yo=
-ctoproject.org/mt/113122170/6084445</a><br>
-&gt; Group Owner: <a href=3D"mailto:yocto%2Bowner@lists.yoctoproject.org" t=
-arget=3D"_blank" rel=3D"noreferrer">yocto+owner@lists.yoctoproject.org</a><=
-br>
-&gt; Unsubscribe: <a href=3D"https://lists.yoctoproject.org/g/yocto/unsub" =
-rel=3D"noreferrer noreferrer" target=3D"_blank">https://lists.yoctoproject.=
-org/g/yocto/unsub</a> [<a href=3D"mailto:skandigraun@gmail.com" target=3D"_=
-blank" rel=3D"noreferrer">skandigraun@gmail.com</a>]<br>
-&gt; -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-<br>
-&gt;<br>
-<br>
-</blockquote></div>
-
---000000000000ef16a20635287b4f--
 
