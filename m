@@ -1,590 +1,206 @@
-Return-Path: <sjolley.yp.pm@gmail.com>
+Return-Path: <alex.kanavin@gmail.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 8201FC3ABDD
-	for <webhook@archiver.kernel.org>; Tue, 20 May 2025 10:01:31 +0000 (UTC)
-Received: from mail-pl1-f182.google.com (mail-pl1-f182.google.com [209.85.214.182])
- by mx.groups.io with SMTP id smtpd.web10.17047.1747735290734782002
+	by smtp.lore.kernel.org (Postfix) with ESMTP id C7111C3ABDD
+	for <webhook@archiver.kernel.org>; Tue, 20 May 2025 11:02:21 +0000 (UTC)
+Received: from mail-qv1-f53.google.com (mail-qv1-f53.google.com [209.85.219.53])
+ by mx.groups.io with SMTP id smtpd.web11.18356.1747738933825631832
  for <yocto@lists.yoctoproject.org>;
- Tue, 20 May 2025 03:01:30 -0700
+ Tue, 20 May 2025 04:02:13 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20230601 header.b=mL04+2q6;
- spf=pass (domain: gmail.com, ip: 209.85.214.182, mailfrom: sjolley.yp.pm@gmail.com)
-Received: by mail-pl1-f182.google.com with SMTP id d9443c01a7336-232059c0b50so25735155ad.2
-        for <yocto@lists.yoctoproject.org>; Tue, 20 May 2025 03:01:30 -0700 (PDT)
+ dkim=pass header.i=@gmail.com header.s=20230601 header.b=gkRQRyMc;
+ spf=pass (domain: gmail.com, ip: 209.85.219.53, mailfrom: alex.kanavin@gmail.com)
+Received: by mail-qv1-f53.google.com with SMTP id 6a1803df08f44-6f8b81fda4aso37781856d6.1
+        for <yocto@lists.yoctoproject.org>; Tue, 20 May 2025 04:02:13 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1747735290; x=1748340090; darn=lists.yoctoproject.org;
-        h=to:subject:message-id:date:from:mime-version:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=XgBzA/t+Tg2WhEVq2aMl4lH0UxnQoEEd9ND0j5lfUwM=;
-        b=mL04+2q6AuVhkMQ2Z74I0eqEbcNRZQQC6SKGPzibBUJG5VOCANs/B0Z1JYh8hBGoVg
-         lwoFL00qURws9KBF2kGzl4tgSb49c4yF9iULvFdRoMRNYEfj2z6OC1lUssGAvvRZsLrE
-         Q3vlQqy0qPHG3hWT7/ggZU3pfu0b2SlR4vz6KrF30+SRXQ7sgbUCFkJ8i33ID0FEACP6
-         LPtSdKBNmXIqGOTwV1orJToy/T5U5WQiECaGLDaUop44lTJWxLolt+Rc5+hfJJgf0+wh
-         /d8z2ESiqGyJgvA1BfgmHenYch+fMwHDl+vuiudobdqvWBdEmyfSVd+Rj1YeT+s89ZC/
-         CXSg==
+        d=gmail.com; s=20230601; t=1747738933; x=1748343733; darn=lists.yoctoproject.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=iRUMCG9P8UUNOprr3e03STmkEIMuPamB2BXl+SqWZog=;
+        b=gkRQRyMcQ7XvZNs24s9WBOgh4LNv4nKrjBqPWX2oh/hsNhiwsIulscR132ZQsuWZLv
+         JCqpNkZbppan7bztrYp+z57zc+hI9rPB8H0E75ke7jm3Jjup/nKEfUdx6aly6k49hX9g
+         4CHAELs8nSX1eMzWz+lp0tMoLLZe+cewTADQcNeDSALUy69K4HXc0s6185+8lJxsZHMV
+         ivPovBSv9cPQS96NF0CYwFVxuDd/4VpbrB4YpcGneAbh05s0leXYfbCZrHVmqa98hDKh
+         OUqM1q1ps9EDwxoBfALbGX1nWz+o/M/gj/TAcfclGuHcf+lmZacgYJoi9AwsyEVgaeAu
+         qrVg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1747735290; x=1748340090;
-        h=to:subject:message-id:date:from:mime-version:x-gm-message-state
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=XgBzA/t+Tg2WhEVq2aMl4lH0UxnQoEEd9ND0j5lfUwM=;
-        b=YCoUoXU8Pl23W+qN+k6ZhiBScy6B/2c/R1jVrtUMjer6Pu5ckHsKP8CAXe3QiWpLqr
-         C3ynDXL1Y/IG47ce8Ah6C+vzyHz34TsTpfEgcZrvZITSpZUchrPOgIY2mS9gJQGXzxXu
-         UFnDZavZX4htQ8doheJSmjFHZD0lmDMu3TxIlq3f6gCeqRLJlzX3PnQm54n0y38DGvca
-         b6dKoZYYWI0YyLOMRhX7evAEstlIYLB4sBeJaDvQk+vQuvQTpn9v+6PdZ8u5lb+yvwWn
-         iY5MOOLnOqeykgj1eBuT1KYzQrGIG0BOrfZQ21A8NP6sKglHg2rpZ9Gp9RALdAVlM6/i
-         H3DA==
-X-Gm-Message-State: AOJu0YwHqLpfKvfjVhHg8lpSpk8LDN/Ro468CCTgCui4HjzkbmyFjetD
-	KHsBNAVTDlWxWLPgTUavWkNOktIZlr3BWifpmLuLQYvpxLpTB6TwhSewJ8Rv+tILuooAvLGMQv1
-	QbmD99Il86AMC1S2fDOYn8tNw0hxCLBi7mlP/
-X-Gm-Gg: ASbGnctC4v5iBjz4Rx27ZSVRS1/3sUR+iq0P+4EGRrVf5oEbNgQLW6xXE9tiYwhy/Yp
-	u5mSuSUdchSmc+Eyrex3iNbkh+xNgxjydKAwMHoK6M9Rf3bq6hdELNEld9/YbwtnxJXPI611f2w
-	G86h6U3AevPv56/ROpRumxwvs12hdltvKlxqL+4nDlOWQbsohRvrYTKIu3Zo+/0uVNvhg=
-X-Google-Smtp-Source: AGHT+IEr6/t+1uLwOHYqUWMLlGql2kB7RG2RxCpSA8EJXHCwDuHL3HBG0G7HoyAclAK9VeNGLcU9pJqw2Lm12lXiZd8=
-X-Received: by 2002:a17:903:11c6:b0:21f:7880:8472 with SMTP id
- d9443c01a7336-231de370156mr236238745ad.35.1747735289846; Tue, 20 May 2025
- 03:01:29 -0700 (PDT)
+        d=1e100.net; s=20230601; t=1747738933; x=1748343733;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=iRUMCG9P8UUNOprr3e03STmkEIMuPamB2BXl+SqWZog=;
+        b=Bn8mhjJBnl9k05oiibSggkpGFYtMOTAxeWRk/fGLciusxxj4UWsC2K/nPIKZTemZVV
+         64OtODgrKI8N850s2N2NutcgGCToexjdxF1P8Dn04OvjReLvpFKr7DbX032KNbzVmi7f
+         mVPslKjGn6n0tK3E5KDpqy+avrGQm2SSFAZZaCYAUDlGw1v7UF2nirDm2glqTpwKgmQi
+         K1Yq/YVvB2BmD3ArwRf7qv9+lQdjx8rEpiElk935Bw0msTCmk68yKJetztm2FQ4EeFSW
+         GXs4gTZj0xlctLpXEp/IYBSXniD0dzmdks+Q+BAfm2fZHG28HZ7s1sBikSulwFU599d+
+         eM5g==
+X-Gm-Message-State: AOJu0YxqRV9Awiw1WG+BzysiTrMYLB4fUT50syoqcfhSe1rPVlLJx7za
+	5sGb2VYkO3oU0rlT6LSdg9ixxKvhVWX3PBzsWHVGzLBp1k6tV1LRfwl7w4BD0t3bvWc26pEgn8a
+	tWQcTB84rCfFEl8USoGICNRRvj/KgpSg=
+X-Gm-Gg: ASbGncu8HZ/q3DVGXARn/wFPx0w3hYG7ktKEUbOdFeDSXcJTiBhNXwv1+FQ62BV3Fpd
+	VPXfJkSlCV6iWdR9JyA3Uf6EPf31mGy8ShTznautjux3TqkhEAMdeJWdvvCM+rw0hSZ+hF5HhG3
+	INYFvmZ9TZXFi8SR7UtkB34yyl/bXKtNMR/A==
+X-Google-Smtp-Source: AGHT+IFLAPmKk33sfh9m9Dul1upKMn/C/zUwy+BPOf6KzmGDmjBPe4NABktq+U+omclQGFvLQ/vTaJPsIGwWnGtPWPE=
+X-Received: by 2002:a05:6214:508c:b0:6f8:e367:8440 with SMTP id
+ 6a1803df08f44-6f8e367849bmr50099546d6.23.1747738932494; Tue, 20 May 2025
+ 04:02:12 -0700 (PDT)
 MIME-Version: 1.0
-From: Stephen K Jolley <sjolley.yp.pm@gmail.com>
-Date: Tue, 20 May 2025 03:01:17 -0700
-X-Gm-Features: AX0GCFt_pxNcf-PYAXU5TGajL_u8hdJigDLI2ZZQY9FGDhgan5_AedDCbv9wlI8
-Message-ID: <CAK5yBb_0XZUukoovt=Su0Rdq_z5e=2teRZzErUMNCN30bS-S1Q@mail.gmail.com>
-Subject: M+ & H bugs with Milestone Movements WW20
-To: Yocto-mailing-list <yocto@lists.yoctoproject.org>
-Content-Type: multipart/alternative; boundary="0000000000001ce25b06358e55ee"
+References: <20250425060119.5092-1-denisova.olga.k@yandex.ru>
+ <CANNYZj-f+LsCv=Ez-NPo4M-vh1V4nK2t3tFh3X38pZXYmJnuZQ@mail.gmail.com> <12851747494093@mail.yandex.ru>
+In-Reply-To: <12851747494093@mail.yandex.ru>
+From: Alexander Kanavin <alex.kanavin@gmail.com>
+Date: Tue, 20 May 2025 13:02:00 +0200
+X-Gm-Features: AX0GCFvI5uSucIVrOqk6NfxMlzb4DeF0DdmZTu63UNKZR4WrBi-XnLGNAxroiU4
+Message-ID: <CANNYZj-6kUmA5qj-r5mNnENZzWW196Cz7sJZYkQ7YBkeaR9cTQ@mail.gmail.com>
+Subject: Re: [yocto] [PATCH v2 0/3] Add support for index files in SSTATE_MIRRORS
+To: =?UTF-8?B?0J7Qu9GM0LPQsCDQlNC10L3QuNGB0L7QstCw?= <denisova.olga.k@yandex.ru>
+Cc: "yocto@lists.yoctoproject.org" <yocto@lists.yoctoproject.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Tue, 20 May 2025 10:01:31 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/65365
+ <yocto@lists.yoctoproject.org>; Tue, 20 May 2025 11:02:21 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/65366
 
---0000000000001ce25b06358e55ee
-Content-Type: text/plain; charset="UTF-8"
+Thanks. Improvements in this area are certainly welcome, but I'd
+suggest you look into improvements that do not require creating and
+maintaining index files on servers - this adds a lot of complexity
+that someone has to maintain and support, both upstream and in
+deployments.
 
-All,
+Can we better parallelize the processing? Can we batch requests and
+responses in the network protocol (I have no idea how it currently
+works)? Someone just reported that they see unnecessary requests, can
+you find out where and how it happens and can it be fixed? I feel that
+fully investigating what happens currently should be done first.
 
-YP M+ or high bugs which moved to a new milestone in WW20 are listed below:
-Priority Bug ID Short Description Changer Owner Was Became
-Medium+ 13428 <https://bugzilla.yoctoproject.org/show_bug.cgi?id=13428>
-patchtest-oe:
-test-pylint need enhancement for new files tgamblin@baylibre.com
-tgamblin@baylibre.com 5.2 5.3
-14126 <https://bugzilla.yoctoproject.org/show_bug.cgi?id=14126> resolvconf
-incompatible with busybox flock randy.macleod@windriver.com
-randy.macleod@windriver.com 5.2 Future
-14206 <https://bugzilla.yoctoproject.org/show_bug.cgi?id=14206> oe-selftest
-perl errors on rpm based distros randy.macleod@windriver.com
-randy.macleod@windriver.com 5.2 M4 5.3 M2
-14622 <https://bugzilla.yoctoproject.org/show_bug.cgi?id=14622>
-bsps-hw.bsps-hw.Test_Seek_bar_and_volume_control
-manual test case failure randy.macleod@windriver.com
-unassigned@yoctoproject.org 5.2 M4 5.3 M2
-14710 <https://bugzilla.yoctoproject.org/show_bug.cgi?id=14710> Improve
-cargo fetcher test cases randy.macleod@windriver.com
-randy.macleod@windriver.com 5.2 M4 5.3 M3
-14866 <https://bugzilla.yoctoproject.org/show_bug.cgi?id=14866> testsdk
-logs missing information randy.macleod@windriver.com
-deepesh.varatharajan@windriver.com 5.2 M4 5.3 M2
-15130 <https://bugzilla.yoctoproject.org/show_bug.cgi?id=15130> bitbake
-should warn if a function is defined only for specific cases
-tgamblin@baylibre.com tgamblin@baylibre.com 5.2 5.3
-15256 <https://bugzilla.yoctoproject.org/show_bug.cgi?id=15256> Use images
-built with Autobuilder for patchtest guest mode tgamblin@baylibre.com
-tgamblin@baylibre.com 5.2 5.3
-15263 <https://bugzilla.yoctoproject.org/show_bug.cgi?id=15263> Expand
-patchtest test suite tgamblin@baylibre.com tgamblin@baylibre.com 5.2 5.3
-15265 <https://bugzilla.yoctoproject.org/show_bug.cgi?id=15265> Make
-patchtest compatible with other layers tgamblin@baylibre.com
-tgamblin@baylibre.com 5.2 5.3
-15269 <https://bugzilla.yoctoproject.org/show_bug.cgi?id=15269> patchtest
-test_lic_files_chksum_modified_not_mentioned is inconsistent between local
-and automated runs tgamblin@baylibre.com tgamblin@baylibre.com 5.2 M4 5.3
-15341 <https://bugzilla.yoctoproject.org/show_bug.cgi?id=15341> False
-positive on missing S-O-B ! tgamblin@baylibre.com tgamblin@baylibre.com 5.2
-M4 5.3
-15851 <https://bugzilla.yoctoproject.org/show_bug.cgi?id=15851> Investigate
-and reduce significant build time increase randy.macleod@windriver.com
-randy.macleod@windriver.com 5.2 M1 5.3 M1
-15858 <https://bugzilla.yoctoproject.org/show_bug.cgi?id=15858>
-_pickle.PicklingError
-with python-3.14 randy.macleod@windriver.com JPEWhacker@gmail.com 0.0.0 5.3
-M1
-15860 <https://bugzilla.yoctoproject.org/show_bug.cgi?id=15860> AB-INT:
-metrics: ./oe-init-build-env returned non-zero exit status 1
-randy.macleod@windriver.com richard.purdie@linuxfoundation.org 0.0.0 5.3 M1
-15863 <https://bugzilla.yoctoproject.org/show_bug.cgi?id=15863> useradd:
-using only USERADD_DEPENDS gives errors about not setting one of the
-useradd class variables randy.macleod@windriver.com yoann.congal@smile.fr
-0.0.0 5.2 M2
-yoann.congal@smile.fr yoann.congal@smile.fr 5.2 M2 5.3 M1
+Alex
 
-Thanks,
-
-
-
-*Stephen K. Jolley*
-
-*Yocto Project Program Manager*
-
-(    *Cell*:                (208) 244-4460
-
-* *Email*:                 *s
-<stephen.k.jolley@intel.com>jolley.yp.pm@gmail.com <jolley.yp.pm@gmail.com>*
-
---0000000000001ce25b06358e55ee
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr"><div><span style=3D"font-size:11pt;font-family:Calibri,Ari=
-al">All,<br><br>YP M+ or high bugs which moved to a new milestone in WW20 a=
-re listed below:=C2=A0<br></span></div><div dir=3D"ltr" class=3D"gmail_sign=
-ature" data-smartmail=3D"gmail_signature"><div dir=3D"ltr"><div dir=3D"ltr"=
-><table cellspacing=3D"0" cellpadding=3D"0" dir=3D"ltr" border=3D"1" style=
-=3D"table-layout:fixed;font-size:11pt;font-family:Calibri;width:0px;border-=
-collapse:collapse;border:none"><colgroup><col width=3D"63"><col width=3D"43=
-"><col width=3D"543"><col width=3D"235"><col width=3D"242"><col width=3D"53=
-"><col width=3D"53"></colgroup><tbody><tr style=3D"height:20px"><td style=
-=3D"border:1px solid rgb(0,0,0);overflow:hidden;padding:0px 3px;vertical-al=
-ign:bottom;background-color:rgb(219,229,241);font-weight:bold">Priority</td=
-><td style=3D"border-width:1px;border-style:solid;border-color:rgb(0,0,0) r=
-gb(0,0,0) rgb(0,0,0) rgb(204,204,204);overflow:hidden;padding:0px 3px;verti=
-cal-align:bottom;background-color:rgb(219,229,241);font-weight:bold">Bug ID=
-</td><td style=3D"border-width:1px;border-style:solid;border-color:rgb(0,0,=
-0) rgb(0,0,0) rgb(0,0,0) rgb(204,204,204);overflow:hidden;padding:0px 3px;v=
-ertical-align:bottom;background-color:rgb(219,229,241);font-weight:bold">Sh=
-ort Description</td><td style=3D"border-width:1px;border-style:solid;border=
--color:rgb(0,0,0) rgb(0,0,0) rgb(0,0,0) rgb(204,204,204);overflow:hidden;pa=
-dding:0px 3px;vertical-align:bottom;background-color:rgb(219,229,241);font-=
-weight:bold">Changer</td><td style=3D"border-width:1px;border-style:solid;b=
-order-color:rgb(0,0,0) rgb(0,0,0) rgb(0,0,0) rgb(204,204,204);overflow:hidd=
-en;padding:0px 3px;vertical-align:bottom;background-color:rgb(219,229,241);=
-font-weight:bold">Owner</td><td style=3D"border-width:1px;border-style:soli=
-d;border-color:rgb(0,0,0) rgb(0,0,0) rgb(0,0,0) rgb(204,204,204);overflow:h=
-idden;padding:0px 3px;vertical-align:bottom;background-color:rgb(219,229,24=
-1);font-weight:bold">Was</td><td style=3D"border-width:1px;border-style:sol=
-id;border-color:rgb(0,0,0) rgb(0,0,0) rgb(0,0,0) rgb(204,204,204);overflow:=
-hidden;padding:0px 3px;vertical-align:bottom;background-color:rgb(219,229,2=
-41);font-weight:bold">Became</td></tr><tr style=3D"height:20px"><td style=
-=3D"border-width:1px;border-style:solid;border-color:rgb(204,204,204) rgb(0=
-,0,0) rgb(0,0,0);overflow:hidden;padding:0px 3px;vertical-align:bottom;font=
--weight:bold">Medium+</td><td style=3D"border-width:1px;border-style:solid;=
-border-color:rgb(204,204,204) rgb(0,0,0) rgb(0,0,0) rgb(204,204,204);overfl=
-ow:hidden;padding:0px 3px;vertical-align:bottom;font-weight:bold;text-decor=
-ation-line:underline;text-align:right"><a class=3D"gmail-in-cell-link" href=
-=3D"https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D13428" target=3D"_b=
-lank">13428</a></td><td style=3D"border-width:1px;border-style:solid;border=
--color:rgb(204,204,204) rgb(0,0,0) rgb(0,0,0) rgb(204,204,204);overflow:hid=
-den;padding:0px 3px;vertical-align:bottom">patchtest-oe: test-pylint need e=
-nhancement for new files</td><td style=3D"border-width:1px;border-style:sol=
-id;border-color:rgb(204,204,204) rgb(0,0,0) rgb(0,0,0) rgb(204,204,204);ove=
-rflow:hidden;padding:0px 3px;vertical-align:bottom"><a href=3D"mailto:tgamb=
-lin@baylibre.com">tgamblin@baylibre.com</a></td><td style=3D"border-width:1=
-px;border-style:solid;border-color:rgb(204,204,204) rgb(0,0,0) rgb(0,0,0) r=
-gb(204,204,204);overflow:hidden;padding:0px 3px;vertical-align:bottom"><a h=
-ref=3D"mailto:tgamblin@baylibre.com">tgamblin@baylibre.com</a></td><td styl=
-e=3D"border-width:1px;border-style:solid;border-color:rgb(204,204,204) rgb(=
-0,0,0) rgb(0,0,0) rgb(204,204,204);overflow:hidden;padding:0px 3px;vertical=
--align:bottom;text-align:right">5.2</td><td style=3D"border-width:1px;borde=
-r-style:solid;border-color:rgb(204,204,204) rgb(0,0,0) rgb(0,0,0) rgb(204,2=
-04,204);overflow:hidden;padding:0px 3px;vertical-align:bottom;text-align:ri=
-ght">5.3</td></tr><tr style=3D"height:20px"><td style=3D"border-width:1px;b=
-order-style:solid;border-color:rgb(204,204,204) rgb(0,0,0) rgb(0,0,0);overf=
-low:hidden;padding:0px 3px;vertical-align:bottom"></td><td style=3D"border-=
-width:1px;border-style:solid;border-color:rgb(204,204,204) rgb(0,0,0) rgb(0=
-,0,0) rgb(204,204,204);overflow:hidden;padding:0px 3px;vertical-align:botto=
-m;font-weight:bold;text-decoration-line:underline;text-align:right"><a clas=
-s=3D"gmail-in-cell-link" href=3D"https://bugzilla.yoctoproject.org/show_bug=
-.cgi?id=3D14126" target=3D"_blank">14126</a></td><td style=3D"border-width:=
-1px;border-style:solid;border-color:rgb(204,204,204) rgb(0,0,0) rgb(0,0,0) =
-rgb(204,204,204);overflow:hidden;padding:0px 3px;vertical-align:bottom">res=
-olvconf incompatible with busybox flock</td><td style=3D"border-width:1px;b=
-order-style:solid;border-color:rgb(204,204,204) rgb(0,0,0) rgb(0,0,0) rgb(2=
-04,204,204);overflow:hidden;padding:0px 3px;vertical-align:bottom"><a href=
-=3D"mailto:randy.macleod@windriver.com">randy.macleod@windriver.com</a></td=
-><td style=3D"border-width:1px;border-style:solid;border-color:rgb(204,204,=
-204) rgb(0,0,0) rgb(0,0,0) rgb(204,204,204);overflow:hidden;padding:0px 3px=
-;vertical-align:bottom"><a href=3D"mailto:randy.macleod@windriver.com">rand=
-y.macleod@windriver.com</a></td><td style=3D"border-width:1px;border-style:=
-solid;border-color:rgb(204,204,204) rgb(0,0,0) rgb(0,0,0) rgb(204,204,204);=
-overflow:hidden;padding:0px 3px;vertical-align:bottom;text-align:right">5.2=
-</td><td style=3D"border-width:1px;border-style:solid;border-color:rgb(204,=
-204,204) rgb(0,0,0) rgb(0,0,0) rgb(204,204,204);overflow:hidden;padding:0px=
- 3px;vertical-align:bottom">Future</td></tr><tr style=3D"height:20px"><td s=
-tyle=3D"border-width:1px;border-style:solid;border-color:rgb(204,204,204) r=
-gb(0,0,0) rgb(0,0,0);overflow:hidden;padding:0px 3px;vertical-align:bottom"=
-></td><td style=3D"border-width:1px;border-style:solid;border-color:rgb(204=
-,204,204) rgb(0,0,0) rgb(0,0,0) rgb(204,204,204);overflow:hidden;padding:0p=
-x 3px;vertical-align:bottom;font-weight:bold;text-decoration-line:underline=
-;text-align:right"><a class=3D"gmail-in-cell-link" href=3D"https://bugzilla=
-.yoctoproject.org/show_bug.cgi?id=3D14206" target=3D"_blank">14206</a></td>=
-<td style=3D"border-width:1px;border-style:solid;border-color:rgb(204,204,2=
-04) rgb(0,0,0) rgb(0,0,0) rgb(204,204,204);overflow:hidden;padding:0px 3px;=
-vertical-align:bottom">oe-selftest perl errors on rpm based distros</td><td=
- style=3D"border-width:1px;border-style:solid;border-color:rgb(204,204,204)=
- rgb(0,0,0) rgb(0,0,0) rgb(204,204,204);overflow:hidden;padding:0px 3px;ver=
-tical-align:bottom"><a href=3D"mailto:randy.macleod@windriver.com">randy.ma=
-cleod@windriver.com</a></td><td style=3D"border-width:1px;border-style:soli=
-d;border-color:rgb(204,204,204) rgb(0,0,0) rgb(0,0,0) rgb(204,204,204);over=
-flow:hidden;padding:0px 3px;vertical-align:bottom"><a href=3D"mailto:randy.=
-macleod@windriver.com">randy.macleod@windriver.com</a></td><td style=3D"bor=
-der-width:1px;border-style:solid;border-color:rgb(204,204,204) rgb(0,0,0) r=
-gb(0,0,0) rgb(204,204,204);overflow:hidden;padding:0px 3px;vertical-align:b=
-ottom">5.2 M4</td><td style=3D"border-width:1px;border-style:solid;border-c=
-olor:rgb(204,204,204) rgb(0,0,0) rgb(0,0,0) rgb(204,204,204);overflow:hidde=
-n;padding:0px 3px;vertical-align:bottom">5.3 M2</td></tr><tr style=3D"heigh=
-t:20px"><td style=3D"border-width:1px;border-style:solid;border-color:rgb(2=
-04,204,204) rgb(0,0,0) rgb(0,0,0);overflow:hidden;padding:0px 3px;vertical-=
-align:bottom"></td><td style=3D"border-width:1px;border-style:solid;border-=
-color:rgb(204,204,204) rgb(0,0,0) rgb(0,0,0) rgb(204,204,204);overflow:hidd=
-en;padding:0px 3px;vertical-align:bottom;font-weight:bold;text-decoration-l=
-ine:underline;text-align:right"><a class=3D"gmail-in-cell-link" href=3D"htt=
-ps://bugzilla.yoctoproject.org/show_bug.cgi?id=3D14622" target=3D"_blank">1=
-4622</a></td><td style=3D"border-width:1px;border-style:solid;border-color:=
-rgb(204,204,204) rgb(0,0,0) rgb(0,0,0) rgb(204,204,204);overflow:hidden;pad=
-ding:0px 3px;vertical-align:bottom">bsps-hw.bsps-hw.Test_Seek_bar_and_volum=
-e_control manual test case failure</td><td style=3D"border-width:1px;border=
--style:solid;border-color:rgb(204,204,204) rgb(0,0,0) rgb(0,0,0) rgb(204,20=
-4,204);overflow:hidden;padding:0px 3px;vertical-align:bottom"><a href=3D"ma=
-ilto:randy.macleod@windriver.com">randy.macleod@windriver.com</a></td><td s=
-tyle=3D"border-width:1px;border-style:solid;border-color:rgb(204,204,204) r=
-gb(0,0,0) rgb(0,0,0) rgb(204,204,204);overflow:hidden;padding:0px 3px;verti=
-cal-align:bottom"><a href=3D"mailto:unassigned@yoctoproject.org">unassigned=
-@yoctoproject.org</a></td><td style=3D"border-width:1px;border-style:solid;=
-border-color:rgb(204,204,204) rgb(0,0,0) rgb(0,0,0) rgb(204,204,204);overfl=
-ow:hidden;padding:0px 3px;vertical-align:bottom">5.2 M4</td><td style=3D"bo=
-rder-width:1px;border-style:solid;border-color:rgb(204,204,204) rgb(0,0,0) =
-rgb(0,0,0) rgb(204,204,204);overflow:hidden;padding:0px 3px;vertical-align:=
-bottom">5.3 M2</td></tr><tr style=3D"height:20px"><td style=3D"border-width=
-:1px;border-style:solid;border-color:rgb(204,204,204) rgb(0,0,0) rgb(0,0,0)=
-;overflow:hidden;padding:0px 3px;vertical-align:bottom"></td><td style=3D"b=
-order-width:1px;border-style:solid;border-color:rgb(204,204,204) rgb(0,0,0)=
- rgb(0,0,0) rgb(204,204,204);overflow:hidden;padding:0px 3px;vertical-align=
-:bottom;font-weight:bold;text-decoration-line:underline;text-align:right"><=
-a class=3D"gmail-in-cell-link" href=3D"https://bugzilla.yoctoproject.org/sh=
-ow_bug.cgi?id=3D14710" target=3D"_blank">14710</a></td><td style=3D"border-=
-width:1px;border-style:solid;border-color:rgb(204,204,204) rgb(0,0,0) rgb(0=
-,0,0) rgb(204,204,204);overflow:hidden;padding:0px 3px;vertical-align:botto=
-m">Improve cargo fetcher test cases</td><td style=3D"border-width:1px;borde=
-r-style:solid;border-color:rgb(204,204,204) rgb(0,0,0) rgb(0,0,0) rgb(204,2=
-04,204);overflow:hidden;padding:0px 3px;vertical-align:bottom"><a href=3D"m=
-ailto:randy.macleod@windriver.com">randy.macleod@windriver.com</a></td><td =
-style=3D"border-width:1px;border-style:solid;border-color:rgb(204,204,204) =
-rgb(0,0,0) rgb(0,0,0) rgb(204,204,204);overflow:hidden;padding:0px 3px;vert=
-ical-align:bottom"><a href=3D"mailto:randy.macleod@windriver.com">randy.mac=
-leod@windriver.com</a></td><td style=3D"border-width:1px;border-style:solid=
-;border-color:rgb(204,204,204) rgb(0,0,0) rgb(0,0,0) rgb(204,204,204);overf=
-low:hidden;padding:0px 3px;vertical-align:bottom">5.2 M4</td><td style=3D"b=
-order-width:1px;border-style:solid;border-color:rgb(204,204,204) rgb(0,0,0)=
- rgb(0,0,0) rgb(204,204,204);overflow:hidden;padding:0px 3px;vertical-align=
-:bottom">5.3 M3</td></tr><tr style=3D"height:20px"><td style=3D"border-widt=
-h:1px;border-style:solid;border-color:rgb(204,204,204) rgb(0,0,0) rgb(0,0,0=
-);overflow:hidden;padding:0px 3px;vertical-align:bottom"></td><td style=3D"=
-border-width:1px;border-style:solid;border-color:rgb(204,204,204) rgb(0,0,0=
-) rgb(0,0,0) rgb(204,204,204);overflow:hidden;padding:0px 3px;vertical-alig=
-n:bottom;font-weight:bold;text-decoration-line:underline;text-align:right">=
-<a class=3D"gmail-in-cell-link" href=3D"https://bugzilla.yoctoproject.org/s=
-how_bug.cgi?id=3D14866" target=3D"_blank">14866</a></td><td style=3D"border=
--width:1px;border-style:solid;border-color:rgb(204,204,204) rgb(0,0,0) rgb(=
-0,0,0) rgb(204,204,204);overflow:hidden;padding:0px 3px;vertical-align:bott=
-om">testsdk logs missing information</td><td style=3D"border-width:1px;bord=
-er-style:solid;border-color:rgb(204,204,204) rgb(0,0,0) rgb(0,0,0) rgb(204,=
-204,204);overflow:hidden;padding:0px 3px;vertical-align:bottom"><a href=3D"=
-mailto:randy.macleod@windriver.com">randy.macleod@windriver.com</a></td><td=
- style=3D"border-width:1px;border-style:solid;border-color:rgb(204,204,204)=
- rgb(0,0,0) rgb(0,0,0) rgb(204,204,204);overflow:hidden;padding:0px 3px;ver=
-tical-align:bottom"><a href=3D"mailto:deepesh.varatharajan@windriver.com">d=
-eepesh.varatharajan@windriver.com</a></td><td style=3D"border-width:1px;bor=
-der-style:solid;border-color:rgb(204,204,204) rgb(0,0,0) rgb(0,0,0) rgb(204=
-,204,204);overflow:hidden;padding:0px 3px;vertical-align:bottom">5.2 M4</td=
-><td style=3D"border-width:1px;border-style:solid;border-color:rgb(204,204,=
-204) rgb(0,0,0) rgb(0,0,0) rgb(204,204,204);overflow:hidden;padding:0px 3px=
-;vertical-align:bottom">5.3 M2</td></tr><tr style=3D"height:20px"><td style=
-=3D"border-width:1px;border-style:solid;border-color:rgb(204,204,204) rgb(0=
-,0,0) rgb(0,0,0);overflow:hidden;padding:0px 3px;vertical-align:bottom"></t=
-d><td style=3D"border-width:1px;border-style:solid;border-color:rgb(204,204=
-,204) rgb(0,0,0) rgb(0,0,0) rgb(204,204,204);overflow:hidden;padding:0px 3p=
-x;vertical-align:bottom;font-weight:bold;text-decoration-line:underline;tex=
-t-align:right"><a class=3D"gmail-in-cell-link" href=3D"https://bugzilla.yoc=
-toproject.org/show_bug.cgi?id=3D15130" target=3D"_blank">15130</a></td><td =
-style=3D"border-width:1px;border-style:solid;border-color:rgb(204,204,204) =
-rgb(0,0,0) rgb(0,0,0) rgb(204,204,204);overflow:hidden;padding:0px 3px;vert=
-ical-align:bottom">bitbake should warn if a function is defined only for sp=
-ecific cases</td><td style=3D"border-width:1px;border-style:solid;border-co=
-lor:rgb(204,204,204) rgb(0,0,0) rgb(0,0,0) rgb(204,204,204);overflow:hidden=
-;padding:0px 3px;vertical-align:bottom"><a href=3D"mailto:tgamblin@baylibre=
-.com">tgamblin@baylibre.com</a></td><td style=3D"border-width:1px;border-st=
-yle:solid;border-color:rgb(204,204,204) rgb(0,0,0) rgb(0,0,0) rgb(204,204,2=
-04);overflow:hidden;padding:0px 3px;vertical-align:bottom"><a href=3D"mailt=
-o:tgamblin@baylibre.com">tgamblin@baylibre.com</a></td><td style=3D"border-=
-width:1px;border-style:solid;border-color:rgb(204,204,204) rgb(0,0,0) rgb(0=
-,0,0) rgb(204,204,204);overflow:hidden;padding:0px 3px;vertical-align:botto=
-m;text-align:right">5.2</td><td style=3D"border-width:1px;border-style:soli=
-d;border-color:rgb(204,204,204) rgb(0,0,0) rgb(0,0,0) rgb(204,204,204);over=
-flow:hidden;padding:0px 3px;vertical-align:bottom;text-align:right">5.3</td=
-></tr><tr style=3D"height:20px"><td style=3D"border-width:1px;border-style:=
-solid;border-color:rgb(204,204,204) rgb(0,0,0) rgb(0,0,0);overflow:hidden;p=
-adding:0px 3px;vertical-align:bottom"></td><td style=3D"border-width:1px;bo=
-rder-style:solid;border-color:rgb(204,204,204) rgb(0,0,0) rgb(0,0,0) rgb(20=
-4,204,204);overflow:hidden;padding:0px 3px;vertical-align:bottom;font-weigh=
-t:bold;text-decoration-line:underline;text-align:right"><a class=3D"gmail-i=
-n-cell-link" href=3D"https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D15=
-256" target=3D"_blank">15256</a></td><td style=3D"border-width:1px;border-s=
-tyle:solid;border-color:rgb(204,204,204) rgb(0,0,0) rgb(0,0,0) rgb(204,204,=
-204);overflow:hidden;padding:0px 3px;vertical-align:bottom">Use images buil=
-t with Autobuilder for patchtest guest mode</td><td style=3D"border-width:1=
-px;border-style:solid;border-color:rgb(204,204,204) rgb(0,0,0) rgb(0,0,0) r=
-gb(204,204,204);overflow:hidden;padding:0px 3px;vertical-align:bottom"><a h=
-ref=3D"mailto:tgamblin@baylibre.com">tgamblin@baylibre.com</a></td><td styl=
-e=3D"border-width:1px;border-style:solid;border-color:rgb(204,204,204) rgb(=
-0,0,0) rgb(0,0,0) rgb(204,204,204);overflow:hidden;padding:0px 3px;vertical=
--align:bottom"><a href=3D"mailto:tgamblin@baylibre.com">tgamblin@baylibre.c=
-om</a></td><td style=3D"border-width:1px;border-style:solid;border-color:rg=
-b(204,204,204) rgb(0,0,0) rgb(0,0,0) rgb(204,204,204);overflow:hidden;paddi=
-ng:0px 3px;vertical-align:bottom;text-align:right">5.2</td><td style=3D"bor=
-der-width:1px;border-style:solid;border-color:rgb(204,204,204) rgb(0,0,0) r=
-gb(0,0,0) rgb(204,204,204);overflow:hidden;padding:0px 3px;vertical-align:b=
-ottom;text-align:right">5.3</td></tr><tr style=3D"height:20px"><td style=3D=
-"border-width:1px;border-style:solid;border-color:rgb(204,204,204) rgb(0,0,=
-0) rgb(0,0,0);overflow:hidden;padding:0px 3px;vertical-align:bottom"></td><=
-td style=3D"border-width:1px;border-style:solid;border-color:rgb(204,204,20=
-4) rgb(0,0,0) rgb(0,0,0) rgb(204,204,204);overflow:hidden;padding:0px 3px;v=
-ertical-align:bottom;font-weight:bold;text-decoration-line:underline;text-a=
-lign:right"><a class=3D"gmail-in-cell-link" href=3D"https://bugzilla.yoctop=
-roject.org/show_bug.cgi?id=3D15263" target=3D"_blank">15263</a></td><td sty=
-le=3D"border-width:1px;border-style:solid;border-color:rgb(204,204,204) rgb=
-(0,0,0) rgb(0,0,0) rgb(204,204,204);overflow:hidden;padding:0px 3px;vertica=
-l-align:bottom">Expand patchtest test suite</td><td style=3D"border-width:1=
-px;border-style:solid;border-color:rgb(204,204,204) rgb(0,0,0) rgb(0,0,0) r=
-gb(204,204,204);overflow:hidden;padding:0px 3px;vertical-align:bottom"><a h=
-ref=3D"mailto:tgamblin@baylibre.com">tgamblin@baylibre.com</a></td><td styl=
-e=3D"border-width:1px;border-style:solid;border-color:rgb(204,204,204) rgb(=
-0,0,0) rgb(0,0,0) rgb(204,204,204);overflow:hidden;padding:0px 3px;vertical=
--align:bottom"><a href=3D"mailto:tgamblin@baylibre.com">tgamblin@baylibre.c=
-om</a></td><td style=3D"border-width:1px;border-style:solid;border-color:rg=
-b(204,204,204) rgb(0,0,0) rgb(0,0,0) rgb(204,204,204);overflow:hidden;paddi=
-ng:0px 3px;vertical-align:bottom;text-align:right">5.2</td><td style=3D"bor=
-der-width:1px;border-style:solid;border-color:rgb(204,204,204) rgb(0,0,0) r=
-gb(0,0,0) rgb(204,204,204);overflow:hidden;padding:0px 3px;vertical-align:b=
-ottom;text-align:right">5.3</td></tr><tr style=3D"height:20px"><td style=3D=
-"border-width:1px;border-style:solid;border-color:rgb(204,204,204) rgb(0,0,=
-0) rgb(0,0,0);overflow:hidden;padding:0px 3px;vertical-align:bottom"></td><=
-td style=3D"border-width:1px;border-style:solid;border-color:rgb(204,204,20=
-4) rgb(0,0,0) rgb(0,0,0) rgb(204,204,204);overflow:hidden;padding:0px 3px;v=
-ertical-align:bottom;font-weight:bold;text-decoration-line:underline;text-a=
-lign:right"><a class=3D"gmail-in-cell-link" href=3D"https://bugzilla.yoctop=
-roject.org/show_bug.cgi?id=3D15265" target=3D"_blank">15265</a></td><td sty=
-le=3D"border-width:1px;border-style:solid;border-color:rgb(204,204,204) rgb=
-(0,0,0) rgb(0,0,0) rgb(204,204,204);overflow:hidden;padding:0px 3px;vertica=
-l-align:bottom">Make patchtest compatible with other layers</td><td style=
-=3D"border-width:1px;border-style:solid;border-color:rgb(204,204,204) rgb(0=
-,0,0) rgb(0,0,0) rgb(204,204,204);overflow:hidden;padding:0px 3px;vertical-=
-align:bottom"><a href=3D"mailto:tgamblin@baylibre.com">tgamblin@baylibre.co=
-m</a></td><td style=3D"border-width:1px;border-style:solid;border-color:rgb=
-(204,204,204) rgb(0,0,0) rgb(0,0,0) rgb(204,204,204);overflow:hidden;paddin=
-g:0px 3px;vertical-align:bottom"><a href=3D"mailto:tgamblin@baylibre.com">t=
-gamblin@baylibre.com</a></td><td style=3D"border-width:1px;border-style:sol=
-id;border-color:rgb(204,204,204) rgb(0,0,0) rgb(0,0,0) rgb(204,204,204);ove=
-rflow:hidden;padding:0px 3px;vertical-align:bottom;text-align:right">5.2</t=
-d><td style=3D"border-width:1px;border-style:solid;border-color:rgb(204,204=
-,204) rgb(0,0,0) rgb(0,0,0) rgb(204,204,204);overflow:hidden;padding:0px 3p=
-x;vertical-align:bottom;text-align:right">5.3</td></tr><tr style=3D"height:=
-20px"><td style=3D"border-width:1px;border-style:solid;border-color:rgb(204=
-,204,204) rgb(0,0,0) rgb(0,0,0);overflow:hidden;padding:0px 3px;vertical-al=
-ign:bottom"></td><td style=3D"border-width:1px;border-style:solid;border-co=
-lor:rgb(204,204,204) rgb(0,0,0) rgb(0,0,0) rgb(204,204,204);overflow:hidden=
-;padding:0px 3px;vertical-align:bottom;font-weight:bold;text-decoration-lin=
-e:underline;text-align:right"><a class=3D"gmail-in-cell-link" href=3D"https=
-://bugzilla.yoctoproject.org/show_bug.cgi?id=3D15269" target=3D"_blank">152=
-69</a></td><td style=3D"border-width:1px;border-style:solid;border-color:rg=
-b(204,204,204) rgb(0,0,0) rgb(0,0,0) rgb(204,204,204);overflow:hidden;paddi=
-ng:0px 3px;vertical-align:bottom">patchtest test_lic_files_chksum_modified_=
-not_mentioned is inconsistent between local and automated runs</td><td styl=
-e=3D"border-width:1px;border-style:solid;border-color:rgb(204,204,204) rgb(=
-0,0,0) rgb(0,0,0) rgb(204,204,204);overflow:hidden;padding:0px 3px;vertical=
--align:bottom"><a href=3D"mailto:tgamblin@baylibre.com">tgamblin@baylibre.c=
-om</a></td><td style=3D"border-width:1px;border-style:solid;border-color:rg=
-b(204,204,204) rgb(0,0,0) rgb(0,0,0) rgb(204,204,204);overflow:hidden;paddi=
-ng:0px 3px;vertical-align:bottom"><a href=3D"mailto:tgamblin@baylibre.com">=
-tgamblin@baylibre.com</a></td><td style=3D"border-width:1px;border-style:so=
-lid;border-color:rgb(204,204,204) rgb(0,0,0) rgb(0,0,0) rgb(204,204,204);ov=
-erflow:hidden;padding:0px 3px;vertical-align:bottom">5.2 M4</td><td style=
-=3D"border-width:1px;border-style:solid;border-color:rgb(204,204,204) rgb(0=
-,0,0) rgb(0,0,0) rgb(204,204,204);overflow:hidden;padding:0px 3px;vertical-=
-align:bottom;text-align:right">5.3</td></tr><tr style=3D"height:20px"><td s=
-tyle=3D"border-width:1px;border-style:solid;border-color:rgb(204,204,204) r=
-gb(0,0,0) rgb(0,0,0);overflow:hidden;padding:0px 3px;vertical-align:bottom"=
-></td><td style=3D"border-width:1px;border-style:solid;border-color:rgb(204=
-,204,204) rgb(0,0,0) rgb(0,0,0) rgb(204,204,204);overflow:hidden;padding:0p=
-x 3px;vertical-align:bottom;font-weight:bold;text-decoration-line:underline=
-;text-align:right"><a class=3D"gmail-in-cell-link" href=3D"https://bugzilla=
-.yoctoproject.org/show_bug.cgi?id=3D15341" target=3D"_blank">15341</a></td>=
-<td style=3D"border-width:1px;border-style:solid;border-color:rgb(204,204,2=
-04) rgb(0,0,0) rgb(0,0,0) rgb(204,204,204);overflow:hidden;padding:0px 3px;=
-vertical-align:bottom">False positive on missing S-O-B !</td><td style=3D"b=
-order-width:1px;border-style:solid;border-color:rgb(204,204,204) rgb(0,0,0)=
- rgb(0,0,0) rgb(204,204,204);overflow:hidden;padding:0px 3px;vertical-align=
-:bottom"><a href=3D"mailto:tgamblin@baylibre.com">tgamblin@baylibre.com</a>=
-</td><td style=3D"border-width:1px;border-style:solid;border-color:rgb(204,=
-204,204) rgb(0,0,0) rgb(0,0,0) rgb(204,204,204);overflow:hidden;padding:0px=
- 3px;vertical-align:bottom"><a href=3D"mailto:tgamblin@baylibre.com">tgambl=
-in@baylibre.com</a></td><td style=3D"border-width:1px;border-style:solid;bo=
-rder-color:rgb(204,204,204) rgb(0,0,0) rgb(0,0,0) rgb(204,204,204);overflow=
-:hidden;padding:0px 3px;vertical-align:bottom">5.2 M4</td><td style=3D"bord=
-er-width:1px;border-style:solid;border-color:rgb(204,204,204) rgb(0,0,0) rg=
-b(0,0,0) rgb(204,204,204);overflow:hidden;padding:0px 3px;vertical-align:bo=
-ttom;text-align:right">5.3</td></tr><tr style=3D"height:20px"><td style=3D"=
-border-width:1px;border-style:solid;border-color:rgb(204,204,204) rgb(0,0,0=
-) rgb(0,0,0);overflow:hidden;padding:0px 3px;vertical-align:bottom"></td><t=
-d style=3D"border-width:1px;border-style:solid;border-color:rgb(204,204,204=
-) rgb(0,0,0) rgb(0,0,0) rgb(204,204,204);overflow:hidden;padding:0px 3px;ve=
-rtical-align:bottom;font-weight:bold;text-decoration-line:underline;text-al=
-ign:right"><a class=3D"gmail-in-cell-link" href=3D"https://bugzilla.yoctopr=
-oject.org/show_bug.cgi?id=3D15851" target=3D"_blank">15851</a></td><td styl=
-e=3D"border-width:1px;border-style:solid;border-color:rgb(204,204,204) rgb(=
-0,0,0) rgb(0,0,0) rgb(204,204,204);overflow:hidden;padding:0px 3px;vertical=
--align:bottom">Investigate and reduce significant build time increase</td><=
-td style=3D"border-width:1px;border-style:solid;border-color:rgb(204,204,20=
-4) rgb(0,0,0) rgb(0,0,0) rgb(204,204,204);overflow:hidden;padding:0px 3px;v=
-ertical-align:bottom"><a href=3D"mailto:randy.macleod@windriver.com">randy.=
-macleod@windriver.com</a></td><td style=3D"border-width:1px;border-style:so=
-lid;border-color:rgb(204,204,204) rgb(0,0,0) rgb(0,0,0) rgb(204,204,204);ov=
-erflow:hidden;padding:0px 3px;vertical-align:bottom"><a href=3D"mailto:rand=
-y.macleod@windriver.com">randy.macleod@windriver.com</a></td><td style=3D"b=
-order-width:1px;border-style:solid;border-color:rgb(204,204,204) rgb(0,0,0)=
- rgb(0,0,0) rgb(204,204,204);overflow:hidden;padding:0px 3px;vertical-align=
-:bottom">5.2 M1</td><td style=3D"border-width:1px;border-style:solid;border=
--color:rgb(204,204,204) rgb(0,0,0) rgb(0,0,0) rgb(204,204,204);overflow:hid=
-den;padding:0px 3px;vertical-align:bottom">5.3 M1</td></tr><tr style=3D"hei=
-ght:20px"><td style=3D"border-width:1px;border-style:solid;border-color:rgb=
-(204,204,204) rgb(0,0,0) rgb(0,0,0);overflow:hidden;padding:0px 3px;vertica=
-l-align:bottom"></td><td style=3D"border-width:1px;border-style:solid;borde=
-r-color:rgb(204,204,204) rgb(0,0,0) rgb(0,0,0) rgb(204,204,204);overflow:hi=
-dden;padding:0px 3px;vertical-align:bottom;font-weight:bold;text-decoration=
--line:underline;text-align:right"><a class=3D"gmail-in-cell-link" href=3D"h=
-ttps://bugzilla.yoctoproject.org/show_bug.cgi?id=3D15858" target=3D"_blank"=
->15858</a></td><td style=3D"border-width:1px;border-style:solid;border-colo=
-r:rgb(204,204,204) rgb(0,0,0) rgb(0,0,0) rgb(204,204,204);overflow:hidden;p=
-adding:0px 3px;vertical-align:bottom">_pickle.PicklingError with python-3.1=
-4</td><td style=3D"border-width:1px;border-style:solid;border-color:rgb(204=
-,204,204) rgb(0,0,0) rgb(0,0,0) rgb(204,204,204);overflow:hidden;padding:0p=
-x 3px;vertical-align:bottom"><a href=3D"mailto:randy.macleod@windriver.com"=
->randy.macleod@windriver.com</a></td><td style=3D"border-width:1px;border-s=
-tyle:solid;border-color:rgb(204,204,204) rgb(0,0,0) rgb(0,0,0) rgb(204,204,=
-204);overflow:hidden;padding:0px 3px;vertical-align:bottom"><a href=3D"mail=
-to:JPEWhacker@gmail.com">JPEWhacker@gmail.com</a></td><td style=3D"border-w=
-idth:1px;border-style:solid;border-color:rgb(204,204,204) rgb(0,0,0) rgb(0,=
-0,0) rgb(204,204,204);overflow:hidden;padding:0px 3px;vertical-align:bottom=
-">0.0.0</td><td style=3D"border-width:1px;border-style:solid;border-color:r=
-gb(204,204,204) rgb(0,0,0) rgb(0,0,0) rgb(204,204,204);overflow:hidden;padd=
-ing:0px 3px;vertical-align:bottom">5.3 M1</td></tr><tr style=3D"height:20px=
-"><td style=3D"border-width:1px;border-style:solid;border-color:rgb(204,204=
-,204) rgb(0,0,0) rgb(0,0,0);overflow:hidden;padding:0px 3px;vertical-align:=
-bottom"></td><td style=3D"border-width:1px;border-style:solid;border-color:=
-rgb(204,204,204) rgb(0,0,0) rgb(0,0,0) rgb(204,204,204);overflow:hidden;pad=
-ding:0px 3px;vertical-align:bottom;font-weight:bold;text-decoration-line:un=
-derline;text-align:right"><a class=3D"gmail-in-cell-link" href=3D"https://b=
-ugzilla.yoctoproject.org/show_bug.cgi?id=3D15860" target=3D"_blank">15860</=
-a></td><td style=3D"border-width:1px;border-style:solid;border-color:rgb(20=
-4,204,204) rgb(0,0,0) rgb(0,0,0) rgb(204,204,204);overflow:hidden;padding:0=
-px 3px;vertical-align:bottom">AB-INT: metrics: ./oe-init-build-env returned=
- non-zero exit status 1</td><td style=3D"border-width:1px;border-style:soli=
-d;border-color:rgb(204,204,204) rgb(0,0,0) rgb(0,0,0) rgb(204,204,204);over=
-flow:hidden;padding:0px 3px;vertical-align:bottom"><a href=3D"mailto:randy.=
-macleod@windriver.com">randy.macleod@windriver.com</a></td><td style=3D"bor=
-der-width:1px;border-style:solid;border-color:rgb(204,204,204) rgb(0,0,0) r=
-gb(0,0,0) rgb(204,204,204);overflow:hidden;padding:0px 3px;vertical-align:b=
-ottom"><a href=3D"mailto:richard.purdie@linuxfoundation.org">richard.purdie=
-@linuxfoundation.org</a></td><td style=3D"border-width:1px;border-style:sol=
-id;border-color:rgb(204,204,204) rgb(0,0,0) rgb(0,0,0) rgb(204,204,204);ove=
-rflow:hidden;padding:0px 3px;vertical-align:bottom">0.0.0</td><td style=3D"=
-border-width:1px;border-style:solid;border-color:rgb(204,204,204) rgb(0,0,0=
-) rgb(0,0,0) rgb(204,204,204);overflow:hidden;padding:0px 3px;vertical-alig=
-n:bottom">5.3 M1</td></tr><tr style=3D"height:20px"><td style=3D"border-wid=
-th:1px;border-style:solid;border-color:rgb(204,204,204) rgb(0,0,0) rgb(0,0,=
-0);overflow:hidden;padding:0px 3px;vertical-align:bottom"></td><td style=3D=
-"border-width:1px;border-style:solid;border-color:rgb(204,204,204) rgb(0,0,=
-0) rgb(0,0,0) rgb(204,204,204);overflow:hidden;padding:0px 3px;vertical-ali=
-gn:bottom;font-weight:bold;text-decoration-line:underline;text-align:right"=
-><a class=3D"gmail-in-cell-link" href=3D"https://bugzilla.yoctoproject.org/=
-show_bug.cgi?id=3D15863" target=3D"_blank">15863</a></td><td style=3D"borde=
-r-width:1px;border-style:solid;border-color:rgb(204,204,204) rgb(0,0,0) rgb=
-(0,0,0) rgb(204,204,204);overflow:hidden;padding:0px 3px;vertical-align:bot=
-tom">useradd: using only USERADD_DEPENDS gives errors about not setting one=
- of the useradd class variables</td><td style=3D"border-width:1px;border-st=
-yle:solid;border-color:rgb(204,204,204) rgb(0,0,0) rgb(0,0,0) rgb(204,204,2=
-04);overflow:hidden;padding:0px 3px;vertical-align:bottom"><a href=3D"mailt=
-o:randy.macleod@windriver.com">randy.macleod@windriver.com</a></td><td styl=
-e=3D"border-width:1px;border-style:solid;border-color:rgb(204,204,204) rgb(=
-0,0,0) rgb(0,0,0) rgb(204,204,204);overflow:hidden;padding:0px 3px;vertical=
--align:bottom"><a href=3D"mailto:yoann.congal@smile.fr">yoann.congal@smile.=
-fr</a></td><td style=3D"border-width:1px;border-style:solid;border-color:rg=
-b(204,204,204) rgb(0,0,0) rgb(0,0,0) rgb(204,204,204);overflow:hidden;paddi=
-ng:0px 3px;vertical-align:bottom">0.0.0</td><td style=3D"border-width:1px;b=
-order-style:solid;border-color:rgb(204,204,204) rgb(0,0,0) rgb(0,0,0) rgb(2=
-04,204,204);overflow:hidden;padding:0px 3px;vertical-align:bottom">5.2 M2</=
-td></tr><tr style=3D"height:21px"><td style=3D"border-width:1px;border-styl=
-e:solid;border-color:rgb(204,204,204) rgb(0,0,0) rgb(0,0,0);overflow:hidden=
-;padding:0px 3px;vertical-align:bottom"></td><td style=3D"border-width:1px;=
-border-style:solid;border-color:rgb(204,204,204) rgb(0,0,0) rgb(0,0,0) rgb(=
-204,204,204);overflow:hidden;padding:0px 3px;vertical-align:bottom"></td><t=
-d style=3D"border-width:1px;border-style:solid;border-color:rgb(204,204,204=
-) rgb(0,0,0) rgb(0,0,0) rgb(204,204,204);overflow:hidden;padding:0px 3px;ve=
-rtical-align:bottom"></td><td style=3D"border-width:1px;border-style:solid;=
-border-color:rgb(204,204,204) rgb(0,0,0) rgb(0,0,0) rgb(204,204,204);overfl=
-ow:hidden;padding:0px 3px;vertical-align:bottom"><a href=3D"mailto:yoann.co=
-ngal@smile.fr">yoann.congal@smile.fr</a></td><td style=3D"border-width:1px;=
-border-style:solid;border-color:rgb(204,204,204) rgb(0,0,0) rgb(0,0,0) rgb(=
-204,204,204);overflow:hidden;padding:0px 3px;vertical-align:bottom"><a href=
-=3D"mailto:yoann.congal@smile.fr">yoann.congal@smile.fr</a></td><td style=
-=3D"border-width:1px;border-style:solid;border-color:rgb(204,204,204) rgb(0=
-,0,0) rgb(0,0,0) rgb(204,204,204);overflow:hidden;padding:0px 3px;vertical-=
-align:bottom">5.2 M2</td><td style=3D"border-width:1px;border-style:solid;b=
-order-color:rgb(204,204,204) rgb(0,0,0) rgb(0,0,0) rgb(204,204,204);overflo=
-w:hidden;padding:0px 3px;vertical-align:bottom">5.3 M1</td></tr></tbody></t=
-able><p class=3D"MsoNormal" style=3D"background-image:initial;background-po=
-sition:initial;background-repeat:initial"><span style=3D"font-size:12pt;fon=
-t-family:Arial,sans-serif">Thanks,<span></span></span></p>
-
-<p class=3D"MsoNormal" style=3D"background-image:initial;background-positio=
-n:initial;background-repeat:initial"><span style=3D"font-size:12pt;font-fam=
-ily:Arial,sans-serif">=C2=A0<span></span></span></p>
-
-<p class=3D"MsoNormal" style=3D"background-image:initial;background-positio=
-n:initial;background-repeat:initial"><b><i><span style=3D"font-size:16pt;co=
-lor:purple">Stephen K. Jolley</span></i></b><span style=3D"font-size:12pt;f=
-ont-family:Arial,sans-serif"><span></span></span></p>
-
-<p class=3D"MsoNormal" style=3D"background-image:initial;background-positio=
-n:initial;background-repeat:initial"><b><span style=3D"font-size:8pt;font-f=
-amily:&quot;Courier New&quot;;color:blue">Yocto Project Program Manager</sp=
-an></b></p>
-
-<p class=3D"MsoNormal" style=3D"background-image:initial;background-positio=
-n:initial;background-repeat:initial"><span style=3D"font-size:9pt;font-fami=
-ly:Wingdings;color:black">(</span><span style=3D"font-size:9pt;font-family:=
-&quot;MS Sans Serif&quot;,serif;color:teal">=C2=A0=C2=A0=C2=A0=C2=A0</span>=
-<b><span style=3D"font-size:8pt;font-family:&quot;Comic Sans MS&quot;;color=
-:teal">Cell</span></b><span style=3D"font-size:9pt;font-family:&quot;MS San=
-s Serif&quot;,serif;color:teal">:=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 </span><span style=3D"font=
--size:9pt;font-family:&quot;MS Sans Serif&quot;,serif">(208) 244-4460</span=
-><span style=3D"font-size:12pt;font-family:Arial,sans-serif"><span></span><=
-/span></p>
-
-<p class=3D"MsoNormal" style=3D"background-image:initial;background-positio=
-n:initial;background-repeat:initial"><span style=3D"font-size:9pt;font-fami=
-ly:Wingdings">*=C2=A0</span><b><span lang=3D"FR" style=3D"font-size:8pt;fon=
-t-family:&quot;Comic Sans MS&quot;;color:teal">Email</span></b><span lang=
-=3D"FR" style=3D"font-size:9pt;font-family:&quot;MS Sans Serif&quot;,serif;=
-color:teal">:</span><span lang=3D"FR" style=3D"font-size:9pt;font-family:&q=
-uot;MS Sans Serif&quot;,serif">=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0</span><u><span=
- lang=3D"FR" style=3D"font-size:9pt;font-family:&quot;MS Sans Serif&quot;,s=
-erif;color:blue"><span style=3D"color:rgb(17,85,204)"><a href=3D"mailto:ste=
-phen.k.jolley@intel.com" target=3D"_blank">s</a><a href=3D"mailto:jolley.yp=
-.pm@gmail.com" target=3D"_blank">jolley.yp.pm@gmail.com</a></span></span></=
-u></p></div></div></div></div>
-
---0000000000001ce25b06358e55ee--
+On Sat, 17 May 2025 at 17:06, =D0=9E=D0=BB=D1=8C=D0=B3=D0=B0 =D0=94=D0=B5=
+=D0=BD=D0=B8=D1=81=D0=BE=D0=B2=D0=B0 <denisova.olga.k@yandex.ru> wrote:
+>
+>
+> During development, we used a configuration that included multiple SSTATE=
+_MIRRORS, which allowed us to repeatedly perform rebuilds using cached arti=
+facts distributed across these mirrors. However, this setup led to delays, =
+sometimes lasting several minutes and, in some cases, over ten minutes. Whi=
+le such delays may be negligible for other members of the community, they b=
+ecame inconvenient for us. As a result, we conducted an experiment aimed at=
+ measuring the time spent checking the cache mirrors and identifying possib=
+le areas for improvement in the interaction between the build system and th=
+e mirrors.
+>
+> We consider using SSTATE_MIRRORS instead of a local cache, as in recent y=
+ears, large companies have increasingly adopted the approach of reproducibl=
+e builds. A key element of this approach is the use of centralized remote c=
+aches, which helps ensure consistency of build artifacts across different m=
+achines.
+>
+> Additionally, when using CI/CD tools, relying on a local cache is not alw=
+ays convenient due to the distributed nature of worker-nodes.
+>
+> To evaluate the impact of using SSTATE_MIRRORS on performance, we carried=
+ out an experiment involving three computers connected via a local network.=
+ The image was built on the first computer, a hash server was deployed on t=
+he second, and N cache servers with evenly distributed caches (running in D=
+ocker containers) were hosted on the third. Ubuntu 20 was used as the opera=
+ting system, and the build was performed for the core-image-minimal image w=
+ithout additional layers. This experiment allowed us to measure the time sp=
+ent on the build and on locating artifacts in SSTATE_MIRRORS, revealing sev=
+eral areas for potential improvement.
+>
+> One of these areas is the parallel processing of tasks using the nproc pa=
+rameter. In the current implementation, despite tasks being parallelized, e=
+ach thread performs mirror requests sequentially. The number of concurrentl=
+y running threads is limited by the BB_NUMBER_THREADS variable (https://git=
+hub.com/yoctoproject/poky/blob/master/meta/classes-global/sstate.bbclass#L1=
+045-L1064). This means that no more than BB_NUMBER_THREADS tasks are proces=
+sed simultaneously. For each task, requests to the mirrors listed in SSTATE=
+_MIRRORS are made sequentially. Once a thread completes a task, it becomes =
+available to process the next one, if there is one. As a result, the number=
+ of simultaneously executed requests is limited by the number of threads, a=
+nd new tasks can only be handled as threads are freed. This can significant=
+ly impact performance, especially when a large number of mirrors is configu=
+red. For example, in our case, each request took an average of 0.05 seconds=
+, and a total of 2024 tasks were processed during the build of the core-ima=
+ge-minimal image. Therefore, the upper bound on the number of requests duri=
+ng the mirror availability check stage would be 2024 * <number_of_mirrors>.=
+ As a result, sequential processing of all SSTATE_MIRRORS within threads ma=
+y significantly increase the total execution time, even with task-level par=
+allelism.
+>
+> Furthermore, the current system does not retain information about which m=
+irror a particular artifact was found on after querying. This means that wh=
+en the artifact is later fetched, the lookup process is repeated, which app=
+ears to be unnecessary work that could be avoided.
+>
+> > This chart shows zero times when using the index regardless of the amou=
+nt of servers, how can it be correct?
+>
+> The timing was measured based on BitBake=E2=80=99s own log output, specif=
+ically using the message =E2=80=9CChecking sstate mirror object availabilit=
+y.=E2=80=9D The time in this output is rounded to full seconds. In our case=
+, downloading the index files took less than a second, which is why the gra=
+ph shows zero. Additionally, overall build time graphs can be reviewed here=
+: https://drive.google.com/file/d/19HuWfECZoejX6afDt-BQZ545vm-ZIpuN/view?us=
+p=3Dsharing
+>
+> In response to this issue, a patch was proposed that optimizes the availa=
+bility check and retrieval of cached artifacts by utilizing index files, pr=
+ovided up-to-date index files are available on the mirrors.
+>
+>
+> ----------------
+> =D0=9A=D0=BE=D0=BC=D1=83: yocto@lists.yoctoproject.org (yocto@lists.yocto=
+project.org), denisova.olga.k@yandex.ru (denisova.olga.k@yandex.ru);
+> =D0=9A=D0=BE=D0=BF=D0=B8=D1=8F: gavrilov.andrew1999@yandex.ru, tinyakovx@=
+gmail.com, sider123456789101112131415@gmail.com;
+> =D0=A2=D0=B5=D0=BC=D0=B0: [yocto] [PATCH v2 0/3] Add support for index fi=
+les in SSTATE_MIRRORS;
+> 25.04.2025, 12:11, "Alexander Kanavin via lists.yoctoproject.org" <alex.k=
+anavin=3Dgmail.com@lists.yoctoproject.org>:
+>
+> On Fri, 25 Apr 2025 at 08:02, =D0=9E=D0=BB=D1=8C=D0=B3=D0=B0 =D0=94=D0=B5=
+=D0=BD=D0=B8=D1=81=D0=BE=D0=B2=D0=B0 via
+> lists.yoctoproject.org
+> <denisova.olga.k=3Dyandex.ru@lists.yoctoproject.org> wrote:
+>
+>  The performance improvement is illustrated by the timing results chart a=
+vailable here:
+>  https://drive.google.com/file/d/1kH3E3jRAqJ_1VR2b-20V9BS-uTAfoYKv/view?u=
+sp=3Ddrive_link
+>
+>
+> This chart shows zero times when using the index regardless of the
+> amount of servers, how can it be correct? What was the methodology
+> used to produce it?
+>
+> Also it doesn't really address the questions: how is your setup
+> configured? What exactly is the source of the slowdown? Is it network
+> turnaround times? Or file existance checks on servers? Why does it
+> affect you to the level that all this complicated code was written,
+> but no one else in the yocto ecosystem until now had the urge to do
+> it?
+>
+> You really should to start a conversation about this, rather than just
+> resend the patches with a dubious looking chart added on.
+>
+> Alex
+>
+> ,
+>
+>
+> -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
+> Links: You receive all messages sent to this group.
+> View/Reply Online (#65252): https://lists.yoctoproject.org/g/yocto/messag=
+e/65252
+> Mute This Topic: https://lists.yoctoproject.org/mt/112446924/9737979
+> Group Owner: yocto+owner@lists.yoctoproject.org
+> Unsubscribe: https://lists.yoctoproject.org/g/yocto/unsub [denisova.olga.=
+k@yandex.ru]
+> -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
 
