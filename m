@@ -1,127 +1,131 @@
-Return-Path: <steve@sakoman.com>
+Return-Path: <tsoos99@gmail.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 11385C54F30
-	for <webhook@archiver.kernel.org>; Sat, 24 May 2025 17:50:56 +0000 (UTC)
-Received: from mail-yb1-f181.google.com (mail-yb1-f181.google.com [209.85.219.181])
- by mx.groups.io with SMTP id smtpd.web10.11682.1748109048268871434
- for <yocto@lists.yoctoproject.org>;
- Sat, 24 May 2025 10:50:48 -0700
-Authentication-Results: mx.groups.io;
- dkim=pass header.i=@sakoman-com.20230601.gappssmtp.com header.s=20230601 header.b=0EsOCYH5;
- spf=softfail (domain: sakoman.com, ip: 209.85.219.181, mailfrom: steve@sakoman.com)
-Received: by mail-yb1-f181.google.com with SMTP id 3f1490d57ef6-e73e9e18556so791647276.0
-        for <yocto@lists.yoctoproject.org>; Sat, 24 May 2025 10:50:48 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=sakoman-com.20230601.gappssmtp.com; s=20230601; t=1748109047; x=1748713847; darn=lists.yoctoproject.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=Q+OD0c2k6R46wepWXbWUuIDlnsL59T2ManMkFD+uq/U=;
-        b=0EsOCYH57sRYWqk21HB2Vq8Oa6Kc3WuDMi+xTpfrf3oI1YvCsAYZl+AooY1JuZ/D7s
-         wIvAD/v1KnZT4FWftlANZEt6S7kpsuzUl/AcoDmKaJGJk2NQLT9KX5Jbtj/0Cl17GRwc
-         XiutGPZs8cd4SomG06VLc7/a8gGggpLsIuFPAFLFxrxWvFCCgjuh1ypNJ993srIJ0oW+
-         24HzF/ddE5UdSOWQPA0gG1a2mX4aol0fkN+4iLFlHOCWRiUnq9Boo+1cm5ynP42YbMix
-         VVeViI/MLJlv/Khy9nUtiaV0C4T5LYuy+FgimcmUdEVkuR4firb4cDdtTrZ2MFyoAGsp
-         c04Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1748109047; x=1748713847;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=Q+OD0c2k6R46wepWXbWUuIDlnsL59T2ManMkFD+uq/U=;
-        b=EIaL33tcgCfyDT5RFaG2Sv2BuQtTmJmAWVaCBanZKOiziu6vqWcMLXoFhhHTyq/YwV
-         IEyGVAvqQXfDHQkfALRDA6ZudGc/W0dqcowwBqfc6N+bNOGgZE5XgSiATqsv0NEPiMHk
-         8zTSJpCissR8BrTixPYIn5ThWEFyyAvYVjGvrEZWBMnN6cPU2FVK275wj7nt39r83s/4
-         0KhYEOAzuy9o47cYRAmFDpK+DYYmjB/gNij7PMsYjXcMTXandvd7l/lEVp6WTwNlMmvQ
-         wz2+eIKdQvrpAtdMf/lAzkg5m1YwuBLduM5Ntp8jUkYU7yfLPCYQsjPZBRMKi+rnOiz5
-         ibrg==
-X-Gm-Message-State: AOJu0YwQGF8xUcvizrLnyaC7L/80dYvF7SCaHE9CGnVdelYIrSk15+mx
-	LDK1G+4fhP9BgVPQLxUwy+ZqEMgg+HOEelSiFpZM+79vneubbkTOBy28q3G4Xw8YuCWojxZyCmQ
-	SuqmBelJNW2pbqCpoLoQkl1Z9hNpJDWKGDu4v10nMuKnDxN+H7tUyDp0=
-X-Gm-Gg: ASbGncuavque5TcVkgDHjRmtuMqCB4zsJ6R31Qq2izb1EZ2SSjnarQoKnx9yUwncd3d
-	LYAGunvpndTf32+goN1hBkPApNF7TmFQGvQeeBX/XE9jDkpMhc/gYvrk/KIbClzJzYhKOQuMGzr
-	3uNgOyvxjsO2OfYlL9Fb637UzYB7Jz84SKl2QJzBVkvgUvL8JegzO/R5TtZhos1Fxu
-X-Google-Smtp-Source: AGHT+IG8QhuqAJ3mDurAQHloTfw/9UCq4upOH4dZ6R8JFo7CyMVqNMv0ZYpEkFzVGGdBpr1oLAIUewciaV39I920PtU=
-X-Received: by 2002:a05:6902:2b0d:b0:e7a:3d4f:6355 with SMTP id
- 3f1490d57ef6-e7d7ce62b1fmr7894514276.19.1748109047270; Sat, 24 May 2025
- 10:50:47 -0700 (PDT)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 5C98DC54ED1
+	for <webhook@archiver.kernel.org>; Sun, 25 May 2025 01:53:21 +0000 (UTC)
+Subject: How to upgrade rust? #rust #scarthgap #sdk
+To: yocto@lists.yoctoproject.org
+From: =?UTF-8?B?VGFtw6FzIFNvw7Nz?= <tsoos99@gmail.com>
+X-Originating-Location: Budapest, HU (89.223.204.162)
+X-Originating-Platform: Mac Chrome 136
+User-Agent: GROUPS.IO Web Poster
 MIME-Version: 1.0
-References: <010101970344de7e-a0658898-c111-477b-b2ac-093e5ac89415-000000@us-west-2.amazonses.com>
-In-Reply-To: <010101970344de7e-a0658898-c111-477b-b2ac-093e5ac89415-000000@us-west-2.amazonses.com>
-From: Steve Sakoman <steve@sakoman.com>
-Date: Sat, 24 May 2025 10:50:36 -0700
-X-Gm-Features: AX0GCFu9MrdObDMXj7LRu5tcfQrYC80NmU1CelflXYU6wbmhDjesEaKQcaPoJBs
-Message-ID: <CAOSpxdbkGa=26L1WX+KPJmNykq6sKLr6x4A_mMR7pq_Rcf0Uvw@mail.gmail.com>
-Subject: Re: [qa-build-notification] QA notification for completed autobuilder
- build (yocto-5.2.1.rc1)
-To: qa-build-notification@lists.yoctoproject.org
-Cc: yocto@lists.yoctoproject.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Date: Sat, 24 May 2025 18:53:14 -0700
+Message-ID: <GR0d.1748137994057198920.MOMS@lists.yoctoproject.org>
+Content-Type: multipart/alternative; boundary="dvhh8ySNd7rLLjaVtE71"
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Sat, 24 May 2025 17:50:56 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/65417
+ <yocto@lists.yoctoproject.org>; Sun, 25 May 2025 01:53:21 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/65418
 
-This was an all green build, other than a few HTTP Error 504: Gateway
-Timeout errors in the Source Mirrors selftest (a known autobuilder
-infrastructure issue)
+--dvhh8ySNd7rLLjaVtE71
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
 
-OK to proceed with QA.
+Hi.
 
-Steve
+I'm trying to upgrade rust on Scarthgap. The current version is 1.75.0. So =
+I tried to get to 1.76.0.
+I ran devtool upgrade rust-llvm, which seemed to work. I resolved some conf=
+licts and was able to build it.
+Then I tried devtool upgrade rust. After getting past the conflicts again I=
+ get the following error:
+ERROR: rust-1.76.0-r0 do_rust_setup_snapshot: ExecutionError('/home/tamas/p=
+oky/build/tmp/work/cortexa8t2hf-neon-zeus-linux-gnueabi/rust/1.76.0/temp/ru=
+n.do_rust_setup_snapshot.2027011', 127, None, None)
+ERROR: Logfile of failure stored in: /home/tamas/poky/build/tmp/work/cortex=
+a8t2hf-neon-zeus-linux-gnueabi/rust/1.76.0/temp/log.do_rust_setup_snapshot.=
+2027011
+Log data follows:
+| DEBUG: Executing shell function do_rust_setup_snapshot
+| /home/tamas/poky/build/tmp/work/cortexa8t2hf-neon-zeus-linux-gnueabi/rust=
+/1.76.0/temp/run.do_rust_setup_snapshot.2027011: 152: /home/tamas/poky/buil=
+d/tmp/work/cortexa8t2hf-neon-zeus-linux-gnueabi/rust/1.76.0/rust-snapshot-c=
+omponents/*/install.sh: not found
+| WARNING: exit code 127 from a shell command.
+ERROR: Task (/home/tamas/poky/build/workspace/recipes/rust/rust_1.76.0.bb:d=
+o_rust_setup_snapshot) failed with exit code '1'
 
-On Sat, May 24, 2025 at 10:08=E2=80=AFAM Pokybuild User via
-lists.yoctoproject.org
-<pokybuild=3Dyoctoproject.org@lists.yoctoproject.org> wrote:
->
->
->     A build flagged for QA (yocto-5.2.1.rc1) was completed on the autobui=
-lder and is available at:
->
->
->         https://valkyrie.yocto.io/pub/releases/yocto-5.2.1.rc1
->
->
->     Build URL: https://autobuilder.yoctoproject.org/valkyrie/#/builders/2=
-9/builds/1654
->
->     Build hash information:
->
->     bitbake: 5b4e20377eea8d428edf1aeb2187c18f82ca6757
-> meta-agl: e66db9b71ee6566d5931f590e5491661e94b5e13
-> meta-arm: 4f8d2f4b2fa23b89098a8e7347d6bb26228acd68
-> meta-aws: a28a159b336db6531e5482ca5c6f92b25231b184
-> meta-clang: b3e5449f0156884d18c17efff99654cde8251411
-> meta-intel: b5c65864faeff4ed95f4f75daf5535a95a809e5e
-> meta-mingw: edce693e1b8fabd84651aa6c0888aafbcf238577
-> meta-openembedded: 2169c9afcc0945045bea49f58011080942d4ddb4
-> meta-virtualization: b54f05a85be5e2b80c111506b7c4d35d7d4eb54d
-> oecore: 17affdaa600896282e07fb4d64cb23195673baa1
-> poky: fd9b605507a20d850a9991316cd190c1d20dc4a6
->
->
->
-> This is an automated message from the Yocto Project Autobuilder
-> Git: git://git.yoctoproject.org/yocto-autobuilder2
-> Email: richard.purdie@linuxfoundation.org
->
->
->
->
->
-> -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
-> Links: You receive all messages sent to this group.
-> View/Reply Online (#553): https://lists.yoctoproject.org/g/qa-build-notif=
-ication/message/553
-> Mute This Topic: https://lists.yoctoproject.org/mt/113283781/3620601
-> Group Owner: qa-build-notification+owner@lists.yoctoproject.org
-> Unsubscribe: https://lists.yoctoproject.org/g/qa-build-notification/leave=
-/12627247/3620601/791647976/xyzzy [steve@sakoman.com]
-> -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
->
->
+This part of the recipe didn't seem to have changed. I'm out of ideas. What=
+ could be going wrong here?
+
+Ultimately I need nativesdk-rust for my app development. Trying to build th=
+at results in another error:
+ERROR: nativesdk-rust-1.76.0-r0 do_patch: Applying patch 'zlib-off64_t.patc=
+h' on target directory '/home/tamas/poky/build/tmp/work/x86_64-nativesdk-po=
+kysdk-linux/nativesdk-rust/1.76.0/rustc-1.76.0-src'
+CmdError('quilt --quiltrc /home/tamas/poky/build/tmp/work/x86_64-nativesdk-=
+pokysdk-linux/nativesdk-rust/1.76.0/recipe-sysroot-native/etc/quiltrc push'=
+, 0, 'stdout: Applying patch zlib-off64_t.patch
+patching file vendor/libz-sys/src/zlib/gzguts.h
+patching file vendor/libz-sys/.cargo-checksum.json
+Hunk #1 FAILED at 1.
+1 out of 1 hunk FAILED -- rejects in file vendor/libz-sys/.cargo-checksum.j=
+son
+Patch zlib-off64_t.patch does not apply (enforce with -f)
+stderr: ')
+ERROR: Logfile of failure stored in: /home/tamas/poky/build/tmp/work/x86_64=
+-nativesdk-pokysdk-linux/nativesdk-rust/1.76.0/temp/log.do_patch.2028507
+ERROR: Task (virtual:nativesdk:/home/tamas/poky/build/workspace/recipes/rus=
+t/rust_1.76.0.bb:do_patch) failed with exit code '1'
+
+--dvhh8ySNd7rLLjaVtE71
+Content-Type: text/html; charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div>Hi.&nbsp;</div>
+<div>&nbsp;</div>
+<div>I'm trying to upgrade rust on Scarthgap. The current version is 1.75.0=
+. So I tried to get to 1.76.0.</div>
+<div>I ran devtool upgrade rust-llvm, which seemed to work. I resolved some=
+ conflicts and was able to build it.</div>
+<div>Then I tried devtool upgrade rust. After getting past the conflicts ag=
+ain I get the following error:</div>
+<div><span style=3D"color: #34495e;">ERROR: rust-1.76.0-r0 do_rust_setup_sn=
+apshot: ExecutionError('/home/tamas/poky/build/tmp/work/cortexa8t2hf-neon-z=
+eus-linux-gnueabi/rust/1.76.0/temp/run.do_rust_setup_snapshot.2027011', 127=
+, None, None)</span><br /><span style=3D"color: #34495e;">ERROR: Logfile of=
+ failure stored in: /home/tamas/poky/build/tmp/work/cortexa8t2hf-neon-zeus-=
+linux-gnueabi/rust/1.76.0/temp/log.do_rust_setup_snapshot.2027011</span><br=
+ /><span style=3D"color: #34495e;">Log data follows:</span><br /><span styl=
+e=3D"color: #34495e;">| DEBUG: Executing shell function do_rust_setup_snaps=
+hot</span><br /><span style=3D"color: #34495e;">| /home/tamas/poky/build/tm=
+p/work/cortexa8t2hf-neon-zeus-linux-gnueabi/rust/1.76.0/temp/run.do_rust_se=
+tup_snapshot.2027011: 152: /home/tamas/poky/build/tmp/work/cortexa8t2hf-neo=
+n-zeus-linux-gnueabi/rust/1.76.0/rust-snapshot-components/*/install.sh: not=
+ found</span><br /><span style=3D"color: #34495e;">| WARNING: exit code 127=
+ from a shell command.</span><br /><span style=3D"color: #34495e;">ERROR: T=
+ask (/home/tamas/poky/build/workspace/recipes/rust/rust_1.76.0.bb:do_rust_s=
+etup_snapshot) failed with exit code '1'</span></div>
+<div>&nbsp;</div>
+<div>This part of the recipe didn't seem to have changed. I'm out of ideas.=
+ What could be going wrong here?&nbsp;</div>
+<div>&nbsp;</div>
+<div>Ultimately I need nativesdk-rust for my app development. Trying to bui=
+ld that results in another error:</div>
+<div>
+<div><span style=3D"color: #34495e;">ERROR: nativesdk-rust-1.76.0-r0 do_pat=
+ch: Applying patch 'zlib-off64_t.patch' on target directory '/home/tamas/po=
+ky/build/tmp/work/x86_64-nativesdk-pokysdk-linux/nativesdk-rust/1.76.0/rust=
+c-1.76.0-src'</span><br /><span style=3D"color: #34495e;">CmdError('quilt -=
+-quiltrc /home/tamas/poky/build/tmp/work/x86_64-nativesdk-pokysdk-linux/nat=
+ivesdk-rust/1.76.0/recipe-sysroot-native/etc/quiltrc push', 0, 'stdout: App=
+lying patch zlib-off64_t.patch</span><br /><span style=3D"color: #34495e;">=
+patching file vendor/libz-sys/src/zlib/gzguts.h</span><br /><span style=3D"=
+color: #34495e;">patching file vendor/libz-sys/.cargo-checksum.json</span><=
+br /><span style=3D"color: #34495e;">Hunk #1 FAILED at 1.</span><br /><span=
+ style=3D"color: #34495e;">1 out of 1 hunk FAILED -- rejects in file vendor=
+/libz-sys/.cargo-checksum.json</span><br /><span style=3D"color: #34495e;">=
+Patch zlib-off64_t.patch does not apply (enforce with -f)</span></div>
+<div><span style=3D"color: #34495e;">stderr: ')</span><br /><span style=3D"=
+color: #34495e;">ERROR: Logfile of failure stored in: /home/tamas/poky/buil=
+d/tmp/work/x86_64-nativesdk-pokysdk-linux/nativesdk-rust/1.76.0/temp/log.do=
+_patch.2028507</span><br /><span style=3D"color: #34495e;">ERROR: Task (vir=
+tual:nativesdk:/home/tamas/poky/build/workspace/recipes/rust/rust_1.76.0.bb=
+:do_patch) failed with exit code '1'</span></div>
+</div>
+
+--dvhh8ySNd7rLLjaVtE71--
 
