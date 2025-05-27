@@ -1,226 +1,209 @@
-Return-Path: <bruce.ashfield@gmail.com>
+Return-Path: <sjolley.yp.pm@gmail.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 55C83C54FB3
-	for <webhook@archiver.kernel.org>; Mon, 26 May 2025 17:34:33 +0000 (UTC)
-Received: from mail-pj1-f43.google.com (mail-pj1-f43.google.com [209.85.216.43])
- by mx.groups.io with SMTP id smtpd.web11.33992.1748280871861079705
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 2A336C54ED1
+	for <webhook@archiver.kernel.org>; Tue, 27 May 2025 06:51:57 +0000 (UTC)
+Received: from mail-pj1-f50.google.com (mail-pj1-f50.google.com [209.85.216.50])
+ by mx.groups.io with SMTP id smtpd.web11.45487.1748328707521754020
  for <yocto@lists.yoctoproject.org>;
- Mon, 26 May 2025 10:34:31 -0700
+ Mon, 26 May 2025 23:51:47 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20230601 header.b=UdryFpe6;
- spf=pass (domain: gmail.com, ip: 209.85.216.43, mailfrom: bruce.ashfield@gmail.com)
-Received: by mail-pj1-f43.google.com with SMTP id 98e67ed59e1d1-3081f72c271so1804937a91.0
-        for <yocto@lists.yoctoproject.org>; Mon, 26 May 2025 10:34:31 -0700 (PDT)
+ dkim=pass header.i=@gmail.com header.s=20230601 header.b=KGT2jN88;
+ spf=pass (domain: gmail.com, ip: 209.85.216.50, mailfrom: sjolley.yp.pm@gmail.com)
+Received: by mail-pj1-f50.google.com with SMTP id 98e67ed59e1d1-30820167b47so2071054a91.0
+        for <yocto@lists.yoctoproject.org>; Mon, 26 May 2025 23:51:47 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1748280871; x=1748885671; darn=lists.yoctoproject.org;
-        h=to:subject:message-id:date:from:in-reply-to:references:mime-version
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=L33gTrS1WDiTOzQ7+y3xUmtANr+qQpy5e1VHNmpS7ik=;
-        b=UdryFpe66OWe/Uhv4ttfPj/S6N6fOG/xx0S69sPkgeAzAEQJkeCdPkdsUpeRnA3s3b
-         OPcWOB/KOgW5i1bfqMEsbAlfhwxy2PNdngq0B0NXazM8AX5IHHZAeMJnpadTg5uoVqKs
-         YqfUg+Jbd6EciGWJtvEceMjRCVntkOquQp5bC3LYXkbfHJCld6WzcxfMRgcU4kdRIxiX
-         u/W34lTFJVJebLQhgMhL9MfXK6FbkOL9/QBI7phAyyo6rjeBue44ym8VjpnR86hQhhOf
-         xwH9h9eZTTDs52+2DHAg/wAs4AOO0+bQEMc1GFRfUSIoURNXOTPv7bJ7EALt3nZJIPUW
-         gDgQ==
+        d=gmail.com; s=20230601; t=1748328707; x=1748933507; darn=lists.yoctoproject.org;
+        h=to:subject:message-id:date:from:mime-version:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=AbgOdsCxSMZV3n7RYf1ZEpCxk0LH85UA6QpWxJLUSWU=;
+        b=KGT2jN88+fWrIQmBlMmVzRnqEZAxRbSNDIbDKJ7NVmuWfmWwVoUTfO1RJq9XG2izma
+         BO8ClFs4cT4WKBlBJssecmclaUdFgphqsabTNLy+4JM3sUX68z8koOrja8n5glflNdCt
+         uxQfroTKO+xVq1/8bzqZmy9jZdHeBvQI8jEM5iRGHQFNNJNyYetlQJud7SvzBf5S+5rd
+         ObQ+cZnxYEEYWx5z7FvY3Y0ywj7beYmBHYEcO3boRxGNxR5cNqsznTk5WdSj97j2IXb+
+         EKkZ501maFG70bcaBhkGCM5nFm4Hpcy7P97TmWLGcJj1YuEsH6yFy804GPO5YvhtxHX9
+         RyCQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1748280871; x=1748885671;
-        h=to:subject:message-id:date:from:in-reply-to:references:mime-version
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=L33gTrS1WDiTOzQ7+y3xUmtANr+qQpy5e1VHNmpS7ik=;
-        b=Xe429hRUseJk8KJv+jITA1blug6EcXolT5bJuyrzP69/IkZmRhA6p+TAMht756QFlt
-         7d8ct7Ua0JWINK+tB+3yDaonkdF0jksApFNgXD+RbR5cnie+bc8bgSH9i616SFyPhXS9
-         CHlyXY3fU+ueSLSQ2SdY4lcAJwtMuyryVFMzA5lcsYM+keQFJJsoxwkY/GnIL9GqX1I+
-         LWX1a+QZfLIIdhdQIbTEj/d+hU8CZC63BOS2el+xh/kIem7Fbjq49Vuc8fqR9NjaBiCq
-         NX42lcdk+/Ea3c3XaxzfXa2iT3F681iB5ADEw4wqtkeZqqjZf6TtjVhoQXpefSOEml2g
-         9+uw==
-X-Gm-Message-State: AOJu0Yz2smgeHbR3d1InHvgTRgP5REgC+rBZDesrNDOdTh3aa5q0z5kC
-	voCBQqZId4e177SHDtwv4HKt+OOzVjrB8wSlhnallxqPqlrXaHEhCoNBRzhm5ehfrkygNomZwWg
-	RSAHoNitufmfdN1NttR5uDnn+7sMcVSGgDN9E
-X-Gm-Gg: ASbGnctjBdv9v6dafBogHEnpaIpTUdcTUSsHbu9kmAV8fRUkGgU+dLN5yrTRpWx9KnJ
-	E0JvBX1CZ8nRo1Ct2d29t7CWQrtECWJRO51+9JPe8CnA5laoo2+5Oif8IgPhLnPqsnosu3utQRk
-	/dxPEQ5RWxqFc7GhTyoZCy5nOfWEf3C7ZGp5A=
-X-Google-Smtp-Source: AGHT+IEKLqugODJn4wz2leIvTFUE2ZgTGEd29zlyAim8q2l87y4w1nv6xVVUKUqWb3/P+TVRgkAIMRO4ee8NWSrPiCE=
-X-Received: by 2002:a17:90b:5110:b0:311:9c9a:58e5 with SMTP id
- 98e67ed59e1d1-3119c9a5d30mr2221096a91.24.1748280870771; Mon, 26 May 2025
- 10:34:30 -0700 (PDT)
+        d=1e100.net; s=20230601; t=1748328707; x=1748933507;
+        h=to:subject:message-id:date:from:mime-version:x-gm-message-state
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=AbgOdsCxSMZV3n7RYf1ZEpCxk0LH85UA6QpWxJLUSWU=;
+        b=Wuz9W70U7sq4NSSZLJyG1j3fG2HQXsL2kL4+l5fMC4r5POrHytaKnJUxpwodLEeGMc
+         dIK0tuyME1rrK0QekBfpvgw1WsXvnALnPVhZreaDvscTms2xJYQeKI8lehMOf+BUye+l
+         LrbfOdUfyITqIM2Jp3+gEoRGNA9HqX9Gsv3IjJEtJhkzxnAQLvUPIZAZK0mr7yqa//Py
+         T6w7woZEPTGomVHWQtoZrvk56A/SNb6bc5EF20mTcnyQBjNjMvKLsrV1TCZCvA7zH/E1
+         ZTXwYIPjv4U3HgY4nvY/sMDcC+hALVsz7qxyMoENo2QygGcgkdI8zarJXCfnj6wsKY/a
+         xN3g==
+X-Forwarded-Encrypted: i=1; AJvYcCVp+gT3yvgQz6m4XAbC5tfLN9YE08EjgqzjX9kWgx92jv3Zr+7aB7emmq2gtZthjUSrVEY+/Q==@lists.yoctoproject.org
+X-Gm-Message-State: AOJu0YzzP+MaiiwWcy/2CRIrBxcJfcyDy90MkqCwgwocdzKMbnyM6/WJ
+	qeP/0CjfjGuH+FIBJC3f5m0unw2qGwOUbbnFBA1KWVxYmodI/n6LEdE5WWl8CtxvQntKOvKRer0
+	r5g18MiG3RNQuz2HBbrGzcdWQNQaVrDc=
+X-Gm-Gg: ASbGncumXKmehS55872RBQGRkkmQrZkQtdyFe13JEp+YFMA+fPgsZMcGLuDzdeHaV0I
+	dIxPet0zSIgGGa6W6UeGzRiH8T+TZJJMMMPybRyix4RHUnKGIQspkBPz0Iu4Nvj15rhCPByEnAb
+	BjDVNgbSgUS70A+Vf9a2g/l5LP8GkGzkI7bzRwDxOQjjt3wtihaLtUaKLePRx3xdGarnOko8gql
+	qyv
+X-Google-Smtp-Source: AGHT+IFLkX+FgEew8EYo0ycs1hNRwEj0NnQbj06HNPDh0XNsPsg/nDVPdobG40+lEDlSvOShkBXx7mL5+vf1GW+k44o=
+X-Received: by 2002:a17:90b:4c8c:b0:2ff:556f:bf9 with SMTP id
+ 98e67ed59e1d1-3110aab1d18mr17251182a91.4.1748328706765; Mon, 26 May 2025
+ 23:51:46 -0700 (PDT)
 MIME-Version: 1.0
-References: <CA+KcR8ARBUj8PTcvA=rx-yob=WHYcS2gUnGX2aROOjy6bZGqWw@mail.gmail.com>
-In-Reply-To: <CA+KcR8ARBUj8PTcvA=rx-yob=WHYcS2gUnGX2aROOjy6bZGqWw@mail.gmail.com>
-From: Bruce Ashfield <bruce.ashfield@gmail.com>
-Date: Mon, 26 May 2025 13:34:19 -0400
-X-Gm-Features: AX0GCFt4VHVG_vtSUSWZq8VTMqkCopATczmGUlE7t1jpBAqbWTnp8CLCEr2eL6w
-Message-ID: <CADkTA4OCP8CDd68K2_k037Lq7v2QX-JbHVm-pE8+pXjJfMpj1Q@mail.gmail.com>
-Subject: Re: [yocto] Default KCONFIG_MODE for in-tree defconfig
-To: yocto@lists.yoctoproject.org, csanchezdll@gmail.com
-Content-Type: multipart/alternative; boundary="0000000000004520b706360d5cf4"
+From: Stephen K Jolley <sjolley.yp.pm@gmail.com>
+Date: Mon, 26 May 2025 23:51:36 -0700
+X-Gm-Features: AX0GCFsH30nveK8hdZyxjiHtmxZKPO7rJNtKum4fp_0SBTRKjRGTa5llt966JjI
+Message-ID: <CAK5yBb8gSsqRFvYMUFa_LVifmV-sA7A=+8T9vEkTOnF1p8CFDg@mail.gmail.com>
+Subject: Yocto Project Newcomer & Unassigned Bugs - Help Needed
+To: openembedded-devel@lists.openembedded.org, 
+	Yocto-mailing-list <yocto@lists.yoctoproject.org>
+Content-Type: multipart/alternative; boundary="0000000000008479160636187f15"
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Mon, 26 May 2025 17:34:33 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/65424
+ <yocto@lists.yoctoproject.org>; Tue, 27 May 2025 06:51:57 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/65425
 
---0000000000004520b706360d5cf4
+--0000000000008479160636187f15
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-On Mon, May 26, 2025 at 3:49=E2=80=AFAM Carlos S=C3=A1nchez de La Lama via
-lists.yoctoproject.org <csanchezdll=3Dgmail.com@lists.yoctoproject.org> wro=
-te:
+All,
 
-> Hi all,
->
-> According to the documentation
-> (https://docs.yoctoproject.org/ref-manual/variables.html#term-KCONFIG_MOD=
-E
-> ),
-> KCONFIG_MODE defaults to "alldefconfig"  when KBUILD_DEFCONFIG is
-> given, pointing to an in-tree defconfig.
->
-> However, I am creating a custom recipe (inheriting
-> kernel-yocto.bbclass trough linux-yocto.inc) and I was getting a build
-> with an unexpected config.I have tracked it down to "allnoconfig"
-> being used, and I have managed to get a correct build by adding an
-> explicit "KCONFIG_MODE =3D alldefconfig" to my recipe.
->
-> I think the problem comes from the combination of the logic in
-> do_kernel_configme() (which selects the config_flags to "-n" when
-> ${UNPACKDIR}/defconfig is used, theoretically meaning a custom
-> defconfig coming from meta-data was placed there) with that of
-> do_kernel_metadata() (which copies an in-tree defconfig given in
-> KBUILD_DEFCONFIG into ${UNPACKDIR}/defconfig, so that is going to be
-> present *always*, even if an in-tree defconfig is being used).
->
-> Is this something I am misunderstanding? Otherwise, I think the
-> documentation should be adjusted. I can send a patch, I just want to
-> check I am not missing anything before doing.
+The triage team is starting to try and collect up and classify bugs which a
+newcomer to the project would be able to work on in a way which means
+people can find them. They're being listed on the triage page under the
+appropriate heading:
+https://wiki.yoctoproject.org/wiki/Bug_Triage#Newcomer_Bugs Also please
+review:
+https://www.openembedded.org/wiki/How_to_submit_a_patch_to_OpenEmbedded and
+how to create a bugzilla account at:
+https://bugzilla.yoctoproject.org/createaccount.cgi
 
-The docs could be updated, but that default cannot be changed due
-to the amount of years (10+) and the fact that any "guessing" at the
-format of the defconfig is just that. Users are encouraged to set their
-Own KCONFIG_MODE since they know what their configuration is.
+The idea is these bugs should be straight forward for a person to help work
+on who doesn't have deep experience with the project. If anyone can help,
+please take ownership of the bug and send patches! If anyone needs
+help/advice there are people on irc who can likely do so, or some of the
+more experienced contributors will likely be happy to help too.
 
-In theory, I could enhance the checks to see if the defconfig is in
-The SRC_URI and only then set allnoconfig as the default, but I'm
-Reluctant to make it any more complex, since there's always side
-Effects and breakages with someone's Kconfig when I change the
-Logic.
+Also, the triage team meets weekly and does its best to handle the bugs
+reported into the Bugzilla. The number of people attending that meeting has
+fallen, as have the number of people available to help fix bugs. One of the
+things we hear users report is they don't know how to help. We (the triage
+team) are therefore going to start reporting out the currently 4447
+unassigned or newcomer bugs.
 
-Bruce
+We're hoping people may be able to spare some time now and again to help
+out with these. Bugs are split into two types, "true bugs" where things
+don't work as they should and "enhancements" which are features we'd want
+to add to the system. There are also roughly four different "priority"
+classes right now, =E2=80=9C5.3=E2=80=9D, =E2=80=9C6.0", "5.99" and "Future=
+", the more
+pressing/urgent issues being in "5.3" and then =E2=80=9C6.0=E2=80=9D.
+
+Please review this link and if a bug is something you would be able to help
+with either take ownership of the bug, or send me (sjolley.yp.pm@gmail.com)
+an e-mail with the bug number you would like and I will assign it to you
+(please make sure you have a Bugzilla account). The list is at:
+https://wiki.yoctoproject.org/wiki/Bug_Triage_Archive#Unassigned_or_Newcome=
+r_Bugs
+
+Thanks,
 
 
->
-> Thanks,
->
-> Carlos
->
-> -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
-> Links: You receive all messages sent to this group.
-> View/Reply Online (#65421):
-> https://lists.yoctoproject.org/g/yocto/message/65421
-> Mute This Topic: https://lists.yoctoproject.org/mt/113305718/1050810
-> Group Owner: yocto+owner@lists.yoctoproject.org
-> Unsubscribe: https://lists.yoctoproject.org/g/yocto/unsub [
-> bruce.ashfield@gmail.com]
-> -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
->
->
 
---=20
-- Thou shalt not follow the NULL pointer, for chaos and madness await thee
-at its end
-- "Use the force Harry" - Gandalf, Star Trek II
+*Stephen K. Jolley*
 
---0000000000004520b706360d5cf4
+*Yocto Project Program Manager*
+
+(    *Cell*:                (208) 244-4460
+
+* *Email*:                 *s
+<stephen.k.jolley@intel.com>jolley.yp.pm@gmail.com <jolley.yp.pm@gmail.com>=
+*
+
+--0000000000008479160636187f15
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr"><div dir=3D"ltr"><div class=3D"gmail_default" style=3D"fon=
-t-size:small"><br></div></div><br><div class=3D"gmail_quote gmail_quote_con=
-tainer"><div dir=3D"ltr" class=3D"gmail_attr">On Mon, May 26, 2025 at 3:49=
-=E2=80=AFAM Carlos S=C3=A1nchez de La Lama via <a href=3D"http://lists.yoct=
-oproject.org">lists.yoctoproject.org</a> &lt;csanchezdll=3D<a href=3D"mailt=
-o:gmail.com@lists.yoctoproject.org">gmail.com@lists.yoctoproject.org</a>&gt=
-; wrote:<br></div><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px=
- 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex">Hi all,=
-<br>
-<br>
-According to the documentation<br>
-(<a href=3D"https://docs.yoctoproject.org/ref-manual/variables.html#term-KC=
-ONFIG_MODE" rel=3D"noreferrer" target=3D"_blank">https://docs.yoctoproject.=
-org/ref-manual/variables.html#term-KCONFIG_MODE</a>),<br>
-KCONFIG_MODE defaults to &quot;alldefconfig&quot;=C2=A0 when KBUILD_DEFCONF=
-IG is<br>
-given, pointing to an in-tree defconfig.<br>
-<br>
-However, I am creating a custom recipe (inheriting<br>
-kernel-yocto.bbclass trough linux-yocto.inc) and I was getting a build<br>
-with an unexpected config.I have tracked it down to &quot;allnoconfig&quot;=
-<br>
-being used, and I have managed to get a correct build by adding an<br>
-explicit &quot;KCONFIG_MODE =3D alldefconfig&quot; to my recipe.<br>
-<br>
-I think the problem comes from the combination of the logic in<br>
-do_kernel_configme() (which selects the config_flags to &quot;-n&quot; when=
-<br>
-${UNPACKDIR}/defconfig is used, theoretically meaning a custom<br>
-defconfig coming from meta-data was placed there) with that of<br>
-do_kernel_metadata() (which copies an in-tree defconfig given in<br>
-KBUILD_DEFCONFIG into ${UNPACKDIR}/defconfig, so that is going to be<br>
-present *always*, even if an in-tree defconfig is being used).<br>
-<br>
-Is this something I am misunderstanding? Otherwise, I think the<br>
-documentation should be adjusted. I can send a patch, I just want to<br>
-check I am not missing anything before doing.<span class=3D"gmail_default" =
-style=3D"font-size:small"></span></blockquote><div><span class=3D"gmail_def=
-ault" style=3D"font-size:small"></span></div><div class=3D"gmail_default" s=
-tyle=3D"font-size:small">The docs could be updated, but that default cannot=
- be changed due</div><div class=3D"gmail_default" style=3D"font-size:small"=
->to the amount of years (10+) and the fact that any &quot;guessing&quot; at=
- the</div><div class=3D"gmail_default" style=3D"font-size:small">format of =
-the defconfig is just that. Users are encouraged to set their</div><div cla=
-ss=3D"gmail_default" style=3D"font-size:small">Own KCONFIG_MODE since they =
-know what their configuration is.</div><div class=3D"gmail_default" style=
-=3D"font-size:small"><br></div><div class=3D"gmail_default" style=3D"font-s=
-ize:small">In theory, I could enhance the checks to see if the defconfig is=
- in</div><div class=3D"gmail_default" style=3D"font-size:small">The SRC_URI=
- and only then set allnoconfig as the default, but I&#39;m</div><div class=
-=3D"gmail_default" style=3D"font-size:small">Reluctant to make it any more =
-complex, since there&#39;s always side</div><div class=3D"gmail_default" st=
-yle=3D"font-size:small">Effects and breakages with someone&#39;s Kconfig wh=
-en I change the</div><div class=3D"gmail_default" style=3D"font-size:small"=
->Logic.</div><div class=3D"gmail_default" style=3D"font-size:small"><br></d=
-iv><div class=3D"gmail_default" style=3D"font-size:small">Bruce</div><div c=
-lass=3D"gmail_default" style=3D"font-size:small"><br></div><blockquote clas=
-s=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid r=
-gb(204,204,204);padding-left:1ex"><br>
-<br>
-Thanks,<br>
-<br>
-Carlos<br>
-<br>
--=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-<br>
-Links: You receive all messages sent to this group.<br>
-View/Reply Online (#65421): <a href=3D"https://lists.yoctoproject.org/g/yoc=
-to/message/65421" rel=3D"noreferrer" target=3D"_blank">https://lists.yoctop=
-roject.org/g/yocto/message/65421</a><br>
-Mute This Topic: <a href=3D"https://lists.yoctoproject.org/mt/113305718/105=
-0810" rel=3D"noreferrer" target=3D"_blank">https://lists.yoctoproject.org/m=
-t/113305718/1050810</a><br>
-Group Owner: <a href=3D"mailto:yocto%2Bowner@lists.yoctoproject.org" target=
-=3D"_blank">yocto+owner@lists.yoctoproject.org</a><br>
-Unsubscribe: <a href=3D"https://lists.yoctoproject.org/g/yocto/unsub" rel=
-=3D"noreferrer" target=3D"_blank">https://lists.yoctoproject.org/g/yocto/un=
-sub</a> [<a href=3D"mailto:bruce.ashfield@gmail.com" target=3D"_blank">bruc=
-e.ashfield@gmail.com</a>]<br>
--=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-<br>
-<br>
-</blockquote></div><div><br clear=3D"all"></div><div><br></div><span class=
-=3D"gmail_signature_prefix">-- </span><br><div dir=3D"ltr" class=3D"gmail_s=
-ignature">- Thou shalt not follow the NULL pointer, for chaos and madness a=
-wait thee at its end<br>- &quot;Use the force Harry&quot; - Gandalf, Star T=
-rek II<br><br></div></div>
+<div dir=3D"ltr"><div><span style=3D"font-size:11pt;font-family:Calibri,Ari=
+al">All,<br><br>The triage team is starting to try and collect up and class=
+ify bugs which a newcomer to the project would be able to work on in a way =
+which means people can find them. They&#39;re being listed on the triage pa=
+ge under the appropriate heading: <a href=3D"https://wiki.yoctoproject.org/=
+wiki/Bug_Triage#Newcomer_Bugs">https://wiki.yoctoproject.org/wiki/Bug_Triag=
+e#Newcomer_Bugs</a>  Also please review: <a href=3D"https://www.openembedde=
+d.org/wiki/How_to_submit_a_patch_to_OpenEmbedded">https://www.openembedded.=
+org/wiki/How_to_submit_a_patch_to_OpenEmbedded</a> and how to create a bugz=
+illa account at: <a href=3D"https://bugzilla.yoctoproject.org/createaccount=
+.cgi">https://bugzilla.yoctoproject.org/createaccount.cgi</a><br><br>The id=
+ea is these bugs should be straight forward for a person to help work on wh=
+o doesn&#39;t have deep experience with the project.  If anyone can help, p=
+lease take ownership of the bug and send patches!  If anyone needs help/adv=
+ice there are people on irc who can likely do so, or some of the more exper=
+ienced contributors will likely be happy to help too.<br><br>Also, the tria=
+ge team meets weekly and does its best to handle the bugs reported into the=
+ Bugzilla. The number of people attending that meeting has fallen, as have =
+the number of people available to help fix bugs. One of the things we hear =
+users report is they don&#39;t know how to help. We (the triage team) are t=
+herefore going to start reporting out the currently 4447 unassigned or newc=
+omer bugs.<br><br>We&#39;re hoping people may be able to spare some time no=
+w and again to help out with these.  Bugs are split into two types, &quot;t=
+rue bugs&quot; where things don&#39;t work as they should and &quot;enhance=
+ments&quot; which are features we&#39;d want to add to the system.  There a=
+re also roughly four different &quot;priority&quot; classes right now, =E2=
+=80=9C5.3=E2=80=9D, =E2=80=9C6.0&quot;, &quot;5.99&quot; and &quot;Future&q=
+uot;, the more pressing/urgent issues being in &quot;5.3&quot; and then =E2=
+=80=9C6.0=E2=80=9D.<br><br>Please review this link and if a bug is somethin=
+g you would be able to help with either take ownership of the bug, or send =
+me (<a href=3D"mailto:sjolley.yp.pm@gmail.com">sjolley.yp.pm@gmail.com</a>)=
+ an e-mail with the bug number you would like and I will assign it to you (=
+please make sure you have a Bugzilla account).  The list is at: <a href=3D"=
+https://wiki.yoctoproject.org/wiki/Bug_Triage_Archive#Unassigned_or_Newcome=
+r_Bugs">https://wiki.yoctoproject.org/wiki/Bug_Triage_Archive#Unassigned_or=
+_Newcomer_Bugs</a></span></div><div dir=3D"ltr" class=3D"gmail_signature" d=
+ata-smartmail=3D"gmail_signature"><div dir=3D"ltr"><div dir=3D"ltr"><p clas=
+s=3D"MsoNormal" style=3D"background-image:initial;background-position:initi=
+al;background-repeat:initial"><span style=3D"font-size:12pt;font-family:Ari=
+al,sans-serif">Thanks,<span></span></span></p>
 
---0000000000004520b706360d5cf4--
+<p class=3D"MsoNormal" style=3D"background-image:initial;background-positio=
+n:initial;background-repeat:initial"><span style=3D"font-size:12pt;font-fam=
+ily:Arial,sans-serif">=C2=A0<span></span></span></p>
+
+<p class=3D"MsoNormal" style=3D"background-image:initial;background-positio=
+n:initial;background-repeat:initial"><b><i><span style=3D"font-size:16pt;co=
+lor:purple">Stephen K. Jolley</span></i></b><span style=3D"font-size:12pt;f=
+ont-family:Arial,sans-serif"><span></span></span></p>
+
+<p class=3D"MsoNormal" style=3D"background-image:initial;background-positio=
+n:initial;background-repeat:initial"><b><span style=3D"font-size:8pt;font-f=
+amily:&quot;Courier New&quot;;color:blue">Yocto Project Program Manager</sp=
+an></b></p>
+
+<p class=3D"MsoNormal" style=3D"background-image:initial;background-positio=
+n:initial;background-repeat:initial"><span style=3D"font-size:9pt;font-fami=
+ly:Wingdings;color:black">(</span><span style=3D"font-size:9pt;font-family:=
+&quot;MS Sans Serif&quot;,serif;color:teal">=C2=A0=C2=A0=C2=A0=C2=A0</span>=
+<b><span style=3D"font-size:8pt;font-family:&quot;Comic Sans MS&quot;;color=
+:teal">Cell</span></b><span style=3D"font-size:9pt;font-family:&quot;MS San=
+s Serif&quot;,serif;color:teal">:=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 </span><span style=3D"font=
+-size:9pt;font-family:&quot;MS Sans Serif&quot;,serif">(208) 244-4460</span=
+><span style=3D"font-size:12pt;font-family:Arial,sans-serif"><span></span><=
+/span></p>
+
+<p class=3D"MsoNormal" style=3D"background-image:initial;background-positio=
+n:initial;background-repeat:initial"><span style=3D"font-size:9pt;font-fami=
+ly:Wingdings">*=C2=A0</span><b><span lang=3D"FR" style=3D"font-size:8pt;fon=
+t-family:&quot;Comic Sans MS&quot;;color:teal">Email</span></b><span lang=
+=3D"FR" style=3D"font-size:9pt;font-family:&quot;MS Sans Serif&quot;,serif;=
+color:teal">:</span><span lang=3D"FR" style=3D"font-size:9pt;font-family:&q=
+uot;MS Sans Serif&quot;,serif">=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0</span><u><span=
+ lang=3D"FR" style=3D"font-size:9pt;font-family:&quot;MS Sans Serif&quot;,s=
+erif;color:blue"><span style=3D"color:rgb(17,85,204)"><a href=3D"mailto:ste=
+phen.k.jolley@intel.com" target=3D"_blank">s</a><a href=3D"mailto:jolley.yp=
+.pm@gmail.com" target=3D"_blank">jolley.yp.pm@gmail.com</a></span></span></=
+u></p></div></div></div></div>
+
+--0000000000008479160636187f15--
 
