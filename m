@@ -2,83 +2,82 @@ Return-Path: <sergey.forum@gmail.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 88833C54FB3
-	for <webhook@archiver.kernel.org>; Sun,  1 Jun 2025 11:09:52 +0000 (UTC)
-Subject: bitbake provided path does not contain path to git so fetch is stalled
-To: yocto@lists.yoctoproject.org
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 133C9C54FB3
+	for <webhook@archiver.kernel.org>; Sun,  1 Jun 2025 12:53:33 +0000 (UTC)
+Subject: Re: [yocto] bitbake provided path does not contain path to git so fetch is stalled
+To: "Sergey Kurdakov" <sergey.forum@gmail.com>, yocto@lists.yoctoproject.org
 From: "Sergey Kurdakov" <sergey.forum@gmail.com>
 X-Originating-Location: Moscow, RU (176.59.170.235)
 X-Originating-Platform: Linux Chrome 137
 User-Agent: GROUPS.IO Web Poster
 MIME-Version: 1.0
-Date: Sun, 01 Jun 2025 04:09:48 -0700
-Message-ID: <a1oz.1748776188815356936.LR5v@lists.yoctoproject.org>
-Content-Type: multipart/alternative; boundary="FN8SV1Se6txU4CP54MPZ"
+Date: Sun, 01 Jun 2025 05:53:31 -0700
+References: <a1oz.1748776188815356936.LR5v@lists.yoctoproject.org>
+In-Reply-To: <a1oz.1748776188815356936.LR5v@lists.yoctoproject.org>
+Message-ID: <974.1748782411494543023@lists.yoctoproject.org>
+Content-Type: multipart/alternative; boundary="WD2nMWGXr4NZDe7wooxJ"
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Sun, 01 Jun 2025 11:09:52 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/65441
+ <yocto@lists.yoctoproject.org>; Sun, 01 Jun 2025 12:53:33 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/65442
 
---FN8SV1Se6txU4CP54MPZ
+--WD2nMWGXr4NZDe7wooxJ
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: quoted-printable
 
 Hello,
 
-I decided to give yocto scarthgap a spin at home with Ubuntu 24.02 (somehow=
- it works at the same Ubuntu version at work computer, but cannot investiga=
-te at weekend, why it works there),
-first I had to add apparmor profile (due to ubuntu apparmor protection), as=
- recommended in https://bugs.launchpad.net/ubuntu/+source/apparmor/+bug/205=
-6555 ) then building an sample image started,
+to fix described problem of stalled fetch=C2=A0 with bitbake on Ubuntu 24.0=
+2 I made a dirty fix in code
 
-but encountered strange behavior:
-git fetch would stuck.
+git.py
 
-So I added -DDD option and observed, that git fetch is invoked with exporte=
-d path, which does not contain path to git,
-if I ran git command in a separate console without bitbake provided path th=
-en git fetches sources (so git works), but if exported path is
-added as git fetcher does via bitbake=C2=A0 I observe the same=C2=A0 a comm=
-and just hangs.
+- ud.basecmd =3D d.getVar("FETCHCMD_git") or "git -c gc.autoDetach=3Dfalse =
+-c core.pager=3Dcat -c safe.bareRepository=3Dall"
 
-My question is, how to enable so that bitbake invoked git also has regular =
-path environmental variable being attached?
++ ud.basecmd =3D d.getVar("FETCHCMD_git") or "/usr/bin/git -c gc.autoDetach=
+=3Dfalse -c core.pager=3Dcat -c safe.bareRepository=3Dall"
 
-Best regards
+so I just invoke git with full path, and bitbake now fetches sources, so in=
+deed, the problem is about missing path in "export PATH=3D" when bitbake wo=
+rks on image
+
+Regards
+
 Sergey
 
---FN8SV1Se6txU4CP54MPZ
+--WD2nMWGXr4NZDe7wooxJ
 Content-Type: text/html; charset="utf-8"
 Content-Transfer-Encoding: quoted-printable
 
 <div>Hello,</div>
 <div>&nbsp;</div>
-<div>I decided to give yocto scarthgap a spin at home with Ubuntu 24.02 (so=
-mehow it works at the same Ubuntu version at work computer, but cannot inve=
-stigate at weekend, why it works there),</div>
-<div>first I had to add apparmor profile (due to ubuntu apparmor protection=
-), as recommended in <a href=3D"https://bugs.launchpad.net/ubuntu/+source/a=
-pparmor/+bug/2056555" target=3D"_blank" rel=3D"noopener">https://bugs.launc=
-hpad.net/ubuntu/+source/apparmor/+bug/2056555</a> ) then building an sample=
- image started,</div>
+<div>to fix described problem of stalled fetch&nbsp; with bitbake on Ubuntu=
+ 24.02 I made a dirty fix in code</div>
 <div>&nbsp;</div>
-<div>but encountered strange behavior:</div>
-<div>git fetch would stuck.</div>
+<div>git.py</div>
 <div>&nbsp;</div>
-<div>So I added -DDD option and observed, that git fetch is invoked with ex=
-ported path, which does not contain path to git,</div>
-<div>if I ran git command in a separate console without bitbake provided pa=
-th then git fetches sources (so git works), but if exported path is</div>
-<div>added as git fetcher does via bitbake&nbsp; I observe the same&nbsp; a=
- command just hangs.</div>
-<div>&nbsp;</div>
-<div>My question is, how to enable so that bitbake invoked git also has reg=
-ular path environmental variable being attached?</div>
-<div>&nbsp;</div>
-<div>Best regards</div>
-<div>Sergey</div>
+<div>
+<p style=3D"-qt-block-indent: 0; text-indent: 0px; -qt-user-state: 3; margi=
+n: 0px;">- ud.basecmd =3D d.getVar("FETCHCMD_git") or "git -c gc.autoDetach=
+=3Dfalse -c core.pager=3Dcat -c safe.bareRepository=3Dall"</p>
+<p style=3D"-qt-block-indent: 0; text-indent: 0px; -qt-user-state: 3; margi=
+n: 0px;">+ ud.basecmd =3D d.getVar("FETCHCMD_git") or "/usr/bin/git -c gc.a=
+utoDetach=3Dfalse -c core.pager=3Dcat -c safe.bareRepository=3Dall"</p>
+<p style=3D"-qt-block-indent: 0; text-indent: 0px; -qt-user-state: 3; margi=
+n: 0px;">&nbsp;</p>
+<p style=3D"-qt-block-indent: 0; text-indent: 0px; -qt-user-state: 3; margi=
+n: 0px;">so I just invoke git with full path, and bitbake now fetches sourc=
+es, so indeed, the problem is about missing path in "export PATH=3D" when b=
+itbake works on image</p>
+<p style=3D"-qt-block-indent: 0; text-indent: 0px; -qt-user-state: 3; margi=
+n: 0px;">&nbsp;</p>
+<p style=3D"-qt-block-indent: 0; text-indent: 0px; -qt-user-state: 3; margi=
+n: 0px;">Regards</p>
+<p style=3D"-qt-block-indent: 0; text-indent: 0px; -qt-user-state: 3; margi=
+n: 0px;">Sergey</p>
+</div>
 
---FN8SV1Se6txU4CP54MPZ--
+--WD2nMWGXr4NZDe7wooxJ--
 
