@@ -1,110 +1,74 @@
-Return-Path: <skandigraun@gmail.com>
+Return-Path: <pokybuild@yoctoproject.org>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 576EBC5AD49
-	for <webhook@archiver.kernel.org>; Mon,  2 Jun 2025 16:22:17 +0000 (UTC)
-Received: from mail-ej1-f41.google.com (mail-ej1-f41.google.com [209.85.218.41])
- by mx.groups.io with SMTP id smtpd.web11.54180.1748881329528249939
+	by smtp.lore.kernel.org (Postfix) with ESMTP id C8552C5AD49
+	for <webhook@archiver.kernel.org>; Tue,  3 Jun 2025 00:19:33 +0000 (UTC)
+Received: from a27-33.smtp-out.us-west-2.amazonses.com (a27-33.smtp-out.us-west-2.amazonses.com [54.240.27.33])
+ by mx.groups.io with SMTP id smtpd.web10.66.1748909967410172071
  for <yocto@lists.yoctoproject.org>;
- Mon, 02 Jun 2025 09:22:09 -0700
+ Mon, 02 Jun 2025 17:19:27 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20230601 header.b=eOBbySsv;
- spf=pass (domain: gmail.com, ip: 209.85.218.41, mailfrom: skandigraun@gmail.com)
-Received: by mail-ej1-f41.google.com with SMTP id a640c23a62f3a-adb2bd27c7bso645827466b.2
-        for <yocto@lists.yoctoproject.org>; Mon, 02 Jun 2025 09:22:09 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1748881328; x=1749486128; darn=lists.yoctoproject.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:to:subject:user-agent:mime-version:date:message-id:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=pyAVpY27jCykW5N0Ijh71S67+Kbncm1xDNwenIuIjVw=;
-        b=eOBbySsvZ9w6vZkKdnFcfvk7x2xaCeBqtSwZuCv67BprwbOhr6siaxWWCvIheBUNJ5
-         jBjq8hI9AWd8nvNBLOjKeA2Lw6QTPt9T4AivSDlx/d/2hYjSRGsLLgJHOUzoFYG8II+l
-         SU88H3DurBWk7lfKYETWrpds7CMqvjdPxmWRtMXvsLN40b/Ho43P6Vahy94j8Np0Ls45
-         ckoY46Ego0rRuIIZCQvvxMpV0tM7eTZs4v2c4kQRIbECmEal8xn/6BdcRySY1VpqTbWG
-         Ryvre6JMbIlrSM0SWunUDc139ib3Me6Zc4Af/EukXvGsAtBdfZGHGC1oM9qsPri0jzgs
-         UhHw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1748881328; x=1749486128;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=pyAVpY27jCykW5N0Ijh71S67+Kbncm1xDNwenIuIjVw=;
-        b=ZunwtUCRu6XlM0tpwC9O2LzJfcU4duvzRgC4Co8gTy1KhDTjuEKScP9WhqC/QT8/Jp
-         N2WMKmKY1GQ4q3b+dlpveSxVwwjppw/VDdcapyDcOpuFvLhyb38yZiw8Uk6AI+pELpOp
-         ++91GQRZsy5CkAO/Kyd3VcofMkn0GGHS7NV+UvadnpuoWG1u/URBPC0/hoEMxtxNTx24
-         L9ENxASJKXF/goTvM7bmpF71ZIgjTOXTWiNfJjw0RdJYOdITdhxYD5LJ9v+idg2/Pahg
-         WZkzeFYctjfkDihr6zxFx7fm9IqDnAyrVLog6gzk7Sg7oRT0nuZM8QnNNmGdOoI5/ie3
-         LUKw==
-X-Gm-Message-State: AOJu0YzjZDQqUk4VSeqKlL6nsHyNQ8c9iXbbt+8bdpZKx2B4WDLzGzon
-	SUEIkggpz27okZDCQA/PqaWqULRVGF8WuM6wenxO9K1qc+dlkaLiu8oN25aI5Tqe
-X-Gm-Gg: ASbGnctR2GM37I6VIMVxqFx5HIqOSut8tmi4KYK2RKIx7qxp0c+yCcBI4oHn1MJVRkx
-	mt/NShJ8V/8A56jrVo1J4OO2uXPyCVINT0yyfkwCirydMThYeYDraEL03mGZKXSQqlcF0kfap3U
-	KKS/mUJP5//NJcbZmVuep+d64Kd1urangc70m3THO9xGAlr3EUNAHwPnz2erA9WhXKNMvLekdkP
-	JLAcCsO4hpda118skua/KFWulofFCQ6wgu2y1CBP0xWgHQTmol8KHB8tEPD1a2xcpSeAi93Oxk5
-	doV7btDycRXfz8GvS2i4FOzybzmI+b/lwYKmiJxnuQTbgB1kcxqHexsTtpI=
-X-Google-Smtp-Source: AGHT+IHEWKdR1ciBvO7D3fkegLbHqc7fVtLyTI9LKmyGfYM5+Q6xx74BO2V+ChBSIjMDwscDPWOVCQ==
-X-Received: by 2002:a17:907:3e0e:b0:ad8:96d2:f3e with SMTP id a640c23a62f3a-adb493e3ff8mr806526166b.22.1748881327665;
-        Mon, 02 Jun 2025 09:22:07 -0700 (PDT)
-Received: from [192.168.1.106] ([51.154.145.205])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-ada5d7fed96sm814166066b.32.2025.06.02.09.22.06
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 02 Jun 2025 09:22:07 -0700 (PDT)
-Message-ID: <2b0b2ffb-a7b3-4143-8b4a-474bdd22a5c1@gmail.com>
-Date: Mon, 2 Jun 2025 18:22:06 +0200
-MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [yocto] [poky][master] opensbi recipe failed at do_patch
-To: yocto@lists.yoctoproject.org, kanakshilledar111@protonmail.com
-References: <lwHV9MLGir2nUyJPc-xQKFx_rhE2ABEfOSLNR5WCWuoPSo4WMQRsKi7YhzMsyTHrAcQkwzyPca57qC3tF0abomOAJ673W2_dgiA04oo1m_s=@protonmail.com>
- <28713.1748865806847096458@lists.yoctoproject.org>
-Content-Language: en-US
-From: Gyorgy Sarvari <skandigraun@gmail.com>
-In-Reply-To: <28713.1748865806847096458@lists.yoctoproject.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+ dkim=pass header.i=@yoctoproject.org header.s=j46ser6a2yusdzubpv7m7ewqgesde2ie header.b=NMm68YC7;
+ dkim=pass header.i=@amazonses.com header.s=gdwg2y3kokkkj5a55z2ilkup5wp5hhxx header.b=FBWx5V4V;
+ spf=pass (domain: us-west-2.amazonses.com, ip: 54.240.27.33, mailfrom: 010101973328442e-77dc9a4e-4c12-4be8-9021-49468ec66a14-000000@us-west-2.amazonses.com)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/simple;
+	s=j46ser6a2yusdzubpv7m7ewqgesde2ie; d=yoctoproject.org;
+	t=1748909966; h=To:Cc:Subject:Message-Id:Date:From;
+	bh=8l2UlPVa2RCTEWfdSHW+LyGn2Wl1wL1d2xNsifZoBeY=;
+	b=NMm68YC7CzD2Et58Xk3aTSWczYC5EdRt0tNF2OulWL/U3eBhD6OV7jStCj+ulpRj
+	aIpeZTfmrrndvYa/iUHSROKKeE2JiYRjMD3o04VhRjXBe4M5QJZ+/zsfLedd4nSOAyp
+	4H4q70fxCDggstNMGhgiQh9i06unNf9FpQKJckcQ=
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/simple;
+	s=gdwg2y3kokkkj5a55z2ilkup5wp5hhxx; d=amazonses.com; t=1748909966;
+	h=To:Cc:Subject:Message-Id:Date:From:Feedback-ID;
+	bh=8l2UlPVa2RCTEWfdSHW+LyGn2Wl1wL1d2xNsifZoBeY=;
+	b=FBWx5V4VdfqzS3qb9RlU2BwUBoFOeH4/6kI/ZTXMs3LYCmdsMzg2mD3RqOnWZ+fe
+	EFKSFgI/oLT076zB7Cj2HVLC0EvMEjiWqBtHpeTOFGKliTi5f6rmIUlTH2JSNAfWPya
+	Lk/SCphFugQFMOPyBG94for65KPl92PHsx9MpHkQ=
+To: yocto@lists.yoctoproject.org
+Cc: qa-build-notification@lists.yoctoproject.org
+Subject: QA notification for completed autobuilder build (yocto-5.0.10.rc2)
+Message-ID: <010101973328442e-77dc9a4e-4c12-4be8-9021-49468ec66a14-000000@us-west-2.amazonses.com>
+Date: Tue, 3 Jun 2025 00:19:26 +0000
+From: Pokybuild User <pokybuild@yoctoproject.org>
+Feedback-ID: ::1.us-west-2.9np3MYPs3fEaOBysGKSlUD4KtcmPijcmS9Az2Hwf7iQ=:AmazonSES
+X-SES-Outgoing: 2025.06.03-54.240.27.33
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Mon, 02 Jun 2025 16:22:17 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/65446
+ <yocto@lists.yoctoproject.org>; Tue, 03 Jun 2025 00:19:33 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/65447
 
-On 6/2/25 14:03, Kanak Shilledar via lists.yoctoproject.org wrote:
-> I tried fixing the patch with the commands suggested by devtool, but
-> it is now failing at do_compile step.
-> PFA the opensbi_1.6.bb:do_compile.log
 
-Based on the error message it looks like you are missing a commit[1]
-that fixed C23 compatibility.
-And looking at meta-riscv, there is a comment in the .bbappend:
+    A build flagged for QA (yocto-5.0.10.rc2) was completed on the autobuilder and is available at:
 
-# recent version after 1.4 release
-SRCREV:c910 = "17e829129d60d7d178d47ecbd8990e705690d352"
 
-which may explain a few things. The C23 fix was added to v1.6, but this
-layer seems to downgrade opensbi to v1.4 - which also explains why the
-patch from oe-core fails.
+        https://valkyrie.yocto.io/pub/releases/yocto-5.0.10.rc2
 
-If this old version of opensbi is a must for your board, then you will
-need to backport the C23 patch (it's reasonably small and simple).
-Otherwise the best would be to bump it in opensbi version in meta-riscv,
-is possible.
 
-[1]:
-https://github.com/riscv-software-src/opensbi/commit/d539d64a23bbd64ba324eed595449bcc9c7be0cb
+    Build URL: https://autobuilder.yoctoproject.org/valkyrie/#/builders/29/builds/1707
 
->  
-> Thanks and Regards,
-> Kanak Shilledar
->
-> -=-=-=-=-=-=-=-=-=-=-=-
-> Links: You receive all messages sent to this group.
-> View/Reply Online (#65445): https://lists.yoctoproject.org/g/yocto/message/65445
-> Mute This Topic: https://lists.yoctoproject.org/mt/113426277/6084445
-> Group Owner: yocto+owner@lists.yoctoproject.org
-> Unsubscribe: https://lists.yoctoproject.org/g/yocto/unsub [skandigraun@gmail.com]
-> -=-=-=-=-=-=-=-=-=-=-=-
->
+    Build hash information: 
 
+    bitbake: 696c2c1ef095f8b11c7d2eff36fae50f58c62e5e
+meta-agl: 225c289b7245c8d9a896709e924dc0e67eff1e1f
+meta-arm: 8e0f8af90fefb03f08cd2228cde7a89902a6b37c
+meta-aws: 584e2a00acb65eaffa1d3b9058f0301d982a4f85
+meta-clang: eaa08939eaec9f620b14742ff3ac568553683034
+meta-intel: 38e75c8c1059e5f37659c140c010eaa203238fd2
+meta-mingw: bd9fef71ec005be3c3a6d7f8b99d8116daf70c4f
+meta-openembedded: 491671faee11ea131feab5a3a451d1a01deb2ab1
+meta-virtualization: 9e040ee8dd6025558ea60ac9db60c41bfeddf221
+oecore: d5342ffc570d47a723b18297d75bd2f63c2088db
+poky: ac257900c33754957b2696529682029d997a8f28
+
+
+    
+This is an automated message from the Yocto Project Autobuilder
+Git: git://git.yoctoproject.org/yocto-autobuilder2
+Email: richard.purdie@linuxfoundation.org
+
+
+     
 
