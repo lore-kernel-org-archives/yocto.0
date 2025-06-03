@@ -1,60 +1,98 @@
-Return-Path: <arthur52666@gmail.com>
+Return-Path: <anilkumarnt87@gmail.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 0B8DEC5AE59
-	for <webhook@archiver.kernel.org>; Tue,  3 Jun 2025 10:43:38 +0000 (UTC)
-Subject: Re: [yocto] Pseudo abort errors
-To: "Richard Purdie" <richard.purdie@linuxfoundation.org>, yocto@lists.yoctoproject.org
-From: arthur52666@gmail.com
-X-Originating-Location: Tokyo, JP (64.104.44.103)
-X-Originating-Platform: Mac Chrome 137
+	by smtp.lore.kernel.org (Postfix) with ESMTP id E2D15C5AE59
+	for <webhook@archiver.kernel.org>; Tue,  3 Jun 2025 12:32:08 +0000 (UTC)
+Subject: How to Customize and Build Original Raspberry Pi OS Using Yocto?
+To: yocto@lists.yoctoproject.org
+From: "Anil N T" <anilkumarnt87@gmail.com>
+X-Originating-Location: IN (150.107.100.22)
+X-Originating-Platform: Windows Chrome 136
 User-Agent: GROUPS.IO Web Poster
 MIME-Version: 1.0
-Date: Tue, 03 Jun 2025 03:43:33 -0700
-References: <10697945e6b651b23eb0d7e056baecee4d0e900e.camel@linuxfoundation.org>
-In-Reply-To: <10697945e6b651b23eb0d7e056baecee4d0e900e.camel@linuxfoundation.org>
-Message-ID: <27417.1748947413448041986@lists.yoctoproject.org>
-Content-Type: multipart/alternative; boundary="6P2GIfgoZhbiBO2z5tdn"
+Date: Tue, 03 Jun 2025 05:32:06 -0700
+Message-ID: <f0mQ.1748953926946032572.GW8d@lists.yoctoproject.org>
+Content-Type: multipart/alternative; boundary="CplN7PLZ9BZ79FOPXJ06"
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Tue, 03 Jun 2025 10:43:38 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/65457
+ <yocto@lists.yoctoproject.org>; Tue, 03 Jun 2025 12:32:08 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/65458
 
---6P2GIfgoZhbiBO2z5tdn
+--CplN7PLZ9BZ79FOPXJ06
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: quoted-printable
 
-Hi Richard,
+Hi all,
+I want to customize and generate the official Raspberry Pi OS using Yocto a=
+nd test it on Raspberry Pi 5 hardware.
 
-thanks for your reply.
-I confirm that the issue is always on the /tmp filesystem, I am wondering w=
-hy the issue is only reported at my docker container(running at my Linux se=
-rver), but not reported at other team member's docker container(running at =
-their Linux server). We are following the same document to setup the Yocto =
-build environment.
-Which container configuration may cause the issue ?
+Here=E2=80=99s what I=E2=80=99ve done so far:
+I downloaded the Raspberry Pi CM4 rootfs and generated core images using yo=
+cto(https://downloads.raspberrypi.com/raspi ... oot.tar.xz)
+I kept only the boot files in the SD card=E2=80=99s boot partition.
+I copied the rootfs contents from the CM4 Raspberry Pi rootfs into the ROOT=
+FS partition.
+With this setup, the board boots successfully.
 
-Mario
+Now, I want to take the next step:
+1. Download the original source code of the Raspberry Pi OS rootfs (not jus=
+t prebuilt images)
+2. Build it using Yocto
+3 .Copy the generated rootfs into the ROOTFS partition and boot the board
 
---6P2GIfgoZhbiBO2z5tdn
+My questions:
+1. Is it possible to rebuild the official Raspberry Pi OS rootfs (not just =
+minimal Yocto builds) using Yocto?
+2. Where can I get the exact source code or recipe layers for the Raspberry=
+ Pi OS packages (not just Poky or meta-raspberrypi layers)?
+3.Has anyone here successfully built a Yocto image that replicates the Rasp=
+berry Pi OS experience (including its specific desktop environment, tools, =
+etc.)?
+Any pointers, recommended layers, or documentation links would be hugely ap=
+preciated!
+
+Thank you in advance
+
+--CplN7PLZ9BZ79FOPXJ06
 Content-Type: text/html; charset="utf-8"
 Content-Transfer-Encoding: quoted-printable
 
-<div>&nbsp;</div>
-<div>Hi Richard,</div>
-<div>&nbsp;</div>
-<div>thanks for your reply.</div>
-<div>I confirm that the issue is always on the /tmp filesystem, I am wonder=
-ing why the issue is only reported at my docker container(running at my Lin=
-ux server), but not reported at other team member's docker container(runnin=
-g at their Linux server). We are following the same document to setup the Y=
-octo build environment.</div>
-<div>Which container configuration may cause the issue ?</div>
-<div>&nbsp;</div>
-<div>&nbsp;</div>
-<div>Mario</div>
+<div>
+<div>Hi all,</div>
+<div>I want to customize and generate the official Raspberry Pi OS using Yo=
+cto and test it on Raspberry Pi 5 hardware.</div>
+<div><br />Here&rsquo;s what I&rsquo;ve done so far:</div>
+<div style=3D"padding-left: 40px;">I downloaded the Raspberry Pi CM4 rootfs=
+ and generated core images using yocto(https://downloads.raspberrypi.com/ra=
+spi ... oot.tar.xz)</div>
+<div style=3D"padding-left: 40px;">I kept only the boot files in the SD car=
+d&rsquo;s boot partition.</div>
+<div style=3D"padding-left: 40px;">I copied the rootfs contents from the CM=
+4 Raspberry Pi rootfs into the ROOTFS partition.</div>
+<div style=3D"padding-left: 40px;">With this setup, the board boots success=
+fully.</div>
+<div style=3D"padding-left: 40px;">&nbsp;</div>
+<div>Now, I want to take the next step:</div>
+<div style=3D"padding-left: 40px;">1. Download the original source code of =
+the Raspberry Pi OS rootfs (not just prebuilt images)<br />2. Build it usin=
+g Yocto<br />3 .Copy the generated rootfs into the ROOTFS partition and boo=
+t the board</div>
+<div style=3D"padding-left: 40px;">&nbsp;</div>
+<div>My questions:</div>
+<div style=3D"padding-left: 40px;">1. Is it possible to rebuild the officia=
+l Raspberry Pi OS rootfs (not just minimal Yocto builds) using Yocto?<br />=
+2. Where can I get the exact source code or recipe layers for the Raspberry=
+ Pi OS packages (not just Poky or meta-raspberrypi layers)?<br />3.Has anyo=
+ne here successfully built a Yocto image that replicates the Raspberry Pi O=
+S experience (including its specific desktop environment, tools, etc.)?</di=
+v>
+<div style=3D"padding-left: 40px;">Any pointers, recommended layers, or doc=
+umentation links would be hugely appreciated!</div>
+<div style=3D"padding-left: 80px;">&nbsp;</div>
+<div>Thank you in advance</div>
+</div>
 
---6P2GIfgoZhbiBO2z5tdn--
+--CplN7PLZ9BZ79FOPXJ06--
 
