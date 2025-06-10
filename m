@@ -1,56 +1,54 @@
-Return-Path: <philip@balister.org>
+Return-Path: <haimbachar2008@gmail.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id F3AEDC5B552
-	for <webhook@archiver.kernel.org>; Mon,  9 Jun 2025 20:46:48 +0000 (UTC)
-Received: from smtp4.emailarray.com (smtp4.emailarray.com [65.39.216.22])
- by mx.groups.io with SMTP id smtpd.web10.70860.1749502007172580600
- for <yocto@lists.yoctoproject.org>;
- Mon, 09 Jun 2025 13:46:47 -0700
-Authentication-Results: mx.groups.io;
- dkim=none (message not signed); spf=pass (domain: balister.org, ip: 65.39.216.22, mailfrom: philip@balister.org)
-Received: (qmail 76131 invoked by uid 89); 9 Jun 2025 20:46:41 -0000
-X-Orig-Sender: philip@balister.org
-Received: from unknown (HELO ?192.168.0.180?) (cGhpbGlwQGJhbGlzdGVyLm9yZ0A3My4xNDcuNy4xNzQ=) (POLARISLOCAL)  
-  by smtp4.emailarray.com with SMTP; 9 Jun 2025 20:46:41 -0000
-Message-ID: <a846eadc-a4d5-463d-89af-1b726cb85481@balister.org>
-Date: Mon, 9 Jun 2025 16:46:40 -0400
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 2FDB0C5B543
+	for <webhook@archiver.kernel.org>; Tue, 10 Jun 2025 05:51:14 +0000 (UTC)
+Subject: Re: [yocto] Inherit bbclass from bb file with a certain condition
+To: "Yoann Congal" <yoann.congal@smile.fr>, yocto@lists.yoctoproject.org
+From: "Haimbach" <haimbachar2008@gmail.com>
+X-Originating-Location: Haifa, IL (193.169.70.108)
+X-Originating-Platform: Linux Chrome 111
+User-Agent: GROUPS.IO Web Poster
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Content-Language: en-US
-To: "openembedded-devel@lists.openembedded.org"
- <openembedded-devel@lists.openembedded.org>,
- openembedded-core <openembedded-core@lists.openembedded.org>,
- "openembedded-members@lists.openembedded.org"
- <openembedded-members@lists.openembedded.org>,
- openembedded-architecture
- <openembedded-architecture@lists.openembedded.org>,
- "yocto@lists.yoctoproject.org" <yocto@lists.yoctoproject.org>
-From: Philip Balister <philip@balister.org>
-Subject: Developer meeting Sunday Aug 24 (before OSSEU in Amsterdam)
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Date: Mon, 09 Jun 2025 22:51:10 -0700
+References: <CAMSfU+6UF+FqN_eWFwoNAMHDCqyZBMmnaTBHmyOqjXP4jQ6-TA@mail.gmail.com>
+In-Reply-To: <CAMSfU+6UF+FqN_eWFwoNAMHDCqyZBMmnaTBHmyOqjXP4jQ6-TA@mail.gmail.com>
+Message-ID: <27221.1749534670455072587@lists.yoctoproject.org>
+Content-Type: multipart/alternative; boundary="Fbfjc7Tuj2LE5FcrSj77"
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Mon, 09 Jun 2025 20:46:48 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/65489
+ <yocto@lists.yoctoproject.org>; Tue, 10 Jun 2025 05:51:14 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/65490
 
-The OpenEmbedded board would like to restart our in person developer 
-meetings. These have been very free form meetings and allowed people to 
-raise and discuss problems with other users and developers.
+--Fbfjc7Tuj2LE5FcrSj77
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
 
-At this time, we are trying to gauge interest in this meeting as we are 
-aware of several challenges for people attending, mostly due to out late 
-starting on the planning.
+Hi Yoann,
 
-If you can make it on Sunday before OSSEU, sign up in out ticket shop at:
+In my case im working with the Kirkstone ditsro and its seems not support w=
+ith inherit_defer.
 
-https://pretix.eu/OpenEmbedded/oedem25/
+There are any way to to it in Kirkstone?
 
-We will make a go/no go decision on June 13. Direct questions to me or 
-other board members.
+Regrads,
+Haim
 
-Philip
+--Fbfjc7Tuj2LE5FcrSj77
+Content-Type: text/html; charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div>Hi Yoann,</div>
+<div>&nbsp;</div>
+<div>In my case im working with the Kirkstone ditsro and its seems not supp=
+ort with inherit_defer.</div>
+<div>&nbsp;</div>
+<div>There are any way to to it in Kirkstone?</div>
+<div>&nbsp;</div>
+<div>Regrads,</div>
+<div>Haim</div>
+
+--Fbfjc7Tuj2LE5FcrSj77--
 
