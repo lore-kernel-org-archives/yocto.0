@@ -1,100 +1,229 @@
-Return-Path: <skandigraun@gmail.com>
+Return-Path: <ecordonnier@snap.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 760DCC5B543
-	for <webhook@archiver.kernel.org>; Tue, 10 Jun 2025 15:13:27 +0000 (UTC)
-Received: from mail-ed1-f41.google.com (mail-ed1-f41.google.com [209.85.208.41])
- by mx.groups.io with SMTP id smtpd.web10.89777.1749568399434127545
+	by smtp.lore.kernel.org (Postfix) with ESMTP id B69FEC5B552
+	for <webhook@archiver.kernel.org>; Tue, 10 Jun 2025 15:44:57 +0000 (UTC)
+Received: from mail-ej1-f52.google.com (mail-ej1-f52.google.com [209.85.218.52])
+ by mx.groups.io with SMTP id smtpd.web10.90648.1749570294730054859
  for <yocto@lists.yoctoproject.org>;
- Tue, 10 Jun 2025 08:13:19 -0700
+ Tue, 10 Jun 2025 08:44:55 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20230601 header.b=XQS1328C;
- spf=pass (domain: gmail.com, ip: 209.85.208.41, mailfrom: skandigraun@gmail.com)
-Received: by mail-ed1-f41.google.com with SMTP id 4fb4d7f45d1cf-60497d07279so11258436a12.3
-        for <yocto@lists.yoctoproject.org>; Tue, 10 Jun 2025 08:13:19 -0700 (PDT)
+ dkim=pass header.i=@snap.com header.s=google header.b=ZKn0YwZ0;
+ spf=pass (domain: snapchat.com, ip: 209.85.218.52, mailfrom: ecordonnier@snapchat.com)
+Received: by mail-ej1-f52.google.com with SMTP id a640c23a62f3a-ade5ca8bc69so335535366b.0
+        for <yocto@lists.yoctoproject.org>; Tue, 10 Jun 2025 08:44:54 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1749568398; x=1750173198; darn=lists.yoctoproject.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=65ULjVl4rrJIRz5u9oI0I6n0CZbIzfiAYDmYsXhmoOY=;
-        b=XQS1328C+pf1nNOGbro9PUaM92MwOrHMideNX8oYwu+IsdZcqno8a7myucrb35yvEa
-         QxeN/JgJM6vKKGrZ+iSDlWffA+7CasC8CA0oUU6BhUhsKZzLZAFhAurXfpSSMbmarq0n
-         3Mj0iagtcfbS091EBeT25WxAB3C0PbuzsHgTLHEqOkmdFwWkNwtlGB5WwfToehnQDGXu
-         mukYl7gf/EgfUd14XYDUf6kNhC1gJl+kbEWH0GXwFfD2vgBF363FxUB3khw/8vVk+vBT
-         6OsEPNgUQTCnT1KUi/ap6dIu35LzV5rsmVhyxe4UlVcR7lgEON1AqFzZxIYT8h2nGc1C
-         NyBA==
+        d=snap.com; s=google; t=1749570293; x=1750175093; darn=lists.yoctoproject.org;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=b8kke0TI278GkS8O/niEMXcojcFSTD2bEd39RE0mgk8=;
+        b=ZKn0YwZ0zs/B4D8/QCbog88PRCZfTjyycuqqIHFJjqfwTobKjA9JxCGlcL9cKlRtZw
+         fyQrXeVtlg6B8yDi6oTFKcuO4/pvUjaLc24qrZWEMYrhHp0lzl+CaDzAhnAO+ujIy8NC
+         G+XpmfX1HYJvIlh2Z8Pn5D9lE4iCVSV1pMAhM=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1749568398; x=1750173198;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=65ULjVl4rrJIRz5u9oI0I6n0CZbIzfiAYDmYsXhmoOY=;
-        b=h037Kf+lBLVomTYRLZ2NN4xiec/XaQe6Wh5FNwVGEI02Imw7MXUODJ5MhSwwRKMpgb
-         +1BMKpFZwV3nu+uD8xoislrdqoC6K+nE4z4cboCV3zLzsjIIVfN7r/xvXg9DhT3d84tC
-         HmuD04PoH3CAHGiT+h/1+VXv8ti88NZXRZFVd7ex+G0E7L0qj1D+BbLDBlAwDKwMkkhh
-         VAseyX0pAu88HZ+rztE4+h381z5NAo2fQ+nM05P3cvgj1Db+n3IQTAVR+xV6BsF5Mhsp
-         zPZKC2gWYY0sjL03Y+h4YCF4HvN4wkQcPRLbgnvnVC9/ACIaA/WOk4nGB3dHCbPKuhcN
-         cv2g==
-X-Gm-Message-State: AOJu0Yy2y7bpfD4D2nn41f4IMB0pnul/spQUrNRIVOUFMN1SqQvn4Lme
-	LfElNNf43PkxHe8O5ZFT2AUGfmexGGl+wepGUxnCu4g3npZom3DyCSdz
-X-Gm-Gg: ASbGncvC+AShKFYTpENEhDoPkGkqVfVvJKNXBRULdq/xzPYRfc1AppC/Dy6Rb3gN3zU
-	Xl/IHGf7ElUVh1WrdobiNohDIRDB/W7y82AfmQbNUuVEj/Fy+UQC288ZKdPHDdJybbSQkeWiA7A
-	rJSt6abPRD+IrQilYmy5QSrQPtk+M/ggSdFX+dmCVGtAlOCP8pM9Tm0P+QVoLb76iXQgMKK4+61
-	77lmHVJk7kg8g9b6Wb2EWwhgHkkvAHS255czqO9Gaz0bas2/PCqmm2XghPxJiLmILqbv7hbPEBQ
-	cEXTl67JgQsWKgLY29FxmIwJkRrfcbERq60W9MKM3Kpkb+CX9dx3b4cdB6t2X8W5XMTjBuBdwOb
-	+y3OC
-X-Google-Smtp-Source: AGHT+IHWiUrn7j2khrIEwDATop/iOVwHMNpCIttJq5UxOEirZJYWiYXFXEu87FyvHgF3IRoAvBqwug==
-X-Received: by 2002:a05:6402:27ca:b0:601:f3f1:f10e with SMTP id 4fb4d7f45d1cf-6077350d9a3mr14878658a12.5.1749568397555;
-        Tue, 10 Jun 2025 08:13:17 -0700 (PDT)
-Received: from [192.168.1.106] ([51.154.145.205])
-        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-607f0847541sm2968276a12.76.2025.06.10.08.13.16
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 10 Jun 2025 08:13:17 -0700 (PDT)
-Message-ID: <96b1e79c-f5e5-4d5f-b609-3ce89757a7bb@gmail.com>
-Date: Tue, 10 Jun 2025 17:13:16 +0200
+        d=1e100.net; s=20230601; t=1749570293; x=1750175093;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=b8kke0TI278GkS8O/niEMXcojcFSTD2bEd39RE0mgk8=;
+        b=hX7mWG2AR7OkNdQObklunk4rPAeVYXT9QLY8tyI86ypgrSfydH3/T39xAA/ogJ+0mT
+         vvayUFo4FWtpa6MZQVxO8jyYb1dKQs5pM6SpSk4NbDVc7LGic3hcwkqSd8oQp/lxRCqt
+         lMC+BjxRe0OX/5KncXHnKle6ce5i6kxizxFC3nAK1sPLa22YWzuZp1NEY8ecGqQm26nO
+         jvVbWogRGxfn+twN21CzAiCWn2+L62G5Z1FEETpDKZiRNcgnXflmPthcKQfwwvVGLz3p
+         GOTwHjcyZ7LXaoT50RX71d1zIWW9IHD2Fkex9stLLuhOreIiB/NUutObzRnjBamzN3h2
+         +FlQ==
+X-Gm-Message-State: AOJu0YwNy2SRM9Rs0Wn6FfsczstX03KQIuleTqknFb/ZPW66jSKZktzx
+	+cYtPMWqVjz+VbJXugPTNb/Rao6hAtWWACEkwcMyOGjI1/QwwAp2mCBqVsJNDj0T0o2gbK9kRrH
+	oxcxPGxB7gK1fSIqytI9t3cR0N5TJAs3bhTs5Y7hvwWlg1RwM/kQELms0JQ==
+X-Gm-Gg: ASbGncvu6Fiiet6TUlCc9EPROnny1HVoF8O3m+c4qdVrn95ACQxWznW+RPlcLb2Womq
+	iHYd/xpJSP+zEaUPz7GoNLAaDli3FkIb0umsQKNsse2dckwqj+ntsztw3Hl1EehI001FhtxmVEn
+	VpJn/2Ww4bCxYJRc0KJYcG5t8TfvaRWCljROWM572L8XxghyeSlTikHkA=
+X-Google-Smtp-Source: AGHT+IEf9WdsX2K03ygAs8wCOgGyu/A55/u3GAYzcjPizGzqe1OVvQ2vqJupbKt+DfAsQHDvl4p6mCUMYW2lEW08tPk=
+X-Received: by 2002:a17:907:d644:b0:ad8:8689:2cc6 with SMTP id
+ a640c23a62f3a-ade1ab2216fmr1524108866b.47.1749570292550; Tue, 10 Jun 2025
+ 08:44:52 -0700 (PDT)
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [OE-core] [yocto] Yocto Project Status 10 June. 2025 (WW23)
-To: Alexander Kanavin <alex.kanavin@gmail.com>
-Cc: yocto@lists.yoctoproject.org, sjolley.yp.pm@gmail.com,
- "openembedded-core@lists.openembedded.org"
- <openembedded-core@lists.openembedded.org>
 References: <CAK5yBb-PRoA1biG6PA_hX_RndM9QqG7G_7ikYFUZE3goEaP-_Q@mail.gmail.com>
- <8ce48df3-b8a2-4b95-96df-bf0fc1ac1eaa@gmail.com>
- <CANNYZj9EQ=xjSXRii-6RYk4uzV6kzztzWCDn1Mo5z8nNyvURhQ@mail.gmail.com>
-Content-Language: en-US
-From: Gyorgy Sarvari <skandigraun@gmail.com>
-In-Reply-To: <CANNYZj9EQ=xjSXRii-6RYk4uzV6kzztzWCDn1Mo5z8nNyvURhQ@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+ <8ce48df3-b8a2-4b95-96df-bf0fc1ac1eaa@gmail.com> <CANNYZj9EQ=xjSXRii-6RYk4uzV6kzztzWCDn1Mo5z8nNyvURhQ@mail.gmail.com>
+ <96b1e79c-f5e5-4d5f-b609-3ce89757a7bb@gmail.com>
+In-Reply-To: <96b1e79c-f5e5-4d5f-b609-3ce89757a7bb@gmail.com>
+From: Etienne Cordonnier <ecordonnier@snap.com>
+Date: Tue, 10 Jun 2025 17:44:41 +0200
+X-Gm-Features: AX0GCFuVQEfyuYH6X6KEh2E0j53xzAJ0Yj4ko8_cXVzHSjxJxaoWQ9szkipxqF4
+Message-ID: <CAHUKmYbqgt0vOeKmwM5iKvXAqAP4wSpM5UP9CE8H++YgC-pMRQ@mail.gmail.com>
+Subject: Re: [OE-core] [yocto] Yocto Project Status 10 June. 2025 (WW23)
+To: yocto@lists.yoctoproject.org, skandigraun@gmail.com
+Cc: Alexander Kanavin <alex.kanavin@gmail.com>, sjolley.yp.pm@gmail.com, 
+	"openembedded-core@lists.openembedded.org" <openembedded-core@lists.openembedded.org>
+Content-Type: multipart/alternative; boundary="000000000000cc31c7063739933f"
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Tue, 10 Jun 2025 15:13:27 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/65502
+ <yocto@lists.yoctoproject.org>; Tue, 10 Jun 2025 15:44:57 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/65503
 
-On 6/10/25 17:04, Alexander Kanavin wrote:
-> On Tue, 10 Jun 2025 at 16:46, Gyorgy Sarvari via
-> lists.openembedded.org <skandigraun=gmail.com@lists.openembedded.org>
-> wrote:
->>>     The clang build time and size increases continue to cause
->>>     significant concern.
->>>
->> Is there more info available on this somewhere? I'd be interested if
->> there are any concrete recipes/configurations where this is showing
->> prominently and could be used as a benchmark. Or is it more like an
->> overall "lot of small things add up to a big one" issue?
-> Please trim quotation lines when replying.
+--000000000000cc31c7063739933f
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+A good starting point in my opinion is to check those 2 things:
+- usage of "LLVM_TARGETS_TO_BUILD=3D" to reduce the number of archs being
+built. This is quite low impact however.
+- usage of "LLVM_PROJECTS =3D "clang;lld${LLDB}" to remove clang-tools-extr=
+a
+from the build per default (last time I checked the recipe didn't build
+when removing clang-tools-extra, so the recipe probably needs to be changed
+for this to work). This was quite high impact on my test setup.
+
+=C3=89tienne
+
+On Tue, Jun 10, 2025 at 5:13=E2=80=AFPM Gyorgy Sarvari via lists.yoctoproje=
+ct.org
+<skandigraun=3Dgmail.com@lists.yoctoproject.org> wrote:
+
+> On 6/10/25 17:04, Alexander Kanavin wrote:
+> > On Tue, 10 Jun 2025 at 16:46, Gyorgy Sarvari via
+> > lists.openembedded.org <skandigraun=3Dgmail.com@lists.openembedded.org>
+> > wrote:
+> >>>     The clang build time and size increases continue to cause
+> >>>     significant concern.
+> >>>
+> >> Is there more info available on this somewhere? I'd be interested if
+> >> there are any concrete recipes/configurations where this is showing
+> >> prominently and could be used as a benchmark. Or is it more like an
+> >> overall "lot of small things add up to a big one" issue?
+> > Please trim quotation lines when replying.
+> >
+> > It's simply the build time of clang-native and clang target recipes. A
+> > huge pile of c++ code, probably the heaviest recipe to build in
+> > oe-core. At the same time clang is a critical path item for mesa (and
+> > thus, anything graphical).
+> >
+> > Alex
+> Ahh, so this is not a regression that could be bisected, but the cost of
+> the new dependencies.
+> Thanks.
 >
-> It's simply the build time of clang-native and clang target recipes. A
-> huge pile of c++ code, probably the heaviest recipe to build in
-> oe-core. At the same time clang is a critical path item for mesa (and
-> thus, anything graphical).
+> -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
+> Links: You receive all messages sent to this group.
+> View/Reply Online (#65502):
+> https://urldefense.proofpoint.com/v2/url?u=3Dhttps-3A__lists.yoctoproject=
+.org_g_yocto_message_65502&d=3DDwIFaQ&c=3DncDTmphkJTvjIDPh0hpF_4vCHvabgGkIC=
+C2epckfdiw&r=3DAhkbNonVuMIGRfPx_Qj9TsRih1DULJTKUkSGa66m67E&m=3DlNilmzl9NGIA=
+ACt9plQHwA29jv7jLEhRC5R5lTyL5jJkvrAUDPw5GGKk1simqOou&s=3Dx-7lAyA_L3PnW-Rnep=
+CxBlSrFglTAHQcwyYBf0Bne_0&e=3D
+> Mute This Topic:
+> https://urldefense.proofpoint.com/v2/url?u=3Dhttps-3A__lists.yoctoproject=
+.org_mt_113571342_7048771&d=3DDwIFaQ&c=3DncDTmphkJTvjIDPh0hpF_4vCHvabgGkICC=
+2epckfdiw&r=3DAhkbNonVuMIGRfPx_Qj9TsRih1DULJTKUkSGa66m67E&m=3DlNilmzl9NGIAA=
+Ct9plQHwA29jv7jLEhRC5R5lTyL5jJkvrAUDPw5GGKk1simqOou&s=3DsUZCGh57KvDCIWkQnVV=
+dz6FMUyMlpVa35X3BWlLWHyw&e=3D
+> Group Owner: yocto+owner@lists.yoctoproject.org
+> Unsubscribe:
+> https://urldefense.proofpoint.com/v2/url?u=3Dhttps-3A__lists.yoctoproject=
+.org_g_yocto_unsub&d=3DDwIFaQ&c=3DncDTmphkJTvjIDPh0hpF_4vCHvabgGkICC2epckfd=
+iw&r=3DAhkbNonVuMIGRfPx_Qj9TsRih1DULJTKUkSGa66m67E&m=3DlNilmzl9NGIAACt9plQH=
+wA29jv7jLEhRC5R5lTyL5jJkvrAUDPw5GGKk1simqOou&s=3DL-KOIYXVkjWWV7JqXS9AHATZCw=
+sy-N_tdvXEXcBBf0M&e=3D
+> [ecordonnier@snap.com]
+> -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
 >
-> Alex
-Ahh, so this is not a regression that could be bisected, but the cost of
-the new dependencies.
-Thanks.
+>
+
+--000000000000cc31c7063739933f
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr">A good starting point in my opinion is to check those 2 th=
+ings:<br>- usage of &quot;LLVM_TARGETS_TO_BUILD=3D&quot; to reduce the numb=
+er of archs being built. This is quite low impact however.<br>- usage of &q=
+uot;LLVM_PROJECTS =3D &quot;clang;lld${LLDB}&quot; to remove clang-tools-ex=
+tra from the build per default (last time I checked the recipe didn&#39;t b=
+uild when removing clang-tools-extra, so the recipe probably needs to be ch=
+anged for this to work). This was quite high impact on my test setup.<br><b=
+r>=C3=89tienne</div><br><div class=3D"gmail_quote gmail_quote_container"><d=
+iv dir=3D"ltr" class=3D"gmail_attr">On Tue, Jun 10, 2025 at 5:13=E2=80=AFPM=
+ Gyorgy Sarvari via <a href=3D"http://lists.yoctoproject.org">lists.yoctopr=
+oject.org</a> &lt;skandigraun=3D<a href=3D"mailto:gmail.com@lists.yoctoproj=
+ect.org">gmail.com@lists.yoctoproject.org</a>&gt; wrote:<br></div><blockquo=
+te class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px =
+solid rgb(204,204,204);padding-left:1ex">On 6/10/25 17:04, Alexander Kanavi=
+n wrote:<br>
+&gt; On Tue, 10 Jun 2025 at 16:46, Gyorgy Sarvari via<br>
+&gt; <a href=3D"http://lists.openembedded.org" rel=3D"noreferrer" target=3D=
+"_blank">lists.openembedded.org</a> &lt;skandigraun=3D<a href=3D"mailto:gma=
+il.com@lists.openembedded.org" target=3D"_blank">gmail.com@lists.openembedd=
+ed.org</a>&gt;<br>
+&gt; wrote:<br>
+&gt;&gt;&gt;=C2=A0 =C2=A0 =C2=A0The clang build time and size increases con=
+tinue to cause<br>
+&gt;&gt;&gt;=C2=A0 =C2=A0 =C2=A0significant concern.<br>
+&gt;&gt;&gt;<br>
+&gt;&gt; Is there more info available on this somewhere? I&#39;d be interes=
+ted if<br>
+&gt;&gt; there are any concrete recipes/configurations where this is showin=
+g<br>
+&gt;&gt; prominently and could be used as a benchmark. Or is it more like a=
+n<br>
+&gt;&gt; overall &quot;lot of small things add up to a big one&quot; issue?=
+<br>
+&gt; Please trim quotation lines when replying.<br>
+&gt;<br>
+&gt; It&#39;s simply the build time of clang-native and clang target recipe=
+s. A<br>
+&gt; huge pile of c++ code, probably the heaviest recipe to build in<br>
+&gt; oe-core. At the same time clang is a critical path item for mesa (and<=
+br>
+&gt; thus, anything graphical).<br>
+&gt;<br>
+&gt; Alex<br>
+Ahh, so this is not a regression that could be bisected, but the cost of<br=
+>
+the new dependencies.<br>
+Thanks.<br>
+<br>
+-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-<br>
+Links: You receive all messages sent to this group.<br>
+View/Reply Online (#65502): <a href=3D"https://urldefense.proofpoint.com/v2=
+/url?u=3Dhttps-3A__lists.yoctoproject.org_g_yocto_message_65502&amp;d=3DDwI=
+FaQ&amp;c=3DncDTmphkJTvjIDPh0hpF_4vCHvabgGkICC2epckfdiw&amp;r=3DAhkbNonVuMI=
+GRfPx_Qj9TsRih1DULJTKUkSGa66m67E&amp;m=3DlNilmzl9NGIAACt9plQHwA29jv7jLEhRC5=
+R5lTyL5jJkvrAUDPw5GGKk1simqOou&amp;s=3Dx-7lAyA_L3PnW-RnepCxBlSrFglTAHQcwyYB=
+f0Bne_0&amp;e=3D" rel=3D"noreferrer" target=3D"_blank">https://urldefense.p=
+roofpoint.com/v2/url?u=3Dhttps-3A__lists.yoctoproject.org_g_yocto_message_6=
+5502&amp;d=3DDwIFaQ&amp;c=3DncDTmphkJTvjIDPh0hpF_4vCHvabgGkICC2epckfdiw&amp=
+;r=3DAhkbNonVuMIGRfPx_Qj9TsRih1DULJTKUkSGa66m67E&amp;m=3DlNilmzl9NGIAACt9pl=
+QHwA29jv7jLEhRC5R5lTyL5jJkvrAUDPw5GGKk1simqOou&amp;s=3Dx-7lAyA_L3PnW-RnepCx=
+BlSrFglTAHQcwyYBf0Bne_0&amp;e=3D</a> <br>
+Mute This Topic: <a href=3D"https://urldefense.proofpoint.com/v2/url?u=3Dht=
+tps-3A__lists.yoctoproject.org_mt_113571342_7048771&amp;d=3DDwIFaQ&amp;c=3D=
+ncDTmphkJTvjIDPh0hpF_4vCHvabgGkICC2epckfdiw&amp;r=3DAhkbNonVuMIGRfPx_Qj9TsR=
+ih1DULJTKUkSGa66m67E&amp;m=3DlNilmzl9NGIAACt9plQHwA29jv7jLEhRC5R5lTyL5jJkvr=
+AUDPw5GGKk1simqOou&amp;s=3DsUZCGh57KvDCIWkQnVVdz6FMUyMlpVa35X3BWlLWHyw&amp;=
+e=3D" rel=3D"noreferrer" target=3D"_blank">https://urldefense.proofpoint.co=
+m/v2/url?u=3Dhttps-3A__lists.yoctoproject.org_mt_113571342_7048771&amp;d=3D=
+DwIFaQ&amp;c=3DncDTmphkJTvjIDPh0hpF_4vCHvabgGkICC2epckfdiw&amp;r=3DAhkbNonV=
+uMIGRfPx_Qj9TsRih1DULJTKUkSGa66m67E&amp;m=3DlNilmzl9NGIAACt9plQHwA29jv7jLEh=
+RC5R5lTyL5jJkvrAUDPw5GGKk1simqOou&amp;s=3DsUZCGh57KvDCIWkQnVVdz6FMUyMlpVa35=
+X3BWlLWHyw&amp;e=3D</a> <br>
+Group Owner: <a href=3D"mailto:yocto%2Bowner@lists.yoctoproject.org" target=
+=3D"_blank">yocto+owner@lists.yoctoproject.org</a><br>
+Unsubscribe: <a href=3D"https://urldefense.proofpoint.com/v2/url?u=3Dhttps-=
+3A__lists.yoctoproject.org_g_yocto_unsub&amp;d=3DDwIFaQ&amp;c=3DncDTmphkJTv=
+jIDPh0hpF_4vCHvabgGkICC2epckfdiw&amp;r=3DAhkbNonVuMIGRfPx_Qj9TsRih1DULJTKUk=
+SGa66m67E&amp;m=3DlNilmzl9NGIAACt9plQHwA29jv7jLEhRC5R5lTyL5jJkvrAUDPw5GGKk1=
+simqOou&amp;s=3DL-KOIYXVkjWWV7JqXS9AHATZCwsy-N_tdvXEXcBBf0M&amp;e=3D" rel=
+=3D"noreferrer" target=3D"_blank">https://urldefense.proofpoint.com/v2/url?=
+u=3Dhttps-3A__lists.yoctoproject.org_g_yocto_unsub&amp;d=3DDwIFaQ&amp;c=3Dn=
+cDTmphkJTvjIDPh0hpF_4vCHvabgGkICC2epckfdiw&amp;r=3DAhkbNonVuMIGRfPx_Qj9TsRi=
+h1DULJTKUkSGa66m67E&amp;m=3DlNilmzl9NGIAACt9plQHwA29jv7jLEhRC5R5lTyL5jJkvrA=
+UDPw5GGKk1simqOou&amp;s=3DL-KOIYXVkjWWV7JqXS9AHATZCwsy-N_tdvXEXcBBf0M&amp;e=
+=3D</a>=C2=A0 [<a href=3D"mailto:ecordonnier@snap.com" target=3D"_blank">ec=
+ordonnier@snap.com</a>]<br>
+-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-<br>
+<br>
+</blockquote></div>
+
+--000000000000cc31c7063739933f--
 
