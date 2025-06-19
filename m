@@ -1,104 +1,62 @@
-Return-Path: <jdowd@slashdevslashnull.org>
+Return-Path: <H.Wulff@kruss.de>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 609CFC7115A
-	for <webhook@archiver.kernel.org>; Thu, 19 Jun 2025 17:19:22 +0000 (UTC)
-Subject: Modpost errors building 3rd party kernel modules outside of the Yocto build
-To: yocto@lists.yoctoproject.org
-From: "John" <jdowd@slashdevslashnull.org>
-X-Originating-Location: Texas, US (165.225.32.100)
-X-Originating-Platform: Windows Chrome 137
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 7514CC7115D
+	for <webhook@archiver.kernel.org>; Thu, 19 Jun 2025 17:35:22 +0000 (UTC)
+Subject: Re: [yocto] do_unpack:append() with dependencies
+To: "Ross Burton" <ross.burton@arm.com>, yocto@lists.yoctoproject.org
+From: "H. Wulff" <H.Wulff@kruss.de>
+X-Originating-Location: Uetersen, Schleswig-Holstein, DE (91.9.179.70)
+X-Originating-Platform: Linux Firefox 139
 User-Agent: GROUPS.IO Web Poster
 MIME-Version: 1.0
-Date: Thu, 19 Jun 2025 10:19:14 -0700
-Message-ID: <RQBh.1750353554781657448.kTj1@lists.yoctoproject.org>
-Content-Type: multipart/alternative; boundary="XVwErDh1DcD3rXZKrfOb"
+Date: Thu, 19 Jun 2025 10:35:14 -0700
+References: <11DCDA4A-CA9F-4D22-A6BF-D0FD45D75AE6@arm.com>
+In-Reply-To: <11DCDA4A-CA9F-4D22-A6BF-D0FD45D75AE6@arm.com>
+Message-ID: <17942.1750354514825841214@lists.yoctoproject.org>
+Content-Type: multipart/alternative; boundary="qesn73UERuygqJxJ8z2o"
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Thu, 19 Jun 2025 17:19:22 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/65525
+ <yocto@lists.yoctoproject.org>; Thu, 19 Jun 2025 17:35:22 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/65526
 
---XVwErDh1DcD3rXZKrfOb
-Content-Type: text/plain; charset="utf-8"
+--qesn73UERuygqJxJ8z2o
+Content-Type: text/plain; charset="utf-8"; markup=markdown
 Content-Transfer-Encoding: quoted-printable
 
-I'm using Yocto scarthgap to build a system for the customer's ppc based pl=
-atform. I have the yocto portion building all of their images. My next step=
- was to take this resultant package and now use the kernel (Linux 6.6.53) a=
-long with it's Module.symvers file to build the customers modules used to a=
-ccess their platform's h/w.
+Hi!
 
-In their Makefile for some of their kernel modules they have this variable:
+Thanks for your reply. You're right, it works now.
 
->=20
-> KBUILD_EXTRA_SYMBOLS =C2=A0=3D $(ARTIFACTS_ROOT)/yocto/kernel-api/Module.=
-symvers
->=20
+> The neatest thing to do here would be either adding iso unpacking support=
+ to bitbake itself
 
-if I leave that in, I will get a flood of errors like the following:
+I was thinking about this, but I couldn't find a starting point in the docu=
+mentation. Do you've a starting point for me? Documentation or file would h=
+elp.
 
->=20
-> ERROR: modpost: vmlinux: 'load_fp_state' exported twice. Previous export
-> was in vmlinux
-> ERROR: modpost: vmlinux: 'store_fp_state' exported twice. Previous export
-> was in vmlinux
-> ERROR: modpost: vmlinux: 'system_state' exported twice. Previous export
-> was in vmlinux
-> ERROR: modpost: vmlinux: 'static_key_initialized' exported twice. Previou=
-s
-> export was in vmlinux
->=20
->=20
+Thank you.
 
-I'm just starting to debug this and I'm wondering if there is anything that=
- I should be looking at in the recipe for the linux kernel? I'm assuming th=
-is is actually a makefile issue on the 3rd party side and not a Yocto recip=
-e mistake but I want to cover all my bases.
-
-Any constructive opinions or advice is very much welcome.
-
-Cheers!!
-
---XVwErDh1DcD3rXZKrfOb
+--qesn73UERuygqJxJ8z2o
 Content-Type: text/html; charset="utf-8"
 Content-Transfer-Encoding: quoted-printable
 
-<div>I'm using Yocto scarthgap to build a system for the customer's ppc bas=
-ed platform. I have the yocto portion building all of their images. My next=
- step was to take this resultant package and now use the kernel (Linux 6.6.=
-53) along with it's Module.symvers file to build the customers modules used=
- to access their platform's h/w.</div>
-<div>&nbsp;</div>
-<div>In their Makefile for some of their kernel modules they have this vari=
-able:&nbsp;</div>
-<div>&nbsp;</div>
-<blockquote>
-<div>KBUILD_EXTRA_SYMBOLS &nbsp;=3D $(ARTIFACTS_ROOT)/yocto/kernel-api/Modu=
-le.symvers</div>
-</blockquote>
-<div>&nbsp;</div>
-<div>if I leave that in, I will get a flood of errors like the following:</=
-div>
-<div>&nbsp;</div>
-<blockquote>
-<div>ERROR: modpost: vmlinux: 'load_fp_state' exported twice. Previous expo=
-rt was in vmlinux<br />ERROR: modpost: vmlinux: 'store_fp_state' exported t=
-wice. Previous export was in vmlinux<br />ERROR: modpost: vmlinux: 'system_=
-state' exported twice. Previous export was in vmlinux<br />ERROR: modpost: =
-vmlinux: 'static_key_initialized' exported twice. Previous export was in vm=
-linux</div>
-<div>&nbsp;</div>
-</blockquote>
-<div>I'm just starting to debug this and I'm wondering if there is anything=
- that I should be looking at in the recipe for the linux kernel? I'm assumi=
-ng this is actually a makefile issue on the 3rd party side and not a Yocto =
-recipe mistake but I want to cover all my bases.</div>
-<div>&nbsp;</div>
-<div>Any constructive opinions or advice is very much welcome.</div>
-<div>&nbsp;</div>
-<div>Cheers!!</div>
+<p>Hi!</p>
 
---XVwErDh1DcD3rXZKrfOb--
+<p>Thanks for your reply. You're right, it works now.</p>
+
+<blockquote>
+<p>The neatest thing to do here would be either adding iso unpacking suppor=
+t to bitbake itself</p>
+</blockquote>
+
+<p>I was thinking about this, but I couldn't find a starting point in the d=
+ocumentation. Do you've a starting point for me? Documentation or file woul=
+d help.</p>
+
+<p>Thank you.</p>
+
+--qesn73UERuygqJxJ8z2o--
 
