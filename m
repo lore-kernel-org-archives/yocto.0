@@ -1,246 +1,116 @@
-Return-Path: <yoann.congal@smile.fr>
+Return-Path: <alex.kanavin@gmail.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 15236C77B7F
-	for <webhook@archiver.kernel.org>; Tue, 24 Jun 2025 18:02:12 +0000 (UTC)
-Received: from mail-wm1-f43.google.com (mail-wm1-f43.google.com [209.85.128.43])
- by mx.groups.io with SMTP id smtpd.web10.2823.1750788128540417771
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 62F53C7EE2A
+	for <webhook@archiver.kernel.org>; Wed, 25 Jun 2025 13:56:50 +0000 (UTC)
+Received: from mail-qv1-f47.google.com (mail-qv1-f47.google.com [209.85.219.47])
+ by mx.groups.io with SMTP id smtpd.web10.15952.1750859808335560809
  for <yocto@lists.yoctoproject.org>;
- Tue, 24 Jun 2025 11:02:08 -0700
+ Wed, 25 Jun 2025 06:56:48 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@smile.fr header.s=google header.b=Px2DwAvy;
- spf=pass (domain: smile.fr, ip: 209.85.128.43, mailfrom: yoann.congal@smile.fr)
-Received: by mail-wm1-f43.google.com with SMTP id 5b1f17b1804b1-451d6ade159so42733635e9.1
-        for <yocto@lists.yoctoproject.org>; Tue, 24 Jun 2025 11:02:08 -0700 (PDT)
+ dkim=pass header.i=@gmail.com header.s=20230601 header.b=b3X0iwuf;
+ spf=pass (domain: gmail.com, ip: 209.85.219.47, mailfrom: alex.kanavin@gmail.com)
+Received: by mail-qv1-f47.google.com with SMTP id 6a1803df08f44-6ecf99dd567so80589006d6.0;
+        Wed, 25 Jun 2025 06:56:48 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=smile.fr; s=google; t=1750788127; x=1751392927; darn=lists.yoctoproject.org;
-        h=to:subject:message-id:date:from:in-reply-to:references:mime-version
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=JuYadaaaJK3ijGeDAhw05rs1BrOn0SvdsV+N2G2ZVQU=;
-        b=Px2DwAvyVfiQc+EKao3cPnyZKIQ2/sYj9JKGOLchRd+fVAJiwnv1QHT6p1oifMFhpS
-         9k28sYOaZPIkIwbcn6Tx2/nV4hKmXqEaOKHU5A+9nJEWytY3kJ4il/BXYos+U/bI0aFT
-         tXV3L9XSHxPi0leJoFVYIBmCW2lxEfRjYUuTA=
+        d=gmail.com; s=20230601; t=1750859807; x=1751464607; darn=lists.yoctoproject.org;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=TO6bS55TGLKoK5sv35n0MZNbsOp0ani7xk2IKmTuWjI=;
+        b=b3X0iwufISat2Q+EbXjdNJVZp9wxB9VRdk5OQ+AAy3pcE0KqibbTd352Bo6i2pJ4kI
+         +j3b4ZPXU+MVPXX4gnKzv5RtQl8J0fYkRMJ+FdXCx0TPQTsfsw06NoQVq59Dz0CWvKRE
+         LnYDr+J1N8WNpfrj+XUfa6H3KAnqKxasO/sjKga5cT1Ip80UqE37i7nbZKLXEZvvX9TW
+         tZUNi7RZ9Bz7XbtbYF6sE0BKujB1XxjfOA5o4lJsSP69beUrNJev2seW5VsyjvPcxH0v
+         NXelQt078+NpvJYvImowK7fhhcGgUUKa8butRcUMgdT0sJoHE2s/FDOYiLiHZ58izPdK
+         8rkg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1750788127; x=1751392927;
-        h=to:subject:message-id:date:from:in-reply-to:references:mime-version
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=JuYadaaaJK3ijGeDAhw05rs1BrOn0SvdsV+N2G2ZVQU=;
-        b=BvizhVnKkWDhU+/PIa/4FuSkXCd+Jl+8ZutzRjuXHcoHgNDolzBXeUPeEBFUQnEPcW
-         ocVoCYEgOKdVimut4VRKalAlZ85Gm6DPHoJN/gobtIIuMqEJO4F5sFyE7n3fpKVQqXNz
-         dhJlhMVbCfVEWIX89RBtbFKW5s3Z1EKSuCHd3rKfeuV7sIvd6C2U8kj/JIA+sSDRyt1A
-         uiyzaNWA631EzST/MZ/QACj0ZKH8DXJXgfeABOgztHvQz7vgjtIGbhuVvmtrD4jJzyMd
-         cjLbbHyK1ws48oaobM9WjY8Dm0BgJp+YJ6kRe4o+zAsRMiRsS+jzu3Ru3XDKaWlwU94V
-         Lldg==
-X-Gm-Message-State: AOJu0YzBqCn1TaqitqRwxJkij6bEAzg6hSE3qb9NStKpX0hPd0e0T+wm
-	/ezIjIyCjM6I2Q7k/wMCBlIO3UOLrN+KzDs1nCIuckHNbpbn8kakfPyudfEANsKooD8D0wgX1My
-	oxKYa4cBH+iwR/cOAuqHVfTiHPBY6z+rrf7V5hqztZbVvy974kXIzKGQvqA==
-X-Gm-Gg: ASbGncs5eG9fR7xi1t8Z+tg0eO942bLNZswkyOyPAg/fwASzR3mJGgTFtMhAcukzd+K
-	GJ1QZYe5cV5+A07q7kT+V461UnfkJXguZTJ3JEpHT/gITzV7wItAZcVY1GH6tpHvg2AqBtaxZ4h
-	pWF33B2kN4Mxaz4zl1YrkMFqlIc0yzNAMqOTiowfy0bX0Gemq4+tC2VDLRZUXEvd6JnFzVb+7zE
-	cHf8A==
-X-Google-Smtp-Source: AGHT+IFCF7CPGyZT2NGzgyP8piU7/pRj4MM1fno+0Sa/DUFj2T9bv4/HjQbB2pyuIcqLvVUBxdPsU+McqolsCoKlb1o=
-X-Received: by 2002:a05:600c:1f0e:b0:450:d5bf:6720 with SMTP id
- 5b1f17b1804b1-453653a33d9mr204988255e9.3.1750788126350; Tue, 24 Jun 2025
- 11:02:06 -0700 (PDT)
+        d=1e100.net; s=20230601; t=1750859807; x=1751464607;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=TO6bS55TGLKoK5sv35n0MZNbsOp0ani7xk2IKmTuWjI=;
+        b=ZmVGYNT19wVstjFMsjHE4O6QtZBSzKJefDB1AeRKmIqEsbGxUW9yeH/1Kd8CXCHGyJ
+         R9+TqUtqNNjm61x2ADByUDMoihlIMd8d7FWPWWEjKeHxxtwUCGjYTAlhQJdLAqcKYSU4
+         BD9n5YUZSF+hCVzIrdmGixPJ2m9D4bpA8b60FjMgCj1Wu5otjCR2X22Blro8xyIwH7Pb
+         4FIhMptTQTQMewSacHkWWY5CaZShlQc7nuwsqWOgKgdEORBTfm+Jwih5IMr4g0Lh+kuM
+         8gj0wXO3cGDp5vklxxaaD3lHA7bXUC7qnhVaF34DXiJMc67vViI0jNf6MmkZeq9iy4vU
+         0iFw==
+X-Forwarded-Encrypted: i=1; AJvYcCV8s9aQR/Nkm5lvd7d7jDLe7a+CArviuCNH5lOEnyFQys0VJNUXO+F+wpAY1ccQEDUXS5g4@lists.yoctoproject.org, AJvYcCVlwLO0CAMXKJRZKsiVEFACFRM1UGv5NacXbOjBRsloLCe5cLNDWj7CzfOlJ2mTnz30keSyCCE=@lists.yoctoproject.org
+X-Gm-Message-State: AOJu0YxnbW1UYPqod7iofH3dY3qduF2vbKhhx4YTa9SmZT160pHOYb79
+	aQkDp3XQQFj624DrLrAUzyQP29OPyl6HjRBy0fiykMpA14IwD1XAa2e12IItukX1hgjphUzoEJZ
+	rAv+lLSdR3PrrPd4cKAzVk94oFVX2jlQ=
+X-Gm-Gg: ASbGncsSyhNOQFDF8D+QuS4eMoRycfvfki+OlML/OeN2sfsfosV4KCg05ghkNEzX0gw
+	ah3e5Iz2EPvUI0yS0KPMSrWRWJKJCD2qtwJ9LdlGbIcImiqARhHE09TbIuR9yApH7nwNz5XaNRA
+	a3utfKqhHB9CbuFLlqIlCp1L2TSJABb06NtM//HB6ejXAazME12eQA+1aXvohwF6sWn49ihfwZj
+	1EWuQ==
+X-Google-Smtp-Source: AGHT+IFgxhHKN2m/Xijqg5QqK542/8hM3Xxl+EPW+Bli+BCzWuX3ZeaCP4wSkEY2Twob6vovqvr9lG9lFePKhLhYW6U=
+X-Received: by 2002:a05:6214:5b08:b0:6fb:4f9e:957b with SMTP id
+ 6a1803df08f44-6fd5efe3678mr42763286d6.43.1750859806794; Wed, 25 Jun 2025
+ 06:56:46 -0700 (PDT)
 MIME-Version: 1.0
-References: <7002abdd-c152-47f0-a5cd-f06fa20d4fea@ibeeto.com>
-In-Reply-To: <7002abdd-c152-47f0-a5cd-f06fa20d4fea@ibeeto.com>
-From: Yoann Congal <yoann.congal@smile.fr>
-Date: Tue, 24 Jun 2025 20:01:40 +0200
-X-Gm-Features: Ac12FXyhLWoc-u2yrD1uY43MloxzecgJ_CO1ydNtIq11BWMbVMm9RnxgkzqSpJI
-Message-ID: <CAMSfU+6pczmddDTG8tsU46Z71Y-rzpfHFFxRqc3qeYX7r3=eig@mail.gmail.com>
-Subject: Re: [yocto] Scarthgap native build errors
-To: yocto@lists.yoctoproject.org, rudolf.streif@ibeeto.com
-Content-Type: multipart/alternative; boundary="000000000000594559063855201b"
+References: <20250623165507.1633860-1-alex.kanavin@gmail.com>
+ <6fb30604dfb196088f07c6b59f437eeb0f1df788.camel@linuxfoundation.org>
+ <CANNYZj8bcMto=-OHPNEZs_aEM4vr9K1ujVOZ77EDBT-9xC5sRw@mail.gmail.com>
+ <749dde0c3ed74dc938085cd15316245eeaa15cc4.camel@linuxfoundation.org> <184C05EBFBF7A622.2779@lists.yoctoproject.org>
+In-Reply-To: <184C05EBFBF7A622.2779@lists.yoctoproject.org>
+From: Alexander Kanavin <alex.kanavin@gmail.com>
+Date: Wed, 25 Jun 2025 15:56:35 +0200
+X-Gm-Features: Ac12FXyr7uMBrxODu0dypy1FJaxeL6Waiut6t37Je0bbsQnDq8p9hDsYddZDTLs
+Message-ID: <CANNYZj-1im-sOPEGV8Pwph5gqqf8Kstay6mpwi1sMdiMZ-GzDQ@mail.gmail.com>
+Subject: Re: [poky] [PATCH 1/2] meta-poky/conf/templates/default/bblayers.conf.sample:
+ do not assume integrated poky repo
+To: alex.kanavin@gmail.com
+Cc: Richard Purdie <richard.purdie@linuxfoundation.org>, poky@lists.yoctoproject.org, 
+	bitbake-devel <bitbake-devel@lists.openembedded.org>, 
+	Yocto-mailing-list <yocto@lists.yoctoproject.org>
+Content-Type: text/plain; charset="UTF-8"
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Tue, 24 Jun 2025 18:02:12 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/65543
+ <yocto@lists.yoctoproject.org>; Wed, 25 Jun 2025 13:56:50 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/65544
 
---000000000000594559063855201b
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+On Tue, 24 Jun 2025 at 18:01, Alexander Kanavin via
+lists.yoctoproject.org <alex.kanavin=gmail.com@lists.yoctoproject.org>
+wrote:
 
-Hello,
+> I think that's actually not too horrible. Should I try to prototype
+> this? One nice consequence is that it makes templates optional for
+> those who do not like them: one could instead set the build entirely
+> from just a list of fragments (machine/distro built-ins at a minimum
+> :) and layer ids. Having to maintain templates for any possible layer
+> combination doesn't scale, same way as on-disk fragments for
+> machines/distros wouldn't scale.
 
-Le mar. 24 juin 2025 =C3=A0 19:06, Rudolf J Streif via lists.yoctoproject.o=
-rg
-<rudolf.streif=3Dibeeto.com@lists.yoctoproject.org> a =C3=A9crit :
+After some 'background brain processing', I've convinced myself that
+the best way out is that bitbake-setup would be able to write out
+bblayers.conf itself directly, from its own configuration file. Yes,
+like kas does :) I've resisted this for a long time, on the principle
+that bitbake-setup has no business directly meddling in build/conf/,
+but really, every other option is not as good.
 
-> I am building on Fedora Core 42 with gcc 15.1. I am currently seeing two
-> strange errors when building native packages for cmake-native and
-> git-native:
->
-> cmake-native:
->
->
-> tcu-firmware/build/tmp/work/x86_64-linux/cmake-native/3.28.3/cmake-3.28.3=
-/Utilities/cmcppdap/include/dap/network.h:31:39
+So, a configuration entry could look like this:
 
-error: =E2=80=98uint32_t=E2=80=99 has not been declared
-> |    31 |                                       uint32_t timeoutMillis =
-=3D
-> 0);
-> |       |                                       ^~~~~~~~
->
-> This can of course easily be fixed by including <cstdint>. However, it's
-> still strange that this is happening and it's the first time that I am
-> seeing this.
->
->
-> git-native:
->
-> | reflog.c:211:104: error: macro =E2=80=98unreachable=E2=80=99 passed 3 a=
-rguments, but
-> takes just 0
-> |   211 | static int unreachable(struct expire_reflog_policy_cb *cb,
-> struct commit *commit, struct object_id *oid)
-> | | ^
-> | In file included from git-compat-util.h:225,
-> |                  from reflog.c:1:
-> | /usr/lib/gcc/x86_64-redhat-linux/15/include/stddef.h:468:9: note:
-> macro =E2=80=98unreachable=E2=80=99 defined here
-> |   468 | #define unreachable() (__builtin_unreachable ())
-> |       |         ^~~~~~~~~~~
->
-> The weird thing with this issue is that line 211 in reflog.c declares
-> the function unreachable() with three parameters. However, the compiler
-> interprets it as the macro unreachable for stddef.h being called.
-> Unfortunately, I don't have a solution for this.
->
+            "qemux86-64-poky": {
+                "description": "Poky reference distro build for qemux86-64",
+                "bb-layers":
+["openembedded-core/meta","meta-yocto/meta-poky","meta-yocto/meta-yocto-bsp"],
+                "oe-fragments":
+["machine/qemux86-64","distro/poky","core/yocto/sstate-mirror-cdn"],
+                "targets": ["bitbake core-image-minimal
+core-image-full-cmdline core-image-sato-sdk core-image-weston"]
+            },
 
-Looking at your cmake version, you are on Scarthgap.
-Fedora Core 42 is not a supported distribution for Scarthgap :
-https://docs.yoctoproject.org/5.0.10/ref-manual/system-requirements.html#su=
-pported-linux-distributions
-So, the official solution is to use a supported build OS (as a container
-for example).
+and would not require templates at all.
 
-FYI, Fedora Core 42 is not even tested on master right now so it is
-definitely too recent for scarthgap.
+Bitbake-setup would write out bblayers.conf with BBLAYERS entry
+('bitbake-layers add-layer' can't be used at that point yet), and then
+enable fragments via bitbake-config-build (this is already
+implemented). This should result in a functional build directory, with
+a blank (or absent) local.conf.
 
-Regards,
+Then this patch, and the ones adding 'blank' templates become unnecessary.
 
-
-> Thanks,
-> Rudi
->
->
-> -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
-> Links: You receive all messages sent to this group.
-> View/Reply Online (#65542):
-> https://lists.yoctoproject.org/g/yocto/message/65542
-> Mute This Topic: https://lists.yoctoproject.org/mt/113810984/4316185
-> Group Owner: yocto+owner@lists.yoctoproject.org
-> Unsubscribe: https://lists.yoctoproject.org/g/yocto/unsub [
-> yoann.congal@smile.fr]
-> -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
->
->
-
---=20
-Yoann Congal
-Smile ECS
-
---000000000000594559063855201b
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr"><div>Hello,</div><br><div class=3D"gmail_quote gmail_quote=
-_container"><div dir=3D"ltr" class=3D"gmail_attr">Le=C2=A0mar. 24 juin 2025=
- =C3=A0=C2=A019:06, Rudolf J Streif via <a href=3D"http://lists.yoctoprojec=
-t.org">lists.yoctoproject.org</a> &lt;rudolf.streif=3D<a href=3D"mailto:ibe=
-eto.com@lists.yoctoproject.org">ibeeto.com@lists.yoctoproject.org</a>&gt; a=
- =C3=A9crit=C2=A0:<br></div><blockquote class=3D"gmail_quote" style=3D"marg=
-in:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1e=
-x">I am building on Fedora Core 42 with gcc 15.1. I am currently seeing two=
- <br>
-strange errors when building native packages for cmake-native and <br>
-git-native:<br>
-<br>
-cmake-native:<br>
-<br>
-tcu-firmware/build/tmp/work/x86_64-linux/cmake-native/3.28.3/cmake-3.28.3/U=
-tilities/cmcppdap/include/dap/network.h:31:39</blockquote><blockquote class=
-=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rg=
-b(204,204,204);padding-left:1ex">
-error: =E2=80=98uint32_t=E2=80=99 has not been declared<br>
-|=C2=A0=C2=A0=C2=A0 31 |=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0 uint32_t timeoutMillis =3D 0);<br>
-|=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 ^~~~~~~~<br>
-<br>
-This can of course easily be fixed by including &lt;cstdint&gt;. However, i=
-t&#39;s <br>
-still strange that this is happening and it&#39;s the first time that I am =
-<br>
-seeing this.<br>
-<br>
-<br>
-git-native:<br>
-<br>
-| reflog.c:211:104: error: macro =E2=80=98unreachable=E2=80=99 passed 3 arg=
-uments, but <br>
-takes just 0<br>
-|=C2=A0=C2=A0 211 | static int unreachable(struct expire_reflog_policy_cb *=
-cb, <br>
-struct commit *commit, struct object_id *oid)<br>
-| | ^<br>
-| In file included from git-compat-util.h:225,<br>
-|=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 from reflog.c:1:<br>
-| /usr/lib/gcc/x86_64-redhat-linux/15/include/stddef.h:468:9: note: <br>
-macro =E2=80=98unreachable=E2=80=99 defined here<br>
-|=C2=A0=C2=A0 468 | #define unreachable() (__builtin_unreachable ())<br>
-|=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0 ^~~~~~~~~~~<br>
-<br>
-The weird thing with this issue is that line 211 in reflog.c declares <br>
-the function unreachable() with three parameters. However, the compiler <br=
->
-interprets it as the macro unreachable for stddef.h being called. <br>
-Unfortunately, I don&#39;t have a solution for this.<br></blockquote><div><=
-br></div><div><div>Looking at your cmake version, you are on Scarthgap.</di=
-v><div>Fedora Core 42 is not a supported distribution for Scarthgap :=C2=A0=
-<a href=3D"https://docs.yoctoproject.org/5.0.10/ref-manual/system-requireme=
-nts.html#supported-linux-distributions">https://docs.yoctoproject.org/5.0.1=
-0/ref-manual/system-requirements.html#supported-linux-distributions</a></di=
-v><div>So, the official solution is to use a supported build OS (as a conta=
-iner for example).</div><div><br></div><div>FYI, Fedora Core 42 is not even=
- tested on master right now so it is definitely too recent for scarthgap.</=
-div><div><br></div><div>Regards,</div></div><div>=C2=A0</div><blockquote cl=
-ass=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid=
- rgb(204,204,204);padding-left:1ex">
-Thanks,<br>
-Rudi<br>
-<br>
-<br>
--=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-<br>
-Links: You receive all messages sent to this group.<br>
-View/Reply Online (#65542): <a href=3D"https://lists.yoctoproject.org/g/yoc=
-to/message/65542" rel=3D"noreferrer" target=3D"_blank">https://lists.yoctop=
-roject.org/g/yocto/message/65542</a><br>
-Mute This Topic: <a href=3D"https://lists.yoctoproject.org/mt/113810984/431=
-6185" rel=3D"noreferrer" target=3D"_blank">https://lists.yoctoproject.org/m=
-t/113810984/4316185</a><br>
-Group Owner: <a href=3D"mailto:yocto%2Bowner@lists.yoctoproject.org" target=
-=3D"_blank">yocto+owner@lists.yoctoproject.org</a><br>
-Unsubscribe: <a href=3D"https://lists.yoctoproject.org/g/yocto/unsub" rel=
-=3D"noreferrer" target=3D"_blank">https://lists.yoctoproject.org/g/yocto/un=
-sub</a> [<a href=3D"mailto:yoann.congal@smile.fr" target=3D"_blank">yoann.c=
-ongal@smile.fr</a>]<br>
--=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-<br>
-<br>
-</blockquote></div><div><br clear=3D"all"></div><br><span class=3D"gmail_si=
-gnature_prefix">-- </span><br><div dir=3D"ltr" class=3D"gmail_signature"><d=
-iv dir=3D"ltr"><font face=3D"Raleway, regular">Yoann Congal</font><div><fon=
-t face=3D"Raleway, regular">Smile ECS</font></div></div></div></div>
-
---000000000000594559063855201b--
+Alex
 
