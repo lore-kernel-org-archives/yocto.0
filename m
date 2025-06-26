@@ -1,114 +1,144 @@
-Return-Path: <ashie@clear-code.com>
+Return-Path: <f.bauer@igi-systems.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 50698C77B7F
-	for <webhook@archiver.kernel.org>; Thu, 26 Jun 2025 08:12:41 +0000 (UTC)
-Received: from mail.clear-code.com (mail.clear-code.com [153.126.203.179])
- by mx.groups.io with SMTP id smtpd.web10.3411.1750925555742701751
- for <yocto@lists.yoctoproject.org>;
- Thu, 26 Jun 2025 01:12:36 -0700
-Authentication-Results: mx.groups.io;
- dkim=fail reason="dkim: body hash did not verify" header.i=@clear-code.com header.s=default header.b=W8ttrYzZ;
- spf=pass (domain: clear-code.com, ip: 153.126.203.179, mailfrom: ashie@clear-code.com)
-Received: from [IPV6:240f:104:fde7:1:327c:2296:65f4:4838] (unknown [IPv6:240f:104:fde7:1:327c:2296:65f4:4838])
-	by mail.clear-code.com (Postfix) with ESMTPSA id 471966CB40E
-	for <yocto@lists.yoctoproject.org>; Thu, 26 Jun 2025 17:12:31 +0900 (JST)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mail.clear-code.com 471966CB40E
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=clear-code.com;
-	s=default; t=1750925551;
-	bh=QoxDUAAtmk1XD1Jww5frvWGOj2voAyVHizm/7wakf4g=;
-	h=Date:Subject:To:References:From:In-Reply-To:From;
-	b=W8ttrYzZnRIPiPOEjFNqiz9P2Xmim4T7KQWphHfWWWFG4KMlHTA9iDOqHtrm22HbJ
-	 c9WAhNcwnIWcQILNaNvqMQjSlOG2w2o/2OXuzDNtaccH3rW8HPOtpl+HiVsVWHuyuQ
-	 xGWMZFdinh0v8IzrJ5/KY8ZiHbWKyNr5se1dSwCY=
-Message-ID: <68dcffab-ef3f-4643-baab-7b5c8015b7a1@clear-code.com>
-Date: Thu, 26 Jun 2025 17:13:46 +0900
-MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [yocto] Virtual Keyboard on Wayland
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 8D9F3C7EE31
+	for <webhook@archiver.kernel.org>; Thu, 26 Jun 2025 15:24:53 +0000 (UTC)
+Subject: psplash tries to mount an empty PSPLASH_FIFO_DIR, leading to image runtime problems
 To: yocto@lists.yoctoproject.org
-References: <C42u.1750681341370467311.Q2We@lists.yoctoproject.org>
-From: Takuro Ashie <ashie@clear-code.com>
-Content-Language: en-US
-Autocrypt: addr=ashie@clear-code.com; keydata=
- xjMEYtYYFhYJKwYBBAHaRw8BAQdAziKfZS7O6rOpUNL17C32vnGBMsc1zS7ivA3Usyn5VgzN
- I1Rha3VybyBBc2hpZSA8YXNoaWVAY2xlYXItY29kZS5jb20+wpAEExYIADgWIQSXCf+R8K1p
- +5Wm2h5i6kZhv4sNSQUCYtYYFgIbAwULCQgHAgYVCgkICwIEFgIDAQIeAQIXgAAKCRBi6kZh
- v4sNSRgVAP96vWSpnCr900XPA5BnRZCth42U3PvAbqeS4Wf30zXnnQEA+kiykMUUKPl2mV9A
- fxAT2d2ic9M4BfgpKBmi16O8XA/OOARi1hgWEgorBgEEAZdVAQUBAQdAMgdHtdkBTlRVpiRc
- G7IAPw4AMCxBa7TyEDRaI59H0ggDAQgHwngEGBYIACAWIQSXCf+R8K1p+5Wm2h5i6kZhv4sN
- SQUCYtYYFgIbDAAKCRBi6kZhv4sNSYCxAP0YOCKnW7ymXf3pNjD2ofVu74/E+8qHub7TqP81
- Litb9AEAm4TS7LKVmhquEwBFt8yXumIbd4NQSy4Uqh4nbY0PTwg=
-In-Reply-To: <C42u.1750681341370467311.Q2We@lists.yoctoproject.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-X-Rspamd-Queue-Id: 471966CB40E
-X-Rspamd-Server: mail.clear-code.com
-X-Spamd-Result: default: False [-0.10 / 999.00];
-	MIME_GOOD(-0.10)[text/plain];
-	FROM_HAS_DN(0.00)[];
-	RSPAMD_URIBL_FAIL(0.00)[yoctoproject.org:server fail];
-	ARC_NA(0.00)[];
-	MIME_TRACE(0.00)[0:+];
-	ASN(0.00)[asn:2516, ipnet:240f:100::/24, country:JP];
-	RSPAMD_EMAILBL_FAIL(0.00)[ashie.clear-code.com:server fail];
-	RCVD_COUNT_ZERO(0.00)[0];
-	TO_MATCH_ENVRCPT_ALL(0.00)[];
-	MID_RHS_MATCH_FROM(0.00)[];
-	FROM_EQ_ENVFROM(0.00)[];
-	TO_DN_NONE(0.00)[];
-	RCPT_COUNT_ONE(0.00)[1]
-X-Rspamd-Action: no action
-Content-Transfer-Encoding: quoted-printable
+From: "falk bauer" <f.bauer@igi-systems.com>
+X-Originating-Location: =?UTF-8?B?RMO8c3NlbGRvcmYsIE5vcnRoIFJoaW5lLVdlc3RwaGFsaWEsIERF?= (80.152.229.14)
+X-Originating-Platform: Windows Firefox 140
+User-Agent: GROUPS.IO Web Poster
+MIME-Version: 1.0
+Date: Thu, 26 Jun 2025 08:24:48 -0700
+Message-ID: <99vh.1750951488712427945.NMQr@lists.yoctoproject.org>
+Content-Type: multipart/alternative; boundary="z7lyNizNLruvtFJBkz9R"
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Thu, 26 Jun 2025 08:12:41 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/65549
+ <yocto@lists.yoctoproject.org>; Thu, 26 Jun 2025 15:24:53 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/65550
 
-Hi.
+--z7lyNizNLruvtFJBkz9R
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
 
-On 2025/06/23 21:22, matteo.orlandini via lists.yoctoproject.org wrote:
-> I'm searching for a virtual keyboard to use with Yocto Scarthgap and my=
- Python 3.12 application that uses GTK 3. I'm using weston version 12.0.4=
- and I saw that weston keyboard is not compatible with GTK 3.
+Hi all,
 
-You can use weston-keyboard with GTK3 on Weston if you install an appropr=
-iate IM
-module for GTK3 that support text-input-v1 protocol of Wayland.
+Here is an issue with psplash and an empty env var PSPLASH_FIFO_DIR:
 
-We are developing such module:
+The script file psplash.sh tries to mount the PSPLASH_FIFO_DIR variable.
+If the variable is empty, the mountpoint command returns an error code
+(busybox mountpoint here, util-linux mountpoint behaves the same):
 
- =C2=A0 https://gitlab.com/clear-code/gtk-wayland-textinputv1
+BusyBox v1.37.0 () multi-call binary.
+Usage: mountpoint [-q] { [-dn] DIR | -x DEVICE }
+:~# BusyBox v1.37.0 () multi-call binary
 
-We have also a yocto recipe for it:
+The return code with this console output is 0 and the if statement is execu=
+ted.
+And what this situation makes even more worse is the fact that the mount
+command with an empty argument mounts /run again. This overlay the existing=
+ run
+directory with all kinds of problems. On our device the USB-based HIDs were=
+ lost.
+The source code of psplash respects an empty PSPLASH_FIFO_DIR variable
+(see psplash.c) and makes a fallback to "/run". So i think the psplash.sh s=
+cript
+should also respect the empty var.
 
-https://gitlab.com/clear-code/meta-inputmethod/-/tree/master/recipes-gnom=
-e/gtk-wayland-textinputv1
+Attached is a patch which fixes this issue for us so far. As this is the fi=
+rst time i write to one
+of the mailing lists of yocto i post it here instead of e.g. yocto-patches.
+Any hints how to process further on are really appreciated.
 
-Although it's not support scarthgap yet, not so difficult to port.
+Thanks,
+Falk
 
+meta/recipes-core/psplash/files/psplash-init | 8 +++++---
+1 file changed, 5 insertions(+), 3 deletions(-)
+diff --git a/meta/recipes-core/psplash/files/psplash-init b/meta/recipes-co=
+re/psplash/files/psplash-init
+index e0f80bcdc0..5411943245 100644
+--- a/meta/recipes-core/psplash/files/psplash-init
++++ b/meta/recipes-core/psplash/files/psplash-init
+@@ -26,9 +26,11 @@ for x in $CMDLINE; do
+esac
+done
 
-> I tried to compile squeekboard but I got this error:
+-[ -d $PSPLASH_FIFO_DIR ] || mkdir -p $PSPLASH_FIFO_DIR
+-if ! mountpoint -q $PSPLASH_FIFO_DIR; then
+- =C2=A0 =C2=A0 =C2=A0 mount tmpfs -t tmpfs $PSPLASH_FIFO_DIR -o,size=3D40k
++if [ ! -z ${PSPLASH_FIFO_DIR} ]; then
++ =C2=A0 =C2=A0 =C2=A0 =C2=A0[ -d $PSPLASH_FIFO_DIR ] || mkdir -p $PSPLASH_=
+FIFO_DIR
++ =C2=A0 =C2=A0 =C2=A0 =C2=A0if ! mountpoint -q $PSPLASH_FIFO_DIR ; then
++ =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0mount tmpfs -t tmp=
+fs $PSPLASH_FIFO_DIR -o,size=3D40k
++ =C2=A0 =C2=A0 =C2=A0 =C2=A0fi
+fi
 
-Even if you finally success to build it, probably you can not use it on y=
-our system.
-It requires some wayland protocols that aren't supported by Weston:
-https://github.com/droidian/squeekboard?tab=3Dreadme-ov-file#what-the-com=
-positor-has-to-support
-
-
-We are also developing a virtual keyboad software for Wayland (mainly for=
- Weston):
-
- =C2=A0 https://github.com/clear-code/fcitx5-virtualkeyboard-ui
-
-Unfortunately we don't publish the yocto recipe for it in some reason.
-But creating it based on above meta-inputmethod layer isn't so difficult.
-
-Regards,
-
+rotation=3D0
 --
-Takuro Ashie <ashie@clear-code.com>
+2.43.0
 
+--z7lyNizNLruvtFJBkz9R
+Content-Type: text/html; charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div>Hi all,</div>
+<div>&nbsp;</div>
+<div>Here is an issue with psplash and an empty env var PSPLASH_FIFO_DIR:</=
+div>
+<div>&nbsp;</div>
+<div>The script file psplash.sh tries to mount the PSPLASH_FIFO_DIR variabl=
+e.</div>
+<div>
+<div>If the variable is empty, the mountpoint command returns an error code=
+<br />(busybox mountpoint here, util-linux mountpoint behaves the same):</d=
+iv>
+<div>&nbsp;</div>
+<div>BusyBox v1.37.0 () multi-call binary.</div>
+<div>Usage: mountpoint [-q] { [-dn] DIR | -x DEVICE }<br />:~# BusyBox v1.3=
+7.0 () multi-call binary</div>
+<div>&nbsp;</div>
+<div>The return code with this console output is 0 and the if statement is =
+executed.</div>
+<div>And what this situation makes even more worse is the fact that the mou=
+nt<br />command with an empty argument mounts /run again. This overlay the =
+existing run<br />directory with all kinds of problems. On our device the U=
+SB-based HIDs were lost.</div>
+<div>The source code of psplash respects an empty PSPLASH_FIFO_DIR variable=
+<br />(see psplash.c) and makes a fallback to "/run". So i think the psplas=
+h.sh script<br />should also respect the empty var.</div>
+<div>&nbsp;</div>
+<div>Attached is a patch which fixes this issue for us so far. As this is t=
+he first time i write to one</div>
+<div>of the mailing lists of yocto i post it here instead of e.g. yocto-pat=
+ches.<br />Any hints how to process further on are really appreciated.</div=
+>
+<div>&nbsp;</div>
+<div>Thanks,</div>
+<div>Falk<br /><br />
+<div>&nbsp;meta/recipes-core/psplash/files/psplash-init | 8 +++++---<br />&=
+nbsp;1 file changed, 5 insertions(+), 3 deletions(-)</div>
+<div>diff --git a/meta/recipes-core/psplash/files/psplash-init b/meta/recip=
+es-core/psplash/files/psplash-init<br />index e0f80bcdc0..5411943245 100644=
+<br />--- a/meta/recipes-core/psplash/files/psplash-init<br />+++ b/meta/re=
+cipes-core/psplash/files/psplash-init<br />@@ -26,9 +26,11 @@ for x in $CMD=
+LINE; do<br />&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;esac<br />&nbsp;done<br />&=
+nbsp;<br />-[ -d $PSPLASH_FIFO_DIR ] || mkdir -p $PSPLASH_FIFO_DIR<br />-if=
+ ! mountpoint -q $PSPLASH_FIFO_DIR; then<br />- &nbsp; &nbsp; &nbsp; mount =
+tmpfs -t tmpfs $PSPLASH_FIFO_DIR -o,size=3D40k<br />+if [ ! -z ${PSPLASH_FI=
+FO_DIR} ]; then<br />+ &nbsp; &nbsp; &nbsp; &nbsp;[ -d $PSPLASH_FIFO_DIR ] =
+|| mkdir -p $PSPLASH_FIFO_DIR<br />+ &nbsp; &nbsp; &nbsp; &nbsp;if ! mountp=
+oint -q $PSPLASH_FIFO_DIR ; then<br />+ &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; =
+&nbsp; &nbsp; &nbsp;mount tmpfs -t tmpfs $PSPLASH_FIFO_DIR -o,size=3D40k<br=
+ />+ &nbsp; &nbsp; &nbsp; &nbsp;fi<br />&nbsp;fi<br />&nbsp;<br />&nbsp;rot=
+ation=3D0<br />--&nbsp;<br />2.43.0</div>
+</div>
+</div>
+
+--z7lyNizNLruvtFJBkz9R--
 
