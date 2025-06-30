@@ -1,258 +1,1017 @@
-Return-Path: <jing.hui.tham@intel.com>
+Return-Path: <Logan.Grosz@b9c.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 26059C8302D
-	for <webhook@archiver.kernel.org>; Mon, 30 Jun 2025 15:23:41 +0000 (UTC)
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.17])
- by mx.groups.io with SMTP id smtpd.web11.43471.1751297015963661737
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 2A198C8302D
+	for <webhook@archiver.kernel.org>; Mon, 30 Jun 2025 16:28:51 +0000 (UTC)
+Received: from NAM11-CO1-obe.outbound.protection.outlook.com (NAM11-CO1-obe.outbound.protection.outlook.com [40.107.220.116])
+ by mx.groups.io with SMTP id smtpd.web10.45390.1751300924781309946
  for <yocto@lists.yoctoproject.org>;
- Mon, 30 Jun 2025 08:23:36 -0700
+ Mon, 30 Jun 2025 09:28:45 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@intel.com header.s=Intel header.b=PD74koFn;
- spf=pass (domain: intel.com, ip: 192.198.163.17, mailfrom: jing.hui.tham@intel.com)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1751297016; x=1782833016;
-  h=from:to:subject:date:message-id:references:in-reply-to:
-   content-transfer-encoding:mime-version;
-  bh=5fJ4Z836Uwa85Kqy1blIzrvxrR3nyGDzwSJ3PaIJ8i4=;
-  b=PD74koFn0q5/qtlVH4GMDq2kOQbT0nQPfz/72za8WUyw+TmVfDtQmEzu
-   lf1MXQdwiSou1x8mEbOIQ1CCapJqV55QscB66fQvcgczAA5LKKoBXe4sU
-   wCIaic7Au8mfw04GCDnLgEN81FquF9J1AxNzEV8jk03iUVrT9Ig3QRACc
-   vkC2xO2RPj5o0tDMAzJYwDEQrEj717DUZZw5r5d/KYjYAWTvplzbgybYF
-   yBH/TP6XVIulZ55gcGEsuETzxC8qUOoZBOfn8M3SxAvNS1dxjnYLtamx6
-   1yCD/Cnu6QxdALV7kZTJQIiEZn3fRPZz/kcw5iayDYvdtDqvfFWGhPgrx
-   g==;
-X-CSE-ConnectionGUID: MJt6fSnbTj2C0So2iZHuCQ==
-X-CSE-MsgGUID: Bnfmf3u2Qoex1U4OAa/sOw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11480"; a="53465393"
-X-IronPort-AV: E=Sophos;i="6.16,278,1744095600"; 
-   d="scan'208";a="53465393"
-Received: from fmviesa003.fm.intel.com ([10.60.135.143])
-  by fmvoesa111.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 30 Jun 2025 08:23:27 -0700
-X-CSE-ConnectionGUID: tCeuwibKR+aWDfJ+70faGw==
-X-CSE-MsgGUID: C5DZIEpdQuKaCRH6I1dkGA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.16,278,1744095600"; 
-   d="scan'208";a="157524008"
-Received: from orsmsx902.amr.corp.intel.com ([10.22.229.24])
-  by fmviesa003.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 30 Jun 2025 08:23:21 -0700
-Received: from ORSMSX901.amr.corp.intel.com (10.22.229.23) by
- ORSMSX902.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1544.25; Mon, 30 Jun 2025 08:23:20 -0700
-Received: from ORSEDG901.ED.cps.intel.com (10.7.248.11) by
- ORSMSX901.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1544.25 via Frontend Transport; Mon, 30 Jun 2025 08:23:20 -0700
-Received: from NAM10-DM6-obe.outbound.protection.outlook.com (40.107.93.40) by
- edgegateway.intel.com (134.134.137.111) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1544.25; Mon, 30 Jun 2025 08:23:18 -0700
+ dkim=pass header.i=@b9c.com header.s=selector1 header.b=QoFc8CIZ;
+ spf=pass (domain: b9c.com, ip: 40.107.220.116, mailfrom: logan.grosz@b9c.com)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=Crt8YA3DetKXqAHExswhrnw4Lzbba0ihq9ZW62po3K3aB8Lr9ewmiL6Qb/pWCeb9UiaWf+DpdWD0fT7IMByWdHTkCGzBqKX+I4FGX2ihKWAxFIwpkQ9uhNepUmepEdIYUh22JpfRA7ybj4d5urdIQ5dWvl2fagmIRjcMyN1+VeW0NUWk3qN46+UuhgIFYWUSZ/1ct7QbACg0EU7xv6vPfdel2vkfHtnp2z005pyBYae1TdNJWokQwfxDwWNgABw928Q5yK9Y2S0hWPZwIYLhLD8Wa9CBRFW8p2S6Mqde6JJoi17Xj0D+CFJBbKPbpVvf5EIUhN7aZI1YZ1ZLur+k/Q==
+ b=PRRiHjW7/WL7f55qVDNL71IBZtweMBwGL9N1rcycbqqJwVVKFjmwsx1By22e/ZYGYdwFb0jJB4q3BbEAuHgJTE8ylFf0rvMD8MAkrONQ+DEqoIT95kBNMa2W5pxtCI1pjuc3q+OM7r6reuFV5H7SvFZgjjoXIVGPw9K+ZeA5J0acP9JulAN+zO/S5rmbpcbyRvKlgwnCL/OP92Qh8HpPVtRf1OvV0QfkFb6Y4DjjsH/9gIabE55aIS6czL1BCeKPX/vYUJNiRhQy1kiHY/xJQb25oDzzsZ3GvW9bRsMYaFAW0Yzrc4VsI7pfDHZ0BzGnW67WfzeWw/NUmB1aXc+oVw==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=7xv0eZqwMmc+HQTrvpi5zuvm+tj2g5iHePNaLhNeoY0=;
- b=y0Q3ha4LnHnwF1OAybRVQtXbtqHsyf/kAFeTwAzmu1R++Sz7Om2AuNLEEcTo5ZvAQw9LU7JgFQOG/LSDQnF3zSAysovbTY03v3iiy4gln51ES4L0EBm4j2OwkeQlKAa2Doaz4fJQdzq/5DpXzUB6Lin7dD6+c1kPPm0OwIaOY5nQP/G8VGCk3nFuNNtkOEx4trzNfLq8jCsW2wFoVNtSFYCw1Sninva79Es3Q5hHZkLYMmVWLVGW+fCtH2KcGs83iQMAd/hp3v80oc75ssQyAzInZIj5glyTSLp5b8hDg0/3cLW7RF4JLLS7gF+zji6i++yj0/S/iskimSOYa7rajw==
+ bh=DFfDTDR9PbTpmHMKj9NJ0UGpOlRuhM0kixAVPEsuRf4=;
+ b=kLydKJ3/8BiMjCOrVrA87wknQA1JEPsmExmJsZuNRItbqlKXraoDn2Pw06Azwciph+J1XMa/XA4EjrM7f7WLuJ1icDmaoQsUym1dljqvXIGYu2UD7jbuitmZW4kC1+zJYu9WV8FDwWan6BRsv3irVf528PLmT9BH5p2KdDqWzyYTwatQKXtnr7TBNJHQgF3LUntNjC/Ip5wyDR9gpNRaCbr3qV4bBWv8Kae9J6LXjYeTYxkpKXLoGFWJOObQZ37CBs5Me+0Hec52/noyWlvBdP7ujI2QR7NJNkKRqUn10hLN446hMOLtsoihpHXy7I1xh30bTrlsCLXWwD6MVNoCnA==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Received: from DM4PR11MB7760.namprd11.prod.outlook.com (2603:10b6:8:100::19)
- by IA0PR11MB7792.namprd11.prod.outlook.com (2603:10b6:208:409::16) with
+ smtp.mailfrom=b9c.com; dmarc=pass action=none header.from=b9c.com; dkim=pass
+ header.d=b9c.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=b9c.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=DFfDTDR9PbTpmHMKj9NJ0UGpOlRuhM0kixAVPEsuRf4=;
+ b=QoFc8CIZJGW5smOOuQ3pT722iyNYsnRbzDGvYkylzCTIjUwzb2t0f5g/7IC+AhSvjTai9ZQ6mok54kSgcMTaov7OBaL3wmF8CWkS8yCxg5ywXcLuQ1xAP4e7A68YBSlaFIO5H+oBEVVnOp3ElnJBvAsZ5o7TCFhkztbL8ODrhNs=
+Received: from MW4PR16MB5087.namprd16.prod.outlook.com (2603:10b6:303:1be::18)
+ by PH0PR16MB4277.namprd16.prod.outlook.com (2603:10b6:510:58::8) with
  Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8880.23; Mon, 30 Jun
- 2025 15:23:15 +0000
-Received: from DM4PR11MB7760.namprd11.prod.outlook.com
- ([fe80::e210:b6a3:f037:f49a]) by DM4PR11MB7760.namprd11.prod.outlook.com
- ([fe80::e210:b6a3:f037:f49a%6]) with mapi id 15.20.8857.026; Mon, 30 Jun 2025
- 15:23:15 +0000
-From: "Tham, Jing Hui" <jing.hui.tham@intel.com>
-To: "qa-build-notification@lists.yoctoproject.org"
-	<qa-build-notification@lists.yoctoproject.org>,
-	"yocto@lists.yoctoproject.org" <yocto@lists.yoctoproject.org>, Pokybuild User
-	<pokybuild@yoctoproject.org>, "openembedded-core@lists.openembedded.org"
-	<openembedded-core@lists.openembedded.org>
-Subject: RE: [qa-build-notification] QA notification for completed autobuilder
- build (yocto-4.0.28.rc1)
-Thread-Topic: [qa-build-notification] QA notification for completed
- autobuilder build (yocto-4.0.28.rc1)
-Thread-Index: AQHb55q03gKS3o7M6EWhns6UpIojjrQb1iJw
-Date: Mon, 30 Jun 2025 15:23:14 +0000
-Message-ID: <DM4PR11MB776051C633AD3EBD9C4CC202A146A@DM4PR11MB7760.namprd11.prod.outlook.com>
-References: <01010197b2e383a0-0a867f4c-e19b-4f1a-9a6f-59e10ffc01ef-000000@us-west-2.amazonses.com>
-In-Reply-To: <01010197b2e383a0-0a867f4c-e19b-4f1a-9a6f-59e10ffc01ef-000000@us-west-2.amazonses.com>
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8880.32; Mon, 30 Jun
+ 2025 16:28:41 +0000
+Received: from MW4PR16MB5087.namprd16.prod.outlook.com
+ ([fe80::dd82:bdb7:3ca1:2b8]) by MW4PR16MB5087.namprd16.prod.outlook.com
+ ([fe80::dd82:bdb7:3ca1:2b8%3]) with mapi id 15.20.8857.026; Mon, 30 Jun 2025
+ 16:28:41 +0000
+From: Logan Grosz <Logan.Grosz@b9c.com>
+To: "yocto@lists.yoctoproject.org" <yocto@lists.yoctoproject.org>, Logan Grosz
+	<Logan.Grosz@b9c.com>
+Subject: Re: Bitbake getting stack overflows with 405 responses
+Thread-Topic: Bitbake getting stack overflows with 405 responses
+Thread-Index: AQHb5uVyS36JsGsCG02s49gZtq6kb7Qb6KHE
+Date: Mon, 30 Jun 2025 16:28:41 +0000
+Message-ID: 
+ <MW4PR16MB508736875E5E14A493B84836BB46A@MW4PR16MB5087.namprd16.prod.outlook.com>
+References: <184CB6E7C5A6FAD5.20652@lists.yoctoproject.org>
+In-Reply-To: <184CB6E7C5A6FAD5.20652@lists.yoctoproject.org>
 Accept-Language: en-US
 Content-Language: en-US
 X-MS-Has-Attach: 
 X-MS-TNEF-Correlator: 
+msip_labels: 
 authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
+ header.d=none;dmarc=none action=none header.from=b9c.com;
 x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: DM4PR11MB7760:EE_|IA0PR11MB7792:EE_
-x-ms-office365-filtering-correlation-id: bf4eca28-3b94-4cb8-100b-08ddb7ea08a4
+x-ms-traffictypediagnostic: MW4PR16MB5087:EE_|PH0PR16MB4277:EE_
+x-ms-office365-filtering-correlation-id: 81739b89-2805-48a9-3c22-08ddb7f32cca
 x-ms-exchange-senderadcheck: 1
 x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;ARA:13230040|1800799024|4022899009|366016|376014|13003099007|7053199007|38070700018;
-x-microsoft-antispam-message-info: =?us-ascii?Q?IB3av7gz+Vzah0z3r5tvIDQET+Nm6H5k5aHJWAbuWlc5Pr9GLjkoxKXm7tHs?=
- =?us-ascii?Q?gazoc0e5hrn57BBInpf1nb9N/02j0Or/1kT/eyikapQ078X4HzOfVSy69XWR?=
- =?us-ascii?Q?qzzcT8V5Ym1+PWELHPqcfZfl6J7eKdnC/zm6gDli3ozcc4ivlgAxELRdXZQp?=
- =?us-ascii?Q?6p0Jrp7egPeDdCKa7zhsSyRqh9cwT/RCnG5y5tNcEj8LyRbxaDnVRyeGHk3s?=
- =?us-ascii?Q?WQrl4P5FrMZl/ovwRgL1RVxgRMxylzZzD/mRwX7CX/gA7uwU67A5DpxSNUJU?=
- =?us-ascii?Q?5JX8DV0PZ62UwD4nmmo+Ir5NQXdKt4idaxvhwuELmrlXZLXBkgJ1oe6qed2C?=
- =?us-ascii?Q?FPkQSrO61Vj2PMzS45IlOxQ8r9VtFcS1hKmTx2i/EqMuPCofDqXA2wXD8T2j?=
- =?us-ascii?Q?Vth8LLCheNitKNkHWOKfqkYaphrFQrCxpfCjnWv1o54gP+EYRkc0yb6bSX68?=
- =?us-ascii?Q?Nralxpn+ayuBASsmtxxdWrDaadqT5ONyTXZteNobQ9mC/HSeFOi2k/FgoiZg?=
- =?us-ascii?Q?99k2Rcc7eafQ5P1mHsauJ4qo2HWJ7AwW6apAPY6VarSw+nW/pbhV35MABjZT?=
- =?us-ascii?Q?3Uhlf4VFCXmDhbLRLjmISaXNZeI0lfcKg1fAU5QmeHEQi2R3fQ08F6YKj/kl?=
- =?us-ascii?Q?fgtG7k1ztFSQp0chqjKXWbiE47YrTYgGdTrIW3R9IVSJ8lDp3GW4NY9pF19q?=
- =?us-ascii?Q?FIhH9kp6KvnnwvlO7J4ENE9dQB2bR5WmGeHihX9SlQ4/ieGQUHYtPwdKhNnW?=
- =?us-ascii?Q?7KUjKuUTQPKlKlBAaecPpRdgh0kS1IMEzhmAeCjBRL6uYRmkV1PXexq1B+kX?=
- =?us-ascii?Q?R9oA5TIGleY0lmjdYE2G01kybZOJZAZUHZyxKgneMJc9sxEH/w1ZuEdmqjgU?=
- =?us-ascii?Q?X2+nmUN7VhwW/oOCd2mJPdl9DrGfhA4ut77c9tY20gZ33CKZAO78Si2vQ4sC?=
- =?us-ascii?Q?O8aY+jCI58wf3NpNA0L+IGScMRtHoO97NnN3LiSXSf5/1FSQjLitxr086TwX?=
- =?us-ascii?Q?tI2MWXH1mZZ0eUvXKJmuR3UHL8NkaGhdgNYYtbr7YyuJC9I0YwUEsZoRFCUL?=
- =?us-ascii?Q?MH/BicdecRdxv1UwHe9rYOWnB40gJj+r9W7WYfW0uH6dklRIfGsFCOsNGla4?=
- =?us-ascii?Q?FiLmI0Y1cg/eWoCuHVb8x1tq8IWs4sE5COiv++GsVgGXGnVQzu6gzEymzVIy?=
- =?us-ascii?Q?MObsFZkWsVwg4xt++UC+5no3lrmqK8jYorlNFd5Kew6DucNDO+iN6u+NdfWy?=
- =?us-ascii?Q?LLKeVGDGIHgv46E7AQVgMA0gL580zIOCHACf3pLnRmE77JD/ZGag6OdlXypb?=
- =?us-ascii?Q?LfgDdxvhhsPeHE+HVFAdUHvMS9+8h/SCpa6DuKgaONqzXQS5eXhD06k3jPbB?=
- =?us-ascii?Q?NVHEezFP6MiYkzwRKqjbSP5ANm2TQeNLj5JPZtAOHVf4kX2mCATIKvPvIH6c?=
- =?us-ascii?Q?QduXUbD2v6Y=3D?=
-x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DM4PR11MB7760.namprd11.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(1800799024)(4022899009)(366016)(376014)(13003099007)(7053199007)(38070700018);DIR:OUT;SFP:1101;
+x-microsoft-antispam: 
+ BCL:0;ARA:13230040|1800799024|366016|19092799006|376014|8096899003|38070700018|7053199007;
+x-microsoft-antispam-message-info: 
+ =?us-ascii?Q?iePaXh37etTC9UDDQ9V5UfTfnl1FjpXQqi778mVCfqgs8WnjJudidYvDsb2W?=
+ =?us-ascii?Q?7mGLqTUwKGVz+yzbj0I6/LJ9rs8zNuPQrQ38deWNnUBja0tYX4CO8/dvgMHB?=
+ =?us-ascii?Q?4UWZS58Y6zfEWr45Jfwy9JkmyHAqaGPj2/edJR20SF3J3q8W9P0OK5s0wVN0?=
+ =?us-ascii?Q?lG+vjgmjCU9dZq4RkREGTj9hAiDlvU9ABd23Kttq2HjbutiLl4frBrpTgt9V?=
+ =?us-ascii?Q?o/Li4/T68eDaOJG+Cs55YM/bi3zoQXnAKYmINkUPz7Qi43OkVB83SHyxafQB?=
+ =?us-ascii?Q?jLBhX3TvWogHJ8Br10GKqfaWl7KVLVGR2l5d8aNwKMqf6rGHFmd8Fc7+TTbz?=
+ =?us-ascii?Q?2gz0lDhoUgBeWZsC87PrKDlA+4MsN+MyRkVmxm/MtYF34lXcR1+SF4g6y/xQ?=
+ =?us-ascii?Q?6yDIS+3H7JF//yeu7SeZ6rDMNTVtYM3bO5uIsXDppXuAyzsAEpE6ohUZHO1M?=
+ =?us-ascii?Q?+JcBPQoSIJGSjdHmKV8/V8Tb4Alc/tiepMGNGadRcgnWvyR58UgPjxT1ptz0?=
+ =?us-ascii?Q?dlS+6N/YTUWcBcXB9T+obiVVQZVZDjIxbXrIRPkONRpbpOru27OS/pLOJkLc?=
+ =?us-ascii?Q?lk83Stp9Dq+PfEhGeSsdcdguWhu1+hRDGpD/EqkRtFQfrP5sbK5WE010bajn?=
+ =?us-ascii?Q?y0hRB1GUE4XpyucUexmawNALk/f7DhpGcGIByUNtTTJZK/14uQ1l49PYDL9c?=
+ =?us-ascii?Q?F5Qjf0lqkuWNkHh3Im5dyItYUbU225ncOS18tVXFHBZ+zXOeVfw4tAbTAspm?=
+ =?us-ascii?Q?NXGhKCtdEpNRFu4Npt80MzCRuyphTKeQkFk6xYb96vHxh+ePfkIf5FcR2Xe9?=
+ =?us-ascii?Q?GXtMgodmu+Nyft8vkin7OY6cT4i0TS6J1kAmb6jr7/FgCEc8YNnjHknkcWSY?=
+ =?us-ascii?Q?i62tAK39fJ/WDnin4xEyVcR5lo2uIeZuWZWsNPNLtHUQIfBhMp+9MgQfovRD?=
+ =?us-ascii?Q?GAGSA9F7Te7cbSmRY084WCxtzFGU1cTIryE9u1MEjwkTI/ibYo/6lX2rawgw?=
+ =?us-ascii?Q?xKPXfBrwDumV/lxj3BRihoL5HIkNGUIMVGsDQnt1cW4VtAve7FFGSiineMKd?=
+ =?us-ascii?Q?6AC2dceZLYvMMkvt5vrMQS6IzEv+CBTDYoSOZqoLK1aPThO6qhMzr1clRA+F?=
+ =?us-ascii?Q?Kwn/oatiK6592lHVsk979YwzZHz7CFDKAE5E3dgf3K9wN4znphYQiG31rz49?=
+ =?us-ascii?Q?ZG59/BfFWxOYexi7vNVypSFTcFZwAKr+tUffxxN8FU4ouQ4MpUtb0HCqOzlP?=
+ =?us-ascii?Q?1xcwi43IdXUQZfMjvFMxdARBRM3slZrp6c9rkZ7/kctWyaLhEEChjqBTnofF?=
+ =?us-ascii?Q?PK5k+0sq2tRM+2BrV9wLS959KYCQzpW0O+hXS5Ov/HC0ADSxwRfvrhfLKRDz?=
+ =?us-ascii?Q?aD5decDgi+uzAQgJCuS/5wYxxEqUSURWoITwRgU81LCKAfVcu6wZxPFfldNk?=
+ =?us-ascii?Q?F/mnylrjB88Y53+8jiR9lSuWMDTVGDTPbVci75UsbG2GSrVznjV8x8zRGdnt?=
+ =?us-ascii?Q?sEuzbdafS38L/p0=3D?=
+x-forefront-antispam-report: 
+ CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:MW4PR16MB5087.namprd16.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(1800799024)(366016)(19092799006)(376014)(8096899003)(38070700018)(7053199007);DIR:OUT;SFP:1102;
 x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?8nU4ZA3v6DJMkGUr2cJ66dNXa5MoGfYJtBIWY0x+qfdM0xHTId/2eVOhlvcl?=
- =?us-ascii?Q?pPJzrS+m8nTdve1chGq41CpRkaiTKCST6n+JnvY+i+IWtYo1zZ1cP6tuvqdQ?=
- =?us-ascii?Q?0nqWriik2c8D4K5r4N6R/8ps4X3nSaXsuptZS7TpB2NA34VpyibXHdM7l7um?=
- =?us-ascii?Q?D6IMGcN5xTurAD6JUwxVeE0zLpMd1pvoKDXR8PKX9MQlYfJJL17BpjSUWuyF?=
- =?us-ascii?Q?ywOV2Xw4wIpwW1/pD0vMfzSeA/5CVsjN/em5zwMe+20x+XVEj+fzenNrkhDW?=
- =?us-ascii?Q?gCgSi2aJmmSkA9m8Hs6/hgGhm9XQn8AdYtKpWzobd3gZ0KwEhH1ZEYBM2w4u?=
- =?us-ascii?Q?Tqjc2PFIc546HlNKDvtjF4+GPL0Q0XpDkI4lJUflsDandtTEfNtgf/uAJLcx?=
- =?us-ascii?Q?XOJeg4Rxn6swTGPi/FchsFP7W0zlRjIrvMtffB5O7bdljp1UYJfxESn0wRdh?=
- =?us-ascii?Q?2Hc5uT493j513LBU3JWnmalB5cZDFlLRc8W6s44O9GtSmLAmqz5UTpN0iRhs?=
- =?us-ascii?Q?xHmPubQyBj5TPX3JP4AS9stH9GHUuO0mhC4ODBtUbi6jRAK0RWEBDo1YB6qk?=
- =?us-ascii?Q?SOrsvAVcSPwvn3EdLQFZjWrSQ8PDO3ibkxRg3AnmclRXHo5lnjS/FV3mMEPX?=
- =?us-ascii?Q?6NrsoJFRClFpIimNYeF9zjlhyvgnT8wUD5xae+FHevJac0evu0PkHQX0dvyF?=
- =?us-ascii?Q?y+vExs+LYCltZkS5SMvywS0HSeLMXm7qM1q1xh6WYy56IigFzbh6Ud6xagJV?=
- =?us-ascii?Q?fax+bNsN6y1SNS0QGZeg2H92hub6XKh5lEN4y5RzKxAm2XQNnzZtiryXkGLv?=
- =?us-ascii?Q?aeXvreYtI9xKcRfDJTgTX0J0+kr9ZdcNAXok+zH5xsJr02ZuZMpWaXiAMKyj?=
- =?us-ascii?Q?jEJNSaVfVYQ7HVRpd5g2p4fEdiPKL/TMBd95bW+PPm7T1Whx1s4EBz9b0HSw?=
- =?us-ascii?Q?c5YSEigbXe84+H2U3pYnJtMx9V/aNe4/OTvUGsWXfONglyWoAJDvgW7jR4ed?=
- =?us-ascii?Q?jJmrZ5tAwj7OFM+qjZ6excji6UpbLajJDgLYVQYcTdi6TL+hva+3+2fxEnMN?=
- =?us-ascii?Q?WanYPUFdGHfHMdUMR+EwaaQEGLH7nEGv/8PdHuVDdQNL/FwsNs740uAbJ6sa?=
- =?us-ascii?Q?skpAsv3CKW6JSnZ5zg7H5iU9aPdQ+aFG8pkabjoa37tsj4HvdTx6ffA+OK1i?=
- =?us-ascii?Q?Wq6wxcnseCe4vodwdHCfSvRpV61n/lSjWFOlPj7LxqrFNkUQtpHRLU9L3aA9?=
- =?us-ascii?Q?lxgJ62ASRlMpw0zoGogE6Blb1NB6WGcXAUNnclx6x/BiA2EWqmteRjXL7hPU?=
- =?us-ascii?Q?zjX2s8+FIou270w/SPuW0enYeFYCbmxCUXtYF0WfArRbBLj6WLtlarmrQo2p?=
- =?us-ascii?Q?OcYFJtlFqkYj/Fy6Nt/lWfsW1f90Fwh8jwZAiWjvGEwPd1nvfwOaojOTAumy?=
- =?us-ascii?Q?NbfMIpw0F7KfAxuqD05ojqMVfiUKmq/NS6iwVuh5o8RjEkvdlqzJYTjlg7Xm?=
- =?us-ascii?Q?Ao6Ry2TzJWoZKgaHjhyzkiS5uJcpWUHaWSiweLn0bOkRcShuK13rK622dMQV?=
- =?us-ascii?Q?U3kpd8BrJcy5+bdDwKmUnKcGjkW4sctpFHmbRgPo?=
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+x-ms-exchange-antispam-messagedata-0: 
+ =?us-ascii?Q?/nqL57qWbnu15ZPVhLrGbyyvSy8thBaBAGfqOQRQ53ODLLaBeoGQ2O6x0SI4?=
+ =?us-ascii?Q?mnxzFnYl9uO/0YCvvgBQkeAGc/5ed5OTWFDXgu+VrPpRlNkp5spkKSGNBTfk?=
+ =?us-ascii?Q?hDDB8WipRbC1wc64BW/aQCUqW1PrPGVzgqFwz2CnpPnaViDVCzMp3/HIri7h?=
+ =?us-ascii?Q?AFvGRi9QC/CiqBswnkPOCiPkvc8Zq2dO5h1ZnZ1XjIANWiPIWPnutzmRItN+?=
+ =?us-ascii?Q?rx9VPXOp6mziM8Tp1j55lj+E5o6qNBJX0pDrAb1QfVh/Sb2/Dp1ABOIYs2gQ?=
+ =?us-ascii?Q?bYGBNnGXRPigRM1jINHxV1SJ6spjKkdrX9MPNJY3RgbuWdVFzRxwRmahvnCX?=
+ =?us-ascii?Q?GH5xTUNqyVFoqwAZLXacGyaRONJQXH86AQ400f5MVpdHKyE2huZJxwLMoH9J?=
+ =?us-ascii?Q?e7zef4IS1GP0FxtvstQFP1Nz1vX3Tla2SbeRaE+sTrFC4YGEU/lmieSutpJG?=
+ =?us-ascii?Q?1X0yhvFgSirhiIH/45CzrN4VMQhZKpGh7YBtw11Ci4GkjNr3JUFIDvvGXI/f?=
+ =?us-ascii?Q?9VxtRaeuUsi2zycBP9ZvpabJT0NvcVHAGAU8ME70C8VqSuL1TW23ytxb35vA?=
+ =?us-ascii?Q?Xmhs+X++UoQWuwi9c4o/3RneO/jyg0Thx6tHn9xX5XTcRovB/t89nO67Fog3?=
+ =?us-ascii?Q?mx81E7kfWwg4tS7r3emkCLYx73F81lXVRmX+8Yt1AKyX/VOxgaHk04kPRsuF?=
+ =?us-ascii?Q?vctDNwYXEiSCDnVBqc8iamFgRi5H2XBVqdSixVbA5HvShjdnePWeDKpJk6gS?=
+ =?us-ascii?Q?2H5HUeTt+TSbd+po39kHYp7pRNjqaZc6GYufOUm29/MxJiLWRPehgg4jRqGn?=
+ =?us-ascii?Q?T5BpGxRP7SgeqF3TRxXFtJjPXmrTcN1g27u2PvTDTy8Ts1qctcaRQbyMK9qo?=
+ =?us-ascii?Q?WmRVUw5+eC1UJDQPl7m96IaeaTSKvIXikBtK6t52UxB1k2YQ+QBbeTlMEv0b?=
+ =?us-ascii?Q?QWsl7aICGiRWuJexOu+kNRQNFAwtQfjscUrlRUlFDaTvTgKee0PR3yT9wamD?=
+ =?us-ascii?Q?VVJIO6p+V7zVKgvvlwarqnukA5VhbSLN1O+3mfHnuz2hO+hd+DzWb7OTH6m4?=
+ =?us-ascii?Q?3xEb15p7sMaclZCpMC3nZdQVw+KQ4bw/gIDBC4xTOIDSn0fb9pNPHgZlP/hN?=
+ =?us-ascii?Q?5OQ9XJZd7EqIx7ctrLVp5VuPmUqeGWkyIDby0eyaVyK0qhQCVbpGzH6ZE4KR?=
+ =?us-ascii?Q?m0ElwV4ghy0K1gy/jKLBTTLMcrbAV+rTN47Nq8+fdsZSwk/syyjbUn4Yf5he?=
+ =?us-ascii?Q?j6LU32tolx0Q1ozjkVFSP40yTZNnedikTCgTj9svmqizk2W6LVlL1RKDlQKg?=
+ =?us-ascii?Q?pfyyw2N178LLrUuDNsMt4F3kJVoKEfh+dM4RB2IeGgwrGr3E04HX8ACo/N5e?=
+ =?us-ascii?Q?1sVRIUMrq4y+CZe+hit0EZwM+y4u3E81I2Q5EC8RrhzpgA1sFth3MfZu40SN?=
+ =?us-ascii?Q?kVHuo/NpRNX419mGl0ke6++975Zet5BpYtK6Yrkx5L2HrUxh46Bz7yXB1g/Y?=
+ =?us-ascii?Q?DiSpoX5FAvYVus+nPfYdyfB8Uk3TbYUOPnShdlTNBR9QMkBFVt6vvtvh4qDr?=
+ =?us-ascii?Q?iVAuG45ukOPFJek+ykU6IV1aZNbJt9aawIAt5tm6?=
+Content-Type: multipart/alternative;
+	boundary="_000_MW4PR16MB508736875E5E14A493B84836BB46AMW4PR16MB5087namp_"
 MIME-Version: 1.0
+X-OriginatorOrg: b9c.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: DM4PR11MB7760.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: bf4eca28-3b94-4cb8-100b-08ddb7ea08a4
-X-MS-Exchange-CrossTenant-originalarrivaltime: 30 Jun 2025 15:23:15.1416
+X-MS-Exchange-CrossTenant-AuthSource: MW4PR16MB5087.namprd16.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 81739b89-2805-48a9-3c22-08ddb7f32cca
+X-MS-Exchange-CrossTenant-originalarrivaltime: 30 Jun 2025 16:28:41.2743
  (UTC)
 X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-id: 3ace18e3-3825-4b3e-be2a-b5c73f048d39
 X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: v6sM6nURTixI81EVvlPzDMtn0C6lC5NHAJxpEAmDtzUBQuysNUKErUF75xhNxFyqOXywGl2Z43IBSTlUzvXghg==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: IA0PR11MB7792
-X-OriginatorOrg: intel.com
+X-MS-Exchange-CrossTenant-userprincipalname: TZ3/g3APcrNWhtGSGo8TgEarVlU7+7NsIAxvoQA8HcoiJDs2guRmbJ35RwXTCTtajYhXxheiYAwLGhalf0HDpw==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH0PR16MB4277
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Mon, 30 Jun 2025 15:23:41 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/65567
+ <yocto@lists.yoctoproject.org>; Mon, 30 Jun 2025 16:28:51 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/65568
 
-Hi all,
-=20
-Intel and WR YP QA is planning for QA execution for YP build yocto-4.0.28.r=
-c1. We are planning to execute following tests for this cycle:
-=20
-OEQA-manual tests for following module:
-1. OE-Core
-2. BSP-hw
-=20
-Runtime auto test for following platforms:
-	1. MinnowBoard Turbot - 32bit
-	2. Kaby Lake (7th Generation Intel(r) Core(tm) Processors)
-	3. Tiger Lake (11th Generation Intel(r) Core(tm) Processors)
-	4. Alder Lake-S (12th Generation Intel(r) Core(tm) Processors)
-	5. Raptor Lake-P (13th Generation Intel(r) Core(tm) Processors)
-	6. Edgerouter
-	7. Beaglebone
+--_000_MW4PR16MB508736875E5E14A493B84836BB46AMW4PR16MB5087namp_
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 
-=20
-ETA for completion: Thursday, 3rd July 2025.
-=20
-Best regards,
-Jing Hui
+My issue appears to be fixed by `1a4e4fb6b0a9d54641bd4193e95311d1f822a9ca`,=
+ contained in release Zeus 3.0.1 and later.. why this started occurring, I =
+still don't know. Looks like I'll be working off a fork until I can pull up=
+.
 
+Thank you,
+Logan
+________________________________
+From: yocto@lists.yoctoproject.org <yocto@lists.yoctoproject.org> on behalf=
+ of Logan Grosz via lists.yoctoproject.org <Logan.Grosz=3Db9c.com@lists.yoc=
+toproject.org>
+Sent: Thursday, June 26, 2025 4:04 PM
+To: yocto@lists.yoctoproject.org <yocto@lists.yoctoproject.org>
+Subject: [yocto] Bitbake getting stack overflows with 405 responses
 
-> -----Original Message-----
-> From: qa-build-notification@lists.yoctoproject.org <qa-build-
-> notification@lists.yoctoproject.org> On Behalf Of Pokybuild User via
-> lists.yoctoproject.org
-> Sent: Saturday, June 28, 2025 3:36 AM
-> To: yocto@lists.yoctoproject.org
-> Cc: qa-build-notification@lists.yoctoproject.org
-> Subject: [qa-build-notification] QA notification for completed autobuilde=
-r
-> build (yocto-4.0.28.rc1)
->=20
->=20
-> A build flagged for QA (yocto-4.0.28.rc1) was completed on the autobuilde=
-r
-> and is available at:
->=20
->=20
->     https://valkyrie.yocto.io/pub/releases/yocto-4.0.28.rc1
->=20
->=20
-> Build URL:
-> https://autobuilder.yoctoproject.org/valkyrie/#/builders/29/builds/1901
->=20
-> Build hash information:
->=20
-> bitbake: 046871d9fd76efdca7b72718b328d8f545523f7e
-> meta-agl: d68bc4cb7cddeca1026a991ed405b9bec3d9179b
-> meta-arm: 6b2d97cecd1b0e4bf4caee9a65595d279b57a686
-> meta-aws: 12f6037467dc369f89629e1ce8d18d0a1bedde77
-> meta-clang: 8a1d0a1993040ab9d2fb7259b71e4c9582f5cd17
-> meta-gplv2: d2f8b5cdb285b72a4ed93450f6703ca27aa42e8a
-> meta-intel: 95eb26cd3372439443acd1f4d4265989aadeca88
-> meta-mingw: 87c22abb1f11be430caf4372e6b833dc7d77564e
-> meta-openembedded: 45bddd258a3d1ded925faf8389e01bb948dc7f5b
-> meta-virtualization: 227cefa1261daf20b7d9737541994ec2bba629fc
-> oecore: 75e54301c5076eb0454aee33c870adf078f563fd
-> poky: 78c9cb3eaf071932567835742608404d5ce23cc4
->=20
->=20
->=20
-> This is an automated message from the Yocto Project Autobuilder
-> Git: git://git.yoctoproject.org/yocto-autobuilder2
-> Email: richard.purdie@linuxfoundation.org
->=20
->=20
->=20
->=20
->=20
-> -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
-> Links: You receive all messages sent to this group.
-> View/Reply Online (#564): https://lists.yoctoproject.org/g/qa-build-
-> notification/message/564
-> Mute This Topic: https://lists.yoctoproject.org/mt/113867803/6424044
-> Group Owner: qa-build-notification+owner@lists.yoctoproject.org
-> Unsubscribe: https://lists.yoctoproject.org/g/qa-build-
-> notification/leave/13581802/6424044/1746813897/xyzzy
-> [jing.hui.tham@intel.com]
-> -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
->=20
+Hi,
 
+I am using Yocto Sumo (I am very aware of how out-of-date our project is, I=
+ am in the process of upgrading to Kirkstone) and suddenly I've started get=
+ting stack overflows in Bitbake alongside some 405 responses. This seems to=
+ happen during sstate cache parsing and/or task initialization. Previously,=
+ it was just happening when I'd specify -c package, which was inconvenient,=
+ but I figured I could deal with it.. but now it's happening for every task=
+ I start. Below are some logs from bitbake-cookerdaemon.log. What else shou=
+ld I be looking at to diagnose this issue?
+
+Running command ['updateConfig', {'server_timeout': None, 'force': False, '=
+profile': False, 'verbose': False, 'debug': 0, 'dump_signatures': [], 'pref=
+ile': [], 'abort': True, 'extra_assume_provided': [], 'invalidate_stamp': N=
+one, 'debug_domains': [], 'dry_run': False, 'postfile': []}, {'DISTRO': 'b9=
+-core-5', 'OLDPWD': '/project', 'LANGUAGE': 'en_US:en', 'PWD': '/project/bu=
+ild-b9-imx8mq', 'BBPATH': '/project/build-b9-imx8mq', 'MACHINE': 'b9-imx8mq=
+', 'SHLVL': '1', 'LC_ALL': 'en_US.UTF-8', 'HOME': '/home/chef', 'HOSTNAME':=
+ 'b9-linux', 'BUILDDIR': '/project/build-b9-imx8mq', '_': '/project/sources=
+/poky/bitbake/bin/bitbake', 'BB_ENV_EXTRAWHITE': 'ALL_PROXY BBPATH_EXTRA BB=
+_NO_NETWORK BB_NUMBER_THREADS BB_SETSCENE_ENFORCE BB_SRCREV_POLICY DISTRO F=
+TPS_PROXY FTP_PROXY GIT_PROXY_COMMAND HTTPS_PROXY HTTP_PROXY MACHINE NO_PRO=
+XY PARALLEL_MAKE SCREENDIR SDKMACHINE SOCKS5_PASSWD SOCKS5_USER SSH_AGENT_P=
+ID SSH_AUTH_SOCK STAMPS_DIR TCLIBC TCMODE all_proxy ftp_proxy ftps_proxy ht=
+tp_proxy https_proxy no_proxy ', 'TERM': 'xterm', 'PATH': '/project/sources=
+/poky/scripts:/project/sources/poky/bitbake/bin:/usr/local/sbin:/usr/local/=
+bin:/usr/sbin:/usr/bin:/sbin:/bin', 'LANG': 'en_US.UTF-8'}, ['/project/sour=
+ces/poky/bitbake/bin/bitbake', 'b9-image']]
+Running command ['getVariable', 'BBINCLUDELOGS']
+Running command ['getVariable', 'BBINCLUDELOGS_LINES']
+Running command ['getSetVariable', 'BB_CONSOLELOG']
+Running command ['getUIHandlerNum']
+Running command ['setEventMask', 1, 20, {}, ['bb.runqueue.runQueueExitWait'=
+, 'bb.event.LogExecTTY', 'logging.LogRecord', 'bb.build.TaskFailed', 'bb.bu=
+ild.TaskBase', 'bb.event.ParseStarted', 'bb.event.ParseProgress', 'bb.event=
+.ParseCompleted', 'bb.event.CacheLoadStarted', 'bb.event.CacheLoadProgress'=
+, 'bb.event.CacheLoadCompleted', 'bb.command.CommandFailed', 'bb.command.Co=
+mmandExit', 'bb.command.CommandCompleted', 'bb.cooker.CookerExit', 'bb.even=
+t.MultipleProviders', 'bb.event.NoProvider', 'bb.runqueue.sceneQueueTaskSta=
+rted', 'bb.runqueue.runQueueTaskStarted', 'bb.runqueue.runQueueTaskFailed',=
+ 'bb.runqueue.sceneQueueTaskFailed', 'bb.event.BuildBase', 'bb.build.TaskSt=
+arted', 'bb.build.TaskSucceeded', 'bb.build.TaskFailedSilent', 'bb.build.Ta=
+skProgress', 'bb.event.ProcessStarted', 'bb.event.ProcessProgress', 'bb.eve=
+nt.ProcessFinished']]
+Running command ['getVariable', 'BB_DEFAULT_TASK']
+Running command ['setConfig', 'cmd', 'build']
+Running command ['buildTargets', ['b9-image'], 'build']
+Fatal Python error: Cannot recover from stack overflow.
+
+Thread 0x0000761fe9600700 (most recent call first):
+  File "/usr/lib/python3.5/socket.py", line 575 in readinto
+  File "/usr/lib/python3.5/http/client.py", line 515 in _read_next_chunk_si=
+ze
+  File "/usr/lib/python3.5/http/client.py", line 555 in _get_chunk_left
+  File "/usr/lib/python3.5/http/client.py", line 572 in _readall_chunked
+  File "/usr/lib/python3.5/http/client.py", line 469 in read
+  File "/project/sources/poky/bitbake/lib/bb/fetch2/wget.py", line 245 in d=
+o_open
+  File "/project/sources/poky/bitbake/lib/bb/fetch2/wget.py", line 157 in h=
+ttp_open
+  File "/usr/lib/python3.5/urllib/request.py", line 444 in _call_chain
+  File "/usr/lib/python3.5/urllib/request.py", line 484 in _open
+  File "/usr/lib/python3.5/urllib/request.py", line 466 in open
+  File "/project/sources/poky/bitbake/lib/bb/fetch2/wget.py", line 279 in h=
+ttp_error_405
+  File "/usr/lib/python3.5/urllib/request.py", line 444 in _call_chain
+  File "/usr/lib/python3.5/urllib/request.py", line 504 in error
+  File "/usr/lib/python3.5/urllib/request.py", line 582 in http_response
+  File "/usr/lib/python3.5/urllib/request.py", line 472 in open
+  File "/project/sources/poky/bitbake/lib/bb/fetch2/wget.py", line 279 in h=
+ttp_error_405
+  File "/usr/lib/python3.5/urllib/request.py", line 444 in _call_chain
+  File "/usr/lib/python3.5/urllib/request.py", line 504 in error
+  File "/usr/lib/python3.5/urllib/request.py", line 582 in http_response
+  File "/usr/lib/python3.5/urllib/request.py", line 472 in open
+  File "/project/sources/poky/bitbake/lib/bb/fetch2/wget.py", line 279 in h=
+ttp_error_405
+  File "/usr/lib/python3.5/urllib/request.py", line 444 in _call_chain
+  File "/usr/lib/python3.5/urllib/request.py", line 504 in error
+  File "/usr/lib/python3.5/urllib/request.py", line 582 in http_response
+  File "/usr/lib/python3.5/urllib/request.py", line 472 in open
+  File "/project/sources/poky/bitbake/lib/bb/fetch2/wget.py", line 279 in h=
+ttp_error_405
+  File "/usr/lib/python3.5/urllib/request.py", line 444 in _call_chain
+  File "/usr/lib/python3.5/urllib/request.py", line 504 in error
+  File "/usr/lib/python3.5/urllib/request.py", line 582 in http_response
+  File "/usr/lib/python3.5/urllib/request.py", line 472 in open
+  File "/project/sources/poky/bitbake/lib/bb/fetch2/wget.py", line 279 in h=
+ttp_error_405
+  File "/usr/lib/python3.5/urllib/request.py", line 444 in _call_chain
+  File "/usr/lib/python3.5/urllib/request.py", line 504 in error
+  File "/usr/lib/python3.5/urllib/request.py", line 582 in http_response
+  File "/usr/lib/python3.5/urllib/request.py", line 472 in open
+  File "/project/sources/poky/bitbake/lib/bb/fetch2/wget.py", line 279 in h=
+ttp_error_405
+  File "/usr/lib/python3.5/urllib/request.py", line 444 in _call_chain
+  File "/usr/lib/python3.5/urllib/request.py", line 504 in error
+  File "/usr/lib/python3.5/urllib/request.py", line 582 in http_response
+  File "/usr/lib/python3.5/urllib/request.py", line 472 in open
+  File "/project/sources/poky/bitbake/lib/bb/fetch2/wget.py", line 279 in h=
+ttp_error_405
+  File "/usr/lib/python3.5/urllib/request.py", line 444 in _call_chain
+  File "/usr/lib/python3.5/urllib/request.py", line 504 in error
+  File "/usr/lib/python3.5/urllib/request.py", line 582 in http_response
+  File "/usr/lib/python3.5/urllib/request.py", line 472 in open
+  File "/project/sources/poky/bitbake/lib/bb/fetch2/wget.py", line 279 in h=
+ttp_error_405
+  File "/usr/lib/python3.5/urllib/request.py", line 444 in _call_chain
+  File "/usr/lib/python3.5/urllib/request.py", line 504 in error
+  File "/usr/lib/python3.5/urllib/request.py", line 582 in http_response
+  File "/usr/lib/python3.5/urllib/request.py", line 472 in open
+  File "/project/sources/poky/bitbake/lib/bb/fetch2/wget.py", line 279 in h=
+ttp_error_405
+  File "/usr/lib/python3.5/urllib/request.py", line 444 in _call_chain
+  File "/usr/lib/python3.5/urllib/request.py", line 504 in error
+  File "/usr/lib/python3.5/urllib/request.py", line 582 in http_response
+  File "/usr/lib/python3.5/urllib/request.py", line 472 in open
+  File "/project/sources/poky/bitbake/lib/bb/fetch2/wget.py", line 279 in h=
+ttp_error_405
+  File "/usr/lib/python3.5/urllib/request.py", line 444 in _call_chain
+  File "/usr/lib/python3.5/urllib/request.py", line 504 in error
+  File "/usr/lib/python3.5/urllib/request.py", line 582 in http_response
+  File "/usr/lib/python3.5/urllib/request.py", line 472 in open
+  File "/project/sources/poky/bitbake/lib/bb/fetch2/wget.py", line 279 in h=
+ttp_error_405
+  File "/usr/lib/python3.5/urllib/request.py", line 444 in _call_chain
+  File "/usr/lib/python3.5/urllib/request.py", line 504 in error
+  File "/usr/lib/python3.5/urllib/request.py", line 582 in http_response
+  File "/usr/lib/python3.5/urllib/request.py", line 472 in open
+  File "/project/sources/poky/bitbake/lib/bb/fetch2/wget.py", line 279 in h=
+ttp_error_405
+  File "/usr/lib/python3.5/urllib/request.py", line 444 in _call_chain
+  File "/usr/lib/python3.5/urllib/request.py", line 504 in error
+  File "/usr/lib/python3.5/urllib/request.py", line 582 in http_response
+  File "/usr/lib/python3.5/urllib/request.py", line 472 in open
+  File "/project/sources/poky/bitbake/lib/bb/fetch2/wget.py", line 279 in h=
+ttp_error_405
+  File "/usr/lib/python3.5/urllib/request.py", line 444 in _call_chain
+  File "/usr/lib/python3.5/urllib/request.py", line 504 in error
+  File "/usr/lib/python3.5/urllib/request.py", line 582 in http_response
+  File "/usr/lib/python3.5/urllib/request.py", line 472 in open
+  File "/project/sources/poky/bitbake/lib/bb/fetch2/wget.py", line 279 in h=
+ttp_error_405
+  File "/usr/lib/python3.5/urllib/request.py", line 444 in _call_chain
+  File "/usr/lib/python3.5/urllib/request.py", line 504 in error
+  File "/usr/lib/python3.5/urllib/request.py", line 582 in http_response
+  File "/usr/lib/python3.5/urllib/request.py", line 472 in open
+  File "/project/sources/poky/bitbake/lib/bb/fetch2/wget.py", line 279 in h=
+ttp_error_405
+  File "/usr/lib/python3.5/urllib/request.py", line 444 in _call_chain
+  File "/usr/lib/python3.5/urllib/request.py", line 504 in error
+  File "/usr/lib/python3.5/urllib/request.py", line 582 in http_response
+  File "/usr/lib/python3.5/urllib/request.py", line 472 in open
+  File "/project/sources/poky/bitbake/lib/bb/fetch2/wget.py", line 279 in h=
+ttp_error_405
+  File "/usr/lib/python3.5/urllib/request.py", line 444 in _call_chain
+  File "/usr/lib/python3.5/urllib/request.py", line 504 in error
+  File "/usr/lib/python3.5/urllib/request.py", line 582 in http_response
+  File "/usr/lib/python3.5/urllib/request.py", line 472 in open
+  File "/project/sources/poky/bitbake/lib/bb/fetch2/wget.py", line 279 in h=
+ttp_error_405
+  File "/usr/lib/python3.5/urllib/request.py", line 444 in _call_chain
+  File "/usr/lib/python3.5/urllib/request.py", line 504 in error
+  File "/usr/lib/python3.5/urllib/request.py", line 582 in http_response
+  File "/usr/lib/python3.5/urllib/request.py", line 472 in open
+  File "/project/sources/poky/bitbake/lib/bb/fetch2/wget.py", line 279 in h=
+ttp_error_405
+  File "/usr/lib/python3.5/urllib/request.py", line 444 in _call_chain
+  File "/usr/lib/python3.5/urllib/request.py", line 504 in error
+  File "/usr/lib/python3.5/urllib/request.py", line 582 in http_response
+  File "/usr/lib/python3.5/urllib/request.py", line 472 in open
+  ...
+
+Thank you,
+Logan
+
+--_000_MW4PR16MB508736875E5E14A493B84836BB46AMW4PR16MB5087namp_
+Content-Type: text/html; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
+
+<html>
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
+>
+<style type=3D"text/css" style=3D"display:none;"> P {margin-top:0;margin-bo=
+ttom:0;} </style>
+</head>
+<body dir=3D"ltr">
+<div class=3D"elementToProof" style=3D"font-family: Aptos, Aptos_EmbeddedFo=
+nt, Aptos_MSFontService, Calibri, Helvetica, sans-serif; font-size: 12pt; c=
+olor: rgb(0, 0, 0);">
+My issue appears to be fixed by `1a4e4fb6b0a9d54641bd4193e95311d1f822a9ca`,=
+ contained in release Zeus 3.0.1 and later.. why this started occurring, I =
+still don't know. Looks like I'll be working off a fork until I can pull up=
+.</div>
+<div id=3D"Signature" class=3D"elementToProof">
+<div class=3D"elementToProof" style=3D"font-family: Aptos, Aptos_EmbeddedFo=
+nt, Aptos_MSFontService, Calibri, Helvetica, sans-serif; font-size: 12pt; c=
+olor: rgb(0, 0, 0);">
+<br>
+</div>
+<div class=3D"elementToProof" style=3D"font-family: Calibri, Arial, Helveti=
+ca, sans-serif; font-size: 12pt; color: rgb(0, 0, 0);">
+Thank you,</div>
+<div class=3D"elementToProof" style=3D"font-family: Calibri, Arial, Helveti=
+ca, sans-serif; font-size: 12pt; color: rgb(0, 0, 0);">
+Logan</div>
+</div>
+<div id=3D"appendonsend"></div>
+<hr style=3D"display:inline-block;width:98%" tabindex=3D"-1">
+<div id=3D"divRplyFwdMsg" dir=3D"ltr"><font face=3D"Calibri, sans-serif" st=
+yle=3D"font-size:11pt" color=3D"#000000"><b>From:</b> yocto@lists.yoctoproj=
+ect.org &lt;yocto@lists.yoctoproject.org&gt; on behalf of Logan Grosz via l=
+ists.yoctoproject.org &lt;Logan.Grosz=3Db9c.com@lists.yoctoproject.org&gt;<=
+br>
+<b>Sent:</b> Thursday, June 26, 2025 4:04 PM<br>
+<b>To:</b> yocto@lists.yoctoproject.org &lt;yocto@lists.yoctoproject.org&gt=
+;<br>
+<b>Subject:</b> [yocto] Bitbake getting stack overflows with 405 responses<=
+/font>
+<div>&nbsp;</div>
+</div>
+<style type=3D"text/css" style=3D"display:none">
+<!--
+p
+	{margin-top:0;
+	margin-bottom:0}
+-->
+</style>
+<div dir=3D"ltr">
+<div class=3D"x_elementToProof" style=3D"font-family:Aptos,Aptos_EmbeddedFo=
+nt,Aptos_MSFontService,Calibri,Helvetica,sans-serif; font-size:12pt; color:=
+rgb(0,0,0)">
+Hi,</div>
+<div class=3D"x_elementToProof" style=3D"font-family:Aptos,Aptos_EmbeddedFo=
+nt,Aptos_MSFontService,Calibri,Helvetica,sans-serif; font-size:12pt; color:=
+rgb(0,0,0)">
+<br>
+</div>
+<div class=3D"x_elementToProof" style=3D"font-family:Aptos,Aptos_EmbeddedFo=
+nt,Aptos_MSFontService,Calibri,Helvetica,sans-serif; font-size:12pt; color:=
+rgb(0,0,0)">
+I am using Yocto Sumo (I am very aware of how out-of-date our project is, I=
+ am in the process of upgrading to Kirkstone) and suddenly I've started get=
+ting stack overflows in Bitbake alongside some 405 responses. This seems to=
+ happen during sstate cache parsing
+ and/or task initialization. Previously, it was just happening when I'd spe=
+cify <code>
+-c package</code>, which was inconvenient, but I figured I could deal with =
+it.. but now it's happening for every task I start. Below are some&nbsp;log=
+s from bitbake-cookerdaemon.log. What else should I be looking at to diagno=
+se this issue?</div>
+<div id=3D"x_Signature" class=3D"x_elementToProof">
+<div class=3D"x_elementToProof" style=3D"font-family:Aptos,Aptos_EmbeddedFo=
+nt,Aptos_MSFontService,Calibri,Helvetica,sans-serif; font-size:12pt; color:=
+rgb(0,0,0)">
+<br>
+</div>
+<div class=3D"x_elementToProof" style=3D"font-family:Aptos,Aptos_EmbeddedFo=
+nt,Aptos_MSFontService,Calibri,Helvetica,sans-serif; font-size:12pt; color:=
+rgb(0,0,0)">
+Running command ['updateConfig', {'server_timeout': None, 'force': False, '=
+profile': False, 'verbose': False, 'debug': 0, 'dump_signatures': [], 'pref=
+ile': [], 'abort': True, 'extra_assume_provided': [], 'invalidate_stamp': N=
+one, 'debug_domains': [], 'dry_run':
+ False, 'postfile': []}, {'DISTRO': 'b9-core-5', 'OLDPWD': '/project', 'LAN=
+GUAGE': 'en_US:en', 'PWD': '/project/build-b9-imx8mq', 'BBPATH': '/project/=
+build-b9-imx8mq', 'MACHINE': 'b9-imx8mq', 'SHLVL': '1', 'LC_ALL': 'en_US.UT=
+F-8', 'HOME': '/home/chef', 'HOSTNAME':
+ 'b9-linux', 'BUILDDIR': '/project/build-b9-imx8mq', '_': '/project/sources=
+/poky/bitbake/bin/bitbake', 'BB_ENV_EXTRAWHITE': 'ALL_PROXY BBPATH_EXTRA BB=
+_NO_NETWORK BB_NUMBER_THREADS BB_SETSCENE_ENFORCE BB_SRCREV_POLICY DISTRO F=
+TPS_PROXY FTP_PROXY GIT_PROXY_COMMAND
+ HTTPS_PROXY HTTP_PROXY MACHINE NO_PROXY PARALLEL_MAKE SCREENDIR SDKMACHINE=
+ SOCKS5_PASSWD SOCKS5_USER SSH_AGENT_PID SSH_AUTH_SOCK STAMPS_DIR TCLIBC TC=
+MODE all_proxy ftp_proxy ftps_proxy http_proxy https_proxy no_proxy ', 'TER=
+M': 'xterm', 'PATH': '/project/sources/poky/scripts:/project/sources/poky/b=
+itbake/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin',
+ 'LANG': 'en_US.UTF-8'}, ['/project/sources/poky/bitbake/bin/bitbake', 'b9-=
+image']]</div>
+<div class=3D"x_elementToProof" style=3D"font-family:Aptos,Aptos_EmbeddedFo=
+nt,Aptos_MSFontService,Calibri,Helvetica,sans-serif; font-size:12pt; color:=
+rgb(0,0,0)">
+Running command ['getVariable', 'BBINCLUDELOGS']</div>
+<div class=3D"x_elementToProof" style=3D"font-family:Aptos,Aptos_EmbeddedFo=
+nt,Aptos_MSFontService,Calibri,Helvetica,sans-serif; font-size:12pt; color:=
+rgb(0,0,0)">
+Running command ['getVariable', 'BBINCLUDELOGS_LINES']</div>
+<div class=3D"x_elementToProof" style=3D"font-family:Aptos,Aptos_EmbeddedFo=
+nt,Aptos_MSFontService,Calibri,Helvetica,sans-serif; font-size:12pt; color:=
+rgb(0,0,0)">
+Running command ['getSetVariable', 'BB_CONSOLELOG']</div>
+<div class=3D"x_elementToProof" style=3D"font-family:Aptos,Aptos_EmbeddedFo=
+nt,Aptos_MSFontService,Calibri,Helvetica,sans-serif; font-size:12pt; color:=
+rgb(0,0,0)">
+Running command ['getUIHandlerNum']</div>
+<div class=3D"x_elementToProof" style=3D"font-family:Aptos,Aptos_EmbeddedFo=
+nt,Aptos_MSFontService,Calibri,Helvetica,sans-serif; font-size:12pt; color:=
+rgb(0,0,0)">
+Running command ['setEventMask', 1, 20, {}, ['bb.runqueue.runQueueExitWait'=
+, 'bb.event.LogExecTTY', 'logging.LogRecord', 'bb.build.TaskFailed', 'bb.bu=
+ild.TaskBase', 'bb.event.ParseStarted', 'bb.event.ParseProgress', 'bb.event=
+.ParseCompleted', 'bb.event.CacheLoadStarted',
+ 'bb.event.CacheLoadProgress', 'bb.event.CacheLoadCompleted', 'bb.command.C=
+ommandFailed', 'bb.command.CommandExit', 'bb.command.CommandCompleted', 'bb=
+.cooker.CookerExit', 'bb.event.MultipleProviders', 'bb.event.NoProvider', '=
+bb.runqueue.sceneQueueTaskStarted',
+ 'bb.runqueue.runQueueTaskStarted', 'bb.runqueue.runQueueTaskFailed', 'bb.r=
+unqueue.sceneQueueTaskFailed', 'bb.event.BuildBase', 'bb.build.TaskStarted'=
+, 'bb.build.TaskSucceeded', 'bb.build.TaskFailedSilent', 'bb.build.TaskProg=
+ress', 'bb.event.ProcessStarted',
+ 'bb.event.ProcessProgress', 'bb.event.ProcessFinished']]</div>
+<div class=3D"x_elementToProof" style=3D"font-family:Aptos,Aptos_EmbeddedFo=
+nt,Aptos_MSFontService,Calibri,Helvetica,sans-serif; font-size:12pt; color:=
+rgb(0,0,0)">
+Running command ['getVariable', 'BB_DEFAULT_TASK']</div>
+<div class=3D"x_elementToProof" style=3D"font-family:Aptos,Aptos_EmbeddedFo=
+nt,Aptos_MSFontService,Calibri,Helvetica,sans-serif; font-size:12pt; color:=
+rgb(0,0,0)">
+Running command ['setConfig', 'cmd', 'build']</div>
+<div class=3D"x_elementToProof" style=3D"font-family:Aptos,Aptos_EmbeddedFo=
+nt,Aptos_MSFontService,Calibri,Helvetica,sans-serif; font-size:12pt; color:=
+rgb(0,0,0)">
+Running command ['buildTargets', ['b9-image'], 'build']</div>
+<div class=3D"x_elementToProof" style=3D"font-family:Aptos,Aptos_EmbeddedFo=
+nt,Aptos_MSFontService,Calibri,Helvetica,sans-serif; font-size:12pt; color:=
+rgb(0,0,0)">
+Fatal Python error: Cannot recover from stack overflow.</div>
+<div class=3D"x_elementToProof" style=3D"font-family:Aptos,Aptos_EmbeddedFo=
+nt,Aptos_MSFontService,Calibri,Helvetica,sans-serif; font-size:12pt; color:=
+rgb(0,0,0)">
+<br>
+</div>
+<div class=3D"x_elementToProof" style=3D"font-family:Aptos,Aptos_EmbeddedFo=
+nt,Aptos_MSFontService,Calibri,Helvetica,sans-serif; font-size:12pt; color:=
+rgb(0,0,0)">
+Thread 0x0000761fe9600700 (most recent call first):</div>
+<div class=3D"x_elementToProof" style=3D"font-family:Aptos,Aptos_EmbeddedFo=
+nt,Aptos_MSFontService,Calibri,Helvetica,sans-serif; font-size:12pt; color:=
+rgb(0,0,0)">
+&nbsp; File &quot;/usr/lib/python3.5/socket.py&quot;, line 575 in readinto<=
+/div>
+<div class=3D"x_elementToProof" style=3D"font-family:Aptos,Aptos_EmbeddedFo=
+nt,Aptos_MSFontService,Calibri,Helvetica,sans-serif; font-size:12pt; color:=
+rgb(0,0,0)">
+&nbsp; File &quot;/usr/lib/python3.5/http/client.py&quot;, line 515 in _rea=
+d_next_chunk_size</div>
+<div class=3D"x_elementToProof" style=3D"font-family:Aptos,Aptos_EmbeddedFo=
+nt,Aptos_MSFontService,Calibri,Helvetica,sans-serif; font-size:12pt; color:=
+rgb(0,0,0)">
+&nbsp; File &quot;/usr/lib/python3.5/http/client.py&quot;, line 555 in _get=
+_chunk_left</div>
+<div class=3D"x_elementToProof" style=3D"font-family:Aptos,Aptos_EmbeddedFo=
+nt,Aptos_MSFontService,Calibri,Helvetica,sans-serif; font-size:12pt; color:=
+rgb(0,0,0)">
+&nbsp; File &quot;/usr/lib/python3.5/http/client.py&quot;, line 572 in _rea=
+dall_chunked</div>
+<div class=3D"x_elementToProof" style=3D"font-family:Aptos,Aptos_EmbeddedFo=
+nt,Aptos_MSFontService,Calibri,Helvetica,sans-serif; font-size:12pt; color:=
+rgb(0,0,0)">
+&nbsp; File &quot;/usr/lib/python3.5/http/client.py&quot;, line 469 in read=
+</div>
+<div class=3D"x_elementToProof" style=3D"font-family:Aptos,Aptos_EmbeddedFo=
+nt,Aptos_MSFontService,Calibri,Helvetica,sans-serif; font-size:12pt; color:=
+rgb(0,0,0)">
+&nbsp; File &quot;/project/sources/poky/bitbake/lib/bb/fetch2/wget.py&quot;=
+, line 245 in do_open</div>
+<div class=3D"x_elementToProof" style=3D"font-family:Aptos,Aptos_EmbeddedFo=
+nt,Aptos_MSFontService,Calibri,Helvetica,sans-serif; font-size:12pt; color:=
+rgb(0,0,0)">
+&nbsp; File &quot;/project/sources/poky/bitbake/lib/bb/fetch2/wget.py&quot;=
+, line 157 in http_open</div>
+<div class=3D"x_elementToProof" style=3D"font-family:Aptos,Aptos_EmbeddedFo=
+nt,Aptos_MSFontService,Calibri,Helvetica,sans-serif; font-size:12pt; color:=
+rgb(0,0,0)">
+&nbsp; File &quot;/usr/lib/python3.5/urllib/request.py&quot;, line 444 in _=
+call_chain</div>
+<div class=3D"x_elementToProof" style=3D"font-family:Aptos,Aptos_EmbeddedFo=
+nt,Aptos_MSFontService,Calibri,Helvetica,sans-serif; font-size:12pt; color:=
+rgb(0,0,0)">
+&nbsp; File &quot;/usr/lib/python3.5/urllib/request.py&quot;, line 484 in _=
+open</div>
+<div class=3D"x_elementToProof" style=3D"font-family:Aptos,Aptos_EmbeddedFo=
+nt,Aptos_MSFontService,Calibri,Helvetica,sans-serif; font-size:12pt; color:=
+rgb(0,0,0)">
+&nbsp; File &quot;/usr/lib/python3.5/urllib/request.py&quot;, line 466 in o=
+pen</div>
+<div class=3D"x_elementToProof" style=3D"font-family:Aptos,Aptos_EmbeddedFo=
+nt,Aptos_MSFontService,Calibri,Helvetica,sans-serif; font-size:12pt; color:=
+rgb(0,0,0)">
+&nbsp; File &quot;/project/sources/poky/bitbake/lib/bb/fetch2/wget.py&quot;=
+, line 279 in http_error_405</div>
+<div class=3D"x_elementToProof" style=3D"font-family:Aptos,Aptos_EmbeddedFo=
+nt,Aptos_MSFontService,Calibri,Helvetica,sans-serif; font-size:12pt; color:=
+rgb(0,0,0)">
+&nbsp; File &quot;/usr/lib/python3.5/urllib/request.py&quot;, line 444 in _=
+call_chain</div>
+<div class=3D"x_elementToProof" style=3D"font-family:Aptos,Aptos_EmbeddedFo=
+nt,Aptos_MSFontService,Calibri,Helvetica,sans-serif; font-size:12pt; color:=
+rgb(0,0,0)">
+&nbsp; File &quot;/usr/lib/python3.5/urllib/request.py&quot;, line 504 in e=
+rror</div>
+<div class=3D"x_elementToProof" style=3D"font-family:Aptos,Aptos_EmbeddedFo=
+nt,Aptos_MSFontService,Calibri,Helvetica,sans-serif; font-size:12pt; color:=
+rgb(0,0,0)">
+&nbsp; File &quot;/usr/lib/python3.5/urllib/request.py&quot;, line 582 in h=
+ttp_response</div>
+<div class=3D"x_elementToProof" style=3D"font-family:Aptos,Aptos_EmbeddedFo=
+nt,Aptos_MSFontService,Calibri,Helvetica,sans-serif; font-size:12pt; color:=
+rgb(0,0,0)">
+&nbsp; File &quot;/usr/lib/python3.5/urllib/request.py&quot;, line 472 in o=
+pen</div>
+<div class=3D"x_elementToProof" style=3D"font-family:Aptos,Aptos_EmbeddedFo=
+nt,Aptos_MSFontService,Calibri,Helvetica,sans-serif; font-size:12pt; color:=
+rgb(0,0,0)">
+&nbsp; File &quot;/project/sources/poky/bitbake/lib/bb/fetch2/wget.py&quot;=
+, line 279 in http_error_405</div>
+<div class=3D"x_elementToProof" style=3D"font-family:Aptos,Aptos_EmbeddedFo=
+nt,Aptos_MSFontService,Calibri,Helvetica,sans-serif; font-size:12pt; color:=
+rgb(0,0,0)">
+&nbsp; File &quot;/usr/lib/python3.5/urllib/request.py&quot;, line 444 in _=
+call_chain</div>
+<div class=3D"x_elementToProof" style=3D"font-family:Aptos,Aptos_EmbeddedFo=
+nt,Aptos_MSFontService,Calibri,Helvetica,sans-serif; font-size:12pt; color:=
+rgb(0,0,0)">
+&nbsp; File &quot;/usr/lib/python3.5/urllib/request.py&quot;, line 504 in e=
+rror</div>
+<div class=3D"x_elementToProof" style=3D"font-family:Aptos,Aptos_EmbeddedFo=
+nt,Aptos_MSFontService,Calibri,Helvetica,sans-serif; font-size:12pt; color:=
+rgb(0,0,0)">
+&nbsp; File &quot;/usr/lib/python3.5/urllib/request.py&quot;, line 582 in h=
+ttp_response</div>
+<div class=3D"x_elementToProof" style=3D"font-family:Aptos,Aptos_EmbeddedFo=
+nt,Aptos_MSFontService,Calibri,Helvetica,sans-serif; font-size:12pt; color:=
+rgb(0,0,0)">
+&nbsp; File &quot;/usr/lib/python3.5/urllib/request.py&quot;, line 472 in o=
+pen</div>
+<div class=3D"x_elementToProof" style=3D"font-family:Aptos,Aptos_EmbeddedFo=
+nt,Aptos_MSFontService,Calibri,Helvetica,sans-serif; font-size:12pt; color:=
+rgb(0,0,0)">
+&nbsp; File &quot;/project/sources/poky/bitbake/lib/bb/fetch2/wget.py&quot;=
+, line 279 in http_error_405</div>
+<div class=3D"x_elementToProof" style=3D"font-family:Aptos,Aptos_EmbeddedFo=
+nt,Aptos_MSFontService,Calibri,Helvetica,sans-serif; font-size:12pt; color:=
+rgb(0,0,0)">
+&nbsp; File &quot;/usr/lib/python3.5/urllib/request.py&quot;, line 444 in _=
+call_chain</div>
+<div class=3D"x_elementToProof" style=3D"font-family:Aptos,Aptos_EmbeddedFo=
+nt,Aptos_MSFontService,Calibri,Helvetica,sans-serif; font-size:12pt; color:=
+rgb(0,0,0)">
+&nbsp; File &quot;/usr/lib/python3.5/urllib/request.py&quot;, line 504 in e=
+rror</div>
+<div class=3D"x_elementToProof" style=3D"font-family:Aptos,Aptos_EmbeddedFo=
+nt,Aptos_MSFontService,Calibri,Helvetica,sans-serif; font-size:12pt; color:=
+rgb(0,0,0)">
+&nbsp; File &quot;/usr/lib/python3.5/urllib/request.py&quot;, line 582 in h=
+ttp_response</div>
+<div class=3D"x_elementToProof" style=3D"font-family:Aptos,Aptos_EmbeddedFo=
+nt,Aptos_MSFontService,Calibri,Helvetica,sans-serif; font-size:12pt; color:=
+rgb(0,0,0)">
+&nbsp; File &quot;/usr/lib/python3.5/urllib/request.py&quot;, line 472 in o=
+pen</div>
+<div class=3D"x_elementToProof" style=3D"font-family:Aptos,Aptos_EmbeddedFo=
+nt,Aptos_MSFontService,Calibri,Helvetica,sans-serif; font-size:12pt; color:=
+rgb(0,0,0)">
+&nbsp; File &quot;/project/sources/poky/bitbake/lib/bb/fetch2/wget.py&quot;=
+, line 279 in http_error_405</div>
+<div class=3D"x_elementToProof" style=3D"font-family:Aptos,Aptos_EmbeddedFo=
+nt,Aptos_MSFontService,Calibri,Helvetica,sans-serif; font-size:12pt; color:=
+rgb(0,0,0)">
+&nbsp; File &quot;/usr/lib/python3.5/urllib/request.py&quot;, line 444 in _=
+call_chain</div>
+<div class=3D"x_elementToProof" style=3D"font-family:Aptos,Aptos_EmbeddedFo=
+nt,Aptos_MSFontService,Calibri,Helvetica,sans-serif; font-size:12pt; color:=
+rgb(0,0,0)">
+&nbsp; File &quot;/usr/lib/python3.5/urllib/request.py&quot;, line 504 in e=
+rror</div>
+<div class=3D"x_elementToProof" style=3D"font-family:Aptos,Aptos_EmbeddedFo=
+nt,Aptos_MSFontService,Calibri,Helvetica,sans-serif; font-size:12pt; color:=
+rgb(0,0,0)">
+&nbsp; File &quot;/usr/lib/python3.5/urllib/request.py&quot;, line 582 in h=
+ttp_response</div>
+<div class=3D"x_elementToProof" style=3D"font-family:Aptos,Aptos_EmbeddedFo=
+nt,Aptos_MSFontService,Calibri,Helvetica,sans-serif; font-size:12pt; color:=
+rgb(0,0,0)">
+&nbsp; File &quot;/usr/lib/python3.5/urllib/request.py&quot;, line 472 in o=
+pen</div>
+<div class=3D"x_elementToProof" style=3D"font-family:Aptos,Aptos_EmbeddedFo=
+nt,Aptos_MSFontService,Calibri,Helvetica,sans-serif; font-size:12pt; color:=
+rgb(0,0,0)">
+&nbsp; File &quot;/project/sources/poky/bitbake/lib/bb/fetch2/wget.py&quot;=
+, line 279 in http_error_405</div>
+<div class=3D"x_elementToProof" style=3D"font-family:Aptos,Aptos_EmbeddedFo=
+nt,Aptos_MSFontService,Calibri,Helvetica,sans-serif; font-size:12pt; color:=
+rgb(0,0,0)">
+&nbsp; File &quot;/usr/lib/python3.5/urllib/request.py&quot;, line 444 in _=
+call_chain</div>
+<div class=3D"x_elementToProof" style=3D"font-family:Aptos,Aptos_EmbeddedFo=
+nt,Aptos_MSFontService,Calibri,Helvetica,sans-serif; font-size:12pt; color:=
+rgb(0,0,0)">
+&nbsp; File &quot;/usr/lib/python3.5/urllib/request.py&quot;, line 504 in e=
+rror</div>
+<div class=3D"x_elementToProof" style=3D"font-family:Aptos,Aptos_EmbeddedFo=
+nt,Aptos_MSFontService,Calibri,Helvetica,sans-serif; font-size:12pt; color:=
+rgb(0,0,0)">
+&nbsp; File &quot;/usr/lib/python3.5/urllib/request.py&quot;, line 582 in h=
+ttp_response</div>
+<div class=3D"x_elementToProof" style=3D"font-family:Aptos,Aptos_EmbeddedFo=
+nt,Aptos_MSFontService,Calibri,Helvetica,sans-serif; font-size:12pt; color:=
+rgb(0,0,0)">
+&nbsp; File &quot;/usr/lib/python3.5/urllib/request.py&quot;, line 472 in o=
+pen</div>
+<div class=3D"x_elementToProof" style=3D"font-family:Aptos,Aptos_EmbeddedFo=
+nt,Aptos_MSFontService,Calibri,Helvetica,sans-serif; font-size:12pt; color:=
+rgb(0,0,0)">
+&nbsp; File &quot;/project/sources/poky/bitbake/lib/bb/fetch2/wget.py&quot;=
+, line 279 in http_error_405</div>
+<div class=3D"x_elementToProof" style=3D"font-family:Aptos,Aptos_EmbeddedFo=
+nt,Aptos_MSFontService,Calibri,Helvetica,sans-serif; font-size:12pt; color:=
+rgb(0,0,0)">
+&nbsp; File &quot;/usr/lib/python3.5/urllib/request.py&quot;, line 444 in _=
+call_chain</div>
+<div class=3D"x_elementToProof" style=3D"font-family:Aptos,Aptos_EmbeddedFo=
+nt,Aptos_MSFontService,Calibri,Helvetica,sans-serif; font-size:12pt; color:=
+rgb(0,0,0)">
+&nbsp; File &quot;/usr/lib/python3.5/urllib/request.py&quot;, line 504 in e=
+rror</div>
+<div class=3D"x_elementToProof" style=3D"font-family:Aptos,Aptos_EmbeddedFo=
+nt,Aptos_MSFontService,Calibri,Helvetica,sans-serif; font-size:12pt; color:=
+rgb(0,0,0)">
+&nbsp; File &quot;/usr/lib/python3.5/urllib/request.py&quot;, line 582 in h=
+ttp_response</div>
+<div class=3D"x_elementToProof" style=3D"font-family:Aptos,Aptos_EmbeddedFo=
+nt,Aptos_MSFontService,Calibri,Helvetica,sans-serif; font-size:12pt; color:=
+rgb(0,0,0)">
+&nbsp; File &quot;/usr/lib/python3.5/urllib/request.py&quot;, line 472 in o=
+pen</div>
+<div class=3D"x_elementToProof" style=3D"font-family:Aptos,Aptos_EmbeddedFo=
+nt,Aptos_MSFontService,Calibri,Helvetica,sans-serif; font-size:12pt; color:=
+rgb(0,0,0)">
+&nbsp; File &quot;/project/sources/poky/bitbake/lib/bb/fetch2/wget.py&quot;=
+, line 279 in http_error_405</div>
+<div class=3D"x_elementToProof" style=3D"font-family:Aptos,Aptos_EmbeddedFo=
+nt,Aptos_MSFontService,Calibri,Helvetica,sans-serif; font-size:12pt; color:=
+rgb(0,0,0)">
+&nbsp; File &quot;/usr/lib/python3.5/urllib/request.py&quot;, line 444 in _=
+call_chain</div>
+<div class=3D"x_elementToProof" style=3D"font-family:Aptos,Aptos_EmbeddedFo=
+nt,Aptos_MSFontService,Calibri,Helvetica,sans-serif; font-size:12pt; color:=
+rgb(0,0,0)">
+&nbsp; File &quot;/usr/lib/python3.5/urllib/request.py&quot;, line 504 in e=
+rror</div>
+<div class=3D"x_elementToProof" style=3D"font-family:Aptos,Aptos_EmbeddedFo=
+nt,Aptos_MSFontService,Calibri,Helvetica,sans-serif; font-size:12pt; color:=
+rgb(0,0,0)">
+&nbsp; File &quot;/usr/lib/python3.5/urllib/request.py&quot;, line 582 in h=
+ttp_response</div>
+<div class=3D"x_elementToProof" style=3D"font-family:Aptos,Aptos_EmbeddedFo=
+nt,Aptos_MSFontService,Calibri,Helvetica,sans-serif; font-size:12pt; color:=
+rgb(0,0,0)">
+&nbsp; File &quot;/usr/lib/python3.5/urllib/request.py&quot;, line 472 in o=
+pen</div>
+<div class=3D"x_elementToProof" style=3D"font-family:Aptos,Aptos_EmbeddedFo=
+nt,Aptos_MSFontService,Calibri,Helvetica,sans-serif; font-size:12pt; color:=
+rgb(0,0,0)">
+&nbsp; File &quot;/project/sources/poky/bitbake/lib/bb/fetch2/wget.py&quot;=
+, line 279 in http_error_405</div>
+<div class=3D"x_elementToProof" style=3D"font-family:Aptos,Aptos_EmbeddedFo=
+nt,Aptos_MSFontService,Calibri,Helvetica,sans-serif; font-size:12pt; color:=
+rgb(0,0,0)">
+&nbsp; File &quot;/usr/lib/python3.5/urllib/request.py&quot;, line 444 in _=
+call_chain</div>
+<div class=3D"x_elementToProof" style=3D"font-family:Aptos,Aptos_EmbeddedFo=
+nt,Aptos_MSFontService,Calibri,Helvetica,sans-serif; font-size:12pt; color:=
+rgb(0,0,0)">
+&nbsp; File &quot;/usr/lib/python3.5/urllib/request.py&quot;, line 504 in e=
+rror</div>
+<div class=3D"x_elementToProof" style=3D"font-family:Aptos,Aptos_EmbeddedFo=
+nt,Aptos_MSFontService,Calibri,Helvetica,sans-serif; font-size:12pt; color:=
+rgb(0,0,0)">
+&nbsp; File &quot;/usr/lib/python3.5/urllib/request.py&quot;, line 582 in h=
+ttp_response</div>
+<div class=3D"x_elementToProof" style=3D"font-family:Aptos,Aptos_EmbeddedFo=
+nt,Aptos_MSFontService,Calibri,Helvetica,sans-serif; font-size:12pt; color:=
+rgb(0,0,0)">
+&nbsp; File &quot;/usr/lib/python3.5/urllib/request.py&quot;, line 472 in o=
+pen</div>
+<div class=3D"x_elementToProof" style=3D"font-family:Aptos,Aptos_EmbeddedFo=
+nt,Aptos_MSFontService,Calibri,Helvetica,sans-serif; font-size:12pt; color:=
+rgb(0,0,0)">
+&nbsp; File &quot;/project/sources/poky/bitbake/lib/bb/fetch2/wget.py&quot;=
+, line 279 in http_error_405</div>
+<div class=3D"x_elementToProof" style=3D"font-family:Aptos,Aptos_EmbeddedFo=
+nt,Aptos_MSFontService,Calibri,Helvetica,sans-serif; font-size:12pt; color:=
+rgb(0,0,0)">
+&nbsp; File &quot;/usr/lib/python3.5/urllib/request.py&quot;, line 444 in _=
+call_chain</div>
+<div class=3D"x_elementToProof" style=3D"font-family:Aptos,Aptos_EmbeddedFo=
+nt,Aptos_MSFontService,Calibri,Helvetica,sans-serif; font-size:12pt; color:=
+rgb(0,0,0)">
+&nbsp; File &quot;/usr/lib/python3.5/urllib/request.py&quot;, line 504 in e=
+rror</div>
+<div class=3D"x_elementToProof" style=3D"font-family:Aptos,Aptos_EmbeddedFo=
+nt,Aptos_MSFontService,Calibri,Helvetica,sans-serif; font-size:12pt; color:=
+rgb(0,0,0)">
+&nbsp; File &quot;/usr/lib/python3.5/urllib/request.py&quot;, line 582 in h=
+ttp_response</div>
+<div class=3D"x_elementToProof" style=3D"font-family:Aptos,Aptos_EmbeddedFo=
+nt,Aptos_MSFontService,Calibri,Helvetica,sans-serif; font-size:12pt; color:=
+rgb(0,0,0)">
+&nbsp; File &quot;/usr/lib/python3.5/urllib/request.py&quot;, line 472 in o=
+pen</div>
+<div class=3D"x_elementToProof" style=3D"font-family:Aptos,Aptos_EmbeddedFo=
+nt,Aptos_MSFontService,Calibri,Helvetica,sans-serif; font-size:12pt; color:=
+rgb(0,0,0)">
+&nbsp; File &quot;/project/sources/poky/bitbake/lib/bb/fetch2/wget.py&quot;=
+, line 279 in http_error_405</div>
+<div class=3D"x_elementToProof" style=3D"font-family:Aptos,Aptos_EmbeddedFo=
+nt,Aptos_MSFontService,Calibri,Helvetica,sans-serif; font-size:12pt; color:=
+rgb(0,0,0)">
+&nbsp; File &quot;/usr/lib/python3.5/urllib/request.py&quot;, line 444 in _=
+call_chain</div>
+<div class=3D"x_elementToProof" style=3D"font-family:Aptos,Aptos_EmbeddedFo=
+nt,Aptos_MSFontService,Calibri,Helvetica,sans-serif; font-size:12pt; color:=
+rgb(0,0,0)">
+&nbsp; File &quot;/usr/lib/python3.5/urllib/request.py&quot;, line 504 in e=
+rror</div>
+<div class=3D"x_elementToProof" style=3D"font-family:Aptos,Aptos_EmbeddedFo=
+nt,Aptos_MSFontService,Calibri,Helvetica,sans-serif; font-size:12pt; color:=
+rgb(0,0,0)">
+&nbsp; File &quot;/usr/lib/python3.5/urllib/request.py&quot;, line 582 in h=
+ttp_response</div>
+<div class=3D"x_elementToProof" style=3D"font-family:Aptos,Aptos_EmbeddedFo=
+nt,Aptos_MSFontService,Calibri,Helvetica,sans-serif; font-size:12pt; color:=
+rgb(0,0,0)">
+&nbsp; File &quot;/usr/lib/python3.5/urllib/request.py&quot;, line 472 in o=
+pen</div>
+<div class=3D"x_elementToProof" style=3D"font-family:Aptos,Aptos_EmbeddedFo=
+nt,Aptos_MSFontService,Calibri,Helvetica,sans-serif; font-size:12pt; color:=
+rgb(0,0,0)">
+&nbsp; File &quot;/project/sources/poky/bitbake/lib/bb/fetch2/wget.py&quot;=
+, line 279 in http_error_405</div>
+<div class=3D"x_elementToProof" style=3D"font-family:Aptos,Aptos_EmbeddedFo=
+nt,Aptos_MSFontService,Calibri,Helvetica,sans-serif; font-size:12pt; color:=
+rgb(0,0,0)">
+&nbsp; File &quot;/usr/lib/python3.5/urllib/request.py&quot;, line 444 in _=
+call_chain</div>
+<div class=3D"x_elementToProof" style=3D"font-family:Aptos,Aptos_EmbeddedFo=
+nt,Aptos_MSFontService,Calibri,Helvetica,sans-serif; font-size:12pt; color:=
+rgb(0,0,0)">
+&nbsp; File &quot;/usr/lib/python3.5/urllib/request.py&quot;, line 504 in e=
+rror</div>
+<div class=3D"x_elementToProof" style=3D"font-family:Aptos,Aptos_EmbeddedFo=
+nt,Aptos_MSFontService,Calibri,Helvetica,sans-serif; font-size:12pt; color:=
+rgb(0,0,0)">
+&nbsp; File &quot;/usr/lib/python3.5/urllib/request.py&quot;, line 582 in h=
+ttp_response</div>
+<div class=3D"x_elementToProof" style=3D"font-family:Aptos,Aptos_EmbeddedFo=
+nt,Aptos_MSFontService,Calibri,Helvetica,sans-serif; font-size:12pt; color:=
+rgb(0,0,0)">
+&nbsp; File &quot;/usr/lib/python3.5/urllib/request.py&quot;, line 472 in o=
+pen</div>
+<div class=3D"x_elementToProof" style=3D"font-family:Aptos,Aptos_EmbeddedFo=
+nt,Aptos_MSFontService,Calibri,Helvetica,sans-serif; font-size:12pt; color:=
+rgb(0,0,0)">
+&nbsp; File &quot;/project/sources/poky/bitbake/lib/bb/fetch2/wget.py&quot;=
+, line 279 in http_error_405</div>
+<div class=3D"x_elementToProof" style=3D"font-family:Aptos,Aptos_EmbeddedFo=
+nt,Aptos_MSFontService,Calibri,Helvetica,sans-serif; font-size:12pt; color:=
+rgb(0,0,0)">
+&nbsp; File &quot;/usr/lib/python3.5/urllib/request.py&quot;, line 444 in _=
+call_chain</div>
+<div class=3D"x_elementToProof" style=3D"font-family:Aptos,Aptos_EmbeddedFo=
+nt,Aptos_MSFontService,Calibri,Helvetica,sans-serif; font-size:12pt; color:=
+rgb(0,0,0)">
+&nbsp; File &quot;/usr/lib/python3.5/urllib/request.py&quot;, line 504 in e=
+rror</div>
+<div class=3D"x_elementToProof" style=3D"font-family:Aptos,Aptos_EmbeddedFo=
+nt,Aptos_MSFontService,Calibri,Helvetica,sans-serif; font-size:12pt; color:=
+rgb(0,0,0)">
+&nbsp; File &quot;/usr/lib/python3.5/urllib/request.py&quot;, line 582 in h=
+ttp_response</div>
+<div class=3D"x_elementToProof" style=3D"font-family:Aptos,Aptos_EmbeddedFo=
+nt,Aptos_MSFontService,Calibri,Helvetica,sans-serif; font-size:12pt; color:=
+rgb(0,0,0)">
+&nbsp; File &quot;/usr/lib/python3.5/urllib/request.py&quot;, line 472 in o=
+pen</div>
+<div class=3D"x_elementToProof" style=3D"font-family:Aptos,Aptos_EmbeddedFo=
+nt,Aptos_MSFontService,Calibri,Helvetica,sans-serif; font-size:12pt; color:=
+rgb(0,0,0)">
+&nbsp; File &quot;/project/sources/poky/bitbake/lib/bb/fetch2/wget.py&quot;=
+, line 279 in http_error_405</div>
+<div class=3D"x_elementToProof" style=3D"font-family:Aptos,Aptos_EmbeddedFo=
+nt,Aptos_MSFontService,Calibri,Helvetica,sans-serif; font-size:12pt; color:=
+rgb(0,0,0)">
+&nbsp; File &quot;/usr/lib/python3.5/urllib/request.py&quot;, line 444 in _=
+call_chain</div>
+<div class=3D"x_elementToProof" style=3D"font-family:Aptos,Aptos_EmbeddedFo=
+nt,Aptos_MSFontService,Calibri,Helvetica,sans-serif; font-size:12pt; color:=
+rgb(0,0,0)">
+&nbsp; File &quot;/usr/lib/python3.5/urllib/request.py&quot;, line 504 in e=
+rror</div>
+<div class=3D"x_elementToProof" style=3D"font-family:Aptos,Aptos_EmbeddedFo=
+nt,Aptos_MSFontService,Calibri,Helvetica,sans-serif; font-size:12pt; color:=
+rgb(0,0,0)">
+&nbsp; File &quot;/usr/lib/python3.5/urllib/request.py&quot;, line 582 in h=
+ttp_response</div>
+<div class=3D"x_elementToProof" style=3D"font-family:Aptos,Aptos_EmbeddedFo=
+nt,Aptos_MSFontService,Calibri,Helvetica,sans-serif; font-size:12pt; color:=
+rgb(0,0,0)">
+&nbsp; File &quot;/usr/lib/python3.5/urllib/request.py&quot;, line 472 in o=
+pen</div>
+<div class=3D"x_elementToProof" style=3D"font-family:Aptos,Aptos_EmbeddedFo=
+nt,Aptos_MSFontService,Calibri,Helvetica,sans-serif; font-size:12pt; color:=
+rgb(0,0,0)">
+&nbsp; File &quot;/project/sources/poky/bitbake/lib/bb/fetch2/wget.py&quot;=
+, line 279 in http_error_405</div>
+<div class=3D"x_elementToProof" style=3D"font-family:Aptos,Aptos_EmbeddedFo=
+nt,Aptos_MSFontService,Calibri,Helvetica,sans-serif; font-size:12pt; color:=
+rgb(0,0,0)">
+&nbsp; File &quot;/usr/lib/python3.5/urllib/request.py&quot;, line 444 in _=
+call_chain</div>
+<div class=3D"x_elementToProof" style=3D"font-family:Aptos,Aptos_EmbeddedFo=
+nt,Aptos_MSFontService,Calibri,Helvetica,sans-serif; font-size:12pt; color:=
+rgb(0,0,0)">
+&nbsp; File &quot;/usr/lib/python3.5/urllib/request.py&quot;, line 504 in e=
+rror</div>
+<div class=3D"x_elementToProof" style=3D"font-family:Aptos,Aptos_EmbeddedFo=
+nt,Aptos_MSFontService,Calibri,Helvetica,sans-serif; font-size:12pt; color:=
+rgb(0,0,0)">
+&nbsp; File &quot;/usr/lib/python3.5/urllib/request.py&quot;, line 582 in h=
+ttp_response</div>
+<div class=3D"x_elementToProof" style=3D"font-family:Aptos,Aptos_EmbeddedFo=
+nt,Aptos_MSFontService,Calibri,Helvetica,sans-serif; font-size:12pt; color:=
+rgb(0,0,0)">
+&nbsp; File &quot;/usr/lib/python3.5/urllib/request.py&quot;, line 472 in o=
+pen</div>
+<div class=3D"x_elementToProof" style=3D"font-family:Aptos,Aptos_EmbeddedFo=
+nt,Aptos_MSFontService,Calibri,Helvetica,sans-serif; font-size:12pt; color:=
+rgb(0,0,0)">
+&nbsp; File &quot;/project/sources/poky/bitbake/lib/bb/fetch2/wget.py&quot;=
+, line 279 in http_error_405</div>
+<div class=3D"x_elementToProof" style=3D"font-family:Aptos,Aptos_EmbeddedFo=
+nt,Aptos_MSFontService,Calibri,Helvetica,sans-serif; font-size:12pt; color:=
+rgb(0,0,0)">
+&nbsp; File &quot;/usr/lib/python3.5/urllib/request.py&quot;, line 444 in _=
+call_chain</div>
+<div class=3D"x_elementToProof" style=3D"font-family:Aptos,Aptos_EmbeddedFo=
+nt,Aptos_MSFontService,Calibri,Helvetica,sans-serif; font-size:12pt; color:=
+rgb(0,0,0)">
+&nbsp; File &quot;/usr/lib/python3.5/urllib/request.py&quot;, line 504 in e=
+rror</div>
+<div class=3D"x_elementToProof" style=3D"font-family:Aptos,Aptos_EmbeddedFo=
+nt,Aptos_MSFontService,Calibri,Helvetica,sans-serif; font-size:12pt; color:=
+rgb(0,0,0)">
+&nbsp; File &quot;/usr/lib/python3.5/urllib/request.py&quot;, line 582 in h=
+ttp_response</div>
+<div class=3D"x_elementToProof" style=3D"font-family:Aptos,Aptos_EmbeddedFo=
+nt,Aptos_MSFontService,Calibri,Helvetica,sans-serif; font-size:12pt; color:=
+rgb(0,0,0)">
+&nbsp; File &quot;/usr/lib/python3.5/urllib/request.py&quot;, line 472 in o=
+pen</div>
+<div class=3D"x_elementToProof" style=3D"font-family:Aptos,Aptos_EmbeddedFo=
+nt,Aptos_MSFontService,Calibri,Helvetica,sans-serif; font-size:12pt; color:=
+rgb(0,0,0)">
+&nbsp; File &quot;/project/sources/poky/bitbake/lib/bb/fetch2/wget.py&quot;=
+, line 279 in http_error_405</div>
+<div class=3D"x_elementToProof" style=3D"font-family:Aptos,Aptos_EmbeddedFo=
+nt,Aptos_MSFontService,Calibri,Helvetica,sans-serif; font-size:12pt; color:=
+rgb(0,0,0)">
+&nbsp; File &quot;/usr/lib/python3.5/urllib/request.py&quot;, line 444 in _=
+call_chain</div>
+<div class=3D"x_elementToProof" style=3D"font-family:Aptos,Aptos_EmbeddedFo=
+nt,Aptos_MSFontService,Calibri,Helvetica,sans-serif; font-size:12pt; color:=
+rgb(0,0,0)">
+&nbsp; File &quot;/usr/lib/python3.5/urllib/request.py&quot;, line 504 in e=
+rror</div>
+<div class=3D"x_elementToProof" style=3D"font-family:Aptos,Aptos_EmbeddedFo=
+nt,Aptos_MSFontService,Calibri,Helvetica,sans-serif; font-size:12pt; color:=
+rgb(0,0,0)">
+&nbsp; File &quot;/usr/lib/python3.5/urllib/request.py&quot;, line 582 in h=
+ttp_response</div>
+<div class=3D"x_elementToProof" style=3D"font-family:Aptos,Aptos_EmbeddedFo=
+nt,Aptos_MSFontService,Calibri,Helvetica,sans-serif; font-size:12pt; color:=
+rgb(0,0,0)">
+&nbsp; File &quot;/usr/lib/python3.5/urllib/request.py&quot;, line 472 in o=
+pen</div>
+<div class=3D"x_elementToProof" style=3D"font-family:Aptos,Aptos_EmbeddedFo=
+nt,Aptos_MSFontService,Calibri,Helvetica,sans-serif; font-size:12pt; color:=
+rgb(0,0,0)">
+&nbsp; File &quot;/project/sources/poky/bitbake/lib/bb/fetch2/wget.py&quot;=
+, line 279 in http_error_405</div>
+<div class=3D"x_elementToProof" style=3D"font-family:Aptos,Aptos_EmbeddedFo=
+nt,Aptos_MSFontService,Calibri,Helvetica,sans-serif; font-size:12pt; color:=
+rgb(0,0,0)">
+&nbsp; File &quot;/usr/lib/python3.5/urllib/request.py&quot;, line 444 in _=
+call_chain</div>
+<div class=3D"x_elementToProof" style=3D"font-family:Aptos,Aptos_EmbeddedFo=
+nt,Aptos_MSFontService,Calibri,Helvetica,sans-serif; font-size:12pt; color:=
+rgb(0,0,0)">
+&nbsp; File &quot;/usr/lib/python3.5/urllib/request.py&quot;, line 504 in e=
+rror</div>
+<div class=3D"x_elementToProof" style=3D"font-family:Aptos,Aptos_EmbeddedFo=
+nt,Aptos_MSFontService,Calibri,Helvetica,sans-serif; font-size:12pt; color:=
+rgb(0,0,0)">
+&nbsp; File &quot;/usr/lib/python3.5/urllib/request.py&quot;, line 582 in h=
+ttp_response</div>
+<div class=3D"x_elementToProof" style=3D"font-family:Aptos,Aptos_EmbeddedFo=
+nt,Aptos_MSFontService,Calibri,Helvetica,sans-serif; font-size:12pt; color:=
+rgb(0,0,0)">
+&nbsp; File &quot;/usr/lib/python3.5/urllib/request.py&quot;, line 472 in o=
+pen</div>
+<div class=3D"x_elementToProof" style=3D"font-family:Aptos,Aptos_EmbeddedFo=
+nt,Aptos_MSFontService,Calibri,Helvetica,sans-serif; font-size:12pt; color:=
+rgb(0,0,0)">
+&nbsp; File &quot;/project/sources/poky/bitbake/lib/bb/fetch2/wget.py&quot;=
+, line 279 in http_error_405</div>
+<div class=3D"x_elementToProof" style=3D"font-family:Aptos,Aptos_EmbeddedFo=
+nt,Aptos_MSFontService,Calibri,Helvetica,sans-serif; font-size:12pt; color:=
+rgb(0,0,0)">
+&nbsp; File &quot;/usr/lib/python3.5/urllib/request.py&quot;, line 444 in _=
+call_chain</div>
+<div class=3D"x_elementToProof" style=3D"font-family:Aptos,Aptos_EmbeddedFo=
+nt,Aptos_MSFontService,Calibri,Helvetica,sans-serif; font-size:12pt; color:=
+rgb(0,0,0)">
+&nbsp; File &quot;/usr/lib/python3.5/urllib/request.py&quot;, line 504 in e=
+rror</div>
+<div class=3D"x_elementToProof" style=3D"font-family:Aptos,Aptos_EmbeddedFo=
+nt,Aptos_MSFontService,Calibri,Helvetica,sans-serif; font-size:12pt; color:=
+rgb(0,0,0)">
+&nbsp; File &quot;/usr/lib/python3.5/urllib/request.py&quot;, line 582 in h=
+ttp_response</div>
+<div class=3D"x_elementToProof" style=3D"font-family:Aptos,Aptos_EmbeddedFo=
+nt,Aptos_MSFontService,Calibri,Helvetica,sans-serif; font-size:12pt; color:=
+rgb(0,0,0)">
+&nbsp; File &quot;/usr/lib/python3.5/urllib/request.py&quot;, line 472 in o=
+pen</div>
+<div class=3D"x_elementToProof" style=3D"font-family:Aptos,Aptos_EmbeddedFo=
+nt,Aptos_MSFontService,Calibri,Helvetica,sans-serif; font-size:12pt; color:=
+rgb(0,0,0)">
+&nbsp; ...</div>
+<div class=3D"x_elementToProof" style=3D"font-family:Aptos,Aptos_EmbeddedFo=
+nt,Aptos_MSFontService,Calibri,Helvetica,sans-serif; font-size:12pt; color:=
+rgb(0,0,0)">
+<br>
+</div>
+<div class=3D"x_elementToProof" style=3D"font-family:Calibri,Arial,Helvetic=
+a,sans-serif; font-size:12pt; color:rgb(0,0,0)">
+Thank you,</div>
+<div class=3D"x_elementToProof" style=3D"font-family:Calibri,Arial,Helvetic=
+a,sans-serif; font-size:12pt; color:rgb(0,0,0)">
+Logan</div>
+</div>
+</div>
+</body>
+</html>
+
+--_000_MW4PR16MB508736875E5E14A493B84836BB46AMW4PR16MB5087namp_--
 
