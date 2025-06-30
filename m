@@ -1,106 +1,81 @@
-Return-Path: <ferdinand0022@gmail.com>
+Return-Path: <matteo.orlandini@tastitalia.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 64C9FC54ED1
-	for <webhook@archiver.kernel.org>; Sat, 28 Jun 2025 13:26:23 +0000 (UTC)
-Subject: WiFi driver on Radxa Zero 3W #devicedriver #make
-To: yocto@lists.yoctoproject.org
-From: ferdinand0022@gmail.com
-X-Originating-Location: Turku, Southwest Finland, FI (194.111.69.129)
-X-Originating-Platform: Linux Firefox 139
+	by smtp.lore.kernel.org (Postfix) with ESMTP id C14ECC7EE39
+	for <webhook@archiver.kernel.org>; Mon, 30 Jun 2025 07:07:56 +0000 (UTC)
+Subject: Re: [yocto] Virtual Keyboard on Wayland
+To: "Takuro Ashie" <ashie@clear-code.com>, yocto@lists.yoctoproject.org
+From: matteo.orlandini@tastitalia.com
+X-Originating-Location: Torgiano, Umbria, IT (37.77.97.75)
+X-Originating-Platform: Windows Chrome 137
 User-Agent: GROUPS.IO Web Poster
 MIME-Version: 1.0
-Date: Sat, 28 Jun 2025 06:26:15 -0700
-Message-ID: <pqOU.1751117175071326506.9ARF@lists.yoctoproject.org>
-Content-Type: multipart/alternative; boundary="jeTnc56IqHNPx0JDnpYS"
+Date: Mon, 30 Jun 2025 00:07:55 -0700
+References: <dab6042d-bdf7-4573-954e-e122059e3c8d@clear-code.com>
+In-Reply-To: <dab6042d-bdf7-4573-954e-e122059e3c8d@clear-code.com>
+Message-ID: <25560.1751267275266474735@lists.yoctoproject.org>
+Content-Type: multipart/alternative; boundary="DkqsIzk5PDuZnjoHndiU"
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Sat, 28 Jun 2025 13:26:23 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/65559
+ <yocto@lists.yoctoproject.org>; Mon, 30 Jun 2025 07:07:56 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/65560
 
---jeTnc56IqHNPx0JDnpYS
+--DkqsIzk5PDuZnjoHndiU
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: quoted-printable
 
-Hi all,
-I am building a custom linux for Radxa Zero 3W with Yocto. I am fairly new =
-to yocto project.
-As of now almost all the peripherals are running. But the WiFi chip on the =
-board needs AIC8800 driver to run.
-This driver should work: https://github.com/radxa-pkg/aic8800.
-I tried building some custom recipes and running, but can never get it work=
-ing.
+On Sat, Jun 28, 2025 at 01:02 AM, Takuro Ashie wrote:
 
 >=20
-> Here is the recipe I have written:
-> SUMMARY =3D "Aicsemi aic8800 Wi-Fi driver"
-> DESCRIPTION =3D "Aicsemi aic8800 Wi-Fi driver installation"
-> LICENSE =3D "CLOSED"
-> SRC_URI =3D
-> "git://github.com/radxa-pkg/aic8800.git;branch=3Dmain;protocol=3Dhttps"
-> SRCREV =3D "ac5c387ca74e17e91d14d87cd3ba140bb21faf6e"
-> S =3D "${WORKDIR}"
-> inherit module
-> # If the Makefile is in the root of the repo, this is fine.
-> # If it's in src/, set S =3D "${WORKDIR}/git/src" and adjust accordingly.
-> EXTRA_OEMAKE =3D ""
-> # Install the kernel module
-> do_install() {
-> install -d ${D}${nonarch_base_libdir}/modules/${KERNEL_VERSION}/extra
-> install -m 0644 ${B}/src/*.ko
-> ${D}${nonarch_base_libdir}/modules/${KERNEL_VERSION}/extra/
-> }
-> # Ensure the module is packaged
-> FILES_${PN} +=3D
-> "${nonarch_base_libdir}/modules/${KERNEL_VERSION}/extra/*.ko"
->=20
->=20
+> Please try --enable-wayland-ime option of chromium
 
-I am getting different errors, the last one being - no targets specified an=
-d no makefile found.
-I strongly believe there is a different way to write a recipie that install=
-s the driver from git. Much obliged to anyone who can help me here.
+I tried --enable-wayland-ime option and it's working fine!
 
---jeTnc56IqHNPx0JDnpYS
+Thank you again,
+Matteo
+
+--DkqsIzk5PDuZnjoHndiU
 Content-Type: text/html; charset="utf-8"
 Content-Transfer-Encoding: quoted-printable
 
-<div>Hi all,</div>
-<div>I am building a custom linux for Radxa Zero 3W with Yocto. I am fairly=
- new to yocto project.<br />As of now almost all the peripherals are runnin=
-g. But the WiFi chip on the board needs AIC8800 driver to run.<br />This dr=
-iver should work: <a href=3D"https://github.com/radxa-pkg/aic8800" target=
-=3D"_blank" rel=3D"noopener">https://github.com/radxa-pkg/aic8800</a>.</div=
->
-<div>I tried building some custom recipes and running, but can never get it=
- working.</div>
+<div>On Sat, Jun 28, 2025 at 01:02 AM, Takuro Ashie wrote:</div>
 <div>
-<blockquote>Here is the recipe I have written:
-<div>SUMMARY =3D "Aicsemi aic8800 Wi-Fi driver"<br />DESCRIPTION =3D "Aicse=
-mi aic8800 Wi-Fi driver installation"<br />LICENSE =3D "CLOSED"</div>
-<div>SRC_URI =3D "git://github.com/radxa-pkg/aic8800.git;branch=3Dmain;prot=
-ocol=3Dhttps"<br />SRCREV =3D "ac5c387ca74e17e91d14d87cd3ba140bb21faf6e"</d=
-iv>
-<div>S =3D "${WORKDIR}"</div>
-<div>inherit module</div>
-<div># If the Makefile is in the root of the repo, this is fine.<br /># If =
-it's in src/, set S =3D "${WORKDIR}/git/src" and adjust accordingly.</div>
-<div>EXTRA_OEMAKE =3D ""</div>
-<div># Install the kernel module<br />do_install() {<br />&nbsp; &nbsp; ins=
-tall -d ${D}${nonarch_base_libdir}/modules/${KERNEL_VERSION}/extra<br />&nb=
-sp; &nbsp; install -m 0644 ${B}/src/*.ko ${D}${nonarch_base_libdir}/modules=
-/${KERNEL_VERSION}/extra/<br />}</div>
-<div># Ensure the module is packaged<br />FILES_${PN} +=3D "${nonarch_base_=
-libdir}/modules/${KERNEL_VERSION}/extra/*.ko"</div>
-<div>&nbsp;</div>
-</blockquote>
+<blockquote>Please try --enable-wayland-ime option of chromium</blockquote>
 </div>
-<div>I am getting different errors, the last one being - no targets specifi=
-ed and no makefile found.<br />I strongly believe there is a different way =
-to write a recipie that installs the driver from git. Much obliged to anyon=
-e who can help me here.</div>
+<div>I tried <span style=3D"color: #333333; font-family: system-ui, 'Segoe =
+UI', Roboto, 'Helvetica Neue', 'Noto Sans', 'Liberation Sans', Arial, sans-=
+serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Colo=
+r Emoji'; font-size: 16px; font-style: normal; font-variant-ligatures: norm=
+al; font-variant-caps: normal; font-weight: 400; letter-spacing: normal; or=
+phans: 2; text-align: start; text-indent: 0px; text-transform: none; widows=
+: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; white-space: pre-wr=
+ap; background-color: #ffffff; text-decoration-thickness: initial; text-dec=
+oration-style: initial; text-decoration-color: initial; display: inline !im=
+portant; float: none;">--enable-wayland-ime option and it's working fine!</=
+span></div>
+<div>&nbsp;</div>
+<div><span style=3D"color: #333333; font-family: system-ui, 'Segoe UI', Rob=
+oto, 'Helvetica Neue', 'Noto Sans', 'Liberation Sans', Arial, sans-serif, '=
+Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji'=
+; font-size: 16px; font-style: normal; font-variant-ligatures: normal; font=
+-variant-caps: normal; font-weight: 400; letter-spacing: normal; orphans: 2=
+; text-align: start; text-indent: 0px; text-transform: none; widows: 2; wor=
+d-spacing: 0px; -webkit-text-stroke-width: 0px; white-space: pre-wrap; back=
+ground-color: #ffffff; text-decoration-thickness: initial; text-decoration-=
+style: initial; text-decoration-color: initial; display: inline !important;=
+ float: none;">Thank you again,</span></div>
+<div><span style=3D"color: #333333; font-family: system-ui, 'Segoe UI', Rob=
+oto, 'Helvetica Neue', 'Noto Sans', 'Liberation Sans', Arial, sans-serif, '=
+Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji'=
+; font-size: 16px; font-style: normal; font-variant-ligatures: normal; font=
+-variant-caps: normal; font-weight: 400; letter-spacing: normal; orphans: 2=
+; text-align: start; text-indent: 0px; text-transform: none; widows: 2; wor=
+d-spacing: 0px; -webkit-text-stroke-width: 0px; white-space: pre-wrap; back=
+ground-color: #ffffff; text-decoration-thickness: initial; text-decoration-=
+style: initial; text-decoration-color: initial; display: inline !important;=
+ float: none;">Matteo</span></div>
 
---jeTnc56IqHNPx0JDnpYS--
+--DkqsIzk5PDuZnjoHndiU--
 
