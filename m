@@ -2,133 +2,121 @@ Return-Path: <skandigraun@gmail.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 86EE6C7EE39
-	for <webhook@archiver.kernel.org>; Mon, 30 Jun 2025 11:19:29 +0000 (UTC)
-Received: from mail-ed1-f49.google.com (mail-ed1-f49.google.com [209.85.208.49])
- by mx.groups.io with SMTP id smtpd.web11.37231.1751282360313920374
+	by smtp.lore.kernel.org (Postfix) with ESMTP id E896EC8302D
+	for <webhook@archiver.kernel.org>; Mon, 30 Jun 2025 12:45:39 +0000 (UTC)
+Received: from mail-ej1-f44.google.com (mail-ej1-f44.google.com [209.85.218.44])
+ by mx.groups.io with SMTP id smtpd.web10.39421.1751287536373458199
  for <yocto@lists.yoctoproject.org>;
- Mon, 30 Jun 2025 04:19:20 -0700
+ Mon, 30 Jun 2025 05:45:36 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20230601 header.b=fXQUsL1j;
- spf=pass (domain: gmail.com, ip: 209.85.208.49, mailfrom: skandigraun@gmail.com)
-Received: by mail-ed1-f49.google.com with SMTP id 4fb4d7f45d1cf-60c6fea6742so8188413a12.1
-        for <yocto@lists.yoctoproject.org>; Mon, 30 Jun 2025 04:19:20 -0700 (PDT)
+ dkim=pass header.i=@gmail.com header.s=20230601 header.b=hO0BFKvM;
+ spf=pass (domain: gmail.com, ip: 209.85.218.44, mailfrom: skandigraun@gmail.com)
+Received: by mail-ej1-f44.google.com with SMTP id a640c23a62f3a-ae0d7b32322so345574566b.2
+        for <yocto@lists.yoctoproject.org>; Mon, 30 Jun 2025 05:45:36 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1751282359; x=1751887159; darn=lists.yoctoproject.org;
+        d=gmail.com; s=20230601; t=1751287535; x=1751892335; darn=lists.yoctoproject.org;
         h=content-transfer-encoding:in-reply-to:from:content-language
          :references:to:subject:user-agent:mime-version:date:message-id:from
          :to:cc:subject:date:message-id:reply-to;
-        bh=dqsBUZ91/BkzeMxLCYto1lKFnIViwvWTCwIjEWtlQDc=;
-        b=fXQUsL1jtt0sT2VPOkChYz8/HNEovcEGza7dDgvP5x/61+3bQq322XFc1z8oA/O4st
-         m6EpIpppTmOModZDx5mKXwRGO/e3R3d2vQAMGyN8BDwEJ3HgvL965rLNqAL4QZQEqOFK
-         QYOxn8zTS1hKexVEBtp/kUMEwvIidVn4lWCFFFqGutrhLtw0iQZxCrWY5TKLKvgj4e2l
-         rlMJT0I0lRzzeHL59z5dhUZIUy715KWkhwsNkeOXW3o5iy+U0AyIDZwCBOvdeMj7+CMy
-         bzdfTHMGOOZyHbsVqAM1Sfi8R/26k45Z8iub0ZMsfMw8ixjOBt4JcKRIdvdDxB8nqqnQ
-         zpPA==
+        bh=wwYsmpXSV0HD47EJ9mCfA3Ehp4pCA0BQXWiEOxirPv0=;
+        b=hO0BFKvMW+P/TbnQIgLAViZzFvEcP/HUZWEA5TSOYzdKbsyCrTtIn15RtzhAhPClVr
+         fGI/z86F696n8QHPxRwm/0hDCRDnUdsIxe2ZAhMNQh0luAL1GBXte5EP+3U9ujiRflAv
+         MyFCssycvKXf/PWq0/s4RLQi07FOugItTJlizfeh4lSu/oq47ZaFZeVrV7alDoh0hNt9
+         ipwViJFMLudaj4khPU6mvaiFvV99Pv+35V5HT/7ARH2uFZ/WJn0QuvXLzDk9iaa7g1+q
+         o9CEFNYxUTiNQWzjqEf1i201ynyLGju5rOCsXCis6G3kmhfBxaW2eG+VdieAO0wyqBpD
+         g9mQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1751282359; x=1751887159;
+        d=1e100.net; s=20230601; t=1751287535; x=1751892335;
         h=content-transfer-encoding:in-reply-to:from:content-language
          :references:to:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=dqsBUZ91/BkzeMxLCYto1lKFnIViwvWTCwIjEWtlQDc=;
-        b=n/3BL9dBFYP9CrRplGAFseRuJFCUBWDGmTGQXfr8PQ2Mb0EFE4p/T5ipc3e+8mFXgX
-         YDKNMly32WiMzOYYxi5L0e7hPYxExF1p9fS5tX6UFuViGQlq+xXbHH+0Nd8Ppsyj/zs4
-         rC7Pj1bBNzgFaQNdJlsJLmNFJ03OlJXpBnf9HjfsZZRZl0qN7CC35ks2hG+NfK9or7B4
-         eDLEZ5cFGu2hVyWyuoAPXJN5NJ+YW7naczFTnf6RnyalWll4oZg62FHMrkk6gAl0T1Dg
-         4zTPv/UKHQ9lo1BY1bDiZVM/ru56xcD5aCRabd5EioAJiucZPV3V75GqYLkNmDfd4Vk9
-         GbXA==
-X-Gm-Message-State: AOJu0YyV2xAhcQMQIApvhT/LyN2LhTZ7CCIdQDcYl0Vsf34d/JhCmXb1
-	TSbeynsdYkRzT55fNfmGP3mpcpYkBFscP3soqrCDiJYDP1KnxdZqWf/wM6CHIg==
-X-Gm-Gg: ASbGncuEghzs8dG+bFJakXzPq4am4+3IaioSvx5bopTf6Sfq38GGetGN+ztq3BcN120
-	NmRCZICWHsnBqVv1Bhov0Gu9lVyKzFqoemN3mw1PbxAf/vO/L+jONa39Qw68kZQKVBxpgkjiOgD
-	67lWKCu43DjrllxGOabtIzlesqWZQ3At9q3Kb1b8gTGt9hiE0igehlqu6xSGYEYI9xPiqkQwFn9
-	niC5Tzxix/6MRkM3EEZtJQ5+9JXAMMV9t/4BhTwZQ79DZlVY0v0u/hnf5KdRKV/e7631RSbBwOI
-	p00i7zqPqL/goHgnn0Ep97cNXr9i0Kq5Xd6ctoH4sTIX0UQPnMRRHYkYl9V+Z1cUwAr2pQ==
-X-Google-Smtp-Source: AGHT+IEKvpHl3R1sCRyqhv+qHTs7uT9rGnsEbpzM0uMSF0/1jxt+VXhGFCokTEru2ECR00A34hvL1w==
-X-Received: by 2002:a05:6402:3586:b0:608:66a3:fec with SMTP id 4fb4d7f45d1cf-60c88b3453bmr11724859a12.2.1751282358308;
-        Mon, 30 Jun 2025 04:19:18 -0700 (PDT)
+        bh=wwYsmpXSV0HD47EJ9mCfA3Ehp4pCA0BQXWiEOxirPv0=;
+        b=gjMhutZu+wGKEDr3Ka1ktRCrylsvU/mBTe7VZMCK9k5j1343IN+WRLUbz3tGvYU2Cu
+         7whlpHDWVA/EIz7tiAffBbjHPaOk+0daIUbM45/wVMd2F3F0wfuBQln7xNTeSwQxA1Wk
+         DEUdXUYsSIRS+plXFM8eraVpd3GuLXhhu38LnvVDd2qjpPIxwgDUFpg5UUfIM2Dy/O1a
+         t16O80TeBhsX9Bbp4TWOiU5kWgEf9D1y4+XGFVSAtMFjL58RntFDwcmugkEQ9Tcl+mT3
+         sI+IW9nzvfHWOb1qXHTDsSBvz3i2txexL75DANLQf+YLcMKxuHqL88uSAozOac3HyNxn
+         Pu9g==
+X-Forwarded-Encrypted: i=1; AJvYcCVn5DRQv2+GKlDG0TphJbH+SevuEbLFWyHF0ikQxanHi8cy1+JVNfcVLGCPOvXxelSJbdpO7A==@lists.yoctoproject.org
+X-Gm-Message-State: AOJu0YyaU70XP6saWHZGGKLXfPFAkDNOfCXsM02Oyz72pRYKqG444ii2
+	+XKOMMfIi5pHV/VSYcFKTj0SXaBjXtapQBKMTZtz6v2aBwiQSlL+p7+O
+X-Gm-Gg: ASbGnctf6/Sx5WmV4BK4GUoAdlSUeWAZ4EjiFenCFbHLXixNUbKu0Udh2RA8SDQlEd9
+	fmkEGICasJA0T5uheBiVl63dmFrLabl6lPPUrMGcbOUsk9EJT0a38NZluQVNrmEtNmD7s24oZHX
+	iN9H6KE6E/7deIWmzQ5hNLN7NfwFINwbVv4SenDTbXSDYHVrTtroBN9UD3t4QdSWGZuQik5EyUW
+	F5CgHgg6xIVGIdTvkKFJQT6dICk9DQM4SNhC6M/4YhEE480lX8cnBiagzfzpiexhrptC3udkl1H
+	j2VR/RXlM9R/GJ7wLepnhJvtke5f2SoEKhkBeDy9VD1t9oZZRFFneCMT5FqgQOTC11d1JA==
+X-Google-Smtp-Source: AGHT+IFL3UNkXFeKB7k8/QUdP1m+MBOkvl2LxxsrtBMYK05GwlXlaNuqPtfraC24gjtlMg7QebTROQ==
+X-Received: by 2002:a17:906:528c:b0:ae0:1fdf:ea5c with SMTP id a640c23a62f3a-ae3500e055amr1074293566b.38.1751287534472;
+        Mon, 30 Jun 2025 05:45:34 -0700 (PDT)
 Received: from [192.168.1.106] ([51.154.145.205])
-        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-60c831aa9d0sm5922641a12.46.2025.06.30.04.19.17
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-ae353659e06sm655959266b.44.2025.06.30.05.45.33
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 30 Jun 2025 04:19:17 -0700 (PDT)
-Message-ID: <f2e25afb-1cdb-49eb-a168-ccd900b58d22@gmail.com>
-Date: Mon, 30 Jun 2025 13:19:16 +0200
+        Mon, 30 Jun 2025 05:45:33 -0700 (PDT)
+Message-ID: <08597a1e-b181-40f1-8a36-81df66a84138@gmail.com>
+Date: Mon, 30 Jun 2025 14:45:32 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [yocto] BSP: X and customized raspberrypi5.conf machine
-To: yocto@lists.yoctoproject.org, daniel@d-f-d.ca
-References: <918368ba-ed9f-49a8-a41f-a99f05c3aba4@d-f-d.ca>
+Subject: Re: [yocto] WiFi driver on Radxa Zero 3W #devicedriver #make
+To: ferdinand0022@gmail.com, yocto@lists.yoctoproject.org
+References: <467a4e38-bcb5-4b19-a0f7-70f32974bb6f@gmail.com>
+ <25560.1751281011452693605@lists.yoctoproject.org>
 Content-Language: en-US
 From: Gyorgy Sarvari <skandigraun@gmail.com>
-In-Reply-To: <918368ba-ed9f-49a8-a41f-a99f05c3aba4@d-f-d.ca>
+In-Reply-To: <25560.1751281011452693605@lists.yoctoproject.org>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Mon, 30 Jun 2025 11:19:29 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/65565
+ <yocto@lists.yoctoproject.org>; Mon, 30 Jun 2025 12:45:39 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/65566
 
-On 6/30/25 09:43, Daniel F. Dickinson via lists.yoctoproject.org wrote:
-> This is a multipart question/problem.
+On 6/30/25 12:56, ferdinand0022 via Lists.Yoctoproject.Org wrote:
+> Thanks a lot for the reply. It proceeded a bit more, but now it seems
+> like the compilation is not running correctly.
 >
-> Summary:
+>     My edited file looks like this:
+>     SUMMARY = "Aicsemi aic8800 Wi-Fi driver"
+>     DESCRIPTION = "Aicsemi aic8800 Wi-Fi driver installation"
+>     LICENSE = "CLOSED"
+>     SRC_URI =
+>     "git://github.com/radxa-pkg/aic8800.git;branch=main;protocol=https"
+>     SRCREV = "ac5c387ca74e17e91d14d87cd3ba140bb21faf6e"
+>     S = "${WORKDIR}/git"
+>     inherit module
 >
-> 1. I want to be sure I am using the correct means to create a customized machine configuration for what in the meta-raspberrypi layer is raspberrypi5.conf.
->
-> 2. With my current attempt I get a working X11 image for the Raspberry Pi 5 but not the Compute Module 5 with CM5 IO board; I am unclear at present on whether
-> this is due to the customized configuration or an issue with current walnascar branch of meta-raspberrypi; if the latter I'd like to resolve that too.
->
->
-> Customizing raspberrypi machine configuration
->
-> The first thing is I did is the obvious: create a meta-bsp_custom_pi5 with a config/machine/raspberrypi5-custom.conf. This appears to work when I use
-> `require conf/machine/raspberrypi5.conf` and override the parts I want to change. However, I ran into an issue on the Compute Module 5 with CM5 IO
-> board which I discuss below. It occurred to me the issue could be the method of customizing the machine configuration.
->
-> I therefore went off on a tangent and successfully created a qemuarm64-pi5 board definition[1] which builds and executes my variation of
-> core-image-x11 correctly. This required a little more work than a simple rename as getting the linux-yocto to build correctly required making a
-> local copy of the kernel metadata (.scc and .cfg) so I could set the KMACHINE name. It was also during that process that I discovered that on
-> the qemu board the board kernel configuration is not a simple defconfig.
->
-> So, this leads to the question: am I missing something like setting KMACHINE for the Pi5 / CM5 customized board? If so, what am I missing. If it
-> 'should work' then see below for a possible graphics driver issue with the CM5-IO setup.
+>     RPROVIDES:${PN} += "kernel-module-aic8800"
 >
 >
-> X mostly not rendering for CM5-IO but works correctly for a Pi5 flagship board
+> After running the bitbake command on the module,  compilation from the
+> makefile seems to show this error:
 >
-> With a modified core-image-x11 image it correctly displays with a modified raspberrypi5.conf on a Pi5 flagship board and on with qemuarm64-pi5.conf
-> (qemuarm64.conf with GPIO_VIRTIO drivers added) using runqemu.
+>      src/tools/aicrf_test/bt_test.c:1:10: fatal error: stdio.h: No
+>     such file or directory
+>     |     1 | #include <stdio.h>
+>     |       |          ^~~~~~~~~
+>     | src/tools/aicrf_test/wifi_test.c:1:10: fatal error: stdio.h: No
+>     such file or directory
+>     |     1 | #include <stdio.h>
+>     |       |          ^~~~~~~~~
+>     | compilation terminated.
 >
-> However on the Compute Module 5 on a CM5 IO board the display is completely black with only the mouse cursor being rendered.
->
-> The vt1 console is working fine, so it's somehow specifically an X on CM5-IO issue.
->
-> Any ideas? I'm at a loss other than to wonder if there is some graphics driver issue.
->
+>  
+> Basically the default header files are not getting detected in the
+> yocto build process. I have gcc 13.3 already installed on the build host.
+> I have attached the generated logfile here.
 
+Right, looking at the repo, the top level Makefile seems to build some
+userspace testing tools. The driver makefiles seem to be in
+src/SDIO/driver_fw/driver/aic8800 and
+src/PCIE/driver_fw/driver/aic8800/aic8000_fdrv folders.
 
-It seems that someone had the same issue reported in the meta-rpi repo,
-and it turned out to be a mesa issue for them - have you taken a look at
-this:
-https://github.com/agherzan/meta-raspberrypi/issues/1426#issuecomment-2810084993
-?
+Pick the appropriate one, and set that as S value. E.g. for the SDIO
+driver set S = "${WORKDIR}/git/src/SDIO/driver_fw/driver/aic8800".
 
-> Regards,
-> Daniel
->
->
-> [1] Its eventual goal is to be able to use virtio GPIO to verify Pi builds in Qemu instead of requiring deploying to a physical Pi5/CM5 for
-> basic testing (and, ideally, to automate some testing).
->
->
-> -=-=-=-=-=-=-=-=-=-=-=-
-> Links: You receive all messages sent to this group.
-> View/Reply Online (#65561): https://lists.yoctoproject.org/g/yocto/message/65561
-> Mute This Topic: https://lists.yoctoproject.org/mt/113904208/6084445
-> Group Owner: yocto+owner@lists.yoctoproject.org
-> Unsubscribe: https://lists.yoctoproject.org/g/yocto/unsub [skandigraun@gmail.com]
-> -=-=-=-=-=-=-=-=-=-=-=-
->
-
+Also, possibly you want to take a look at the Makefiles themselves, they
+have a couple of hardcoded values that doesn't look very Yocto
+compatible at the first sight, e.g. the SDIO driver has Ubuntu config
+enabled by default, and some of the directory settings are fairly
+opinionated also (e.g. KDIR is set to be on the build host).
 
