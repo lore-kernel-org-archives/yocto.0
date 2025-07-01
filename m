@@ -1,93 +1,102 @@
-Return-Path: <skandigraun@gmail.com>
+Return-Path: <joseph.maniaci@seagate.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 044ABC7EE30
-	for <webhook@archiver.kernel.org>; Tue,  1 Jul 2025 18:39:18 +0000 (UTC)
-Received: from mail-ed1-f43.google.com (mail-ed1-f43.google.com [209.85.208.43])
- by mx.groups.io with SMTP id smtpd.web11.4829.1751395148271321109
- for <yocto@lists.yoctoproject.org>;
- Tue, 01 Jul 2025 11:39:08 -0700
-Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20230601 header.b=ErEFucml;
- spf=pass (domain: gmail.com, ip: 209.85.208.43, mailfrom: skandigraun@gmail.com)
-Received: by mail-ed1-f43.google.com with SMTP id 4fb4d7f45d1cf-60c9d8a169bso6337951a12.1
-        for <yocto@lists.yoctoproject.org>; Tue, 01 Jul 2025 11:39:08 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1751395146; x=1751999946; darn=lists.yoctoproject.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:to:subject:user-agent:mime-version:date:message-id:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=2/QwuagMD4G+0HwA+W64zJFj8hJZvIf/ZbiYxJzxV6w=;
-        b=ErEFucmlUiK/elSjjKdXhwqEYOgqMKVJdzZVgCqJtm1tu7F389PryKIt4Hfsq0kk9L
-         u7jNWS+A1jUA7KnKyR+B/Dmsd4lmSsBtDdpNc04/wU+uQgu0Em7NRAxZ3iOoxFJOrmEE
-         7d7bcRAhBJcI1HxfAHOB4dX95PgiYodCZlBGdDqgCZGvY7DYBlLq09B1cwveG6/Rz3p3
-         5+N2QxXMkv01jQ139teZsSNLyUiRbTyt6hzJoWbe7HBvQIvlyh3yR9hLGtPklCdKoUSt
-         GhG8jJsEuLVLY0Nj8lqNkKSBBk5mkfWU+2LEhnT8pkedSlfPb/tnZKDRVU0kM2V+4ozY
-         xa0A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1751395146; x=1751999946;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=2/QwuagMD4G+0HwA+W64zJFj8hJZvIf/ZbiYxJzxV6w=;
-        b=PqlfU1azseibNy1GGk2fHDbA8jiNwH2dmq6cQ86w0VWFiSuyzQ/XRyhc20e7Rd8f6x
-         CsZu4xWiKvIL4huO8K/og5lJu+tecEx/tr1QeY4Ro9i0KDWyuaPKnTeY05uad16gl2P/
-         eOeF3yICFvaa+GxlGGlM1qBF9JlHuNDFPE8Mn/BfMJUtOwEIVFLWT+f2qRhN/7owHM5H
-         EMghnUmVPEwN2FmIzgEFmWT9a6DwTjrceOqNBjrAoqpks38zRWEY0BRnCQnvyYKt1Fwy
-         v8yFuB1V3pcT/oiAnueAQe9UVB9lik1zp4Xoh/GOY+L8vADZ3iW7Vyle/lw1AKAr+f9L
-         FITg==
-X-Gm-Message-State: AOJu0YxSKg6RAE9iq0tVx1R8T71NK8P/u9+XI9t7t4k3FP41+6GHGFN0
-	r+TeAYBfMVk3EPvF784JgTX0u76zKI8SVqaJqXJT4lLjAC6Y0dvdW5ttcupTzA==
-X-Gm-Gg: ASbGncsull05jfg0I0esq1UYi91BwYKL5+A+ZtoDYegRQoa/GW+jDD8KW8oAIFxunmj
-	MW9hzYBLwrry0sl5jL+6aJRUctUxo8SE1oRiTtbifbaTo1FNjarPMAIaKWnwkcyslUL1HiiEw67
-	rYMxB3NNrzaGZLHqKdM5vCaMqBlRerLiHB6ow5UjMyS3aqI1FhqmuZgHUGtR9LUhSnwpDeKap6R
-	Fp61XTTfkJBPzxk9zfsfOmHidEfcV5P9LNJv/4RI0ep1qW+TlZfi9NiDd+hOSDqYA68pw0Ug7Ra
-	Hi8owpeFIHYLEOVPuZc3YV2eNWSLVzPzo3ijeaWdZcBbDseBDz+Cb2qPtGcGf3yveVSsEw==
-X-Google-Smtp-Source: AGHT+IHl4djJ4wktk/7UxWIYkZNYY6lmMv83jKH4ndezccY4AEFCxqe2m10YsORsQ7bVOC6xKpR0BA==
-X-Received: by 2002:a17:907:724f:b0:ade:4121:8d3d with SMTP id a640c23a62f3a-ae34fcf4522mr1691941866b.12.1751395145949;
-        Tue, 01 Jul 2025 11:39:05 -0700 (PDT)
-Received: from [192.168.1.106] ([51.154.145.205])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-ae35363aecdsm934118566b.16.2025.07.01.11.39.04
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 01 Jul 2025 11:39:05 -0700 (PDT)
-Message-ID: <738461ba-f0ec-493c-85bd-46da89b25eab@gmail.com>
-Date: Tue, 1 Jul 2025 20:39:04 +0200
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 92454C7EE30
+	for <webhook@archiver.kernel.org>; Tue,  1 Jul 2025 20:52:18 +0000 (UTC)
+Subject: native/nativesdk class is not inherited last, this can result in unexpected behaviour. Classes inherited after native/nativesdk: externalsrc.bbclass  #native
+To: yocto@lists.yoctoproject.org
+From: joseph.maniaci@seagate.com
+X-Originating-Location: Minnesota, US (134.204.180.68)
+X-Originating-Platform: Windows Firefox 128
+User-Agent: GROUPS.IO Web Poster
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [yocto] mozjs-128 compilation error for Walnascar
-To: yocto@lists.yoctoproject.org, ashish.shrikhande@gmail.com
-References: <DShU.1751384525372532665.xV1B@lists.yoctoproject.org>
-Content-Language: en-US
-From: Gyorgy Sarvari <skandigraun@gmail.com>
-In-Reply-To: <DShU.1751384525372532665.xV1B@lists.yoctoproject.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Date: Tue, 01 Jul 2025 13:52:12 -0700
+Message-ID: <uOrF.1751403132156744154.PTOk@lists.yoctoproject.org>
+Content-Type: multipart/alternative; boundary="yLxMHN4XIcUI1fluDJ02"
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Tue, 01 Jul 2025 18:39:17 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/65584
+ <yocto@lists.yoctoproject.org>; Tue, 01 Jul 2025 20:52:18 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/65585
 
-On 7/1/25 17:42, ashish shrikhande6 via lists.yoctoproject.org wrote:
-> I am new to building yocto. My platform is Raspberrypi5 and I am using
-> yocto 5.2 walnascar. I am trying to build gnome desktop which requires
-> mozjs-128. 
-> I have attached the compile log.  Some of the errors from the log are
-> below:
->  
-This part of the log looks strange:
-"CARGO=/home/ashish/.rustup/toolchains/1.84.1-x86_64-unknown-linux-gnu/bin/cargo"
-(this is the first env var set before by the first failing command).
+--yLxMHN4XIcUI1fluDJ02
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
 
-This seems to indicate that for some reason your build machine's local
-Rust installation is used to compile mozjs instead of using the Rust
-toolchain provided by Yocto.
+I'm not sure how 'last' it can go(I've tried all over the file as well as '=
+include cmake native').
 
-Have you changed anything Cargo/Rust related (or any toolchain related
-things) in the recipe or in the layers you are using?
+LICENSE =3D "Apache-2.0 & Unknown"
+LIC_FILES_CHKSUM =3D "file://rsrc/web/superdrive/js/maintenance/license-inf=
+o.vue;beginline=3D1;endline=3D12;md5=3D7be1996bb1ef1d6d65a4ad958225c03b \
+file://rsrc/web/superdrive/js/maintenance/license-widget.vue;beginline=3D1;=
+endline=3D12;md5=3Dd2bdd567562ac064f86503aaee72564b \
+file://rsrc/web/superdrive/js/welcome/initial-license.vue;beginline=3D1;end=
+line=3D12;md5=3D2da718677e119ed1c983d7d22608223b"
+SRC_URI =3D "git://git@lco-sw-github-prod.colo.seagate.com/Joseph-Maniaci/m=
+clinux_yocto.git;protocol=3Dssh;branch=3Dmain"
+inherit cmake
+# Modify these as desired
+PV =3D "1.0+git"
+SRCREV =3D "${AUTOREV}"
+S =3D "${WORKDIR}/git"
+OECMAKE_CXX_FLAGS:remove =3D "-D_FORTIFY_SOURCE=3D2"
+do_configure () {
+cd ${S} && . ./sourceme.env ${MC_APP_ARGS} && cd - && cmake_do_configure
+}
+do_compile () {
+cmake_do_compile langLookup
+}
+inherit =C2=A0native
 
-(In general Yocto is a self-contained framework that takes care of the
-toolchain and its configuration also with usable defaults, without the
-need to tweak these most of the time)
+FULL MSG: WARNING: /home/user/eps-yocto/build/exos-x-vanadium-bmc/workspace=
+/recipes/lang-lookup-util-native/lang-lookup-util-native_git.bb: QA Issue: =
+lang-lookup-util-native: native/nativesdk class is not inherited last, this=
+ can result in unexpected behaviour. Classes inherited after native/natives=
+dk: externalsrc.bbclass [native-last]
+
+Clue: I found externalsrc.bbclass which gives hints to it being something '=
+inherit'able. I'm just not sure why it's being inherited.
+
+--yLxMHN4XIcUI1fluDJ02
+Content-Type: text/html; charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div>I'm not sure how 'last' it can go(I've tried all over the file as well=
+ as 'include cmake native').<br /><br />
+<div><br />LICENSE =3D "Apache-2.0 &amp; Unknown"<br />LIC_FILES_CHKSUM =3D=
+ "file://rsrc/web/superdrive/js/maintenance/license-info.vue;beginline=3D1;=
+endline=3D12;md5=3D7be1996bb1ef1d6d65a4ad958225c03b \<br />&nbsp; &nbsp; &n=
+bsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; file://rsrc/web/super=
+drive/js/maintenance/license-widget.vue;beginline=3D1;endline=3D12;md5=3Dd2=
+bdd567562ac064f86503aaee72564b \<br />&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &n=
+bsp; &nbsp; &nbsp; &nbsp; &nbsp; file://rsrc/web/superdrive/js/welcome/init=
+ial-license.vue;beginline=3D1;endline=3D12;md5=3D2da718677e119ed1c983d7d226=
+08223b"</div>
+<div>SRC_URI =3D "git://git@lco-sw-github-prod.colo.seagate.com/Joseph-Mani=
+aci/mclinux_yocto.git;protocol=3Dssh;branch=3Dmain"</div>
+<div>inherit cmake</div>
+<div># Modify these as desired<br />PV =3D "1.0+git"<br />SRCREV =3D "${AUT=
+OREV}"<br />S =3D "${WORKDIR}/git"</div>
+<div>OECMAKE_CXX_FLAGS:remove =3D "-D_FORTIFY_SOURCE=3D2"</div>
+<div>do_configure () {<br />&nbsp; &nbsp; cd ${S} &amp;&amp; . ./sourceme.e=
+nv ${MC_APP_ARGS} &amp;&amp; cd - &amp;&amp; cmake_do_configure&nbsp;<br />=
+}</div>
+<div>do_compile () {<br />&nbsp; &nbsp; cmake_do_compile langLookup<br />}<=
+/div>
+<div>inherit &nbsp;native</div>
+<div>&nbsp;</div>
+<div>&nbsp;</div>
+<div>FULL MSG: WARNING: /home/user/eps-yocto/build/exos-x-vanadium-bmc/work=
+space/recipes/lang-lookup-util-native/lang-lookup-util-native_git.bb: QA Is=
+sue: lang-lookup-util-native: native/nativesdk class is not inherited last,=
+ this can result in unexpected behaviour. Classes inherited after native/na=
+tivesdk: externalsrc.bbclass [native-last]</div>
+<div>&nbsp;</div>
+<div>Clue: I found externalsrc.bbclass which gives hints to it being someth=
+ing 'inherit'able. I'm just not sure why it's being inherited.</div>
+</div>
+
+--yLxMHN4XIcUI1fluDJ02--
 
