@@ -1,102 +1,109 @@
-Return-Path: <joseph.maniaci@seagate.com>
+Return-Path: <ashish.shrikhande@gmail.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 92454C7EE30
-	for <webhook@archiver.kernel.org>; Tue,  1 Jul 2025 20:52:18 +0000 (UTC)
-Subject: native/nativesdk class is not inherited last, this can result in unexpected behaviour. Classes inherited after native/nativesdk: externalsrc.bbclass  #native
-To: yocto@lists.yoctoproject.org
-From: joseph.maniaci@seagate.com
-X-Originating-Location: Minnesota, US (134.204.180.68)
-X-Originating-Platform: Windows Firefox 128
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 1ED72C83038
+	for <webhook@archiver.kernel.org>; Tue,  1 Jul 2025 22:51:09 +0000 (UTC)
+Subject: Re: [yocto] mozjs-128 compilation error for Walnascar
+To: "Gyorgy Sarvari" <skandigraun@gmail.com>, yocto@lists.yoctoproject.org
+From: "ashish shrikhande6" <ashish.shrikhande@gmail.com>
+X-Originating-Location: Bengaluru, Karnataka, IN (49.207.212.152)
+X-Originating-Platform: Linux Firefox 139
 User-Agent: GROUPS.IO Web Poster
 MIME-Version: 1.0
-Date: Tue, 01 Jul 2025 13:52:12 -0700
-Message-ID: <uOrF.1751403132156744154.PTOk@lists.yoctoproject.org>
-Content-Type: multipart/alternative; boundary="yLxMHN4XIcUI1fluDJ02"
+Date: Tue, 01 Jul 2025 15:51:03 -0700
+References: <738461ba-f0ec-493c-85bd-46da89b25eab@gmail.com>
+In-Reply-To: <738461ba-f0ec-493c-85bd-46da89b25eab@gmail.com>
+Message-ID: <21282.1751410263082674913@lists.yoctoproject.org>
+Content-Type: multipart/mixed; boundary="pIpcJ3BebvETIgeWPuKQ"
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Tue, 01 Jul 2025 20:52:18 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/65585
+ <yocto@lists.yoctoproject.org>; Tue, 01 Jul 2025 22:51:09 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/65586
 
---yLxMHN4XIcUI1fluDJ02
+--pIpcJ3BebvETIgeWPuKQ
+Content-Type: multipart/alternative; boundary="qU2IIVHEjMnllsbfd5vL"
+
+--qU2IIVHEjMnllsbfd5vL
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: quoted-printable
 
-I'm not sure how 'last' it can go(I've tried all over the file as well as '=
-include cmake native').
+No I did not change anything in the recipe or layers. mozjs-128 recipe I ha=
+ve attached here. I just took Walnascar as it is.
 
-LICENSE =3D "Apache-2.0 & Unknown"
-LIC_FILES_CHKSUM =3D "file://rsrc/web/superdrive/js/maintenance/license-inf=
-o.vue;beginline=3D1;endline=3D12;md5=3D7be1996bb1ef1d6d65a4ad958225c03b \
-file://rsrc/web/superdrive/js/maintenance/license-widget.vue;beginline=3D1;=
-endline=3D12;md5=3Dd2bdd567562ac064f86503aaee72564b \
-file://rsrc/web/superdrive/js/welcome/initial-license.vue;beginline=3D1;end=
-line=3D12;md5=3D2da718677e119ed1c983d7d22608223b"
-SRC_URI =3D "git://git@lco-sw-github-prod.colo.seagate.com/Joseph-Maniaci/m=
-clinux_yocto.git;protocol=3Dssh;branch=3Dmain"
-inherit cmake
-# Modify these as desired
-PV =3D "1.0+git"
-SRCREV =3D "${AUTOREV}"
-S =3D "${WORKDIR}/git"
-OECMAKE_CXX_FLAGS:remove =3D "-D_FORTIFY_SOURCE=3D2"
-do_configure () {
-cd ${S} && . ./sourceme.env ${MC_APP_ARGS} && cd - && cmake_do_configure
-}
-do_compile () {
-cmake_do_compile langLookup
-}
-inherit =C2=A0native
-
-FULL MSG: WARNING: /home/user/eps-yocto/build/exos-x-vanadium-bmc/workspace=
-/recipes/lang-lookup-util-native/lang-lookup-util-native_git.bb: QA Issue: =
-lang-lookup-util-native: native/nativesdk class is not inherited last, this=
- can result in unexpected behaviour. Classes inherited after native/natives=
-dk: externalsrc.bbclass [native-last]
-
-Clue: I found externalsrc.bbclass which gives hints to it being something '=
-inherit'able. I'm just not sure why it's being inherited.
-
---yLxMHN4XIcUI1fluDJ02
+--qU2IIVHEjMnllsbfd5vL
 Content-Type: text/html; charset="utf-8"
 Content-Transfer-Encoding: quoted-printable
 
-<div>I'm not sure how 'last' it can go(I've tried all over the file as well=
- as 'include cmake native').<br /><br />
-<div><br />LICENSE =3D "Apache-2.0 &amp; Unknown"<br />LIC_FILES_CHKSUM =3D=
- "file://rsrc/web/superdrive/js/maintenance/license-info.vue;beginline=3D1;=
-endline=3D12;md5=3D7be1996bb1ef1d6d65a4ad958225c03b \<br />&nbsp; &nbsp; &n=
-bsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; file://rsrc/web/super=
-drive/js/maintenance/license-widget.vue;beginline=3D1;endline=3D12;md5=3Dd2=
-bdd567562ac064f86503aaee72564b \<br />&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &n=
-bsp; &nbsp; &nbsp; &nbsp; &nbsp; file://rsrc/web/superdrive/js/welcome/init=
-ial-license.vue;beginline=3D1;endline=3D12;md5=3D2da718677e119ed1c983d7d226=
-08223b"</div>
-<div>SRC_URI =3D "git://git@lco-sw-github-prod.colo.seagate.com/Joseph-Mani=
-aci/mclinux_yocto.git;protocol=3Dssh;branch=3Dmain"</div>
-<div>inherit cmake</div>
-<div># Modify these as desired<br />PV =3D "1.0+git"<br />SRCREV =3D "${AUT=
-OREV}"<br />S =3D "${WORKDIR}/git"</div>
-<div>OECMAKE_CXX_FLAGS:remove =3D "-D_FORTIFY_SOURCE=3D2"</div>
-<div>do_configure () {<br />&nbsp; &nbsp; cd ${S} &amp;&amp; . ./sourceme.e=
-nv ${MC_APP_ARGS} &amp;&amp; cd - &amp;&amp; cmake_do_configure&nbsp;<br />=
-}</div>
-<div>do_compile () {<br />&nbsp; &nbsp; cmake_do_compile langLookup<br />}<=
-/div>
-<div>inherit &nbsp;native</div>
-<div>&nbsp;</div>
-<div>&nbsp;</div>
-<div>FULL MSG: WARNING: /home/user/eps-yocto/build/exos-x-vanadium-bmc/work=
-space/recipes/lang-lookup-util-native/lang-lookup-util-native_git.bb: QA Is=
-sue: lang-lookup-util-native: native/nativesdk class is not inherited last,=
- this can result in unexpected behaviour. Classes inherited after native/na=
-tivesdk: externalsrc.bbclass [native-last]</div>
-<div>&nbsp;</div>
-<div>Clue: I found externalsrc.bbclass which gives hints to it being someth=
-ing 'inherit'able. I'm just not sure why it's being inherited.</div>
-</div>
+<div>No I did not change anything in the recipe or layers. mozjs-128 recipe=
+ I have attached here. I just took Walnascar as it is.&nbsp;</div>
 
---yLxMHN4XIcUI1fluDJ02--
+--qU2IIVHEjMnllsbfd5vL--
+
+--pIpcJ3BebvETIgeWPuKQ
+Content-Type: application/octet-stream; name="mozjs-128_128.5.2.bb"
+Content-Transfer-Encoding: base64
+Content-Disposition: attachment; filename="mozjs-128_128.5.2.bb"
+
+U1VNTUFSWSA9ICJTcGlkZXJNb25rZXkgaXMgTW96aWxsYSdzIEphdmFTY3JpcHQgZW5naW5lIHdy
+aXR0ZW4gaW4gQy9DKysiCkhPTUVQQUdFID0gImh0dHBzOi8vZGV2ZWxvcGVyLm1vemlsbGEub3Jn
+L2VuLVVTL2RvY3MvTW96aWxsYS9Qcm9qZWN0cy9TcGlkZXJNb25rZXkiCkxJQ0VOU0UgPSAiTVBM
+LTIuMCIKTElDX0ZJTEVTX0NIS1NVTSA9ICJmaWxlOi8vTElDRU5TRTttZDU9ZGM5YjZlY2QxOWEx
+NGE1NGE2MjhlZGFhZjIzNzMzYmYiCgpTUkNfVVJJID0gImh0dHBzOi8vYXJjaGl2ZS5tb3ppbGxh
+Lm9yZy9wdWIvZmlyZWZveC9yZWxlYXNlcy8ke1BWfWVzci9zb3VyY2UvZmlyZWZveC0ke1BWfWVz
+ci5zb3VyY2UudGFyLnh6IFwKICAgICAgICAgICBmaWxlOi8vMDAwMS1DYXJnby50b21sLWRvLW5v
+dC1hYm9ydC1vbi1wYW5pYy5wYXRjaCBcCiAgICAgICAgICAgZmlsZTovLzAwMDItbW96LmNvbmZp
+Z3VyZS1kby1ub3QtbG9vay1mb3ItbGx2bS1vYmpkdW1wLnBhdGNoIFwKICAgICAgICAgICBmaWxl
+Oi8vMDAwMy1ydXN0LmNvbmZpZ3VyZS1kby1ub3QtdHJ5LXRvLWZpbmQtYS1zdWl0YWJsZS11cHN0
+cmVhLnBhdGNoIFwKICAgICAgICAgICBmaWxlOi8vMDAwNC11c2UtYXNtLXNnaWRlZnMuaC5wYXRj
+aCBcCiAgICAgICAgICAgZmlsZTovL3Jpc2N2MzIucGF0Y2ggXAogICAgICAgICAgIGZpbGU6Ly8w
+MDAxLXV0aWwuY29uZmlndXJlLWZpeC1vbmUtb2NjYXNpb25hbGx5LXJlcHJvZHVjZWQtY29uZmku
+cGF0Y2ggXAogICAgICAgICAgIGZpbGU6Ly8wMDAxLXJld3JpdGUtY2FyZ28taG9zdC1saW5rZXIt
+aW4tcHl0aG9uMy5wYXRjaCAgXAogICAgICAgICAgIGZpbGU6Ly9tdXNsLWRpc2FibGUtc3RhY2t3
+YWxrLnBhdGNoIFwKICAgICAgICAgICBmaWxlOi8vMDAwMS1hZGQtYXJtLXRvLWxpc3Qtb2YtbW96
+aW5saW5lLnBhdGNoIFwKICAgICAgICAgICBmaWxlOi8vYXJtdjUucGF0Y2ggXAogICAgICAgICAg
+IGZpbGU6Ly8wMDAxLUxpbmstd2l0aC1pY3UtdWMtdG8tZml4LWJ1aWxkLXdpdGgtSUNVLTc2LnBh
+dGNoIFwKICAgICAgICAgICBmaWxlOi8vcmlzY3YucGF0Y2ggXAogICAgICAgICAgICIKU1JDX1VS
+SVtzaGEyNTZzdW1dID0gIjI1ZDYzM2ViODE0OTljYmRhNDRiOGM2NGZhMWMxYTU4NzlkNTUwMjRi
+ODY0ZWY0OTVkNDk5NzE1NGQ2ODM1OGYiCgpVUFNUUkVBTV9DSEVDS19VUkkgPSAiaHR0cHM6Ly90
+cmFja2VyLmRlYmlhbi5vcmcvcGtnL21vempzMTI4IgpVUFNUUkVBTV9DSEVDS19SRUdFWCA9ICIo
+P1A8cHZlcj5cZCsoXC5cZCspKykiCgpTID0gIiR7V09SS0RJUn0vZmlyZWZveC0ke1BWfSIKCmlu
+aGVyaXQgcGtnY29uZmlnIHBlcmxuYXRpdmUgcHl0aG9uM25hdGl2ZSBydXN0CgpERVBFTkRTICs9
+ICJ6bGliIGNiaW5kZ2VuLW5hdGl2ZSBweXRob24zIGljdSIKREVQRU5EUzpyZW1vdmU6bWlwc2Fy
+Y2ggPSAiaWN1IgpERVBFTkRTOnJlbW92ZTpwb3dlcnBjOnRvb2xjaGFpbi1jbGFuZyA9ICJpY3Ui
+CgpCID0gIiR7V09SS0RJUn0vYnVpbGQiCgpleHBvcnQgUFlUSE9OUEFUSCA9ICIke1N9L2J1aWxk
+OlwKJHtTfS90aGlyZF9wYXJ0eS9weXRob24vUHlZQU1ML2xpYjM6XAoke1N9L3Rlc3RpbmcvbW96
+YmFzZS9tb3pmaWxlOlwKJHtTfS9weXRob24vbW96Ym9vdDpcCiR7U30vdGhpcmRfcGFydHkvcHl0
+aG9uL2Rpc3RybzpcCiR7U30vdGVzdGluZy9tb3piYXNlL21vemluZm86XAoke1N9L2NvbmZpZzpc
+CiR7U30vdGVzdGluZy9tb3piYXNlL21hbmlmZXN0cGFyc2VyOlwKJHtTfS90aGlyZF9wYXJ0eS9w
+eXRob24vcHl0b21sOlwKJHtTfS90ZXN0aW5nL21vemJhc2UvbW96cHJvY2VzczpcCiR7U30vdGhp
+cmRfcGFydHkvcHl0aG9uL3NpeDpcCiR7U30vcHl0aG9uL21vemJ1aWxkOlwKJHtTfS9weXRob24v
+bW96YnVpbGQvbW96YnVpbGQ6XAoke1N9L3B5dGhvbi9tYWNoOlwKJHtTfS90aGlyZF9wYXJ0eS9w
+eXRob24vanNtaW46XAoke1N9L3B5dGhvbi9tb3p2ZXJzaW9uY29udHJvbCIKCmV4cG9ydCBIT1NU
+X0NDID0gIiR7QlVJTERfQ0N9IgpleHBvcnQgSE9TVF9DWFggPSAiJHtCVUlMRF9DWFh9IgpleHBv
+cnQgSE9TVF9DRkxBR1MgPSAiJHtCVUlMRF9DRkxBR1N9IgpleHBvcnQgSE9TVF9DUFBGTEFHUyA9
+ICIke0JVSUxEX0NQUEZMQUdTfSIKZXhwb3J0IEhPU1RfQ1hYRkxBR1MgPSAiJHtCVUlMRF9DWFhG
+TEFHU30iCgpleHBvcnQgQVMgPSAiJHtDQ30iCgpleHBvcnQgTU9aQlVJTERfU1RBVEVfUEFUSCA9
+ICIke1dPUktESVJ9L21vemJ1aWxkX3N0YXRlIgpleHBvcnQgUlVTVEZMQUdTCgpKSVQgPz0gIiIK
+SklUOm1pcHNhcmNoID0gIi0tZGlzYWJsZS1qaXQiCklDVSA/PSAiLS13aXRoLXN5c3RlbS1pY3Ui
+CklDVTptaXBzYXJjaCA9ICIiCklDVTpwb3dlcnBjOnRvb2xjaGFpbi1jbGFuZyA9ICIiCgpMREZM
+QUdTOmFwcGVuZDpyaXNjdjMyID0gIiAtbGF0b21pYyIKCmRvX2NvbmZpZ3VyZSgpIHsKICAgIGNk
+ICR7Qn0KICAgIHB5dGhvbjMgJHtTfS9jb25maWd1cmUucHkgXAogICAgICAgIC0tZW5hYmxlLXBy
+b2plY3Q9anMgXAogICAgICAgIC0tdGFyZ2V0PSR7UlVTVF9IT1NUX1NZU30gXAogICAgICAgIC0t
+aG9zdD0ke0JVSUxEX1NZU30gXAogICAgICAgIC0tcHJlZml4PSR7cHJlZml4fSBcCiAgICAgICAg
+LS1saWJkaXI9JHtsaWJkaXJ9IFwKICAgICAgICAtLWRpc2FibGUtamVtYWxsb2MgXAogICAgICAg
+IC0tZGlzYWJsZS1zdHJpcCBcCiAgICAgICAgJHtKSVR9IFwKICAgICAgICAke0lDVX0KfQpkb19j
+b25maWd1cmVbY2xlYW5kaXJzXSArPSAiJHtCfSIKCmRvX2luc3RhbGwoKSB7CiAgICBvZV9ydW5t
+YWtlICdERVNURElSPSR7RH0nIGluc3RhbGwKfQoKaW5oZXJpdCBtdWx0aWxpYl9zY3JpcHQgbXVs
+dGlsaWJfaGVhZGVyCgpNQUpfVkVSID0gIiR7QG9lLnV0aWxzLnRyaW1fdmVyc2lvbigiJHtQVn0i
+LCAxKX0iCk1VTFRJTElCX1NDUklQVFMgKz0gIiR7UE59LWRldjoke2JpbmRpcn0vanMke01BSl9W
+RVJ9LWNvbmZpZyIKCmRvX2luc3RhbGw6YXBwZW5kKCkgewogICAgb2VfbXVsdGlsaWJfaGVhZGVy
+IG1vempzLSR7TUFKX1ZFUn0vanMtY29uZmlnLmgKICAgIHNlZCAtZSAnc0Ake1NUQUdJTkdfRElS
+X0hPU1R9QEBnJyBcCiAgICAgICAgLWkgJHtEfSR7YmluZGlyfS9qcyR7TUFKX1ZFUn0tY29uZmln
+CiAgICBybSAtZiAke0R9JHtsaWJkaXJ9L2xpYmpzX3N0YXRpYy5hanMKfQoKUEFDS0FHRV9ERUJV
+R19TUExJVF9TVFlMRSA9ICJkZWJ1Zy13aXRob3V0LXNyYyIKUEFDS0FHRVMgPSsgImxpYiR7QlBO
+fSIKRklMRVM6bGliJHtCUE59ICs9ICIke2xpYmRpcn0vbGliKiIK
+
+--pIpcJ3BebvETIgeWPuKQ--
 
