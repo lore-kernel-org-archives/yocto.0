@@ -1,168 +1,84 @@
-Return-Path: <daniel@d-f-d.ca>
+Return-Path: <skandigraun@gmail.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id B4D6CC83013
-	for <webhook@archiver.kernel.org>; Wed,  2 Jul 2025 05:14:41 +0000 (UTC)
-Received: from dfd-cracked-rearview.d-f-d.ca (dfd-cracked-rearview.d-f-d.ca [51.161.82.14])
- by mx.groups.io with SMTP id smtpd.web11.16471.1751433272944284809
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 1D737C83013
+	for <webhook@archiver.kernel.org>; Wed,  2 Jul 2025 08:41:13 +0000 (UTC)
+Received: from mail-ej1-f43.google.com (mail-ej1-f43.google.com [209.85.218.43])
+ by mx.groups.io with SMTP id smtpd.web10.18853.1751445664776983545
  for <yocto@lists.yoctoproject.org>;
- Tue, 01 Jul 2025 22:14:33 -0700
+ Wed, 02 Jul 2025 01:41:05 -0700
 Authentication-Results: mx.groups.io;
- dkim=fail reason="dkim: body hash did not verify" header.i=@d-f-d.ca header.s=modoboa header.b=rJZ4scxo;
- spf=pass (domain: d-f-d.ca, ip: 51.161.82.14, mailfrom: daniel@d-f-d.ca)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=d-f-d.ca; s=modoboa;
-	t=1751433271; bh=0k39WxHhlN7yTKaE3IdSmCbkPosa7Fpu5vGmQiX/y7o=;
-	h=Date:Subject:To:References:From:In-Reply-To:From;
-	b=rJZ4scxonykIcBd7ufBnkLlykQleXYp1slmD/y5BP1USdprHXSdG9EIwWABQA0RXd
-	 MefKLQ6V7JtLBjo63GpgmWwTwwOwLoLNABf8UX0nJBbqEYohhv4PvZCEdl5p6oo114
-	 1jgb9AQPFVEX+GSVB9LL39uZfXSsB4e7uqVmajgA0WFI9qG/XA0k1SdUdKlbEgP8mR
-	 T3UazlyMOBR73cEP1y1E1XjixvsCmmvx5ccmr5ENvxWp9Fq9YOMCm2UcHOiA9wshHo
-	 Ge/cSLvSeYXzPBwPI68IafxcxQ3uxW1/P+gT2rVvHWZ4qXxI+vlfRbO0xaPlTQ5lqS
-	 wiBvJ+2wQib8w==
-Received: from localhost (localhost [127.0.0.1])
-	by dfd-cracked-rearview.d-f-d.ca (Postfix) with ESMTP id 6F04C68159;
-	Wed,  2 Jul 2025 05:14:31 +0000 (UTC)
-X-Virus-Scanned: Debian amavis at dfd-cracked-rearview.d-f-d.ca
-Received: from dfd-cracked-rearview.d-f-d.ca ([127.0.0.1])
- by localhost (dfd-cracked-rearview.d-f-d.ca [127.0.0.1]) (amavis, port 10026)
- with ESMTP id T6wSElTDIVyU; Wed,  2 Jul 2025 05:14:25 +0000 (UTC)
-Received: from [IPV6:2607:f2c0:d009:ff20::4d7] (unknown [IPv6:2607:f2c0:d009:ff20::4d7])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
-	(No client certificate requested)
-	by dfd-cracked-rearview.d-f-d.ca (Postfix) with ESMTPSA;
-	Wed,  2 Jul 2025 05:14:25 +0000 (UTC)
-Message-ID: <9c974df4-9c86-413d-b6a1-06f7ddfc90ad@d-f-d.ca>
-Date: Wed, 2 Jul 2025 01:14:24 -0400
+ dkim=pass header.i=@gmail.com header.s=20230601 header.b=Da+tLhnK;
+ spf=pass (domain: gmail.com, ip: 209.85.218.43, mailfrom: skandigraun@gmail.com)
+Received: by mail-ej1-f43.google.com with SMTP id a640c23a62f3a-ae3c5f666bfso52398766b.3
+        for <yocto@lists.yoctoproject.org>; Wed, 02 Jul 2025 01:41:04 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1751445663; x=1752050463; darn=lists.yoctoproject.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:to:subject:user-agent:mime-version:date:message-id:from
+         :to:cc:subject:date:message-id:reply-to;
+        bh=uZ3xEVoaZAwN6cU8eoqI84vWLjg09WiTa9cpiU3HY/I=;
+        b=Da+tLhnKbUL+/wec/Z4NbSeMz2NPILd3GEFOgTq4FZgD/dHjARVVHBzx9B67dDJpC0
+         DXj34F4Irqr4Mtp1x6X0LqI6rUePRewodUEIgmNFBVlRRM83eEXyFQQVfupy7JykWy0K
+         CHWMaeGpDrRy2xIVMmToM2w1ylI9Qgoex8D+ylF9FLekfnhVfJFZILWh6jjCglIW2lfm
+         7Se9VizqFkttcKlQVw+wF4TygHhxiIZWTieGwtmGb7vroHqbWaKYm33tAivgUKDWZI4o
+         R4EFkKre99OF5GcnlVMMg2WVPS1Ol7Y5ul517JMjfGal0GDq6o2mpwTs8kz2Q6JH+IkN
+         vkVw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1751445663; x=1752050463;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=uZ3xEVoaZAwN6cU8eoqI84vWLjg09WiTa9cpiU3HY/I=;
+        b=aFHDSWcmYidu5bBL35ClUc/lV8NfAIV/oFKs70NR8Grj20eSAv/eFWgJfyBjJSa5g+
+         ZF8UgDEzYWGhvUMUVVVhQG+2yX8k36OCJzJALz6p+kFQBdYTxnAu6M/lB42FKzeBxynm
+         mewYXAxDI7D2mt1NijNdaTdStPEZHpFaY08MDUHNq0jj/c27zBumit4Q5ln/Eu3mQEhh
+         KF80oBrWeqCYSDAU/uFaQLZxtTi2GWEiQNjlHHm1KOCcMj8NWmjZsf+LmSTAN8OFgTuh
+         fql9m5J/pNHU+NFEIfXRYMT65QN6Nq7NSqyBPjgOMYxueLQtJjpKocemTLFi0KKsPlFN
+         0zPg==
+X-Gm-Message-State: AOJu0YxEiyuqaQN34NxMcGw8BI++GO60D28WEXaCGh6d70/ALxzx5+Gc
+	+NaCYjxcBy4QJZbQoO6bA1TZn350Kvs7WPOnIVDGghjb1JEapxOWfV/pKjPMU1zq
+X-Gm-Gg: ASbGncsIzucyL4RZq/Y/EYEEp74H2hP3WH002+2Du2nZvi3ylYjX3RwCHoYMeHFOwmN
+	EFxUhVVnNd5F5Z8rPLv11xG20TC5/ONtcV6JrMDyw4mpc3nViBtGxf8MSuquUp9JOkTHRWTXpKG
+	K5eoeyfGXIIL87i2uvwSzXs3BtN2AqbeYWUiGquAgwNTGRqvs7jINIcV/LLQQkskuwT2e/sAcLD
+	gyT5XdtAleCJ7hCRlzwAFAKw7N7UjNgS86IfQCM8D7MgM6DoAi++yC3xUNxzmnp0+WdZe5TjncN
+	cyQAADFOw/C0bsqLu7idji18kb+JJ1DIBgp07ohHtWx5Bya3azviZNLLztLC5E+z5gHhIg==
+X-Google-Smtp-Source: AGHT+IElv0lipN0wE5cNJHmTkCJI2Cj99p1DL1hKf4mOsCga/GRTE5B6deR+kPUwqVUm32i2T6AtvQ==
+X-Received: by 2002:a17:906:730b:b0:ae3:6994:5511 with SMTP id a640c23a62f3a-ae3c2b5a274mr208772966b.16.1751445662612;
+        Wed, 02 Jul 2025 01:41:02 -0700 (PDT)
+Received: from [192.168.1.106] ([51.154.145.205])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-ae353c6bbfdsm1040041266b.115.2025.07.02.01.41.00
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 02 Jul 2025 01:41:01 -0700 (PDT)
+Message-ID: <f214dbd6-f374-4004-95f3-3c48f1995be9@gmail.com>
+Date: Wed, 2 Jul 2025 10:41:00 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [yocto] BSP: X and customized raspberrypi5.conf machine
-To: yocto@lists.yoctoproject.org, skandigraun@gmail.com
-References: <918368ba-ed9f-49a8-a41f-a99f05c3aba4@d-f-d.ca>
- <f2e25afb-1cdb-49eb-a168-ccd900b58d22@gmail.com>
-Content-Language: en-US, en-CA, fr
-From: "Daniel F. Dickinson" <daniel@d-f-d.ca>
-In-Reply-To: <f2e25afb-1cdb-49eb-a168-ccd900b58d22@gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: quoted-printable
+Subject: Re: [yocto] mozjs-128 compilation error for Walnascar
+To: yocto@lists.yoctoproject.org, ashish.shrikhande@gmail.com
+References: <21282.1751410263082674913@lists.yoctoproject.org>
+ <18523.1751411666256346662@lists.yoctoproject.org>
+Content-Language: en-US
+From: Gyorgy Sarvari <skandigraun@gmail.com>
+In-Reply-To: <18523.1751411666256346662@lists.yoctoproject.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Wed, 02 Jul 2025 05:14:41 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/65588
+ <yocto@lists.yoctoproject.org>; Wed, 02 Jul 2025 08:41:13 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/65589
 
-On 2025-06-30 07:19, Gyorgy Sarvari via lists.yoctoproject.org wrote:
-> On 6/30/25 09:43, Daniel F. Dickinson via lists.yoctoproject.org wrote:
->> This is a multipart question/problem.
->>
->> Summary:
->>
->> 1. I want to be sure I am using the correct means to create a customiz=
-ed machine configuration for what in the meta-raspberrypi layer is raspbe=
-rrypi5.conf.
->>
->> 2. With my current attempt I get a working X11 image for the Raspberry=
- Pi 5 but not the Compute Module 5 with CM5 IO board; I am unclear at pre=
-sent on whether
->> this is due to the customized configuration or an issue with current w=
-alnascar branch of meta-raspberrypi; if the latter I'd like to resolve th=
-at too.
->>
->>
->> Customizing raspberrypi machine configuration
->>
->> The first thing is I did is the obvious: create a meta-bsp_custom_pi5 =
-with a config/machine/raspberrypi5-custom.conf. This appears to work when=
- I use
->> `require conf/machine/raspberrypi5.conf` and override the parts I want=
- to change. However, I ran into an issue on the Compute Module 5 with CM5=
- IO
->> board which I discuss below. It occurred to me the issue could be the =
-method of customizing the machine configuration.
->>
->> I therefore went off on a tangent and successfully created a qemuarm64=
--pi5 board definition[1] which builds and executes my variation of
->> core-image-x11 correctly. This required a little more work than a simp=
-le rename as getting the linux-yocto to build correctly required making a
->> local copy of the kernel metadata (.scc and .cfg) so I could set the K=
-MACHINE name. It was also during that process that I discovered that on
->> the qemu board the board kernel configuration is not a simple defconfi=
-g.
->>
->> So, this leads to the question: am I missing something like setting KM=
-ACHINE for the Pi5 / CM5 customized board? If so, what am I missing. If i=
-t
->> 'should work' then see below for a possible graphics driver issue with=
- the CM5-IO setup.
-
-Since you pointed to that GitHub issue, I have determined the issue was=20
-not my config, so I am doing this reasonably. Thank you.
-
-
->>
->> X mostly not rendering for CM5-IO but works correctly for a Pi5 flagsh=
-ip board
->>
->> With a modified core-image-x11 image it correctly displays with a modi=
-fied raspberrypi5.conf on a Pi5 flagship board and on with qemuarm64-pi5.=
-conf
->> (qemuarm64.conf with GPIO_VIRTIO drivers added) using runqemu.
->>
->> However on the Compute Module 5 on a CM5 IO board the display is compl=
-etely black with only the mouse cursor being rendered.
->>
->> The vt1 console is working fine, so it's somehow specifically an X on =
-CM5-IO issue.
->>
->> Any ideas? I'm at a loss other than to wonder if there is some graphic=
-s driver issue.
->>
+On 7/2/25 01:14, ashish shrikhande6 via lists.yoctoproject.org wrote:
+> Do I need to add meta-rust in my yocto?
 >
-> It seems that someone had the same issue reported in the meta-rpi repo,
-> and it turned out to be a mesa issue for them - have you taken a look a=
-t
-> this:
-> https://github.com/agherzan/meta-raspberrypi/issues/1426#issuecomment-2=
-810084993
-> ?
->
->> Regards,
->> Daniel
->>
->>
->> [1] Its eventual goal is to be able to use virtio GPIO to verify Pi bu=
-ilds in Qemu instead of requiring deploying to a physical Pi5/CM5 for
->> basic testing (and, ideally, to automate some testing).
->>
->>
->>
->>
-In my case it turns out to be a case of trying to be too clever.
+No, you do not - Walnascar comes with a reasonably new Rust toolchain on
+its own.
+I wonder if maybe it clashes somehow with the existing PATH...
 
-I have not needed to upgrade mesa, there are two other things I needed to=
- do:
-
- 1. Remove the |ROOTLESS_X =3D "1"| I had added; this causes permissions
-    issues all over the place (I guess that
-    feature of xserver-nodm only works with 'plain' X - no Wayland, no
-    acceleration / mesa.
- 2. Ensure mesa (but not upgraded) is included in the image.
-
-which I have noted on the GitHub issue: https://github.com/agherzan/meta-=
-raspberrypi/issues/1426 .
-
-Thank you again for pointing me in a more relevant direction.
-
-Regards,
-Daniel
-
---=20
-Daniel F. Dickinson, B. Computing, A+ =C2=B7 ce
-
-https://www.wildtechgarden.ca - Technical documentation, website, and blo=
-g
-https://www.danielfdickinson.ca - Personal professional blog, website, an=
-d resume
-
+If you check your PATH environment variable, does it contain
+"/home/ashish/.rustup/toolchains/1.84.1-x86_64-unknown-linux-gnu/bin/"? 
+If yes, could you remove it at least temporarily, run "bitbake -c clean
+mozjs-128", and try to build again to see what's the result?
 
