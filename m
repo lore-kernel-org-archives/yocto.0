@@ -1,147 +1,94 @@
-Return-Path: <akarnil@witekio.com>
+Return-Path: <alex.kanavin@gmail.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id AC199C83030
-	for <webhook@archiver.kernel.org>; Thu,  3 Jul 2025 11:00:35 +0000 (UTC)
-Subject: Re: [yocto] Controlling host CPU utilization (avoiding building on e-cores)
-To: "Alexander Kanavin" <alex.kanavin@gmail.com>, yocto@lists.yoctoproject.org
-From: "Alen Karnil" <akarnil@witekio.com>
-X-Originating-Location: Derby, England, GB (62.232.152.46)
-X-Originating-Platform: Linux Firefox 139
-User-Agent: GROUPS.IO Web Poster
+	by smtp.lore.kernel.org (Postfix) with ESMTP id D5042C77B7C
+	for <webhook@archiver.kernel.org>; Thu,  3 Jul 2025 11:26:55 +0000 (UTC)
+Received: from mail-qv1-f42.google.com (mail-qv1-f42.google.com [209.85.219.42])
+ by mx.groups.io with SMTP id smtpd.web10.20148.1751542006989935260
+ for <yocto@lists.yoctoproject.org>;
+ Thu, 03 Jul 2025 04:26:47 -0700
+Authentication-Results: mx.groups.io;
+ dkim=pass header.i=@gmail.com header.s=20230601 header.b=Vo1QzrsZ;
+ spf=pass (domain: gmail.com, ip: 209.85.219.42, mailfrom: alex.kanavin@gmail.com)
+Received: by mail-qv1-f42.google.com with SMTP id 6a1803df08f44-6ecf99dd567so75407166d6.0
+        for <yocto@lists.yoctoproject.org>; Thu, 03 Jul 2025 04:26:46 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1751542006; x=1752146806; darn=lists.yoctoproject.org;
+        h=content-transfer-encoding:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=eGLwnwU9CZYG96L8WwXqGVcdg67dwYGEiesAdNNjpek=;
+        b=Vo1QzrsZ47rI/YTzTFlKF2JFyTZjUJctGI2RoHa/zHf3ym1uB+diAlGuKbG7yS40E0
+         U0srdQH8Ad1GdmpFVIFzrTVY0pOm86Zd6z0VW+1uwOC3gByuN9FYLWDdSWmRpRrH0S1Z
+         2Qr76d7Wjy6ME89jQW8seqzrSthGsP+RY+9SLb5RjDCoKnY0eUkA1/eJ66I0doj0SwKb
+         Dk8oUL28wqg5DxYcZUXcAt38grLq7VZ01UQiTJLC8DNyEs1s3EjdZdLzE/J83rM6nokC
+         hJvEpAhdkCX6ius9lqFFOutbltdFtzHLptWBTLqmRnNePTcTjhWp4tM7i56BSemnXO0y
+         33lw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1751542006; x=1752146806;
+        h=content-transfer-encoding:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=eGLwnwU9CZYG96L8WwXqGVcdg67dwYGEiesAdNNjpek=;
+        b=FzTiADnJmrTFqJzk0shnpujAwMQvs6dA8vS/Z7bvKAzS1Pai+XGR1zP1IwC2ShNifC
+         Gg59GUKRwt4uDc7wctSiCRLRRLDeqDv2cuyFW2R6mBpAhklET577+/1vvLAHWcxf0CgI
+         LjtoGVX36cxQJI60ZZOr2Dpwh9SL2ZxaXrGJGM5cQ8xlSHZaLSl3O+ChftWjD1IifW0I
+         jlHlnQvKHefA7HvyCISLxKw2B0qENkCMjcirAd+oHUwlKFIGSFf93iYpP5x/txOUG460
+         0ocTKl3JLm7G7ujhudmFUs6TIMtBqBSL5/RopjYqKO3zqimwhqCx5UnIN4Q75uCw0Mje
+         alYw==
+X-Gm-Message-State: AOJu0Yz83HgT+nQkI0+vsdGEa4slLzRPecKJzC/xLEfryOu/3inWjK5f
+	TMfSCdvjeGlnYZzWK5LRobTNPKrcJjseJJVnQTCTbqirFhx+tsxZ0gX9E+1+RxwNcPu7AOyqaH8
+	sPMC2hlXhp/2OVq8wkPZtlkQy6SXpahbNSQ==
+X-Gm-Gg: ASbGncvN3XPoqTaBwkkxZgyLCfUKovqY6sqrWWQxwO/bHmdzvKTA3griaJozyiMLeQH
+	g00w9H/xS7T/3S+PWToP+0wkY98M0kQRMpEkFFCo7O+6vifCzu1nM8HfENiKof9AW9YWy1HRGOf
+	88YAidEbXFQ+mKgeJIVgIWe+cYSQBBL66xNENflUSFyVhdMBLrfbx6PnJScOCULsVFVw1/mqxAR
+	C0=
+X-Google-Smtp-Source: AGHT+IFmJ9mHwMUmDTeMnlfNpQb/lbfiWdRPmTAEoYxYHF9VIp0xTVipGi018ZMeVNLUdCnWXR2Ck3kDQpRpB6Pu4B4=
+X-Received: by 2002:a05:6214:224d:b0:6fd:74bf:6062 with SMTP id
+ 6a1803df08f44-702b1a5780cmr101653716d6.17.1751542005938; Thu, 03 Jul 2025
+ 04:26:45 -0700 (PDT)
 MIME-Version: 1.0
-Date: Thu, 03 Jul 2025 04:00:27 -0700
 References: <CANNYZj-6mE-j=cOUfbDuFb2She1OQzmmeWX048v-yo+eAKqGSQ@mail.gmail.com>
-In-Reply-To: <CANNYZj-6mE-j=cOUfbDuFb2She1OQzmmeWX048v-yo+eAKqGSQ@mail.gmail.com>
-Message-ID: <6459.1751540427875724875@lists.yoctoproject.org>
-Content-Type: multipart/alternative; boundary="jxTB68WQC14kBdLYxD9q"
+ <6459.1751540427875724875@lists.yoctoproject.org>
+In-Reply-To: <6459.1751540427875724875@lists.yoctoproject.org>
+From: Alexander Kanavin <alex.kanavin@gmail.com>
+Date: Thu, 3 Jul 2025 13:26:33 +0200
+X-Gm-Features: Ac12FXxwzDJkA6VLXb2XGX0MBOb7C0wDSK-uAwBtBJ_q2DBgjerQ1MqIx8aakzo
+Message-ID: <CANNYZj9V4K0PjCr_oOdefLTb8jHE40oKY7Ha8FyQf3mhYa7fPQ@mail.gmail.com>
+Subject: Re: [yocto] Controlling host CPU utilization (avoiding building on e-cores)
+To: yocto@lists.yoctoproject.org, akarnil@witekio.com
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Thu, 03 Jul 2025 11:00:35 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/65603
+ <yocto@lists.yoctoproject.org>; Thu, 03 Jul 2025 11:26:55 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/65604
 
---jxTB68WQC14kBdLYxD9q
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: quoted-printable
+On Thu, 3 Jul 2025 at 13:00, Alen Karnil via lists.yoctoproject.org
+<akarnil=3Dwitekio.com@lists.yoctoproject.org> wrote:
 
-This is what it says (note that BB_ENV_EXTRAWHITE has been replaced with BB=
-_ENV_PASSTHROUGH_ADDITIONS)
+> By adding TASKSET to BB_ENV_EXTRAWHITE, you ensure that when BitBake runs=
+ tasks, it includes the TASKSET variable in the environment. This allows yo=
+u to use taskset to control which CPU cores the BitBake tasks can run on, e=
+nabling you to manage CPU affinity effectively.
+>
+>
+> Comparing with the manual, https://docs.yoctoproject.org/bitbake/bitbake-=
+user-manual/bitbake-user-manual-ref-variables.html#term-BB_ENV_PASSTHROUGH_=
+ADDITIONS
+>
+> It looks to match up, the only thing I can't figure out where TASKSET is =
+defined or how it knows what to do with it
 
->=20
->=20
->=20
-> The line BB_ENV_EXTRAWHITE +=3D "TASKSET" in a Yocto local.conf file is u=
-sed
-> to specify environment variables that should be preserved and passed to
-> the BitBake tasks when they are executed. Here's a breakdown of its
-> components:
->=20
->=20
->=20
-> *=20
->=20
-> *BB_ENV_EXTRAWHITE* : This is a BitBake variable that defines a list of
-> environment variable names that should be exported to the environment of
-> the tasks being executed. By default, BitBake only exports a limited set
-> of environment variables to the tasks. This variable allows you to extend
-> that list.
->=20
->=20
-> *=20
->=20
-> *+=3D* : This operator appends the specified value to the existing value =
-of
-> the variable. If BB_ENV_EXTRAWHITE already contains some variables, this
-> will add "TASKSET" to the end of that list.
->=20
->=20
-> *=20
->=20
-> *"TASKSET"* : This is the name of the environment variable you want to
-> preserve. In this context, it refers to the taskset command, which is use=
-d
-> to set or retrieve the CPU affinity of a process.
->=20
->=20
->=20
->=20
->=20
->=20
-> By adding TASKSET to BB_ENV_EXTRAWHITE , you ensure that when BitBake run=
-s
-> tasks, it includes the TASKSET variable in the environment. This allows y=
-ou
-> to use taskset to control which CPU cores the BitBake tasks can run on,
-> enabling you to manage CPU affinity effectively.
->=20
->=20
->=20
+So basically AI couldn't answer the actual question about the specific
+local.conf statement and instead gave a lecture about how passing
+through environment variables works in Yocto, that it learned from the
+manuals.
 
-Comparing with the manual, https://docs.yoctoproject.org/bitbake/bitbake-us=
-er-manual/bitbake-user-manual-ref-variables.html#term-BB_ENV_PASSTHROUGH_AD=
-DITIONS
+The reason you can't find where TASKSET is used is that we're almost
+certainly looking at an AI hallucination.
 
-It looks to match up, the only thing I can't figure out where TASKSET is de=
-fined or how it knows what to do with it
-
-Alen
-
---jxTB68WQC14kBdLYxD9q
-Content-Type: text/html; charset="utf-8"
-Content-Transfer-Encoding: quoted-printable
-
-<div>This is what it says (note that BB_ENV_EXTRAWHITE has been replaced wi=
-th BB_ENV_PASSTHROUGH_ADDITIONS)<br /><br /></div>
-<blockquote>
-<div>
-<p>The line <code class=3D"qlv4I7skMF6Meluz0u8c wZ4JdaHxSAhGy1HoNVja _dJ357=
-tkKXSh_Sup5xdW">BB_ENV_EXTRAWHITE +=3D "TASKSET"</code> in a Yocto <code cl=
-ass=3D"qlv4I7skMF6Meluz0u8c wZ4JdaHxSAhGy1HoNVja _dJ357tkKXSh_Sup5xdW">loca=
-l.conf</code> file is used to specify environment variables that should be =
-preserved and passed to the BitBake tasks when they are executed. Here's a =
-breakdown of its components:</p>
-<ul>
-<li>
-<p><strong>BB_ENV_EXTRAWHITE</strong>: This is a BitBake variable that defi=
-nes a list of environment variable names that should be exported to the env=
-ironment of the tasks being executed. By default, BitBake only exports a li=
-mited set of environment variables to the tasks. This variable allows you t=
-o extend that list.</p>
-</li>
-<li>
-<p><strong>+=3D</strong>: This operator appends the specified value to the =
-existing value of the variable. If <code class=3D"qlv4I7skMF6Meluz0u8c wZ4J=
-daHxSAhGy1HoNVja _dJ357tkKXSh_Sup5xdW">BB_ENV_EXTRAWHITE</code> already con=
-tains some variables, this will add "TASKSET" to the end of that list.</p>
-</li>
-<li>
-<p><strong>"TASKSET"</strong>: This is the name of the environment variable=
- you want to preserve. In this context, it refers to the <code class=3D"qlv=
-4I7skMF6Meluz0u8c wZ4JdaHxSAhGy1HoNVja _dJ357tkKXSh_Sup5xdW">taskset</code>=
- command, which is used to set or retrieve the CPU affinity of a process.</=
-p>
-</li>
-</ul>
-<p>By adding <code class=3D"qlv4I7skMF6Meluz0u8c wZ4JdaHxSAhGy1HoNVja _dJ35=
-7tkKXSh_Sup5xdW">TASKSET</code> to <code class=3D"qlv4I7skMF6Meluz0u8c wZ4J=
-daHxSAhGy1HoNVja _dJ357tkKXSh_Sup5xdW">BB_ENV_EXTRAWHITE</code>, you ensure=
- that when BitBake runs tasks, it includes the <code class=3D"qlv4I7skMF6Me=
-luz0u8c wZ4JdaHxSAhGy1HoNVja _dJ357tkKXSh_Sup5xdW">TASKSET</code> variable =
-in the environment. This allows you to use <code class=3D"qlv4I7skMF6Meluz0=
-u8c wZ4JdaHxSAhGy1HoNVja _dJ357tkKXSh_Sup5xdW">taskset</code> to control wh=
-ich CPU cores the BitBake tasks can run on, enabling you to manage CPU affi=
-nity effectively.</p>
-</div>
-</blockquote>
-<div><br />Comparing with the manual, <a href=3D"https://docs.yoctoproject.=
-org/bitbake/bitbake-user-manual/bitbake-user-manual-ref-variables.html#term=
--BB_ENV_PASSTHROUGH_ADDITIONS" target=3D"_blank" rel=3D"noopener">https://d=
-ocs.yoctoproject.org/bitbake/bitbake-user-manual/bitbake-user-manual-ref-va=
-riables.html#term-BB_ENV_PASSTHROUGH_ADDITIONS</a><br /><br />It looks to m=
-atch up, the only thing I can't figure out where TASKSET is defined or how =
-it knows what to do with it<br /><br />Alen</div>
-
---jxTB68WQC14kBdLYxD9q--
+Alex
 
