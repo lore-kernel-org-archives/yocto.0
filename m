@@ -2,79 +2,92 @@ Return-Path: <richard.purdie@linuxfoundation.org>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id BCCA7C83F09
+	by smtp.lore.kernel.org (Postfix) with ESMTP id C60ADC83F03
 	for <webhook@archiver.kernel.org>; Sun,  6 Jul 2025 21:56:33 +0000 (UTC)
-Received: from mail-yw1-f182.google.com (mail-yw1-f182.google.com [209.85.128.182])
- by mx.groups.io with SMTP id smtpd.web11.46015.1751838189960711024
+Received: from mail-yb1-f174.google.com (mail-yb1-f174.google.com [209.85.219.174])
+ by mx.groups.io with SMTP id smtpd.web10.45716.1751838213396459606
  for <yocto@lists.yoctoproject.org>;
- Sun, 06 Jul 2025 14:43:10 -0700
+ Sun, 06 Jul 2025 14:43:33 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20230601 header.b=Mk5OKyLk;
- spf=pass (domain: gmail.com, ip: 209.85.128.182, mailfrom: schonm@gmail.com)
-Received: by mail-yw1-f182.google.com with SMTP id 00721157ae682-711756ae8c9so15557087b3.3
-        for <yocto@lists.yoctoproject.org>; Sun, 06 Jul 2025 14:43:09 -0700 (PDT)
+ dkim=pass header.i=@gmail.com header.s=20230601 header.b=kwxNbanK;
+ spf=pass (domain: gmail.com, ip: 209.85.219.174, mailfrom: schonm@gmail.com)
+Received: by mail-yb1-f174.google.com with SMTP id 3f1490d57ef6-e84207a8aa3so1534145276.3
+        for <yocto@lists.yoctoproject.org>; Sun, 06 Jul 2025 14:43:33 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1751838189; x=1752442989; darn=lists.yoctoproject.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:to
-         :from:from:to:cc:subject:date:message-id:reply-to;
-        bh=e8jzQ+wz7GC29YT0QOUNzzdqsum4giCSgpf9eauWG/k=;
-        b=Mk5OKyLkarR79U+mZEChOVAsalDlRk1RPQjiOJ5uB9rT2RTpB6P7uPir7G2HlgLcXP
-         C8JQd5RuZj/s8cBpsJCpxSlXInAEswhD8yvYrZwHFZRb7RDVhIj0q6VIYyLLYV23D6dR
-         dOxq3/3420jBymKIOzF8bUd69QD42+qH/ETEY+PN3ouFXbflHZhjh7uS+M6Wu3BS8eev
-         qH/4GeCUD8QKclIqxbCg3iZwDtmfBpI041jaKw8xSUwrfAtO/Lc0uOM/GyKqOJfN/FlN
-         q7habPtOsvboR7z1dxvMf7wzDE9Vhaf2SXT4k2Ui2UErioqbCzj6+vF7xaBW2PLNgA+B
-         6s0w==
+        d=gmail.com; s=20230601; t=1751838212; x=1752443012; darn=lists.yoctoproject.org;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=NPLg0eYZixPJlNqoSs2coKiEyA8AOkzmn4Fp7bN+ePY=;
+        b=kwxNbanKtDqpv+Yi0oWLOgy3dNcAQjDz2yHCKxGjbPGhGjJYkf+oMvT3J4x5KaSJS9
+         JQXUMNc5zXossELAdl7xAAnW+Go/B07BE36w+T/xpO7nt8j44MMuI8HV9KhK6SZdbwQz
+         WkPdWAilP4yQzRAMvi1GMX22hm/8w4eVRSWZddF8Q/+bsyH5TtflJCo9yj2pzukkMlmz
+         E4hDE1IRWP6Hyc2gy1kA8ipqmth/zMbx/Btkg9sw1R1EElPnNTnuyDNq8cGGSfdYHz5S
+         YRI0IGbcNHVbDR6EnKRQmPO4bakJcOEyTE34ce+vu+lUdNT8FZXKfuPaMeWARJW4a/kv
+         vjvQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1751838189; x=1752442989;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:to
-         :from:x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=e8jzQ+wz7GC29YT0QOUNzzdqsum4giCSgpf9eauWG/k=;
-        b=Kqq/57/ZiSP8MjwzO2Bl3AUCZbD3NXrmjqhXbp/t8ltKye4bVCW8yG91NCtYYtXXIL
-         tXhjHz8DSFrPPZOPP9iTlptKzNyuelk+DJ+t7mQuMkQKl44iMQDT8+Sho0N/Yi2c48eI
-         VO92KCUjiRwNXDfINDnCimxQrXc1uH6doyUzsPTAfOUOwM7ADnVSayEKexmvLbuDrBLM
-         CZyU7qSptDolo3QfyshzKjJ4o14YAOp9AqA9AM4Wa2mFEUWQMU2d+9kOY9fzw3DPfq/L
-         RyDkP5GGPNuKz/30krl1FOYaZNBCaEq/DQm/nIhEtRI2CIfb368DIHrWnmpuHckdcDK1
-         +h3g==
-X-Gm-Message-State: AOJu0YwFvCQJh9UHIn4A1IHkbuJb4orkU8jtdtdbfNuIaZWm2AUVEiWr
-	55vc2CPIGb0tBW0e9qxijL5CZzsG+Iww1FbzOAratHRANMFIDxRNf0QCAXuWjP2K
-X-Gm-Gg: ASbGncs2S4mSWGeFFW+0cqblglXupye20ms/CGEmVAL4Hck6sNspxNPjQBLEqdei597
-	TzDyFJlJorafjCx0jeNTZTjy+ONm4sBzC2S2zSp8zY05pDJSCDdud91WvDJH9YsroYkN9E/Mivr
-	rTFctj8HFglnIc/30hVOSjIg2H1ErB80++BOWqXiKshqPv4n6WrtAHvUYDnDj+rodylIz7COlh1
-	K+TTxBjuhyzy6fAlLGZemlFswAZKhyiB7S5qQ6Zmqaipxbl4L/hHREJrYarSyhXXIsr5llOiXiY
-	hZVIJ2/VLmrFt0wLfoVdRcykA01s6v35CC2KwIQTtfJDBdb6R8VMzNIua82JHRAqJB5k0aSnG4J
-	bCHrBlcINSi/FnyHgjUpT
-X-Google-Smtp-Source: AGHT+IFum0GLP5yavvV2zzQ1WGsja7t2gTB4nqZasMwj7p00d0oA8G4286fVXjhnpKvGxygYjImQ1Q==
-X-Received: by 2002:a05:690c:d19:b0:711:4392:7024 with SMTP id 00721157ae682-7176ccea183mr88377117b3.37.1751838188420;
-        Sun, 06 Jul 2025 14:43:08 -0700 (PDT)
+        d=1e100.net; s=20230601; t=1751838212; x=1752443012;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=NPLg0eYZixPJlNqoSs2coKiEyA8AOkzmn4Fp7bN+ePY=;
+        b=ChX0MqIXvmjZC00HkCL4D+Rhho6Xfe+HF486GaTPQZ2NqQRaxRSAw13+ldMjfGNjfF
+         l0+R3ilU+82vWNlvRMC3qPnWl5lxFB0RF+AJPPnppWiEls876ZI2X5gFFsTPzBSTVOuR
+         TPV5y+ObbJN39RUWI+HpqtB1bRXrim5xwAuLDtEG4GCXzpQbggYDkrD4/n8Epwj4qzH5
+         8SCrn11irxWTl4T1xdwKL43Q4naWXT3uNaAbqf9IGLLGEOqKiFUXxpR08cxBZGDnTeOY
+         CQ6l2OyIX5ZboGH9O/zUZ3FJT/osr/QohTuTqGzV7CHR9YbUK19lR00p9W3xtzwNYXsB
+         SEkQ==
+X-Gm-Message-State: AOJu0YwDa8qsD1MMxPp/SsaH35lt5Br/xFM+Dbi5+TqUBR8OYqAg0UMw
+	JWa2hDPxN8hkjGrHfHcM4QdVv5OZzKFtkvx+2zXWbOvYtHsoDFFf/Qk5RI7HZG4y
+X-Gm-Gg: ASbGnctWBpB7ccliJYYCGDAR8yHgJNpJTbKCqoJkK2jQixpy0X9dIdrmO3hVanBFIou
+	85VM509ZxIl+E8gEJRlllMhmfiynwAZH7duLphTYp1pv9mdEtqVu6+GS/uevX/wkVBZISdDr+Ls
+	hlkNcrAVonEmoV23GWgPxHKaPUpcoAquMvI7DGXeJBf/F+6PHf8RAg4vwCz5J312YCcxPjXAr3f
+	dzk9SXmAEbNTj9tmtMr8zbcPET0U8aXsvxS9Y//SY15Izhi+s8Q99W5iAZc/kDCMGGEMY2jlzMI
+	J4VxExYHDW5N04uxb/xM6O9Qwm6Yur3EVkjZ5AdqzbRLWXTS5zdZktaKrsVBbv5l6IriIrXrIzv
+	uS3+h63wGlnoeqjmVUJvI
+X-Google-Smtp-Source: AGHT+IEgNfcaNLFAUABofWHQMhtm/wkYNQQPba7h+SmsyXXM7iKyFLSpGOAD9AXNiZzj2Z8XUmC2GQ==
+X-Received: by 2002:a05:6902:906:b0:e81:e494:eee0 with SMTP id 3f1490d57ef6-e89a0cb1205mr11865489276.27.1751838211808;
+        Sun, 06 Jul 2025 14:43:31 -0700 (PDT)
 Received: from localhost.localdomain (71-208-4-221.ftmy.qwest.net. [71.208.4.221])
-        by smtp.gmail.com with ESMTPSA id 3f1490d57ef6-e899c340aa3sm2237479276.21.2025.07.06.14.43.07
-        for <yocto@lists.yoctoproject.org>
+        by smtp.gmail.com with ESMTPSA id 3f1490d57ef6-e899c340aa3sm2237479276.21.2025.07.06.14.43.31
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 06 Jul 2025 14:43:07 -0700 (PDT)
+        Sun, 06 Jul 2025 14:43:31 -0700 (PDT)
 From: "J. S." <schonm@gmail.com>
 To: yocto@lists.yoctoproject.org
-Subject: [meta-raspberrypi] whinlatter
-Date: Sun,  6 Jul 2025 17:29:52 -0400
-Message-ID: <20250706213926.1813828-2-schonm@gmail.com>
+Cc: Jason Schonberg <schonm@gmail.com>
+Subject: [meta-raspberrypi][PATCH 1/3] Update layer to work with oe-core master, which is currently set for "whinlatter"
+Date: Sun,  6 Jul 2025 17:29:53 -0400
+Message-ID: <20250706213926.1813828-3-schonm@gmail.com>
 X-Mailer: git-send-email 2.43.0
+In-Reply-To: <20250706213926.1813828-2-schonm@gmail.com>
+References: <20250706213926.1813828-2-schonm@gmail.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
  <yocto@lists.yoctoproject.org>; Sun, 06 Jul 2025 21:56:33 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/65613
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/65614
 
-The patches provied here for your consideration, allow the master branch of
-meta-raspberrypi to build with the current master branch of oe-core.
+Signed-off-by: Jason Schonberg <schonm@gmail.com>
+---
+ conf/layer.conf | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-The patches are probably appropriate for a whinlatter branch if/when that
-branch is created in the meta-raspberrypi repository.
+diff --git a/conf/layer.conf b/conf/layer.conf
+index cdf8112..aadbf0b 100644
+--- a/conf/layer.conf
++++ b/conf/layer.conf
+@@ -9,7 +9,7 @@ BBFILE_COLLECTIONS += "raspberrypi"
+ BBFILE_PATTERN_raspberrypi := "^${LAYERDIR}/"
+ BBFILE_PRIORITY_raspberrypi = "9"
+ 
+-LAYERSERIES_COMPAT_raspberrypi = "styhead walnascar"
++LAYERSERIES_COMPAT_raspberrypi = "whinlatter"
+ LAYERDEPENDS_raspberrypi = "core"
+ 
+ # Additional license directories.
+-- 
+2.43.0
 
-Your feedback is, as always, welcome.
-
-Jason Schonberg
-[meta-raspberrypi][PATCH 1/3] Update layer to work with oe-core
-[meta-raspberrypi][PATCH 2/3] Changes to S as requried by oe-core
-[meta-raspberrypi][PATCH 3/3] Fix WORKDIR / UNPACKDIR issues in a few
 
