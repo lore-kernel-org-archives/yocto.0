@@ -1,101 +1,117 @@
-Return-Path: <pkl2000us@gmail.com>
+Return-Path: <daniel@d-f-d.ca>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id D835AC83030
-	for <webhook@archiver.kernel.org>; Mon,  7 Jul 2025 20:11:08 +0000 (UTC)
-Received: from mail-ed1-f45.google.com (mail-ed1-f45.google.com [209.85.208.45])
- by mx.groups.io with SMTP id smtpd.web10.2143.1751919066804193397
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 62D59C83F09
+	for <webhook@archiver.kernel.org>; Tue,  8 Jul 2025 04:32:01 +0000 (UTC)
+Received: from dfd-cracked-rearview.d-f-d.ca (dfd-cracked-rearview.d-f-d.ca [51.161.82.14])
+ by mx.groups.io with SMTP id smtpd.web11.11292.1751949116050192813
  for <yocto@lists.yoctoproject.org>;
- Mon, 07 Jul 2025 13:11:07 -0700
+ Mon, 07 Jul 2025 21:31:56 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20230601 header.b=EUC0+UmF;
- spf=pass (domain: gmail.com, ip: 209.85.208.45, mailfrom: pkl2000us@gmail.com)
-Received: by mail-ed1-f45.google.com with SMTP id 4fb4d7f45d1cf-60768f080d8so6721923a12.1
-        for <yocto@lists.yoctoproject.org>; Mon, 07 Jul 2025 13:11:06 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1751919065; x=1752523865; darn=lists.yoctoproject.org;
-        h=to:subject:message-id:date:from:mime-version:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=sellnyF9sOONiMo1bdBaUcER77Jph47C/C6p3nTDnWs=;
-        b=EUC0+UmFKwyqEuhIJygcr8CmjkTlVoE6uTmfgagRcL8qnkEMtjzW93NyfPYahEXT22
-         FRzf/ymcB/KHG6MX1Bp9y7uXJnGcODP8Mr54h9BOxsQiT9+RY5clckhJljRE3Tn+n7M7
-         loB4f9g9ir17WAFfRrgPOTQd1I7C0Xa270egIfTn3SaJ9mbAHqtBTB9Xros1z2P0Cso9
-         tard/j927JaFwXRN3ZwhmHBURpMPy4zpY3uiZELTpXv2ZLksyfJ6Ke3mDnYkfsf40o7i
-         57/KZ4S5TaIRK/Eh6jkgh2XKAnIfEDI7WcAEsngN09BAo2kevzsaIInENnq75LCSgO6K
-         3M6g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1751919065; x=1752523865;
-        h=to:subject:message-id:date:from:mime-version:x-gm-message-state
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=sellnyF9sOONiMo1bdBaUcER77Jph47C/C6p3nTDnWs=;
-        b=KILRnXXBry4NBcEs/LiVTKD7G/NC1QQBLAWnKz8fqicGDXDBsG8PdkwswTXGZwID4Q
-         GR8oKBQOvzrH82l6pFHigGGGttuLqu1nyKsWgrJRByOB8FcmSdLcb+4EPji5DsPFYrNq
-         doM9T9+5qb1d+BjnReElfj2sdqSlr1SSwdBZZ99PI8otN1QuK9ZVuYqhwbJqcmFFO8LR
-         4XYLcNoNy2kt+cGTC/XOTFjm6ZPEMwDrgfgrI/CaaqBywzkUcwJ21ZxIy4e83Yar/Vd4
-         C/pzmHOnwIzl4hg5yCisjZaYFgnR77rFw6D8s+97MhcAhw2GBKGGCByJA0CYOQF7xcH0
-         5E1A==
-X-Gm-Message-State: AOJu0YwKWLjQ8+yBqHKgxkNb2PvFbD96FPp/vzUb/gEn+Rbp0mBmIW0O
-	Kgvolz+/AsyFLXOl5x4YSR8F/x1WTWXsejPt2iCvGfpKgbV9PYmBMd5zdgceyXJKZWrAdhkH6JZ
-	1StT5s7s2v9QbxvM8kfEhZnETIdJqMV3mz0gg6b2Lhw==
-X-Gm-Gg: ASbGnctY+wSYFTxi8L4huGMBkUIlyuWz2Y0VsyOS6DVyMd5svbBWdSikuIdxT1kpG9e
-	AU6EcxI8cQx8mLNXuLXzoe2jwrUuQK4OqoVCU2TzuxQDiuk9luqsnvh6u8AqzWgFX70J9hmzOUi
-	FoNpcK0gj9ew/JNX/tqHnNcGb522gc7UngU66ZnFUu22E=
-X-Google-Smtp-Source: AGHT+IFY9BWTAvUq7lplQh57Q9xqOZQ1tK6WCgmCi1etuOLzK+HWv1D6uWNSvNFmsHJGyhfAoLLXsJJ+PMFtkiIhK88=
-X-Received: by 2002:a17:906:c14e:b0:ad8:914b:7d15 with SMTP id
- a640c23a62f3a-ae3fbc899b6mr1496789866b.7.1751919063896; Mon, 07 Jul 2025
- 13:11:03 -0700 (PDT)
+ dkim=fail reason="dkim: body hash did not verify" header.i=@d-f-d.ca header.s=modoboa header.b=fu7alBql;
+ spf=pass (domain: d-f-d.ca, ip: 51.161.82.14, mailfrom: daniel@d-f-d.ca)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=d-f-d.ca; s=modoboa;
+	t=1751949114; bh=vov4zxKfdjqD4rZJFvOQXppXFE3uAUtudWznc5syOHE=;
+	h=Date:To:From:Subject:From;
+	b=fu7alBqloiSoS1M1XH3hI+D7eaC+DYDBCaRUNUSr4Z4aqgdkYDia0L5WlqIXXW1i+
+	 u05bjH1ZKt3ifOu7AVXt31mIu11AUpP+0X8ugXSuronRQidzH0MWgnejQ35iuL8nOg
+	 jTf+jvsEcYcrbaB7OL2mDq5OB5wcXObfLvPV1Kxgr7/wFwcV61A+OWUZTzDoSNHua7
+	 odxMyiYtobWc115R5hSvJpEC+6xaByfvah33NRX6u/YLGu3kxJbfZgFpZOwpOWY814
+	 7ie9MlWMSmznJGy4LzET4MPwTKhTOsNE0PsSz9g7fZXL6zcY2GR2D+sBERPxAx3KLe
+	 FM9fWOaG1fZsw==
+Received: from localhost (localhost [127.0.0.1])
+	by dfd-cracked-rearview.d-f-d.ca (Postfix) with ESMTP id 1842E68271
+	for <yocto@lists.yoctoproject.org>; Tue,  8 Jul 2025 04:31:54 +0000 (UTC)
+X-Virus-Scanned: Debian amavis at dfd-cracked-rearview.d-f-d.ca
+Received: from dfd-cracked-rearview.d-f-d.ca ([127.0.0.1])
+ by localhost (dfd-cracked-rearview.d-f-d.ca [127.0.0.1]) (amavis, port 10026)
+ with ESMTP id 7fCMg102SDcR for <yocto@lists.yoctoproject.org>;
+ Tue,  8 Jul 2025 04:31:48 +0000 (UTC)
+Received: from [IPV6:2607:f2c0:d009:ff20::4d7] (unknown [IPv6:2607:f2c0:d009:ff20::4d7])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
+	(No client certificate requested)
+	by dfd-cracked-rearview.d-f-d.ca (Postfix) with ESMTPSA
+	for <yocto@lists.yoctoproject.org>; Tue,  8 Jul 2025 04:31:48 +0000 (UTC)
+Message-ID: <14b926fd-9e17-4f0d-a267-cdfb255532ec@d-f-d.ca>
+Date: Tue, 8 Jul 2025 00:31:47 -0400
 MIME-Version: 1.0
-From: C Larbi <pkl2000us@gmail.com>
-Date: Mon, 7 Jul 2025 20:10:53 +0000
-X-Gm-Features: Ac12FXyveSL2Xyg5XAMbILG3GS3dksUwWZhrYkk1ac3El12FneXuYuJ7wX0bMIs
-Message-ID: <CANVomh9M6p+aQS682mfHv-kkF7D-K3ZTUBcXsxBnSv2QgQ8B4g@mail.gmail.com>
-Subject: Custom Kernel Recipe Compilation Error.
+User-Agent: Mozilla Thunderbird
 To: yocto@lists.yoctoproject.org
-Content-Type: text/plain; charset="UTF-8"
+Content-Language: en-US, en-CA, fr
+From: "Daniel F. Dickinson" <daniel@d-f-d.ca>
+Subject: base-files: invalid 'strictatime' on /run
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: quoted-printable
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Mon, 07 Jul 2025 20:11:08 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/65623
+ <yocto@lists.yoctoproject.org>; Tue, 08 Jul 2025 04:32:01 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/65624
 
-Hello all
-I am a newbie to the yocto project and on a journey to understand the basics.
+Currently in OE-Core meta/recipes-core/base-files/base-files/fstab
 
-My reference hardware for my learning journey is the Orange pi 3b (RK3566 soc)
+(which becomes /etc/fstab on-device) has
 
-I have created a bsp layer containing my machine configuration and a
-recipe to build a custom kernel.
 
-The kernel recipe build throws an error on the "do_compile_kernelmodules" task.
-Before writing this, i went through the manual process of compiling
-the same kernel source on my machine and i was able to produce a
-vmlinux file and build the modules.
+tmpfs=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0 /run=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 tmpfs=20
+mode=3D0755,nodev,nosuid,strictatime 0=C2=A0 0
 
-This is the error from the yocto build process.
+which for qemuarm64 (from OE-core) and raspberrypi5 (from=20
+meta-raspberrypi) both
 
-|   GEN     Makefile
-|   CALL    /home/cerezo/yocto/tut/poky/build/tmp/work-shared/opi3b/kernel-source/scripts/checksyscalls.sh
-|   CC [M]  drivers/net/wireless/rockchip_wlan/rkwifi/bcmdhd/aiutils.o
-|   CC [M]  drivers/net/wireless/rockchip_wlan/rkwifi/bcmdhd/siutils.o
-| /home/cerezo/yocto/tut/poky/build/tmp/work-shared/opi3b/kernel-source/drivers/net/wireless/rockchip_wlan/rkwifi/bcmdhd/aiutils.c:44:10:
-fatal error: typedefs.h: No such file or directory
-|    44 | #include <typedefs.h>
-|       |          ^~~~~~~~~~~~
-| compilation terminated.
-| make[7]: *** [/home/cerezo/yocto/tut/poky/build/tmp/work-shared/opi3b/kernel-source/scripts/Makefile.build:250:
-drivers/net/wireless/rockchip_wlan/rkwifi/bcmdhd/aiutils.o] Error 1
-| make[7]: *** Waiting for unfinished jobs....
+emit an error in dmesg during boot "invalid mount option 'strictatime'".
 
-Will really appreciate if i can get some pointers as to what i may be
-doing wrong.
+With busybox this seems to be cosmetic (strictatime simply ignored), but=20
+with using
 
-KERNEL RECIPE
-https://github.com/AccraNET/meta-orspace-orangepi3b/blob/main/recipes-kernel/linux/linux-orangepi.bb
+toybox the mount error results in /run not being mounted, which causes=20
+problems
 
-MACHINE CONFIGURATION
-https://github.com/AccraNET/meta-orspace-orangepi3b/blob/main/conf/machine/opi3b.conf
+for other packages (like udev) when using sysvinit.
 
-Best Regards
-Cerezo
+
+Before I create a patch, I'd like to understand why this is occurring,=20
+and the preferred fix.
+
+
+1. Is this arm/arm64 specific due to defconfig not being aligned with=20
+e.g. x64, or
+
+2. Is this a result of a change in default kernel config across the board=
+?
+
+3. Or, am I missing something about this?
+
+
+In the case of 1, is the preferred resolution to add strictatime to=20
+arm/arm64 defconfig?
+
+In the case of 2, should the 'strictatime' be dropped entirely or=20
+replace with a different
+
+'atime' option?
+
+
+Oh, and should busybox config be changed so that an invalid mount option=20
+is not
+
+silently ignored?
+
+
+Regards,
+
+Daniel
+
+--=20
+Daniel F. Dickinson, B. Computing, A+ =C2=B7 ce
+
+https://www.wildtechgarden.ca - Technical documentation, website, and blo=
+g
+https://www.danielfdickinson.ca - Personal professional blog, website, an=
+d resume
+
 
