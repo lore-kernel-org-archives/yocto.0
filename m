@@ -1,107 +1,95 @@
-Return-Path: <paulg@kernel.org>
+Return-Path: <rpjday@crashcourse.ca>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id D91EFC83F1D
-	for <webhook@archiver.kernel.org>; Thu, 10 Jul 2025 10:12:42 +0000 (UTC)
-Received: from tor.source.kernel.org (tor.source.kernel.org [172.105.4.254])
- by mx.groups.io with SMTP id smtpd.web11.5091.1752142360803981646
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 3FB0EC83F1D
+	for <webhook@archiver.kernel.org>; Thu, 10 Jul 2025 11:22:33 +0000 (UTC)
+Received: from cpanel10.indieserve.net (cpanel10.indieserve.net [199.212.143.9])
+ by mx.groups.io with SMTP id smtpd.web10.6525.1752146542807405018
  for <yocto@lists.yoctoproject.org>;
- Thu, 10 Jul 2025 03:12:41 -0700
+ Thu, 10 Jul 2025 04:22:23 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@kernel.org header.s=k20201202 header.b=O/5SsALc;
- spf=pass (domain: kernel.org, ip: 172.105.4.254, mailfrom: paulg@kernel.org)
-Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
-	by tor.source.kernel.org (Postfix) with ESMTP id 981B161495;
-	Thu, 10 Jul 2025 10:12:39 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 209F8C4CEF1;
-	Thu, 10 Jul 2025 10:12:39 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1752142359;
-	bh=VxvMgSlE99wEv/qUaQnfYD7zXndnAneP0EuxIwHIpPo=;
-	h=Date:From:To:Subject:References:In-Reply-To:From;
-	b=O/5SsALcIQWNSV5ehXTX5YYDUSZndueuAha/UAGzVYTzX20Xrtp9bGsnYzyigvCO3
-	 U0Db+iu6KOC1iOO8lvNbCZWxVwv1S0mDBtAL2iG7n9CokUn7I/01d0FCU2tgLIn0GS
-	 FcTCrILaaRKVUnMkyqNnj8y+KCtLS1gWzUoJTbiLiiGqBGeXPrBYZGUo1aGqioLSYa
-	 /PYgxzZpCQZxCB+F4RWJKUmbD+9XSfUzVIIH+fd3uQhu2vDxOml2YoVWtjdSM5uHGD
-	 JWPBRmxrzcTHxJ998aG2RwRuxXgzGDY2KGHXpf6MZNH3wGdJykuO/5pG4QSDu/wZRi
-	 XYXExkkAb+lcg==
-Date: Thu, 10 Jul 2025 06:12:37 -0400
-From: Paul Gortmaker <paulg@kernel.org>
-To: yocto@lists.yoctoproject.org, gary.huband@servicenow.com
-Subject: Re: [yocto] kernel fragment merge in scarthgap #kernel #scarthgap
-Message-ID: <20250710101237.GA409370@kernel.org>
-References: <KDxf.1751999407392516646.3hg0@lists.yoctoproject.org>
+ dkim=pass header.i=@crashcourse.ca header.s=default header.b=NiHRaPHJ;
+ spf=pass (domain: crashcourse.ca, ip: 199.212.143.9, mailfrom: rpjday@crashcourse.ca)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+	d=crashcourse.ca; s=default; h=Content-Type:MIME-Version:References:
+	Message-ID:In-Reply-To:Subject:cc:To:From:Date:Sender:Reply-To:
+	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:
+	List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
+	bh=tX9M8hgAsv3aRMOEmLwohfhvuBBvOnx55RzgGYh2VMA=; b=NiHRaPHJTrZOllvTFZv6h+6rDc
+	jTgRG6cxs4Hra3Hs+91iJGks/k4/xYyXRIDNUVfGbE+LvwyW+H7FBfcDAbJGG37fwWv6PIOkhuwwy
+	Yx4gxQADqElEf0cczuUKH/VDQXGIT8ZaThKZdRRKZ5XZ7bcLb454GUqFSupQS2WP8WQsHuKx408LD
+	QKk8pOU5ei48ZLCV/ow/D7j7BxRl9T4FS10yeSUnmveHn6Nn3cadAKBL17bmtBy9RzSkHZdAMgL7e
+	Kvyq6FegzS3KBySen8BEKuX69Hx0zCrypWyewugF2C2mONEnVtAEKle5K2jB29mRcYvYiAY5+vn7e
+	xYJanq1g==;
+Received: from pool-174-114-102-5.cpe.net.cable.rogers.com ([174.114.102.5]:32848 helo=asus)
+	by cpanel10.indieserve.net with esmtpsa  (TLS1.3) tls TLS_AES_256_GCM_SHA384
+	(Exim 4.98.2)
+	(envelope-from <rpjday@crashcourse.ca>)
+	id 1uZpLz-0000000EHmH-2Wpt;
+	Thu, 10 Jul 2025 07:22:21 -0400
+Date: Thu, 10 Jul 2025 07:22:11 -0400 (EDT)
+From: "Robert P. J. Day" <rpjday@crashcourse.ca>
+To: Josef Holzmayr <jester@theyoctojester.info>
+cc: yocto@lists.yoctoproject.org, raj.khem@gmail.com, 
+    Jeffrey Osier-Mixon <jefro@redhat.com>
+Subject: Re: [yocto] Is there a YP RISC-V specific mailing list?
+In-Reply-To: <CAEt6NwpDEcFXJDHF7QhkV63k0D6sXOSErEuYNmiEt9TSPwOcJg@mail.gmail.com>
+Message-ID: <5600b61e-0170-b159-e31d-729ba350d0c4@crashcourse.ca>
+References: <7df607f8-189c-bf7d-c131-d2025e0293ad@crashcourse.ca> <CAMKF1sobdeYnURWOuHEqaEv_AtANnRb1K15rSkzZ-rrrP6nfOA@mail.gmail.com> <CAEt6NwpDEcFXJDHF7QhkV63k0D6sXOSErEuYNmiEt9TSPwOcJg@mail.gmail.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <KDxf.1751999407392516646.3hg0@lists.yoctoproject.org>
+Content-Type: multipart/mixed; boundary="8323329-122388161-1752146538=:989804"
+X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
+X-AntiAbuse: Primary Hostname - cpanel10.indieserve.net
+X-AntiAbuse: Original Domain - lists.yoctoproject.org
+X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
+X-AntiAbuse: Sender Address Domain - crashcourse.ca
+X-Get-Message-Sender-Via: cpanel10.indieserve.net: authenticated_id: rpjday+crashcourse.ca/only user confirmed/virtual account not confirmed
+X-Authenticated-Sender: cpanel10.indieserve.net: rpjday@crashcourse.ca
+X-Source: 
+X-Source-Args: 
+X-Source-Dir: 
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Thu, 10 Jul 2025 10:12:42 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/65637
+ <yocto@lists.yoctoproject.org>; Thu, 10 Jul 2025 11:22:33 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/65638
 
-[[yocto] kernel fragment merge in scarthgap #kernel #scarthgap] On 08/07/2025 (Tue 11:30) Gary Huband via lists.yoctoproject.org wrote:
+  This message is in MIME format.  The first part should be readable text,
+  while the remaining parts are likely unreadable without MIME-aware tools.
 
-> In kirkstone I am able to see the merge order for linux kernel fragments by
-> doing
->  
-> 
-> bitbake -c cleansstate virtual/kernel 
-> 
-> bitbake -c clean virtual/kernel 
-> 
-> bitbake --verbose linux-imx > build_linux.txt 
-> 
->  
-> 
-> scarthgap does not produce the merge info using this method.
-> 
-> Is there a way to see the kernel config fragment merge order in scarthgap?
-> 
+--8323329-122388161-1752146538=:989804
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8BIT
 
-You don't need to capture it in a file like above.  All the fragments
-and their merge order and merge logs are captured in your kernel source
-directory already - has been this way for many many years/releases.
 
-At a minimum, you have to ensure the kernel is configured:
+On Thu, 10 Jul 2025, Josef Holzmayr wrote:
 
-bitbake -c configure linux-yocto  # or in your case linux-imx
+> Hi Robert,
+> It depends a bit (classic engineering answer).
+> The obvious choices are
+> - oe-core
+> - oe-devel
+> - yocto
+> - oe-architecture.
+>
+> So far my understanding is that meta-riscv is hosted on GitHub under
+> the reign of Khem, but maybe this could/should be reconsidered
+> moving to yp.org too? In that case the yocto-patches list would be a
+> good place to discuss. Looping in @Jeffrey Osier-Mixon, I think this
+> is a good opportunity to move visibility forwards.
 
-If you tend to build a bunch of different arch and/or BSP, then maybe
-you can never remember the path to your kernel source, even with the
-help of tab completion.  If I'm lazy I will use devshell to take me
-directly there:
+  That is clearly a decision to be made by someone way above my pay
+grade and Candy Crush score, but I think there's justification for a
+separate YP-hosted mailing list for RISC-V devoted to YP
+build-*specific* issues so as to not duplicate all of the generic
+RISC-V content over at riscv.org. After all, OE-Core has machine conf
+files for 32- and 64-bit RISC-V QEMU, so one can say it's OE
+"official."
 
-bitbake -c devshell linux-yocto   # take me to the kernel source!
+  Anyway, that's my +1 for a YP/OE RISC-V mailing list.
 
-In the kernel source dir you should see something like this:
-
-root@build:~/poky/build/tmp/work-shared/qemuppc/kernel-source# ls
-arch   certs    CREDITS  Documentation  fs       init      ipc     Kconfig  lib       MAINTAINERS  mm   README  samples  security  tools  virt
-block  COPYING  crypto   drivers        include  io_uring  Kbuild  kernel   LICENSES  Makefile     net  rust    scripts  sound     usr
-root@build:~/poky/build/tmp/work-shared/qemuppc/kernel-source# cat .metadir 
-.kernel-meta
-root@build:~/poky/build/tmp/work-shared/qemuppc/kernel-source# cd .kernel-meta/
-root@build:~/poky/build/tmp/work-shared/qemuppc/kernel-source/.kernel-meta# ls
-bsp_definition  cfg  config.queue  configs  hardware_frags.txt  meta-series  non-hardware_frags.txt  patches  patch.v6.12.standard.queue  series  unused.patch.queue
-root@build:~/poky/build/tmp/work-shared/qemuppc/kernel-source/.kernel-meta# ls cfg/
-merge_config_build.log  scratch
-root@build:~/poky/build/tmp/work-shared/qemuppc/kernel-source/.kernel-meta# 
-
-I expect "merge_config_build.log" is what you are after.  It contains
-stuff like this:
-
-  Merging .kernel-meta/configs/v6.12/standard/qemuppc/features/profiling/profiling.cfg
-  Merging .kernel-meta/configs/v6.12/standard/qemuppc/features/debug/debug-kernel.cfg
-  Value of CONFIG_DEBUG_KERNEL is redefined by fragment .kernel-meta/configs/v6.12/standard/qemuppc/features/debug/debug-kernel.cfg:
-  Previous value: CONFIG_DEBUG_KERNEL=n
-  New value: CONFIG_DEBUG_KERNEL=y
-
-Have a look around inside .kernel-meta -- everything you possibly want
-to know about making the final .config in the kernel build dir is here.
-
-Paul.
---
+rday
+--8323329-122388161-1752146538=:989804--
 
