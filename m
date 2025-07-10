@@ -2,155 +2,106 @@ Return-Path: <paulg@kernel.org>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 64EBEC83F18
-	for <webhook@archiver.kernel.org>; Thu, 10 Jul 2025 08:36:12 +0000 (UTC)
-Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
- by mx.groups.io with SMTP id smtpd.web11.3856.1752136569622222152
+	by smtp.lore.kernel.org (Postfix) with ESMTP id D91EFC83F1D
+	for <webhook@archiver.kernel.org>; Thu, 10 Jul 2025 10:12:42 +0000 (UTC)
+Received: from tor.source.kernel.org (tor.source.kernel.org [172.105.4.254])
+ by mx.groups.io with SMTP id smtpd.web11.5091.1752142360803981646
  for <yocto@lists.yoctoproject.org>;
- Thu, 10 Jul 2025 01:36:09 -0700
+ Thu, 10 Jul 2025 03:12:41 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@kernel.org header.s=k20201202 header.b=R93SGcfC;
- spf=pass (domain: kernel.org, ip: 172.234.252.31, mailfrom: paulg@kernel.org)
+ dkim=pass header.i=@kernel.org header.s=k20201202 header.b=O/5SsALc;
+ spf=pass (domain: kernel.org, ip: 172.105.4.254, mailfrom: paulg@kernel.org)
 Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
-	by sea.source.kernel.org (Postfix) with ESMTP id DC653436C8;
-	Thu, 10 Jul 2025 08:36:08 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 41A0CC4CEE3;
-	Thu, 10 Jul 2025 08:36:08 +0000 (UTC)
+	by tor.source.kernel.org (Postfix) with ESMTP id 981B161495;
+	Thu, 10 Jul 2025 10:12:39 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 209F8C4CEF1;
+	Thu, 10 Jul 2025 10:12:39 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1752136568;
-	bh=5lwjfjf4C1WQ1s9SCedum2Ea+eAycurdTZX4K/fHyt8=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=R93SGcfC3yQXI12bPM300UrCNXALUp9B3rtngWbZqoGzGt+CkrkDHoG7XqBSCgSpb
-	 6ZM4OJlrkA92Wj4moBzvveczH3v6ae/DBslYxlFLXzQFAaGl4Fv+m9tInyggOUY7CP
-	 btE2Lf1PkCPelCCznHSAGpCeqwLGgtZDkclSjQeIGXCdDjUFJ/cQwgcxMa2+4oo9MH
-	 SGBWcG/GYqc6D/IbW5uv24wd6mejeR3xTVyGzREq0Y+M7u4NMD+vdIa3a96r1s+3Y1
-	 bDGu/kf5vlnTmi3RuKiS+eFEa6t6lntMo6xFdw9deaaQkia5cp78g4fjfd6YmUn02r
-	 9cSvYplJq2gtw==
-Date: Thu, 10 Jul 2025 04:36:06 -0400
+	s=k20201202; t=1752142359;
+	bh=VxvMgSlE99wEv/qUaQnfYD7zXndnAneP0EuxIwHIpPo=;
+	h=Date:From:To:Subject:References:In-Reply-To:From;
+	b=O/5SsALcIQWNSV5ehXTX5YYDUSZndueuAha/UAGzVYTzX20Xrtp9bGsnYzyigvCO3
+	 U0Db+iu6KOC1iOO8lvNbCZWxVwv1S0mDBtAL2iG7n9CokUn7I/01d0FCU2tgLIn0GS
+	 FcTCrILaaRKVUnMkyqNnj8y+KCtLS1gWzUoJTbiLiiGqBGeXPrBYZGUo1aGqioLSYa
+	 /PYgxzZpCQZxCB+F4RWJKUmbD+9XSfUzVIIH+fd3uQhu2vDxOml2YoVWtjdSM5uHGD
+	 JWPBRmxrzcTHxJ998aG2RwRuxXgzGDY2KGHXpf6MZNH3wGdJykuO/5pG4QSDu/wZRi
+	 XYXExkkAb+lcg==
+Date: Thu, 10 Jul 2025 06:12:37 -0400
 From: Paul Gortmaker <paulg@kernel.org>
-To: yocto@lists.yoctoproject.org, skandigraun@gmail.com,
-	alperyasinak1@gmail.com
-Cc: pkl2000us@gmail.com
-Subject: Re: [yocto] Custom Kernel Recipe Compilation Error.
-Message-ID: <20250710083606.GA398892@kernel.org>
-References: <CANVomh9M6p+aQS682mfHv-kkF7D-K3ZTUBcXsxBnSv2QgQ8B4g@mail.gmail.com>
- <0a3017ff-19f4-4e18-a338-32450acfa8ee@gmail.com>
+To: yocto@lists.yoctoproject.org, gary.huband@servicenow.com
+Subject: Re: [yocto] kernel fragment merge in scarthgap #kernel #scarthgap
+Message-ID: <20250710101237.GA409370@kernel.org>
+References: <KDxf.1751999407392516646.3hg0@lists.yoctoproject.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <0a3017ff-19f4-4e18-a338-32450acfa8ee@gmail.com>
+In-Reply-To: <KDxf.1751999407392516646.3hg0@lists.yoctoproject.org>
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Thu, 10 Jul 2025 08:36:12 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/65636
+ <yocto@lists.yoctoproject.org>; Thu, 10 Jul 2025 10:12:42 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/65637
 
-[Re: [yocto] Custom Kernel Recipe Compilation Error.] On 08/07/2025 (Tue 11:06) Gyorgy Sarvari via lists.yoctoproject.org wrote:
+[[yocto] kernel fragment merge in scarthgap #kernel #scarthgap] On 08/07/2025 (Tue 11:30) Gary Huband via lists.yoctoproject.org wrote:
 
-> On 7/7/25 22:10, C Larbi via lists.yoctoproject.org wrote:
-> > Hello all
-> > I am a newbie to the yocto project and on a journey to understand the basics.
-> >
-> > My reference hardware for my learning journey is the Orange pi 3b (RK3566 soc)
-> >
-> > I have created a bsp layer containing my machine configuration and a
-> > recipe to build a custom kernel.
-> >
-> > The kernel recipe build throws an error on the "do_compile_kernelmodules" task.
-> > Before writing this, i went through the manual process of compiling
-> > the same kernel source on my machine and i was able to produce a
-> > vmlinux file and build the modules.
-> >
-> > This is the error from the yocto build process.
-> >
-> > |   GEN     Makefile
-> > |   CALL    /home/cerezo/yocto/tut/poky/build/tmp/work-shared/opi3b/kernel-source/scripts/checksyscalls.sh
-> > |   CC [M]  drivers/net/wireless/rockchip_wlan/rkwifi/bcmdhd/aiutils.o
-> > |   CC [M]  drivers/net/wireless/rockchip_wlan/rkwifi/bcmdhd/siutils.o
-> > | /home/cerezo/yocto/tut/poky/build/tmp/work-shared/opi3b/kernel-source/drivers/net/wireless/rockchip_wlan/rkwifi/bcmdhd/aiutils.c:44:10:
-> > fatal error: typedefs.h: No such file or directory
-> > |    44 | #include <typedefs.h>
-> > |       |          ^~~~~~~~~~~~
-> > | compilation terminated.
-
-I saw this, and I'm thinking that include shouldn't be there at all.
-You might in turn ask "Why would you say that?" -- well, experience?
-
-Let us have a quick look at a current kernel.
-
-	linux-head$ git grep '#include <typedefs.h>'
-	linux-head$ git grep '#include .*typedefs.h>'
-	linux-head$ git grep '#include .*module.h>' | wc -l
-	14342
-	linux-head$ 
-
-No instances of <typedefs.h>.  Also no instances of <somepath/typedefs.h>.
-And if I search for a common include, like module.h, there are tens of
-thousands of instances, so my search isn't somehow fundamentally broken.
-
-> > | make[7]: *** [/home/cerezo/yocto/tut/poky/build/tmp/work-shared/opi3b/kernel-source/scripts/Makefile.build:250:
-> > drivers/net/wireless/rockchip_wlan/rkwifi/bcmdhd/aiutils.o] Error 1
-> > | make[7]: *** Waiting for unfinished jobs....
-> >
-> > Will really appreciate if i can get some pointers as to what i may be
-> > doing wrong.
+> In kirkstone I am able to see the merge order for linux kernel fragments by
+> doing
+>  
 > 
-> This seems to be a recurring problem with this particular vendor kernel
-> unfortunately. Take a look at this patch which solves the same issue on
-> a different branch:
-> https://github.com/riscv/meta-riscv/blob/master/recipes-kernel/linux/linux-orangepi/orangepi-rv2/bcmdhd-fix-typedefs-header-not-found.patch
+> bitbake -c cleansstate virtual/kernel 
+> 
+> bitbake -c clean virtual/kernel 
+> 
+> bitbake --verbose linux-imx > build_linux.txt 
+> 
+>  
+> 
+> scarthgap does not produce the merge info using this method.
+> 
+> Is there a way to see the kernel config fragment merge order in scarthgap?
+> 
 
-So this patch amounts to the one line change as follows:
+You don't need to capture it in a file like above.  All the fragments
+and their merge order and merge logs are captured in your kernel source
+directory already - has been this way for many many years/releases.
 
-	 EXTRA_CFLAGS += -I$(BCMDHD_ROOT)/include/ -I$(BCMDHD_ROOT)/
-	+EXTRA_CFLAGS += -I$(srctree)/$(src)/include
-	 ifeq ($(CONFIG_BCMDHD),m)
+At a minimum, you have to ensure the kernel is configured:
 
-OK, that probably does put a (semi random) instance of typedefs.h into
-the header search path, but given what I've shown above in the mainline
-kernel tree, I would ask if anyone has checked what happens if the
-offending typedefs.h include line was simply *removed*?  Does the error
-go away, or does it give a more informative error on exactly what
-specific definition is missing - so that folks can fix it "properly"?
+bitbake -c configure linux-yocto  # or in your case linux-imx
 
-You generally don't want the kernel and kernel drivers pulling in
-include paths from random locations outside the kernel. The kernel is
-designed to be self-contained, with the exception of the few user space
-utilities that happen to be bundled with the kernel for convenience.
+If you tend to build a bunch of different arch and/or BSP, then maybe
+you can never remember the path to your kernel source, even with the
+help of tab completion.  If I'm lazy I will use devshell to take me
+directly there:
 
-In a case like this, the patch risks causing additional errors elsewhere.
-Things like "conflicting definitions for XYZ".  Or worse, you could get
-an instance where an added include presents a "struct foo" that is
-different from the kernel's view of what "struct foo" is - say for
-example the kernel's version uses a u64 instead of a u32, or has padding
-for cache line alignment and performance reasons.  Then your stuff will
-just silently compile, but explode at runtime.  Kind of a classic case
-of "two wrongs don't make a right".
+bitbake -c devshell linux-yocto   # take me to the kernel source!
 
-This is one (of many) problems with not-in-mainline drivers like this.
-The various SoC engineers tasked with creating a driver develop their
-own ways of doing things, but it remains largely unreviewed by the
-larger group of people out there, including the subsystem maintainers
-who would spot things like this and require it to be done properly
-before accepting it into their local tree and then requesting it to be
-merged upwards into mainline.
+In the kernel source dir you should see something like this:
+
+root@build:~/poky/build/tmp/work-shared/qemuppc/kernel-source# ls
+arch   certs    CREDITS  Documentation  fs       init      ipc     Kconfig  lib       MAINTAINERS  mm   README  samples  security  tools  virt
+block  COPYING  crypto   drivers        include  io_uring  Kbuild  kernel   LICENSES  Makefile     net  rust    scripts  sound     usr
+root@build:~/poky/build/tmp/work-shared/qemuppc/kernel-source# cat .metadir 
+.kernel-meta
+root@build:~/poky/build/tmp/work-shared/qemuppc/kernel-source# cd .kernel-meta/
+root@build:~/poky/build/tmp/work-shared/qemuppc/kernel-source/.kernel-meta# ls
+bsp_definition  cfg  config.queue  configs  hardware_frags.txt  meta-series  non-hardware_frags.txt  patches  patch.v6.12.standard.queue  series  unused.patch.queue
+root@build:~/poky/build/tmp/work-shared/qemuppc/kernel-source/.kernel-meta# ls cfg/
+merge_config_build.log  scratch
+root@build:~/poky/build/tmp/work-shared/qemuppc/kernel-source/.kernel-meta# 
+
+I expect "merge_config_build.log" is what you are after.  It contains
+stuff like this:
+
+  Merging .kernel-meta/configs/v6.12/standard/qemuppc/features/profiling/profiling.cfg
+  Merging .kernel-meta/configs/v6.12/standard/qemuppc/features/debug/debug-kernel.cfg
+  Value of CONFIG_DEBUG_KERNEL is redefined by fragment .kernel-meta/configs/v6.12/standard/qemuppc/features/debug/debug-kernel.cfg:
+  Previous value: CONFIG_DEBUG_KERNEL=n
+  New value: CONFIG_DEBUG_KERNEL=y
+
+Have a look around inside .kernel-meta -- everything you possibly want
+to know about making the final .config in the kernel build dir is here.
 
 Paul.
 --
-
-> 
-> I think adapting this to your branch should solve your problem too.
-> 
-> 
-> >
-> > KERNEL RECIPE
-> > https://github.com/AccraNET/meta-orspace-orangepi3b/blob/main/recipes-kernel/linux/linux-orangepi.bb
-> >
-> > MACHINE CONFIGURATION
-> > https://github.com/AccraNET/meta-orspace-orangepi3b/blob/main/conf/machine/opi3b.conf
-> >
-> > Best Regards
-> > Cerezo
-> >
-
 
