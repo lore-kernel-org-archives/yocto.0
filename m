@@ -1,207 +1,194 @@
-Return-Path: <jester@theyoctojester.info>
+Return-Path: <paulg@kernel.org>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 93D5AC83F1A
-	for <webhook@archiver.kernel.org>; Fri, 11 Jul 2025 16:53:29 +0000 (UTC)
-Received: from mail-ej1-f52.google.com (mail-ej1-f52.google.com [209.85.218.52])
- by mx.groups.io with SMTP id smtpd.web10.18731.1752252800553608872
+	by smtp.lore.kernel.org (Postfix) with ESMTP id B7DBBC83F1A
+	for <webhook@archiver.kernel.org>; Fri, 11 Jul 2025 17:20:19 +0000 (UTC)
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+ by mx.groups.io with SMTP id smtpd.web10.19291.1752254412875211923
  for <yocto@lists.yoctoproject.org>;
- Fri, 11 Jul 2025 09:53:20 -0700
+ Fri, 11 Jul 2025 10:20:13 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@theyoctojester-info.20230601.gappssmtp.com header.s=20230601 header.b=Rx8oLAyz;
- spf=none, err=permanent DNS error (domain: theyoctojester.info, ip: 209.85.218.52, mailfrom: jester@theyoctojester.info)
-Received: by mail-ej1-f52.google.com with SMTP id a640c23a62f3a-ae0bc7aa21bso482392866b.2
-        for <yocto@lists.yoctoproject.org>; Fri, 11 Jul 2025 09:53:20 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=theyoctojester-info.20230601.gappssmtp.com; s=20230601; t=1752252799; x=1752857599; darn=lists.yoctoproject.org;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=EyohwyJXZK+BJUxYTTTN8Kw4L/kaiyBZRnedWR2f91o=;
-        b=Rx8oLAyzL3DET0uf1wZfdRLtsnN0oG/vbeWsvBUroTcBSkL0a4zhIakaTKcQ/3VVvn
-         upK2yZ98nWS2TCeMReeN7iMqbwPATNrV4HPMuQnMuXmTvB+kBbER2SyPx1IIt5FCZzY2
-         pZ0mQ7Wt6qTyZt98kky8tDA+NXwEtbzdAhgZUFYT3HuMgaQWG2JJPcY8xMd3/7yIKqwT
-         ji2FnuKrncWSWqiOS0jiNXOPTb6W6+v/7aqV73+FeAOGSriz5IICDg+Z+wNUOYRQ0oJx
-         W0X5cdwqrwLsImvfb3HH60sxEGVwfyl9QFaM6MXTwudxojaUE+IunMt5294KOvgZhYJi
-         KLRQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1752252799; x=1752857599;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=EyohwyJXZK+BJUxYTTTN8Kw4L/kaiyBZRnedWR2f91o=;
-        b=NAbHG9V3oxUIoYSFKG0VdaPDYKM+dxTikirF8YAVZ4pql7pfoenZ3vlZ92HALl1OLb
-         Tb7E0eHZq/NK5wDPTWLGTuyqXpqS3w9m6rkaY9KkKScB+TP4R7unOXEaOWpFudmOc79O
-         XX1xoJoAelNxOA4VBf6Jv5oEEfZAiMmT7HirlKaKuUO6S+zVvLL2qRZAAeBWmezQtCpX
-         OIyDXtVwxFBmgkDzHDnvfGn6+QRR1AgvPELeldi5LBmUBM4lhrepwYBXe1hnaeQ3IGFo
-         9+YVjuUxXlo9nKsuGml/sZMX95IB0sXx29E1NwWkpgxbHV1ckVxUy3gsR7W8WI7GusKH
-         1kGQ==
-X-Gm-Message-State: AOJu0YwAXGjyqskBkQwzfwbzZV4HkI/ftgHBTAdLeCkW+zz2KdKyv511
-	iujMbiHbEk0Qfj0yJojSXOOdWctaTauFbmHRVtushy3EP+rNpYY/PL0IZDI3uFH7a/gPkGcBG+C
-	cLjzYpLGKqyGY9c6FqyD2OxtesoiibrQrSEqzl4mkjw==
-X-Gm-Gg: ASbGncvpAhBNh7S6oxoz7XegdiJqw9oJReKk/g9wmfwI5doRPTh3MbsMC4PVSVZ2HFj
-	rY46X3fDGqbfmnWyqoOSEm0BRztMbvzhPBofzQ/ngsmhYZkg1xNlscCfIES6j94uEmtAEXrIZY/
-	jvdKLU8b6hHV44YW7+tLa5E3LM0VJXWcQn+sDS6PuXQGnZ2agthppegrVabCYNmLxRZtuaPxlwJ
-	Y5zDMrpoGBv5Ah9fUTqhkZkFF/QS4ltfLb0NUDMeQ==
-X-Google-Smtp-Source: AGHT+IEc0CD8zETHo3om6YJweJRZdad27qLb90fIQHwBgWMNze2Srnc/s6Qt6JEC4Gvk7pnHU/LQaNZ/Cy5/tUk66Lg=
-X-Received: by 2002:a17:906:c14b:b0:ae0:54b9:dc17 with SMTP id
- a640c23a62f3a-ae6fc9fe5bemr426120166b.11.1752252798316; Fri, 11 Jul 2025
- 09:53:18 -0700 (PDT)
+ dkim=pass header.i=@kernel.org header.s=k20201202 header.b=a8B+3/89;
+ spf=pass (domain: kernel.org, ip: 139.178.84.217, mailfrom: paulg@kernel.org)
+Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
+	by dfw.source.kernel.org (Postfix) with ESMTP id 36D215C68F1;
+	Fri, 11 Jul 2025 17:20:12 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 63C61C4CEED;
+	Fri, 11 Jul 2025 17:20:11 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1752254411;
+	bh=HMMQz1Y8npNZD2VeJMjR4g6S6bWNMx2n3eYlP/Upm/U=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=a8B+3/899Aqlgz6DKb5Ff+jkGIkE/VUlMiBvzPs7JouKOCcNqV0U7nKOYXVIlQ0X9
+	 l3dgOTKMsyCwU2rHCAvbNrKXHon1uqlqDFqGFssgB6YHiUnr+fsqwCJPSsjMzwUuhR
+	 UQAbwdRWJZC/N8NZe1elQo6eu8gIxdVTv0d7YkgfrtsaKBue+o6jNZhNA9Sly0ZuqD
+	 vAFIHDdH7TWXoBHAiCuAtrpkalqKXqh+XjwgY9d22xm1G0LM9HeAw+87c7Tg07Zxnf
+	 d8gVAsI/LEbDzQbMJi22PHECEJA4z+j7UlopeHulF5WeX8aIXIGG/gRvEtbNNKl0u8
+	 0AcAIL0TdMqaQ==
+Date: Fri, 11 Jul 2025 13:20:09 -0400
+From: Paul Gortmaker <paulg@kernel.org>
+To: C Larbi <pkl2000us@gmail.com>
+Cc: yocto@lists.yoctoproject.org, skandigraun@gmail.com,
+	alperyasinak1@gmail.com
+Subject: Re: [yocto] Custom Kernel Recipe Compilation Error.
+Message-ID: <20250711172009.GA514572@kernel.org>
+References: <CANVomh9M6p+aQS682mfHv-kkF7D-K3ZTUBcXsxBnSv2QgQ8B4g@mail.gmail.com>
+ <0a3017ff-19f4-4e18-a338-32450acfa8ee@gmail.com>
+ <20250710083606.GA398892@kernel.org>
+ <CANVomh_A4Uem+EKm3d_PA7HRH23ZFf4H=8QPE9EkMOniUi---Q@mail.gmail.com>
 MIME-Version: 1.0
-References: <a0f4104d-8167-6a1c-f2f5-8bde30fe7a21@crashcourse.ca>
- <CAEt6NwqVps39xavQv6XDb=WsGT2nbHJXGrAzM0HdrWm_63T21A@mail.gmail.com> <CAApg2=Sk_zKWou6QS=RjJXQZhC9Bfqoj=B02Uo5XDTPmKvMjDA@mail.gmail.com>
-In-Reply-To: <CAApg2=Sk_zKWou6QS=RjJXQZhC9Bfqoj=B02Uo5XDTPmKvMjDA@mail.gmail.com>
-From: Josef Holzmayr <jester@theyoctojester.info>
-Date: Fri, 11 Jul 2025 18:52:52 +0200
-X-Gm-Features: Ac12FXyUDqZpJ_9c5oS3xaLgmFcTRmJcQrjK9GXie54-bmACfo3HFyhq6hqdCwM
-Message-ID: <CAEt6NwqXF-TBJB-XBPMBDNqnG00Mq9mSQ673PTk99i4ffpvqbg@mail.gmail.com>
-Subject: Re: [yocto] [POLITICAL] Will all future U.S. OE/YP conferences be
- available virtually?
-To: Marta Rybczynska <rybczynska@gmail.com>
-Cc: yocto@lists.yoctoproject.org, rpjday@crashcourse.ca
-Content-Type: multipart/alternative; boundary="00000000000099c9cc0639aa250e"
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <CANVomh_A4Uem+EKm3d_PA7HRH23ZFf4H=8QPE9EkMOniUi---Q@mail.gmail.com>
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Fri, 11 Jul 2025 16:53:29 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/65647
+ <yocto@lists.yoctoproject.org>; Fri, 11 Jul 2025 17:20:19 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/65648
 
---00000000000099c9cc0639aa250e
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+[Re: [yocto] Custom Kernel Recipe Compilation Error.] On 10/07/2025 (Thu 14:35) C Larbi wrote:
 
-Hi Marta,
+> Hello Paul
+> From my understanding, are the includes in a module makefile not
+> private to that compilation context only ?
 
-Yes. Tentative (!) is December 2nd-4th.
+Sure, but do you want to open the possibility that one driver is
+sourcing includes from some random non-kernel location?
 
-Greetz,
-Josef
+> And also is the srctree variable not tied to the sources being compiled ?
 
-On Fri, Jul 11, 2025 at 6:00=E2=80=AFPM Marta Rybczynska <rybczynska@gmail.=
-com>
-wrote:
+I think you miss the point.  The kernel literally has *thousands* of
+drivers.  I've already shown you that not a single one of them includes
+typedefs.h -- in fact, there is no such typedefs.h header anywhere to be
+found in the kernel:
 
-> Thanks for that information Josef. Are there already tentative dates for
-> the Yocto Project Summit?
->
-> Kind regards,
-> Marta
->
-> On Fri, Jul 11, 2025 at 9:43=E2=80=AFAM Josef Holzmayr via lists.yoctopro=
-ject.org
-> <jester=3Dtheyoctojester.info@lists.yoctoproject.org> wrote:
->
->> Hi Robert,
->>
->> Thanks for raising that one. We are closely monitoring the public
->> situation and do take community considerations seriously. For the rest o=
-f
->> 2025 there are only two events coming up, which are colocated with OSS E=
-U
->> in Amsterdam, and virtual, namely the Yocto Project Summit. We are also
->> looking at alternatives to host Developer Day(s) for the next iteration =
-and
->> will communicate those well ahead of time.
->>
->> Greetz,
->> Josef
->> Yocto Project Community Manager
->>
->> On Thu, Jul 10, 2025 at 2:04=E2=80=AFPM Robert P. J. Day via
->> lists.yoctoproject.org <rpjday=3Dcrashcourse.ca@lists.yoctoproject.org>
->> wrote:
->>
->>>
->>>   In checking out any interesting conferences in the coming months, I
->>> can safely say that, as a Canadian, I will under no circumstances be
->>> travelling to the U.S. No way. So are conference organizers making
->>> accommodations for people who want to attend but who refuse to travel
->>> to the United States?
->>>
->>> rday
->>>
->>>
->>>
->>>
->> -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
->> Links: You receive all messages sent to this group.
->> View/Reply Online (#65641):
->> https://lists.yoctoproject.org/g/yocto/message/65641
->> Mute This Topic: https://lists.yoctoproject.org/mt/114080832/5827677
->> Group Owner: yocto+owner@lists.yoctoproject.org
->> Unsubscribe: https://lists.yoctoproject.org/g/yocto/unsub [
->> rybczynska@gmail.com]
->> -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
->>
->>
+	$ find . -name typedefs.h
+	$ find . -name module.h | wc -l
+	21
+	$
 
---00000000000099c9cc0639aa250e
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+So, by definition, you are introducing another complete set of user
+space headers into the normally strictly controlled environment for
+compiling kernels - to fix what is a very dubious include to begin with.
+Even if it is only just for this one driver, you don't want to do that.
 
-<div dir=3D"ltr">Hi Marta,<div><br></div><div>Yes. Tentative (!) is Decembe=
-r 2nd-4th.</div><div><br></div><div>Greetz,</div><div>Josef</div></div><br>=
-<div class=3D"gmail_quote gmail_quote_container"><div dir=3D"ltr" class=3D"=
-gmail_attr">On Fri, Jul 11, 2025 at 6:00=E2=80=AFPM Marta Rybczynska &lt;<a=
- href=3D"mailto:rybczynska@gmail.com">rybczynska@gmail.com</a>&gt; wrote:<b=
-r></div><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex=
-;border-left-width:1px;border-left-style:solid;border-left-color:rgb(204,20=
-4,204);padding-left:1ex"><div dir=3D"ltr"><div>Thanks for that information =
-Josef. Are there already tentative dates for the Yocto Project Summit?</div=
-><div><br></div><div>Kind regards,</div><div>Marta<br></div><br><div class=
-=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">On Fri, Jul 11, 2025=
- at 9:43=E2=80=AFAM Josef Holzmayr via <a href=3D"http://lists.yoctoproject=
-.org" target=3D"_blank">lists.yoctoproject.org</a> &lt;jester=3D<a href=3D"=
-mailto:theyoctojester.info@lists.yoctoproject.org" target=3D"_blank">theyoc=
-tojester.info@lists.yoctoproject.org</a>&gt; wrote:<br></div><blockquote cl=
-ass=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left-width:1px=
-;border-left-style:solid;border-left-color:rgb(204,204,204);padding-left:1e=
-x"><div dir=3D"ltr">Hi Robert,<div><br></div><div>Thanks for raising that o=
-ne. We are closely monitoring the public situation and do take community co=
-nsiderations seriously. For the rest of 2025 there are only two events comi=
-ng up, which are colocated with OSS EU in Amsterdam, and virtual, namely th=
-e Yocto Project Summit. We are also looking at alternatives to host Develop=
-er Day(s) for the next iteration and will communicate those well ahead of t=
-ime.</div><div><br></div><div>Greetz,</div><div>Josef</div><div>Yocto Proje=
-ct Community Manager</div></div><br><div class=3D"gmail_quote"><div dir=3D"=
-ltr" class=3D"gmail_attr">On Thu, Jul 10, 2025 at 2:04=E2=80=AFPM Robert P.=
- J. Day via <a href=3D"http://lists.yoctoproject.org" target=3D"_blank">lis=
-ts.yoctoproject.org</a> &lt;rpjday=3D<a href=3D"mailto:crashcourse.ca@lists=
-.yoctoproject.org" target=3D"_blank">crashcourse.ca@lists.yoctoproject.org<=
-/a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote" style=3D"margin:0=
-px 0px 0px 0.8ex;border-left-width:1px;border-left-style:solid;border-left-=
-color:rgb(204,204,204);padding-left:1ex"><br>
-=C2=A0 In checking out any interesting conferences in the coming months, I<=
-br>
-can safely say that, as a Canadian, I will under no circumstances be<br>
-travelling to the U.S. No way. So are conference organizers making<br>
-accommodations for people who want to attend but who refuse to travel<br>
-to the United States?<br>
-<br>
-rday<br>
-<br>
-<br>
-<br>
-</blockquote></div>
-<br>
--=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-<br>
-Links: You receive all messages sent to this group.<br>
-View/Reply Online (#65641): <a href=3D"https://lists.yoctoproject.org/g/yoc=
-to/message/65641" rel=3D"noreferrer" target=3D"_blank">https://lists.yoctop=
-roject.org/g/yocto/message/65641</a><br>
-Mute This Topic: <a href=3D"https://lists.yoctoproject.org/mt/114080832/582=
-7677" rel=3D"noreferrer" target=3D"_blank">https://lists.yoctoproject.org/m=
-t/114080832/5827677</a><br>
-Group Owner: <a href=3D"mailto:yocto%2Bowner@lists.yoctoproject.org" target=
-=3D"_blank">yocto+owner@lists.yoctoproject.org</a><br>
-Unsubscribe: <a href=3D"https://lists.yoctoproject.org/g/yocto/unsub" rel=
-=3D"noreferrer" target=3D"_blank">https://lists.yoctoproject.org/g/yocto/un=
-sub</a> [<a href=3D"mailto:rybczynska@gmail.com" target=3D"_blank">rybczyns=
-ka@gmail.com</a>]<br>
--=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-<br>
-<br>
-</blockquote></div></div>
-</blockquote></div>
+Just delete the typedefs.h inclusion and see what happens.
 
---00000000000099c9cc0639aa250e--
+Paul.
+--
+
+> 
+> Cerezo
+> 
+> On Thu, 10 Jul 2025 at 08:36, Paul Gortmaker <paulg@kernel.org> wrote:
+> >
+> > [Re: [yocto] Custom Kernel Recipe Compilation Error.] On 08/07/2025 (Tue 11:06) Gyorgy Sarvari via lists.yoctoproject.org wrote:
+> >
+> > > On 7/7/25 22:10, C Larbi via lists.yoctoproject.org wrote:
+> > > > Hello all
+> > > > I am a newbie to the yocto project and on a journey to understand the basics.
+> > > >
+> > > > My reference hardware for my learning journey is the Orange pi 3b (RK3566 soc)
+> > > >
+> > > > I have created a bsp layer containing my machine configuration and a
+> > > > recipe to build a custom kernel.
+> > > >
+> > > > The kernel recipe build throws an error on the "do_compile_kernelmodules" task.
+> > > > Before writing this, i went through the manual process of compiling
+> > > > the same kernel source on my machine and i was able to produce a
+> > > > vmlinux file and build the modules.
+> > > >
+> > > > This is the error from the yocto build process.
+> > > >
+> > > > |   GEN     Makefile
+> > > > |   CALL    /home/cerezo/yocto/tut/poky/build/tmp/work-shared/opi3b/kernel-source/scripts/checksyscalls.sh
+> > > > |   CC [M]  drivers/net/wireless/rockchip_wlan/rkwifi/bcmdhd/aiutils.o
+> > > > |   CC [M]  drivers/net/wireless/rockchip_wlan/rkwifi/bcmdhd/siutils.o
+> > > > | /home/cerezo/yocto/tut/poky/build/tmp/work-shared/opi3b/kernel-source/drivers/net/wireless/rockchip_wlan/rkwifi/bcmdhd/aiutils.c:44:10:
+> > > > fatal error: typedefs.h: No such file or directory
+> > > > |    44 | #include <typedefs.h>
+> > > > |       |          ^~~~~~~~~~~~
+> > > > | compilation terminated.
+> >
+> > I saw this, and I'm thinking that include shouldn't be there at all.
+> > You might in turn ask "Why would you say that?" -- well, experience?
+> >
+> > Let us have a quick look at a current kernel.
+> >
+> >         linux-head$ git grep '#include <typedefs.h>'
+> >         linux-head$ git grep '#include .*typedefs.h>'
+> >         linux-head$ git grep '#include .*module.h>' | wc -l
+> >         14342
+> >         linux-head$
+> >
+> > No instances of <typedefs.h>.  Also no instances of <somepath/typedefs.h>.
+> > And if I search for a common include, like module.h, there are tens of
+> > thousands of instances, so my search isn't somehow fundamentally broken.
+> >
+> > > > | make[7]: *** [/home/cerezo/yocto/tut/poky/build/tmp/work-shared/opi3b/kernel-source/scripts/Makefile.build:250:
+> > > > drivers/net/wireless/rockchip_wlan/rkwifi/bcmdhd/aiutils.o] Error 1
+> > > > | make[7]: *** Waiting for unfinished jobs....
+> > > >
+> > > > Will really appreciate if i can get some pointers as to what i may be
+> > > > doing wrong.
+> > >
+> > > This seems to be a recurring problem with this particular vendor kernel
+> > > unfortunately. Take a look at this patch which solves the same issue on
+> > > a different branch:
+> > > https://github.com/riscv/meta-riscv/blob/master/recipes-kernel/linux/linux-orangepi/orangepi-rv2/bcmdhd-fix-typedefs-header-not-found.patch
+> >
+> > So this patch amounts to the one line change as follows:
+> >
+> >          EXTRA_CFLAGS += -I$(BCMDHD_ROOT)/include/ -I$(BCMDHD_ROOT)/
+> >         +EXTRA_CFLAGS += -I$(srctree)/$(src)/include
+> >          ifeq ($(CONFIG_BCMDHD),m)
+> >
+> > OK, that probably does put a (semi random) instance of typedefs.h into
+> > the header search path, but given what I've shown above in the mainline
+> > kernel tree, I would ask if anyone has checked what happens if the
+> > offending typedefs.h include line was simply *removed*?  Does the error
+> > go away, or does it give a more informative error on exactly what
+> > specific definition is missing - so that folks can fix it "properly"?
+> >
+> > You generally don't want the kernel and kernel drivers pulling in
+> > include paths from random locations outside the kernel. The kernel is
+> > designed to be self-contained, with the exception of the few user space
+> > utilities that happen to be bundled with the kernel for convenience.
+> >
+> > In a case like this, the patch risks causing additional errors elsewhere.
+> > Things like "conflicting definitions for XYZ".  Or worse, you could get
+> > an instance where an added include presents a "struct foo" that is
+> > different from the kernel's view of what "struct foo" is - say for
+> > example the kernel's version uses a u64 instead of a u32, or has padding
+> > for cache line alignment and performance reasons.  Then your stuff will
+> > just silently compile, but explode at runtime.  Kind of a classic case
+> > of "two wrongs don't make a right".
+> >
+> > This is one (of many) problems with not-in-mainline drivers like this.
+> > The various SoC engineers tasked with creating a driver develop their
+> > own ways of doing things, but it remains largely unreviewed by the
+> > larger group of people out there, including the subsystem maintainers
+> > who would spot things like this and require it to be done properly
+> > before accepting it into their local tree and then requesting it to be
+> > merged upwards into mainline.
+> >
+> > Paul.
+> > --
+> >
+> > >
+> > > I think adapting this to your branch should solve your problem too.
+> > >
+> > >
+> > > >
+> > > > KERNEL RECIPE
+> > > > https://github.com/AccraNET/meta-orspace-orangepi3b/blob/main/recipes-kernel/linux/linux-orangepi.bb
+> > > >
+> > > > MACHINE CONFIGURATION
+> > > > https://github.com/AccraNET/meta-orspace-orangepi3b/blob/main/conf/machine/opi3b.conf
+> > > >
+> > > > Best Regards
+> > > > Cerezo
+> > > >
+> >
 
