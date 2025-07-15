@@ -1,266 +1,248 @@
-Return-Path: <sjolley.yp.pm@gmail.com>
+Return-Path: <jing.hui.tham@intel.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id CCF55C83F17
-	for <webhook@archiver.kernel.org>; Mon, 14 Jul 2025 23:52:29 +0000 (UTC)
-Received: from mail-pg1-f173.google.com (mail-pg1-f173.google.com [209.85.215.173])
- by mx.groups.io with SMTP id smtpd.web10.2546.1752537148241285118
+	by smtp.lore.kernel.org (Postfix) with ESMTP id C92B3C83F1A
+	for <webhook@archiver.kernel.org>; Tue, 15 Jul 2025 02:26:20 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
+ by mx.groups.io with SMTP id smtpd.web10.5503.1752546375164634418
  for <yocto@lists.yoctoproject.org>;
- Mon, 14 Jul 2025 16:52:28 -0700
+ Mon, 14 Jul 2025 19:26:15 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20230601 header.b=CiQvoiyw;
- spf=pass (domain: gmail.com, ip: 209.85.215.173, mailfrom: sjolley.yp.pm@gmail.com)
-Received: by mail-pg1-f173.google.com with SMTP id 41be03b00d2f7-b3220c39cffso5007515a12.0
-        for <yocto@lists.yoctoproject.org>; Mon, 14 Jul 2025 16:52:28 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1752537147; x=1753141947; darn=lists.yoctoproject.org;
-        h=to:subject:message-id:date:from:mime-version:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=2ClV3a0b2DUkz+5IiRtr+Ae1KcGqEroFbwye4v0vfjo=;
-        b=CiQvoiywsclcJFmNIPSD1576pLc9DRGaYKo3BRMk5BI6GJLtP5W9HGHtBWiOjBYl8h
-         UpHBbb4+c5FYYbY+K6qO8hQOxoZnARlD19yPP1k7BQIkJvyoDygY8FsJjwg2Z2SI2ab9
-         BGZ7y7jK/zJXk4OwXdVkZ2vU0WbNc7AqaNrNLHmIxeidXZsdrFonNvUZ0cmJXlSyqrTs
-         FVOdiDG+ilQK2UXmtfUX+jBbA/WLDmmDVpyL35bT+OFh013u97m2U+m7yBuOoZ21AbkV
-         Y35QLMmgsyhVh1hikt0BXR+g6IyZ4Vsl/C9AlftgttNrvm5oXtYM1XlKHovNOP7UXvyG
-         UHVQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1752537147; x=1753141947;
-        h=to:subject:message-id:date:from:mime-version:x-gm-message-state
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=2ClV3a0b2DUkz+5IiRtr+Ae1KcGqEroFbwye4v0vfjo=;
-        b=sa5pSmDi+A1JSuytghGoIDuvPKK8BzvyyCYvPU26JOKYAWPZIEiPZ3OwoOSrteLlHx
-         yPL4wGSOB85BfUM33XyRBJfs2FOP89TRX/yWtWCtRX+G2yNvpnSVg4IuvpZmZybqgNHX
-         EC2xWP1hyzNj/h0YliEaDMO23TPu0BnShQFS1kE5/cxsJ29Pc33tyQTtX1aGO2qoWZTh
-         QD9ZhkjtWo5ZCiQpYxG9R9NbID8GeMlXmxKBV73Z9hXg94cPSDdIGa7l7d67CFJrSSwn
-         +zaiHe+0l6Z4hlg/TrUZ9p3YQMIgHnJeY4ioQ5P8VinacxEEcfdZPi7DsSpFToHtcwjG
-         bw9w==
-X-Gm-Message-State: AOJu0YxMwqyCvCbSolWesyKVxZwkMMXA0J9UP/jVEgWlOovJntgtSaEY
-	O3KKMfZN/mdkpEJMRmIUTNv2xjXEwDq9GmxxFU1cY3ehR67ontVxbn4qAOuccDJ95U4anJQKr5v
-	bdGNnsHIEmm5Pq0cMR5g+OLVSjY/dejg7KHYZGuQ=
-X-Gm-Gg: ASbGncvyiC8nvIuBVCla/pK7cNZMv962sWcganpn0HZXJEvS9Nspan6JmV/CUSBqAPN
-	hFOH9/x+n51EdZwbnYjMutx5vwFNm7aX1f5te88QGXu+RGHFGLE04VXaxRceUe6sIGWqHOJJc2D
-	pOQsE9KCQL4qRK7w+BD/zen3YQZTuuiqKqovueIjH+zO5/np4wIiCBWtdRo1fkQEolVw7rygNTX
-	JZvFEdEU3Nv5cXWKfIO/o34Rx4uW0TMMG1xI4IwGzzCHVxoLAFG
-X-Google-Smtp-Source: AGHT+IEZfuMtA8H/HwKRU4lLf3b10vg+ESNF+TaLA2lwAmcxX5MwQd/5W6HuMRV/kj6bTi7FfRx/EmorI2WAOKq8mgk=
-X-Received: by 2002:a17:90b:2549:b0:312:1ac5:c7c7 with SMTP id
- 98e67ed59e1d1-31c4f4b4f3dmr22334629a91.2.1752537147186; Mon, 14 Jul 2025
- 16:52:27 -0700 (PDT)
+ dkim=pass header.i=@intel.com header.s=Intel header.b=Wq6Qvyrj;
+ spf=pass (domain: intel.com, ip: 198.175.65.13, mailfrom: jing.hui.tham@intel.com)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1752546375; x=1784082375;
+  h=from:to:subject:date:message-id:references:in-reply-to:
+   content-transfer-encoding:mime-version;
+  bh=54Qts9eDGY4w5wy3M91cjzbKuBeO3S0KsYJE43QV6eE=;
+  b=Wq6QvyrjZ58+kkgt/ykARcZSkNWb7L8FRgvKc1ITf//oK9fNx+PLIcGA
+   w5KVuwr+GKKUH8ov7abAg/YuH1+lgyZ15qrsQDsOALt6m0ElCmcW5km71
+   XQD79CttyQXI4MRrOJV+DPcqPFMsmn9CB3SLRKa2R5NsH6AyAGngRW7eL
+   owoqRZSNJFxvTPas4Pgtc4saBPr3C5gGjjwXdFn3nQOB1Vq+eI/dsc4q2
+   TC5VZdk6I0y0AFVGg9AGYPV2uheyS9ewWp9Yl7KjWmbxLRkMVorJmMUkZ
+   P/Au+URL6bh/MLB9vOpPE1woZIS5ETv/w9+Yw5YkX4+b2qFoLVTNq0JcT
+   w==;
+X-CSE-ConnectionGUID: jAxJY6j4SP6r2hHANroJTw==
+X-CSE-MsgGUID: wrjopAbrQz+nu1coEjBy9Q==
+X-IronPort-AV: E=McAfee;i="6800,10657,11491"; a="65820813"
+X-IronPort-AV: E=Sophos;i="6.16,312,1744095600"; 
+   d="scan'208";a="65820813"
+Received: from orviesa010.jf.intel.com ([10.64.159.150])
+  by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 14 Jul 2025 19:26:12 -0700
+X-CSE-ConnectionGUID: YFbDz4VHSjKd6cndKm67xg==
+X-CSE-MsgGUID: B1RNgZcSSJCzDB8zRDrV3A==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.16,312,1744095600"; 
+   d="scan'208";a="156509405"
+Received: from orsmsx903.amr.corp.intel.com ([10.22.229.25])
+  by orviesa010.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 14 Jul 2025 19:26:12 -0700
+Received: from ORSMSX903.amr.corp.intel.com (10.22.229.25) by
+ ORSMSX903.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1544.25; Mon, 14 Jul 2025 19:26:11 -0700
+Received: from ORSEDG903.ED.cps.intel.com (10.7.248.13) by
+ ORSMSX903.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1544.25 via Frontend Transport; Mon, 14 Jul 2025 19:26:11 -0700
+Received: from NAM10-MW2-obe.outbound.protection.outlook.com (40.107.94.88) by
+ edgegateway.intel.com (134.134.137.113) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1544.25; Mon, 14 Jul 2025 19:26:11 -0700
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=V9/5SZ/gCsN72N1INs2M+HAlDx1wwpyzHB4frXCQDmXESWzDcUDfPmRf4tPFIGvmj8x9j8SaWoyVYO0Ibyne3AtZqf186KfxymSWa9Wx8JXDKYam8LbtBnC54EZ+hXWWB50g2S3xIZEbYXPAhlx6ZkfWWhuG8TUQ2DYEaIi4mQ6disvn0tuCQO+ZjtWpGIH0X8UWeAiegELYZdwq8uJkhwUwPQjfPibpSehqi9KRIsSSSusz56FYvN2OzY8AP6ODorjw6VnZAhyA7MLQRqaYer5smmj+ri03qlkYC8cmBKzp59CbYfDVu+GMEd6ahhOn7CCFFW8MAy2FhFAiejqjDQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=yEixC4QhXK6IW/7orak4pSyuVc6BK51Xrd1DICGDk0U=;
+ b=OMpzwjZnhe8O1QRJ2maR2E2NgIy6IFbNqzt0qNoA/NvtxourqsxsBCOw/VwwuUmpIUnZ0BBjoWBJ5OvL7STOqDR8KC8EQPDMEoKgWVNmqpXe1HJi+V/sFfDfWASM41yQjPpPiXwBFklMVyzUjiVbAkypL1ur8NWpS6bVC6uERpk1nNIknzbdCMxKQk8JjW3JE5b9XMmmuQ+YldElPQrdafxs+4h836mllYtgiq+HCmyPpna5uJHZBc+R2vxxR3D9gIMwXQnCuH8byka1mwE7pRShHeq73zJr33LXkbf7NI39iMNGQS3Nxr+Q9y3mKBp+J8RF5ffocFXxal0f39syBQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+Received: from DM4PR11MB7760.namprd11.prod.outlook.com (2603:10b6:8:100::19)
+ by LV3PR11MB8695.namprd11.prod.outlook.com (2603:10b6:408:211::15) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8901.35; Tue, 15 Jul
+ 2025 02:26:09 +0000
+Received: from DM4PR11MB7760.namprd11.prod.outlook.com
+ ([fe80::e210:b6a3:f037:f49a]) by DM4PR11MB7760.namprd11.prod.outlook.com
+ ([fe80::e210:b6a3:f037:f49a%3]) with mapi id 15.20.8922.028; Tue, 15 Jul 2025
+ 02:26:09 +0000
+From: "Tham, Jing Hui" <jing.hui.tham@intel.com>
+To: "qa-build-notification@lists.yoctoproject.org"
+	<qa-build-notification@lists.yoctoproject.org>,
+	"yocto@lists.yoctoproject.org" <yocto@lists.yoctoproject.org>,
+	"openembedded-core@lists.openembedded.org"
+	<openembedded-core@lists.openembedded.org>
+Subject: RE: [qa-build-notification] QA notification for completed autobuilder
+ build (yocto-5.2.2.rc2)
+Thread-Topic: [qa-build-notification] QA notification for completed
+ autobuilder build (yocto-5.2.2.rc2)
+Thread-Index: AQHb7SBP7IijA97F2kCg8BSGDOK5orQyhEnw
+Date: Tue, 15 Jul 2025 02:26:08 +0000
+Message-ID: <DM4PR11MB77600CC67B5F9E04FE00922EA157A@DM4PR11MB7760.namprd11.prod.outlook.com>
+References: <01010197d713ba6f-e2642c15-ef64-4874-b369-deb0cd1af702-000000@us-west-2.amazonses.com>
+In-Reply-To: <01010197d713ba6f-e2642c15-ef64-4874-b369-deb0cd1af702-000000@us-west-2.amazonses.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: DM4PR11MB7760:EE_|LV3PR11MB8695:EE_
+x-ms-office365-filtering-correlation-id: e5f9ff79-ceef-46aa-a174-08ddc346f574
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;ARA:13230040|376014|366016|1800799024|4022899009|13003099007|7053199007|38070700018;
+x-microsoft-antispam-message-info: =?us-ascii?Q?ndU76qU156Sr+4yUMG8KScf6/uLom0CbhBJUoQmaXzu6eKZAEy98Q8qLydtM?=
+ =?us-ascii?Q?rReZWcSQEEPUCjFznWIQeZkZf7oMGFAuf3ZyKXyIGhW4k8PGg6fUd5HRmuq6?=
+ =?us-ascii?Q?ljTmDwfyU5tdcDBiP2gUXaaJSigeCVGN7ySHivFybzowKc3faFcZcyNh5PiB?=
+ =?us-ascii?Q?vKA258ZrUgHBQ/W8esf98SBVnzrQ13bZ0vPl5knYWYCJblFESov/d4hLyle6?=
+ =?us-ascii?Q?ZAuU1BvgyS4lPpOSPP3AYJgT/yDKPlyn1uHts1z2+OjC7lPPOWf1rrxI8xWl?=
+ =?us-ascii?Q?8XM108XQPbnziAfuqsW0ufPHSwow6w7VPnZYZWrWpGsFzSrsopk5O+LQdLmk?=
+ =?us-ascii?Q?DTFPxTzgVPIQ+cTRB/ggvliMOauRpD7dXjR7NqSzWEHFHjH7HwUDi3b39/A8?=
+ =?us-ascii?Q?bN+/zKrNOam2rKYgxWid3uVV4erf7JHfQltU2ZPmPd5xdMqqlQ1pSYr38n79?=
+ =?us-ascii?Q?g3EQ+aHs09KLhoHIX2CfmZSDkllD2ejsMRS+UDXDXQLPLT+1Q4hQcyD5YIFi?=
+ =?us-ascii?Q?jgvp3GI8Qw+RWv8SBxphxMFc79PqXK5grLZat4kFiF8P3aYK3PyKbFSdyz5n?=
+ =?us-ascii?Q?I2rHPnLI2mQRwOVmtsZ49sp+LIUuAn8vR0oSt6EXYRgub2uLXAjHDwWBqDx0?=
+ =?us-ascii?Q?QHDyjSb3+Aj1eH9f/EJAY6ZygBdY0+OGp+kFlISpAuEtRrtSpLsEljjPhzzy?=
+ =?us-ascii?Q?9wLMk9sjyT91pw9MyDylcvoOM8NmXD/vTk9WJMQfWPXPS7QSmXoFzuLJWdBk?=
+ =?us-ascii?Q?5h9XRAN8hPBfaXSIQGG50n75OKjcG6RHNRINF7RjtvYM2lDslJqqmtuQTLqx?=
+ =?us-ascii?Q?eImhwDRLq+7n0HW2/yZzbx1TvTFexlM3bILsUxtDecXCVO6hBq4AHoLHmpHo?=
+ =?us-ascii?Q?VHKil3gJoqPCx0GHxq9V0YFW0YwCcRdUJZ2mCBRi/B0hYgpoUb2q0iYsIW3S?=
+ =?us-ascii?Q?GFMwzN1vy1VLCRYB1BPKvlcc1VJKzjhgMED0MhUX7+1mdBTjvx+JWCjfx8z5?=
+ =?us-ascii?Q?UatFgGeDzvYNePOMKnyii7olgGb77moQv7gaJ2cX0a583nFh4yyX1sx8gNiO?=
+ =?us-ascii?Q?4I+txx2dFiGA/LogWlTNABmdhHP+3uGnXXzMOXOcn3a8VN+IthMnITVs/STh?=
+ =?us-ascii?Q?16LnB6kXykej8fo+HAchiCFlu/qOLaqKNEl5qmu145Ybr7oomqxQ2yOoZEH3?=
+ =?us-ascii?Q?RrvDs2GtpDspBwclzPubb4Dvb0QiPNLAH71hmeRGJrLvGvIGQrT/+AjTCQ0s?=
+ =?us-ascii?Q?t7cyjeHGmiFDfH5Lnu1vDrlEJgqFevfaLaCpwQenHBpAWq2plrG1JZhLK2Pm?=
+ =?us-ascii?Q?09SKBFH6576/ZZTV+h7CmI2c3A5YyXKZDYJwsTPwuJ5a0AyOF5yrboxQ9DOZ?=
+ =?us-ascii?Q?PmHA6684n0TiDqAwm/ZhjynyzGvzDyp+GPveY3AbJN3LP6PNi/unBgS3zooq?=
+ =?us-ascii?Q?hOkCJg6sBcE=3D?=
+x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DM4PR11MB7760.namprd11.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(376014)(366016)(1800799024)(4022899009)(13003099007)(7053199007)(38070700018);DIR:OUT;SFP:1101;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?A8rVHr6F9mLc3GGtG0JeATX9CDQ4lXKfrVUY0clfPVfexNXywntKUhi/4Fzs?=
+ =?us-ascii?Q?q6OfOiUzqvgpT0bXLnN31/7IdpHdbCO/h5svKhd29+uxOe9gB3iy5ANsdRpm?=
+ =?us-ascii?Q?Txdp4HVklk09wI+iUo898BNZbNPuFL6oY8K8Pcd+gJeUwDB2+KnBDp0pYBgX?=
+ =?us-ascii?Q?rtaFndipGdUDgrk0zA4j7x8DrwMiauB6HqOk/bM4aVgnT1rikTk+Xuuapi+a?=
+ =?us-ascii?Q?ZJRlJCCKP48qvEfL9jnOTBe4Fp80H/lMb+fr0BwQd+NWWmpQKp40O9LrEOHr?=
+ =?us-ascii?Q?rBNV1VfPg4Egu4crFMr2oN7RHOiGrmDG5Js0/IsWoSswhhduRwgUZ8BVvjTG?=
+ =?us-ascii?Q?HqHFKaTqBOi+il8ldqNvMFFplYAns3QqlA544dW7Bda5KoU3ZvS3Jz0mkuVw?=
+ =?us-ascii?Q?SpAyLoKjcj5cA/jOIzKg5Bw+7Vme3Vz0PY/otu7yDCk81augo/8PnNBXUctG?=
+ =?us-ascii?Q?+SSyG3MSo/IbexIxWlXunNOuMZsMGC+T+MP+ZCFCZyS3WzdK8a0NURISiTsw?=
+ =?us-ascii?Q?fuy+InglPaIaw3o5CwaktkaCZvoLyf+0yZzNBipbQ1JGHaahBRXp5RrjIJMJ?=
+ =?us-ascii?Q?iK4xU0MkAMxWb42w0StqYusi2JEFPkWTV+OeCBc/Xcn/Atq6NorzvIIrfGzz?=
+ =?us-ascii?Q?bbyH6HOBpNzgIfddshbboy5NtivkUYmlmdghzbOkOhCWtwJ/z9LWiW2xkbwR?=
+ =?us-ascii?Q?DFdqfLDvXttlRxLqVraj82E4qgAo3VIA5YJlFGcdVy2hboIBkTc5BBo5DhkF?=
+ =?us-ascii?Q?IM+WjzcKQEYA+TdNo8HMnQpig6RBNE1DEs8LX1Gv8OJyGMhnZpDHuhLuaUY6?=
+ =?us-ascii?Q?j+eQ5y9AQkrDkQObhBFWxnqlcrZmNp0isUwtF3hvMO7thAem2M4S+VVeN4uc?=
+ =?us-ascii?Q?EHGqae14K1v7Nq6c5P3udxcxmIZ+tHaLOKj/nqSqQKCDFNF7MiXlvXwJBoQw?=
+ =?us-ascii?Q?cshjY7aUSdxcpxLK+wgZfdJriDJ4ADnJumxxW3ntWfeaTeKZYCvQ7WlxkB6G?=
+ =?us-ascii?Q?1JyTMYlknDI6p1PrS2XSWd0EcXA0t7STl999GmA8dIKwUC8a5dkMAhhHrop3?=
+ =?us-ascii?Q?SQI1v1UBMMEtq7uAgUbRrXzv4kZ3uVDI3sWZEvxGA3Xzfv74QeppvrhnRbjY?=
+ =?us-ascii?Q?MJOfHGyrhMmvJU7jMlct4IhSdB2noWfyBKy0gLusmX6mZG1nQAgZuKOABiEU?=
+ =?us-ascii?Q?x4aO9Ipyo/adFNng8AIkllHq/Q6r9RssEzobSycqten/ekZBz9xFRjVOh9tI?=
+ =?us-ascii?Q?8yayIJmlkY98mcMnbwS01jpTEzCqmTB5CC4hyQInTVOxzV+zx4U2oV4d8cxe?=
+ =?us-ascii?Q?Sqpfcz4Da19cAZJFzpT2Zujj9e+ZO0ntdUJh/FKQIJJit5y2vBIHZ8OFY15v?=
+ =?us-ascii?Q?7/HqlX1ufa2S9p3v1mw9pPM79soodYXv4oL8upskQISswgjdR4SHU3fBWAZe?=
+ =?us-ascii?Q?DK6sqP4nvrDoFbGOszCJ4yV88fy7Ew0qd9hdiuCvHaDc7KRuMh5SFeFWNYz3?=
+ =?us-ascii?Q?p8Y3fuPsh5TtsALVGdC1PDsrJuGfQICsYLAeuDEiBhIezXMLM3z/P9mPZBU4?=
+ =?us-ascii?Q?kp21aEDKClWJRo6X06zyyAdNunBAQvH/ohRN9Uoi?=
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 MIME-Version: 1.0
-From: Stephen K Jolley <sjolley.yp.pm@gmail.com>
-Date: Mon, 14 Jul 2025 16:52:16 -0700
-X-Gm-Features: Ac12FXyxc7WkfCMS_gipN5k2g18lNsbcZv9g2gBrewMxgkitYqH7fyDY75fRe9Q
-Message-ID: <CAK5yBb_fWknYq97TJqMHzTvZQG72a=rDXr58AixPGKhhYvzckA@mail.gmail.com>
-Subject: M+ & H bugs with Milestone Movements WW28
-To: Yocto-mailing-list <yocto@lists.yoctoproject.org>
-Content-Type: multipart/alternative; boundary="0000000000001d25060639ec5a6c"
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: DM4PR11MB7760.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: e5f9ff79-ceef-46aa-a174-08ddc346f574
+X-MS-Exchange-CrossTenant-originalarrivaltime: 15 Jul 2025 02:26:08.9479
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: 9tjKBGgCnu9gqKCYK/C1iQxuJ5HgxSM7H/AxfkLaz9QMZ2WQlkMegv4tO5y0UD3lQUI4Sme1JVhCivspi9oJxQ==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: LV3PR11MB8695
+X-OriginatorOrg: intel.com
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Mon, 14 Jul 2025 23:52:29 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/65657
+ <yocto@lists.yoctoproject.org>; Tue, 15 Jul 2025 02:26:20 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/65658
 
---0000000000001d25060639ec5a6c
-Content-Type: text/plain; charset="UTF-8"
+Hi All,
 
-All,
-
-YP M+ or high bugs which moved to a new milestone in WW28 are listed below:
-Priority Bug ID Short Description
-Medium+ 13002 <https://bugzilla.yoctoproject.org/show_bug.cgi?id=13002> Create
-a set of tests to run after upgrading patchtest
-13005 <https://bugzilla.yoctoproject.org/show_bug.cgi?id=13005> Patchtest
-did not detect missing bb files changes
-13634 <https://bugzilla.yoctoproject.org/show_bug.cgi?id=13634> patchtest
-should run maintainers test on new recipes
-15257 <https://bugzilla.yoctoproject.org/show_bug.cgi?id=15257> meta-patchtest
-layer needs to be checked for Yocto Project Compatible status
-15258 <https://bugzilla.yoctoproject.org/show_bug.cgi?id=15258> Patchtest
-should test an entire series together, rather than checking patches
-individually
-15259 <https://bugzilla.yoctoproject.org/show_bug.cgi?id=15259> Patchtest
-should report test results back to Patchwork
-15260 <https://bugzilla.yoctoproject.org/show_bug.cgi?id=15260> Patchtest
-automated test process should boot the VM once per series
-15858 <https://bugzilla.yoctoproject.org/show_bug.cgi?id=15858>
-_pickle.PicklingError
-with python-3.14
-15925 <https://bugzilla.yoctoproject.org/show_bug.cgi?id=15925> Wrong size
-passed to memcpy in pdb_update_inode leads to missing xattrs when renaming
-
+QA for yocto-5.2.2.rc2 is completed. This is the full report for this relea=
+se: =20
+https://git.yoctoproject.org/cgit/cgit.cgi/yocto-testresults-contrib/tree/?=
+h=3Dintel-yocto-testresults
+=20
+=3D=3D=3D=3D=3D=3D=3D Summary =3D=3D=3D=3D=3D=3D=3D=3D
+No high milestone defects.
+=20
+No new issue found.=20
+=20
 Thanks,
+Jing Hui
 
 
+> -----Original Message-----
+> From: qa-build-notification@lists.yoctoproject.org <qa-build-
+> notification@lists.yoctoproject.org> On Behalf Of Pokybuild User via
+> lists.yoctoproject.org
+> Sent: Saturday, July 5, 2025 4:15 AM
+> To: yocto@lists.yoctoproject.org
+> Cc: qa-build-notification@lists.yoctoproject.org
+> Subject: [qa-build-notification] QA notification for completed autobuilde=
+r build
+> (yocto-5.2.2.rc2)
+>=20
+>=20
+>     A build flagged for QA (yocto-5.2.2.rc2) was completed on the autobui=
+lder
+> and is available at:
+>=20
+>=20
+>         https://valkyrie.yocto.io/pub/releases/yocto-5.2.2.rc2
+>=20
+>=20
+>     Build URL:
+> https://autobuilder.yoctoproject.org/valkyrie/#/builders/29/builds/1955
+>=20
+>     Build hash information:
+>=20
+>     bitbake: 74c28e14a9b5e2ff908a03f93c189efa6f56b0ca
+> meta-agl: a6202084bbc77708ff599060a0e2f6afb3c15498
+> meta-arm: c63ce2117ed9ad720c61a1e2df5d381ca1ac54a2
+> meta-aws: 77bbf7b16d5982d711b3188ada49deea391352c4
+> meta-clang: b3e5449f0156884d18c17efff99654cde8251411
+> meta-intel: 5640f6592c984f4832ff5f2ed1a35a607e5d21c5
+> meta-mingw: edce693e1b8fabd84651aa6c0888aafbcf238577
+> meta-openembedded: 3c6844219a69d9ca8cb0f1579114efe9a9e2a646
+> meta-virtualization: d20e589758ac40a846a8cd22f3b646ef48d02647
+> oecore: c855be07828c9cff3aa7ddfa04eb0c4df28658e4
+> poky: 41038342a471b4a8884548568ad147a1704253a3
+>=20
+>=20
+>=20
+> This is an automated message from the Yocto Project Autobuilder
+> Git: git://git.yoctoproject.org/yocto-autobuilder2
+> Email: richard.purdie@linuxfoundation.org
+>=20
+>=20
+>=20
+>=20
+>=20
+> -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
+> Links: You receive all messages sent to this group.
+> View/Reply Online (#567): https://lists.yoctoproject.org/g/qa-build-
+> notification/message/567
+> Mute This Topic: https://lists.yoctoproject.org/mt/113989219/6424044
+> Group Owner: qa-build-notification+owner@lists.yoctoproject.org
+> Unsubscribe: https://lists.yoctoproject.org/g/qa-build-
+> notification/leave/13581802/6424044/1746813897/xyzzy
+> [jing.hui.tham@intel.com]
+> -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
+>=20
 
-*Stephen K. Jolley*
-
-*Yocto Project Program Manager*
-
-(    *Cell*:                (208) 244-4460
-
-* *Email*:                 *s
-<stephen.k.jolley@intel.com>jolley.yp.pm@gmail.com <jolley.yp.pm@gmail.com>*
-
---0000000000001d25060639ec5a6c
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr"><div><span style=3D"font-size:11pt;font-family:Calibri,Ari=
-al">All,<br><br>YP M+ or high bugs which moved to a new milestone in WW28 a=
-re listed below:=C2=A0<br></span></div><div dir=3D"ltr" class=3D"gmail_sign=
-ature" data-smartmail=3D"gmail_signature"><div dir=3D"ltr"><div dir=3D"ltr"=
-><table cellspacing=3D"0" cellpadding=3D"0" dir=3D"ltr" border=3D"1" style=
-=3D"table-layout:fixed;font-size:11pt;font-family:Calibri;width:0px;border-=
-collapse:collapse;border:none"><colgroup><col width=3D"63"><col width=3D"43=
-"><col width=3D"543"></colgroup><tbody><tr style=3D"height:20px"><td style=
-=3D"border:1px solid rgb(0,0,0);overflow:hidden;padding:0px 3px;vertical-al=
-ign:bottom;background-color:rgb(219,229,241);font-weight:bold">Priority</td=
-><td style=3D"border-width:1px;border-style:solid;border-color:rgb(0,0,0) r=
-gb(0,0,0) rgb(0,0,0) rgb(204,204,204);overflow:hidden;padding:0px 3px;verti=
-cal-align:bottom;background-color:rgb(219,229,241);font-weight:bold">Bug ID=
-</td><td style=3D"border-width:1px;border-style:solid;border-color:rgb(0,0,=
-0) rgb(0,0,0) rgb(0,0,0) rgb(204,204,204);overflow:hidden;padding:0px 3px;v=
-ertical-align:bottom;background-color:rgb(219,229,241);font-weight:bold">Sh=
-ort Description</td></tr><tr style=3D"height:20px"><td style=3D"border-widt=
-h:1px;border-style:solid;border-color:rgb(204,204,204) rgb(0,0,0) rgb(0,0,0=
-);overflow:hidden;padding:0px 3px;vertical-align:bottom;font-weight:bold">M=
-edium+</td><td style=3D"border-width:1px;border-style:solid;border-color:rg=
-b(204,204,204) rgb(0,0,0) rgb(0,0,0) rgb(204,204,204);overflow:hidden;paddi=
-ng:0px 3px;vertical-align:bottom;font-weight:bold;text-decoration-line:unde=
-rline;text-align:right"><a class=3D"gmail-in-cell-link" href=3D"https://bug=
-zilla.yoctoproject.org/show_bug.cgi?id=3D13002" target=3D"_blank">13002</a>=
-</td><td style=3D"border-width:1px;border-style:solid;border-color:rgb(204,=
-204,204) rgb(0,0,0) rgb(0,0,0) rgb(204,204,204);overflow:hidden;padding:0px=
- 3px;vertical-align:bottom">Create a set of tests to run after upgrading pa=
-tchtest</td></tr><tr style=3D"height:20px"><td style=3D"border-width:1px;bo=
-rder-style:solid;border-color:rgb(204,204,204) rgb(0,0,0) rgb(0,0,0);overfl=
-ow:hidden;padding:0px 3px;vertical-align:bottom"></td><td style=3D"border-w=
-idth:1px;border-style:solid;border-color:rgb(204,204,204) rgb(0,0,0) rgb(0,=
-0,0) rgb(204,204,204);overflow:hidden;padding:0px 3px;vertical-align:bottom=
-;font-weight:bold;text-decoration-line:underline;text-align:right"><a class=
-=3D"gmail-in-cell-link" href=3D"https://bugzilla.yoctoproject.org/show_bug.=
-cgi?id=3D13005" target=3D"_blank">13005</a></td><td style=3D"border-width:1=
-px;border-style:solid;border-color:rgb(204,204,204) rgb(0,0,0) rgb(0,0,0) r=
-gb(204,204,204);overflow:hidden;padding:0px 3px;vertical-align:bottom">Patc=
-htest did not detect missing bb files changes</td></tr><tr style=3D"height:=
-20px"><td style=3D"border-width:1px;border-style:solid;border-color:rgb(204=
-,204,204) rgb(0,0,0) rgb(0,0,0);overflow:hidden;padding:0px 3px;vertical-al=
-ign:bottom"></td><td style=3D"border-width:1px;border-style:solid;border-co=
-lor:rgb(204,204,204) rgb(0,0,0) rgb(0,0,0) rgb(204,204,204);overflow:hidden=
-;padding:0px 3px;vertical-align:bottom;font-weight:bold;text-decoration-lin=
-e:underline;text-align:right"><a class=3D"gmail-in-cell-link" href=3D"https=
-://bugzilla.yoctoproject.org/show_bug.cgi?id=3D13634" target=3D"_blank">136=
-34</a></td><td style=3D"border-width:1px;border-style:solid;border-color:rg=
-b(204,204,204) rgb(0,0,0) rgb(0,0,0) rgb(204,204,204);overflow:hidden;paddi=
-ng:0px 3px;vertical-align:bottom">patchtest should run maintainers test on =
-new recipes</td></tr><tr style=3D"height:20px"><td style=3D"border-width:1p=
-x;border-style:solid;border-color:rgb(204,204,204) rgb(0,0,0) rgb(0,0,0);ov=
-erflow:hidden;padding:0px 3px;vertical-align:bottom"></td><td style=3D"bord=
-er-width:1px;border-style:solid;border-color:rgb(204,204,204) rgb(0,0,0) rg=
-b(0,0,0) rgb(204,204,204);overflow:hidden;padding:0px 3px;vertical-align:bo=
-ttom;font-weight:bold;text-decoration-line:underline;text-align:right"><a c=
-lass=3D"gmail-in-cell-link" href=3D"https://bugzilla.yoctoproject.org/show_=
-bug.cgi?id=3D15257" target=3D"_blank">15257</a></td><td style=3D"border-wid=
-th:1px;border-style:solid;border-color:rgb(204,204,204) rgb(0,0,0) rgb(0,0,=
-0) rgb(204,204,204);overflow:hidden;padding:0px 3px;vertical-align:bottom">=
-meta-patchtest layer needs to be checked for Yocto Project Compatible statu=
-s</td></tr><tr style=3D"height:20px"><td style=3D"border-width:1px;border-s=
-tyle:solid;border-color:rgb(204,204,204) rgb(0,0,0) rgb(0,0,0);overflow:hid=
-den;padding:0px 3px;vertical-align:bottom"></td><td style=3D"border-width:1=
-px;border-style:solid;border-color:rgb(204,204,204) rgb(0,0,0) rgb(0,0,0) r=
-gb(204,204,204);overflow:hidden;padding:0px 3px;vertical-align:bottom;font-=
-weight:bold;text-decoration-line:underline;text-align:right"><a class=3D"gm=
-ail-in-cell-link" href=3D"https://bugzilla.yoctoproject.org/show_bug.cgi?id=
-=3D15258" target=3D"_blank">15258</a></td><td style=3D"border-width:1px;bor=
-der-style:solid;border-color:rgb(204,204,204) rgb(0,0,0) rgb(0,0,0) rgb(204=
-,204,204);overflow:hidden;padding:0px 3px;vertical-align:bottom">Patchtest =
-should test an entire series together, rather than checking patches individ=
-ually</td></tr><tr style=3D"height:20px"><td style=3D"border-width:1px;bord=
-er-style:solid;border-color:rgb(204,204,204) rgb(0,0,0) rgb(0,0,0);overflow=
-:hidden;padding:0px 3px;vertical-align:bottom"></td><td style=3D"border-wid=
-th:1px;border-style:solid;border-color:rgb(204,204,204) rgb(0,0,0) rgb(0,0,=
-0) rgb(204,204,204);overflow:hidden;padding:0px 3px;vertical-align:bottom;f=
-ont-weight:bold;text-decoration-line:underline;text-align:right"><a class=
-=3D"gmail-in-cell-link" href=3D"https://bugzilla.yoctoproject.org/show_bug.=
-cgi?id=3D15259" target=3D"_blank">15259</a></td><td style=3D"border-width:1=
-px;border-style:solid;border-color:rgb(204,204,204) rgb(0,0,0) rgb(0,0,0) r=
-gb(204,204,204);overflow:hidden;padding:0px 3px;vertical-align:bottom">Patc=
-htest should report test results back to Patchwork</td></tr><tr style=3D"he=
-ight:20px"><td style=3D"border-width:1px;border-style:solid;border-color:rg=
-b(204,204,204) rgb(0,0,0) rgb(0,0,0);overflow:hidden;padding:0px 3px;vertic=
-al-align:bottom"></td><td style=3D"border-width:1px;border-style:solid;bord=
-er-color:rgb(204,204,204) rgb(0,0,0) rgb(0,0,0) rgb(204,204,204);overflow:h=
-idden;padding:0px 3px;vertical-align:bottom;font-weight:bold;text-decoratio=
-n-line:underline;text-align:right"><a class=3D"gmail-in-cell-link" href=3D"=
-https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D15260" target=3D"_blank=
-">15260</a></td><td style=3D"border-width:1px;border-style:solid;border-col=
-or:rgb(204,204,204) rgb(0,0,0) rgb(0,0,0) rgb(204,204,204);overflow:hidden;=
-padding:0px 3px;vertical-align:bottom">Patchtest automated test process sho=
-uld boot the VM once per series</td></tr><tr style=3D"height:20px"><td styl=
-e=3D"border-width:1px;border-style:solid;border-color:rgb(204,204,204) rgb(=
-0,0,0) rgb(0,0,0);overflow:hidden;padding:0px 3px;vertical-align:bottom"></=
-td><td style=3D"border-width:1px;border-style:solid;border-color:rgb(204,20=
-4,204) rgb(0,0,0) rgb(0,0,0) rgb(204,204,204);overflow:hidden;padding:0px 3=
-px;vertical-align:bottom;font-weight:bold;text-decoration-line:underline;te=
-xt-align:right"><a class=3D"gmail-in-cell-link" href=3D"https://bugzilla.yo=
-ctoproject.org/show_bug.cgi?id=3D15858" target=3D"_blank">15858</a></td><td=
- style=3D"border-width:1px;border-style:solid;border-color:rgb(204,204,204)=
- rgb(0,0,0) rgb(0,0,0) rgb(204,204,204);overflow:hidden;padding:0px 3px;ver=
-tical-align:bottom">_pickle.PicklingError with python-3.14</td></tr><tr sty=
-le=3D"height:20px"><td style=3D"border-width:1px;border-style:solid;border-=
-color:rgb(204,204,204) rgb(0,0,0) rgb(0,0,0);overflow:hidden;padding:0px 3p=
-x;vertical-align:bottom"></td><td style=3D"border-width:1px;border-style:so=
-lid;border-color:rgb(204,204,204) rgb(0,0,0) rgb(0,0,0) rgb(204,204,204);ov=
-erflow:hidden;padding:0px 3px;vertical-align:bottom;font-weight:bold;text-d=
-ecoration-line:underline;text-align:right"><a class=3D"gmail-in-cell-link" =
-href=3D"https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D15925" target=
-=3D"_blank">15925</a></td><td style=3D"border-width:1px;border-style:solid;=
-border-color:rgb(204,204,204) rgb(0,0,0) rgb(0,0,0) rgb(204,204,204);overfl=
-ow:hidden;padding:0px 3px;vertical-align:bottom">Wrong size passed to memcp=
-y in pdb_update_inode leads to missing xattrs when renaming</td></tr></tbod=
-y></table><p class=3D"MsoNormal" style=3D"background-image:initial;backgrou=
-nd-position:initial;background-repeat:initial"><span style=3D"font-size:12p=
-t;font-family:Arial,sans-serif">Thanks,<span></span></span></p>
-
-<p class=3D"MsoNormal" style=3D"background-image:initial;background-positio=
-n:initial;background-repeat:initial"><span style=3D"font-size:12pt;font-fam=
-ily:Arial,sans-serif">=C2=A0<span></span></span></p>
-
-<p class=3D"MsoNormal" style=3D"background-image:initial;background-positio=
-n:initial;background-repeat:initial"><b><i><span style=3D"font-size:16pt;co=
-lor:purple">Stephen K. Jolley</span></i></b><span style=3D"font-size:12pt;f=
-ont-family:Arial,sans-serif"><span></span></span></p>
-
-<p class=3D"MsoNormal" style=3D"background-image:initial;background-positio=
-n:initial;background-repeat:initial"><b><span style=3D"font-size:8pt;font-f=
-amily:&quot;Courier New&quot;;color:blue">Yocto Project Program Manager</sp=
-an></b></p>
-
-<p class=3D"MsoNormal" style=3D"background-image:initial;background-positio=
-n:initial;background-repeat:initial"><span style=3D"font-size:9pt;font-fami=
-ly:Wingdings;color:black">(</span><span style=3D"font-size:9pt;font-family:=
-&quot;MS Sans Serif&quot;,serif;color:teal">=C2=A0=C2=A0=C2=A0=C2=A0</span>=
-<b><span style=3D"font-size:8pt;font-family:&quot;Comic Sans MS&quot;;color=
-:teal">Cell</span></b><span style=3D"font-size:9pt;font-family:&quot;MS San=
-s Serif&quot;,serif;color:teal">:=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 </span><span style=3D"font=
--size:9pt;font-family:&quot;MS Sans Serif&quot;,serif">(208) 244-4460</span=
-><span style=3D"font-size:12pt;font-family:Arial,sans-serif"><span></span><=
-/span></p>
-
-<p class=3D"MsoNormal" style=3D"background-image:initial;background-positio=
-n:initial;background-repeat:initial"><span style=3D"font-size:9pt;font-fami=
-ly:Wingdings">*=C2=A0</span><b><span lang=3D"FR" style=3D"font-size:8pt;fon=
-t-family:&quot;Comic Sans MS&quot;;color:teal">Email</span></b><span lang=
-=3D"FR" style=3D"font-size:9pt;font-family:&quot;MS Sans Serif&quot;,serif;=
-color:teal">:</span><span lang=3D"FR" style=3D"font-size:9pt;font-family:&q=
-uot;MS Sans Serif&quot;,serif">=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0</span><u><span=
- lang=3D"FR" style=3D"font-size:9pt;font-family:&quot;MS Sans Serif&quot;,s=
-erif;color:blue"><span style=3D"color:rgb(17,85,204)"><a href=3D"mailto:ste=
-phen.k.jolley@intel.com" target=3D"_blank">s</a><a href=3D"mailto:jolley.yp=
-.pm@gmail.com" target=3D"_blank">jolley.yp.pm@gmail.com</a></span></span></=
-u></p></div></div></div></div>
-
---0000000000001d25060639ec5a6c--
 
