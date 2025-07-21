@@ -1,253 +1,205 @@
-Return-Path: <richard.purdie@linuxfoundation.org>
+Return-Path: <joseph.maniaci@seagate.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id E2DE8C83F25
-	for <webhook@archiver.kernel.org>; Mon, 21 Jul 2025 13:42:03 +0000 (UTC)
-Received: from mail-wm1-f46.google.com (mail-wm1-f46.google.com [209.85.128.46])
- by mx.groups.io with SMTP id smtpd.web10.41097.1753105320947092562
- for <yocto@lists.yoctoproject.org>;
- Mon, 21 Jul 2025 06:42:01 -0700
-Authentication-Results: mx.groups.io;
- dkim=pass header.i=@linuxfoundation.org header.s=google header.b=GT0lMt7l;
- spf=pass (domain: linuxfoundation.org, ip: 209.85.128.46, mailfrom: richard.purdie@linuxfoundation.org)
-Received: by mail-wm1-f46.google.com with SMTP id 5b1f17b1804b1-45629703011so29899265e9.0
-        for <yocto@lists.yoctoproject.org>; Mon, 21 Jul 2025 06:42:00 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linuxfoundation.org; s=google; t=1753105319; x=1753710119; darn=lists.yoctoproject.org;
-        h=mime-version:user-agent:content-transfer-encoding:references
-         :in-reply-to:date:cc:to:from:subject:message-id:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=5FdDZpWe5aOH1zGEYXq2fuWT8CQQi4bXggvZjXq7Z/0=;
-        b=GT0lMt7lVGqfEXiFEfXpSc5BuG3pYEG2BbKwg3vP5d4L8gKIzrpEn83BBvC2j3hXKh
-         ZseXXl3TkdSWxh4XKl7SrOMY/IetFXpKavd68IyMxhb1T7yr2ilAzjHzeJHbWByZvryj
-         HrhPuW89PlvDHkNPitiadhrgsE2GhjnBEa5pg=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1753105319; x=1753710119;
-        h=mime-version:user-agent:content-transfer-encoding:references
-         :in-reply-to:date:cc:to:from:subject:message-id:x-gm-message-state
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=5FdDZpWe5aOH1zGEYXq2fuWT8CQQi4bXggvZjXq7Z/0=;
-        b=NxJ3Vl/UvKLew5mQH6JpCNlqwmO5L+Xk44nhmCueG7IQ89x0DmNNiCQUh9XIA45Cvo
-         +tZsR4ELJSZIj2NEB24Wk+L6UnO/LWe+2NMncz40KywiQujVDc52g93qZfyhsRPapNB+
-         bQtZ9h6We+yta/sZGstdLCGpAUtTkvgzRh+YOTCE3+yP2IT35VMEsQXQHqaVfKhYBxfN
-         P/rIRvUVcD8kF4bqMWra6xG//mesWOcK01nGcEQQ0QlmZj9THECSu3FQaBLncSuC+JuV
-         rpIp5K9Dji7csqk8wkZqJ+VZVdL0f3wzT4R69HEtgrnx/Fg22l6basDt+gaDrUL1gbBT
-         0GIQ==
-X-Gm-Message-State: AOJu0YwzowjyR9p7u8FZJ0SXC4GMQcljurvy96FGWALCtq3qqTQC+glX
-	PQ4fYvpIcL5dkoBrAy6/ya654ry5dKjeRpsNwj0UiFSgtSdRDc9npOKmijtSjdqtQPc=
-X-Gm-Gg: ASbGncvpHe5kc4skttjJ3xo3+Mjl4uP7q6J++cIzYgxQGMhMxkkFflKMxN3vSws1Yh0
-	RzI1+R7VPZs7mx1Z7jmcEYbldFGoknza2RdLrgwy9IV8lDWquJ1aC0NFgPukFg6XxkcY/oFsUUD
-	CLUq0osN4IW9imiZn8FEs87hiaSPJPdHA0psOU3XFfCWe0jGyvSJobe3u1I+V/iRYHQKrDluYMa
-	In4lqTnuiVaq4trTKiEf1mBQnTvNnI3/JwI+y+fSdzqaMj0Ov0siSM5BMUCIWES/GkZuB8mHwWR
-	FJDKdYync503l6vbm9+K1Z4XzYkUNmVBBFbUcb4dsnWyT+/KkZrvUblAsl6oQumRyYPYBiOrQQS
-	n5L/cjpuV9nNzgF+va8ZLV8BroiSo1dU6eHjRyz4xKXUo8A4n8J2YD9uUKvsS4L9UcUQj/mVBM2
-	Iv76u7+dzyW4Y=
-X-Google-Smtp-Source: AGHT+IHbpZnqssEb2PPPnFHOIkmC7dP1SaPi2LUO5za99SU5x/hX14Nnn/EH0FNbOoYBYa4QD9lz2A==
-X-Received: by 2002:a05:600c:5289:b0:456:1904:27f3 with SMTP id 5b1f17b1804b1-45633d0d082mr159113655e9.18.1753105318291;
-        Mon, 21 Jul 2025 06:41:58 -0700 (PDT)
-Received: from ?IPv6:2001:8b0:aba:5f3c:3115:2e86:f442:218d? ([2001:8b0:aba:5f3c:3115:2e86:f442:218d])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4562e7f2d4fsm165377925e9.4.2025.07.21.06.41.57
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 21 Jul 2025 06:41:57 -0700 (PDT)
-Message-ID: <a37d9f86a948a4b5b63146ddbaf1ac62f3754b69.camel@linuxfoundation.org>
-Subject: Re: [OE-core] Yocto Project Status 1 July. 2025 (WW26)
-From: Richard Purdie <richard.purdie@linuxfoundation.org>
-To: Alexander Kanavin <alex.kanavin@gmail.com>
-Cc: Yocto-mailing-list <yocto@lists.yoctoproject.org>, 
- ",openembedded-core@lists.openembedded.org"
-	 <openembedded-core@lists.openembedded.org>
-Date: Mon, 21 Jul 2025 14:41:56 +0100
-In-Reply-To: <CANNYZj8r4KOxDO6Z6cCN50ADRiAzBhSx=8rVZfY7ZvWPHdz4EQ@mail.gmail.com>
-References: 
-	<CAK5yBb_mX+D24LjOozpm=m_Y=5AhHSX=5OtNdbNHWg99mcuFNw@mail.gmail.com>
-	 <CANNYZj9R79Um9BvKmZmOrCZLnVaDk3cfO1KHM8bu54mu3F-68Q@mail.gmail.com>
-	 <c5c7b6cb0ede0893d9c760ebeaaef042c248fcc1.camel@linuxfoundation.org>
-	 <CANNYZj8r4KOxDO6Z6cCN50ADRiAzBhSx=8rVZfY7ZvWPHdz4EQ@mail.gmail.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.56.0-1 
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 4E7FFC83F1A
+	for <webhook@archiver.kernel.org>; Mon, 21 Jul 2025 15:14:04 +0000 (UTC)
+Subject: Generating 32-bit x86 native lib while MACHINE is set to ARM(essentially) #bitbake
+To: yocto@lists.yoctoproject.org
+From: joseph.maniaci@seagate.com
+X-Originating-Location: Minnesota, US (134.204.180.68)
+X-Originating-Platform: Windows Firefox 128
+User-Agent: GROUPS.IO Web Poster
 MIME-Version: 1.0
+Date: Mon, 21 Jul 2025 08:14:03 -0700
+Message-ID: <kueP.1753110843037649744.XxuE@lists.yoctoproject.org>
+Content-Type: multipart/alternative; boundary="8hL1MFqCBFnBHSlwuTJi"
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Mon, 21 Jul 2025 13:42:03 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/65689
+ <yocto@lists.yoctoproject.org>; Mon, 21 Jul 2025 15:14:04 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/65690
 
-On Mon, 2025-07-21 at 15:09 +0200, Alexander Kanavin wrote:
-> On Mon, 21 Jul 2025 at 12:27, Richard Purdie
-> <richard.purdie@linuxfoundation.org> wrote:
-> > > Before that can happen, the tool still needs additional
-> > > functionality:
-> > >=20
-> > > - nested bitbake configurations, that would be an equivalent of
-> > > 'templates' in autobuilder's config.json. E.g. a top level base
-> > > config
-> > > that sets autobuilder-specific fragments for all builds, then an
-> > > intemediate config that sets what images and other targets get
-> > > build,
-> > > then final configs that set target machines.
-> >=20
-> > I've been looking into this a bit more. I don't think we need to
-> > replace the template functionality in the autobuilder, at least not
-> > at
-> > this time. What we need to do is just switch over to using bitbake-
-> > setup to setup poky instead of needing the combo-layer derived
-> > repo.
->=20
-> That's fine and reduces the time pressure; I somehow thought you
-> expect a full end-to-end autobuilder demo of bitbake-setup handling
-> both the layer checkout and the build configuration.
->=20
-> I'll still implement nested bitbake configurations, they will help
-> reduce repetition and clutter e.g. here:
-> https://github.com/kanavin/bitbake-setup-configurations/blob/main/yocto-m=
-aster.conf.json#L49
->=20
-> This will look much neater and readable as a tree where nested
-> configurations add details to the parent (e.g. adding a BSP layer and
-> picking a particular machine from it). I think that's a rather common
-> use case.
+--8hL1MFqCBFnBHSlwuTJi
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
 
-It can be summarised a bit more succinctly i.e.:
+So the instructions here ( https://docs.yoctoproject.org/next/dev-manual/li=
+braries.html#using-multilib ) are very explicit about using the local.conf =
+in my build directory.
 
-distro: ['distro/poky', 'distro/poky-altcfg', 'distro/poky-tiny']
-machine: ['machine/qemux86-64', 'machine/qemuarm64', 'machine/qemuriscv64']
+I tried adding only:
 
-which is why I'm thinking we should perhaps work with this in terms of
-fragments/config selection.
+require conf/multilib.conf
+MULTILIBS =3D "multilib:lib32"
+DEFAULTTUNE:virtclass-multilib-lib32 =3D "x86"
+BASELIB:virtclass-multilib-lib32 =3D "lib32-openssl-native"
 
-> > > - ability to override git repo locations/revisions from the
-> > > command
-> > > line. E.g. the config file sets master branches for all repos,
-> > > but one
-> > > wants to build master-next.
-> >=20
-> > There are two pieces to this. One is being able to select/override
-> > the
-> > repo/branch/revision as you mention. Another key piece is being
-> > able to
-> > point at a local cache of repositories. The tool may handle the
-> > latter,
-> > I'm just struggling to page in the context.
->=20
-> I guess you're looking for 'bitbake-setup change-setting default
-> dl-dir /path/to/dl-dir' ?
->=20
-> (I know the tool currently offers no help in discovering its own
-> settings).
+Since the MACHINE is already set at the top with:
 
-No, I mean something different.
+MACHINE ??=3D "exos-x-vanadium-bmc"
+DISTRO ?=3D "openbmc-phosphor"
 
-In order to speed up builds and reduce network usage, the autobuilder
-has a cache of commonly used git repos such as poky, bitbake and some
-other metadata layers. When cloning, it will first use those cached
-repos, then just do a final pull from upstream, just to ensure
-everything is up to date.
+Which leads to the following error:
 
-Those cache directories are updated by a cron job. I'd like a way of
-telling bitbake-setup to use such a cache to speed up checkouts and
-reduce network usage.
+*ERROR: =C2=A0OE-core's config sanity checker detected a potential misconfi=
+guration.*
+*Either fix the cause of this error or at your own risk disable the checker=
+ (see sanity.conf).*
+*Following is the list of potential problems / advisories:*
+*Toolchain tunings invalid:*
+*Tuning 'x86' has no defined features, and cannot be used.*
 
-This feature doesn't need to be that user visible, just available for
-the CI setups to configure. The code for this is in yocto-autobuilder-
-helper.
+If I try to add a machine such as MACHINE =3D "x86-base", or "qemux86-64", =
+or "arch-x86", all of which have configurations in /meta/conf/machine, I ge=
+t an error such as:
 
+*ERROR: =C2=A0OE-core's config sanity checker detected a potential misconfi=
+guration.*
+*Either fix the cause of this error or at your own risk disable the checker=
+ (see sanity.conf).*
+*Following is the list of potential problems / advisories:*
+*MACHINE=3Dx86-base is invalid. Please set a valid MACHINE in your local.co=
+nf, environment or other configuration file.*
 
-> > > - ability to select a subset of bitbake configurations for
-> > > initialization/update. An autobuilder config would specify dozens
-> > > of
-> > > configurations, but any particular worker machine would only work
-> > > on
-> > > one of them. There is no need to initialize every bitbake config,
-> > > and
-> > > it would only add delays and clutter.
-> >=20
-> > When I did try the tool, I was a bit surprised to see the multiple
-> > build directories being created. This also won't scale well.
-> >=20
-> > I suspect the more user friendly workflow is going to be to create
-> > a
-> > single build directory and then point the user at the
-> > configurations
-> > available, i.e. the features (which include the machine/distro
-> > selection).
-> >=20
-> > This is going to be the part of the workflow which is going to make
-> > or
-> > break the tool and it isn't quite right yet. We have all the
-> > underlying
-> > pieces now, we just need to expose it to the user in the right way.
-> > As
-> > it stands, it isn't feeling quite right yet.
->=20
-> I agree; initializing everything was simply the easiest way to
-> produce the working proof of concept. I didn't want to have to
-> 'decide' upfront how this should work.
->=20
-> Here's the proposal:
->=20
-> - 'bitbake-setup init' will not initialize every bitbake config that
-> the json specifies; rather it will print a list of them (if len > 1)
-> and ask the user to choose (trivial in python and does not require
-> curses or other ui libraries; oe-setup-build already does this with
-> templates);
->=20
-> - it can also take an optional second parameter to setup a particular
-> bitbake configuration non-interactively;
->=20
-> - it can also take --all to set up everything like it does now.
+The openssl library present is openssl_3.2.1, and looking at its .bb, it ap=
+pears to be compatible with all of the necessary targets I'm trying to work=
+ with.
 
-I'm not convinced anyone will ever really want to configure "all", it
-isn't what users generally want to do.
+Full-ish local.conf
 
-I suspect what we need is a single base default configuration and a
-prompt saying "run XXX" to configure fragments X or Y.
+MACHINE ??=3D "exos-x-vanadium-bmc"
+DISTRO ?=3D "openbmc-phosphor"
+PACKAGE_CLASSES ?=3D "package_rpm"
+SANITY_TESTED_DISTROS:append ?=3D " *"
+EXTRA_IMAGE_FEATURES ?=3D "debug-tweaks"
+USER_CLASSES ?=3D "buildstats"
+PATCHRESOLVE =3D "noop"
+BB_DISKMON_DIRS ??=3D "\
+STOPTASKS,${TMPDIR},1G,100K \
+STOPTASKS,${DL_DIR},1G,100K \
+STOPTASKS,${SSTATE_DIR},1G,100K \
+STOPTASKS,/tmp,100M,100K \
+HALT,${TMPDIR},100M,1K \
+HALT,${DL_DIR},100M,1K \
+HALT,${SSTATE_DIR},100M,1K \
+HALT,/tmp,10M,1K"
+CONF_VERSION =3D "2"
 
-We then allow init to take a list of fragments to configure? That would
-mean:
+....
 
-bitbake-setup init poky "machine/qemux86-64 distro/poky-tiny"
+# MACHINE =3D "qemux86-64"
+require conf/multilib.conf
+MULTILIBS =3D "multilib:lib32"
+DEFAULTTUNE: virtclass-multilib-lib32 =3D "x86"
+BASELIB: virtclass-multilib-lib32 =3D "lib32-openssl-native"
 
-would work and we have a way to add new things to the commandline
-relatively easily.
+--8hL1MFqCBFnBHSlwuTJi
+Content-Type: text/html; charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
 
+<div>So the instructions <a href=3D"https://docs.yoctoproject.org/next/dev-=
+manual/libraries.html#using-multilib" target=3D"_blank" rel=3D"noopener">he=
+re </a>are very explicit about using the local.conf in my build directory.<=
+/div>
+<div>&nbsp;</div>
+<div>I tried adding only:</div>
+<div>&nbsp;</div>
+<div>require conf/multilib.conf<br />MULTILIBS =3D "multilib:lib32"<br />DE=
+FAULTTUNE:virtclass-multilib-lib32 =3D "x86"<br />BASELIB:virtclass-multili=
+b-lib32 =3D "lib32-openssl-native"<br /><br />Since the MACHINE is already =
+set at the top with:</div>
+<div>&nbsp;</div>
+<div>MACHINE ??=3D "exos-x-vanadium-bmc"<br />DISTRO ?=3D "openbmc-phosphor=
+"</div>
+<div>&nbsp;</div>
+<div>Which leads to the following error:<br /><br />
+<div><strong>ERROR: &nbsp;OE-core's config sanity checker detected a potent=
+ial misconfiguration.</strong><br /><strong>&nbsp; &nbsp; Either fix the ca=
+use of this error or at your own risk disable the checker (see sanity.conf)=
+.</strong><br /><strong>&nbsp; &nbsp; Following is the list of potential pr=
+oblems / advisories:</strong></div>
+<div><strong>&nbsp; &nbsp; Toolchain tunings invalid:</strong><br /><strong=
+>Tuning 'x86' has no defined features, and cannot be used.</strong></div>
+<div>&nbsp;</div>
+<div>If I try to add a machine such as MACHINE =3D "x86-base", or "qemux86-=
+64", or "arch-x86", all of which have configurations in /meta/conf/machine,=
+ I get an error such as:<br /><br />
+<div><strong>ERROR: &nbsp;OE-core's config sanity checker detected a potent=
+ial misconfiguration.</strong><br /><strong>&nbsp; &nbsp; Either fix the ca=
+use of this error or at your own risk disable the checker (see sanity.conf)=
+.</strong><br /><strong>&nbsp; &nbsp; Following is the list of potential pr=
+oblems / advisories:</strong></div>
+<div><strong>&nbsp; &nbsp; MACHINE=3Dx86-base is invalid. Please set a vali=
+d MACHINE in your local.conf, environment or other configuration file.</str=
+ong></div>
+</div>
+<div>&nbsp;</div>
+<div>The openssl library present is openssl_3.2.1, and looking at its .bb, =
+it appears to be compatible with all of the necessary targets I'm trying to=
+ work with.</div>
+<div>&nbsp;</div>
+<div>&nbsp;</div>
+<div>Full-ish local.conf<br /><br />
+<div style=3D"color: #cccccc; background-color: #1f1f1f; font-family: Conso=
+las, 'Courier New', monospace; font-weight: normal; font-size: 14px; line-h=
+eight: 19px; white-space: pre;">
+<div><span style=3D"color: #cccccc;">MACHINE ??=3D </span><span style=3D"co=
+lor: #ce9178;">"exos-x-vanadium-bmc"</span></div>
+<div><span style=3D"color: #cccccc;">DISTRO ?=3D </span><span style=3D"colo=
+r: #ce9178;">"openbmc-phosphor"</span></div>
+<div><span style=3D"color: #cccccc;">PACKAGE_CLASSES ?=3D </span><span styl=
+e=3D"color: #ce9178;">"package_rpm"</span></div>
+<div><span style=3D"color: #cccccc;">SANITY_TESTED_DISTROS:append ?=3D </sp=
+an><span style=3D"color: #ce9178;">" *"</span></div>
+<div><span style=3D"color: #cccccc;">EXTRA_IMAGE_FEATURES ?=3D </span><span=
+ style=3D"color: #ce9178;">"debug-tweaks"</span></div>
+<div><span style=3D"color: #cccccc;">USER_CLASSES ?=3D </span><span style=
+=3D"color: #ce9178;">"buildstats"</span></div>
+<div><span style=3D"color: #569cd6;">PATCHRESOLVE</span><span style=3D"colo=
+r: #cccccc;"> =3D </span><span style=3D"color: #ce9178;">"noop"</span></div=
+>
+<div><span style=3D"color: #cccccc;">BB_DISKMON_DIRS ??=3D </span><span sty=
+le=3D"color: #ce9178;">"\</span></div>
+<div><span style=3D"color: #ce9178;">&nbsp; &nbsp; STOPTASKS,${TMPDIR},1G,1=
+00K \</span></div>
+<div><span style=3D"color: #ce9178;">&nbsp; &nbsp; STOPTASKS,${DL_DIR},1G,1=
+00K \</span></div>
+<div><span style=3D"color: #ce9178;">&nbsp; &nbsp; STOPTASKS,${SSTATE_DIR},=
+1G,100K \</span></div>
+<div><span style=3D"color: #ce9178;">&nbsp; &nbsp; STOPTASKS,/tmp,100M,100K=
+ \</span></div>
+<div><span style=3D"color: #ce9178;">&nbsp; &nbsp; HALT,${TMPDIR},100M,1K \=
+</span></div>
+<div><span style=3D"color: #ce9178;">&nbsp; &nbsp; HALT,${DL_DIR},100M,1K \=
+</span></div>
+<div><span style=3D"color: #ce9178;">&nbsp; &nbsp; HALT,${SSTATE_DIR},100M,=
+1K \</span></div>
+<div><span style=3D"color: #ce9178;">&nbsp; &nbsp; HALT,/tmp,10M,1K"</span>=
+</div>
+<div><span style=3D"color: #569cd6;">CONF_VERSION</span><span style=3D"colo=
+r: #cccccc;"> =3D </span><span style=3D"color: #ce9178;">"2"</span></div>
+<br />
+<div><span style=3D"color: #cccccc;">....</span></div>
+<br />
+<div><span style=3D"color: #6a9955;"># MACHINE =3D "qemux86-64"</span></div=
+>
+<div><span style=3D"color: #cccccc;">require conf/multilib.conf</span></div=
+>
+<div><span style=3D"color: #569cd6;">MULTILIBS</span><span style=3D"color: =
+#cccccc;"> =3D </span><span style=3D"color: #ce9178;">"multilib:lib32"</spa=
+n></div>
+<div><span style=3D"color: #cccccc;">DEFAULTTUNE:</span><span style=3D"colo=
+r: #569cd6;">virtclass-multilib-lib32</span><span style=3D"color: #cccccc;"=
+> =3D </span><span style=3D"color: #ce9178;">"x86"</span></div>
+<div><span style=3D"color: #cccccc;">BASELIB:</span><span style=3D"color: #=
+569cd6;">virtclass-multilib-lib32</span><span style=3D"color: #cccccc;"> =
+=3D </span><span style=3D"color: #ce9178;">"lib32-openssl-native"</span></d=
+iv>
+</div>
+</div>
+<div>&nbsp;</div>
+</div>
 
-
->=20
-> > > Once all of this in place, config.json could be gradually
-> > > transitioned
-> > > to defer to bitbake-setup:
-> > >=20
-> > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 "qemux86-64" : {
-> > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 "B=
-BSETUP" : "qemux86-64",
-> > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 },
-> > >=20
-> > > and the code would run that with appropriate build-specific
-> > > parameters.
-> >=20
-> > Or perhaps this just becomes a list of features...
->=20
-> The goal for me is allowing easy replication of autobuilder failures
-> by anyone who submits patches, so they never have to find the right
-> bits to copy-paste in config.json or other obscure places. One idea
-> is to have a step that is clearly marked on the buildbot UI: 'look
-> here if you want to replicate this build'. When expanded, there are
-> clear instructions that require typing as few and as short commands
-> as possible - ideally just a single bitbake-setup invocation followed
-> by applying the patches-under-test, and then it's also using CDN
-> sstate to hopefully get to the fail as quickly as possible.
-
-Currently the autobuilder dumps the local.conf settings in one of the
-steps and it is quite clear about which commands it runs, if you know
-where to look. I agree it would be nice to simplify that and go a step
-or two further and make it clearer.
-
-Keep in mind that many of the builder targets are series of commands,
-not just a single command.
-
-Cheers,
-
-Richard
+--8hL1MFqCBFnBHSlwuTJi--
 
