@@ -1,119 +1,87 @@
-Return-Path: <karprzy7@gmail.com>
+Return-Path: <crane2018@gmail.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 279D0C83F22
-	for <webhook@archiver.kernel.org>; Sun, 20 Jul 2025 19:11:57 +0000 (UTC)
-Subject: Issue running GUI application on stm32mp257 due to Vulkan error
+	by smtp.lore.kernel.org (Postfix) with ESMTP id DA153C83F1A
+	for <webhook@archiver.kernel.org>; Mon, 21 Jul 2025 03:23:19 +0000 (UTC)
+Subject: error with SDK that supports Qt creator
 To: yocto@lists.yoctoproject.org
-From: "Karol P" <karprzy7@gmail.com>
-X-Originating-Location: Wroclaw, Lower Silesia, PL (83.168.79.145)
-X-Originating-Platform: Linux Firefox 140
+From: "Crane" <crane2018@gmail.com>
+X-Originating-Location: Scarborough, Ontario, CA (135.0.213.201)
+X-Originating-Platform: Windows Chrome 138
 User-Agent: GROUPS.IO Web Poster
 MIME-Version: 1.0
-Date: Sun, 20 Jul 2025 12:11:56 -0700
-Message-ID: <BkCs.1753038716632461263.NP2P@lists.yoctoproject.org>
-Content-Type: multipart/alternative; boundary="ojx0OD2RVlM7HmZyC7UB"
+Date: Sun, 20 Jul 2025 20:23:05 -0700
+Message-ID: <FTrN.1753068185981760834.14lX@lists.yoctoproject.org>
+Content-Type: multipart/alternative; boundary="KUYtcVEWXwqftQySiDUl"
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Sun, 20 Jul 2025 19:11:57 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/65685
+ <yocto@lists.yoctoproject.org>; Mon, 21 Jul 2025 03:23:19 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/65686
 
---ojx0OD2RVlM7HmZyC7UB
+--KUYtcVEWXwqftQySiDUl
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: quoted-printable
 
-Hi everyone, for learning purposes, I=E2=80=99m trying to build meta-doom (=
- https://github.com/JPEWdev/meta-doom ) for stm32mp257 DK. I previously tri=
-ed it for RPi4 and after some minor fixes I was able to do it for nanbield/=
-mickledore poky version. I chose those versions since meta-doom is only com=
-patible with them. What I established it is possible to run it and it still=
- works.
+Hello,
 
-My setup for stm32mp2 version is that I cloned mickledore repo manifest and=
- integrated meta-doom layer. Doom wouldn=E2=80=99t build for wayland, so I =
-had to change my display manager to X11. It=E2=80=99s not directly supporte=
-d but still possible (source: https://community.st.com/t5/stm32-mpus-embedd=
-ed-software-and/how-to-setup-x11-in-the-distro-instead-of-wayland-on-stm32m=
-p1/td-p/741125 )
+I am building SDK using populate_sdk that support Qt creator.
 
-Now gzdoom builds, and I=E2=80=99m able to execute on target. However, afte=
-r uploading proper WAD I get this error:
+All are configured correctly except Qt version is considered invalid after =
+adding qmake from <sysroots>/x86_64-pokysdk-linux/usr/bin.
+
+Further check discovers this result:
 
 >=20
+> crane@vmUbuntu2204:~/work/project/$ which qmake
+> /opt/poky/0.1/sysroots/x86_64-pokysdk-linux/usr/bin/qmake
+> crane@vmUbuntu2204:~/work/project/$ qmake -v
+> QMake version 3.1
+> Using Qt version 5.15.13 in
+> /home/crane/work/yocto/build/tmp/work/x86_64-nativesdk-pokysdk-linux/nati=
+vesdk-qtbase/5.15.13+git/recipe-sysroot/opt/poky/0.1/sysroots/x86_64-pokysd=
+k-linux/usr/lib
 >=20
->=20
-> no vulkan device found supports minimum requirements of this application
->=20
->=20
-
-I installed vulkan-loader and vulkan-tools into the image and vulkaninfo gi=
-ves me following information:
-
->=20
->=20
->=20
-> root@stm32mp25-disco:~# vulkaninfo WARNING: [Loader Message] Code 0 :
-> loader_scanned_icd_add: Driver /vendor/lib/libvulkan_VSI.so.1.3.3 support=
-s
-> Vulkan 1.3, but only supports loader interface version 2. Interface
-> version 5 or newer required to support this version of Vulkan (Policy
-> #LDP_DRIVER_7) WARNING: [Loader Message] Code 0 :
-> terminator_CreateInstance: Driver /vendor/lib/libvulkan_VSI.so.1.3.3
-> supports interface version 2 but still exposes VkSurfaceKHR create/destro=
-y
-> entrypoints
->=20
+> crane@vmUbuntu2204:~/work/project/$
 >=20
 
-I=E2=80=99m at a loss on what to do at this point. There seems to be some v=
-ersion mismatch but I can=E2=80=99t figure out how to solve it. And since i=
-t worked flawlessly for RPI4 I think this is some configuration related iss=
-ue, but I couldn=E2=80=99t pinpoint it.
+Obviously it doesn't point to the correct path. Qt libraries are in <sysroo=
+ts>/usr/lib directory. What might be the cause?
 
---ojx0OD2RVlM7HmZyC7UB
+Any input is appreciated.
+
+Thanks!
+Crane
+
+--KUYtcVEWXwqftQySiDUl
 Content-Type: text/html; charset="utf-8"
 Content-Transfer-Encoding: quoted-printable
 
-<div>
-<p>Hi everyone, for learning purposes, I&rsquo;m trying to build meta-doom =
-(<a href=3D"https://github.com/JPEWdev/meta-doom" target=3D"_blank" rel=3D"=
-noopener">https://github.com/JPEWdev/meta-doom</a>) for stm32mp257 DK. I pr=
-eviously tried it for RPi4 and after some minor fixes I was able to do it f=
-or nanbield/mickledore poky version. I chose those versions since meta-doom=
- is only compatible with them. What I established it is possible to run it =
-and it still works.</p>
-<p>My setup for stm32mp2 version is that I cloned mickledore repo manifest =
-and integrated meta-doom layer. Doom wouldn&rsquo;t build for wayland, so I=
- had to change my display manager to X11. It&rsquo;s not directly supported=
- but still possible (source: <a href=3D"https://community.st.com/t5/stm32-m=
-pus-embedded-software-and/how-to-setup-x11-in-the-distro-instead-of-wayland=
--on-stm32mp1/td-p/741125">https://community.st.com/t5/stm32-mpus-embedded-s=
-oftware-and/how-to-setup-x11-in-the-distro-instead-of-wayland-on-stm32mp1/t=
-d-p/741125</a>)</p>
-<p>Now gzdoom builds, and I&rsquo;m able to execute on target. However, aft=
-er uploading proper WAD I get this error:</p>
+<div>Hello,</div>
+<div>&nbsp;</div>
+<div>I am building SDK using populate_sdk that support Qt creator.&nbsp;</d=
+iv>
+<div>&nbsp;</div>
+<div>All are configured correctly except Qt version is considered invalid a=
+fter adding qmake from &lt;sysroots&gt;/x86_64-pokysdk-linux/usr/bin.</div>
+<div>&nbsp;</div>
+<div>Further check discovers this result:</div>
 <blockquote>
-<p>no vulkan device found supports minimum requirements of this application=
-</p>
+<div>crane@vmUbuntu2204:~/work/project/$ which qmake<br />/opt/poky/0.1/sys=
+roots/x86_64-pokysdk-linux/usr/bin/qmake<br />crane@vmUbuntu2204:~/work/pro=
+ject/$ qmake -v<br />QMake version 3.1<br />Using Qt version 5.15.13 in /ho=
+me/crane/work/yocto/build/tmp/work/x86_64-nativesdk-pokysdk-linux/nativesdk=
+-qtbase/5.15.13+git/recipe-sysroot/opt/poky/0.1/sysroots/x86_64-pokysdk-lin=
+ux/usr/lib<br />crane@vmUbuntu2204:~/work/project/$&nbsp;</div>
 </blockquote>
-<p>I installed vulkan-loader and vulkan-tools into the image and vulkaninfo=
- gives me following information:</p>
-<blockquote>
-<p>root@stm32mp25-disco:~# vulkaninfo WARNING: [Loader Message] Code 0 : lo=
-ader_scanned_icd_add: Driver /vendor/lib/libvulkan_VSI.so.1.3.3 supports Vu=
-lkan 1.3, but only supports loader interface version 2. Interface version 5=
- or newer required to support this version of Vulkan (Policy #LDP_DRIVER_7)=
- WARNING: [Loader Message] Code 0 : terminator_CreateInstance: Driver /vend=
-or/lib/libvulkan_VSI.so.1.3.3 supports interface version 2 but still expose=
-s VkSurfaceKHR create/destroy entrypoints</p>
-</blockquote>
-<p>I&rsquo;m at a loss on what to do at this point. There seems to be some =
-version mismatch but I can&rsquo;t figure out how to solve it. And since it=
- worked flawlessly for RPI4 I think this is some configuration related issu=
-e, but I couldn&rsquo;t pinpoint it.</p>
-<!-- notionvc: d6254d87-5118-4ae9-8e2d-6412610b8c7d --></div>
+<div>Obviously it doesn't point to the correct path. Qt libraries are in &l=
+t;sysroots&gt;/usr/lib directory. What might be the cause?&nbsp;</div>
+<div>&nbsp;</div>
+<div>Any input is appreciated.</div>
+<div>&nbsp;</div>
+<div>Thanks!</div>
+<div>Crane</div>
 
---ojx0OD2RVlM7HmZyC7UB--
+--KUYtcVEWXwqftQySiDUl--
 
