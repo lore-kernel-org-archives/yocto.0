@@ -1,56 +1,60 @@
-Return-Path: <denis@denix.org>
+Return-Path: <arthur52666@gmail.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 5DDAEC87FC9
-	for <webhook@archiver.kernel.org>; Tue, 29 Jul 2025 16:50:33 +0000 (UTC)
-Received: from mailout4.zoneedit.com (mailout4.zoneedit.com [64.68.198.64])
- by mx.groups.io with SMTP id smtpd.web10.13027.1753807827633409108
- for <yocto@lists.yoctoproject.org>;
- Tue, 29 Jul 2025 09:50:28 -0700
-Authentication-Results: mx.groups.io;
- dkim=none (message not signed); spf=pass (domain: denix.org, ip: 64.68.198.64, mailfrom: denis@denix.org)
-Received: from localhost (localhost [127.0.0.1])
-	by mailout4.zoneedit.com (Postfix) with ESMTP id A7BDD40C2C;
-	Tue, 29 Jul 2025 16:50:26 +0000 (UTC)
-Received: from mailout4.zoneedit.com ([127.0.0.1])
-	by localhost (zmo14-pco.easydns.vpn [127.0.0.1]) (amavisd-new, port 10024)
-	with ESMTP id tJ3j4QB3hN8J; Tue, 29 Jul 2025 16:50:26 +0000 (UTC)
-Received: from mail.denix.org (pool-100-15-87-159.washdc.fios.verizon.net [100.15.87.159])
-	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
-	(No client certificate requested)
-	by mailout4.zoneedit.com (Postfix) with ESMTPSA id 6592340ACD;
-	Tue, 29 Jul 2025 16:50:23 +0000 (UTC)
-Received: by mail.denix.org (Postfix, from userid 1000)
-	id B89F116D30E; Tue, 29 Jul 2025 12:50:22 -0400 (EDT)
-Date: Tue, 29 Jul 2025 12:50:22 -0400
-From: Denys Dmytriyenko <denis@denix.org>
-To: "openembedded-devel@lists.openembedded.org" <openembedded-devel@lists.openembedded.org>,
-	openembedded-core <openembedded-core@lists.openembedded.org>,
-	Yocto Project <yocto@lists.yoctoproject.org>,
-	openembedded-members@lists.openembedded.org
-Subject: OpenEmbedded Happy Hour July 30 5pm/1700 UTC
-Message-ID: <20250729165022.GO24899@denix.org>
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 93948C87FCB
+	for <webhook@archiver.kernel.org>; Wed, 30 Jul 2025 05:57:57 +0000 (UTC)
+Subject: how to support a new machine at Yocto
+To: yocto@lists.yoctoproject.org
+From: arthur52666@gmail.com
+X-Originating-Location: Tokyo, JP (64.104.44.109)
+X-Originating-Platform: Mac Chrome 138
+User-Agent: GROUPS.IO Web Poster
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-User-Agent: Mutt/1.5.20 (2009-06-14)
+Date: Tue, 29 Jul 2025 22:57:50 -0700
+Message-ID: <0Cse.1753855070027816761.5DEM@lists.yoctoproject.org>
+Content-Type: multipart/alternative; boundary="FbtnCcTcv2Al46X5hmL5"
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Tue, 29 Jul 2025 16:50:33 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/65720
+ <yocto@lists.yoctoproject.org>; Wed, 30 Jul 2025 05:57:57 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/65721
 
-All,
+--FbtnCcTcv2Al46X5hmL5
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
 
-Please join us for our monthly OpenEmbedded Happy Hour tomorrow, Wednesday 
-July 30 at 1700/5pm UTC (1pm ET/10am PT).
+Hi Team,
 
-https://www.openembedded.org/wiki/Calendar
-https://www.openembedded.org/wiki/Happy_Hours
-https://www.timeanddate.com/worldclock/fixedtime.html?msg=OpenEmbedded+Happy+Hour+July+30&iso=20250730T17
+I am working on supporting a new machine(Marvell Armada 7040 SoC, Armv8 Cor=
+tex-A72 CPU) ) at Yocto platform.
+Where can i get some guides or documents providing a sample to bringup a ne=
+w machine step by step ?
 
-Best regards,
-Denys Dmytriyenko
-OpenEmbedded Board of Directors
+Thanks
+Arthur
+
+--FbtnCcTcv2Al46X5hmL5
+Content-Type: text/html; charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div>Hi Team,</div>
+<div>&nbsp;</div>
+<div>I am working on supporting a new machine(Marvell <span style=3D"caret-=
+color: #212121; color: #212121; font-family: Aptos, sans-serif; font-size: =
+16px; font-style: normal; font-variant-caps: normal; font-weight: 400; lett=
+er-spacing: normal; orphans: auto; text-align: start; text-indent: 0px; tex=
+t-transform: none; white-space: normal; widows: auto; word-spacing: 0px; -w=
+ebkit-text-stroke-width: 0px; text-decoration: none; display: inline !impor=
+tant; float: none;">Armada 7040 SoC, Armv8 Cortex-A72 CPU)</span>) at Yocto=
+ platform.</div>
+<div>Where can i get some guides or documents providing a sample to bringup=
+ a new machine step by step ?</div>
+<div>&nbsp;</div>
+<div>&nbsp;</div>
+<div>&nbsp;</div>
+<div>Thanks</div>
+<div>Arthur</div>
+
+--FbtnCcTcv2Al46X5hmL5--
 
