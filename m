@@ -1,180 +1,145 @@
-Return-Path: <JPEWhacker@gmail.com>
+Return-Path: <raj.khem@gmail.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 35B91C87FCE
-	for <webhook@archiver.kernel.org>; Wed, 30 Jul 2025 20:15:54 +0000 (UTC)
-Received: from mail-lj1-f173.google.com (mail-lj1-f173.google.com [209.85.208.173])
- by mx.groups.io with SMTP id smtpd.web10.45430.1753906547769985750
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 825F8C87FCB
+	for <webhook@archiver.kernel.org>; Thu, 31 Jul 2025 01:32:36 +0000 (UTC)
+Received: from mail-pg1-f172.google.com (mail-pg1-f172.google.com [209.85.215.172])
+ by mx.groups.io with SMTP id smtpd.web11.51664.1753925552971915476
  for <yocto@lists.yoctoproject.org>;
- Wed, 30 Jul 2025 13:15:48 -0700
+ Wed, 30 Jul 2025 18:32:33 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20230601 header.b=EvZxGqOf;
- spf=pass (domain: gmail.com, ip: 209.85.208.173, mailfrom: jpewhacker@gmail.com)
-Received: by mail-lj1-f173.google.com with SMTP id 38308e7fff4ca-3322aba45ebso1885021fa.2
-        for <yocto@lists.yoctoproject.org>; Wed, 30 Jul 2025 13:15:47 -0700 (PDT)
+ dkim=pass header.i=@gmail.com header.s=20230601 header.b=GkCPvtna;
+ spf=pass (domain: gmail.com, ip: 209.85.215.172, mailfrom: raj.khem@gmail.com)
+Received: by mail-pg1-f172.google.com with SMTP id 41be03b00d2f7-b4209a0d426so454852a12.1
+        for <yocto@lists.yoctoproject.org>; Wed, 30 Jul 2025 18:32:32 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1753906545; x=1754511345; darn=lists.yoctoproject.org;
-        h=to:subject:message-id:date:from:in-reply-to:references:mime-version
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=rBoWvBRmcldtTS4mKFVfUUErzCigp3YTRpPqGCmdM+w=;
-        b=EvZxGqOf5bSypMZHVENrnJwrH9JcAZ9y0j8QE4mLXZpVrnO6aJVvOVZiwT77sGvrMC
-         161nGMcJvktWNguxl4HitUz5vXEQ3f0G4IO5ZszCDHQ2NnM4HluV/8mrRcLgVmLWJNEE
-         zZLKSmdg1olSgZaqRybf5VlN1QmBa6WJhbnXfb6Z5MhNX95nBj4NJHFFZmHP0PDWXZf0
-         feRbPTyWea4Eldz5Au4/8lJemif3A796ygAnPkop1DDXgYesviL6TN1WiInchshQaDJk
-         z4DPPKTCik366XQFeNPw0UKs1i/7CxY9Sy2Ccon2iPTfpaYxGAHyKfA3NjSQi6yFp6uS
-         lcOw==
+        d=gmail.com; s=20230601; t=1753925552; x=1754530352; darn=lists.yoctoproject.org;
+        h=content-transfer-encoding:in-reply-to:organization:from
+         :content-language:references:to:subject:user-agent:mime-version:date
+         :message-id:from:to:cc:subject:date:message-id:reply-to;
+        bh=2bmwShsFwK+aqm9eQRDOoq58ym13FrAuCNddujlKnPw=;
+        b=GkCPvtnaM8aZynj/2n67o6haF/FiUcLyL41/btpIShYGi3ne48JcEfG+qT2oReA+94
+         On+lAtXwBeedRHDgBQfD8zxbEHhzPFsXGQYlh3eHtxzujn99mokMLhYHYUjxhHjhZ0zP
+         M4/vXNj92ubPHjNMcgaT0jLQLgPeK2V1DBvoSQjS5F16lEnYjzZkEEfek8zCt6y2iLA/
+         ReU7MgQsPKGvPi1ihkUUBW6XUZrP+VQuIyOdzLLGJCX5RiEsj2teIBHpLO8F5hpOdhTl
+         MuqtBpJ43wCjRHUsZlC9Zt6+uLxo2yO0kUKd7JyDwX/YK8q0GgxqQ0rtsiQL73VY3OZh
+         7zqg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1753906545; x=1754511345;
-        h=to:subject:message-id:date:from:in-reply-to:references:mime-version
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=rBoWvBRmcldtTS4mKFVfUUErzCigp3YTRpPqGCmdM+w=;
-        b=eVOOC97P6ufgzO/1OXbxkMV8UXfXwZDfHKnyocuxtUvrywepSAIbJLducJQGzL95oq
-         4DAoD/ghHhdxjKxLX1HW3HZfHOvXlg236Gaoe5L1pEVW5mhgqoXv1Pbtx/xEMoiUp5/F
-         EU8A55o+ec7L+HkAc8L78+c7mC6sU+FmEEeomhRGu1I9H2nCJgaweWc8gi3u4WERmueB
-         9/H0NCgRfIbu5nC5dyTKxmtjn5YiIiZ+H6TBfPgWvLfVyKIyxl7zzi334jepl0SD/+x9
-         92lNps4m2jAorFB3Rcb0eliwOIEByvoMqRi8maoB6Z9AjugLf8IpNWdkQA2Rafj2yPoD
-         vRKw==
-X-Gm-Message-State: AOJu0Yy/yZTcLAjT0m9rZt2rsNhY04tDQNYCyPLpzQdF0bSwVyjDOszc
-	vt0/cipRsT3wgEBhBG73p3IIuByLbs9cT5Z9LBz3zi8fyS1xFcCVWPLRku4WZQgcoYFxquXkuGc
-	2W/FyM3yOaSUQYsWfHaHM8dkBTNYKm8q0iQ==
-X-Gm-Gg: ASbGnctxFG0L+uj0phcGOsgqAj/kKhaYSi11MMzgQjL9UOL57zWJNM+NieYSvUVTmcQ
-	Ybz6kf1kAqzPfo2mpVvo4FsvhCJn9RA/lGfWJudOkM6zn/nFGSt6z16Xw928Cx+K8I2Z13Rk+rg
-	O6QsQ4OxHX4suB2AJdLT1eV0Kmpi+xUqLqzp+qglN+EK8QsW7rf4xm6nPWdOjiNL85wxh+H5skc
-	zcYXISvJsohgpPKDKt7bcLqg65YzsJp
-X-Google-Smtp-Source: AGHT+IF5oqnqX0zyz004flodEFVjFNTcSLqS3JrUVt4raMz27bL40lYq91HkD+BqcIgjk6IaN/xvCAgrPpmFeVQD4DY=
-X-Received: by 2002:a05:651c:f11:b0:32a:8916:55af with SMTP id
- 38308e7fff4ca-33224a8862cmr15820591fa.2.1753906544718; Wed, 30 Jul 2025
- 13:15:44 -0700 (PDT)
+        d=1e100.net; s=20230601; t=1753925552; x=1754530352;
+        h=content-transfer-encoding:in-reply-to:organization:from
+         :content-language:references:to:subject:user-agent:mime-version:date
+         :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=2bmwShsFwK+aqm9eQRDOoq58ym13FrAuCNddujlKnPw=;
+        b=UVwp0MJYlutli3NPsW61xLcxc7nqJ3zgtX3KKIztunahRqGnUmIo9jeDilT4Ey8Ok0
+         Vtp7WqFa4Aa8W5lbnt/8Vni2pst0sFh+HRRWz2O2p2kYPAXOhuuWciVAc6o3Q1ekjtiV
+         uZYWuhocIklPqy0/5D7tEMJpz3iQDOZix/HKcKDJR7zkg/tzDH1bczSbjtSS0rDEMah8
+         yEBADxa+ZcH6QfkfDwDik9KXp4sf/ls4quNz5X1wgYkywyHduTHwGRP7cYb+TaO4pscn
+         AVcEN66YsFh700/sY22w0UR1x/G4qvQHrxfCTZZa6cU/dy93V8Y2m/KyIQ+huEaOwGfu
+         bE/A==
+X-Gm-Message-State: AOJu0YwGOKFCEMa75+A0RP1KumjBKlpm80XxOHF6PUb8R+pko6/MzINF
+	unhmJ0Cfw4UDPb/oU2dMRrmUJqvwDAuBlwXrXlLkrNWWEqEC4A2XFM2r6JLizn0D/6w=
+X-Gm-Gg: ASbGncvAVtQ8R5WtVohGnNKcnPPuz1cAgiIrwUGUzX9D1pWJWupz74RMxiSnPuKzqVR
+	OmUNjVYzEEHa++wgTu6s1rPnBDMbLTOrUz1fxB+Turgw+O9udvCydVheO26lJGndLn/SxiO8lll
+	CSFAqgyC7Mz/Sfr5HgoPCa524mbHHl+cMvQFP0lsyKiZya6d7KapKzymbpMFktLnaWutHZWz64K
+	N/CucvWoIDJ0+nZKLF2UhKilLTQs1X27cDevLTrGzs2gh7uWBhKrht/RJLzZM5sQWSuYLoZbRu+
+	nXeJ5kBHt+tDvZg1CudpbcomD1ZSajSza7EP8WZBk749xaxUuZXPWrD161pddCm5iwDGx539k+N
+	wYxqPF+Zd1xgsxhwHA9cd/17xy88YfFusddvy
+X-Google-Smtp-Source: AGHT+IG4Hidjhm9GX+ddcJm1vhA9FRPB1A7Ced5K0WOa66AMkxwaNIiRi6+BzGaJL+3K40sZG3Qogw==
+X-Received: by 2002:a17:903:18b:b0:240:11ba:3842 with SMTP id d9443c01a7336-24096b08dd9mr96977335ad.35.1753925551678;
+        Wed, 30 Jul 2025 18:32:31 -0700 (PDT)
+Received: from [10.15.13.132] ([209.129.148.213])
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-241e899adc3sm3298685ad.118.2025.07.30.18.32.30
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 30 Jul 2025 18:32:30 -0700 (PDT)
+Message-ID: <82477f52-5602-438f-9bf3-403920a79ea0@gmail.com>
+Date: Wed, 30 Jul 2025 18:32:27 -0700
 MIME-Version: 1.0
-References: <zeaV.1753906228022619680.6Ow7@lists.yoctoproject.org>
-In-Reply-To: <zeaV.1753906228022619680.6Ow7@lists.yoctoproject.org>
-From: Joshua Watt <jpewhacker@gmail.com>
-Date: Wed, 30 Jul 2025 14:15:31 -0600
-X-Gm-Features: Ac12FXxMvyZEBxaV1G_h2imtBRT2jhFDxu4sAG-SU5TYV9bYicYyQ-l12ytkTZs
-Message-ID: <CAJdd5GbHtzseJJo6KYLDjxV=_mGua6ymvVeMY=EymWvzBH-uOQ@mail.gmail.com>
-Subject: Re: [yocto] SPDX 3.0 output for image builds
-To: yocto@lists.yoctoproject.org, kateryna.kostiuk@savoirfairelinux.com
-Content-Type: multipart/alternative; boundary="000000000000913610063b2b306e"
+User-Agent: Mozilla Thunderbird
+Subject: Re: [yocto] User login fails despite successful creation with useradd
+ class on NVIDIA Jetson AGX Orin #nvidia-jetson-agx-orin #yocto
+To: yocto@lists.yoctoproject.org, felix.beck@karevo.de
+References: <ANWW.1753893894898680818.ORHP@lists.yoctoproject.org>
+Content-Language: en-US
+From: Khem Raj <raj.khem@gmail.com>
+Organization: HIMVIS LLC
+In-Reply-To: <ANWW.1753893894898680818.ORHP@lists.yoctoproject.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Wed, 30 Jul 2025 20:15:54 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/65726
-
---000000000000913610063b2b306e
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-On Wed, Jul 30, 2025 at 2:10=E2=80=AFPM kateryna.kostiuk via lists.yoctopro=
-ject.org
-<kateryna.kostiuk=3Dsavoirfairelinux.com@lists.yoctoproject.org> wrote:
-
-> Hi,
->
->
->
-> I=E2=80=99m using Yocto 5.2 with INHERIT +=3D "create-spdx" to generate S=
-PDX 3.0
-> files.
->
-> In earlier versions (SPDX 2), I used to get a .spdx.tar.zst archive in
-> tmp/deploy/images/, but now I only see a .spdx.json file.
->
-> Is that the expected behavior for SPDX 3.0?
->
-
-Yes. For SPDX 3 we combine all of the SPDX output into a single document.
+ <yocto@lists.yoctoproject.org>; Thu, 31 Jul 2025 01:32:36 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/65727
 
 
->
->
-> Thanks,
->
-> Kateryna
->
-> -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
+
+On 7/30/25 9:44 AM, felix.beck via lists.yoctoproject.org wrote:
+> Hello Yocto community,
+> I'm experiencing a persistent login issue with a custom Yocto image for 
+> **NVIDIA Jetson AGX Orin (64GB)** (MACHINE = "p3737-0000-p3701-0005", in 
+> meta-tegra/conf/machine). The build, flashing, and booting all work 
+> correctly, but I cannot login with the created user account through 
+> either the GUI login screen or tty2 console. I can only see a user "jetson".
+> **Setup:**
+> - Custom distro based on Poky
+> - Target: NVIDIA Jetson AGX Orin (64GB)
+> - Base image: core-image-base
+> - User creation via useradd class following official documentation
+> **User creation recipe implementation:**
+> ```bash
+> inherit useradd
+> USERADD_PACKAGES = "${PN}"
+> USERADD_PARAM:${PN} = "-u 1200 -d /home/myuser -m -s /bin/bash -p '\$6\ 
+> $...(SHA-512 hash)...' myuser"
+> GROUPADD_PARAM:${PN} = "-g 999 docker"
+> GROUPMEMS_PARAM:${PN} = "-g docker -a myuser"
+> pkg_postinst_ontarget:${PN}() {
+>      cp ${datadir}/${PN}/myuser-sudoers /etc/sudoers.d/myuser
+>      chmod 0440 /etc/sudoers.d/myuser
+>      chown root:root /etc/sudoers.d/myuser
+>      echo 'root:$6$...(same hash)...' | chpasswd -e
+> }
+> ```
+> **Verification by mounting rootfs.ext4:**
+> - User exists in /etc/passwd: `myuser:x:1200:1200::/home/myuser:/bin/bash`
+> - Password hash exists in /etc/shadow: `myuser:$6$...:...:...`
+> - Home directory /home/myuser exists with correct ownership
+> - User is member of docker group in /etc/group
+> - local.conf has `EXTRA_IMAGE_FEATURES:remove = "debug-tweaks"`
+> **What I've tried:**
+> - Both MD5 and SHA-512 password hashes (generated with Python crypt.crypt)
+> - Following meta-skeleton/recipes-skeleton/useradd/useradd-example.bb 
+> pattern
+> - Verified against useradd class documentation
+> - Simplified sudoers configuration: `myuser ALL=(ALL) NOPASSWD: ALL`
+> The user account appears correctly created in the filesystem, but 
+> authentication consistently fails at runtime. Are there additional 
+> dependencies or runtime configurations needed for password 
+> authentication on NVIDIA Jetson platforms that differ from the standard 
+> useradd approach?
+> Any insights would be greatly appreciated.
+
+We have something to this in Yoe, which might give some hints for you
+
+https://github.com/YoeDistro/yoe-distro/blob/master/conf/projects/jetson-agx-orin-devkit/config.conf#L91-L101
+
+
+> Best regards,
+> Felix
+> 
+> 
+> -=-=-=-=-=-=-=-=-=-=-=-
 > Links: You receive all messages sent to this group.
-> View/Reply Online (#65725):
-> https://lists.yoctoproject.org/g/yocto/message/65725
-> Mute This Topic: https://lists.yoctoproject.org/mt/114455825/3616693
+> You automatically follow any topics you start or reply to.
+> View/Reply Online (#65723): https://lists.yoctoproject.org/g/yocto/message/65723
+> Mute This Topic: https://lists.yoctoproject.org/mt/114452095/1997914
+> Mute #nvidia-jetson-agx-orin:https://lists.yoctoproject.org/g/yocto/mutehashtag/nvidia-jetson-agx-orin
+> Mute #yocto:https://lists.yoctoproject.org/g/yocto/mutehashtag/yocto
 > Group Owner: yocto+owner@lists.yoctoproject.org
-> Unsubscribe: https://lists.yoctoproject.org/g/yocto/unsub [
-> JPEWhacker@gmail.com]
-> -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
->
->
+> Unsubscribe: https://lists.yoctoproject.org/g/yocto/unsub [raj.khem@gmail.com]
+> -=-=-=-=-=-=-=-=-=-=-=-
+> 
 
---000000000000913610063b2b306e
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr"><div dir=3D"ltr"><br></div><br><div class=3D"gmail_quote g=
-mail_quote_container"><div dir=3D"ltr" class=3D"gmail_attr">On Wed, Jul 30,=
- 2025 at 2:10=E2=80=AFPM kateryna.kostiuk via <a href=3D"http://lists.yocto=
-project.org">lists.yoctoproject.org</a> &lt;kateryna.kostiuk=3D<a href=3D"m=
-ailto:savoirfairelinux.com@lists.yoctoproject.org">savoirfairelinux.com@lis=
-ts.yoctoproject.org</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quot=
-e" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204)=
-;padding-left:1ex"><div>
-<p style=3D"color:rgb(0,0,0);font-style:normal;font-variant-caps:normal;fon=
-t-weight:400;letter-spacing:normal;text-align:start;text-indent:0px;text-tr=
-ansform:none;white-space:normal;word-spacing:0px;text-decoration:none">Hi,<=
-/p>
-<p style=3D"color:rgb(0,0,0);font-style:normal;font-variant-caps:normal;fon=
-t-weight:400;letter-spacing:normal;text-align:start;text-indent:0px;text-tr=
-ansform:none;white-space:normal;word-spacing:0px;text-decoration:none">=C2=
-=A0</p>
-<p style=3D"color:rgb(0,0,0);font-style:normal;font-variant-caps:normal;fon=
-t-weight:400;letter-spacing:normal;text-align:start;text-indent:0px;text-tr=
-ansform:none;white-space:normal;word-spacing:0px;text-decoration:none">I=E2=
-=80=99m using Yocto 5.2 with <span>INHERIT +=3D &quot;create-spdx&quot;</sp=
-an> to generate SPDX 3.0 files.</p>
-<p style=3D"color:rgb(0,0,0);font-style:normal;font-variant-caps:normal;fon=
-t-weight:400;letter-spacing:normal;text-align:start;text-indent:0px;text-tr=
-ansform:none;white-space:normal;word-spacing:0px;text-decoration:none">In e=
-arlier versions (SPDX 2), I used to get a <span>.spdx.tar.zst</span> archiv=
-e in <span>tmp/deploy/images/</span>, but now I only see a <span>.spdx.json=
- file.</span></p>
-<p style=3D"color:rgb(0,0,0);font-style:normal;font-variant-caps:normal;fon=
-t-weight:400;letter-spacing:normal;text-align:start;text-indent:0px;text-tr=
-ansform:none;white-space:normal;word-spacing:0px;text-decoration:none">Is t=
-hat the expected behavior for SPDX 3.0?</p></div></blockquote><div><br></di=
-v><div>Yes. For SPDX 3 we combine all of the SPDX output into a single docu=
-ment.</div><div>=C2=A0</div><blockquote class=3D"gmail_quote" style=3D"marg=
-in:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1e=
-x"><div>
-<p style=3D"color:rgb(0,0,0);font-style:normal;font-variant-caps:normal;fon=
-t-weight:400;letter-spacing:normal;text-align:start;text-indent:0px;text-tr=
-ansform:none;white-space:normal;word-spacing:0px;text-decoration:none">=C2=
-=A0</p>
-<p style=3D"color:rgb(0,0,0);font-style:normal;font-variant-caps:normal;fon=
-t-weight:400;letter-spacing:normal;text-align:start;text-indent:0px;text-tr=
-ansform:none;white-space:normal;word-spacing:0px;text-decoration:none">Than=
-ks,</p>
-<p style=3D"color:rgb(0,0,0);font-style:normal;font-variant-caps:normal;fon=
-t-weight:400;letter-spacing:normal;text-align:start;text-indent:0px;text-tr=
-ansform:none;white-space:normal;word-spacing:0px;text-decoration:none">Kate=
-ryna</p>
-</div>
-<br>
--=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-<br>
-Links: You receive all messages sent to this group.<br>
-View/Reply Online (#65725): <a href=3D"https://lists.yoctoproject.org/g/yoc=
-to/message/65725" rel=3D"noreferrer" target=3D"_blank">https://lists.yoctop=
-roject.org/g/yocto/message/65725</a><br>
-Mute This Topic: <a href=3D"https://lists.yoctoproject.org/mt/114455825/361=
-6693" rel=3D"noreferrer" target=3D"_blank">https://lists.yoctoproject.org/m=
-t/114455825/3616693</a><br>
-Group Owner: <a href=3D"mailto:yocto%2Bowner@lists.yoctoproject.org" target=
-=3D"_blank">yocto+owner@lists.yoctoproject.org</a><br>
-Unsubscribe: <a href=3D"https://lists.yoctoproject.org/g/yocto/unsub" rel=
-=3D"noreferrer" target=3D"_blank">https://lists.yoctoproject.org/g/yocto/un=
-sub</a> [<a href=3D"mailto:JPEWhacker@gmail.com" target=3D"_blank">JPEWhack=
-er@gmail.com</a>]<br>
--=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-<br>
-<br>
-</blockquote></div></div>
-
---000000000000913610063b2b306e--
 
