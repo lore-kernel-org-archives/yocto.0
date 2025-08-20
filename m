@@ -1,278 +1,114 @@
-Return-Path: <rybczynska@gmail.com>
+Return-Path: <mark.hatle@kernel.crashing.org>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id B872ACA0EE4
-	for <webhook@archiver.kernel.org>; Wed, 20 Aug 2025 12:35:31 +0000 (UTC)
-Received: from mail-pl1-f182.google.com (mail-pl1-f182.google.com [209.85.214.182])
- by mx.groups.io with SMTP id smtpd.web10.18563.1755693324566154887
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 15BD0CA0EDC
+	for <webhook@archiver.kernel.org>; Wed, 20 Aug 2025 13:19:12 +0000 (UTC)
+Received: from gate.crashing.org (gate.crashing.org [63.228.1.57])
+ by mx.groups.io with SMTP id smtpd.web10.19538.1755695947254332884
  for <yocto@lists.yoctoproject.org>;
- Wed, 20 Aug 2025 05:35:24 -0700
+ Wed, 20 Aug 2025 06:19:07 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20230601 header.b=Kad/AgmJ;
- spf=pass (domain: gmail.com, ip: 209.85.214.182, mailfrom: rybczynska@gmail.com)
-Received: by mail-pl1-f182.google.com with SMTP id d9443c01a7336-2445805aa2eso53240145ad.1
-        for <yocto@lists.yoctoproject.org>; Wed, 20 Aug 2025 05:35:24 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1755693324; x=1756298124; darn=lists.yoctoproject.org;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=ghETLDmyPYbBC57pgLW89HMZMzMexNySuSkviEjpf1Q=;
-        b=Kad/AgmJ0EatkbaxcaUFTFpaCKvmaYFqIAVeedqWdWxY10Cn2Hl4V/HN19d5zh4J44
-         dNL3hnUbLZiJWPvxd20GbceR0mzBwOxVE621bS75Z+SYaZzr9VGLmZ6LpWD0jqOmO4+X
-         bPpG4M1V7HIssBkPwYgoLJurq52DedtVDE0zQoZ4MhRlkNxWxmwmwXe8f4u7O7pnUBIR
-         K3mrN0y//CcYpZ+2NKO2/CTWctOakDSJlkVc5q87Y5WH96m3coFSulh8B8gePQaL5Cf3
-         FpQ4QRmMAhiXhc9cgamZxoEMezemTDYcd3CPVRALvgjFY034+ClorO/9ZchxvkHBwaF/
-         nC/g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1755693324; x=1756298124;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=ghETLDmyPYbBC57pgLW89HMZMzMexNySuSkviEjpf1Q=;
-        b=P5Z4IDTdZXs/PH88SCqg5EJoCPTT5TiPy8e50pxJpkrLj/MPuYrj4khucxv5KoVnUy
-         YWbQWSMv8asEm4s3quYRi9hMR5VLp9t9V1jngQLY3BrfnNxJ1OI+jiX1rxzmQU3A2ga6
-         Abt74TDZ3Y0E8NFrUotgRtubderL/kk5hxeh625gqRu4SIum2NnVlFOGHkXXa6aaFLev
-         4OjSve4x79BQb/Ttr+AklxYfjj8/mJ/rH9KFczKDpADd7yoEz+vKjNorxBNAP8n9pZIW
-         nZ8Ekj5ki+1uA8d7mNbigqmudY0f5bIKpZv+f7AiqguTX1zNb56+Hw5TMWyugYXzIUzr
-         7/Bg==
-X-Forwarded-Encrypted: i=1; AJvYcCXbsbQC7kKRsU5M3Z1547vvKf1dcfdafIAKDB4693QmzfBKj0a/eCL4FDuL9oo9rZbPh1P0cQ==@lists.yoctoproject.org
-X-Gm-Message-State: AOJu0YzyRITL4ryFAA51xgoclg9LG1HeHliTDdQoG+tX27XWWPrGZs+K
-	NkAq1w0p0VJvJIMEQ86rzPqShsyXcx+vWmTQ+GvYPMrO4LGOJGFfeq6JlRXxnNY17/IM5E6FBMt
-	Qxlpab+OGo9yYbZqL9ROBJDe+jRmrKGc=
-X-Gm-Gg: ASbGnctPFUjROFozsZaOUk8X+GAA64jt6+k2xtZAjUd1oU2H4Jz+eir8fK7GyOAAt7r
-	GES/nwp6DO50akw2+w0xdIAZlrkiSFeZG1jgT2uU0DUsN9GczrUyqNiJI7a1wEJR4RnBPtP8hou
-	94I7HWOnjgXwHdzPS3bqidXJy0bVh9f/TRkvcdGIgM9GFzWPwUe7oblMszDuUItFOaKo5PVOiLy
-	XtCl+A=
-X-Google-Smtp-Source: AGHT+IGBl1SPykVANtcEPBPkfyDECNUXGUHU0eRdLaq8FWuJLXrh3UI7Rk9LveGPwpzM76nkyA/yYjfDpvwrz9Gyevo=
-X-Received: by 2002:a17:902:db0b:b0:242:460f:e4a2 with SMTP id
- d9443c01a7336-245ef14d43fmr38814775ad.23.1755693323778; Wed, 20 Aug 2025
- 05:35:23 -0700 (PDT)
+ dkim=none (message not signed); spf=pass (domain: kernel.crashing.org, ip: 63.228.1.57, mailfrom: mark.hatle@kernel.crashing.org)
+Received: from kernel.crashing.org (70-99-78-136.nuveramail.net [70.99.78.136] (may be forged))
+	by gate.crashing.org (8.18.1/8.18.1/Debian-2) with ESMTP id 57KDJ5Wu2815303;
+	Wed, 20 Aug 2025 08:19:05 -0500
+Received: from [192.168.2.99] ([192.168.2.99])
+	by kernel.crashing.org (8.14.7/8.14.7) with ESMTP id 57KDJ3UM013041;
+	Wed, 20 Aug 2025 08:19:04 -0500
+Message-ID: <28bea56e-968d-476a-8c92-ee38689ac41e@kernel.crashing.org>
+Date: Wed, 20 Aug 2025 08:19:03 -0500
 MIME-Version: 1.0
-References: <CAApg2=TZnJGDvBN8LBEoVbRcTJ6k1fGdOXVzss3bQmjZH4WknA@mail.gmail.com>
- <63a28aea-58c9-453b-9b03-3df29118044b@ibeeto.com> <CADfgfoZKuU2uMcPZFO3nMrXYJQMA66qL_b3O-1LJhWVdq13sQA@mail.gmail.com>
- <5430a536-ff40-43c3-a2f0-5df8f91d5e0c@balister.org>
-In-Reply-To: <5430a536-ff40-43c3-a2f0-5df8f91d5e0c@balister.org>
-From: Marta Rybczynska <rybczynska@gmail.com>
-Date: Wed, 20 Aug 2025 14:35:11 +0200
-X-Gm-Features: Ac12FXyDI4WtRnXI92Zp0X0zRnWakYnK2xavk9fYW0WqZI-rRJl0FFIJFPPDiQ0
-Message-ID: <CAApg2=SzTW70zZ7qbSON1=AA_Hn34r6K8vWKwiB2XFj8r35u5Q@mail.gmail.com>
-Subject: Re: [OE-core] [yocto] Renaming the yocto-security mailing list
-To: Philip Balister <philip@balister.org>
-Cc: mhalstead@linuxfoundation.org, yocto@lists.yoctoproject.org, 
-	rudolf.streif@ibeeto.com, yocto-security@yoctoproject.org, 
-	openembedded-core <openembedded-core@lists.openembedded.org>
-Content-Type: multipart/alternative; boundary="000000000000e5ffcd063ccb3462"
+User-Agent: Mozilla Thunderbird
+Subject: Re: [yocto] defining standard build targets in layer metadata
+Content-Language: en-US
+To: yocto@lists.yoctoproject.org, alex.kanavin@gmail.com,
+        openembedded-architecture <openembedded-architecture@lists.openembedded.org>
+References: <CANNYZj8mvVaL1+VFCgShCxLyPHEEuwRZm-jo4z4o0R+yqYfM=g@mail.gmail.com>
+From: Mark Hatle <mark.hatle@kernel.crashing.org>
+In-Reply-To: <CANNYZj8mvVaL1+VFCgShCxLyPHEEuwRZm-jo4z4o0R+yqYfM=g@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Wed, 20 Aug 2025 12:35:31 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/65776
+ <yocto@lists.yoctoproject.org>; Wed, 20 Aug 2025 13:19:12 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/65777
 
---000000000000e5ffcd063ccb3462
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
 
-This is an excellent question. We do want new discussions around security
-topics, so this moderation should be efficient.
 
-Kind regards,
-Marta
+On 8/20/25 4:42 AM, Alexander Kanavin via lists.yoctoproject.org wrote:
+> Hello all,
+> 
+> working on bitbake-setup made me consider that a true end-to-end
+> configuration tool should also know what to build, not only what to
+> set up.
+> 
+> Earlier bitbake-setup prototypes allowed defining "oe-targets":[...]
+> in its configuration files, but I later on realized this doesn't scale
+> and isn't flexible enough, and isn't in the right place to begin with.
+> So I took it out in the latest patchset.
+> 
+> So here's a quick, not-well-thought-out idea:
+> 
+> BB_TARGETS = "build:'core-image-minimal' test:'-c testmage core-image-minimal' "
+> 
+> defined somewhere in a layer (e.g. conf/distro/poky.conf or in a fragment).
+> 
+> And then one would be able to run
+> 
+> bitbake build
+> bitbake test
+> bitbake flash
+> bitbake deploy
+> etc.
+> 
+> which would standardize not only setting up a build but also running
+> it. The particular set of generic target names and their values could
+> be defined differently, but the basic idea would be similar.
+> 
+> Thoughts?
 
-On Wed, Aug 20, 2025 at 11:53=E2=80=AFAM Philip Balister <philip@balister.o=
-rg>
-wrote:
+In my experience this teaches an in-experienced user that there is only one 
+target (build), and if they want to customize, they edit their local.conf with 
+IMAGE_INSTALL:append, or add bbappends to the one target.
 
-> Michael,
->
-> Who are the moderators?
->
-> Philip
->
-> On 8/19/25 6:41 PM, Michael Halstead via lists.openembedded.org wrote:
-> > I've updated yocto-security@lists.yoctoproject.org to require
-> > moderator approval for new topics. This should prevent private
-> > security reports from being posted publicly by mistake.
-> > security@yoctoproject.org is not a private list but instead forwards
-> > email received to members of the security team.
-> >
-> > I believe this solves the issue without requiring changes to the list
-> > name or documentation.
-> >
-> > On Tue, Aug 19, 2025 at 2:50=E2=80=AFPM Rudolf J Streif via
-> > lists.yoctoproject.org
-> > <rudolf.streif=3Dibeeto.com@lists.yoctoproject.org> wrote:
-> >>
-> >> I don't any specifics about the incident. I suppose security-relevant
-> >> information was submitted to a public mailing list. A private mailing
-> >> list may help but in the end it's security-by-obfuscation. A mailing
-> >> list for submitting CVEs is not the best choice imho. A secure web for=
-m
-> >> should be better. We have a CVE Status page
-> >> (https://wiki.yoctoproject.org/wiki/CVE_Status) that lists the current
-> >> acknowledged CVEs but of course reported CVEs should go through an
-> >> investigative filter and potentially sanitizing first before put on th=
-at
-> >> page.
-> >>
-> >> :rjs
-> >>
-> >> On 8/19/25 8:08 AM, Marta Rybczynska via lists.yoctoproject.org wrote:
-> >>> Hello all,
-> >>> yesterday's incident confirms that yocto-security has a confusing nam=
-e
-> >>> that might cause confidential reports to arrive there.
-> >>>
-> >>> What about renaming the list to yocto-security-discussion or similar?
-> >>> And eventually redirect yocto-security to the private security list.
-> >>>
-> >>> My reasoning: we shouldn't rename the private list as people might us=
-e
-> >>> old versions of documentation and we want them to address the correct
-> >>> private list when needed. It is less critical if a message expected
-> >>> for the public list reaches the private one, than otherwise.
-> >>>
-> >>> What do you think? What is the process to do the change?
-> >>>
-> >>> Kind regards,
-> >>> Marta
-> >>>
-> >>>
-> >>>
-> >>
-> >>
-> >>
-> >
-> >
-> >
-> >
-> > -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
-> > Links: You receive all messages sent to this group.
-> > View/Reply Online (#222151):
-> https://lists.openembedded.org/g/openembedded-core/message/222151
-> > Mute This Topic: https://lists.openembedded.org/mt/114790185/384425
-> > Group Owner: openembedded-core+owner@lists.openembedded.org
-> > Unsubscribe: https://lists.openembedded.org/g/openembedded-core/unsub [
-> philip@balister.org]
-> > -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
-> >
->
->
+This is unfortunately really dangerous and easy for people to step into.  It's a 
+big reason why we recently deprecated our wrappers and we're pushing people 
+(internally and externally) to define their own image recipes for what they're 
+trying to do, instead of continuously hacking on whatever the default for the 
+wrappers (configuration) was.
 
---000000000000e5ffcd063ccb3462
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+I do understand the utility of this, but in practice it's just been bad overall. 
+  It would be better, IMHO, to allow a layer or configuration or whatever to say 
+"we suggest you use one of the following pre-written targets" and then provide 
+the user a list of suggested targets, but force the user to issue
 
-<div dir=3D"ltr"><div>This is an excellent question. We do want new discuss=
-ions around security topics, so this moderation should be efficient.</div><=
-div><br></div><div>Kind regards,</div><div>Marta<br></div></div><br><div cl=
-ass=3D"gmail_quote gmail_quote_container"><div dir=3D"ltr" class=3D"gmail_a=
-ttr">On Wed, Aug 20, 2025 at 11:53=E2=80=AFAM Philip Balister &lt;<a href=
-=3D"mailto:philip@balister.org">philip@balister.org</a>&gt; wrote:<br></div=
-><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border=
--left:1px solid rgb(204,204,204);padding-left:1ex">Michael,<br>
-<br>
-Who are the moderators?<br>
-<br>
-Philip<br>
-<br>
-On 8/19/25 6:41 PM, Michael Halstead via <a href=3D"http://lists.openembedd=
-ed.org" rel=3D"noreferrer" target=3D"_blank">lists.openembedded.org</a> wro=
-te:<br>
-&gt; I&#39;ve updated <a href=3D"mailto:yocto-security@lists.yoctoproject.o=
-rg" target=3D"_blank">yocto-security@lists.yoctoproject.org</a> to require<=
-br>
-&gt; moderator approval for new topics. This should prevent private<br>
-&gt; security reports from being posted publicly by mistake.<br>
-&gt; <a href=3D"mailto:security@yoctoproject.org" target=3D"_blank">securit=
-y@yoctoproject.org</a> is not a private list but instead forwards<br>
-&gt; email received to members of the security team.<br>
-&gt; <br>
-&gt; I believe this solves the issue without requiring changes to the list<=
-br>
-&gt; name or documentation.<br>
-&gt; <br>
-&gt; On Tue, Aug 19, 2025 at 2:50=E2=80=AFPM Rudolf J Streif via<br>
-&gt; <a href=3D"http://lists.yoctoproject.org" rel=3D"noreferrer" target=3D=
-"_blank">lists.yoctoproject.org</a><br>
-&gt; &lt;rudolf.streif=3D<a href=3D"mailto:ibeeto.com@lists.yoctoproject.or=
-g" target=3D"_blank">ibeeto.com@lists.yoctoproject.org</a>&gt; wrote:<br>
-&gt;&gt;<br>
-&gt;&gt; I don&#39;t any specifics about the incident. I suppose security-r=
-elevant<br>
-&gt;&gt; information was submitted to a public mailing list. A private mail=
-ing<br>
-&gt;&gt; list may help but in the end it&#39;s security-by-obfuscation. A m=
-ailing<br>
-&gt;&gt; list for submitting CVEs is not the best choice imho. A secure web=
- form<br>
-&gt;&gt; should be better. We have a CVE Status page<br>
-&gt;&gt; (<a href=3D"https://wiki.yoctoproject.org/wiki/CVE_Status" rel=3D"=
-noreferrer" target=3D"_blank">https://wiki.yoctoproject.org/wiki/CVE_Status=
-</a>) that lists the current<br>
-&gt;&gt; acknowledged CVEs but of course reported CVEs should go through an=
-<br>
-&gt;&gt; investigative filter and potentially sanitizing first before put o=
-n that<br>
-&gt;&gt; page.<br>
-&gt;&gt;<br>
-&gt;&gt; :rjs<br>
-&gt;&gt;<br>
-&gt;&gt; On 8/19/25 8:08 AM, Marta Rybczynska via <a href=3D"http://lists.y=
-octoproject.org" rel=3D"noreferrer" target=3D"_blank">lists.yoctoproject.or=
-g</a> wrote:<br>
-&gt;&gt;&gt; Hello all,<br>
-&gt;&gt;&gt; yesterday&#39;s incident confirms that yocto-security has a co=
-nfusing name<br>
-&gt;&gt;&gt; that might cause confidential reports to arrive there.<br>
-&gt;&gt;&gt;<br>
-&gt;&gt;&gt; What about renaming the list to yocto-security-discussion or s=
-imilar?<br>
-&gt;&gt;&gt; And eventually redirect yocto-security to the private security=
- list.<br>
-&gt;&gt;&gt;<br>
-&gt;&gt;&gt; My reasoning: we shouldn&#39;t rename the private list as peop=
-le might use<br>
-&gt;&gt;&gt; old versions of documentation and we want them to address the =
-correct<br>
-&gt;&gt;&gt; private list when needed. It is less critical if a message exp=
-ected<br>
-&gt;&gt;&gt; for the public list reaches the private one, than otherwise.<b=
-r>
-&gt;&gt;&gt;<br>
-&gt;&gt;&gt; What do you think? What is the process to do the change?<br>
-&gt;&gt;&gt;<br>
-&gt;&gt;&gt; Kind regards,<br>
-&gt;&gt;&gt; Marta<br>
-&gt;&gt;&gt;<br>
-&gt;&gt;&gt;<br>
-&gt;&gt;&gt;<br>
-&gt;&gt;<br>
-&gt;&gt;<br>
-&gt;&gt;<br>
-&gt; <br>
-&gt; <br>
-&gt; <br>
-&gt; <br>
-&gt; -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-<br>
-&gt; Links: You receive all messages sent to this group.<br>
-&gt; View/Reply Online (#222151): <a href=3D"https://lists.openembedded.org=
-/g/openembedded-core/message/222151" rel=3D"noreferrer" target=3D"_blank">h=
-ttps://lists.openembedded.org/g/openembedded-core/message/222151</a><br>
-&gt; Mute This Topic: <a href=3D"https://lists.openembedded.org/mt/11479018=
-5/384425" rel=3D"noreferrer" target=3D"_blank">https://lists.openembedded.o=
-rg/mt/114790185/384425</a><br>
-&gt; Group Owner: <a href=3D"mailto:openembedded-core%2Bowner@lists.openemb=
-edded.org" target=3D"_blank">openembedded-core+owner@lists.openembedded.org=
-</a><br>
-&gt; Unsubscribe: <a href=3D"https://lists.openembedded.org/g/openembedded-=
-core/unsub" rel=3D"noreferrer" target=3D"_blank">https://lists.openembedded=
-.org/g/openembedded-core/unsub</a> [<a href=3D"mailto:philip@balister.org" =
-target=3D"_blank">philip@balister.org</a>]<br>
-&gt; -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-<br>
-&gt; <br>
-<br>
-</blockquote></div>
+bitbake <target>
 
---000000000000e5ffcd063ccb3462--
+
+I've always wondered if there was a way to do a more 'dynamic' conf-notes like 
+file.  So when someone runs the equivalent of oe-init-build-env, it can give 
+them notes that were provided by the layers that are part of their project. 
+Everything from machines to images to configurations they might care about. 
+(Obviously we don't want to write a book of configuration here, but especially 
+in distribution layers, I've definitely wanted to give the user some guidance.)
+
+The Wind River configuration mechanism had a way to inject info and warnings as 
+part of the generated configuration for this reason.
+
+--Mark
+
+> Alex
+> 
+> 
+> 
+> -=-=-=-=-=-=-=-=-=-=-=-
+> Links: You receive all messages sent to this group.
+> View/Reply Online (#65774): https://lists.yoctoproject.org/g/yocto/message/65774
+> Mute This Topic: https://lists.yoctoproject.org/mt/114796592/3616948
+> Group Owner: yocto+owner@lists.yoctoproject.org
+> Unsubscribe: https://lists.yoctoproject.org/g/yocto/unsub [mark.hatle@kernel.crashing.org]
+> -=-=-=-=-=-=-=-=-=-=-=-
+> 
 
