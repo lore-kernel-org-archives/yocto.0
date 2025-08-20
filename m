@@ -1,92 +1,96 @@
-Return-Path: <samuli.piippo@gmail.com>
+Return-Path: <alex.kanavin@gmail.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id D0AADCA0EED
-	for <webhook@archiver.kernel.org>; Wed, 20 Aug 2025 06:46:08 +0000 (UTC)
-Received: from mail-lj1-f176.google.com (mail-lj1-f176.google.com [209.85.208.176])
- by mx.groups.io with SMTP id smtpd.web10.13966.1755672356369912551
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 090EDCA0EED
+	for <webhook@archiver.kernel.org>; Wed, 20 Aug 2025 09:42:51 +0000 (UTC)
+Received: from mail-qv1-f43.google.com (mail-qv1-f43.google.com [209.85.219.43])
+ by mx.groups.io with SMTP id smtpd.web11.16131.1755682967896905953
  for <yocto@lists.yoctoproject.org>;
- Tue, 19 Aug 2025 23:45:56 -0700
+ Wed, 20 Aug 2025 02:42:48 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20230601 header.b=W5CmExBR;
- spf=pass (domain: gmail.com, ip: 209.85.208.176, mailfrom: samuli.piippo@gmail.com)
-Received: by mail-lj1-f176.google.com with SMTP id 38308e7fff4ca-3352212fefdso20322251fa.3
-        for <yocto@lists.yoctoproject.org>; Tue, 19 Aug 2025 23:45:56 -0700 (PDT)
+ dkim=pass header.i=@gmail.com header.s=20230601 header.b=W54a17iy;
+ spf=pass (domain: gmail.com, ip: 209.85.219.43, mailfrom: alex.kanavin@gmail.com)
+Received: by mail-qv1-f43.google.com with SMTP id 6a1803df08f44-70ba7aa136fso38339656d6.1
+        for <yocto@lists.yoctoproject.org>; Wed, 20 Aug 2025 02:42:47 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1755672354; x=1756277154; darn=lists.yoctoproject.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=yhzMLyNd/KJVt6Ueoamok4pj7WO5skNJSQUtNvYaqHg=;
-        b=W5CmExBRUwjDErYyXziic7JOMXp405wRwkwVMoyYH3f6aPkgMjGDeZmd+3h7zrLbyZ
-         /FAZKY3ljP0hvMe861m6CdVQi4NA1wm4wnkAhuY6IuFL13S5L+U+9oP3bGbgKBe0y34i
-         MkS+98VdT1jMUJfxfNPPDsmWfuBqZP8jtOIloZ0DPFzKkX+MHuV6fo21IaPj21sdPoc1
-         EcJwAm8qNIeVMsy3RL3qS+vra/lWozb686EUFIvLeKr2tKw1bYDy7+Wxe79ZZMuL2dM+
-         5DTM34Xf0de2u/lRh03z3kEUH0UQ1nnon7E42Q5g7fXo8wIuBn3Fd/vPHfrL4AptPhqB
-         ZNjw==
+        d=gmail.com; s=20230601; t=1755682967; x=1756287767; darn=lists.yoctoproject.org;
+        h=cc:to:subject:message-id:date:from:mime-version:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=kECFNJFsVc1ZqOyRPYdhtscXYi3FIrn8zakO0vOc1EU=;
+        b=W54a17iy/7i7r9SJR/V4idN/JLB79GdZNGPlkLfV5LZKXaT476dVS8DU7eBm4jCfiD
+         6krR34jOzK97mvQVJWPq9y6o6EYK/1isN8Y+u+H75xZPHcc8TfTGvWDorqgwvtDlHX2A
+         rHoUjTIOQotu4JUnUUu/f5UBGImHZzfqQgO2kipdP50q+HFTd1vmHonJwfkoDcIvK79N
+         00SbU53dFdBWJJE3UggiTbxMvSYpVBUvDIv6UdVytL9f0Czev311CAKd3lOiXziS8jeE
+         b4ssteDRn6w8o4u2WTdENpYxSOtYt6QYPHEjNe80sXUS9brqaxXww7bLwqe8cwDARxL9
+         MqnQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1755672354; x=1756277154;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=yhzMLyNd/KJVt6Ueoamok4pj7WO5skNJSQUtNvYaqHg=;
-        b=irABVU/3RMsUsAqKAf3YRu8bOhZHJ/TPNNDwTXObvicQETcxpfVeBt99XuNSDslVAn
-         zvtO2SMnFlZKzcjJjJNSyj0ZJVjacn834U2QRlB9BQRY7gbow3xCkRJwQwRxRLt2M9Si
-         4S3NGEtwGMbelDl6jD2/bIPLX9u8dvpcdBHWIKR9wStkD3aQShO6O/iPodE8GFi/jf6b
-         Os0J+8IarGoAR4DRGbZCsp7MAiCFluzwaeWIjmBsFWD5CAUfhIjr9m5rC2CTmGXmxRSN
-         1AR+mJ3wzHiJ9vtd/n2ieovrHuHOorf9IpaIjLER0Z44BLxlZU65aCJ1GF48bDXE+gO8
-         7Hvg==
-X-Gm-Message-State: AOJu0YzbGOv5ldmVijfhN+MCnu8jU8rZYORadTnT9oRtPyQCsopJkGMu
-	pwpz60DFXlAnnxO6qzfQc6hq4hH1KubIk3CDLkJ+7alpeo0NxpRxj6UhS7zp/g==
-X-Gm-Gg: ASbGnct/AKYrcHoOD8LdP3pXvMtmeW1DMDkvrEJzUlX0Wzk0rLEBLOqS8lRkkNU6gdj
-	zHtXb8+O5Kqj/Ls8HNgXaEc6FbG0h18q8wUNInokeBSfbA7e9Ksuk68Uk0yiaQiZV4fjqM7hnGx
-	5kScWEobxU1RExDK1qZYUxG89WMoEXE3bH7851usY3JPFizluGeCFlEuB0LT2+0SubYc5iwUu7K
-	hYlbA6nmxKLxmdycklRGmY+BcrnspkdybwH2AaNPOcCQKGLN/OKEpUwbXd9w1nbFmJgncLxkS9U
-	jukJ1ymmRSMB6au4rkos9LanozrmWPcj0kulz+U7YmTsz+JzzBes8rtlW1qtlk+LNgwm2dzwmsA
-	AFtgaFSxSaOTAkPlXt/gBobdnNX8duyw=
-X-Google-Smtp-Source: AGHT+IGFjq5de1Fthl3Lh/YYitS5Ge2eCmocpKYVMTjFbBpgbKleEiA/clLkaC/+t/4gCEsJn4ZLQQ==
-X-Received: by 2002:a05:651c:3254:20b0:32b:7faa:1327 with SMTP id 38308e7fff4ca-3353bd18a81mr3026241fa.15.1755672353895;
-        Tue, 19 Aug 2025 23:45:53 -0700 (PDT)
-Received: from dcbuildsrv.ci.qt.io ([192.89.120.62])
-        by smtp.gmail.com with ESMTPSA id 38308e7fff4ca-3340a41e242sm26462471fa.8.2025.08.19.23.45.53
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 19 Aug 2025 23:45:53 -0700 (PDT)
-From: Samuli Piippo <samuli.piippo@gmail.com>
-X-Google-Original-From: Samuli Piippo <samuli.piippo@qt.io>
-To: yocto@lists.yoctoproject.org
-Cc: jpewhacker@gmail.com
-Subject: [meta-mingw] [PATCH] mingw-w64: use correct path to license file
-Date: Wed, 20 Aug 2025 06:45:09 +0000
-Message-ID: <20250820064509.855778-1-samuli.piippo@qt.io>
-X-Mailer: git-send-email 2.43.0
+        d=1e100.net; s=20230601; t=1755682967; x=1756287767;
+        h=cc:to:subject:message-id:date:from:mime-version:x-gm-message-state
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=kECFNJFsVc1ZqOyRPYdhtscXYi3FIrn8zakO0vOc1EU=;
+        b=v1QTFlZ8qhDSLwCfmnaLO/biHx7ZBy6CzFAOd3cu94QbjFSMAKIpuO6ucyhliQXPbQ
+         4dJ9Q6n+AO3J52doRHF8BXYYVWJzgp1ajCr2BlVqUk7LofZIL8nNBfcnNmM6u8wOkuiq
+         WwJgYJvXyxXAiLmYAjqccAMtn5QMIHxNXNDCkxfq//5g1NP2uH+UrLdMlY7/l3kp4VB9
+         Ogd0wEO8awQo+jJ7Hi131I/YkJzX70j5Zcq5Ug0XTDgv4mELcU/ULmGL4+bbQuSBYk28
+         jMOcx/D1mqPC89A3Yx5MAmrI76lfx++zXAy1sbtuVMZfYoTA7c0SKzDDj3vw4HMlvgdV
+         Z5rw==
+X-Gm-Message-State: AOJu0YwBgPdTrTli7L9zxSXqx6izxLb29eqsv3jHtlUs9/vo1FgHboRm
+	rw4AIsRONs/E89rN4//5gPBOxxmw2cXbb9y9V5MndGQqNsy0D8VMyBgOcUKQmyLktwCpsbUGy0C
+	Vl24uGnCbiBF4hz9wn/d+2qGD71CseYw=
+X-Gm-Gg: ASbGncuMZLNPLRiXGAIxF69Kf6f4u2mi80KnFp78NRY3XYxrie4qE+q3SLZNRh/2vO1
+	UPv5zqp1VFPB1lGd0tbS6r8R7Ri6qgH0Y+IuiQVrMZv4JQbxH3uyO7XKbs0Mlf7TZ5pbAef0QW9
+	DoAivrDQIsP0R0eXlXPmG32xiU4pOAALN9vdEVWyygd9h3nekUKdDfL37p1IEhR1H4Lb4Ymq7dG
+	UoNVp2Sju9RqeI6h8N8dkIpnBGHFxxw5bG53IAYiw==
+X-Google-Smtp-Source: AGHT+IFm+hhK+GeYXou6RoiUhfL0jpgLkfhKf83u+k3E7uHycIcwN8YqGXGOsmslh1q82Za6HN1PBW66f4xWlmL4IuA=
+X-Received: by 2002:a05:6214:cac:b0:70b:af81:690a with SMTP id
+ 6a1803df08f44-70d76f3a3abmr21427936d6.5.1755682966771; Wed, 20 Aug 2025
+ 02:42:46 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+From: Alexander Kanavin <alex.kanavin@gmail.com>
+Date: Wed, 20 Aug 2025 11:42:35 +0200
+X-Gm-Features: Ac12FXwdQZGKnNsguTLBWWoA5oWgD-omjvYrNwpHfOhcPlyAeAwieZ3wCW11mnA
+Message-ID: <CANNYZj8mvVaL1+VFCgShCxLyPHEEuwRZm-jo4z4o0R+yqYfM=g@mail.gmail.com>
+Subject: defining standard build targets in layer metadata
+To: openembedded-architecture <openembedded-architecture@lists.openembedded.org>
+Cc: Yocto-mailing-list <yocto@lists.yoctoproject.org>
+Content-Type: text/plain; charset="UTF-8"
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Wed, 20 Aug 2025 06:46:08 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/65773
+ <yocto@lists.yoctoproject.org>; Wed, 20 Aug 2025 09:42:51 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/65774
 
-Amend b7ac9777ad0c4512f1a63aa6bec4ecedd91783e1 and use UNPACKDIR
-also for the license file.
+Hello all,
 
-Signed-off-by: Samuli Piippo <samuli.piippo@qt.io>
----
- recipes-devtools/mingw-w64/mingw-w64.inc | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+working on bitbake-setup made me consider that a true end-to-end
+configuration tool should also know what to build, not only what to
+set up.
 
-diff --git a/recipes-devtools/mingw-w64/mingw-w64.inc b/recipes-devtools/mingw-w64/mingw-w64.inc
-index 97315f4..a24e96c 100644
---- a/recipes-devtools/mingw-w64/mingw-w64.inc
-+++ b/recipes-devtools/mingw-w64/mingw-w64.inc
-@@ -1,5 +1,5 @@
- LICENSE = "ZPL-2.1"
--LIC_FILES_CHKSUM = "file://${WORKDIR}/mingw-w64-v${PV}/COPYING;md5=bb936f0e04d8f1e19ad545100cee9654"
-+LIC_FILES_CHKSUM = "file://${UNPACKDIR}/mingw-w64-v${PV}/COPYING;md5=bb936f0e04d8f1e19ad545100cee9654"
- 
- COMPATIBLE_HOST = ".*-mingw.*"
- 
--- 
-2.43.0
+Earlier bitbake-setup prototypes allowed defining "oe-targets":[...]
+in its configuration files, but I later on realized this doesn't scale
+and isn't flexible enough, and isn't in the right place to begin with.
+So I took it out in the latest patchset.
 
+So here's a quick, not-well-thought-out idea:
+
+BB_TARGETS = "build:'core-image-minimal' test:'-c testmage core-image-minimal' "
+
+defined somewhere in a layer (e.g. conf/distro/poky.conf or in a fragment).
+
+And then one would be able to run
+
+bitbake build
+bitbake test
+bitbake flash
+bitbake deploy
+etc.
+
+which would standardize not only setting up a build but also running
+it. The particular set of generic target names and their values could
+be defined differently, but the basic idea would be similar.
+
+Thoughts?
+
+Alex
 
