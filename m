@@ -1,124 +1,97 @@
-Return-Path: <steve@sakoman.com>
+Return-Path: <ross.burton@arm.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id BFAE5CA0EE4
-	for <webhook@archiver.kernel.org>; Sat, 23 Aug 2025 13:32:30 +0000 (UTC)
-Received: from mail-yw1-f170.google.com (mail-yw1-f170.google.com [209.85.128.170])
- by mx.groups.io with SMTP id smtpd.web11.6577.1755955947881806814
+	by smtp.lore.kernel.org (Postfix) with ESMTP id E636ACA0EFA
+	for <webhook@archiver.kernel.org>; Sat, 23 Aug 2025 19:14:25 +0000 (UTC)
+Received: from mail-qt1-f175.google.com (mail-qt1-f175.google.com [209.85.160.175])
+ by mx.groups.io with SMTP id smtpd.web11.3148.1755975922285584582
  for <yocto@lists.yoctoproject.org>;
- Sat, 23 Aug 2025 06:32:28 -0700
+ Sat, 23 Aug 2025 12:05:22 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@sakoman-com.20230601.gappssmtp.com header.s=20230601 header.b=n5Lzt+r0;
- spf=softfail (domain: sakoman.com, ip: 209.85.128.170, mailfrom: steve@sakoman.com)
-Received: by mail-yw1-f170.google.com with SMTP id 00721157ae682-71d60157747so24956177b3.0
-        for <yocto@lists.yoctoproject.org>; Sat, 23 Aug 2025 06:32:27 -0700 (PDT)
+ dkim=pass header.i=@underview.tech header.s=google header.b=ZoAc1qOJ;
+ spf=pass (domain: underview.tech, ip: 209.85.160.175, mailfrom: vince@underview.tech)
+Received: by mail-qt1-f175.google.com with SMTP id d75a77b69052e-4b297962b20so29547531cf.2
+        for <yocto@lists.yoctoproject.org>; Sat, 23 Aug 2025 12:05:22 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=sakoman-com.20230601.gappssmtp.com; s=20230601; t=1755955947; x=1756560747; darn=lists.yoctoproject.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=VZ7l/na+5/QTVQI8T4QZdVMpk71yyp8/Esc+h1GTHYk=;
-        b=n5Lzt+r0RU4mLXowQ3FqmFb9twxMcsdBGVPAbFPvCHT3pBIPcilQasA46zqoYFw5R9
-         P5N3YQNYRlHOyeP8LS7KD2wSXRTyqjk64FzID/bVZ88aiDKl36ChVY7ALJStC6Gsjcmk
-         /I5bweER7UlGHZB3QIEToxQSL/4wZ9SvsYs3xm6ww68izBgPxekGMYoFqCXvfUwE9BAg
-         b5emRFIjT58LZHx/OXRScYkO5gcZTHBAPvLC7OgsKZHA5Yfs0bfQ8jbZQM5OvJQ4L4gh
-         RwmpLVLeUo6FW2cqj1cX1BKpZVmvfr+azt3SZAfrBHDlXZTLBWV8DxlWqKkVTTRtYiTg
-         gZRg==
+        d=underview.tech; s=google; t=1755975921; x=1756580721; darn=lists.yoctoproject.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=oJvJvesU3+EVRnT5NshwQiqeZ8+Y26frPXmDXW2Xsr4=;
+        b=ZoAc1qOJiYahgVM2BF/wr0cCY6I/rb0ui/Sn+M9qimp5loUPs8TjwT3gtDDDp/P/5n
+         LZbfPn01qnvRgnEAUw1kBN0/F89sqd3eLE+SZjHwJuv49c/nCyc/LliCvNACZNuYHnjg
+         ANLQG4tvfyACQid4i+xgL37ay/bzYRngtr1aAwmEC9038UiFsv02yDrKUi0GQ/qVfiyR
+         iMgLDkPNRmzOuq0CbXkdmxBBqubBAAaGmZNvQqXWgrUa9J/FSlwLdruhrXzVCUfll8PZ
+         chWCfZGI4L+lx0aydsdDV4aYqeLrYQ2tL+Zgip2SDs3/Q7P5p/KsIdfuxgOsUgyNs8Qu
+         1I4g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1755955947; x=1756560747;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=VZ7l/na+5/QTVQI8T4QZdVMpk71yyp8/Esc+h1GTHYk=;
-        b=Y/TvsULG3z8BclQq/wnss4Wo9xueKNP9fETbLOUagueKUXeL/yfa/giXo/mApjkqbW
-         8BONntSJLIaeUsqXga7LUPCKerZBxuZYrJ62htMNQk5+9ji1t0d8d7mmrO2CHdub75kg
-         PQNyyW3SQNT8xsSwa2zCeGs5O+p8c+iqrPZzuoF/hYUjJsycOB85K0uVcVPOPYmtRJMq
-         3BIDnZzTcMqsq1y3eeb8CRiueZcAgaaNPUC+M0VoXhpoLe+FoKauTo+3e2PjUq6uPSUT
-         LdnTJ7hOnZYgDGVpBTd9WTw+Z2B5t1df2uuSNMJAoUWSdELxxjD/lTYP89WGR9KYYEcR
-         W5eA==
-X-Gm-Message-State: AOJu0YyFWq4U8u2RwXrn2gWuOHj0z9ecYEAST9dIwuhSiWOAPwztdo0n
-	ph5T3RXGIs4jNoJx0UczxcVC840BdGUfJzrk/uMI7FIMSA0jGp27fGFBcKpKNV8f8Lp/Jpma6Jb
-	Kyrz4ETH9jqm5T6wKxBHuftd5F3vuibFaKTQ4N0++5/j9L5JK9Wzh
-X-Gm-Gg: ASbGncvMdk9qjlxvkdjYED3yBI77XaNieOE0NjrpgepDfldPWFOk8oxrE3OpaWyxyAE
-	AOb/ewTaWlDTMPAnsQOVtyWvKU3TlW7XsrPJMN1qaajqNNc8UdC3rf007SZ/0JPNHhjj2eNAZ2x
-	hN2wxnvZRWDCXthh+/dFiAhh9P+l/vRKZ1sn6q3u+YA84XA9+MnGOq4xgNn9l7Xc4RKttVMgfCZ
-	xlLcI52z4M6YCc+k+YxNQGRUinnxLtIW+llzRE=
-X-Google-Smtp-Source: AGHT+IG5YdJY7k5qUF3kQNH6UOxJnfdv5pVzy5sS8tePXVO01xaLca2M1KakU3Ym/TQSVy2XBrmHdqxBxTPiYNu7UDE=
-X-Received: by 2002:a05:690c:6f92:b0:71d:5fb3:8356 with SMTP id
- 00721157ae682-71fdc2df2famr69433397b3.16.1755955946615; Sat, 23 Aug 2025
- 06:32:26 -0700 (PDT)
+        d=1e100.net; s=20230601; t=1755975921; x=1756580721;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=oJvJvesU3+EVRnT5NshwQiqeZ8+Y26frPXmDXW2Xsr4=;
+        b=B2k1DHKkvJ/U3a/kPutC+NU41eJ/AbZ//CDV+nqQdocjpem/qYitYi6HAw75pkvbt/
+         aB266KcTYwuzJNDmN9D+KWB7WkL/poYl3aoq/NZK6ddXX/j6AxIkQNtlu0ZR+CuNOhTO
+         peAA9hfG/1SA6w1YCzvs3wrSiWnxcllg8etOgQ+3dM9K4jrvZxoGDo0L+1DcmFf5B3JE
+         JLpcRyJDloT0R87fS4wBrrot7Q8ZPkUbyZqw6+6NTBgCYAKqEn5tqSEKBznc6XB+bmkX
+         gJw1ogZIW5iV/UTameeS410LaFNAiyzFqYfPmRO9x6IAYupp7/99M0mPVkB340N7Vu7w
+         DFhA==
+X-Gm-Message-State: AOJu0YwMxswvBIS7scGRZyCtgjIL+61qM6pqgDER/Vh+m1eYDmqczIFD
+	zqlSElD6Ml1X6B46Q1jOZxnh+bKC0Fvzgk0LbX/elarF4LzRdA8ekemS5/fT2xXn8cADi0rzTLS
+	70Y4X
+X-Gm-Gg: ASbGncuVp/84ejWjVIT3QW0XpItswM/vvQLpLkuvWopuY1gthzjBRWWH6u7gro4xHu3
+	1U844xcB0rg45KgVxh039tvH9PivgYDqJqkTGQpCl+hYGlOJ2SLBjKUY1nXN0oplscHGz63l6hq
+	DNycDroDeuek9h/YHr8v4F5xmT7tJgg6JjoG2AHoTXPbcthKPByXPnXskbXR6/sRDs4hT3MjN4T
+	X4zrUItWyfqMwk0KxYYO34m7JhW51CnaoKG6z2csudUaq5tINPSCW22RSOU36Wjbiq5025J8ZRO
+	lZuqxYcJ57HdPxA0ayYXV5ZgZZTPuoQhM9SqayPxgQxh3bweoMYn8qHqpprjKD0nDoE/ZQKRW5q
+	SpvlDlfHuBFQ=
+X-Google-Smtp-Source: AGHT+IFPBSQ8Ec0ACRo+fb0sl2gBMdofZRTMFCm2dKqHUkRApVR6mMTa7PSMySX9xdauTrc+t2Fn+w==
+X-Received: by 2002:a05:622a:1a29:b0:4b2:8ac5:2581 with SMTP id d75a77b69052e-4b2aab767cbmr87945701cf.72.1755975920694;
+        Sat, 23 Aug 2025 12:05:20 -0700 (PDT)
+Received: from vince-server.. ([2601:406:4d01:1820::6d26])
+        by smtp.gmail.com with ESMTPSA id af79cd13be357-7ec2f1cfd61sm166570585a.38.2025.08.23.12.05.19
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sat, 23 Aug 2025 12:05:20 -0700 (PDT)
+From: "Vincent Davis Jr" <vince@underview.tech>
+To: yocto@lists.yoctoproject.org
+Cc: Vincent Davis Jr <vince@underview.tech>
+Subject: [meta-selinux][PATCH 1/2] libselinux-python: fix No module named pip
+Date: Sat, 23 Aug 2025 15:05:06 -0400
+Message-ID: <20250823190507.195486-1-vince@underview.tech>
+X-Mailer: git-send-email 2.43.0
 MIME-Version: 1.0
-References: <01010198d2b032d4-b6a1e13b-b204-4fee-bded-d398501a60f5-000000@us-west-2.amazonses.com>
-In-Reply-To: <01010198d2b032d4-b6a1e13b-b204-4fee-bded-d398501a60f5-000000@us-west-2.amazonses.com>
-From: Steve Sakoman <steve@sakoman.com>
-Date: Sat, 23 Aug 2025 06:32:15 -0700
-X-Gm-Features: Ac12FXzs1-jLhdNdscW0k24rtv2icWJQ0gFoBKQrdKQr3Fi-Xj8o7rV-Iw46wvE
-Message-ID: <CAOSpxdbRx_UTKUBEDKveGhfH9Wv=g84-Zsa0PBP_NAmWdFfaHQ@mail.gmail.com>
-Subject: Re: [qa-build-notification] QA notification for completed autobuilder
- build (yocto-5.0.12.rc1)
-To: qa-build-notification@lists.yoctoproject.org
-Cc: yocto@lists.yoctoproject.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 8bit
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Sat, 23 Aug 2025 13:32:30 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/65784
+ <yocto@lists.yoctoproject.org>; Sat, 23 Aug 2025 19:14:25 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/65785
 
-This was an "all green" build, so OK to proceed with QA
+When running the do install task run
+into No modules named pip.
 
-Steve
+Add python3-pip-native to DEPENDS
+so that pip it available.
 
-On Fri, Aug 22, 2025 at 9:50=E2=80=AFAM Pokybuild User via
-lists.yoctoproject.org
-<pokybuild=3Dyoctoproject.org@lists.yoctoproject.org> wrote:
->
->
->     A build flagged for QA (yocto-5.0.12.rc1) was completed on the autobu=
-ilder and is available at:
->
->
->         https://valkyrie.yocto.io/pub/releases/yocto-5.0.12.rc1
->
->
->     Build URL: https://autobuilder.yoctoproject.org/valkyrie/#/builders/2=
-9/builds/2255
->
->     Build hash information:
->
->     bitbake: 982645110a19ebb94d519926a4e14c8a2a205cfd
-> meta-agl: 435a9b13b8486cf7d51a86cebaa72ee382202a50
-> meta-arm: 8e0f8af90fefb03f08cd2228cde7a89902a6b37c
-> meta-aws: ee15a57cea8899e436c2c70ab8d2f18d07ad00b2
-> meta-clang: f915bbfc71f7b58c38607b8407718bd8b5cefa44
-> meta-intel: b065676a83371b34559f2077d9b2f6a6ac5652f7
-> meta-mingw: bd9fef71ec005be3c3a6d7f8b99d8116daf70c4f
-> meta-openembedded: c29a18fa39ede952f3f6108ec007c1906e2d9a0d
-> meta-virtualization: 02f72c96bf9acd0bd3ae0463f482bce8feabe749
-> oecore: 93c7489d843a0e46fe4fc685b356d0ae885300d7
-> poky: ec220ae083dba35c279192b2249ad03fe238446e
->
->
->
-> This is an automated message from the Yocto Project Autobuilder
-> Git: git://git.yoctoproject.org/yocto-autobuilder2
-> Email: richard.purdie@linuxfoundation.org
->
->
->
->
->
-> -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
-> Links: You receive all messages sent to this group.
-> View/Reply Online (#589): https://lists.yoctoproject.org/g/qa-build-notif=
-ication/message/589
-> Mute This Topic: https://lists.yoctoproject.org/mt/114838825/3620601
-> Group Owner: qa-build-notification+owner@lists.yoctoproject.org
-> Unsubscribe: https://lists.yoctoproject.org/g/qa-build-notification/leave=
-/12627247/3620601/791647976/xyzzy [steve@sakoman.com]
-> -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
->
->
+Signed-off-by: Vincent Davis Jr <vince@underview.tech>
+---
+ recipes-security/selinux/libselinux-python_3.9.bb | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/recipes-security/selinux/libselinux-python_3.9.bb b/recipes-security/selinux/libselinux-python_3.9.bb
+index 8431ca1..a4de036 100644
+--- a/recipes-security/selinux/libselinux-python_3.9.bb
++++ b/recipes-security/selinux/libselinux-python_3.9.bb
+@@ -19,7 +19,7 @@ SRC_URI += "\
+ 
+ S = "${UNPACKDIR}/${BP}/libselinux"
+ 
+-DEPENDS = "libsepol libpcre2 swig-native python3-setuptools-scm-native"
++DEPENDS = "libsepol libpcre2 swig-native python3-setuptools-scm-native python3-pip-native"
+ DEPENDS:append:libc-musl = " fts"
+ 
+ RDEPENDS:${PN} = "libselinux python3-core python3-shell"
+-- 
+2.43.0
+
 
