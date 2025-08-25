@@ -2,67 +2,68 @@ Return-Path: <hprajapati@mvista.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id C04E7CA0EED
-	for <webhook@archiver.kernel.org>; Mon, 25 Aug 2025 06:27:36 +0000 (UTC)
-Received: from mail-pf1-f182.google.com (mail-pf1-f182.google.com [209.85.210.182])
- by mx.groups.io with SMTP id smtpd.web10.32894.1756103249511394792
+	by smtp.lore.kernel.org (Postfix) with ESMTP id AF625CA0EED
+	for <webhook@archiver.kernel.org>; Mon, 25 Aug 2025 06:35:56 +0000 (UTC)
+Received: from mail-pj1-f53.google.com (mail-pj1-f53.google.com [209.85.216.53])
+ by mx.groups.io with SMTP id smtpd.web11.33180.1756103747665921501
  for <yocto@lists.yoctoproject.org>;
- Sun, 24 Aug 2025 23:27:29 -0700
+ Sun, 24 Aug 2025 23:35:47 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@mvista.com header.s=google header.b=gGAvBtr8;
- spf=pass (domain: mvista.com, ip: 209.85.210.182, mailfrom: hprajapati@mvista.com)
-Received: by mail-pf1-f182.google.com with SMTP id d2e1a72fcca58-76e2ea933b7so3455342b3a.1
-        for <yocto@lists.yoctoproject.org>; Sun, 24 Aug 2025 23:27:29 -0700 (PDT)
+ dkim=pass header.i=@mvista.com header.s=google header.b=i2vka5c1;
+ spf=pass (domain: mvista.com, ip: 209.85.216.53, mailfrom: hprajapati@mvista.com)
+Received: by mail-pj1-f53.google.com with SMTP id 98e67ed59e1d1-324fb2bb058so2557503a91.3
+        for <yocto@lists.yoctoproject.org>; Sun, 24 Aug 2025 23:35:47 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=mvista.com; s=google; t=1756103249; x=1756708049; darn=lists.yoctoproject.org;
+        d=mvista.com; s=google; t=1756103747; x=1756708547; darn=lists.yoctoproject.org;
         h=content-transfer-encoding:mime-version:message-id:date:subject:cc
          :to:from:from:to:cc:subject:date:message-id:reply-to;
         bh=ochaI1Ic4h7dWKf7Zbzirb4Q+K1yWjNF5hRuZML9CcE=;
-        b=gGAvBtr8SrXy+WPjOXQvo9fqtG1h6ALuqZpVR0vqUYJmbthq4dMuQhk4T4OS8fwQ/G
-         sO2c36dxu7l6m8d5jYHDQK97S5/zk+VE03mJoQcKwCoD/L/MbTlXERqG843X5zlCuOpa
-         tZrZLSuI+leOqQSockC7VSWMSt5AyMnIP+ZV0=
+        b=i2vka5c1eQXW7ojWuYYJiQ7dN4c1nRfGIJB197Zogg5fWU21OhFwkzLJ1WzKJmfa9c
+         YVYeg/FcahwRLcoqiYmh02k+5IGcXalUJVWxNtlbyBke03e5V+ipL7MV0Sdcxyo8mtfE
+         K2QljWfT7A1Q9edqkLGhUV6xW14eL1nuykdds=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1756103249; x=1756708049;
+        d=1e100.net; s=20230601; t=1756103747; x=1756708547;
         h=content-transfer-encoding:mime-version:message-id:date:subject:cc
          :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
         bh=ochaI1Ic4h7dWKf7Zbzirb4Q+K1yWjNF5hRuZML9CcE=;
-        b=IFnNmlwbiYYTvaHcBzXskIozwGvbGOuTiE/TMAaE5YaKcOljJm/YGyoarn5HiuzpSU
-         t3BAcYvifbz3LD3QCwHuUKW8iD7j+D5XzMEi0k3YMUpDDqhYktbrbzAb3uDyJ+PPt9na
-         ryW6OMWf3Llbos9S7V6bEKWOJ2JWvXYQC7a2pCr0f1D+noUxjDlE3QqdeSCX8w4zCKjS
-         uyyRk/npTXMoxMysyHIRsX66xDxN6WKCZLjTxin1cpYuohrINZyK+R1QftEdDiM9tnIR
-         J6IZnJ56To6uOzAWzWjDva0yuX01y/Pda7Pz6wijp+3Fa9fk6uoYxW0rk96noCAFnA+M
-         P9pQ==
-X-Gm-Message-State: AOJu0YwnrtEV+XxDGkPhXRQRrdtrKSMpoFsSkLrDJrs/dL56CGu8gciK
-	D1+f+oESe9NemEPzoUd+wgzCPE+3xJZFLsmG8KKQN7l1mQCAsYLxNMLtuZOp4VhHx+7TySvJIrJ
-	8qgBx
-X-Gm-Gg: ASbGncs+Dma8WX4pXXv17NHLRWXMBQcjYgSpqBzJvzfLEwjiyU90joKWF6SKYDrAq/u
-	JZXccmoir4we7WkJgUUz8PAp6vJG8ENBPGF7yMLPEqe+TwAgSwFaOwpTHDeIbrTFWmbmV5FaP2K
-	QXM/q7Iq+zJvQ1deYAMz7uWBuZonDNC7cyxxbBy1PwK/HlMHStp03tC96A6YjB+78OIYpgHZ4Kl
-	7d9V4DhnjFHi9e55gdNp62HMkd+JMszbLkgdwZAVuBYCZP9n8/XrDDZfmxBg6UCQ6hB6Wstqmxv
-	bGVikQdeBaq4UjoDAqJivyq+ZrbTI3QXNh1u9YYpGxBEYJM2f99YE8DYukwGvnhV1B+t0JVmnfa
-	qm0ROYBEkQblmA4OhWGv2IHw5M/eV+aOfnt5GqgyQxmx3
-X-Google-Smtp-Source: AGHT+IFnYdUgssAfPUnAIJTNaYq1GFSm+dElBc8a3n0Ul/Of+qu2lGRgtIW54dlUH2AD7uch8N3N8Q==
-X-Received: by 2002:a05:6a00:27a0:b0:771:e341:ce68 with SMTP id d2e1a72fcca58-771e341cf94mr2744834b3a.5.1756103248372;
-        Sun, 24 Aug 2025 23:27:28 -0700 (PDT)
+        b=udk6THL313JWfSzsgOAZtePf6RB9R5uX1GuYQsbhtdT9EhArDzS+RKbNPNmP3kC8TH
+         +U+E/o3jHYbmUFteSIRMHJRz7HQPqoGze4cOmE2QvFXa6fofeFffcDpwJYND1a6wKh3J
+         ZHd0Qm4GfE9MeAD/4OQL7ZwDwkYaEMG6gaiHnN7f+uZogxCt/os3qcpBOT4cob58f888
+         YJ9BVe2M+ZvLHriYPfRL/znt9PhmriDRQDqHBzG/hBEoRJ6bdDniVjNcl+GJchGKgpiX
+         DuuTbfT70bWXybJ3tMGdrRMFHKWC/vw51TICFnTjH7zMjdEY0kuq2tKFGdnwVvzz0rnk
+         42iw==
+X-Gm-Message-State: AOJu0YxBDj776FpJi3nAN20uWN8IGwo95sY6OaC9CXy95Jy4Ov7eiPeS
+	2CJOqfOs+AWsemJGB9jh97LqkAdSCm90/jiQ+Twxr+FLhphdo4vZK4hTTSJSkT2qwEQpVcrvGc5
+	shPmo
+X-Gm-Gg: ASbGncvvsU06ynp8rzs2fQQQMnltLG0jYLjYq8wnbH6h47YyZnXXTorETsXGTfNPNG3
+	u2qWG+xUQs2TFX0oh0pSrrNNUUO7MaQTsfcGUUp4k+e5QKRHoIeshgnF4IZeeSRiAdkg+61Q/mi
+	lVEVbo9yJmnYfiuhGexmjxc0IguFCU6bIV7ysczXLIqW/G3CGP/QAdbUVkS74nlQhWXi3iQV23I
+	R1VfsyBX3pMAG3anzVWfiRy214+TqiJ2J4B1otZoDRgPdMnEDQL3Z6dxvaagvsDl0pWZTpP505h
+	7ffrbsmPq/j3mk9TD7jjgRtWgKnstChmff3U/WMG8TwInSGESGUgJ+mVLanSA0XTlQkqwOAsLm2
+	bKTzbeWqoT0IIZL7v6TDECqh8ZaJyg6SZUA==
+X-Google-Smtp-Source: AGHT+IHYCDWaxosXAdePdMKfiIhVuxZxlgM9xDbs8OxpGqAfNkE93X3aytRCIeE7Q65SxnRU/HbUcA==
+X-Received: by 2002:a17:90b:1d06:b0:324:e03a:662e with SMTP id 98e67ed59e1d1-32515eaeeecmr15442844a91.23.1756103746475;
+        Sun, 24 Aug 2025 23:35:46 -0700 (PDT)
 Received: from MVIN00016.mvista.com ([27.121.101.67])
-        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-770401b0c34sm6437437b3a.73.2025.08.24.23.27.26
+        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-3254ae9a763sm6037343a91.12.2025.08.24.23.35.44
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 24 Aug 2025 23:27:27 -0700 (PDT)
+        Sun, 24 Aug 2025 23:35:46 -0700 (PDT)
 From: Hitendra Prajapati <hprajapati@mvista.com>
 To: yocto@lists.yoctoproject.org
-Cc: Hitendra Prajapati <hprajapati@mvista.com>
+Cc: akuster808@gmail.com,
+	Hitendra Prajapati <hprajapati@mvista.com>
 Subject: [meta-security][kirkstone][PATCH] aide: fix CVE-2025-54389
-Date: Mon, 25 Aug 2025 11:57:04 +0530
-Message-ID: <20250825062705.29744-1-hprajapati@mvista.com>
+Date: Mon, 25 Aug 2025 12:05:23 +0530
+Message-ID: <20250825063523.30092-1-hprajapati@mvista.com>
 X-Mailer: git-send-email 2.50.1
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Mon, 25 Aug 2025 06:27:36 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/65787
+ <yocto@lists.yoctoproject.org>; Mon, 25 Aug 2025 06:35:56 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/65788
 
 Upstream-Status: Backport from https://github.com/aide/aide/commit/64c8f32b0349c33fb8382784af468338078851f9
 
