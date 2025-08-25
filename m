@@ -1,116 +1,458 @@
-Return-Path: <ross.burton@arm.com>
+Return-Path: <hprajapati@mvista.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id CA233CA0EFA
-	for <webhook@archiver.kernel.org>; Sat, 23 Aug 2025 19:14:35 +0000 (UTC)
-Received: from mail-qk1-f170.google.com (mail-qk1-f170.google.com [209.85.222.170])
- by mx.groups.io with SMTP id smtpd.web11.3150.1755975925588915237
+	by smtp.lore.kernel.org (Postfix) with ESMTP id C04E7CA0EED
+	for <webhook@archiver.kernel.org>; Mon, 25 Aug 2025 06:27:36 +0000 (UTC)
+Received: from mail-pf1-f182.google.com (mail-pf1-f182.google.com [209.85.210.182])
+ by mx.groups.io with SMTP id smtpd.web10.32894.1756103249511394792
  for <yocto@lists.yoctoproject.org>;
- Sat, 23 Aug 2025 12:05:25 -0700
+ Sun, 24 Aug 2025 23:27:29 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@underview.tech header.s=google header.b=HMFESLpm;
- spf=pass (domain: underview.tech, ip: 209.85.222.170, mailfrom: vince@underview.tech)
-Received: by mail-qk1-f170.google.com with SMTP id af79cd13be357-7e8704c52b3so366554885a.1
-        for <yocto@lists.yoctoproject.org>; Sat, 23 Aug 2025 12:05:25 -0700 (PDT)
+ dkim=pass header.i=@mvista.com header.s=google header.b=gGAvBtr8;
+ spf=pass (domain: mvista.com, ip: 209.85.210.182, mailfrom: hprajapati@mvista.com)
+Received: by mail-pf1-f182.google.com with SMTP id d2e1a72fcca58-76e2ea933b7so3455342b3a.1
+        for <yocto@lists.yoctoproject.org>; Sun, 24 Aug 2025 23:27:29 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=underview.tech; s=google; t=1755975924; x=1756580724; darn=lists.yoctoproject.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=2ZV/t7014RW/krF6kJCRBqi/0psSvIMpB6tL6Tdaklk=;
-        b=HMFESLpm39/JCa1G13Nxb6RYE6siwzDK44ILoKPG3cjcoU3t1LlJvb+V74oemgRAYj
-         H/bKqfexawgkA9Psvb/cdZoPujZvanN1sYwbpa0m87fVB1zArMjrRe/mS3RjHgYTqhAi
-         2Tenk6CgJhMQWr3ajiW3o0AHehYoY1md7HkE7yxxu5C9KgU8mW7tbBCnReLc95TkPAK3
-         i+aSR3dGiShf8NxcChoEU6ruqHNORbrBOr3t5iLBtd0LOzM5f917w0E62uYHPKC9g+6u
-         GO3cK1osFgyfXuQ0kPgraq9HUIx7cygHvtLpA5QSn/Ej0g9GxCkS+R7CDC8RV0jSE8yF
-         hOng==
+        d=mvista.com; s=google; t=1756103249; x=1756708049; darn=lists.yoctoproject.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=ochaI1Ic4h7dWKf7Zbzirb4Q+K1yWjNF5hRuZML9CcE=;
+        b=gGAvBtr8SrXy+WPjOXQvo9fqtG1h6ALuqZpVR0vqUYJmbthq4dMuQhk4T4OS8fwQ/G
+         sO2c36dxu7l6m8d5jYHDQK97S5/zk+VE03mJoQcKwCoD/L/MbTlXERqG843X5zlCuOpa
+         tZrZLSuI+leOqQSockC7VSWMSt5AyMnIP+ZV0=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1755975924; x=1756580724;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=2ZV/t7014RW/krF6kJCRBqi/0psSvIMpB6tL6Tdaklk=;
-        b=PG06YUBuDTvLIi8D7xsJzGfleFsX6ncS1XyYOG4pGvZy6mOGwPMT/7gWo5Or/NSfoO
-         jsO8/QVkzip+PWCq6CoL4r2BqaDy4oA/fuyu+UYNRI9MGor1vu1TI+lvenVFgm+Al8lC
-         FQOeXk3MFujGmN/mcHXtbmSRIFSQALV56/nEZzFSU61gFWI0iizwZ+ZyayV43vuGCGvA
-         iXJkadfyCXAhhpP+tnFg1XrzC/xzeDxDgY7oW07PMA65PunwXd2NVzx9e0qUBmRW+wji
-         TW2n+2RijhN5S1Sv5FSLe/ccP4E5QkBxCW7knHs1QrWadIKbgmXB/88ax9rpZXTxgCJX
-         74jg==
-X-Gm-Message-State: AOJu0YykDYK22Pph9qrRJRRUkSFOTioom0T/ix+5E6jT3kx4miV40Gla
-	yCIPTRKE1JMu897AvYsKHQ6gor4kfCaVFYDqyt/ZZzz3UGrodtGc787MJezKlIysfxVfQNHX8tx
-	wiFGm
-X-Gm-Gg: ASbGncvPJz+aB9nw1dX+QgoH3nyTtUidx3+TQ63QmmEnbx7yhoYGc9OxhrpyA+BGFqm
-	5kte/6l/V4j6uL90SUQwVm7inHCr63H2lOmWLw0Zeso/epqs8EOQMF0VmqbFp2hByU5YiLOxjvV
-	0luNhLB3+EFKF0PsTAN+B+zPWRIbxTpo9+HQ9jipOVVkh2jaF595PUluMAMO5aEgkVr2PsMwqJt
-	rwcR7/lOxGI8tTYhtipsjKIzD3VXDIo5dW5g6mwBsS4LJqTZoEa9hDAcTMj45k9wuuUkrqaqDfW
-	Gm8aEwVPJLzXerYztccKyU8tbTtVn04INZJ3C6ZNulkIdb9SIMM0qBs7l2jWRdFVOnhW25+KVZH
-	XRWHdaROwoLc=
-X-Google-Smtp-Source: AGHT+IGAw++IcnRb/u2TYHBScg9BN4Ke6NUIxS7R7Q7VpOnLK46a4oucaZzvxJk8FLuJPYBBJakg4Q==
-X-Received: by 2002:a05:620a:1a03:b0:7e8:911:2311 with SMTP id af79cd13be357-7ea1103a248mr900753685a.53.1755975924067;
-        Sat, 23 Aug 2025 12:05:24 -0700 (PDT)
-Received: from vince-server.. ([2601:406:4d01:1820::6d26])
-        by smtp.gmail.com with ESMTPSA id af79cd13be357-7ec2f1cfd61sm166570585a.38.2025.08.23.12.05.23
+        d=1e100.net; s=20230601; t=1756103249; x=1756708049;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=ochaI1Ic4h7dWKf7Zbzirb4Q+K1yWjNF5hRuZML9CcE=;
+        b=IFnNmlwbiYYTvaHcBzXskIozwGvbGOuTiE/TMAaE5YaKcOljJm/YGyoarn5HiuzpSU
+         t3BAcYvifbz3LD3QCwHuUKW8iD7j+D5XzMEi0k3YMUpDDqhYktbrbzAb3uDyJ+PPt9na
+         ryW6OMWf3Llbos9S7V6bEKWOJ2JWvXYQC7a2pCr0f1D+noUxjDlE3QqdeSCX8w4zCKjS
+         uyyRk/npTXMoxMysyHIRsX66xDxN6WKCZLjTxin1cpYuohrINZyK+R1QftEdDiM9tnIR
+         J6IZnJ56To6uOzAWzWjDva0yuX01y/Pda7Pz6wijp+3Fa9fk6uoYxW0rk96noCAFnA+M
+         P9pQ==
+X-Gm-Message-State: AOJu0YwnrtEV+XxDGkPhXRQRrdtrKSMpoFsSkLrDJrs/dL56CGu8gciK
+	D1+f+oESe9NemEPzoUd+wgzCPE+3xJZFLsmG8KKQN7l1mQCAsYLxNMLtuZOp4VhHx+7TySvJIrJ
+	8qgBx
+X-Gm-Gg: ASbGncs+Dma8WX4pXXv17NHLRWXMBQcjYgSpqBzJvzfLEwjiyU90joKWF6SKYDrAq/u
+	JZXccmoir4we7WkJgUUz8PAp6vJG8ENBPGF7yMLPEqe+TwAgSwFaOwpTHDeIbrTFWmbmV5FaP2K
+	QXM/q7Iq+zJvQ1deYAMz7uWBuZonDNC7cyxxbBy1PwK/HlMHStp03tC96A6YjB+78OIYpgHZ4Kl
+	7d9V4DhnjFHi9e55gdNp62HMkd+JMszbLkgdwZAVuBYCZP9n8/XrDDZfmxBg6UCQ6hB6Wstqmxv
+	bGVikQdeBaq4UjoDAqJivyq+ZrbTI3QXNh1u9YYpGxBEYJM2f99YE8DYukwGvnhV1B+t0JVmnfa
+	qm0ROYBEkQblmA4OhWGv2IHw5M/eV+aOfnt5GqgyQxmx3
+X-Google-Smtp-Source: AGHT+IFnYdUgssAfPUnAIJTNaYq1GFSm+dElBc8a3n0Ul/Of+qu2lGRgtIW54dlUH2AD7uch8N3N8Q==
+X-Received: by 2002:a05:6a00:27a0:b0:771:e341:ce68 with SMTP id d2e1a72fcca58-771e341cf94mr2744834b3a.5.1756103248372;
+        Sun, 24 Aug 2025 23:27:28 -0700 (PDT)
+Received: from MVIN00016.mvista.com ([27.121.101.67])
+        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-770401b0c34sm6437437b3a.73.2025.08.24.23.27.26
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 23 Aug 2025 12:05:23 -0700 (PDT)
-From: "Vincent Davis Jr" <vince@underview.tech>
+        Sun, 24 Aug 2025 23:27:27 -0700 (PDT)
+From: Hitendra Prajapati <hprajapati@mvista.com>
 To: yocto@lists.yoctoproject.org
-Cc: Vincent Davis Jr <vince@underview.tech>
-Subject: [meta-selinux][PATCH 2/2] selinux-python: fix No module named pip
-Date: Sat, 23 Aug 2025 15:05:07 -0400
-Message-ID: <20250823190507.195486-2-vince@underview.tech>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20250823190507.195486-1-vince@underview.tech>
-References: <20250823190507.195486-1-vince@underview.tech>
+Cc: Hitendra Prajapati <hprajapati@mvista.com>
+Subject: [meta-security][kirkstone][PATCH] aide: fix CVE-2025-54389
+Date: Mon, 25 Aug 2025 11:57:04 +0530
+Message-ID: <20250825062705.29744-1-hprajapati@mvista.com>
+X-Mailer: git-send-email 2.50.1
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Sat, 23 Aug 2025 19:14:35 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/65786
+ <yocto@lists.yoctoproject.org>; Mon, 25 Aug 2025 06:27:36 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/65787
 
-When running the do install task run
-into No modules named pip.
+Upstream-Status: Backport from https://github.com/aide/aide/commit/64c8f32b0349c33fb8382784af468338078851f9
 
-Add python3-pip-native to DEPENDS
-so that pip it available.
-
-PREFIX variable not being set also
-appears to effect whether pip is
-found or not. Unclear was to why
-that is as of commit.
-
-Signed-off-by: Vincent Davis Jr <vince@underview.tech>
+Signed-off-by: Hitendra Prajapati <hprajapati@mvista.com>
 ---
- recipes-security/selinux/selinux-python_3.9.bb | 6 ++++--
- 1 file changed, 4 insertions(+), 2 deletions(-)
+ recipes-ids/aide/aide/CVE-2025-54389.patch | 358 +++++++++++++++++++++
+ recipes-ids/aide/aide_0.17.4.bb            |   4 +-
+ 2 files changed, 361 insertions(+), 1 deletion(-)
+ create mode 100644 recipes-ids/aide/aide/CVE-2025-54389.patch
 
-diff --git a/recipes-security/selinux/selinux-python_3.9.bb b/recipes-security/selinux/selinux-python_3.9.bb
-index b452887..88850ad 100644
---- a/recipes-security/selinux/selinux-python_3.9.bb
-+++ b/recipes-security/selinux/selinux-python_3.9.bb
-@@ -16,7 +16,7 @@ SRC_URI += "file://0001-sepolicy-fix-install-path-for-new-pymodule-sepolicy.patc
+diff --git a/recipes-ids/aide/aide/CVE-2025-54389.patch b/recipes-ids/aide/aide/CVE-2025-54389.patch
+new file mode 100644
+index 0000000..4db5d93
+--- /dev/null
++++ b/recipes-ids/aide/aide/CVE-2025-54389.patch
+@@ -0,0 +1,358 @@
++From 64c8f32b0349c33fb8382784af468338078851f9 Mon Sep 17 00:00:00 2001
++From: Hannes von Haugwitz <hannes@vonhaugwitz.com>
++Date: Thu, 7 Aug 2025 18:04:41 +0200
++Subject: [PATCH] Escape control characters in report and log output
++
++* this addresses CVE-2025-54389
++* thanks to Rajesh Pangare for reporting this issue
++
++CVE: CVE-2025-54389
++Upstream-Status: Backport [https://github.com/aide/aide/commit/64c8f32b0349c33fb8382784af468338078851f9]
++Signed-off-by: Hitendra Prajapati <hprajapati@mvista.com>
++---
++ doc/aide.1     | 13 +++++++++++
++ include/util.h |  3 +++
++ src/aide.c     |  9 ++++++--
++ src/gen_list.c |  4 +++-
++ src/log.c      | 31 +++++++++++++++++++++-----
++ src/report.c   | 59 +++++++++++++++++++++++++++++++++++---------------
++ src/util.c     | 34 +++++++++++++++++++++++++++++
++ 7 files changed, 127 insertions(+), 26 deletions(-)
++
++diff --git a/doc/aide.1 b/doc/aide.1
++index a7b9462..5d10e33 100644
++--- a/doc/aide.1
+++++ b/doc/aide.1
++@@ -122,12 +122,25 @@ SIGUSR1 toggles the log_level between current and debug level.
++ .PP
++ .SH NOTES
++ 
+++.IP "Checksum encoding"
+++
++ The checksums in the database and in the output are by default base64
++ encoded (see also report_base16 option).
++ To decode them you can use the following shell command:
++ 
++ echo <encoded_checksum> | base64 \-d | hexdump \-v \-e '32/1 "%02x" "\\n"'
++ 
+++.IP "Control characters"
+++
+++Control characters (00-31 and 127) are always escaped in log and plain report
+++output. They are escaped by a literal backslash (\\) followed by exactly 3
+++digits representing the character in octal notation (e.g. a newline is output
+++as "\fB\\012\fR"). A literal backslash is not escaped unless it is followed by
+++3 digits (0-9), in this case the literal backslash is escaped as
+++"\fB\\134\fR". Reports in JSON format are escaped according to the JSON specs
+++(e.g. a newline is output as "\fB\\b\fR" or an escape (\fBESC\fR) is output as
+++"\fB\\u001b\fR")
+++
++ .PP
++ .SH FILES
++ 
++diff --git a/include/util.h b/include/util.h
++index aaff780..d339740 100644
++--- a/include/util.h
+++++ b/include/util.h
++@@ -51,6 +51,9 @@ int cmpurl(url_t*, url_t*);
++ 
++ int contains_unsafe(const char*);
++ 
+++char *strnesc(const char *, size_t);
+++char *stresc(const char *);
+++
++ void decode_string(char*);
++ 
++ char* encode_string(const char*);
++diff --git a/src/aide.c b/src/aide.c
++index b04e721..576fbd3 100644
++--- a/src/aide.c
+++++ b/src/aide.c
++@@ -271,7 +271,8 @@ static void read_param(int argc,char**argv)
++                 conf->limit=checked_malloc(strlen(optarg)+1);
++                 strcpy(conf->limit,optarg);
++                 if((conf->limit_crx=pcre_compile(conf->limit, PCRE_ANCHORED, &pcre_error, &pcre_erroffset, NULL)) == NULL) {
++-                    INVALID_ARGUMENT("--limit", error in regular expression '%s' at %i: %s, conf->limit, pcre_erroffset, pcre_error)
+++                    char * limit_safe = stresc(conf->limit);
+++                    INVALID_ARGUMENT("--limit", error in regular expression '%s' at %i: %s, limit_safe, pcre_erroffset, pcre_error)
++                 }
++                 log_msg(LOG_LEVEL_INFO,_("(--limit): set limit to '%s'"), conf->limit);
++             break;
++@@ -572,7 +573,11 @@ int main(int argc,char**argv)
++       rx_rule* rule = NULL;
++       int match = check_rxtree(conf->check_path, conf->tree, &rule, conf->check_file_type, true);
++       if (match < 0) {
++-        fprintf(stdout, "[ ] %c '%s': outside of limit '%s'\n", get_restriction_char(conf->check_file_type), conf->check_path, conf->limit);
+++        char* limit_safe = stresc(conf->limit);
+++        char* path_safe = stresc(conf->check_path);
+++        fprintf(stdout, "[ ] %c '%s': outside of limit '%s'\n", get_restriction_char(conf->check_file_type), path_safe, limit_safe);
+++        free(path_safe);
+++        free(limit_safe);
++         exit(2);
++       } else {
++         exit(match?0:1);
++diff --git a/src/gen_list.c b/src/gen_list.c
++index 98b437c..7059899 100644
++--- a/src/gen_list.c
+++++ b/src/gen_list.c
++@@ -510,7 +510,9 @@ int check_rxtree(char* filename,seltree* tree, rx_rule* *rule, RESTRICTION_TYPE
++   int match = check_seltree(tree, filename, file_type, rule);
++   if (dry_run) {
++       char * str;
++-      fprintf(stdout, "[%c] %c '%s': ", match?'X':' ', get_restriction_char(file_type), filename);
+++      char* filename_safe = stresc(filename);
+++      fprintf(stdout, "[%c] %c '%s': ", match?'X':' ', get_restriction_char(file_type), filename_safe);
+++      free(filename_safe);
++       if (match > 0) {
++           char* attr_str;
++           fprintf(stdout, "%s: '%s%s %s %s' (%s:%d: '%s')\n", get_rule_type_long_string(match), match == EQUAL_MATCH?"=":"", (*rule)->rx, str = get_restriction_string((*rule)->restriction), attr_str = diff_attributes(0, (*rule)->attr), (*rule)->config_filename, (*rule)->config_linenumber, (*rule)->config_line);
++diff --git a/src/log.c b/src/log.c
++index 5a25a36..5d7fa74 100644
++--- a/src/log.c
+++++ b/src/log.c
++@@ -25,6 +25,7 @@
++ 
++ #include "log.h"
++ #include "locale-aide.h"
+++#include "util.h"
++ 
++ LOG_LEVEL prev_log_level = LOG_LEVEL_UNSET;
++ LOG_LEVEL log_level = LOG_LEVEL_UNSET;
++@@ -60,7 +61,7 @@ static void cache_line(LOG_LEVEL level, const char* format, va_list ap) {
++ 
++     void * tmp = realloc(cached_lines, (ncachedlines+1) * sizeof(log_cache)); /* freed in log_cached_lines() */
++     if (tmp == NULL) {
++-        log_msg(LOG_LEVEL_ERROR, "realloc() failed: %s", strerror(errno));
+++        fprintf(stderr, "%s: realloc: failed to allocate memory\n", log_level_array[LOG_LEVEL_ERROR-1].log_string);
++         exit(EXIT_FAILURE);
++     } else {
++         cached_lines = tmp;
++@@ -85,7 +86,12 @@ const char * get_log_level_name(LOG_LEVEL level) {
++ 
++ static void log_cached_lines(void) {
++     for(int i = 0; i < ncachedlines; ++i) {
++-        log_msg(cached_lines[i].level, "%s", cached_lines[i].message);
+++        LOG_LEVEL level = cached_lines[i].level;
+++        if (level == LOG_LEVEL_ERROR || level <= log_level) {
+++            char * msg_safe = stresc(cached_lines[i].message);
+++            fprintf(stderr, "%s: %s\n", log_level_array[level-1].log_string, msg_safe);
+++            free(msg_safe);
+++        }
++         free(cached_lines[i].message);
++     }
++     ncachedlines = 0;
++@@ -96,9 +102,24 @@ static void vlog_msg(LOG_LEVEL level,const char* format, va_list ap) {
++     FILE* url = stderr;
++ 
++     if (level == LOG_LEVEL_ERROR || level <= log_level) {
++-        fprintf(url, "%s: ", log_level_array[level-1].log_string );
++-        vfprintf(url, format, ap);
++-        fprintf(url, "\n");
+++
+++        va_list aq;
+++        va_copy(aq, ap);
+++        size_t n = vsnprintf(NULL, 0, format, aq) + 1;
+++        va_end(aq);
+++
+++        int size = n * sizeof(char);
+++        char *msg_unsafe = malloc(size);
+++        if (msg_unsafe == NULL) {
+++            fprintf(stderr, "%s: malloc: failed to allocate %d bytes of memory\n", log_level_array[LOG_LEVEL_ERROR-1].log_string, size);
+++            exit(EXIT_FAILURE);
+++        }
+++
+++        vsnprintf(msg_unsafe, n, format, ap);
+++        char *msg_safe = stresc(msg_unsafe);
+++        free(msg_unsafe);
+++        fprintf(url, "%s: %s\n", log_level_array[level-1].log_string, msg_safe);
+++        free(msg_safe);
++     } else if (log_level == LOG_LEVEL_UNSET) {
++         cache_line(level, format, ap);
++     }
++diff --git a/src/report.c b/src/report.c
++index b342a0f..e3cee48 100644
++--- a/src/report.c
+++++ b/src/report.c
++@@ -631,6 +631,7 @@ if ((conf->action&(DO_COMPARE|DO_DIFF) || (conf->action&DO_INIT && r->detailed_i
++ #endif
++             )) {
++ 
+++    char *filename_safe = stresc(((node->checked&NODE_REMOVED)?node->old_data:node->new_data)->filename);
++     if(r->summarize_changes) {
++         int i;
++         char* summary = checked_malloc ((report_attrs_order_length+1) * sizeof (char));
++@@ -676,17 +677,18 @@ if ((conf->action&(DO_COMPARE|DO_DIFF) || (conf->action&DO_INIT && r->detailed_i
++             }
++         }
++         summary[report_attrs_order_length]='\0';
++-        report_printf(r, "\n%s: %s", summary, ((node->checked&NODE_REMOVED)?node->old_data:node->new_data)->filename);
+++        report_printf(r, "\n%s: %s", summary, filename_safe);
++         free(summary); summary=NULL;
++     } else {
++         if (node->checked&NODE_ADDED) {
++-            report_printf(r,_("\nadded: %s"),(node->new_data)->filename);
+++            report_printf(r,_("\nadded: %s"), filename_safe);
++         } else if (node->checked&NODE_REMOVED) {
++-            report_printf(r,_("\nremoved: %s"),(node->old_data)->filename);
+++            report_printf(r,_("\nremoved: %s"), filename_safe);
++         } else if (node->checked&NODE_CHANGED) {
++-            report_printf(r,_("\nchanged: %s"),(node->new_data)->filename);
+++            report_printf(r,_("\nchanged: %s"), filename_safe);
++         }
++     }
+++    free(filename_safe);
++             }
++         } else {
++             break; /* list sorted by report_level */
++@@ -698,36 +700,49 @@ if ((conf->action&(DO_COMPARE|DO_DIFF) || (conf->action&DO_INIT && r->detailed_i
++ static void print_attribute(REPORT_LEVEL report_level, db_line* oline, db_line* nline,
++         DB_ATTR_TYPE attr, report_t *r, const char* name,
++         DB_ATTR_TYPE report_attrs, DB_ATTR_TYPE added_attrs, DB_ATTR_TYPE removed_attrs) {
++-    char **ovalue, **nvalue;
+++    char **ovalues = NULL;
+++    char **nvalues = NULL;
++     int onumber, nnumber, olen, nlen, i, k, c;
++     int p = (width_details-(4 + MAX_WIDTH_DETAILS_STRING))/2;
++ 
++         if ( (attr&report_attrs && r->level >= report_level)
++           || (report_attrs && attr&(added_attrs|removed_attrs) && r->level >= REPORT_LEVEL_ADDED_REMOVED_ATTRIBUTES) ) {
++ 
++-            onumber=get_attribute_values(attr, oline, &ovalue, r);
++-            nnumber=get_attribute_values(attr, nline, &nvalue, r);
+++            onumber=get_attribute_values(attr, oline, &ovalues, r);
+++            nnumber=get_attribute_values(attr, nline, &nvalues, r);
++ 
++             i = 0;
++             while (i<onumber || i<nnumber) {
++-                olen = i<onumber?strlen(ovalue[i]):0;
++-                nlen = i<nnumber?strlen(nvalue[i]):0;
+++                char *ovalue = NULL;
+++                char *nvalue = NULL;
+++                olen = 0;
+++                nlen = 0;
+++                if (i<onumber){
+++                    ovalue = stresc(ovalues[i]);
+++                    olen = strlen(ovalue);
+++                }
+++                if (i<nnumber) {
+++                    nvalue = stresc(nvalues[i]);
+++                    nlen = strlen(nvalue);
+++                }
++                 k = 0;
++                 while (olen-p*k >= 0 || nlen-p*k >= 0) {
++                     c = k*(p-1);
++                     if (!onumber) {
++-                        report_printf(r," %-*s%c %-*c  %.*s\n", MAX_WIDTH_DETAILS_STRING, (i+k)?"":name, (i+k)?' ':':', p, ' ', p-1, nlen-c>0?&nvalue[i][c]:"");
+++                        report_printf(r," %-*s%c %-*c  %.*s\n", MAX_WIDTH_DETAILS_STRING, (i+k)?"":name, (i+k)?' ':':', p, ' ', p-1, nlen-c>0?&nvalue[c]:"");
++                     } else if (!nnumber) {
++-                        report_printf(r," %-*s%c %.*s\n", MAX_WIDTH_DETAILS_STRING, (i+k)?"":name, (i+k)?' ':':', p-1, olen-c>0?&ovalue[i][c]:"");
+++                        report_printf(r," %-*s%c %.*s\n", MAX_WIDTH_DETAILS_STRING, (i+k)?"":name, (i+k)?' ':':', p-1, olen-c>0?&ovalue[c]:"");
++                     } else {
++-                        report_printf(r," %-*s%c %-*.*s| %.*s\n", MAX_WIDTH_DETAILS_STRING, (i+k)?"":name, (i+k)?' ':':', p, p-1, olen-c>0?&ovalue[i][c]:"", p-1, nlen-c>0?&nvalue[i][c]:"");
+++                        report_printf(r," %-*s%c %-*.*s| %.*s\n", MAX_WIDTH_DETAILS_STRING, (i+k)?"":name, (i+k)?' ':':', p, p-1, olen-c>0?&ovalue[c]:"", p-1, nlen-c>0?&nvalue[c]:"");
++                     }
++                     k++;
++                 }
++                 ++i;
+++                free(ovalue);
+++                free(nvalue);
++             }
++-            for(i=0; i < onumber; ++i) { free(ovalue[i]); ovalue[i]=NULL; } free(ovalue); ovalue=NULL;
++-            for(i=0; i < nnumber; ++i) { free(nvalue[i]); nvalue[i]=NULL; } free(nvalue); nvalue=NULL;
+++            for(i=0; i < onumber; ++i) { free(ovalues[i]); ovalues[i]=NULL; } free(ovalues); ovalues=NULL;
+++            for(i=0; i < nnumber; ++i) { free(nvalues[i]); nvalues[i]=NULL; } free(nvalues); nvalues=NULL;
++         }
++ }
++ 
++@@ -760,7 +775,9 @@ static void print_dbline_attributes(REPORT_LEVEL report_level, db_line* oline, d
++             if (file_type) {
++                 report_printf(r, "%s: ", file_type);
++             }
++-            report_printf(r, "%s\n", (nline==NULL?oline:nline)->filename);
+++            char *filename_safe = stresc((nline==NULL?oline:nline)->filename);
+++            report_printf(r, "%s\n", filename_safe);
+++            free(filename_safe);
++         }
++ 
++     for (int j=0; j < report_attrs_order_length; ++j) {
++@@ -829,9 +846,11 @@ static void terse_report(seltree* node) {
++             if (!(node->checked&(NODE_MOVED_IN|NODE_MOVED_OUT))){
++                 if (r->level >= REPORT_LEVEL_LIST_ENTRIES
++                   && (node->old_data->attr&~(r->ignore_removed_attrs))^(node->new_data->attr&~(r->ignore_added_attrs)) ) {
+++                    char *entry_safe = stresc(node->old_data->filename);
++                     char *str = NULL;
++                     report_printf(r, "Entry %s in databases has different attributes: %s\n",
++-                            node->old_data->filename,str= diff_attributes(node->old_data->attr&~(r->ignore_removed_attrs),node->new_data->attr&~(r->ignore_added_attrs)));
+++                            entry_safe,str= diff_attributes(node->old_data->attr&~(r->ignore_removed_attrs),node->new_data->attr&~(r->ignore_added_attrs)));
+++                    free(entry_safe);
++                     free(str);
++                 }
++                 DB_ATTR_TYPE changed_attrs = (node->changed_attrs)&~(r->ignore_changed_attrs);
++@@ -933,14 +952,18 @@ static void print_report_header() {
++         if (r->level >= REPORT_LEVEL_SUMMARY) {
++             int first = 1;
++             if (conf->limit != NULL) {
++-                report_printf(r, _("Limit: %s"), conf->limit);
+++                char *limit_safe = stresc(conf->limit);
+++                report_printf(r, _("Limit: %s"), limit_safe);
+++                free(limit_safe);
++                 first = 0;
++             }
++ 
++             if (conf->action&(DO_INIT|DO_COMPARE) && conf->root_prefix_length > 0) {
++                 if (first) { first=0; }
++                 else { report_printf(r," | "); }
++-                report_printf(r, _("Root prefix: %s"),conf->root_prefix);
+++                char *prefix_safe = stresc(conf->root_prefix);
+++                report_printf(r, _("Root prefix: %s"), prefix_safe);
+++                free(prefix_safe);
++             }
++ 
++             if (r->level != REPORT_LEVEL_CHANGED_ATTRIBUTES) {
++diff --git a/src/util.c b/src/util.c
++index 1826059..ba7359e 100644
++--- a/src/util.c
+++++ b/src/util.c
++@@ -99,6 +99,40 @@ int cmpurl(url_t* u1,url_t* u2)
++   return RETOK;
++ };
++ 
+++static size_t escape_str(const char *unescaped_str, char *str, size_t s) {
+++    size_t n = 0;
+++    size_t i = 0;
+++    char c;
+++    while (i < s && (c = unescaped_str[i])) {
+++        if ((c >= 0 && (c < 0x1f || c == 0x7f)) ||
+++            (c == '\\' && isdigit(unescaped_str[i+1])
+++                       && isdigit(unescaped_str[i+2])
+++                       && isdigit(unescaped_str[i+3])
+++                ) ) {
+++            if (str) { snprintf(&str[n], 5, "\\%03o", c); }
+++            n += 4;
+++        } else {
+++            if (str) { str[n] = c; }
+++            n++;
+++        }
+++        i++;
+++    }
+++    if (str) { str[n] = '\0'; }
+++    n++;
+++    return n;
+++}
+++
+++char *strnesc(const char *unescaped_str, size_t s) {
+++    int n = escape_str(unescaped_str, NULL, s);
+++    char *str = checked_malloc(n);
+++    escape_str(unescaped_str, str, s);
+++    return str;
+++}
+++
+++char *stresc(const char *unescaped_str) {
+++    return strnesc(unescaped_str, strlen(unescaped_str));
+++}
+++
++ /* Returns 1 if the string contains unsafe characters, 0 otherwise.  */
++ int contains_unsafe (const char *s)
++ {
++-- 
++2.50.1
++
+diff --git a/recipes-ids/aide/aide_0.17.4.bb b/recipes-ids/aide/aide_0.17.4.bb
+index 6bc2bfe..69beff6 100644
+--- a/recipes-ids/aide/aide_0.17.4.bb
++++ b/recipes-ids/aide/aide_0.17.4.bb
+@@ -6,7 +6,9 @@ LICENSE = "GPL-2.0-only"
+ DEPENDS = "bison-native libpcre"
  
- S = "${UNPACKDIR}/${BP}/python"
+ SRC_URI = "https://github.com/aide/aide/releases/download/v${PV}/${BPN}-${PV}.tar.gz \
+-           file://aide.conf"
++           file://aide.conf \
++           file://CVE-2025-54389.patch \
++           "
  
--DEPENDS = "libsepol libselinux gettext-native python3-setuptools-scm-native"
-+DEPENDS = "libsepol libselinux gettext-native python3-setuptools-scm-native python3-pip-native"
+ SRC_URI[sha256sum] = "c81505246f3ffc2e76036d43a77212ae82895b5881d9b9e25c1361b1a9b7a846"
  
- RDEPENDS:${PN} = "\
-         python3-core \
-@@ -111,7 +111,9 @@ FILES:${PN} += "\
- "
- 
- do_install() {
--    oe_runmake DESTDIR="${D}" \
-+    oe_runmake \
-+        DESTDIR="${D}" \
-+        PREFIX=${prefix} \
-         PYLIBVER='python${PYTHON_BASEVERSION}' \
-         PYTHONLIBDIR='${PYTHON_SITEPACKAGES_DIR}' \
-         install
 -- 
-2.43.0
+2.50.1
 
 
