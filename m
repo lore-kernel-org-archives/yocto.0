@@ -1,85 +1,108 @@
-Return-Path: <alex.kanavin@gmail.com>
+Return-Path: <marek.belisko@gmail.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 53B98CA1010
-	for <webhook@archiver.kernel.org>; Wed,  3 Sep 2025 12:11:42 +0000 (UTC)
-Received: from mail-qv1-f43.google.com (mail-qv1-f43.google.com [209.85.219.43])
- by mx.groups.io with SMTP id smtpd.web11.10683.1756901501353519075
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 1ACC7CA1015
+	for <webhook@archiver.kernel.org>; Thu,  4 Sep 2025 11:49:20 +0000 (UTC)
+Received: from mail-wm1-f54.google.com (mail-wm1-f54.google.com [209.85.128.54])
+ by mx.groups.io with SMTP id smtpd.web11.36901.1756986553739169670
  for <yocto@lists.yoctoproject.org>;
- Wed, 03 Sep 2025 05:11:41 -0700
+ Thu, 04 Sep 2025 04:49:14 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20230601 header.b=dNNa0BH4;
- spf=pass (domain: gmail.com, ip: 209.85.219.43, mailfrom: alex.kanavin@gmail.com)
-Received: by mail-qv1-f43.google.com with SMTP id 6a1803df08f44-70ba7aa131fso70915256d6.2
-        for <yocto@lists.yoctoproject.org>; Wed, 03 Sep 2025 05:11:41 -0700 (PDT)
+ dkim=pass header.i=@gmail.com header.s=20230601 header.b=DX0f/yRQ;
+ spf=pass (domain: gmail.com, ip: 209.85.128.54, mailfrom: marek.belisko@gmail.com)
+Received: by mail-wm1-f54.google.com with SMTP id 5b1f17b1804b1-45b7d87b90fso7870585e9.0
+        for <yocto@lists.yoctoproject.org>; Thu, 04 Sep 2025 04:49:13 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1756901500; x=1757506300; darn=lists.yoctoproject.org;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=bunGtIl2xpsVaGfrYvjQOLKSC2EPl5N4BAy8/ikQ1is=;
-        b=dNNa0BH4tgeEA1xF5XkBkMjdFPt+I1NPd5uovMvR0WI4MTgvvV8cqOXHCAyglHJl7Q
-         TSilQfH7Ha2XoUMrNy0E0/MlUbT6BuDgieJAQ0w+8BvWgZ+zsYmY/UCdsQfX+DfJwnwn
-         S0xwixZUtmJ49ow1BmIiEQ6T+gM4bfsoZaR6kAO05jyycQcqspyNjKQa/EkiEUZWfCLJ
-         T/R+9vmWwDlAcxVNDl7bju0cFSwuZWr0GOnEiIbRmzN/E3Jelv8kHYC89V4u0USHXUQh
-         2UVblfg6aMRfrhO4jd35LnfJGleVuL1EVJidz60XbE3IgBOhQ7nixbqJfo9rA5dmqZws
-         P1lg==
+        d=gmail.com; s=20230601; t=1756986552; x=1757591352; darn=lists.yoctoproject.org;
+        h=to:subject:message-id:date:from:mime-version:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=BvfWJL0AfebnM7Jf5yS58VUMbrkkhH6vbcclO7fMp80=;
+        b=DX0f/yRQqZitXwu3MWGHR1xDlu7tcsPwVUw9lVAYsr5VeDBetadgVMSvclvs8N8C0g
+         vDtlFcaQvTXkD9Yk4ER4FbEDNwzVait2P3gG6NbW8JQ142/1F13nLnarjzbeMVGzEONI
+         e1G1itUaGEvqYHWXlpx0Fak1Bm6fH20IWRvM5QpscFITsSxiFuvamvy4xSxv6D+LoqiD
+         95mQqiYZQ3xqPFFMk9mz54DIeGDhx5kX/c/7yoT7xmnEW8fbZMdrJblsD/K3e5v08TeB
+         NdcLOPIDai0U92xtb1j4pozRhESqwEDukRic6u5zMb+pBLTH+WjGYXFRg5bSKF1sbO0z
+         ugVA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1756901500; x=1757506300;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=bunGtIl2xpsVaGfrYvjQOLKSC2EPl5N4BAy8/ikQ1is=;
-        b=g+/ZskxbOaXNc1/+IFH88shC1r1ZiXhGygPntDkI2zvLy0pv8hmNW52u4SQJQLp0hn
-         pPqah9HJusP5yhKUjlpWk8Yx3mUBWgr2+QiNnWolG+Pxp6gWz4TFm7Q/gxn1BjJaNPep
-         XCyuY7PfJuFiodnQCIzUl60fvtuh7M8fTvAn3Ggkdv95jwFP8azbzMDfs5Xcm0ZeuMBo
-         +t4wbCoIZGj2O9mDaVZwg1WDFxNX91ZHRDColM1LCi8YsjylORsAxAH6C8zn/JHIyApz
-         Vn/lQiRIH4ikd1UXOiZtbrtpgDLOouFsjyPtTO0LnV3b7xuqW2HAhDD6ac0anaPaqoMR
-         pioQ==
-X-Gm-Message-State: AOJu0YwlFPIL6wkmHnehKkUf1fr8oRnjRI8EBllHR92EqRRu3dNAJngN
-	p8dndfydVZxX5htVl6XNroGpI3gCAQg7iNNyqA2r+xJJCt1TjrUb4jRG8iZLJZeO8GAL9HGARMW
-	qYyUSinDmb4zRxu2ElFWWcI3Ym3IfEC11Mg==
-X-Gm-Gg: ASbGncu26Hs0oqbQqzjKrUq/j07qw/ZV+1LzCnylka2KMfgaV82o2Sy50O7+9vk6Lwd
-	ljQEXqL8zMkCDJ0vcpaUsF+F0SQjd86jTmccCPAcP1yQ3fH7JcwjjtDG31T9cwd83EXIeJYb/LK
-	Bk3FNLGG0Yk1oFtJ9FGaRZrzeTMcDafwL4/YEtdtLZO+mCTiO1OoW1djm16CR6lbkkJJlRsrnIh
-	R/M28AvM+ZNJ1ro+MRCwNWnnyUveEcuvgUtp5CRf/3X+LWvg/85djy0J1yOEBYvF/B4q/Saw1Ct
-	N68WKyIRSI6bUdjKFkMNAJhfYvgZPbnockb+A7dL
-X-Google-Smtp-Source: AGHT+IFxsRY0FdaFc8jqJvRlTbUA1j+kVQuxbgB0nLqTGX9j8nvnQnQNZ0JLCG485TEHr+eHWwwdchu/LU9SjacWAEU=
-X-Received: by 2002:a05:6214:f09:b0:70d:f9d0:de72 with SMTP id
- 6a1803df08f44-70fac940a7dmr162490476d6.61.1756901500234; Wed, 03 Sep 2025
- 05:11:40 -0700 (PDT)
+        d=1e100.net; s=20230601; t=1756986552; x=1757591352;
+        h=to:subject:message-id:date:from:mime-version:x-gm-message-state
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=BvfWJL0AfebnM7Jf5yS58VUMbrkkhH6vbcclO7fMp80=;
+        b=G2KCO5chwI7c/w3FWoBx6YpH+KwDoGXbgMIpkGlQplAP133ItnhaiGhc7fD+krtbFd
+         OPkK3PuSZCCCCHyka5+OFOMpTsdN8VzkqzUmRrVRZ11imACf2do570Be7AAF6StyGGxt
+         1F/FEqBzGI7eIPJRiTAwKya5GJ8xICZ1Swh8Tqac19JBeNKhyrzjJwc4IFKLfGsCM+y2
+         QDkF6M4bhHoapZh1s8ynh8leKSaLVdRwYyNOCLbA5kEBcvlY/FB2DapizYlkHjd1OUh9
+         8KjshTxntdbpPsyAGppIjYGb2sYGg2knamyFcDteIEDYVWdQOZ+9Rv6Yw8WDz8Bttl6x
+         sL1w==
+X-Gm-Message-State: AOJu0YwVCk6M68JSi4AdX5ZIi1r4+S+tVAmRm/5DP2sH7yRRkWJGDlBw
+	5SykXJgzRyki6zyyZLHRPT1t0j5SsI0sK89ToICNYAt4Vq4sFEs0Orq7G+WqDNaJzqjvp8OqXnf
+	zOhNzgUNhzWnvNf/Ha16K5LLYK+DcAwfuMQ==
+X-Gm-Gg: ASbGncsohcaew5Dp0tp23hWoGyYrNIdCVih936EVmjXUP2cX91XncSzIwzLW2IduaMp
+	usOAPubdGwrICtxLfoCiiHO+/4CGN3p9u0qTrvXVN7SQb35906uNpw4IMmvuqvTf1bhb7q7CBrj
+	8lsw36EqilRmnAXy0eXBsqgDfGtVtGdIO892vcYGl5XO2y9X5oL9Z6buY9FJyyAlXKWZPdCho4q
+	HBHdQXq4cJq7Xxw
+X-Google-Smtp-Source: AGHT+IGwBaCvNZUtY6ewP1lCfLWrrqX5C6Zgo7MK+COCD5FiwSB8YmNQc4fDsvMjvDE++Dp994dkAvD8MbKntB0LSew=
+X-Received: by 2002:a05:600c:5247:b0:45b:910c:adf with SMTP id
+ 5b1f17b1804b1-45b910c0ba0mr96050045e9.12.1756986550798; Thu, 04 Sep 2025
+ 04:49:10 -0700 (PDT)
 MIME-Version: 1.0
-References: <mtcyc6sh3ncw36xq2ngxwfzqjo4jwakclrwsitncnjxeb3nke4@czy7r2g73dwr> <45bcc161-228d-4900-a384-7c3869b97ef7@gmail.com>
-In-Reply-To: <45bcc161-228d-4900-a384-7c3869b97ef7@gmail.com>
-From: Alexander Kanavin <alex.kanavin@gmail.com>
-Date: Wed, 3 Sep 2025 14:11:29 +0200
-X-Gm-Features: Ac12FXyNs7jJzH7ZPXX1pGx5f9MIygbJCjKyUeTgY8JiLKsosW8jXJk4aiGM_ug
-Message-ID: <CANNYZj-=HOLVM=hLdnb7MPU89xeZRm144gTyujDpXQYfcxQr5A@mail.gmail.com>
-Subject: Re: [yocto] No meta-openembedded/krikstone updates since 2025-07-13
-To: yocto@lists.yoctoproject.org, skandigraun@gmail.com
-Cc: joerg.sommer@navimatix.de, openembedded-devel@lists.openembedded.org
-Content-Type: text/plain; charset="UTF-8"
+From: Belisko Marek <marek.belisko@gmail.com>
+Date: Thu, 4 Sep 2025 13:48:58 +0200
+X-Gm-Features: Ac12FXxYZWXq1qBe8o7ooGiTEjhl9dETr9b1JczKPVFQ8wt_yReSyxh5mSkgQjs
+Message-ID: <CAAfyv36zLfeAOau+KqBeXJxNxmmNCw5uHTaWRBiUUCQCGjj5HA@mail.gmail.com>
+Subject: using cargo from cmake
+To: Yocto <yocto@lists.yoctoproject.org>
+Content-Type: multipart/alternative; boundary="0000000000003c4f43063df84fcc"
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Wed, 03 Sep 2025 12:11:42 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/65815
+ <yocto@lists.yoctoproject.org>; Thu, 04 Sep 2025 11:49:20 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/65816
 
-On Wed, 3 Sept 2025 at 12:49, Gyorgy Sarvari via
-lists.yoctoproject.org <skandigraun=gmail.com@lists.yoctoproject.org>
-wrote:
-> > there are some patches for Kirkstone on the mailing list openembedded-devel,
-> > but no updates of the Git branch at
-> > https://git.openembedded.org/meta-openembedded/log/?h=kirkstone, since
-> > 7 weeks. Is a push missing?
->
-> I'm merely guessing - probably Armin (the maintainer of the branch) is
-> on holiday?
+--0000000000003c4f43063df84fcc
+Content-Type: text/plain; charset="UTF-8"
 
-This unfortunately is not the case. Armin is unable to continue, and
-the layer needs a new maintainer. I am expecting that openembedded TSC
-will come out with an official message, but, unofficially, any of you
-are welcome to step up.
+Hi,
 
-Alex
+I'm trying to compile UnifySDK using cmake as a build system. But in the
+cmakefiles they call explicitly cargo explicitly. I cannot include cargo +
+cmake together. Is there some existing package which uses the same
+combination or what would be a proper way to handle such a situation.
+
+Thanks and BR,
+
+marek
+
+-- 
+as simple and primitive as possible
+-------------------------------------------------
+Marek Belisko - OPEN-NANDRA
+Freelance Developer
+
+Ruska Nova Ves 219 | Presov, 08005 Slovak Republic
+Tel: +421 915 052 184
+skype: marekwhite
+twitter: #opennandra
+web: http://open-nandra.com
+
+--0000000000003c4f43063df84fcc
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr"><div>Hi,<br clear=3D"all"></div><div><br></div><div>I&#39;=
+m trying to compile UnifySDK using cmake=C2=A0as a build system. But in the=
+ cmakefiles they call explicitly=C2=A0cargo explicitly. I cannot include ca=
+rgo=C2=A0+ cmake together. Is there some existing package which uses the sa=
+me combination or what would be a proper way to handle such a situation.</d=
+iv><div><br></div><div>Thanks and BR,</div><div><br></div><div>marek</div><=
+div><br></div><span class=3D"gmail_signature_prefix">-- </span><br><div dir=
+=3D"ltr" class=3D"gmail_signature" data-smartmail=3D"gmail_signature">as si=
+mple and primitive as possible<br>-----------------------------------------=
+--------<br>Marek Belisko - OPEN-NANDRA<br>Freelance Developer<br><br>Ruska=
+ Nova Ves 219 | Presov, 08005 Slovak Republic<br>Tel: +421 915 052 184<br>s=
+kype: marekwhite<br>twitter: #opennandra<br>web: <a href=3D"http://open-nan=
+dra.com" target=3D"_blank">http://open-nandra.com</a></div></div>
+
+--0000000000003c4f43063df84fcc--
 
