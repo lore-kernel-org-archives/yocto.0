@@ -1,79 +1,93 @@
-Return-Path: <stefan@datenfreihafen.org>
+Return-Path: <jester@theyoctojester.info>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 4F25BCA1010
-	for <webhook@archiver.kernel.org>; Fri,  5 Sep 2025 07:46:15 +0000 (UTC)
-Received: from proxima.lasnet.de (proxima.lasnet.de [78.47.171.185])
- by mx.groups.io with SMTP id smtpd.web11.15870.1757058366001854319
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 2BA44CA0FED
+	for <webhook@archiver.kernel.org>; Fri,  5 Sep 2025 18:33:01 +0000 (UTC)
+Received: from mail-ed1-f51.google.com (mail-ed1-f51.google.com [209.85.208.51])
+ by mx.groups.io with SMTP id smtpd.web11.1099.1757097179723468442
  for <yocto@lists.yoctoproject.org>;
- Fri, 05 Sep 2025 00:46:07 -0700
+ Fri, 05 Sep 2025 11:33:00 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@datenfreihafen.org header.s=2021 header.b=jkH2JhTl;
- spf=pass (domain: datenfreihafen.org, ip: 78.47.171.185, mailfrom: stefan@datenfreihafen.org)
-Received: from [192.168.2.30] (unknown [45.118.184.53])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: stefan@datenfreihafen.org)
-	by proxima.lasnet.de (Postfix) with ESMTPSA id 0689BC0488;
-	Fri,  5 Sep 2025 09:45:26 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=datenfreihafen.org;
-	s=2021; t=1757058327;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding;
-	bh=xkWeTb8lOsbwxHBNQAiLG/GOYrFmBBfRltFTpI+7WeM=;
-	b=jkH2JhTlc3PgelBVDX5sr4jT/CL6PhAkkZdJOddka0LABnij0/XsXaCjyoUYwP2oOxCc1d
-	zmsfMyOORa3rkDhMHBEvuB6O3NpvP7Iz/RtXddbVPZBceefiFSELJQklV1z7XAx2Pfop4/
-	l87zZcva+wNvTcX7tfeWY12F8AiXZjVm6l8JqoJ95lH3d+QJ3R9CAZOu4uMUJmZYjUnjql
-	WtASpzUH2B9H0/YLmg6Sc0Rg5TXaqAupLnf4UIlGPdNgt32apBXe63tWWIbefHqcM81uUt
-	7oiKJ5dEYEHFIyE7ikB+Ri7wRybfom7u/kRtFNjS84bmkKE2HsMCqz0VQbyP7Q==
-Message-ID: <2a353817-f1da-4e7c-8b2c-0853779ec054@datenfreihafen.org>
-Date: Fri, 5 Sep 2025 09:45:26 +0200
+ dkim=pass header.i=@theyoctojester-info.20230601.gappssmtp.com header.s=20230601 header.b=qonTwa2K;
+ spf=neutral (domain: theyoctojester.info, ip: 209.85.208.51, mailfrom: jester@theyoctojester.info)
+Received: by mail-ed1-f51.google.com with SMTP id 4fb4d7f45d1cf-622fbed96dfso634174a12.1
+        for <yocto@lists.yoctoproject.org>; Fri, 05 Sep 2025 11:32:59 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=theyoctojester-info.20230601.gappssmtp.com; s=20230601; t=1757097178; x=1757701978; darn=lists.yoctoproject.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=KWr0vHyrQqlDeFx2Vt0XbtQxPLLB08twQk5ir185/pQ=;
+        b=qonTwa2K4Gbz+wWbgHnYp3M2SItVW/wgzoYR1DGhOiLsgeji/sFAm4/THWJ3w9g5Lc
+         9+bZApVYVrrrfA0OUM/tuJl1R7uvLQVw4515c42+hVHQm5l4uBGw19GXRAmgjoBYxfi9
+         bPa5FTpPoP0YAPflDTR5IVBNJPpxxsFEUHKw/MKVMhNrV4LOv3jPkTGYJ0ACorQOILHY
+         WH3WKK3JDUdPYJHfDagdvagyCXarnh95KXNmXRGlXnGFvYu6n1RquugtiqhlJ8oKOhQy
+         +l8Nwc7GhbC4RDEoqVoGgG1PxAN9l24t6hYZyKxh5IxqK6aXg7vLVoizC3+W72ymjlh4
+         l72w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1757097178; x=1757701978;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=KWr0vHyrQqlDeFx2Vt0XbtQxPLLB08twQk5ir185/pQ=;
+        b=ANevu94RcVJ8ErNAZATTYbF7H01qpJT/JhvgbxDOEv3TdufCAK60Ga0OGcIZ6UW4vr
+         D5MjjSzI1yGFPO1XhndFkE9WO7K91LqrbM/sONYRrVs+rsQRoe9qExE2mJn/p3K2RHTf
+         nCKIhAiY0w28dyieG5DytmtgPBgq0bWIUg1rIXmGLHWEi6LWgNe2c2GLfUfCDYuE7sRx
+         hNPOClD6go8muusOWit2t66RoyO02UFC/Nc3ERURgi81HyXOTcgDTpI1+JZBvw59Ld+a
+         KcVaH7P45nvq29sa/Ze+l+Co0p/LEw/+/fif5U5wOSoJVcrdq4dcq6MxNqbNaQYubvkm
+         wMZw==
+X-Gm-Message-State: AOJu0YyQ4IX4IxMzN8B1XJy9gk5AlV+DgM/boFIUxV8tsgrfSfCd189U
+	3T8EVsBKvh+jlg8zZzL7oK0av4CRLxMiYAdKFQZDj3WsO8wo4/nVWWMsPbfMUqAJt3jgvCitc45
+	WH5fBVx7VS9WO3+KQnuzQP3soyqEZVqXHpIIB3ez2sQRf/FZEdLBKByQ=
+X-Gm-Gg: ASbGnctUCbhGM3lJy0xh5c45BMQArNooNgCpIomF6QEzIuGqDQp4wC4r6YZK/bIx8i0
+	sCvimFIAvOmkUpFepBlRBj+DRl4MWCNL8GSGgV/GjvyqP6ubiIwjenV3f9j0vw0pUDn33ghB3Tx
+	PJGnJ9Teef7EEgzrYPCHEGYUIRCoWhYcyrJWPxyNsJGWFSvGCKRm77KlSuzJhHIv/4zniij9nu0
+	H8YS8JAGqd0STG91oyr2k4oCaXMTaCc22zAn2i6TfQveyV1/mU5
+X-Google-Smtp-Source: AGHT+IHzSwll/ivhVsIIArOEJwxZHRp2sCEPanc8sM4ZAW8th0t47MKLFQM/jZf4d9Op6MZJKtBCce4oDZqbcH0L2xs=
+X-Received: by 2002:a17:907:9410:b0:b04:7702:c18f with SMTP id
+ a640c23a62f3a-b047702c450mr920377066b.15.1757097177974; Fri, 05 Sep 2025
+ 11:32:57 -0700 (PDT)
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-From: Stefan Schmidt <stefan@datenfreihafen.org>
-Content-Language: en-US
-Cc: Jan Lubbe <jlu@pengutronix.de>, stefan.schmidt@linaro.org
-Subject: Call for Participation: Embedded & IoT micro-conference at Linux
- Plumbers 2025
-To: linux-arm-kernel@lists.infradead.org, linux-embedded@vger.kernel.org,
- linux-arm-msm@vger.kernel.org,
- "linux-wpan@vger.kernel.org" <linux-wpan@vger.kernel.org>,
- BlueZ development <linux-bluetooth@vger.kernel.org>,
- linux-can <linux-can@vger.kernel.org>,
- devicetree <devicetree@vger.kernel.org>,
- "yocto@lists.yoctoproject.org" <yocto@lists.yoctoproject.org>,
- openembeded-devel <openembedded-devel@lists.openembedded.org>,
- boot-architecture@lists.linaro.org
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+From: Josef Holzmayr <jester@theyoctojester.info>
+Date: Fri, 5 Sep 2025 20:32:31 +0200
+X-Gm-Features: Ac12FXwpTHYhcLDW4J6EKWX5QWE2lqmCSdTMcAvL7EIiHaVpRR8442er3BxQQGs
+Message-ID: <CAEt6Nwoo7YJnEmMO2qneyuKstuGbwE__OVUGUptppT0+GL=75A@mail.gmail.com>
+Subject: RFQ / job opening: Yocto Project Ecosystem Engineering and Operations Lead
+To: Yocto-mailing-list <yocto@lists.yoctoproject.org>, openembedded-devel@lists.openembedded.org, 
+	openembedded-core <openembedded-core@lists.openembedded.org>, 
+	openembedded-architecture <openembedded-architecture@lists.openembedded.org>
+Cc: Michelle Favalora <mfavalora@linuxfoundation.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Fri, 05 Sep 2025 07:46:15 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/65819
+ <yocto@lists.yoctoproject.org>; Fri, 05 Sep 2025 18:33:01 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/65820
 
-We are happy to announce that the Embedded & IoT micro-conference was
-again accepted for Linux Plumbers this year. Hosted in beautiful Tokyo,
-Japan December 11-13.
-https://lpc.events/event/19/contributions/2005/
+Hear me, hear me!
 
-Topics cover all things embedded and IoT. Boot time to kernel size, low
-power communication, telemetry and also RTOS. Devicetree and build
-system have their own MC and we can move sessions between them as needed.
+<quote>
+We are seeking a highly motivated and autonomous Ecosystem Engineering
+and Operations Lead to support the ongoing operations of a high-impact
+open source project. This is a full-time role focused on maintaining
+and evolving the release processes, technical infrastructure, and
+interaction with members and community across a complex and widely
+adopted open source ecosystem.
 
-As with all MC's at Plumbers we are not looking for talks, but rather
-discussing current problems and working towards their solution. If your
-proposal has a specific stakeholder (maintainer, developer, company)
-that would be needed for a fruitful discussion, please mention it in
-your submission.
+The role will work across multiple domains=E2=80=94including release
+engineering, automation systems (e.g., autobuilders), CVE and security
+management, documentation, and community/member support=E2=80=94to ensure
+timely execution, quality, and alignment with Technical Steering
+Committee (TSC) direction and Yocto Project governance board (GB)
+goals.
+</quote>
 
-The CfP is open now and will run until October 3rd. Please do not wait
-until the end with your submissions as we are going to accept good
-proposals even before the end, so the MC might be filled up before 
-October 3rd.
+Curious? Check out
+https://jobs.smartrecruiters.com/LinuxFoundation/744000080228346-ecosystem-=
+engineering-and-operations-lead-remote-contractor
 
-Jan & Stefan
+Josef
+Yocto Project Community Manager
+on behalf of the YP Leadership working group
 
