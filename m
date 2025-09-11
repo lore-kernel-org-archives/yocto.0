@@ -2,82 +2,81 @@ Return-Path: <chee.yang.lee@intel.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 521B7CAC583
-	for <webhook@archiver.kernel.org>; Thu, 11 Sep 2025 05:05:07 +0000 (UTC)
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.19])
- by mx.groups.io with SMTP id smtpd.web11.38744.1757567101006852003
+	by smtp.lore.kernel.org (Postfix) with ESMTP id A9F4ACA1016
+	for <webhook@archiver.kernel.org>; Thu, 11 Sep 2025 06:19:37 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.14])
+ by mx.groups.io with SMTP id smtpd.web11.39578.1757571571024764599
  for <yocto@lists.yoctoproject.org>;
- Wed, 10 Sep 2025 22:05:01 -0700
+ Wed, 10 Sep 2025 23:19:31 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@intel.com header.s=Intel header.b=m/BN18Aj;
- spf=pass (domain: intel.com, ip: 198.175.65.19, mailfrom: chee.yang.lee@intel.com)
+ dkim=pass header.i=@intel.com header.s=Intel header.b=O0NmDo/z;
+ spf=pass (domain: intel.com, ip: 198.175.65.14, mailfrom: chee.yang.lee@intel.com)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
   d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1757567101; x=1789103101;
+  t=1757571572; x=1789107572;
   h=from:to:subject:date:message-id:mime-version;
-  bh=HMq89hK2WpLQdW8lqkYU0/49lYHkmQycPBgZnH0KNnc=;
-  b=m/BN18Ajv+yWE3K9mnni1GZPlkNEycvwN3pHwAFEMkIcmeA1gT8F2Bcw
-   flvqu73OS1w2Istrcug6lVzpfFwcbiRKz1wRTNHLRBSVN2oTrOLFVub9u
-   7oWDzq5ZGWbQXnXJZeySQ3uRPg68n6fXepFDVNR7D8ixJp6+c0Pn49hEQ
-   NkHOBk1A9qDn0PGDiWmWxJgNFJD4j1f5g5STHYgjeH5fcZLKmGchlNVh3
-   CVxzkrdclXv1E4G2oEzSVxy3Zel1MUQYTN0cZ3N5H9Q3q+OtY7X6q+ygy
-   K8b9DXhxBqDZzgTuHuHSl8jhbchPiyQH4T6tmk/r158xnz4SirPBkfUqJ
-   g==;
-X-CSE-ConnectionGUID: rarWu23HSX2zwF/FotIbcw==
-X-CSE-MsgGUID: WMcdgFlZQh2AVllLB3dFdA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11549"; a="59747485"
-X-IronPort-AV: E=Sophos;i="6.18,256,1751266800"; 
-   d="scan'208,217";a="59747485"
-Received: from fmviesa001.fm.intel.com ([10.60.135.141])
-  by orvoesa111.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 10 Sep 2025 22:05:00 -0700
-X-CSE-ConnectionGUID: VWTxLqF3RZ+PzsSsBQBIfA==
-X-CSE-MsgGUID: /T3wZqBuTyO32domAAl6Ag==
+  bh=ETPQ4n63QbcDLnWAyLDjmdlG5J22Fhk3oCZZglNG71U=;
+  b=O0NmDo/zluFtH2ApREgWjEJJ41VIz9ahZvfEGY0uq+9ZZ6UqfHba4Lse
+   rH9LEf7lCkHq3qu5Rn1HGbE3bmxCkWV3xiRPIUcTqq5IORdepqiAe6g0f
+   jY7gdGC/ZbOfyINvlVs1zKqCoSLQmwT+pLemvI0NClskd/0yXsq2xRQmk
+   ls8gKSMAopzucxGsPGL3FffnusAEaUKck1RPwM4tK56DYDBEDxil+G5ur
+   +ed+2YGrbVKHlj9RJj+xoCuqvziCp9hoZcXmMnK7ouSiwNnAKcMXP6r4k
+   sj1FkFs1hCU8hWDWVsqjP95lZwTqpPDryiw+hpb+idkWnus/sSqI4Kv/6
+   w==;
+X-CSE-ConnectionGUID: oCQw/o4tRhW3tbNjPP0AqA==
+X-CSE-MsgGUID: +LwitFRlRnKAUrliXZfnDw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11531"; a="63722502"
+X-IronPort-AV: E=Sophos;i="6.17,312,1747724400"; 
+   d="scan'208,217";a="63722502"
+Received: from fmviesa004.fm.intel.com ([10.60.135.144])
+  by orvoesa106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 10 Sep 2025 23:19:30 -0700
+X-CSE-ConnectionGUID: xdbOP3dkRCCzKBrVGJ92kg==
+X-CSE-MsgGUID: wD00kQrpSjOMCZg1DatDFw==
 X-ExtLoop1: 1
 X-IronPort-AV: E=Sophos;i="6.18,256,1751266800"; 
-   d="scan'208,217";a="204573794"
+   d="scan'208,217";a="178807052"
 Received: from fmsmsx902.amr.corp.intel.com ([10.18.126.91])
-  by fmviesa001.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 10 Sep 2025 22:04:59 -0700
+  by fmviesa004.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 10 Sep 2025 23:19:29 -0700
 Received: from FMSMSX901.amr.corp.intel.com (10.18.126.90) by
  fmsmsx902.amr.corp.intel.com (10.18.126.91) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.17; Wed, 10 Sep 2025 22:04:58 -0700
+ 15.2.2562.17; Wed, 10 Sep 2025 23:19:29 -0700
 Received: from fmsedg902.ED.cps.intel.com (10.1.192.144) by
  FMSMSX901.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.17 via Frontend Transport; Wed, 10 Sep 2025 22:04:58 -0700
-Received: from NAM11-DM6-obe.outbound.protection.outlook.com (40.107.223.71)
- by edgegateway.intel.com (192.55.55.82) with Microsoft SMTP Server
+ 15.2.2562.17 via Frontend Transport; Wed, 10 Sep 2025 23:19:29 -0700
+Received: from NAM10-MW2-obe.outbound.protection.outlook.com (40.107.94.73) by
+ edgegateway.intel.com (192.55.55.82) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.17; Wed, 10 Sep 2025 22:04:57 -0700
+ 15.2.2562.17; Wed, 10 Sep 2025 23:19:28 -0700
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=aaWRkiKsrWGQ7HLeFhipcQHjZlGb1pdNi1G/csHqGdKBHKxoGVoRD6WGCh+cH8URi9ehSldtnUknA+zTj6IEosJRWVVLaXvSfjiIdgJDX3FXT7yNyMTY0Svs5ph3xEKkW14EWcrA3vAIFBv/z3LyPgVyaMQDauyubpxW3SjARirl8Y9EEvj3qcsW12qZ2GeDxnKa0NskjPyKbXvw0R5rgELVPzfB9mDBNEwqJKHIahTKxUNRwp613d2sf5qMBYRAGcdbU0CkmlA+HVkZwU159Cvp4PgsI5OvFY17tneukAJnkEsmFfxSF2gg92pKhQZjcRaB/eSXxT5ND3Y0l5I4ig==
+ b=jaQxf4SEtfHTyLx90dZNrUwkHPCbPbSjBpyJ609pl1AmfqAJFMCs7P2nt306PmX4ZgKf79HP1WVg76+JgMc3zmUpzv9CjlQB9o0i7yovCLzgIhNb82hU/0ST7dI6ie7dxgG3alYU9+osCv0QhA4jbyeKec/2bm003fRLcAP27mdaVtK953ALfz85WCtsQ73L+4qy4J7sHqOpqM7vrHpnJuR8ZAUeLljIj+U4pHlW8Q/nPbSMdkeyHA3Q7js5V+SLSoBDhgSsQI/vLFMR3yJg3KJ29tXyFt4k4ztCGV3Bf+6KZRdbFhnAcZJbE3Tt7CcOMIsQRgj0nI1PfFWQ1cqr9g==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=2+oWJQYVMCbm2fvnJQTxlx0QACIv2Iw/WYoQbyCOAgE=;
- b=YVSRWxcJGx4xb22xSrCssAIn08I7QSQh4nPhUl4tuVJzUZj3BSbIvJTMQpjdtjrWLGII07FE/yzFF6G2uBoBR0Nwa+N0egCmY9p9EWNIX+HhL1E6hJ5nLw85e6683VtWoKHXPeam26O6MFi/p5VV6h29k7wLdr7DwAkVVOBJY09lgMP4OFhIrgXNVVEcf3Wpc0iMIaEtDnFcTn8N0phWpDpBOqWejqGff8M12UTlyNxQUUDz1UiaCSnEeTaGX3lywmOKVO3NFZcI5dJW58LuyOYBkkP+O3K4l4QsyEqrCO6MaU5/GWgDL/JK+P29SbOrnZV7N1ePlzhh1G25x2X5eQ==
+ bh=Yjw7hM/R44JV6kRmvVKb5SSFQXgwWMLFVGQMP5TbhlU=;
+ b=W47K/yvrRONfgoq/s7c0FXI8S7DmDzEzD07GRtkyHP2TExz5T8stroL4TihWFWFhLVeludneOZb8yeArAnZhHVOEk67oIKU5wgYFEkIzCf2qK2ioeItUt5OC8DoLQxg8s8wbc1SDUHHFzLqx7P58pv/z/czJsUGVP7z5HEoHPzhW8+5DhYZ4p7wH9Bru50tWReHotJeNBdZKfe1ZsIElNGHZ+kt+C8I6WYuM0g0KN+eAlrRRqgsNP5g2TY38J8nWp7jey9PiBuY95gbGiEm9z3exEhIsgPiltPXw52DWqw6d1D6BEF/+GBj0HMYiCHgmT2XV8nvysKZyp/SaHSSjww==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
 Received: from BL4PR11MB8797.namprd11.prod.outlook.com (2603:10b6:208:5a7::8)
- by PH7PR11MB8569.namprd11.prod.outlook.com (2603:10b6:510:304::15) with
+ by SJ2PR11MB8472.namprd11.prod.outlook.com (2603:10b6:a03:574::15) with
  Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9094.22; Thu, 11 Sep
- 2025 05:04:54 +0000
+ 2025 06:19:26 +0000
 Received: from BL4PR11MB8797.namprd11.prod.outlook.com
  ([fe80::311e:565b:ccfd:f4c8]) by BL4PR11MB8797.namprd11.prod.outlook.com
  ([fe80::311e:565b:ccfd:f4c8%5]) with mapi id 15.20.9094.021; Thu, 11 Sep 2025
- 05:04:53 +0000
+ 06:19:26 +0000
 From: "Lee, Chee Yang" <chee.yang.lee@intel.com>
 To: "yocto-announce@lists.yoctoproject.org"
 	<yocto-announce@lists.yoctoproject.org>, "yocto@lists.yoctoproject.org"
 	<yocto@lists.yoctoproject.org>
-Subject: [ANNOUNCEMENT] Yocto Project 5.0.12(scarthgap-5.0.12) is Released
-Thread-Topic: [ANNOUNCEMENT] Yocto Project 5.0.12(scarthgap-5.0.12) is
- Released
-Thread-Index: Adwi02KKLtSZVEKzQGKIDfrCgnNZHw==
-Date: Thu, 11 Sep 2025 05:04:53 +0000
-Message-ID: <BL4PR11MB8797199FB380E07DCCF2CB89B909A@BL4PR11MB8797.namprd11.prod.outlook.com>
+Subject: [ANNOUNCEMENT] Yocto Project 5.2.3(walnascar-5.2.3) is Released
+Thread-Topic: [ANNOUNCEMENT] Yocto Project 5.2.3(walnascar-5.2.3) is Released
+Thread-Index: Adwi2xdn3YoJWWjgQViwYwiNOLssew==
+Date: Thu, 11 Sep 2025 06:19:26 +0000
+Message-ID: <BL4PR11MB87972F72B5817844319C02CCB909A@BL4PR11MB8797.namprd11.prod.outlook.com>
 Accept-Language: en-SG, en-US
 Content-Language: en-US
 X-MS-Has-Attach: 
@@ -85,108 +84,113 @@ X-MS-TNEF-Correlator:
 authentication-results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=intel.com;
 x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: BL4PR11MB8797:EE_|PH7PR11MB8569:EE_
-x-ms-office365-filtering-correlation-id: c3927c1d-97f9-4756-5f5c-08ddf0f0be4b
+x-ms-traffictypediagnostic: BL4PR11MB8797:EE_|SJ2PR11MB8472:EE_
+x-ms-office365-filtering-correlation-id: 5c6afaf8-0bf8-43e2-8c35-08ddf0fb2897
 x-ms-exchange-senderadcheck: 1
 x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;ARA:13230040|1800799024|10070799003|376014|366016|38070700021|13003099007|8096899003;
-x-microsoft-antispam-message-info: =?us-ascii?Q?8kuHCEU87IxgC1MRjN7HMFLdJUx6YYV6i7V9uugZd8B//Y8vfC8O8bS4Alan?=
- =?us-ascii?Q?L0hHuyK6MTgnYL9EKkem9dFtTldm4CLObEcjlA5VTqk3QTrcoou8MDqRAnhI?=
- =?us-ascii?Q?VDmy/4sBZ+Jhsilim4T5/EVzTO8tdAAwhhbbJDNZ+DKYvLXCi5xC2ExVpW4e?=
- =?us-ascii?Q?pNAJzFAJR5VmPmj2PxotkgFl25A2+GSiSaM2iLO5R3lom8fH1N8TulIZIChQ?=
- =?us-ascii?Q?RjPNq7EPFOrfUveM5NEKHWaJziNKm0TkZlzC9QjcKa5wx8zZOv1PEMOAgx7I?=
- =?us-ascii?Q?ziWxo2jNEHSjumBhWxSPJleC/bWQRjmTvP8xzUdWlb67NtvPYAGDLG/XBGe+?=
- =?us-ascii?Q?5XNUknqglfiHIX2Q18qRGMdDe0Y51I3YRKY/rPJVhWqrTtCrnQRPp/1dVFzL?=
- =?us-ascii?Q?A6rGEAGYcwy7YEBjAyPH41DXGKu9l+sv1wpWHXKyz2Al1vmQdKC3lpaxyi7Z?=
- =?us-ascii?Q?vUNzWdAgwe4jYeOxT9lwAgv7fmXBjlsUQv9f4L2zU5SeCcakVcLNUHqfWXvT?=
- =?us-ascii?Q?S6Xg3HY0WhJGkHiNW3JYtuFqXE7f9UA2e1janXK3IUzRx/WpAi1DJSxPJShG?=
- =?us-ascii?Q?vjskHxPAdMYHVXvKuz0t2u3CUfsuW6bF111x73lhV/bOgPigHtYMLW8V5+NJ?=
- =?us-ascii?Q?tKw7Um6wCY+Zz24JoOJVUp6EFp+HDy8qvCuwzNpQJ2m7SdgxsX2mBs+1hq4V?=
- =?us-ascii?Q?9N3ZGYORA1naicK7LBaGpzyqSN1imUzbfiTg1PcwkDadiFZ5mfeFaCrElHRa?=
- =?us-ascii?Q?u9V6Bu/A+Jn3+aPxVC7dik4Uk0ufGLU0wr+Z3lDpMxr0cJQ/fvrOgCT8qm49?=
- =?us-ascii?Q?2LvYDDTNSX5gZpYKD5pp21HFNAxZa++7yPXHNXfO6YZXRrJTUtX1OjmVu5sR?=
- =?us-ascii?Q?MuGUu/ul7sXElISw416QuNOjoPmHbE37FoCxGfmxSqrwbn7SoIIseSgRS0kG?=
- =?us-ascii?Q?TGWXa9QxuvQerVVXwws3Mj3Aan8Zsiax2EAmOoe28tm4zwkDYxnZ4G3Ypd+4?=
- =?us-ascii?Q?ZXhu+uXSO57g9mttDmMsVU3TdcqRlJkke4YpPDI6N4BgLwt0HonM1dQy58a2?=
- =?us-ascii?Q?B6lKM7IaNXbJGRB7K75sOx6UMfDm9hgBqtaXbbYJ+/x3PwxzWgH22u7Ou/6o?=
- =?us-ascii?Q?ZoXHXDVdTwP82FI+wOiaRbT+tdbMqESUqxdJriu6voi7XbwQ5q/ZUxIe8g2Z?=
- =?us-ascii?Q?Vl4h+dUVv9Lxk9BfHcICu4En2K1Tk9A05QoN9r93SlxCv2L9qvT/WZi3aIUw?=
- =?us-ascii?Q?/GyfeaP7txgQo8SZd7QmIiEAEoBJlOfgLDJuPNi1d/7dDBb1COYSemE0eUa7?=
- =?us-ascii?Q?dlEmWf1Qymxkm2/Q/IRfdWc1ELAEfZyTZXpwRkCuyz079Ye5KH1d1uYY1qwH?=
- =?us-ascii?Q?n/suhBd1AB2zSuJe5M2VvDPEM4g7RVgUkSHFZyvo9Y/Av4ivpr2boP18SFGk?=
- =?us-ascii?Q?BATRpDu9Q9g=3D?=
-x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:BL4PR11MB8797.namprd11.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(1800799024)(10070799003)(376014)(366016)(38070700021)(13003099007)(8096899003);DIR:OUT;SFP:1101;
+x-microsoft-antispam: BCL:0;ARA:13230040|10070799003|376014|366016|1800799024|13003099007|8096899003|38070700021;
+x-microsoft-antispam-message-info: =?iso-8859-1?Q?HgSnV/nBsB7lviGgZjTxHaCKV+1BXKk3eAjfrQgLQjFBxqv2UCy37yNgyR?=
+ =?iso-8859-1?Q?y/1430QiZ7ciqTRlPtvoolsmRH1AI+GI7LFTX4EKGvzyNq3Jo7xfuWRlyj?=
+ =?iso-8859-1?Q?ZTyxLlGzUizN0fjp1vGuPeVdnQDQGbwRUs/3kG/pc2d1ZAddDbdNxuCejF?=
+ =?iso-8859-1?Q?i2SiC2RZkGxaiXMaigvJV4rFx+YqeXELLPM+CNQ4UEH6v9/hJP8K8b2XtI?=
+ =?iso-8859-1?Q?khum/T1Gq0tFqZk23nyXGmzSwm8AKQH7lxMgj7TPTdrKc0HzGDxma838MC?=
+ =?iso-8859-1?Q?qkC6+MRyjnkP9OUHQY5VYpzyw3vj5ByL+a3s4iOMCg62Zgk8dVq/bTMKTH?=
+ =?iso-8859-1?Q?zfCNkpBc1Xe95nxAjIIk9ckocHURRz1oJtrxHvc2WVAm7lDdqP3lQQKv/8?=
+ =?iso-8859-1?Q?b+J5Sx5DkQ88Hk13Up7xMNv3C9ZO2BJm9eitpWMfd3l8dZI460OMjxVOCD?=
+ =?iso-8859-1?Q?KVakzOoIS8L1FDafVIgvrPS1HHm0O4EODBlKKMr21jBBj1gi55uVOSyCkU?=
+ =?iso-8859-1?Q?+fO5qhb2vr2mWM0z0BdMoz7myKc5UUQCQhhVZdjbf0WbY7pwGX5ei6A+zv?=
+ =?iso-8859-1?Q?cgcaQeZU0Nrw2LAqQFLhIHwnrbH8FKhSa+kszCHwI1uiBirjPq085AAkt+?=
+ =?iso-8859-1?Q?0nZIgQc8TqbkoDmypAgzdb+pfpI+WIUM0I6mt14Ln9Bh/e1aU2QoyjAkw6?=
+ =?iso-8859-1?Q?9WnNyseVDHeN066pORhEJJhG8kDrx8iX/a8nNXYWj5Zmu/7y+WtM9BDQIi?=
+ =?iso-8859-1?Q?XqsvwsDpETjusN+tavNS4rLDtHTwf/FjknWLzD7heRtoRmncL6PG1DxL6o?=
+ =?iso-8859-1?Q?VeNB0gA8czlMQjZAsOApNWIlF/27xQ6k9/I911OptWTLSMGa5C0hGjhWFE?=
+ =?iso-8859-1?Q?sTVBYT6LsZkeJgJrJGQIaGlxiESD0kARe0EXN6NRPqV3xPSeGgnh2sbJ8k?=
+ =?iso-8859-1?Q?QYMP3Cc4oEXEVPPq2azmtpKcAxPRxNF1pOlsbcy4vQAkYtmqJREOE9Nu6O?=
+ =?iso-8859-1?Q?fxhgWHCavyRIVqHvp9/vUQ2/+GV5X1y1Y3137tv5tn/PAFC8B0in5Fto+k?=
+ =?iso-8859-1?Q?S1hs5+rNkqha7r6HlpZikssHkiv2Wzwk0jAwAmMAjE0dioJY7dpf/JEM3+?=
+ =?iso-8859-1?Q?pBr3GIMmc3hMSUU17a7QdG/t+7FPMbwnC0q6JH5btoNnnoE9JmRdX1Raio?=
+ =?iso-8859-1?Q?9Mr1hOChLViYgWch1e15FP5GfpozpZydT2phf+Zotp0h/LOFEPr5p2MlOQ?=
+ =?iso-8859-1?Q?j3q0LskGixWThbQIdELAENzUKaj3ZZVereCjDANJHinN/YTa1rgNLpnrMC?=
+ =?iso-8859-1?Q?9CTTDmF7Hq00swJaFyIj946HNBC9NjV9Alf+Fe7ZKJcIBZiOrhqfSEpzGb?=
+ =?iso-8859-1?Q?Unlu4flKk1xODVf8gPLFJAj80k8zI7a3d77W36imLIWXsy/0XTgRY5MR35?=
+ =?iso-8859-1?Q?Rv3+s0TVxsqnv1OgYTGau3rmHc+MPoofCalrM8uZNRFEatLzPhsUhHHlGK?=
+ =?iso-8859-1?Q?8=3D?=
+x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:BL4PR11MB8797.namprd11.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(10070799003)(376014)(366016)(1800799024)(13003099007)(8096899003)(38070700021);DIR:OUT;SFP:1101;
 x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?PbVCb1M16HkA2/H85whjHFR9Ww6GrqQjy0+yCPJtYv8+papRvwS8ydoLW59g?=
- =?us-ascii?Q?/WPd3MOlIRIk7qiEa10I5z07e6xwxtd4BenE7LcCW9XZFy5LynnT9ZPRSbfB?=
- =?us-ascii?Q?EVYfdvqW2XA5iLM0ZIQ1j0jV65sGXt4wjSMZTzlotnut5eyHlBMMF7rMSXcu?=
- =?us-ascii?Q?rHR1DGtAM6VfEWyLGVRcu7kAN3Abpsr0z5rzZfVyUrf/YbcAdRsCn0hv0abO?=
- =?us-ascii?Q?0sxhq5SqUFzM5Jcj9PE+qh0p6tPPJ8L59hdoibPsDhJfwB+JRwsKDwdMf+HZ?=
- =?us-ascii?Q?HtjP59w6GIkjA/xUhJ9Uuc/qppxJCL88O5MjefLNrsY7tQPyF7Sv15OSXnzh?=
- =?us-ascii?Q?8y1nqJVQSdUkagpjmBuEM62ufShh/iBGjnnzQhx5mPffN45ZHaiVXj9yJtM8?=
- =?us-ascii?Q?GOakVadNE30cGDmS6gwKPACWzIAFzG6ugOtitgb0DMea6j37j1BaoCX2lnlq?=
- =?us-ascii?Q?ywq3IdWHRhV0rQ+I+tloNn0LVb2U4yPeTqoM2nIcoOTCWsDWOtnEUfJtfPlH?=
- =?us-ascii?Q?KPMm9CxjmchISoiwDLkNHodE33wnrTB764CnygP1V38DjFQa4LuE4rJOKnwE?=
- =?us-ascii?Q?vP81XEQsS8Eakpod9lXKEqjyhEn9a6Sf/s6qRo9NqVPrmIdzP34H+SsjhHhg?=
- =?us-ascii?Q?v3pBjnWql3YUOhV0t09aUK7Q5l56p4VMaxZlnpoUw25n428puNS56OtBJcd0?=
- =?us-ascii?Q?6Go2hwKJuuQMLVT6Z9ILFIa3FfXj7H2kPUJPlrwS94t1XL6AP2oeuwJq/O5n?=
- =?us-ascii?Q?nHXle1f3UTqUhuN5ZumdtxGVBVw+Hgefgf/5BOkTW4W6gPhCATJw9DLMP9oQ?=
- =?us-ascii?Q?NUUdcJJ+6na2SehKqzdybbTE3Hb3eKWut+BC9AxayLCE9fp2qY7HnQfm9z4S?=
- =?us-ascii?Q?vuNJgyxp2VBvcB7tkATnHbQVROz6HTh42Flkq53e2RPb3x/aA366N9FQfaEd?=
- =?us-ascii?Q?/XSObPZS6IAdoTqL7utKd+IovC2aiICVrwqWFAneh4TFtB7ngaxyi/b9Hbfe?=
- =?us-ascii?Q?E8ip0Jpa2Ps201EMycgw5A5bEWDbxCJTBGC8OixzT92qDaNko9uauLxmv4/m?=
- =?us-ascii?Q?4yKp6be+LpyOEw/HfDPYJKTFf4ZvDmawaeZa+7W2mVmiUnXGy5CG4XqRHQ+m?=
- =?us-ascii?Q?UonvoOtQRKfquS3kMnzxUPihM6Lq/EBp8S/PpyzIAopvHWypxX4PYD9/VJ4H?=
- =?us-ascii?Q?h7V0tvp3k5OC31jd877pSHhx0fJmwH0aN9YbAVqTvcjAGvPZzCBb+OrovJ4e?=
- =?us-ascii?Q?to+vFYRA2/i3I3LgKEB1moK238qH5dQwFZXwN9b1Y/5p3bNfteiNx9qi6HyP?=
- =?us-ascii?Q?uHYkn9VG1a6Ym/FeNMBjw1ZJednfAXliiYU2307FxJ5OOfx9siVUl7pnT03G?=
- =?us-ascii?Q?ibWw5ckkFOSu1Rw2xXE5+rKOfSbnPJ1NUJDz0d8dx5jggw0jw3eElGewItxy?=
- =?us-ascii?Q?VFoZ2yf3aqvtjpfBpirPjA8Y96v4KkNkz5ylRjrd6n6jhXCOW1D+uAJdKYXG?=
- =?us-ascii?Q?VGtXnmyLi+ThL1EsKX4IYE12uZrK7qon3JxvY7PyRLNJNKzW2viAwdMO3tkq?=
- =?us-ascii?Q?PM3o67jF64Ex+O5tOZudr4QP6IyurIrGYX3tHirNqx5cuAVMo+1EF0ic5g/0?=
- =?us-ascii?Q?XZhhMU0PKr/VRYwCwfzRO43wZmSSwuwKUO6QGToz6ifx?=
+x-ms-exchange-antispam-messagedata-0: =?iso-8859-1?Q?TD0GknoqnkC+on77Nr89qMKzgfE0dxvetVxtq2NaU2tpR4efCDsS/AzUxE?=
+ =?iso-8859-1?Q?UHyDNUcufXo2CpNMBlXuaMAAvseH9Pkwl/emNrUCvbeqk9TFWL8kZ7nK15?=
+ =?iso-8859-1?Q?kIkZqmxky0f52ubF6+f1WmOMTdQxLqkbdDzHKlVdGT3Eg0qYSkEr/V+bJG?=
+ =?iso-8859-1?Q?DF6Wu7OOLXss2k/Bwl6LRODCXTcIQRoXAc4WrvfKTn8j5csUmOTeFmMjM9?=
+ =?iso-8859-1?Q?F98aMHDvXwDeXGJUf9DgBFFpHL+6d2mFWdGEcJgb0VHUJ3+6CMcWTRV3XA?=
+ =?iso-8859-1?Q?YB1ngb/RaDtbgjbPWGkM5O6/KCsiRyWnxJteCLCh5qGZA+NiMPSryoHf7V?=
+ =?iso-8859-1?Q?aaL5v/7T2MrYIpFcFhOfpLTBckkpfwSP+rcUUTtdcFww7pufb4HK/Emptm?=
+ =?iso-8859-1?Q?O+VCdGm5TZOOX2dJ5HkHzz5AR6R/vbMebf8yizHUe3x8TJkha0wXsyDeXV?=
+ =?iso-8859-1?Q?HF7pnkHVpHdtfi7E/ixUYp8nBj85UZBTv3NL3MbrhehtPSQkYsPl+wip+V?=
+ =?iso-8859-1?Q?2z/9BO/ah7rsj7Dwvq6U1WM2pV+4tkbHEWkn+dN7OBRmcEquvo80YniMDB?=
+ =?iso-8859-1?Q?vjikh9HoNkQXdkSSdDtsqE3Be5btqojdrRSjlf+MBS6csXJPIbk7BhVy8m?=
+ =?iso-8859-1?Q?jdxmUNCTLlIM8wUgTUJ6kfyZcQHwwpP1/4agKCsOrj8z0ddax3QD1Ww3aU?=
+ =?iso-8859-1?Q?42qjnhlJUR/G/ZL0U9ufE8oF6mPYIdrj8/rdDMqxpXjgv6lc4T7O0NwKbL?=
+ =?iso-8859-1?Q?XPuJHBVNTmRQnJe8Ik0nPvroLapqbwo2I7zw/MP3534XvXUsaw1PgTCrTn?=
+ =?iso-8859-1?Q?1nImSbQqoVBr32NjThpBTNwyCcFyiXDnxRXQcX/YLmU4GFQGYD8u77/r+s?=
+ =?iso-8859-1?Q?hNG63P/HvZV90qCF5Q9ibSqEavlz3aVsN15sVraRIPtg4cjxGHA25wBg/6?=
+ =?iso-8859-1?Q?W0j9d0eVCCH15iUQhyCRg26apGjCEfsm1LGViWE8bbEKGUUHNLi7CEkn47?=
+ =?iso-8859-1?Q?qxz2TdKn1S19QkQWr0esDpvkOHPqmXGl5Rqy+5IbWN2znr9ehkIBqTsSpB?=
+ =?iso-8859-1?Q?7uNjiVOqOhh9GCJRNdUzNL79U/lMJmvlVJ19GAhYCO7Hyr2DHWN/ZfdagN?=
+ =?iso-8859-1?Q?qcPHdxvXgxKHRv60wtJ9pitjA0V7nEViGv6LeookT47He8C/tjNuHwKC/U?=
+ =?iso-8859-1?Q?WcBG+xcBAOmS+6Q747zXWmExGtmXNpyq07wmyX84KvQRl61ustLloD1mbZ?=
+ =?iso-8859-1?Q?u2+IeCa2kJwoy0XDKJDC9aKMGfyrcr1HpP2YXG/nYxG0OJ0Nd5Hp8ssOra?=
+ =?iso-8859-1?Q?OogHs0yELyne/rpnJ8P9l2CE+SwGxagGDA7MXY11BuZ8rfRMoL2d7ZxCCI?=
+ =?iso-8859-1?Q?gjzkNmmyEKnkxR7m/HPz5qsvI2A9xdON5OTKoOMOsILjhzJkYqTxk7IZ+w?=
+ =?iso-8859-1?Q?HA/QQ08lwSUdobgZf+aNufYUXD+HSo0fu8kBXUEklhR+s8tvYSZumKpxBU?=
+ =?iso-8859-1?Q?DxqjBTNScgbWMfl+MZSo42JC5zZll1/zr2zACZ70yVZouG6Wfc8LRzwZBg?=
+ =?iso-8859-1?Q?zvqgyiTFwAtM2UuXFsXbRGUAgMFz+HKp0fYTO3qhUAPCqdxWAFyUir7HOf?=
+ =?iso-8859-1?Q?m1oXh9zuH9U7k2Et/xHDA+CjF7+PLSk7ZPnlT+BiuFIfd8eE3pgLJ3jNo1?=
+ =?iso-8859-1?Q?xlhySlEJF+3zBMS5eS8B51Cv6m6hje1VFCL8hZZ4?=
 Content-Type: multipart/alternative;
-	boundary="_000_BL4PR11MB8797199FB380E07DCCF2CB89B909ABL4PR11MB8797namp_"
+	boundary="_000_BL4PR11MB87972F72B5817844319C02CCB909ABL4PR11MB8797namp_"
 MIME-Version: 1.0
 X-MS-Exchange-CrossTenant-AuthAs: Internal
 X-MS-Exchange-CrossTenant-AuthSource: BL4PR11MB8797.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: c3927c1d-97f9-4756-5f5c-08ddf0f0be4b
-X-MS-Exchange-CrossTenant-originalarrivaltime: 11 Sep 2025 05:04:53.1798
+X-MS-Exchange-CrossTenant-Network-Message-Id: 5c6afaf8-0bf8-43e2-8c35-08ddf0fb2897
+X-MS-Exchange-CrossTenant-originalarrivaltime: 11 Sep 2025 06:19:26.4859
  (UTC)
 X-MS-Exchange-CrossTenant-fromentityheader: Hosted
 X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: HtTG+VzMatauq/U5HkbV2YMGCDluMiRh6jwB0eHc6WE8n/+V5UW8IXTJtEwCrZDh30+BVDBUxFadMu4UBppNaQ==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH7PR11MB8569
+X-MS-Exchange-CrossTenant-userprincipalname: 6KGVZd+21dCnziMbo5FRWAAJlFvqiVbcvSt/Ri7IHsfHcS9SFB3pqPfSDL0LXczyrnSx8fjkrIu776ltkmmliA==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SJ2PR11MB8472
 X-OriginatorOrg: intel.com
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Thu, 11 Sep 2025 05:05:07 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/65826
+ <yocto@lists.yoctoproject.org>; Thu, 11 Sep 2025 06:19:37 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/65827
 
---_000_BL4PR11MB8797199FB380E07DCCF2CB89B909ABL4PR11MB8797namp_
-Content-Type: text/plain; charset="us-ascii"
+--_000_BL4PR11MB87972F72B5817844319C02CCB909ABL4PR11MB8797namp_
+Content-Type: text/plain; charset="iso-8859-1"
 Content-Transfer-Encoding: quoted-printable
 
 Hi
 
-We are pleased to announce the Yocto Project 5.0.12 Release is now availabl=
-e for download.
+We are pleased to announce the Yocto Project 5.2.3 Release is now available=
+ for download.
 
-https://downloads.yoctoproject.org/releases/yocto/yocto-5.0.12/poky-ec220ae=
-083dba35c279192b2249ad03fe238446e.tar.bz2
-https://mirrors.kernel.org/yocto/yocto/yocto-5.0.12/poky-ec220ae083dba35c27=
-9192b2249ad03fe238446e.tar.bz2
+https://downloads.yoctoproject.org/releases/yocto/yocto-5.2.3/poky-db04028d=
+9070f05c3b5dee728473fb234bd24f05.tar.bz2 <https://downloads.yoctoproject.or=
+g/releases/yocto/yocto-5.2.3/poky-41038342a471b4a8884548568ad147a1704253a3.=
+tar.bz2>
+https://mirrors.kernel.org/yocto/yocto/yocto-5.2.3/poky-db04028d9070f05c3b5=
+dee728473fb234bd24f05.tar.bz2<https://downloads.yoctoproject.org/releases/y=
+octo/yocto-5.2.3/poky-db04028d9070f05c3b5dee728473fb234bd24f05.tar.bz2>
 
 A gpg signed version of these release notes is available at:
 
-https://downloads.yoctoproject.org/releases/yocto/yocto-5.0.12/RELEASENOTES
+https://downloads.yoctoproject.org/releases/yocto/yocto-5.2.3/RELEASENOTES
 
 Full Test Report:
 
-https://downloads.yoctoproject.org/releases/yocto/yocto-5.0.12/testreport.t=
-xt
+https://downloads.yoctoproject.org/releases/yocto/yocto-5.2.3/testreport.tx=
+t
 
 Thank you for everyone's contributions to this release.
 
@@ -195,8 +199,9 @@ chee.yang.lee@intel.com<mailto:chee.yang.lee@intel.com>
 Yocto Project Build and Release
 
 
+
 --------------------------
-yocto-5.0.12 Release Notes
+yocto-5.2.3 Release Notes
 --------------------------
 
 
@@ -206,102 +211,101 @@ Repositories/Downloads
 
 Repository Name: poky
 Repository Location: https://git.yoctoproject.org/poky
-Branch: scarthgap
-Tag: yocto-5.0.12
-Git Revision: ec220ae083dba35c279192b2249ad03fe238446e
-Release Artefact: poky-ec220ae083dba35c279192b2249ad03fe238446e
-sha: a5f8c2ad491c59d0bdfb85f46a136b0ee66cfdd4359ab1ab9dac2430d0a52c17
+Branch: walnascar
+Tag: yocto-5.2.3
+Git Revision: db04028d9070f05c3b5dee728473fb234bd24f05
+Release Artefact: poky-db04028d9070f05c3b5dee728473fb234bd24f05
+sha: 32e1d457d5de0041ee423727b5690fbde58c485a42b8ed81ecebb7bb2d8c58cc
 Download Locations:
-https://downloads.yoctoproject.org/releases/yocto/yocto-5.0.12/poky-ec220ae=
-083dba35c279192b2249ad03fe238446e.tar.bz2
-https://mirrors.kernel.org/yocto/yocto/yocto-5.0.12/poky-ec220ae083dba35c27=
-9192b2249ad03fe238446e.tar.bz2
+https://downloads.yoctoproject.org/releases/yocto/yocto-5.2.3/poky-db04028d=
+9070f05c3b5dee728473fb234bd24f05.tar.bz2
+https://mirrors.kernel.org/yocto/yocto/yocto-5.2.3/poky-db04028d9070f05c3b5=
+dee728473fb234bd24f05.tar.bz2
 
 Repository Name: openembedded-core
 Repository Location: https://git.openembedded.org/openembedded-core
-Branch: scarthgap
-Tag: yocto-5.0.12
-Git Revision: 93c7489d843a0e46fe4fc685b356d0ae885300d7
-Release Artefact: oecore-93c7489d843a0e46fe4fc685b356d0ae885300d7
-sha: 49695592179cd777eee337d922aae354dad4ab503628f0344b1b53329900c4d9
+Branch: walnascar
+Tag: yocto-5.2.3
+Git Revision: 347cb0861dde58613541ce692778f907943a60ea
+Release Artefact: oecore-347cb0861dde58613541ce692778f907943a60ea
+sha: 88cbb79f7bc2de9d931cfa1092463005189972d4584cdae1562621df79f09fbd
 Download Locations:
-https://downloads.yoctoproject.org/releases/yocto/yocto-5.0.12/oecore-93c74=
-89d843a0e46fe4fc685b356d0ae885300d7.tar.bz2
-https://mirrors.kernel.org/yocto/yocto/yocto-5.0.12/oecore-93c7489d843a0e46=
-fe4fc685b356d0ae885300d7.tar.bz2
+https://downloads.yoctoproject.org/releases/yocto/yocto-5.2.3/oecore-347cb0=
+861dde58613541ce692778f907943a60ea.tar.bz2
+https://mirrors.kernel.org/yocto/yocto/yocto-5.2.3/oecore-347cb0861dde58613=
+541ce692778f907943a60ea.tar.bz2
 
 Repository Name: meta-mingw
 Repository Location: https://git.yoctoproject.org/meta-mingw
-Branch: scarthgap
-Tag: yocto-5.0.12
-Git Revision: bd9fef71ec005be3c3a6d7f8b99d8116daf70c4f
-Release Artefact: meta-mingw-bd9fef71ec005be3c3a6d7f8b99d8116daf70c4f
-sha: ab073def6487f237ac125d239b3739bf02415270959546b6b287778664f0ae65
+Branch: walnascar
+Tag: yocto-5.2.3
+Git Revision: edce693e1b8fabd84651aa6c0888aafbcf238577
+Release Artefact: meta-mingw-edce693e1b8fabd84651aa6c0888aafbcf238577
+sha: 6cfed41b54f83da91a6cf201ec1c2cd4ac284f642b1268c8fa89d2335ea2bce1
 Download Locations:
-https://downloads.yoctoproject.org/releases/yocto/yocto-5.0.12/meta-mingw-b=
-d9fef71ec005be3c3a6d7f8b99d8116daf70c4f.tar.bz2
-https://mirrors.kernel.org/yocto/yocto/yocto-5.0.12/meta-mingw-bd9fef71ec00=
-5be3c3a6d7f8b99d8116daf70c4f.tar.bz2
+https://downloads.yoctoproject.org/releases/yocto/yocto-5.2.3/meta-mingw-ed=
+ce693e1b8fabd84651aa6c0888aafbcf238577.tar.bz2
+https://mirrors.kernel.org/yocto/yocto/yocto-5.2.3/meta-mingw-edce693e1b8fa=
+bd84651aa6c0888aafbcf238577.tar.bz2
 
 Repository Name: bitbake
 Repository Location: https://git.openembedded.org/bitbake
-Branch: 2.8
-Tag: yocto-5.0.12
-Git Revision: 982645110a19ebb94d519926a4e14c8a2a205cfd
-Release Artefact: bitbake-982645110a19ebb94d519926a4e14c8a2a205cfd
-sha: f8d777d322b8f05372d7ce75c67df2db2b7de3f64d5b7769b8051c507161245d
+Branch: 2.12
+Tag: yocto-5.2.3
+Git Revision: 710f98844ae30416bdf6a01b655df398b49574ec
+Release Artefact: bitbake-710f98844ae30416bdf6a01b655df398b49574ec
+sha: e30aa4739e3104634184b1dd7d5502f0994a725daec15929c4adf1164aa1296d
 Download Locations:
-https://downloads.yoctoproject.org/releases/yocto/yocto-5.0.12/bitbake-9826=
-45110a19ebb94d519926a4e14c8a2a205cfd.tar.bz2
-https://mirrors.kernel.org/yocto/yocto/yocto-5.0.12/bitbake-982645110a19ebb=
-94d519926a4e14c8a2a205cfd.tar.bz2
+https://downloads.yoctoproject.org/releases/yocto/yocto-5.2.3/bitbake-710f9=
+8844ae30416bdf6a01b655df398b49574ec.tar.bz2
+https://mirrors.kernel.org/yocto/yocto/yocto-5.2.3/bitbake-710f98844ae30416=
+bdf6a01b655df398b49574ec.tar.bz2
 
 Repository Name: meta-yocto
 Repository Location: https://git.yoctoproject.org/meta-yocto
-Branch: scarthgap
-Tag: yocto-5.0.12
-Git Revision: 82602cda1a89644d1acbe230a81c93e3fb5031c8
+Branch: walnascar
+Tag: yocto-5.2.3
+Git Revision: ce011415ab4e583a4545cd91aceff4190225f31d
 
 Repository Name: yocto-docs
 Repository Location: https://git.yoctoproject.org/yocto-docs
-Branch: scarthgap
-Tag: yocto-5.0.12
-Git Revision: dd665216fa578a1f2f268790d708c6a5d2912ecf
+Branch: walnascar
+Tag: yocto-5.2.3
+Git Revision: e664a70adb5bc19041b3b5f553fb90dcddff99d0
 
 
 ---------------
 Contributors
 ---------------
 Aleksandar Nikolic
-Alexander Kanavin
 Antonin Godard
 Archana Polampalli
-Daniel Turull
+Bruce Ashfield
+Changqing Li
+Chen Qi
 Deepesh Varatharajan
+Divya Chellam
+Enrico J=F6rns
 Erik Lindsten
-Fabio Berton
-Hitendra Prajapati
+Gyorgy Sarvari
+Hongxu Jia
+Jiaying Song
 Jinfeng Wang
-Joe Slater
 Khem Raj
 Lee Chee Yang
 Marco Cavallini
 Mark Hatle
-Martin Jansa
-Michal Seben
-Nikhil R
 Peter Marko
-Philip Lorenz
 Praveen Kumar
-Quentin Schulz
 Richard Purdie
 Robert P. J. Day
-Roland Kovacs
 Steve Sakoman
 Vijay Anusuri
 Wang Mingyu
 Yash Shinde
 Yi Zhao
+Yogesh Tyagi
+Yogita Urade
 Zhang Peng
 
 ---------------
@@ -313,76 +317,225 @@ N/A
 ---------------
 Security Fixes
 ---------------
-avahi: Fix CVE-2024-52615
-binutils: Fix CVE-2025-7545 CVE-2025-7546
+avahi: Fix CVE-2024-52615 CVE-2024-52616
+bind: FixCVE-2025-40777
+binutils: Fix CVE-2025-5245 CVE-2025-7545 CVE-2025-7546
 busybox: Fix CVE-2023-39810
+coreutils: Fix CVE-2025-5278
+curl: Ignore CVE-2025-4947 CVE-2025-5025
+dpkg: Fix CVE-2025-6297
 dropbear: Fix CVE-2025-47203
 gdk-pixbuf: Fix CVE-2025-7345
 git: Fix CVE-2025-27613 CVE-2025-27614 CVE-2025-46334 CVE-2025-46835 CVE-20=
 25-48384 CVE-2025-48385 CVE-2025-48386
-glib-2.0: Ignore CVE-2025-4056
-glibc: Fix CVE-2025-8058
 gnutls: Fix CVE-2025-6395 CVE-2025-32988 CVE-2025-32989 CVE-2025-32990
-go: Ignore CVE-2025-0913
-gstreamer1.0-plugins-base: Fix CVE-2025-47806 CVE-2025-47808
-gstreamer1.0-plugins-good: Fix CVE-2025-47183 CVE-2025-47219
+go: Fix CVE-2025-4674
+icu: Fix CVE-2025-5222
 iputils: Fix CVE-2025-48964
-libpam: Fix CVE-2025-6020
-libxml2: Fix CVE-2025-6170 CVE-2025-49794 CVE-2025-49795 CVE-2025-49796
-libxml2: Ignore CVE-2025-8732
+libarchive: Fix CVE-2025-5915
+libpam: Fix CVE-2024-10963
+libsoup-2.4: Fix CVE-2025-4945
+libsoup: Fix CVE-2025-4945 CVE-2025-6021 CVE-2025-6170 CVE-2025-49794 CVE-2=
+025-49795 CVE-2025-49796
+linux-yocto/6.12: Ignored CVE-2021-47342 CVE-2022-49934 CVE-2022-49935 CVE-=
+2022-49936 CVE-2022-49937 CVE-2022-49938 CVE-2022-49939 CVE-2022-49940 CVE-=
+2022-49942 CVE-2022-49943 CVE-2022-49944 CVE-2022-49945 CVE-2022-49946 CVE-=
+2022-49947 CVE-2022-49948 CVE-2022-49949 CVE-2022-49950 CVE-2022-49951 CVE-=
+2022-49952 CVE-2022-49953 CVE-2022-49954 CVE-2022-49955 CVE-2022-49956 CVE-=
+2022-49957 CVE-2022-49958 CVE-2022-49959 CVE-2022-49960 CVE-2022-49961 CVE-=
+2022-49962 CVE-2022-49963 CVE-2022-49964 CVE-2022-49965 CVE-2022-49966 CVE-=
+2022-49967 CVE-2022-49968 CVE-2022-49969 CVE-2022-49970 CVE-2022-49971 CVE-=
+2022-49972 CVE-2022-49973 CVE-2022-49974 CVE-2022-49975 CVE-2022-49976 CVE-=
+2022-49977 CVE-2022-49978 CVE-2022-49979 CVE-2022-49980 CVE-2022-49981 CVE-=
+2022-49982 CVE-2022-49983 CVE-2022-49984 CVE-2022-49985 CVE-2022-49986 CVE-=
+2022-49987 CVE-2022-49989 CVE-2022-49990 CVE-2022-49991 CVE-2022-49992 CVE-=
+2022-49993 CVE-2022-49994 CVE-2022-49995 CVE-2022-49996 CVE-2022-49997 CVE-=
+2022-49998 CVE-2022-49999 CVE-2022-50000 CVE-2022-50001 CVE-2022-50002 CVE-=
+2022-50003 CVE-2022-50004 CVE-2022-50005 CVE-2022-50006 CVE-2022-50007 CVE-=
+2022-50008 CVE-2022-50009 CVE-2022-50010 CVE-2022-50011 CVE-2022-50012 CVE-=
+2022-50013 CVE-2022-50014 CVE-2022-50015 CVE-2022-50016 CVE-2022-50017 CVE-=
+2022-50019 CVE-2022-50020 CVE-2022-50021 CVE-2022-50022 CVE-2022-50023 CVE-=
+2022-50024 CVE-2022-50025 CVE-2022-50026 CVE-2022-50027 CVE-2022-50028 CVE-=
+2022-50029 CVE-2022-50030 CVE-2022-50031 CVE-2022-50032 CVE-2022-50033 CVE-=
+2022-50034 CVE-2022-50035 CVE-2022-50036 CVE-2022-50037 CVE-2022-50038 CVE-=
+2022-50039 CVE-2022-50040 CVE-2022-50041 CVE-2022-50042 CVE-2022-50043 CVE-=
+2022-50044 CVE-2022-50045 CVE-2022-50046 CVE-2022-50047 CVE-2022-50048 CVE-=
+2022-50049 CVE-2022-50050 CVE-2022-50051 CVE-2022-50052 CVE-2022-50053 CVE-=
+2022-50054 CVE-2022-50055 CVE-2022-50056 CVE-2022-50057 CVE-2022-50058 CVE-=
+2022-50059 CVE-2022-50060 CVE-2022-50061 CVE-2022-50062 CVE-2022-50063 CVE-=
+2022-50064 CVE-2022-50065 CVE-2022-50066 CVE-2022-50067 CVE-2022-50068 CVE-=
+2022-50069 CVE-2022-50070 CVE-2022-50071 CVE-2022-50072 CVE-2022-50073 CVE-=
+2022-50074 CVE-2022-50075 CVE-2022-50076 CVE-2022-50077 CVE-2022-50078 CVE-=
+2022-50079 CVE-2022-50080 CVE-2022-50082 CVE-2022-50083 CVE-2022-50084 CVE-=
+2022-50085 CVE-2022-50086 CVE-2022-50087 CVE-2022-50088 CVE-2022-50089 CVE-=
+2022-50090 CVE-2022-50091 CVE-2022-50092 CVE-2022-50093 CVE-2022-50094 CVE-=
+2022-50095 CVE-2022-50096 CVE-2022-50097 CVE-2022-50098 CVE-2022-50099 CVE-=
+2022-50100 CVE-2022-50101 CVE-2022-50102 CVE-2022-50103 CVE-2022-50104 CVE-=
+2022-50105 CVE-2022-50106 CVE-2022-50107 CVE-2022-50108 CVE-2022-50109 CVE-=
+2022-50110 CVE-2022-50111 CVE-2022-50112 CVE-2022-50113 CVE-2022-50114 CVE-=
+2022-50115 CVE-2022-50116 CVE-2022-50117 CVE-2022-50118 CVE-2022-50119 CVE-=
+2022-50120 CVE-2022-50121 CVE-2022-50122 CVE-2022-50123 CVE-2022-50124 CVE-=
+2022-50125 CVE-2022-50126 CVE-2022-50127 CVE-2022-50129 CVE-2022-50130 CVE-=
+2022-50131 CVE-2022-50132 CVE-2022-50133 CVE-2022-50134 CVE-2022-50135 CVE-=
+2022-50136 CVE-2022-50137 CVE-2022-50138 CVE-2022-50139 CVE-2022-50140 CVE-=
+2022-50141 CVE-2022-50142 CVE-2022-50143 CVE-2022-50144 CVE-2022-50145 CVE-=
+2022-50146 CVE-2022-50147 CVE-2022-50148 CVE-2022-50149 CVE-2022-50151 CVE-=
+2022-50152 CVE-2022-50153 CVE-2022-50154 CVE-2022-50155 CVE-2022-50156 CVE-=
+2022-50157 CVE-2022-50158 CVE-2022-50159 CVE-2022-50160 CVE-2022-50161 CVE-=
+2022-50162 CVE-2022-50163 CVE-2022-50164 CVE-2022-50165 CVE-2022-50166 CVE-=
+2022-50167 CVE-2022-50168 CVE-2022-50169 CVE-2022-50170 CVE-2022-50171 CVE-=
+2022-50172 CVE-2022-50173 CVE-2022-50174 CVE-2022-50175 CVE-2022-50176 CVE-=
+2022-50177 CVE-2022-50178 CVE-2022-50179 CVE-2022-50181 CVE-2022-50182 CVE-=
+2022-50183 CVE-2022-50184 CVE-2022-50185 CVE-2022-50186 CVE-2022-50187 CVE-=
+2022-50188 CVE-2022-50189 CVE-2022-50190 CVE-2022-50191 CVE-2022-50192 CVE-=
+2022-50193 CVE-2022-50194 CVE-2022-50195 CVE-2022-50196 CVE-2022-50197 CVE-=
+2022-50198 CVE-2022-50199 CVE-2022-50200 CVE-2022-50201 CVE-2022-50202 CVE-=
+2022-50203 CVE-2022-50204 CVE-2022-50205 CVE-2022-50206 CVE-2022-50207 CVE-=
+2022-50208 CVE-2022-50209 CVE-2022-50210 CVE-2022-50211 CVE-2022-50212 CVE-=
+2022-50213 CVE-2022-50214 CVE-2022-50215 CVE-2022-50217 CVE-2022-50218 CVE-=
+2022-50219 CVE-2022-50220 CVE-2022-50221 CVE-2022-50222 CVE-2022-50223 CVE-=
+2022-50224 CVE-2022-50225 CVE-2022-50226 CVE-2022-50227 CVE-2022-50228 CVE-=
+2022-50229 CVE-2022-50231 CVE-2024-26710 CVE-2024-57976 CVE-2024-58091
+linux-yocto/6.12: (cont.) Ignored CVE-2025-21817 CVE-2025-22101 CVE-2025-22=
+112 CVE-2025-22119 CVE-2025-22122 CVE-2025-22123 CVE-2025-22128 CVE-2025-23=
+137 CVE-2025-23155 CVE-2025-37842 CVE-2025-37855 CVE-2025-38000 CVE-2025-38=
+001 CVE-2025-38002 CVE-2025-38003 CVE-2025-38004 CVE-2025-38005 CVE-2025-38=
+006 CVE-2025-38007 CVE-2025-38008 CVE-2025-38009 CVE-2025-38010 CVE-2025-38=
+011 CVE-2025-38012 CVE-2025-38013 CVE-2025-38014 CVE-2025-38015 CVE-2025-38=
+016 CVE-2025-38017 CVE-2025-38018 CVE-2025-38019 CVE-2025-38020 CVE-2025-38=
+021 CVE-2025-38022 CVE-2025-38023 CVE-2025-38024 CVE-2025-38025 CVE-2025-38=
+027 CVE-2025-38028 CVE-2025-38031 CVE-2025-38032 CVE-2025-38033 CVE-2025-38=
+034 CVE-2025-38035 CVE-2025-38037 CVE-2025-38038 CVE-2025-38039 CVE-2025-38=
+040 CVE-2025-38043 CVE-2025-38044 CVE-2025-38045 CVE-2025-38047 CVE-2025-38=
+048 CVE-2025-38050 CVE-2025-38051 CVE-2025-38052 CVE-2025-38053 CVE-2025-38=
+054 CVE-2025-38055 CVE-2025-38056 CVE-2025-38057 CVE-2025-38058 CVE-2025-38=
+059 CVE-2025-38060 CVE-2025-38061 CVE-2025-38062 CVE-2025-38063 CVE-2025-38=
+065 CVE-2025-38066 CVE-2025-38068 CVE-2025-38069 CVE-2025-38070 CVE-2025-38=
+071 CVE-2025-38072 CVE-2025-38073 CVE-2025-38074 CVE-2025-38075 CVE-2025-38=
+076 CVE-2025-38077 CVE-2025-38078 CVE-2025-38079 CVE-2025-38080 CVE-2025-38=
+081 CVE-2025-38082 CVE-2025-38083 CVE-2025-38084 CVE-2025-38085 CVE-2025-38=
+086 CVE-2025-38087 CVE-2025-38088 CVE-2025-38089 CVE-2025-38090 CVE-2025-38=
+091 CVE-2025-38092 CVE-2025-38093 CVE-2025-38094 CVE-2025-38095 CVE-2025-38=
+096 CVE-2025-38097 CVE-2025-38098 CVE-2025-38099 CVE-2025-38100 CVE-2025-38=
+101 CVE-2025-38102 CVE-2025-38103 CVE-2025-38106 CVE-2025-38107 CVE-2025-38=
+108 CVE-2025-38109 CVE-2025-38110 CVE-2025-38111 CVE-2025-38112 CVE-2025-38=
+113 CVE-2025-38114 CVE-2025-38115 CVE-2025-38116 CVE-2025-38117 CVE-2025-38=
+118 CVE-2025-38119 CVE-2025-38120 CVE-2025-38121 CVE-2025-38122 CVE-2025-38=
+123 CVE-2025-38124 CVE-2025-38125 CVE-2025-38126 CVE-2025-38127 CVE-2025-38=
+128 CVE-2025-38129 CVE-2025-38130 CVE-2025-38131 CVE-2025-38133 CVE-2025-38=
+134 CVE-2025-38135 CVE-2025-38136 CVE-2025-38138 CVE-2025-38139 CVE-2025-38=
+141 CVE-2025-38142 CVE-2025-38143 CVE-2025-38144 CVE-2025-38145 CVE-2025-38=
+146 CVE-2025-38147 CVE-2025-38148 CVE-2025-38149 CVE-2025-38150 CVE-2025-38=
+151 CVE-2025-38153 CVE-2025-38154 CVE-2025-38155 CVE-2025-38156 CVE-2025-38=
+157 CVE-2025-38158 CVE-2025-38159 CVE-2025-38160 CVE-2025-38161 CVE-2025-38=
+162 CVE-2025-38163 CVE-2025-38164 CVE-2025-38165 CVE-2025-38166 CVE-2025-38=
+167 CVE-2025-38168 CVE-2025-38169 CVE-2025-38170 CVE-2025-38171 CVE-2025-38=
+172 CVE-2025-38173 CVE-2025-38174 CVE-2025-38175 CVE-2025-38176 CVE-2025-38=
+177 CVE-2025-38178 CVE-2025-38179 CVE-2025-38180 CVE-2025-38181 CVE-2025-38=
+182 CVE-2025-38183 CVE-2025-38184 CVE-2025-38185 CVE-2025-38186 CVE-2025-38=
+188 CVE-2025-38189 CVE-2025-38190 CVE-2025-38191 CVE-2025-38192 CVE-2025-38=
+193 CVE-2025-38194 CVE-2025-38195 CVE-2025-38196 CVE-2025-38197 CVE-2025-38=
+198 CVE-2025-38200 CVE-2025-38201 CVE-2025-38202 CVE-2025-38208 CVE-2025-38=
+209 CVE-2025-38210 CVE-2025-38211 CVE-2025-38212 CVE-2025-38213 CVE-2025-38=
+214 CVE-2025-38215 CVE-2025-38216 CVE-2025-38217 CVE-2025-38218 CVE-2025-38=
+219 CVE-2025-38220 CVE-2025-38221 CVE-2025-38222 CVE-2025-38223 CVE-2025-38=
+224 CVE-2025-38225 CVE-2025-38226 CVE-2025-38227 CVE-2025-38228 CVE-2025-38=
+229 CVE-2025-38230 CVE-2025-38231 CVE-2025-38232 CVE-2025-38233 CVE-2025-38=
+235 CVE-2025-38236 CVE-2025-38238 CVE-2025-38239 CVE-2025-38241 CVE-2025-38=
+242 CVE-2025-38243 CVE-2025-38244 CVE-2025-38245 CVE-2025-38246 CVE-2025-38=
+247 CVE-2025-38249 CVE-2025-38250 CVE-2025-38251 CVE-2025-38252 CVE-2025-38=
+253 CVE-2025-38254 CVE-2025-38255 CVE-2025-38256 CVE-2025-38257 CVE-2025-38=
+258 CVE-2025-38259 CVE-2025-38260 CVE-2025-38262 CVE-2025-38263 CVE-2025-38=
+264 CVE-2025-38265 CVE-2025-38266 CVE-2025-38267 CVE-2025-38268 CVE-2025-38=
+269 CVE-2025-38270 CVE-2025-38271 CVE-2025-38273 CVE-2025-38274 CVE-2025-38=
+275 CVE-2025-38276 CVE-2025-38277 CVE-2025-38278 CVE-2025-38279 CVE-2025-38=
+280 CVE-2025-38281 CVE-2025-38282 CVE-2025-38283 CVE-2025-38285 CVE-2025-38=
+286 CVE-2025-38287 CVE-2025-38288 CVE-2025-38289 CVE-2025-38290 CVE-2025-38=
+291 CVE-2025-38292 CVE-2025-38293 CVE-2025-38294 CVE-2025-38295 CVE-2025-38=
+296 CVE-2025-38297 CVE-2025-38298 CVE-2025-38299 CVE-2025-38300 CVE-2025-38=
+301 CVE-2025-38302 CVE-2025-38303 CVE-2025-38304 CVE-2025-38305 CVE-2025-38=
+307 CVE-2025-38308 CVE-2025-38309 CVE-2025-38310 CVE-2025-38312 CVE-2025-38=
+313 CVE-2025-38314 CVE-2025-38315 CVE-2025-38316 CVE-2025-38317 CVE-2025-38=
+318 CVE-2025-38319 CVE-2025-38320 CVE-2025-38321 CVE-2025-38322 CVE-2025-38=
+323 CVE-2025-38324 CVE-2025-38325 CVE-2025-38326 CVE-2025-38327 CVE-2025-38=
+328 CVE-2025-38329 CVE-2025-38330 CVE-2025-38331 CVE-2025-38332 CVE-2025-38=
+333 CVE-2025-38334 CVE-2025-38336 CVE-2025-38337 CVE-2025-38338 CVE-2025-38=
+339 CVE-2025-38340 CVE-2025-38341 CVE-2025-38342 CVE-2025-38343 CVE-2025-38=
+344 CVE-2025-38345 CVE-2025-38346 CVE-2025-38347 CVE-2025-38348
 ncurses: Fix CVE-2025-6141
-openssl: Fix CVE-2024-41996 CVE-2025-27587
 python3: Fix CVE-2025-8194
 sqlite3: Fix CVE-2025-6965
-sudo: Fix CVE-2025-32463
-xserver-xorg: Fix CVE-2022-49737 CVE-2025-49175 CVE-2025-49176 CVE-2025-491=
-77 CVE-2025-49178 CVE-2025-49179 CVE-2025-49180 CVE-2025-49176
-xz: Ignore CVE-2024-47611
+sudo: Fix CVE-2025-32462 CVE-2025-32463
+webkitgtk: Fix CVE-2025-24223 CVE-2025-31204 CVE-2025-31205 CVE-2025-31206 =
+CVE-2025-31215 CVE-2025-31257
+xserver-xorg: Fix CVE-2025-49175 CVE-2025-49176 CVE-2025-49177 CVE-2025-491=
+78 CVE-2025-49179 CVE-2025-49180
+
 
 ---------------
 Fixes
 ---------------
-bash: Stick to C17 std
-bash: use -std=3Dgnu17 also for native CFLAGS
-binutils: stable 2.42 branch updates
-bitbake: bitbake: runqueue: Verify mcdepends are valid
+bind: upgrade to 9.20.11
+binutils: stable 2.44 branch updates
 bitbake: test/fetch: Switch u-boot based test to use our own mirror
 bitbake: utils: Optimise signal/sigmask performance
-build-appliance-image: Update to scarthgap head revision
-cairo: fix build with gcc-15 on host
-cmake: Add PACKAGECONFIG option for debugger support
-cve-check: Add missing call to exit_if_errors
+build-appliance-image: Update to walnascar head revision
+ca-certificates: correct the SRC_URI
+conf.py: improve SearchEnglish to handle terms with dots
 dev-manual/start.rst: added missing command in Optimize your VHDX file usin=
 g DiskPart
-e2fsprogs: Fix build failure with gcc 15
-git: Upgrade to 2.44.4
-glibc: stable 2.39 branch updates
-gnutls: patch read buffer overrun in the "pre_shared_key" extension
-gnutls: patch reject zero-length version in certificate request
-go-helloworld: fix license
+dev-manual/start.rst: mention that PERSISTENT_DIR should be shared too
+dev-manual/start.rst: remove basic setup for hash equivalence
+dev-manual/start.rst: remove shared PERSISTENT_DIR mentions
+docs/variables.rst: remove references to obsolete tar packaging
+git: upgrade to 2.49.1
+glibc: stable 2.41 branch updates
+gnutls: upgrade to 3.8.10
+go: upgrade to 1.24.5
 kea: set correct permissions for /var/run/kea
-linux-libc-headers: Fix invalid conversion in cn_proc.h
-migration-guides: add release notes for 5.0.11
+libpam: upgrade to 1.7.1
+linux-yocto/6.12: riscv tune fragments
+linux-yocto/6.12: riscv: Enable TUNE_FEATURES based KERNEL_FEATURES
+linux-yocto/6.12: update to v6.12.38
+linux-yocto/6.12: yaffs2: silence warnings
+ltp: Skip semctl08 when __USE_TIME64_REDIRECTS is defined
+ltp: backport patch to fix compilation error for Skylake -march=3Dx86-64-v3
+migration-guides: add release notes for 4.0.28, 5.0.11, 5.2.2
+mingetty: fix do_package warning
 mtools: upgrade to 4.0.49
-oe-debuginfod: add option for data storage
+openssl: upgrade to 3.4.2
 orc: set CVE_PRODUCT
+overview-manual/concepts.rst: fix sayhello hardcoded bindir
+overview-manual/concepts.rst: mention PERSISTENT_DIR for user configuration
 overview-manual/yp-intro.rst: fix broken link to article
-parted: Fix build with GCC 15
-poky.conf: bump version for 5.0.12
+poky.conf: bump version for 5.2.3
+poky.yaml.in: increase minimum RAM from 8 to 32
 python3: update CVE product
 ref-manual/classes.rst: document the testexport class
+ref-manual/classes.rst: drop obsolete QA errors
+ref-manual/classes.rst: insane: drop cve_status_not_in_db
+ref-manual/structure.rst: remove shared PERSISTENT_DIR mentions
+ref-manual/structure.rst: update with info on PERSISTENT_DIR
 ref-manual/system-requirements.rst: update supported distributions
-ref-manual/variables.rst: document SPL_DTB_BINARY FIT_CONF_PREFIX variable
-scripts/install-buildtools: Update to 5.0.11
+ref-manual/variables.rst: document SPL_DTB_BINARY
+ref-manual/variables.rst: document the FIT_CONF_PREFIX variable
+ruby-ptest: some ptest fixes
+ruby: upgrade to 3.4.4
+rust: Fix malformed hunk header in rustix patch
+scripts/install-buildtools: Update to 5.2.2
 sudo: upgrade to 1.9.17p1
-timedated: wait for jobs before SetNTP response
-variables.rst: remove references to obsolete tar packaging
+test-manual/understand-autobuilder.rst: mention hashequiv server
+webkitgtk: Fix build break on non-arm/non-x86 systems
+webkitgtk: Use gcc to compile for arm target
+webkitgtk: upgrade to 2.48.2
 xserver-xorg: upgrade to 21.1.18
 
 
 
---_000_BL4PR11MB8797199FB380E07DCCF2CB89B909ABL4PR11MB8797namp_
-Content-Type: text/html; charset="us-ascii"
+
+
+--_000_BL4PR11MB87972F72B5817844319C02CCB909ABL4PR11MB8797namp_
+Content-Type: text/html; charset="iso-8859-1"
 Content-Transfer-Encoding: quoted-printable
 
 <html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
@@ -390,8 +543,8 @@ osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
 xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" xmlns=3D"http:=
 //www.w3.org/TR/REC-html40">
 <head>
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
->
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Diso-8859-=
+1">
 <meta name=3D"Generator" content=3D"Microsoft Word 15 (filtered medium)">
 <style><!--
 /* Font Definitions */
@@ -437,22 +590,26 @@ div.WordSection1
 <body lang=3D"EN-MY" link=3D"#467886" vlink=3D"#96607D" style=3D"word-wrap:=
 break-word">
 <div class=3D"WordSection1">
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt">Hi <br>
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt">Hi<br>
 <br>
-We are pleased to announce the Yocto Project 5.0.12 Release is now availabl=
-e for download.<o:p></o:p></span></p>
+<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt">We are pleased to a=
+nnounce the Yocto Project 5.2.3 Release is now available for download.<o:p>=
+</o:p></span></p>
 <p class=3D"MsoNormal"><span style=3D"font-size:11.0pt"><o:p>&nbsp;</o:p></=
 span></p>
 <p class=3D"MsoNormal"><span style=3D"font-size:11.0pt"><a href=3D"https://=
-downloads.yoctoproject.org/releases/yocto/yocto-5.0.12/poky-ec220ae083dba35=
-c279192b2249ad03fe238446e.tar.bz2">https://downloads.yoctoproject.org/relea=
-ses/yocto/yocto-5.0.12/poky-ec220ae083dba35c279192b2249ad03fe238446e.tar.bz=
-2</a><o:p></o:p></span></p>
+downloads.yoctoproject.org/releases/yocto/yocto-5.2.3/poky-41038342a471b4a8=
+884548568ad147a1704253a3.tar.bz2">https://downloads.yoctoproject.org/releas=
+es/yocto/yocto-5.2.3/poky-db04028d9070f05c3b5dee728473fb234bd24f05.tar.bz2
+</a><o:p></o:p></span></p>
 <p class=3D"MsoNormal"><span style=3D"font-size:11.0pt"><a href=3D"https://=
-mirrors.kernel.org/yocto/yocto/yocto-5.0.12/poky-ec220ae083dba35c279192b224=
-9ad03fe238446e.tar.bz2">https://mirrors.kernel.org/yocto/yocto/yocto-5.0.12=
-/poky-ec220ae083dba35c279192b2249ad03fe238446e.tar.bz2</a><o:p></o:p></span=
-></p>
+mirrors.kernel.org/yocto/yocto/yocto-5.2.3/poky-">https://mirrors.kernel.or=
+g/yocto/yocto/yocto-5.2.3/poky-</a><a href=3D"https://downloads.yoctoprojec=
+t.org/releases/yocto/yocto-5.2.3/poky-db04028d9070f05c3b5dee728473fb234bd24=
+f05.tar.bz2" title=3D"poky-db04028d9070f05c3b5dee728473fb234bd24f05.tar.bz2=
+">db04028d9070f05c3b5dee728473fb234bd24f05.tar.bz2</a><o:p></o:p></span></p=
+>
 <p class=3D"MsoNormal"><span style=3D"font-size:11.0pt"><o:p>&nbsp;</o:p></=
 span></p>
 <p class=3D"MsoNormal"><span style=3D"font-size:11.0pt">A gpg signed versio=
@@ -460,9 +617,9 @@ n of these release notes is available at:<o:p></o:p></span></p>
 <p class=3D"MsoNormal"><span style=3D"font-size:11.0pt"><o:p>&nbsp;</o:p></=
 span></p>
 <p class=3D"MsoNormal"><span style=3D"font-size:11.0pt"><a href=3D"https://=
-downloads.yoctoproject.org/releases/yocto/yocto-5.0.12/RELEASENOTES">https:=
-//downloads.yoctoproject.org/releases/yocto/yocto-5.0.12/RELEASENOTES</a><o=
-:p></o:p></span></p>
+downloads.yoctoproject.org/releases/yocto/yocto-5.2.3/RELEASENOTES">https:/=
+/downloads.yoctoproject.org/releases/yocto/yocto-5.2.3/RELEASENOTES</a><o:p=
+></o:p></span></p>
 <p class=3D"MsoNormal"><span style=3D"font-size:11.0pt"><o:p>&nbsp;</o:p></=
 span></p>
 <p class=3D"MsoNormal"><span style=3D"font-size:11.0pt">Full Test Report:<o=
@@ -470,9 +627,9 @@ span></p>
 <p class=3D"MsoNormal"><span style=3D"font-size:11.0pt"><o:p>&nbsp;</o:p></=
 span></p>
 <p class=3D"MsoNormal"><span style=3D"font-size:11.0pt"><a href=3D"https://=
-downloads.yoctoproject.org/releases/yocto/yocto-5.0.12/testreport.txt">http=
-s://downloads.yoctoproject.org/releases/yocto/yocto-5.0.12/testreport.txt</=
-a><o:p></o:p></span></p>
+downloads.yoctoproject.org/releases/yocto/yocto-5.2.3/testreport.txt">https=
+://downloads.yoctoproject.org/releases/yocto/yocto-5.2.3/testreport.txt</a>=
+<o:p></o:p></span></p>
 <p class=3D"MsoNormal"><span style=3D"font-size:11.0pt"><o:p>&nbsp;</o:p></=
 span></p>
 <p class=3D"MsoNormal"><span style=3D"font-size:11.0pt">Thank you for every=
@@ -487,11 +644,12 @@ hee.yang.lee@intel.com">chee.yang.lee@intel.com</a><o:p></o:p></span></p>
  and Release<br>
 <br>
 <br>
+<br>
 <o:p></o:p></span></p>
 <p class=3D"MsoNormal"><span style=3D"font-size:11.0pt">-------------------=
 -------<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt">yocto-5.0.12 Releas=
-e Notes<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt">yocto-5.2.3 Release=
+ Notes<o:p></o:p></span></p>
 <p class=3D"MsoNormal"><span style=3D"font-size:11.0pt">-------------------=
 -------<o:p></o:p></span></p>
 <p class=3D"MsoNormal"><span style=3D"font-size:11.0pt"><o:p>&nbsp;</o:p></=
@@ -510,120 +668,121 @@ span></p>
 ky<o:p></o:p></span></p>
 <p class=3D"MsoNormal"><span style=3D"font-size:11.0pt">Repository Location=
 : https://git.yoctoproject.org/poky<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt">Branch: scarthgap<o=
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt">Branch: walnascar<o=
 :p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt">Tag: yocto-5.0.12<o=
-:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt">Git Revision: ec220=
-ae083dba35c279192b2249ad03fe238446e<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt">Tag: yocto-5.2.3<o:=
+p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt">Git Revision: db040=
+28d9070f05c3b5dee728473fb234bd24f05<o:p></o:p></span></p>
 <p class=3D"MsoNormal"><span style=3D"font-size:11.0pt">Release Artefact: p=
-oky-ec220ae083dba35c279192b2249ad03fe238446e<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt">sha: a5f8c2ad491c59=
-d0bdfb85f46a136b0ee66cfdd4359ab1ab9dac2430d0a52c17<o:p></o:p></span></p>
+oky-db04028d9070f05c3b5dee728473fb234bd24f05<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt">sha: 32e1d457d5de00=
+41ee423727b5690fbde58c485a42b8ed81ecebb7bb2d8c58cc<o:p></o:p></span></p>
 <p class=3D"MsoNormal"><span style=3D"font-size:11.0pt">Download Locations:=
 <o:p></o:p></span></p>
 <p class=3D"MsoNormal"><span style=3D"font-size:11.0pt">https://downloads.y=
-octoproject.org/releases/yocto/yocto-5.0.12/poky-ec220ae083dba35c279192b224=
-9ad03fe238446e.tar.bz2<o:p></o:p></span></p>
+octoproject.org/releases/yocto/yocto-5.2.3/poky-db04028d9070f05c3b5dee72847=
+3fb234bd24f05.tar.bz2<o:p></o:p></span></p>
 <p class=3D"MsoNormal"><span style=3D"font-size:11.0pt">https://mirrors.ker=
-nel.org/yocto/yocto/yocto-5.0.12/poky-ec220ae083dba35c279192b2249ad03fe2384=
-46e.tar.bz2<o:p></o:p></span></p>
+nel.org/yocto/yocto/yocto-5.2.3/poky-db04028d9070f05c3b5dee728473fb234bd24f=
+05.tar.bz2<o:p></o:p></span></p>
 <p class=3D"MsoNormal"><span style=3D"font-size:11.0pt"><o:p>&nbsp;</o:p></=
 span></p>
 <p class=3D"MsoNormal"><span style=3D"font-size:11.0pt">Repository Name: op=
 enembedded-core<o:p></o:p></span></p>
 <p class=3D"MsoNormal"><span style=3D"font-size:11.0pt">Repository Location=
 : https://git.openembedded.org/openembedded-core<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt">Branch: scarthgap<o=
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt">Branch: walnascar<o=
 :p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt">Tag: yocto-5.0.12<o=
-:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt">Git Revision: 93c74=
-89d843a0e46fe4fc685b356d0ae885300d7<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt">Tag: yocto-5.2.3<o:=
+p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt">Git Revision: 347cb=
+0861dde58613541ce692778f907943a60ea<o:p></o:p></span></p>
 <p class=3D"MsoNormal"><span style=3D"font-size:11.0pt">Release Artefact: o=
-ecore-93c7489d843a0e46fe4fc685b356d0ae885300d7<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt">sha: 49695592179cd7=
-77eee337d922aae354dad4ab503628f0344b1b53329900c4d9<o:p></o:p></span></p>
+ecore-347cb0861dde58613541ce692778f907943a60ea<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt">sha: 88cbb79f7bc2de=
+9d931cfa1092463005189972d4584cdae1562621df79f09fbd<o:p></o:p></span></p>
 <p class=3D"MsoNormal"><span style=3D"font-size:11.0pt">Download Locations:=
 <o:p></o:p></span></p>
 <p class=3D"MsoNormal"><span style=3D"font-size:11.0pt">https://downloads.y=
-octoproject.org/releases/yocto/yocto-5.0.12/oecore-93c7489d843a0e46fe4fc685=
-b356d0ae885300d7.tar.bz2<o:p></o:p></span></p>
+octoproject.org/releases/yocto/yocto-5.2.3/oecore-347cb0861dde58613541ce692=
+778f907943a60ea.tar.bz2<o:p></o:p></span></p>
 <p class=3D"MsoNormal"><span style=3D"font-size:11.0pt">https://mirrors.ker=
-nel.org/yocto/yocto/yocto-5.0.12/oecore-93c7489d843a0e46fe4fc685b356d0ae885=
-300d7.tar.bz2<o:p></o:p></span></p>
+nel.org/yocto/yocto/yocto-5.2.3/oecore-347cb0861dde58613541ce692778f907943a=
+60ea.tar.bz2<o:p></o:p></span></p>
 <p class=3D"MsoNormal"><span style=3D"font-size:11.0pt"><o:p>&nbsp;</o:p></=
 span></p>
 <p class=3D"MsoNormal"><span style=3D"font-size:11.0pt">Repository Name: me=
 ta-mingw<o:p></o:p></span></p>
 <p class=3D"MsoNormal"><span style=3D"font-size:11.0pt">Repository Location=
 : https://git.yoctoproject.org/meta-mingw<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt">Branch: scarthgap<o=
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt">Branch: walnascar<o=
 :p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt">Tag: yocto-5.0.12<o=
-:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt">Git Revision: bd9fe=
-f71ec005be3c3a6d7f8b99d8116daf70c4f<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt">Tag: yocto-5.2.3<o:=
+p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt">Git Revision: edce6=
+93e1b8fabd84651aa6c0888aafbcf238577<o:p></o:p></span></p>
 <p class=3D"MsoNormal"><span style=3D"font-size:11.0pt">Release Artefact: m=
-eta-mingw-bd9fef71ec005be3c3a6d7f8b99d8116daf70c4f<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt">sha: ab073def6487f2=
-37ac125d239b3739bf02415270959546b6b287778664f0ae65<o:p></o:p></span></p>
+eta-mingw-edce693e1b8fabd84651aa6c0888aafbcf238577<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt">sha: 6cfed41b54f83d=
+a91a6cf201ec1c2cd4ac284f642b1268c8fa89d2335ea2bce1<o:p></o:p></span></p>
 <p class=3D"MsoNormal"><span style=3D"font-size:11.0pt">Download Locations:=
 <o:p></o:p></span></p>
 <p class=3D"MsoNormal"><span style=3D"font-size:11.0pt">https://downloads.y=
-octoproject.org/releases/yocto/yocto-5.0.12/meta-mingw-bd9fef71ec005be3c3a6=
-d7f8b99d8116daf70c4f.tar.bz2<o:p></o:p></span></p>
+octoproject.org/releases/yocto/yocto-5.2.3/meta-mingw-edce693e1b8fabd84651a=
+a6c0888aafbcf238577.tar.bz2<o:p></o:p></span></p>
 <p class=3D"MsoNormal"><span style=3D"font-size:11.0pt">https://mirrors.ker=
-nel.org/yocto/yocto/yocto-5.0.12/meta-mingw-bd9fef71ec005be3c3a6d7f8b99d811=
-6daf70c4f.tar.bz2<o:p></o:p></span></p>
+nel.org/yocto/yocto/yocto-5.2.3/meta-mingw-edce693e1b8fabd84651aa6c0888aafb=
+cf238577.tar.bz2<o:p></o:p></span></p>
 <p class=3D"MsoNormal"><span style=3D"font-size:11.0pt"><o:p>&nbsp;</o:p></=
 span></p>
 <p class=3D"MsoNormal"><span style=3D"font-size:11.0pt">Repository Name: bi=
 tbake<o:p></o:p></span></p>
 <p class=3D"MsoNormal"><span style=3D"font-size:11.0pt">Repository Location=
 : https://git.openembedded.org/bitbake<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt">Branch: 2.8<o:p></o=
-:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt">Tag: yocto-5.0.12<o=
-:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt">Git Revision: 98264=
-5110a19ebb94d519926a4e14c8a2a205cfd<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt">Branch: 2.12<o:p></=
+o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt">Tag: yocto-5.2.3<o:=
+p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt">Git Revision: 710f9=
+8844ae30416bdf6a01b655df398b49574ec<o:p></o:p></span></p>
 <p class=3D"MsoNormal"><span style=3D"font-size:11.0pt">Release Artefact: b=
-itbake-982645110a19ebb94d519926a4e14c8a2a205cfd<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt">sha: f8d777d322b8f0=
-5372d7ce75c67df2db2b7de3f64d5b7769b8051c507161245d<o:p></o:p></span></p>
+itbake-710f98844ae30416bdf6a01b655df398b49574ec<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt">sha: e30aa4739e3104=
+634184b1dd7d5502f0994a725daec15929c4adf1164aa1296d<o:p></o:p></span></p>
 <p class=3D"MsoNormal"><span style=3D"font-size:11.0pt">Download Locations:=
 <o:p></o:p></span></p>
 <p class=3D"MsoNormal"><span style=3D"font-size:11.0pt">https://downloads.y=
-octoproject.org/releases/yocto/yocto-5.0.12/bitbake-982645110a19ebb94d51992=
-6a4e14c8a2a205cfd.tar.bz2<o:p></o:p></span></p>
+octoproject.org/releases/yocto/yocto-5.2.3/bitbake-710f98844ae30416bdf6a01b=
+655df398b49574ec.tar.bz2<o:p></o:p></span></p>
 <p class=3D"MsoNormal"><span style=3D"font-size:11.0pt">https://mirrors.ker=
-nel.org/yocto/yocto/yocto-5.0.12/bitbake-982645110a19ebb94d519926a4e14c8a2a=
-205cfd.tar.bz2<o:p></o:p></span></p>
+nel.org/yocto/yocto/yocto-5.2.3/bitbake-710f98844ae30416bdf6a01b655df398b49=
+574ec.tar.bz2<o:p></o:p></span></p>
 <p class=3D"MsoNormal"><span style=3D"font-size:11.0pt"><o:p>&nbsp;</o:p></=
 span></p>
 <p class=3D"MsoNormal"><span style=3D"font-size:11.0pt">Repository Name: me=
 ta-yocto<o:p></o:p></span></p>
 <p class=3D"MsoNormal"><span style=3D"font-size:11.0pt">Repository Location=
 : https://git.yoctoproject.org/meta-yocto<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt">Branch: scarthgap<o=
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt">Branch: walnascar<o=
 :p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt">Tag: yocto-5.0.12<o=
-:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt">Git Revision: 82602=
-cda1a89644d1acbe230a81c93e3fb5031c8<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt">Tag: yocto-5.2.3<o:=
+p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt">Git Revision: ce011=
+415ab4e583a4545cd91aceff4190225f31d<o:p></o:p></span></p>
 <p class=3D"MsoNormal"><span style=3D"font-size:11.0pt"><o:p>&nbsp;</o:p></=
 span></p>
 <p class=3D"MsoNormal"><span style=3D"font-size:11.0pt">Repository Name: yo=
 cto-docs<o:p></o:p></span></p>
 <p class=3D"MsoNormal"><span style=3D"font-size:11.0pt">Repository Location=
 : https://git.yoctoproject.org/yocto-docs<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt">Branch: scarthgap<o=
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt">Branch: walnascar<o=
 :p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt">Tag: yocto-5.0.12<o=
-:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt">Git Revision: dd665=
-216fa578a1f2f268790d708c6a5d2912ecf<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt">Tag: yocto-5.2.3<o:=
+p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt">Git Revision: e664a=
+70adb5bc19041b3b5f553fb90dcddff99d0
+<o:p></o:p></span></p>
 <p class=3D"MsoNormal"><span style=3D"font-size:11.0pt"><o:p>&nbsp;</o:p></=
 span></p>
 <p class=3D"MsoNormal"><span style=3D"font-size:11.0pt"><o:p>&nbsp;</o:p></=
@@ -636,26 +795,32 @@ o:p></span></p>
 ></o:p></span></p>
 <p class=3D"MsoNormal"><span style=3D"font-size:11.0pt">Aleksandar Nikolic<=
 o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt">Alexander Kanavin<o=
-:p></o:p></span></p>
 <p class=3D"MsoNormal"><span style=3D"font-size:11.0pt">Antonin Godard<o:p>=
 </o:p></span></p>
 <p class=3D"MsoNormal"><span style=3D"font-size:11.0pt">Archana Polampalli<=
 o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt">Daniel Turull<o:p><=
-/o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt">Bruce Ashfield<o:p>=
+</o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt">Changqing Li<o:p></=
+o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt">Chen Qi<o:p></o:p><=
+/span></p>
 <p class=3D"MsoNormal"><span style=3D"font-size:11.0pt">Deepesh Varatharaja=
 n<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt">Divya Chellam<o:p><=
+/o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt">Enrico J=F6rns<o:p>=
+</o:p></span></p>
 <p class=3D"MsoNormal"><span style=3D"font-size:11.0pt">Erik Lindsten<o:p><=
 /o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt">Fabio Berton<o:p></=
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt">Gyorgy Sarvari<o:p>=
+</o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt">Hongxu Jia<o:p></o:=
+p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt">Jiaying Song<o:p></=
 o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt">Hitendra Prajapati<=
-o:p></o:p></span></p>
 <p class=3D"MsoNormal"><span style=3D"font-size:11.0pt">Jinfeng Wang<o:p></=
 o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt">Joe Slater<o:p></o:=
-p></span></p>
 <p class=3D"MsoNormal"><span style=3D"font-size:11.0pt">Khem Raj<o:p></o:p>=
 </span></p>
 <p class=3D"MsoNormal"><span style=3D"font-size:11.0pt">Lee Chee Yang<o:p><=
@@ -664,26 +829,14 @@ p></span></p>
 ></o:p></span></p>
 <p class=3D"MsoNormal"><span style=3D"font-size:11.0pt">Mark Hatle<o:p></o:=
 p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt">Martin Jansa<o:p></=
-o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt">Michal Seben<o:p></=
-o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt">Nikhil R<o:p></o:p>=
-</span></p>
 <p class=3D"MsoNormal"><span style=3D"font-size:11.0pt">Peter Marko<o:p></o=
 :p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt">Philip Lorenz<o:p><=
-/o:p></span></p>
 <p class=3D"MsoNormal"><span style=3D"font-size:11.0pt">Praveen Kumar<o:p><=
 /o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt">Quentin Schulz<o:p>=
-</o:p></span></p>
 <p class=3D"MsoNormal"><span style=3D"font-size:11.0pt">Richard Purdie<o:p>=
 </o:p></span></p>
 <p class=3D"MsoNormal"><span style=3D"font-size:11.0pt">Robert P. J. Day<o:=
 p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt">Roland Kovacs<o:p><=
-/o:p></span></p>
 <p class=3D"MsoNormal"><span style=3D"font-size:11.0pt">Steve Sakoman<o:p><=
 /o:p></span></p>
 <p class=3D"MsoNormal"><span style=3D"font-size:11.0pt">Vijay Anusuri<o:p><=
@@ -694,6 +847,10 @@ p></o:p></span></p>
 :p></span></p>
 <p class=3D"MsoNormal"><span style=3D"font-size:11.0pt">Yi Zhao<o:p></o:p><=
 /span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt">Yogesh Tyagi<o:p></=
+o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt">Yogita Urade<o:p></=
+o:p></span></p>
 <p class=3D"MsoNormal"><span style=3D"font-size:11.0pt">Zhang Peng<o:p></o:=
 p></span></p>
 <p class=3D"MsoNormal"><span style=3D"font-size:11.0pt"><o:p>&nbsp;</o:p></=
@@ -717,12 +874,19 @@ span></p>
 <p class=3D"MsoNormal"><span style=3D"font-size:11.0pt">---------------<o:p=
 ></o:p></span></p>
 <p class=3D"MsoNormal"><span style=3D"font-size:11.0pt">avahi: Fix CVE-2024=
--52615<o:p></o:p></span></p>
+-52615 CVE-2024-52616<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt">bind: FixCVE-2025-4=
+0777<o:p></o:p></span></p>
 <p class=3D"MsoNormal"><span style=3D"font-size:11.0pt">binutils: Fix CVE-2=
-025-7545 CVE-2025-7546
-<o:p></o:p></span></p>
+025-5245 CVE-2025-7545 CVE-2025-7546<o:p></o:p></span></p>
 <p class=3D"MsoNormal"><span style=3D"font-size:11.0pt">busybox: Fix CVE-20=
 23-39810<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt">coreutils: Fix CVE-=
+2025-5278<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt">curl: Ignore CVE-20=
+25-4947 CVE-2025-5025<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt">dpkg: Fix CVE-2025-=
+6297<o:p></o:p></span></p>
 <p class=3D"MsoNormal"><span style=3D"font-size:11.0pt">dropbear: Fix CVE-2=
 025-47203<o:p></o:p></span></p>
 <p class=3D"MsoNormal"><span style=3D"font-size:11.0pt">gdk-pixbuf: Fix CVE=
@@ -730,42 +894,181 @@ span></p>
 <p class=3D"MsoNormal"><span style=3D"font-size:11.0pt">git: Fix CVE-2025-2=
 7613 CVE-2025-27614 CVE-2025-46334 CVE-2025-46835 CVE-2025-48384 CVE-2025-4=
 8385 CVE-2025-48386<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt">glib-2.0: Ignore CV=
-E-2025-4056<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt">glibc: Fix CVE-2025=
--8058 <o:p>
-</o:p></span></p>
 <p class=3D"MsoNormal"><span style=3D"font-size:11.0pt">gnutls: Fix CVE-202=
 5-6395 CVE-2025-32988 CVE-2025-32989 CVE-2025-32990<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt">go: Ignore CVE-2025=
--0913<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt">gstreamer1.0-plugin=
-s-base: Fix CVE-2025-47806 CVE-2025-47808<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt">gstreamer1.0-plugin=
-s-good: Fix CVE-2025-47183 CVE-2025-47219<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt">go: Fix CVE-2025-46=
+74<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt">icu: Fix CVE-2025-5=
+222<o:p></o:p></span></p>
 <p class=3D"MsoNormal"><span style=3D"font-size:11.0pt">iputils: Fix CVE-20=
 25-48964<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt">libarchive: Fix CVE=
+-2025-5915<o:p></o:p></span></p>
 <p class=3D"MsoNormal"><span style=3D"font-size:11.0pt">libpam: Fix CVE-202=
-5-6020<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt">libxml2: Fix CVE-20=
-25-6170 CVE-2025-49794 CVE-2025-49795 CVE-2025-49796<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt">libxml2: Ignore CVE=
--2025-8732<o:p></o:p></span></p>
+4-10963<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt">libsoup-2.4: Fix CV=
+E-2025-4945<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt">libsoup: Fix CVE-20=
+25-4945 CVE-2025-6021 CVE-2025-6170 CVE-2025-49794 CVE-2025-49795 CVE-2025-=
+49796<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt">linux-yocto/6.12: I=
+gnored CVE-2021-47342 CVE-2022-49934 CVE-2022-49935 CVE-2022-49936 CVE-2022=
+-49937 CVE-2022-49938 CVE-2022-49939 CVE-2022-49940 CVE-2022-49942 CVE-2022=
+-49943 CVE-2022-49944 CVE-2022-49945
+ CVE-2022-49946 CVE-2022-49947 CVE-2022-49948 CVE-2022-49949 CVE-2022-49950=
+ CVE-2022-49951 CVE-2022-49952 CVE-2022-49953 CVE-2022-49954 CVE-2022-49955=
+ CVE-2022-49956 CVE-2022-49957 CVE-2022-49958 CVE-2022-49959 CVE-2022-49960=
+ CVE-2022-49961 CVE-2022-49962 CVE-2022-49963
+ CVE-2022-49964 CVE-2022-49965 CVE-2022-49966 CVE-2022-49967 CVE-2022-49968=
+ CVE-2022-49969 CVE-2022-49970 CVE-2022-49971 CVE-2022-49972 CVE-2022-49973=
+ CVE-2022-49974 CVE-2022-49975 CVE-2022-49976 CVE-2022-49977 CVE-2022-49978=
+ CVE-2022-49979 CVE-2022-49980 CVE-2022-49981
+ CVE-2022-49982 CVE-2022-49983 CVE-2022-49984 CVE-2022-49985 CVE-2022-49986=
+ CVE-2022-49987 CVE-2022-49989 CVE-2022-49990 CVE-2022-49991 CVE-2022-49992=
+ CVE-2022-49993 CVE-2022-49994 CVE-2022-49995 CVE-2022-49996 CVE-2022-49997=
+ CVE-2022-49998 CVE-2022-49999 CVE-2022-50000
+ CVE-2022-50001 CVE-2022-50002 CVE-2022-50003 CVE-2022-50004 CVE-2022-50005=
+ CVE-2022-50006 CVE-2022-50007 CVE-2022-50008 CVE-2022-50009 CVE-2022-50010=
+ CVE-2022-50011 CVE-2022-50012 CVE-2022-50013 CVE-2022-50014 CVE-2022-50015=
+ CVE-2022-50016 CVE-2022-50017 CVE-2022-50019
+ CVE-2022-50020 CVE-2022-50021 CVE-2022-50022 CVE-2022-50023 CVE-2022-50024=
+ CVE-2022-50025 CVE-2022-50026 CVE-2022-50027 CVE-2022-50028 CVE-2022-50029=
+ CVE-2022-50030 CVE-2022-50031 CVE-2022-50032 CVE-2022-50033 CVE-2022-50034=
+ CVE-2022-50035 CVE-2022-50036 CVE-2022-50037
+ CVE-2022-50038 CVE-2022-50039 CVE-2022-50040 CVE-2022-50041 CVE-2022-50042=
+ CVE-2022-50043 CVE-2022-50044 CVE-2022-50045 CVE-2022-50046 CVE-2022-50047=
+ CVE-2022-50048 CVE-2022-50049 CVE-2022-50050 CVE-2022-50051 CVE-2022-50052=
+ CVE-2022-50053 CVE-2022-50054 CVE-2022-50055
+ CVE-2022-50056 CVE-2022-50057 CVE-2022-50058 CVE-2022-50059 CVE-2022-50060=
+ CVE-2022-50061 CVE-2022-50062 CVE-2022-50063 CVE-2022-50064 CVE-2022-50065=
+ CVE-2022-50066 CVE-2022-50067 CVE-2022-50068 CVE-2022-50069 CVE-2022-50070=
+ CVE-2022-50071 CVE-2022-50072 CVE-2022-50073
+ CVE-2022-50074 CVE-2022-50075 CVE-2022-50076 CVE-2022-50077 CVE-2022-50078=
+ CVE-2022-50079 CVE-2022-50080 CVE-2022-50082 CVE-2022-50083 CVE-2022-50084=
+ CVE-2022-50085 CVE-2022-50086 CVE-2022-50087 CVE-2022-50088 CVE-2022-50089=
+ CVE-2022-50090 CVE-2022-50091 CVE-2022-50092
+ CVE-2022-50093 CVE-2022-50094 CVE-2022-50095 CVE-2022-50096 CVE-2022-50097=
+ CVE-2022-50098 CVE-2022-50099 CVE-2022-50100 CVE-2022-50101 CVE-2022-50102=
+ CVE-2022-50103 CVE-2022-50104 CVE-2022-50105 CVE-2022-50106 CVE-2022-50107=
+ CVE-2022-50108 CVE-2022-50109 CVE-2022-50110
+ CVE-2022-50111 CVE-2022-50112 CVE-2022-50113 CVE-2022-50114 CVE-2022-50115=
+ CVE-2022-50116 CVE-2022-50117 CVE-2022-50118 CVE-2022-50119 CVE-2022-50120=
+ CVE-2022-50121 CVE-2022-50122 CVE-2022-50123 CVE-2022-50124 CVE-2022-50125=
+ CVE-2022-50126 CVE-2022-50127 CVE-2022-50129
+ CVE-2022-50130 CVE-2022-50131 CVE-2022-50132 CVE-2022-50133 CVE-2022-50134=
+ CVE-2022-50135 CVE-2022-50136 CVE-2022-50137 CVE-2022-50138 CVE-2022-50139=
+ CVE-2022-50140 CVE-2022-50141 CVE-2022-50142 CVE-2022-50143 CVE-2022-50144=
+ CVE-2022-50145 CVE-2022-50146 CVE-2022-50147
+ CVE-2022-50148 CVE-2022-50149 CVE-2022-50151 CVE-2022-50152 CVE-2022-50153=
+ CVE-2022-50154 CVE-2022-50155 CVE-2022-50156 CVE-2022-50157 CVE-2022-50158=
+ CVE-2022-50159 CVE-2022-50160 CVE-2022-50161 CVE-2022-50162 CVE-2022-50163=
+ CVE-2022-50164 CVE-2022-50165 CVE-2022-50166
+ CVE-2022-50167 CVE-2022-50168 CVE-2022-50169 CVE-2022-50170 CVE-2022-50171=
+ CVE-2022-50172 CVE-2022-50173 CVE-2022-50174 CVE-2022-50175 CVE-2022-50176=
+ CVE-2022-50177 CVE-2022-50178 CVE-2022-50179 CVE-2022-50181 CVE-2022-50182=
+ CVE-2022-50183 CVE-2022-50184 CVE-2022-50185
+ CVE-2022-50186 CVE-2022-50187 CVE-2022-50188 CVE-2022-50189 CVE-2022-50190=
+ CVE-2022-50191 CVE-2022-50192 CVE-2022-50193 CVE-2022-50194 CVE-2022-50195=
+ CVE-2022-50196 CVE-2022-50197 CVE-2022-50198 CVE-2022-50199 CVE-2022-50200=
+ CVE-2022-50201 CVE-2022-50202 CVE-2022-50203
+ CVE-2022-50204 CVE-2022-50205 CVE-2022-50206 CVE-2022-50207 CVE-2022-50208=
+ CVE-2022-50209 CVE-2022-50210 CVE-2022-50211 CVE-2022-50212 CVE-2022-50213=
+ CVE-2022-50214 CVE-2022-50215 CVE-2022-50217 CVE-2022-50218 CVE-2022-50219=
+ CVE-2022-50220 CVE-2022-50221 CVE-2022-50222
+ CVE-2022-50223 CVE-2022-50224 CVE-2022-50225 CVE-2022-50226 CVE-2022-50227=
+ CVE-2022-50228 CVE-2022-50229 CVE-2022-50231 CVE-2024-26710 CVE-2024-57976=
+ CVE-2024-58091<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt">linux-yocto/6.12: (=
+cont.) Ignored CVE-2025-21817 CVE-2025-22101 CVE-2025-22112 CVE-2025-22119 =
+CVE-2025-22122 CVE-2025-22123 CVE-2025-22128 CVE-2025-23137 CVE-2025-23155 =
+CVE-2025-37842 CVE-2025-37855 CVE-2025-38000
+ CVE-2025-38001 CVE-2025-38002 CVE-2025-38003 CVE-2025-38004 CVE-2025-38005=
+ CVE-2025-38006 CVE-2025-38007 CVE-2025-38008 CVE-2025-38009 CVE-2025-38010=
+ CVE-2025-38011 CVE-2025-38012 CVE-2025-38013 CVE-2025-38014 CVE-2025-38015=
+ CVE-2025-38016 CVE-2025-38017 CVE-2025-38018
+ CVE-2025-38019 CVE-2025-38020 CVE-2025-38021 CVE-2025-38022 CVE-2025-38023=
+ CVE-2025-38024 CVE-2025-38025 CVE-2025-38027 CVE-2025-38028 CVE-2025-38031=
+ CVE-2025-38032 CVE-2025-38033 CVE-2025-38034 CVE-2025-38035 CVE-2025-38037=
+ CVE-2025-38038 CVE-2025-38039 CVE-2025-38040
+ CVE-2025-38043 CVE-2025-38044 CVE-2025-38045 CVE-2025-38047 CVE-2025-38048=
+ CVE-2025-38050 CVE-2025-38051 CVE-2025-38052 CVE-2025-38053 CVE-2025-38054=
+ CVE-2025-38055 CVE-2025-38056 CVE-2025-38057 CVE-2025-38058 CVE-2025-38059=
+ CVE-2025-38060 CVE-2025-38061 CVE-2025-38062
+ CVE-2025-38063 CVE-2025-38065 CVE-2025-38066 CVE-2025-38068 CVE-2025-38069=
+ CVE-2025-38070 CVE-2025-38071 CVE-2025-38072 CVE-2025-38073 CVE-2025-38074=
+ CVE-2025-38075 CVE-2025-38076 CVE-2025-38077 CVE-2025-38078 CVE-2025-38079=
+ CVE-2025-38080 CVE-2025-38081 CVE-2025-38082
+ CVE-2025-38083 CVE-2025-38084 CVE-2025-38085 CVE-2025-38086 CVE-2025-38087=
+ CVE-2025-38088 CVE-2025-38089 CVE-2025-38090 CVE-2025-38091 CVE-2025-38092=
+ CVE-2025-38093 CVE-2025-38094 CVE-2025-38095 CVE-2025-38096 CVE-2025-38097=
+ CVE-2025-38098 CVE-2025-38099 CVE-2025-38100
+ CVE-2025-38101 CVE-2025-38102 CVE-2025-38103 CVE-2025-38106 CVE-2025-38107=
+ CVE-2025-38108 CVE-2025-38109 CVE-2025-38110 CVE-2025-38111 CVE-2025-38112=
+ CVE-2025-38113 CVE-2025-38114 CVE-2025-38115 CVE-2025-38116 CVE-2025-38117=
+ CVE-2025-38118 CVE-2025-38119 CVE-2025-38120
+ CVE-2025-38121 CVE-2025-38122 CVE-2025-38123 CVE-2025-38124 CVE-2025-38125=
+ CVE-2025-38126 CVE-2025-38127 CVE-2025-38128 CVE-2025-38129 CVE-2025-38130=
+ CVE-2025-38131 CVE-2025-38133 CVE-2025-38134 CVE-2025-38135 CVE-2025-38136=
+ CVE-2025-38138 CVE-2025-38139 CVE-2025-38141
+ CVE-2025-38142 CVE-2025-38143 CVE-2025-38144 CVE-2025-38145 CVE-2025-38146=
+ CVE-2025-38147 CVE-2025-38148 CVE-2025-38149 CVE-2025-38150 CVE-2025-38151=
+ CVE-2025-38153 CVE-2025-38154 CVE-2025-38155 CVE-2025-38156 CVE-2025-38157=
+ CVE-2025-38158 CVE-2025-38159 CVE-2025-38160
+ CVE-2025-38161 CVE-2025-38162 CVE-2025-38163 CVE-2025-38164 CVE-2025-38165=
+ CVE-2025-38166 CVE-2025-38167 CVE-2025-38168 CVE-2025-38169 CVE-2025-38170=
+ CVE-2025-38171 CVE-2025-38172 CVE-2025-38173 CVE-2025-38174 CVE-2025-38175=
+ CVE-2025-38176 CVE-2025-38177 CVE-2025-38178
+ CVE-2025-38179 CVE-2025-38180 CVE-2025-38181 CVE-2025-38182 CVE-2025-38183=
+ CVE-2025-38184 CVE-2025-38185 CVE-2025-38186 CVE-2025-38188 CVE-2025-38189=
+ CVE-2025-38190 CVE-2025-38191 CVE-2025-38192 CVE-2025-38193 CVE-2025-38194=
+ CVE-2025-38195 CVE-2025-38196 CVE-2025-38197
+ CVE-2025-38198 CVE-2025-38200 CVE-2025-38201 CVE-2025-38202 CVE-2025-38208=
+ CVE-2025-38209 CVE-2025-38210 CVE-2025-38211 CVE-2025-38212 CVE-2025-38213=
+ CVE-2025-38214 CVE-2025-38215 CVE-2025-38216 CVE-2025-38217 CVE-2025-38218=
+ CVE-2025-38219 CVE-2025-38220 CVE-2025-38221
+ CVE-2025-38222 CVE-2025-38223 CVE-2025-38224 CVE-2025-38225 CVE-2025-38226=
+ CVE-2025-38227 CVE-2025-38228 CVE-2025-38229 CVE-2025-38230 CVE-2025-38231=
+ CVE-2025-38232 CVE-2025-38233 CVE-2025-38235 CVE-2025-38236 CVE-2025-38238=
+ CVE-2025-38239 CVE-2025-38241 CVE-2025-38242
+ CVE-2025-38243 CVE-2025-38244 CVE-2025-38245 CVE-2025-38246 CVE-2025-38247=
+ CVE-2025-38249 CVE-2025-38250 CVE-2025-38251 CVE-2025-38252 CVE-2025-38253=
+ CVE-2025-38254 CVE-2025-38255 CVE-2025-38256 CVE-2025-38257 CVE-2025-38258=
+ CVE-2025-38259 CVE-2025-38260 CVE-2025-38262
+ CVE-2025-38263 CVE-2025-38264 CVE-2025-38265 CVE-2025-38266 CVE-2025-38267=
+ CVE-2025-38268 CVE-2025-38269 CVE-2025-38270 CVE-2025-38271 CVE-2025-38273=
+ CVE-2025-38274 CVE-2025-38275 CVE-2025-38276 CVE-2025-38277 CVE-2025-38278=
+ CVE-2025-38279 CVE-2025-38280 CVE-2025-38281
+ CVE-2025-38282 CVE-2025-38283 CVE-2025-38285 CVE-2025-38286 CVE-2025-38287=
+ CVE-2025-38288 CVE-2025-38289 CVE-2025-38290 CVE-2025-38291 CVE-2025-38292=
+ CVE-2025-38293 CVE-2025-38294 CVE-2025-38295 CVE-2025-38296 CVE-2025-38297=
+ CVE-2025-38298 CVE-2025-38299 CVE-2025-38300
+ CVE-2025-38301 CVE-2025-38302 CVE-2025-38303 CVE-2025-38304 CVE-2025-38305=
+ CVE-2025-38307 CVE-2025-38308 CVE-2025-38309 CVE-2025-38310 CVE-2025-38312=
+ CVE-2025-38313 CVE-2025-38314 CVE-2025-38315 CVE-2025-38316 CVE-2025-38317=
+ CVE-2025-38318 CVE-2025-38319 CVE-2025-38320
+ CVE-2025-38321 CVE-2025-38322 CVE-2025-38323 CVE-2025-38324 CVE-2025-38325=
+ CVE-2025-38326 CVE-2025-38327 CVE-2025-38328 CVE-2025-38329 CVE-2025-38330=
+ CVE-2025-38331 CVE-2025-38332 CVE-2025-38333 CVE-2025-38334 CVE-2025-38336=
+ CVE-2025-38337 CVE-2025-38338 CVE-2025-38339
+ CVE-2025-38340 CVE-2025-38341 CVE-2025-38342 CVE-2025-38343 CVE-2025-38344=
+ CVE-2025-38345 CVE-2025-38346 CVE-2025-38347 CVE-2025-38348<o:p></o:p></sp=
+an></p>
 <p class=3D"MsoNormal"><span style=3D"font-size:11.0pt">ncurses: Fix CVE-20=
 25-6141<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt">openssl: Fix CVE-20=
-24-41996 CVE-2025-27587<o:p></o:p></span></p>
 <p class=3D"MsoNormal"><span style=3D"font-size:11.0pt">python3: Fix CVE-20=
 25-8194<o:p></o:p></span></p>
 <p class=3D"MsoNormal"><span style=3D"font-size:11.0pt">sqlite3: Fix CVE-20=
 25-6965<o:p></o:p></span></p>
 <p class=3D"MsoNormal"><span style=3D"font-size:11.0pt">sudo: Fix CVE-2025-=
-32463<o:p></o:p></span></p>
+32462 CVE-2025-32463<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt">webkitgtk: Fix CVE-=
+2025-24223 CVE-2025-31204 CVE-2025-31205 CVE-2025-31206 CVE-2025-31215 CVE-=
+2025-31257<o:p></o:p></span></p>
 <p class=3D"MsoNormal"><span style=3D"font-size:11.0pt">xserver-xorg: Fix C=
-VE-2022-49737 CVE-2025-49175 CVE-2025-49176 CVE-2025-49177 CVE-2025-49178 C=
-VE-2025-49179 CVE-2025-49180 CVE-2025-49176<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt">xz: Ignore CVE-2024=
--47611<o:p></o:p></span></p>
+VE-2025-49175 CVE-2025-49176 CVE-2025-49177 CVE-2025-49178 CVE-2025-49179 C=
+VE-2025-49180<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt"><o:p>&nbsp;</o:p></=
+span></p>
 <p class=3D"MsoNormal"><span style=3D"font-size:11.0pt"><o:p>&nbsp;</o:p></=
 span></p>
 <p class=3D"MsoNormal"><span style=3D"font-size:11.0pt">---------------<o:p=
@@ -774,80 +1077,117 @@ span></p>
 pan></p>
 <p class=3D"MsoNormal"><span style=3D"font-size:11.0pt">---------------<o:p=
 ></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt">bash: Stick to C17 =
-std<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt">bash: use -std=3Dgn=
-u17 also for native CFLAGS<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt">bind: upgrade to 9.=
+20.11<o:p></o:p></span></p>
 <p class=3D"MsoNormal"><span style=3D"font-size:11.0pt">binutils: stable 2.=
-42 branch updates<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt">bitbake: bitbake: r=
-unqueue: Verify mcdepends are valid<o:p></o:p></span></p>
+44 branch updates<o:p></o:p></span></p>
 <p class=3D"MsoNormal"><span style=3D"font-size:11.0pt">bitbake: test/fetch=
 : Switch u-boot based test to use our own mirror<o:p></o:p></span></p>
 <p class=3D"MsoNormal"><span style=3D"font-size:11.0pt">bitbake: utils: Opt=
 imise signal/sigmask performance<o:p></o:p></span></p>
 <p class=3D"MsoNormal"><span style=3D"font-size:11.0pt">build-appliance-ima=
-ge: Update to scarthgap head revision<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt">cairo: fix build wi=
-th gcc-15 on host<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt">cmake: Add PACKAGEC=
-ONFIG option for debugger support<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt">cve-check: Add miss=
-ing call to exit_if_errors<o:p></o:p></span></p>
+ge: Update to walnascar head revision<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt">ca-certificates: co=
+rrect the SRC_URI<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt">conf.py: improve Se=
+archEnglish to handle terms with dots<o:p></o:p></span></p>
 <p class=3D"MsoNormal"><span style=3D"font-size:11.0pt">dev-manual/start.rs=
 t: added missing command in Optimize your VHDX file using DiskPart<o:p></o:=
 p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt">e2fsprogs: Fix buil=
-d failure with gcc 15<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt">git: Upgrade to 2.4=
-4.4<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt">glibc: stable 2.39 =
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt">dev-manual/start.rs=
+t: mention that PERSISTENT_DIR should be shared too<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt">dev-manual/start.rs=
+t: remove basic setup for hash equivalence<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt">dev-manual/start.rs=
+t: remove shared PERSISTENT_DIR mentions<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt">docs/variables.rst:=
+ remove references to obsolete tar packaging<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt">git: upgrade to 2.4=
+9.1<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt">glibc: stable 2.41 =
 branch updates<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt">gnutls: patch read =
-buffer overrun in the &quot;pre_shared_key&quot; extension<o:p></o:p></span=
-></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt">gnutls: patch rejec=
-t zero-length version in certificate request<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt">go-helloworld: fix =
-license<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt">gnutls: upgrade to =
+3.8.10<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt">go: upgrade to 1.24=
+.5<o:p></o:p></span></p>
 <p class=3D"MsoNormal"><span style=3D"font-size:11.0pt">kea: set correct pe=
 rmissions for /var/run/kea<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt">linux-libc-headers:=
- Fix invalid conversion in cn_proc.h<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt">libpam: upgrade to =
+1.7.1<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt">linux-yocto/6.12: r=
+iscv tune fragments<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt">linux-yocto/6.12: r=
+iscv: Enable TUNE_FEATURES based KERNEL_FEATURES<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt">linux-yocto/6.12: u=
+pdate to v6.12.38<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt">linux-yocto/6.12: y=
+affs2: silence warnings<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt">ltp: Skip semctl08 =
+when __USE_TIME64_REDIRECTS is defined<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt">ltp: backport patch=
+ to fix compilation error for Skylake -march=3Dx86-64-v3<o:p></o:p></span><=
+/p>
 <p class=3D"MsoNormal"><span style=3D"font-size:11.0pt">migration-guides: a=
-dd release notes for 5.0.11<o:p></o:p></span></p>
+dd release notes for 4.0.28, 5.0.11, 5.2.2<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt">mingetty: fix do_pa=
+ckage warning<o:p></o:p></span></p>
 <p class=3D"MsoNormal"><span style=3D"font-size:11.0pt">mtools: upgrade to =
 4.0.49<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt">oe-debuginfod: add =
-option for data storage<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt">openssl: upgrade to=
+ 3.4.2<o:p></o:p></span></p>
 <p class=3D"MsoNormal"><span style=3D"font-size:11.0pt">orc: set CVE_PRODUC=
 T<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt">overview-manual/con=
+cepts.rst: fix sayhello hardcoded bindir<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt">overview-manual/con=
+cepts.rst: mention PERSISTENT_DIR for user configuration<o:p></o:p></span><=
+/p>
 <p class=3D"MsoNormal"><span style=3D"font-size:11.0pt">overview-manual/yp-=
 intro.rst: fix broken link to article<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt">parted: Fix build w=
-ith GCC 15<o:p></o:p></span></p>
 <p class=3D"MsoNormal"><span style=3D"font-size:11.0pt">poky.conf: bump ver=
-sion for 5.0.12<o:p></o:p></span></p>
+sion for 5.2.3<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt">poky.yaml.in: incre=
+ase minimum RAM from 8 to 32<o:p></o:p></span></p>
 <p class=3D"MsoNormal"><span style=3D"font-size:11.0pt">python3: update CVE=
  product<o:p></o:p></span></p>
 <p class=3D"MsoNormal"><span style=3D"font-size:11.0pt">ref-manual/classes.=
 rst: document the testexport class<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt">ref-manual/classes.=
+rst: drop obsolete QA errors<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt">ref-manual/classes.=
+rst: insane: drop cve_status_not_in_db<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt">ref-manual/structur=
+e.rst: remove shared PERSISTENT_DIR mentions<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt">ref-manual/structur=
+e.rst: update with info on PERSISTENT_DIR<o:p></o:p></span></p>
 <p class=3D"MsoNormal"><span style=3D"font-size:11.0pt">ref-manual/system-r=
-equirements.rst: update supported distributions
-<o:p></o:p></span></p>
+equirements.rst: update supported distributions<o:p></o:p></span></p>
 <p class=3D"MsoNormal"><span style=3D"font-size:11.0pt">ref-manual/variable=
-s.rst: document SPL_DTB_BINARY FIT_CONF_PREFIX variable<o:p></o:p></span></=
-p>
+s.rst: document SPL_DTB_BINARY<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt">ref-manual/variable=
+s.rst: document the FIT_CONF_PREFIX variable<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt">ruby-ptest: some pt=
+est fixes<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt">ruby: upgrade to 3.=
+4.4<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt">rust: Fix malformed=
+ hunk header in rustix patch<o:p></o:p></span></p>
 <p class=3D"MsoNormal"><span style=3D"font-size:11.0pt">scripts/install-bui=
-ldtools: Update to 5.0.11<o:p></o:p></span></p>
+ldtools: Update to 5.2.2<o:p></o:p></span></p>
 <p class=3D"MsoNormal"><span style=3D"font-size:11.0pt">sudo: upgrade to 1.=
 9.17p1<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt">timedated: wait for=
- jobs before SetNTP response<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt">variables.rst: remo=
-ve references to obsolete tar packaging<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt">test-manual/underst=
+and-autobuilder.rst: mention hashequiv server<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt">webkitgtk: Fix buil=
+d break on non-arm/non-x86 systems<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt">webkitgtk: Use gcc =
+to compile for arm target<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt">webkitgtk: upgrade =
+to 2.48.2<o:p></o:p></span></p>
 <p class=3D"MsoNormal"><span style=3D"font-size:11.0pt">xserver-xorg: upgra=
 de to 21.1.18<br>
+<br>
+<br>
 <br>
 <br>
 <o:p></o:p></span></p>
@@ -855,5 +1195,5 @@ de to 21.1.18<br>
 </body>
 </html>
 
---_000_BL4PR11MB8797199FB380E07DCCF2CB89B909ABL4PR11MB8797namp_--
+--_000_BL4PR11MB87972F72B5817844319C02CCB909ABL4PR11MB8797namp_--
 
