@@ -1,324 +1,92 @@
-Return-Path: <ashish.shrikhande@gmail.com>
+Return-Path: <raj.khem@gmail.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 505E6CAC58E
-	for <webhook@archiver.kernel.org>; Sat, 13 Sep 2025 03:57:23 +0000 (UTC)
-Subject: do_package error after building meta-tensorflow and libcamera-apps does not detect tensorflow-lite
-To: yocto@lists.yoctoproject.org
-From: "ashish shrikhande6" <ashish.shrikhande@gmail.com>
-X-Originating-Location: Bengaluru, Karnataka, IN (49.205.206.74)
-X-Originating-Platform: Linux Firefox 142
-User-Agent: GROUPS.IO Web Poster
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 67FF8CAC58E
+	for <webhook@archiver.kernel.org>; Sat, 13 Sep 2025 04:29:23 +0000 (UTC)
+Received: from mail-yx1-f51.google.com (mail-yx1-f51.google.com [74.125.224.51])
+ by mx.groups.io with SMTP id smtpd.web11.1299.1757737760035917357
+ for <yocto@lists.yoctoproject.org>;
+ Fri, 12 Sep 2025 21:29:20 -0700
+Authentication-Results: mx.groups.io;
+ dkim=pass header.i=@gmail.com header.s=20230601 header.b=HZmIhJrK;
+ spf=pass (domain: gmail.com, ip: 74.125.224.51, mailfrom: raj.khem@gmail.com)
+Received: by mail-yx1-f51.google.com with SMTP id 956f58d0204a3-62bbc95b4dfso98824d50.2
+        for <yocto@lists.yoctoproject.org>; Fri, 12 Sep 2025 21:29:19 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1757737759; x=1758342559; darn=lists.yoctoproject.org;
+        h=content-transfer-encoding:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=pUldq1A2pg2MaSLnDRd3hz90PuyRwQvGqrr6JmtKNJ4=;
+        b=HZmIhJrKIB5KrjQSG7gCIMeWuaL/JrgcWixCEJ6DvLiA2SZXcs4aDSc55bhqgMFFNq
+         PcNWIrApeZepLHaWA8wMoFdeyy8A71T+7VqMxMRK7fJvPF/tebu6TPmFpUF+V8Hh3Lb7
+         Pftk51oJqKKrh0DtzXx80adxNlAlfwwbNUy243NNpHMZJeb17wNIumQaLmixV/nWVozp
+         pecohouHdkY0tnW0woVIVhDEdMDeJZKNkJ6cw3yYbN8uGGN3thf9HJy/1D4Lj6agR/zN
+         LeJD8Q/XlsKyT01NUaRQwi0EdW/JqgUg1wPpkr67cHZ/szd4x0uJ1OOZPRyf8On+Udjq
+         l1hA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1757737759; x=1758342559;
+        h=content-transfer-encoding:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=pUldq1A2pg2MaSLnDRd3hz90PuyRwQvGqrr6JmtKNJ4=;
+        b=PxNGmMjsHVCnlOOj9AnO3pSCJjXPB0Y8tvWy6QEOgDKf6Zc5bTeDieYiK1urReUSPK
+         c7my5bPIqDeGtUJUUu5J5At+sPjaNTEfUi7BKfAcNkkzANrvqulretYJQMt9PC2dpruj
+         EHF+Dht8Ql1YGnb72B2ksMhbSwDvQDbjwhin68zfy/qGC3Y1fmXSAKrlat5nGqsyqIli
+         LouMdSiKQMQBBo5mx1YBGv2OKAG1DL7ey/GTCYBwsnmvrXXzmVukhOK1PQ6Y8vOPZQZ1
+         GK5DUjMWsOIe6mFfd/HSo7DaUickmzF0QSXlLeRHAFmvDhXWoqiuhAalF8Al4JVke4d3
+         u03A==
+X-Gm-Message-State: AOJu0YzhXiQKVv7wUzQj3QpWJOwSkpbocfMm4AkHaUXQbAZasKa2Tjr6
+	9rdV0jrR+hNt4IplU4Dre7SebPLH2WyZ0HnX0hvnrcvlMyK1Yb0N/8em1Gcxjj2Sxm2ocABW1ih
+	lBqzgjGL+zjvBD94AWAFakp5ke49bGs5YrNvn
+X-Gm-Gg: ASbGnct5KLdGRJCd8NpQoWt21wTJ8Wlj7OT5TepoW5EsGtl+rAUS8aXN4Q+MvxtKJuE
+	SsCYB+KxOMYvQz49rRTkqCkzKWVR49dNmRCVWiO78gk414m+JygYfPGxkzXp7/UI901cyo5Yh6H
+	cppEBq+16cvY+Xl2n0BeJR8FFTJ2BeLCnuDhjgPLK2uJSM52fbE2G5np8iQ3wzrhxPb+iK/aQfz
+	cJA5VeGwgUQrQZCUp6AzF3FJLb5GYI/6X9U3RE05MSdiUrEPRSwtAS81sGt87ISy4cYPNy7kU6W
+	BtpnCr5KpZYzDO95tszPCeVDc10deNi0a7ktTKhC4wFMHYlf+lqpGcC5MIW0HfQtJ7oV
+X-Google-Smtp-Source: AGHT+IGNeH0NNKDYnlSLxu7PMNiM6yASUOWVkfqux0ih3rtMpJVJRuY4brMgShupdE1JhDtW8Rc7zz7l/8k3YZZD63Q=
+X-Received: by 2002:a05:690e:429a:10b0:622:4818:ce38 with SMTP id
+ 956f58d0204a3-627266beb80mr4318318d50.37.1757737758660; Fri, 12 Sep 2025
+ 21:29:18 -0700 (PDT)
 MIME-Version: 1.0
-Date: Fri, 12 Sep 2025 20:57:19 -0700
-Message-ID: <LJfP.1757735839241326130.SYL3@lists.yoctoproject.org>
-Content-Type: multipart/alternative; boundary="NDmFtfRTJsw7NOq2Ulu0"
+References: <LJfP.1757735839241326130.SYL3@lists.yoctoproject.org> <17219.1757735929804160997@lists.yoctoproject.org>
+In-Reply-To: <17219.1757735929804160997@lists.yoctoproject.org>
+From: Khem Raj <raj.khem@gmail.com>
+Date: Fri, 12 Sep 2025 21:28:52 -0700
+X-Gm-Features: Ac12FXwmROlXn_UzHuhgJTQewsEd5d9bTOBnC58ZyuoynRdLbc7Hq4gA5F24PBE
+Message-ID: <CAMKF1sq1YXOkFd=OQEuaUp8qt4GMYaRDuxqWp8Qr+My+Gu57qw@mail.gmail.com>
+Subject: Re: [yocto] do_package error after building meta-tensorflow and
+ libcamera-apps does not detect tensorflow-lite
+To: yocto@lists.yoctoproject.org, ashish.shrikhande@gmail.com
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Sat, 13 Sep 2025 03:57:23 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/65829
+ <yocto@lists.yoctoproject.org>; Sat, 13 Sep 2025 04:29:23 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/65831
 
---NDmFtfRTJsw7NOq2Ulu0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: quoted-printable
+There are cp commands in do_install() task I think it could be causing
+the ownership clash. Change them to preserve ownership or use install
+cmd to install them
+might help fixing this.
 
-I am facing two issues in building meta-tensorflow. I am trying to build te=
-nsorflow-lite in latest Yocto whinlatter for Raspberrypi5 target.
-When I get try to build tensorflow-lite
-I get below error:
-
-***************************************************************************=
-********************************************************************
-
-ERROR: tensorflow-lite-2.19.0-r0 do_package: Error executing a python funct=
-ion in exec_func_python() autogenerated:
-The stack trace of python calls that resulted in this exception/failure was=
-:
-File: 'exec_func_python() autogenerated', lineno: 2, function: <module>
-0001:
-*** 0002:sstate_report_unihash(d)
-0003:
-File: '/home/ashish/raspberrypi5_whinlater/poky/meta/classes-global/sstate.=
-bbclass', lineno: 917, function: sstate_report_unihash
-0913: =C2=A0 =C2=A0report_unihash =3D getattr(bb.parse.siggen, 'report_unih=
-ash', None)
-0914:
-0915: =C2=A0 =C2=A0if report_unihash:
-0916: =C2=A0 =C2=A0 =C2=A0 =C2=A0ss =3D sstate_state_fromvars(d)
-*** 0917: =C2=A0 =C2=A0 =C2=A0 =C2=A0report_unihash(os.getcwd(), ss['task']=
-, d)
-0918:}
-0919:
-0920:#
-0921:# Shell function to decompress and prepare a package for installation
-File: '/home/ashish/raspberrypi5_whinlater/poky/bitbake/lib/bb/siggen.py', =
-lineno: 784, function: report_unihash
-0780:
-0781: =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0if "." in self.method:
-0782: =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0(module, metho=
-d) =3D self.method.rsplit('.', 1)
-0783: =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0locs['method']=
- =3D getattr(importlib.import_module(module), method)
-*** 0784: =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0outhash =
-=3D bb.utils.better_eval('method(path, sigfile, task, d)', locs)
-0785: =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0else:
-0786: =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0outhash =3D bb=
-.utils.better_eval(self.method + '(path, sigfile, task, d)', locs)
-0787:
-0788: =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0try:
-File: '/home/ashish/raspberrypi5_whinlater/poky/bitbake/lib/bb/utils.py', l=
-ineno: 487, function: better_eval
-0483: =C2=A0 =C2=A0if extraglobals:
-0484: =C2=A0 =C2=A0 =C2=A0 =C2=A0ctx =3D copy.copy(ctx)
-0485: =C2=A0 =C2=A0 =C2=A0 =C2=A0for g in extraglobals:
-0486: =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0ctx[g] =3D extraglobals[g]
-*** 0487: =C2=A0 =C2=A0return eval(source, ctx, locals)
-0488:
-0489:@contextmanager
-0490:def fileslocked(files, *args, **kwargs):
-0491: =C2=A0 =C2=A0"""Context manager for locking and unlocking file locks.=
- Uses
-File: '<string>', lineno: 1, function: <module>
-File "<string>", line 1, in <module>
-File: '/home/ashish/raspberrypi5_whinlater/poky/meta/lib/oe/sstatesig.py', =
-lineno: 722, function: OEOuthashBasic
-0718: =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0update_hash("\=
-n")
-0719:
-0720: =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0# Process this directory and=
- all its child files
-0721: =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0if include_root or root !=3D=
- ".":
-*** 0722: =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0process(ro=
-ot)
-0723: =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0for f in files:
-0724: =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0if f =3D=3D 'f=
-ixmepath':
-0725: =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0=
-continue
-0726: =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0process(os.pat=
-h.join(root, f))
-File: '/home/ashish/raspberrypi5_whinlater/poky/meta/lib/oe/sstatesig.py', =
-lineno: 661, function: process
-0657: =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0=
-except KeyError as e:
-0658: =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0=
- =C2=A0 =C2=A0msg =3D ("KeyError: %s\nPath %s is owned by uid %d, gid %d, w=
-hich doesn't match "
-0659: =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0=
- =C2=A0 =C2=A0 =C2=A0 =C2=A0"any user/group on target. This may be due to h=
-ost contamination." %
-0660: =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0=
- =C2=A0 =C2=A0 =C2=A0 =C2=A0(e, os.path.abspath(path), s.st_uid, s.st_gid))
-*** 0661: =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
-=C2=A0 =C2=A0 =C2=A0raise Exception(msg).with_traceback(e.__traceback__)
-0662:
-0663: =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0if include_tim=
-estamps:
-0664: =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0=
-# Need to clamp to SOURCE_DATE_EPOCH
-0665: =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0=
-if s.st_mtime > source_date_epoch:
-File: '/home/ashish/raspberrypi5_whinlater/poky/meta/lib/oe/sstatesig.py', =
-lineno: 655, function: process
-0651: =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0=
-else:
-0652: =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0=
- =C2=A0 =C2=A0add_perm(stat.S_IXOTH, 'x')
-0653:
-0654: =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0=
-try:
-*** 0655: =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
-=C2=A0 =C2=A0 =C2=A0update_hash(" %10s" % pwd.getpwuid(s.st_uid).pw_name)
-0656: =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0=
- =C2=A0 =C2=A0update_hash(" %10s" % grp.getgrgid(s.st_gid).gr_name)
-0657: =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0=
-except KeyError as e:
-0658: =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0=
- =C2=A0 =C2=A0msg =3D ("KeyError: %s\nPath %s is owned by uid %d, gid %d, w=
-hich doesn't match "
-0659: =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0=
- =C2=A0 =C2=A0 =C2=A0 =C2=A0"any user/group on target. This may be due to h=
-ost contamination." %
-Exception: Exception: KeyError: 'getpwuid(): uid not found: 1000'
-Path /home/ashish/raspberrypi5_whinlater/poky/build/tmp/work/cortexa76-poky=
--linux/tensorflow-lite/2.19.0/sstate-build-package/package/usr/lib/python3.=
-13/site-packages/tflite_runtime is owned by uid 1000, gid 1000, which doesn=
-'t match any user/group on target. This may be due to host contamination.
-
-ERROR: Logfile of failure stored in: /home/ashish/raspberrypi5_whinlater/po=
-ky/build/tmp/work/cortexa76-poky-linux/tensorflow-lite/2.19.0/temp/log.do_p=
-ackage.4189490
-NOTE: recipe tensorflow-lite-2.19.0-r0: task do_package: Failed
-
-***************************************************************************=
-***************************************************************************=
-**************************************************
-
-After I comment below part from recipe it successfully build it:
-
-${STAGING_BINDIR_NATIVE}/pip3 install --disable-pip-version-check -v \
--t ${D}/${PYTHON_SITEPACKAGES_DIR} --no-cache-dir --no-deps \
-${S}/tensorflow/lite/tools/pip_package/gen/tflite_pip/python3/dist/tflite_r=
-untime-${PV}*cp313*.whl
-rm -rf ${D}${PYTHON_SITEPACKAGES_DIR}/tflite_runtime-${PV}.dist-info
-
-Since I wanted to build rpicam-apps (libcamera-apps)=C2=A0 with tensorflow-=
-lite support I commented above part as wheel is not required.
-
-When I build=C2=A0 libcamera-apps, since meta-tensorflow uses bazel to buil=
-d, it does not generate libtensorflowlite.pc for libcamera-apps to integrat=
-e.
-
-How to solve these issues? I am new to Yocto and looking for some help?
-
---NDmFtfRTJsw7NOq2Ulu0
-Content-Type: text/html; charset="utf-8"
-Content-Transfer-Encoding: quoted-printable
-
-<div>I am facing two issues in building meta-tensorflow. I am trying to bui=
-ld tensorflow-lite in latest Yocto whinlatter for Raspberrypi5 target.&nbsp=
-;</div>
-<div>When I get try to build tensorflow-lite</div>
-<div>I get below error:</div>
-<div>&nbsp;</div>
-<div>**********************************************************************=
-*************************************************************************</=
-div>
-<div>&nbsp;</div>
-<div>
-<div>ERROR: tensorflow-lite-2.19.0-r0 do_package: Error executing a python =
-function in exec_func_python() autogenerated:</div>
-<div>The stack trace of python calls that resulted in this exception/failur=
-e was:<br />File: 'exec_func_python() autogenerated', lineno: 2, function: =
-&lt;module&gt;<br />&nbsp; &nbsp; &nbsp;0001:<br />&nbsp;*** 0002:sstate_re=
-port_unihash(d)<br />&nbsp; &nbsp; &nbsp;0003:<br />File: '/home/ashish/ras=
-pberrypi5_whinlater/poky/meta/classes-global/sstate.bbclass', lineno: 917, =
-function: sstate_report_unihash<br />&nbsp; &nbsp; &nbsp;0913: &nbsp; &nbsp=
-;report_unihash =3D getattr(bb.parse.siggen, 'report_unihash', None)<br />&=
-nbsp; &nbsp; &nbsp;0914:<br />&nbsp; &nbsp; &nbsp;0915: &nbsp; &nbsp;if rep=
-ort_unihash:<br />&nbsp; &nbsp; &nbsp;0916: &nbsp; &nbsp; &nbsp; &nbsp;ss =
-=3D sstate_state_fromvars(d)<br />&nbsp;*** 0917: &nbsp; &nbsp; &nbsp; &nbs=
-p;report_unihash(os.getcwd(), ss['task'], d)<br />&nbsp; &nbsp; &nbsp;0918:=
-}<br />&nbsp; &nbsp; &nbsp;0919:<br />&nbsp; &nbsp; &nbsp;0920:#<br />&nbsp=
-; &nbsp; &nbsp;0921:# Shell function to decompress and prepare a package fo=
-r installation<br />File: '/home/ashish/raspberrypi5_whinlater/poky/bitbake=
-/lib/bb/siggen.py', lineno: 784, function: report_unihash<br />&nbsp; &nbsp=
-; &nbsp;0780:<br />&nbsp; &nbsp; &nbsp;0781: &nbsp; &nbsp; &nbsp; &nbsp; &n=
-bsp; &nbsp;if "." in self.method:<br />&nbsp; &nbsp; &nbsp;0782: &nbsp; &nb=
-sp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;(module, method) =3D self.meth=
-od.rsplit('.', 1)<br />&nbsp; &nbsp; &nbsp;0783: &nbsp; &nbsp; &nbsp; &nbsp=
-; &nbsp; &nbsp; &nbsp; &nbsp;locs['method'] =3D getattr(importlib.import_mo=
-dule(module), method)<br />&nbsp;*** 0784: &nbsp; &nbsp; &nbsp; &nbsp; &nbs=
-p; &nbsp; &nbsp; &nbsp;outhash =3D bb.utils.better_eval('method(path, sigfi=
-le, task, d)', locs)<br />&nbsp; &nbsp; &nbsp;0785: &nbsp; &nbsp; &nbsp; &n=
-bsp; &nbsp; &nbsp;else:<br />&nbsp; &nbsp; &nbsp;0786: &nbsp; &nbsp; &nbsp;=
- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;outhash =3D bb.utils.better_eval(self.me=
-thod + '(path, sigfile, task, d)', locs)<br />&nbsp; &nbsp; &nbsp;0787:<br =
-/>&nbsp; &nbsp; &nbsp;0788: &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;try:<b=
-r />File: '/home/ashish/raspberrypi5_whinlater/poky/bitbake/lib/bb/utils.py=
-', lineno: 487, function: better_eval<br />&nbsp; &nbsp; &nbsp;0483: &nbsp;=
- &nbsp;if extraglobals:<br />&nbsp; &nbsp; &nbsp;0484: &nbsp; &nbsp; &nbsp;=
- &nbsp;ctx =3D copy.copy(ctx)<br />&nbsp; &nbsp; &nbsp;0485: &nbsp; &nbsp; =
-&nbsp; &nbsp;for g in extraglobals:<br />&nbsp; &nbsp; &nbsp;0486: &nbsp; &=
-nbsp; &nbsp; &nbsp; &nbsp; &nbsp;ctx[g] =3D extraglobals[g]<br />&nbsp;*** =
-0487: &nbsp; &nbsp;return eval(source, ctx, locals)<br />&nbsp; &nbsp; &nbs=
-p;0488:<br />&nbsp; &nbsp; &nbsp;0489:@contextmanager<br />&nbsp; &nbsp; &n=
-bsp;0490:def fileslocked(files, *args, **kwargs):<br />&nbsp; &nbsp; &nbsp;=
-0491: &nbsp; &nbsp;"""Context manager for locking and unlocking file locks.=
- Uses<br />File: '&lt;string&gt;', lineno: 1, function: &lt;module&gt;<br /=
->&nbsp; File "&lt;string&gt;", line 1, in &lt;module&gt;</div>
-<div>File: '/home/ashish/raspberrypi5_whinlater/poky/meta/lib/oe/sstatesig.=
-py', lineno: 722, function: OEOuthashBasic<br />&nbsp; &nbsp; &nbsp;0718: &=
-nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;update_hash("\n")<br =
-/>&nbsp; &nbsp; &nbsp;0719:<br />&nbsp; &nbsp; &nbsp;0720: &nbsp; &nbsp; &n=
-bsp; &nbsp; &nbsp; &nbsp;# Process this directory and all its child files<b=
-r />&nbsp; &nbsp; &nbsp;0721: &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;if i=
-nclude_root or root !=3D ".":<br />&nbsp;*** 0722: &nbsp; &nbsp; &nbsp; &nb=
-sp; &nbsp; &nbsp; &nbsp; &nbsp;process(root)<br />&nbsp; &nbsp; &nbsp;0723:=
- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;for f in files:<br />&nbsp; &nbsp=
-; &nbsp;0724: &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;if f =
-=3D=3D 'fixmepath':<br />&nbsp; &nbsp; &nbsp;0725: &nbsp; &nbsp; &nbsp; &nb=
-sp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;continue<br />&nbsp; &nbsp; &n=
-bsp;0726: &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;process(os=
-.path.join(root, f))<br />File: '/home/ashish/raspberrypi5_whinlater/poky/m=
-eta/lib/oe/sstatesig.py', lineno: 661, function: process<br />&nbsp; &nbsp;=
- &nbsp;0657: &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;=
- &nbsp;except KeyError as e:<br />&nbsp; &nbsp; &nbsp;0658: &nbsp; &nbsp; &=
-nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;msg =3D=
- ("KeyError: %s\nPath %s is owned by uid %d, gid %d, which doesn't match "<=
-br />&nbsp; &nbsp; &nbsp;0659: &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &n=
-bsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;"any user/group on tar=
-get. This may be due to host contamination." %<br />&nbsp; &nbsp; &nbsp;066=
-0: &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &n=
-bsp; &nbsp; &nbsp; &nbsp;(e, os.path.abspath(path), s.st_uid, s.st_gid))<br=
- />&nbsp;*** 0661: &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; =
-&nbsp; &nbsp; &nbsp; &nbsp;raise Exception(msg).with_traceback(e.__tracebac=
-k__)<br />&nbsp; &nbsp; &nbsp;0662:<br />&nbsp; &nbsp; &nbsp;0663: &nbsp; &=
-nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;if include_timestamps:<br />=
-&nbsp; &nbsp; &nbsp;0664: &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; =
-&nbsp; &nbsp; &nbsp;# Need to clamp to SOURCE_DATE_EPOCH<br />&nbsp; &nbsp;=
- &nbsp;0665: &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;=
- &nbsp;if s.st_mtime &gt; source_date_epoch:<br />File: '/home/ashish/raspb=
-errypi5_whinlater/poky/meta/lib/oe/sstatesig.py', lineno: 655, function: pr=
-ocess<br />&nbsp; &nbsp; &nbsp;0651: &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nb=
-sp; &nbsp; &nbsp; &nbsp; &nbsp;else:<br />&nbsp; &nbsp; &nbsp;0652: &nbsp; =
-&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp=
-;add_perm(stat.S_IXOTH, 'x')<br />&nbsp; &nbsp; &nbsp;0653:<br />&nbsp; &nb=
-sp; &nbsp;0654: &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nb=
-sp; &nbsp;try:<br />&nbsp;*** 0655: &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbs=
-p; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;update_hash(" %10s" % pwd.getpw=
-uid(s.st_uid).pw_name)<br />&nbsp; &nbsp; &nbsp;0656: &nbsp; &nbsp; &nbsp; =
-&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;update_hash("=
- %10s" % grp.getgrgid(s.st_gid).gr_name)<br />&nbsp; &nbsp; &nbsp;0657: &nb=
-sp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;except Ke=
-yError as e:<br />&nbsp; &nbsp; &nbsp;0658: &nbsp; &nbsp; &nbsp; &nbsp; &nb=
-sp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;msg =3D ("KeyError: %s\=
-nPath %s is owned by uid %d, gid %d, which doesn't match "<br />&nbsp; &nbs=
-p; &nbsp;0659: &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbs=
-p; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;"any user/group on target. This may be=
- due to host contamination." %<br />Exception: Exception: KeyError: 'getpwu=
-id(): uid not found: 1000'<br />Path /home/ashish/raspberrypi5_whinlater/po=
-ky/build/tmp/work/cortexa76-poky-linux/tensorflow-lite/2.19.0/sstate-build-=
-package/package/usr/lib/python3.13/site-packages/tflite_runtime is owned by=
- uid 1000, gid 1000, which doesn't match any user/group on target. This may=
- be due to host contamination.</div>
-<div>&nbsp;</div>
-<div>ERROR: Logfile of failure stored in: /home/ashish/raspberrypi5_whinlat=
-er/poky/build/tmp/work/cortexa76-poky-linux/tensorflow-lite/2.19.0/temp/log=
-.do_package.4189490<br />NOTE: recipe tensorflow-lite-2.19.0-r0: task do_pa=
-ckage: Failed</div>
-<div>&nbsp;</div>
-<div>**********************************************************************=
-***************************************************************************=
-*******************************************************</div>
-<div>&nbsp;</div>
-<div>&nbsp;</div>
-<div>After I comment below part from recipe it successfully build it:</div>
-<div>&nbsp;</div>
-<div>
-<div>&nbsp; &nbsp; ${STAGING_BINDIR_NATIVE}/pip3 install --disable-pip-vers=
-ion-check -v \<br />&nbsp; &nbsp; &nbsp; &nbsp; -t ${D}/${PYTHON_SITEPACKAG=
-ES_DIR} --no-cache-dir --no-deps \<br />&nbsp; &nbsp; &nbsp; &nbsp; ${S}/te=
-nsorflow/lite/tools/pip_package/gen/tflite_pip/python3/dist/tflite_runtime-=
-${PV}*cp313*.whl</div>
-<div>&nbsp; &nbsp; rm -rf ${D}${PYTHON_SITEPACKAGES_DIR}/tflite_runtime-${P=
-V}.dist-info</div>
-<div>&nbsp;</div>
-<div>Since I wanted to build rpicam-apps (libcamera-apps)&nbsp; with tensor=
-flow-lite support I commented above part as wheel is not required.</div>
-<div>&nbsp;</div>
-<div>When I build&nbsp; libcamera-apps, since meta-tensorflow uses bazel to=
- build, it does not generate libtensorflowlite.pc for libcamera-apps to int=
-egrate.</div>
-<div>&nbsp;</div>
-<div>How to solve these issues? I am new to Yocto and looking for some help=
-?&nbsp;</div>
-<div>&nbsp;</div>
-</div>
-</div>
-
---NDmFtfRTJsw7NOq2Ulu0--
+On Fri, Sep 12, 2025 at 9:02=E2=80=AFPM ashish shrikhande6 via
+lists.yoctoproject.org
+<ashish.shrikhande=3Dgmail.com@lists.yoctoproject.org> wrote:
+>
+> I have attached a detailed build log
+>
+> -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
+> Links: You receive all messages sent to this group.
+> You automatically follow any topics you start or reply to.
+> View/Reply Online (#65830): https://lists.yoctoproject.org/g/yocto/messag=
+e/65830
+> Mute This Topic: https://lists.yoctoproject.org/mt/115218449/1997914
+> Group Owner: yocto+owner@lists.yoctoproject.org
+> Unsubscribe: https://lists.yoctoproject.org/g/yocto/unsub [raj.khem@gmail=
+.com]
+> -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
+>
 
