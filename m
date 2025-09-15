@@ -1,200 +1,165 @@
-Return-Path: <ashish.shrikhande@gmail.com>
+Return-Path: <skandigraun@gmail.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 86BC6CAC592
-	for <webhook@archiver.kernel.org>; Mon, 15 Sep 2025 16:38:46 +0000 (UTC)
-Subject: Re: [yocto] do_package error after building meta-tensorflow and libcamera-apps does not detect tensorflow-lite
-To: "Gyorgy Sarvari" <skandigraun@gmail.com>, yocto@lists.yoctoproject.org
-From: "ashish shrikhande6" <ashish.shrikhande@gmail.com>
-X-Originating-Location: Bengaluru, Karnataka, IN (49.205.201.146)
-X-Originating-Platform: Linux Firefox 142
-User-Agent: GROUPS.IO Web Poster
+	by smtp.lore.kernel.org (Postfix) with ESMTP id C4395CAC592
+	for <webhook@archiver.kernel.org>; Mon, 15 Sep 2025 17:07:14 +0000 (UTC)
+Received: from mail-ej1-f44.google.com (mail-ej1-f44.google.com [209.85.218.44])
+ by mx.groups.io with SMTP id smtpd.web11.296.1757956029683345058
+ for <yocto@lists.yoctoproject.org>;
+ Mon, 15 Sep 2025 10:07:10 -0700
+Authentication-Results: mx.groups.io;
+ dkim=pass header.i=@gmail.com header.s=20230601 header.b=hxf6tlQL;
+ spf=pass (domain: gmail.com, ip: 209.85.218.44, mailfrom: skandigraun@gmail.com)
+Received: by mail-ej1-f44.google.com with SMTP id a640c23a62f3a-afcb7322da8so127249366b.0
+        for <yocto@lists.yoctoproject.org>; Mon, 15 Sep 2025 10:07:09 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1757956028; x=1758560828; darn=lists.yoctoproject.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:to:subject:user-agent:mime-version:date:message-id:from
+         :to:cc:subject:date:message-id:reply-to;
+        bh=icTbSWTu3/OeimZXoCAwii17svCbyLuXCSPpuJ7feIM=;
+        b=hxf6tlQLOxAcXMbR1nVQ3IYjietkpo4REG08WGRhphREKFLTD7B1S7ojFb7aMb0xaw
+         yAwZFaH9RdTa5wgdebSj8NEb1p8eSYIKJ7i7K1jNW/ruTw0um7IDj3L1RaPOICguWCbK
+         aja9g0sw+e/LGxprygOLMch4fgFOyE/py9gAUeke4smnIbobKCgJeDeVbJa6Ky5f9LfT
+         bIYAvmd9NAN0e8sQ2SXYHyRS7TVaCoXP38ZckDhzh9jY6klDy8CZXtt6rG6ocl4YKIIy
+         5Bw/NOeA18pn4yVHbOpuuaEzFKuygP3Md8VvefqXbzM4g3HRGuwsUOLIAQp2t1vP2ebY
+         QmkQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1757956028; x=1758560828;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=icTbSWTu3/OeimZXoCAwii17svCbyLuXCSPpuJ7feIM=;
+        b=QnaCrZhx98F/WTTCOuGxKY8ZVq8ARNxLzwS5DzQkU6FMk1YIboB8+tCps7pC8sVCi7
+         p78AV0uX+xpW+1P2jn7JR1XVXmL4GYVOnSwwKUnXQRRwooPbRwGeCV8R3eqDuY2TqDVP
+         mp8+MFTkS91cYnl3r8xu6zBtrsS7nBAp+llPWNJJ1XI47z2PPlOS1GxBtpdK5Z3BggN1
+         gMOthZaDU1LNjQM9reS1y1pBEVvznysZISk4UytKr+dJzgKVPNU3of5F6ulrDhreX+cq
+         pTyxjUr3QwvuP2f1YhxrZc115YQCE11KxYGsYLSG40lExrs0Q8EAAuZA/UJNMuvcIzeY
+         rW8w==
+X-Forwarded-Encrypted: i=1; AJvYcCVRHcQofdJCEjzXLiFJQi2uNtkLgUOMt8MHjm7U3tPbsvjX73KADw2q/3G3dzTIGNL9mCigsQ==@lists.yoctoproject.org
+X-Gm-Message-State: AOJu0YyMYeP5dZSwcU5kl3aJyJK1oZKjYMoGooBV/wO5fSJo55B5tDnQ
+	HMqFi2wzBIkI0KdbSr6NmRgULGjL2N9uqRiWs/taaxsiup89gFaanTUV
+X-Gm-Gg: ASbGncu0uwXffuvb8Reifj8ieOh9XnOfjDw6bXgUAafmRNFZUxcDBo3IVPoP7UgaFoe
+	trVRSOh/S3orr6WtzWcOBCxvBynRqSlFzJ7j71cfWYXel14TFbxdddb9UMhWmvbs1pwmVVpEsTd
+	aVNtNi/3gentUJYATjRUDtsxwWegUsY8hoaXcdHfedb2pdr41YzUOuT/JljKua11O9bCr0k7sln
+	HSpdFAEq7+MAVwZIJUio9VD1uu7adX6+SWy2LXQHs5csLUrgL90bg0Jhpz+MfGCSSPUqC7LKAb7
+	TjhfRdeUKpvANO7ed4StCfg1Rsgw7ASNKQiILzfX0Ji8QocpSbO1oRdQMtK4e/P8P+Z9C4t9e2i
+	1K4Llwc56xtzJH7zG4fifj9PebjmF7cR1Mh3mTHuQBA==
+X-Google-Smtp-Source: AGHT+IH95WTGRRRbYSM3eANeCmtZ2VHq9H+Gqu+Oe69MisxATfVjb4gZFLwTTDelilI2Y6db8u7V6w==
+X-Received: by 2002:a17:906:6a10:b0:b12:162:8347 with SMTP id a640c23a62f3a-b120162f945mr406905666b.16.1757956027662;
+        Mon, 15 Sep 2025 10:07:07 -0700 (PDT)
+Received: from [192.168.1.106] ([51.154.145.205])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-b07b316e2d4sm982398366b.45.2025.09.15.10.07.06
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 15 Sep 2025 10:07:07 -0700 (PDT)
+Message-ID: <5b4dd6f2-7f22-43c6-ae66-7052f7c379b5@gmail.com>
+Date: Mon, 15 Sep 2025 19:07:06 +0200
 MIME-Version: 1.0
-Date: Mon, 15 Sep 2025 09:38:46 -0700
+User-Agent: Mozilla Thunderbird
+Subject: Re: [yocto] do_package error after building meta-tensorflow and
+ libcamera-apps does not detect tensorflow-lite
+To: ashish.shrikhande@gmail.com, yocto@lists.yoctoproject.org
 References: <0990cea5-1a65-4c61-a627-cd1b7f9875b9@gmail.com>
-In-Reply-To: <0990cea5-1a65-4c61-a627-cd1b7f9875b9@gmail.com>
-Message-ID: <11853.1757954326050371090@lists.yoctoproject.org>
-Content-Type: multipart/alternative; boundary="hYWUh2UVPAwhLMWasJJD"
+ <11853.1757954326050371090@lists.yoctoproject.org>
+Content-Language: en-US
+From: Gyorgy Sarvari <skandigraun@gmail.com>
+In-Reply-To: <11853.1757954326050371090@lists.yoctoproject.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Mon, 15 Sep 2025 16:38:46 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/65838
+ <yocto@lists.yoctoproject.org>; Mon, 15 Sep 2025 17:07:14 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/65839
 
---hYWUh2UVPAwhLMWasJJD
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: quoted-printable
+Have you applied all the mentioned changes? The first 2 should be fixed
+by the tflite patch[1] (which packages these missing headers).
+For the 3rd point there is an extra patch in the github PR[2], which
+addresses it. I haven't seen the last error, but the first three at
+least should be gone...
 
-After Integrating tflite with libcamera I am getting some compilation error=
-s:
-1.
-| In file included from ../sources/libcamera-apps-1.9.0+git/post_processing=
-_stages/tf_stage.cpp:7:
-| ../sources/libcamera-apps-1.9.0+git/post_processing_stages/tf_stage.hpp:1=
-6:10: fatal error: tensorflow/lite/builtin_op_data.h: No such file or direc=
-tory
-| =C2=A0 =C2=A016 | #include "tensorflow/lite/builtin_op_data.h"
-| =C2=A0 =C2=A0 =C2=A0 | =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0^~~~~~~~~~~~~~~~=
-~~~~~~~~~~~~~~~~~~~
-| compilation terminated.
+[1]: https://patchwork.yoctoproject.org/project/yocto/patch/20250913173840.3216545-1-skandigraun@gmail.com/
+[2]:
+https://github.com/agherzan/meta-raspberrypi/pull/1522/files#diff-c47f7714624569c0978292d85655edf001a084d2c2b830147b52647eccba602b
 
-2.
+On 9/15/25 18:38, ashish shrikhande6 via Lists.Yoctoproject.Org wrote:
+> After Integrating tflite with libcamera I am getting some compilation
+> errors:
+> 1. 
+> | In file included from
+> ../sources/libcamera-apps-1.9.0+git/post_processing_stages/tf_stage.cpp:7:
+> |
+> ../sources/libcamera-apps-1.9.0+git/post_processing_stages/tf_stage.hpp:16:10:
+> fatal error: tensorflow/lite/builtin_op_data.h: No such file or directory
+> |    16 | #include "tensorflow/lite/builtin_op_data.h"
+> |       |          ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+> | compilation terminated.
+>  
+> 2. 
+>  
+> | In file included from
+> ../sources/libcamera-apps-1.9.0+git/post_processing_stages/tensorflow/lite/schema/schema_generated.h:18,
+> |                  from
+> ../sources/libcamera-apps-1.9.0+git/post_processing_stages/tensorflow/lite/core/api/op_resolver.h:29,
+> |                  from
+> ../sources/libcamera-apps-1.9.0+git/post_processing_stages/tensorflow/lite/core/subgraph.h:36,
+> |                  from
+> ../sources/libcamera-apps-1.9.0+git/post_processing_stages/tensorflow/lite/core/async/async_subgraph.h:27,
+> |                  from
+> ../sources/libcamera-apps-1.9.0+git/post_processing_stages/tensorflow/lite/core/async/async_signature_runner.h:24,
+> |                  from
+> ../sources/libcamera-apps-1.9.0+git/post_processing_stages/tensorflow/lite/core/interpreter.h:48,
+> |                  from
+> ../sources/libcamera-apps-1.9.0+git/post_processing_stages/tensorflow/lite/interpreter.h:21,
+> |                  from
+> ../sources/libcamera-apps-1.9.0+git/post_processing_stages/tf_stage.hpp:18,
+> |                  from
+> ../sources/libcamera-apps-1.9.0+git/post_processing_stages/object_classify_tf_stage.cpp:8:
+> |
+> ../sources/libcamera-apps-1.9.0+git/post_processing_stages/tensorflow/compiler/mlir/lite/schema/schema_generated.h:21:10:
+> fatal error: flatbuffers/flatbuffers.h: No such file or directory
+> |    21 | #include "flatbuffers/flatbuffers.h"
+> |       |          ^~~~~~~~~~~~~~~~~~~~~~~~~~~
+> | compilation terminated.
+>  
+> 3.
+>  
+> | In file included from
+> ../sources/libcamera-apps-1.9.0+git/post_processing_stages/segmentation_tf_stage.cpp:8:
+> |
+> ../sources/libcamera-apps-1.9.0+git/post_processing_stages/segmentation.hpp:15:82:
+> error: 'uint8_t' was not declared in this scope
+> |    15 |         Segmentation(int w, int h, std::vector<std::string>
+> l, const std::vector<uint8_t> &s)
+> |       |                                                            
+>                      ^~~~~~~
+> |
+> ../sources/libcamera-apps-1.9.0+git/post_processing_stages/segmentation.hpp:12:1:
+> note: 'uint8_t' is defined in header '<cstdint>'; this is probably
+> fixable by adding '#include <cstdint>'
+>  
+> 4.
+>  
+> | In file included from
+> ../sources/libcamera-apps-1.9.0+git/post_processing_stages/tensorflow/lite/core/c/builtin_op_data.h:24,
+> |                  from
+> ../sources/libcamera-apps-1.9.0+git/post_processing_stages/tensorflow/lite/builtin_op_data.h:20,
+> |                  from
+> ../sources/libcamera-apps-1.9.0+git/post_processing_stages/tf_stage.hpp:16,
+> |                  from
+> ../sources/libcamera-apps-1.9.0+git/post_processing_stages/object_detect_tf_stage.cpp:9:
+> |
+> ../sources/libcamera-apps-1.9.0+git/post_processing_stages/tensorflow/lite/core/c/common.h:125:7:
+> error: ISO C++ forbids flexible array member 'data' [-Werror=pedantic]
+> |   125 |   int data[];
+> |       |       ^~~~
+> |
+> ../sources/libcamera-apps-1.9.0+git/post_processing_stages/tensorflow/lite/core/c/common.h:169:9:
+> error: ISO C++ forbids flexible array member 'data' [-Werror=pedantic]
+> |   169 |   float data[];
+> |       |         ^~~~
+> | cc1plus: all warnings being treated as errors
+>  
 
-| In file included from ../sources/libcamera-apps-1.9.0+git/post_processing=
-_stages/tensorflow/lite/schema/schema_generated.h:18,
-| =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0from ../sou=
-rces/libcamera-apps-1.9.0+git/post_processing_stages/tensorflow/lite/core/a=
-pi/op_resolver.h:29,
-| =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0from ../sou=
-rces/libcamera-apps-1.9.0+git/post_processing_stages/tensorflow/lite/core/s=
-ubgraph.h:36,
-| =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0from ../sou=
-rces/libcamera-apps-1.9.0+git/post_processing_stages/tensorflow/lite/core/a=
-sync/async_subgraph.h:27,
-| =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0from ../sou=
-rces/libcamera-apps-1.9.0+git/post_processing_stages/tensorflow/lite/core/a=
-sync/async_signature_runner.h:24,
-| =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0from ../sou=
-rces/libcamera-apps-1.9.0+git/post_processing_stages/tensorflow/lite/core/i=
-nterpreter.h:48,
-| =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0from ../sou=
-rces/libcamera-apps-1.9.0+git/post_processing_stages/tensorflow/lite/interp=
-reter.h:21,
-| =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0from ../sou=
-rces/libcamera-apps-1.9.0+git/post_processing_stages/tf_stage.hpp:18,
-| =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0from ../sou=
-rces/libcamera-apps-1.9.0+git/post_processing_stages/object_classify_tf_sta=
-ge.cpp:8:
-| ../sources/libcamera-apps-1.9.0+git/post_processing_stages/tensorflow/com=
-piler/mlir/lite/schema/schema_generated.h:21:10: fatal error: flatbuffers/f=
-latbuffers.h: No such file or directory
-| =C2=A0 =C2=A021 | #include "flatbuffers/flatbuffers.h"
-| =C2=A0 =C2=A0 =C2=A0 | =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0^~~~~~~~~~~~~~~~=
-~~~~~~~~~~~
-| compilation terminated.
-
-3.
-
-| In file included from ../sources/libcamera-apps-1.9.0+git/post_processing=
-_stages/segmentation_tf_stage.cpp:8:
-| ../sources/libcamera-apps-1.9.0+git/post_processing_stages/segmentation.h=
-pp:15:82: error: 'uint8_t' was not declared in this scope
-| =C2=A0 =C2=A015 | =C2=A0 =C2=A0 =C2=A0 =C2=A0 Segmentation(int w, int h, =
-std::vector<std::string> l, const std::vector<uint8_t> &s)
-| =C2=A0 =C2=A0 =C2=A0 | =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
-=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
-=A0 =C2=A0 =C2=A0^~~~~~~
-| ../sources/libcamera-apps-1.9.0+git/post_processing_stages/segmentation.h=
-pp:12:1: note: 'uint8_t' is defined in header '<cstdint>'; this is probably=
- fixable by adding '#include <cstdint>'
-
-4.
-
-| In file included from ../sources/libcamera-apps-1.9.0+git/post_processing=
-_stages/tensorflow/lite/core/c/builtin_op_data.h:24,
-| =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0from ../sou=
-rces/libcamera-apps-1.9.0+git/post_processing_stages/tensorflow/lite/builti=
-n_op_data.h:20,
-| =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0from ../sou=
-rces/libcamera-apps-1.9.0+git/post_processing_stages/tf_stage.hpp:16,
-| =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0from ../sou=
-rces/libcamera-apps-1.9.0+git/post_processing_stages/object_detect_tf_stage=
-.cpp:9:
-| ../sources/libcamera-apps-1.9.0+git/post_processing_stages/tensorflow/lit=
-e/core/c/common.h:125:7: error: ISO C++ forbids flexible array member 'data=
-' [-Werror=3Dpedantic]
-| =C2=A0 125 | =C2=A0 int data[];
-| =C2=A0 =C2=A0 =C2=A0 | =C2=A0 =C2=A0 =C2=A0 ^~~~
-| ../sources/libcamera-apps-1.9.0+git/post_processing_stages/tensorflow/lit=
-e/core/c/common.h:169:9: error: ISO C++ forbids flexible array member 'data=
-' [-Werror=3Dpedantic]
-| =C2=A0 169 | =C2=A0 float data[];
-| =C2=A0 =C2=A0 =C2=A0 | =C2=A0 =C2=A0 =C2=A0 =C2=A0 ^~~~
-| cc1plus: all warnings being treated as errors
-
---hYWUh2UVPAwhLMWasJJD
-Content-Type: text/html; charset="utf-8"
-Content-Transfer-Encoding: quoted-printable
-
-<div>After Integrating tflite with libcamera I am getting some compilation =
-errors:</div>
-<div>1.&nbsp;</div>
-<div>| In file included from ../sources/libcamera-apps-1.9.0+git/post_proce=
-ssing_stages/tf_stage.cpp:7:<br />| ../sources/libcamera-apps-1.9.0+git/pos=
-t_processing_stages/tf_stage.hpp:16:10: fatal error: tensorflow/lite/builti=
-n_op_data.h: No such file or directory<br />| &nbsp; &nbsp;16 | #include "t=
-ensorflow/lite/builtin_op_data.h"<br />| &nbsp; &nbsp; &nbsp; | &nbsp; &nbs=
-p; &nbsp; &nbsp; &nbsp;^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~<br />| compilati=
-on terminated.</div>
-<div>&nbsp;</div>
-<div>2.&nbsp;</div>
-<div>&nbsp;</div>
-<div>| In file included from ../sources/libcamera-apps-1.9.0+git/post_proce=
-ssing_stages/tensorflow/lite/schema/schema_generated.h:18,<br />| &nbsp; &n=
-bsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;from ../sources/libcam=
-era-apps-1.9.0+git/post_processing_stages/tensorflow/lite/core/api/op_resol=
-ver.h:29,<br />| &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &n=
-bsp;from ../sources/libcamera-apps-1.9.0+git/post_processing_stages/tensorf=
-low/lite/core/subgraph.h:36,<br />| &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbs=
-p; &nbsp; &nbsp; &nbsp;from ../sources/libcamera-apps-1.9.0+git/post_proces=
-sing_stages/tensorflow/lite/core/async/async_subgraph.h:27,<br />| &nbsp; &=
-nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;from ../sources/libca=
-mera-apps-1.9.0+git/post_processing_stages/tensorflow/lite/core/async/async=
-_signature_runner.h:24,<br />| &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &n=
-bsp; &nbsp; &nbsp;from ../sources/libcamera-apps-1.9.0+git/post_processing_=
-stages/tensorflow/lite/core/interpreter.h:48,<br />| &nbsp; &nbsp; &nbsp; &=
-nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;from ../sources/libcamera-apps-1.9.=
-0+git/post_processing_stages/tensorflow/lite/interpreter.h:21,<br />| &nbsp=
-; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;from ../sources/li=
-bcamera-apps-1.9.0+git/post_processing_stages/tf_stage.hpp:18,<br />| &nbsp=
-; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;from ../sources/li=
-bcamera-apps-1.9.0+git/post_processing_stages/object_classify_tf_stage.cpp:=
-8:<br />| ../sources/libcamera-apps-1.9.0+git/post_processing_stages/tensor=
-flow/compiler/mlir/lite/schema/schema_generated.h:21:10: fatal error: flatb=
-uffers/flatbuffers.h: No such file or directory<br />| &nbsp; &nbsp;21 | #i=
-nclude "flatbuffers/flatbuffers.h"<br />| &nbsp; &nbsp; &nbsp; | &nbsp; &nb=
-sp; &nbsp; &nbsp; &nbsp;^~~~~~~~~~~~~~~~~~~~~~~~~~~<br />| compilation term=
-inated.</div>
-<div>&nbsp;</div>
-<div>3.</div>
-<div>&nbsp;</div>
-<div>| In file included from ../sources/libcamera-apps-1.9.0+git/post_proce=
-ssing_stages/segmentation_tf_stage.cpp:8:<br />| ../sources/libcamera-apps-=
-1.9.0+git/post_processing_stages/segmentation.hpp:15:82: error: 'uint8_t' w=
-as not declared in this scope<br />| &nbsp; &nbsp;15 | &nbsp; &nbsp; &nbsp;=
- &nbsp; Segmentation(int w, int h, std::vector&lt;std::string&gt; l, const =
-std::vector&lt;uint8_t&gt; &amp;s)<br />| &nbsp; &nbsp; &nbsp; | &nbsp; &nb=
-sp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &=
-nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;=
- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbs=
-p; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;^~~~~~~<br />| ../source=
-s/libcamera-apps-1.9.0+git/post_processing_stages/segmentation.hpp:12:1: no=
-te: 'uint8_t' is defined in header '&lt;cstdint&gt;'; this is probably fixa=
-ble by adding '#include &lt;cstdint&gt;'</div>
-<div>&nbsp;</div>
-<div>4.</div>
-<div>&nbsp;</div>
-<div>| In file included from ../sources/libcamera-apps-1.9.0+git/post_proce=
-ssing_stages/tensorflow/lite/core/c/builtin_op_data.h:24,<br />| &nbsp; &nb=
-sp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;from ../sources/libcame=
-ra-apps-1.9.0+git/post_processing_stages/tensorflow/lite/builtin_op_data.h:=
-20,<br />| &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;fr=
-om ../sources/libcamera-apps-1.9.0+git/post_processing_stages/tf_stage.hpp:=
-16,<br />| &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;fr=
-om ../sources/libcamera-apps-1.9.0+git/post_processing_stages/object_detect=
-_tf_stage.cpp:9:<br />| ../sources/libcamera-apps-1.9.0+git/post_processing=
-_stages/tensorflow/lite/core/c/common.h:125:7: error: ISO C++ forbids flexi=
-ble array member 'data' [-Werror=3Dpedantic]<br />| &nbsp; 125 | &nbsp; int=
- data[];<br />| &nbsp; &nbsp; &nbsp; | &nbsp; &nbsp; &nbsp; ^~~~<br />| ../=
-sources/libcamera-apps-1.9.0+git/post_processing_stages/tensorflow/lite/cor=
-e/c/common.h:169:9: error: ISO C++ forbids flexible array member 'data' [-W=
-error=3Dpedantic]<br />| &nbsp; 169 | &nbsp; float data[];<br />| &nbsp; &n=
-bsp; &nbsp; | &nbsp; &nbsp; &nbsp; &nbsp; ^~~~<br />| cc1plus: all warnings=
- being treated as errors</div>
-<div>&nbsp;</div>
-
---hYWUh2UVPAwhLMWasJJD--
 
