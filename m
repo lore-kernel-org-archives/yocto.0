@@ -1,131 +1,119 @@
-Return-Path: <seth.raymond@matrixspace.com>
+Return-Path: <ross.burton@arm.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 625D6CAC59B
-	for <webhook@archiver.kernel.org>; Tue, 16 Sep 2025 20:04:57 +0000 (UTC)
-Subject: Documentation around adding custom fetchers to layer
-To: yocto@lists.yoctoproject.org
-From: seth.raymond@matrixspace.com
-X-Originating-Location: Saugus, Massachusetts, US (71.26.215.193)
-X-Originating-Platform: Linux Firefox 142
-User-Agent: GROUPS.IO Web Poster
+	by smtp.lore.kernel.org (Postfix) with ESMTP id A6A9BCA0EE8
+	for <webhook@archiver.kernel.org>; Wed, 17 Sep 2025 09:09:01 +0000 (UTC)
+Received: from mail-oa1-f47.google.com (mail-oa1-f47.google.com [209.85.160.47])
+ by mx.groups.io with SMTP id smtpd.web11.2397.1758045345789366215
+ for <yocto@lists.yoctoproject.org>;
+ Tue, 16 Sep 2025 10:55:45 -0700
+Authentication-Results: mx.groups.io;
+ dkim=pass header.i=@gmail.com header.s=20230601 header.b=Z4aGGvzR;
+ spf=pass (domain: gmail.com, ip: 209.85.160.47, mailfrom: mr.nuke.me@gmail.com)
+Received: by mail-oa1-f47.google.com with SMTP id 586e51a60fabf-31d6e39817fso8277209fac.3
+        for <yocto@lists.yoctoproject.org>; Tue, 16 Sep 2025 10:55:45 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1758045344; x=1758650144; darn=lists.yoctoproject.org;
+        h=content-transfer-encoding:to:content-language:subject:from
+         :user-agent:mime-version:date:message-id:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=wRO0nu+3hdxwhIeEOIiNSXS/TdTfFGOtGBNWk+BeCKg=;
+        b=Z4aGGvzR+O2uTR5NaXqYSgCnrCovWMJ/Cw1LaKd4oRmE8o9duaR3Pjbt2mBjJFDAl+
+         1FNtG/WPNGj5CHb2lwoSI8Wb8Gi9QQJ3xN4kGJHHybG/gEpnEnS2n+93+LLlPy3xCE5w
+         9RQwzn0QwaCi7xYI25kD2krHfsIPwTQv829pLku5iCsLTrheah4e/01t9d4c6I7NnNi5
+         i+iCfXWc4ujxqTlP1wxJyc90ZodttIc9nWMl8onVDG1BcyGQviqN+LK+8j++e+V+vZQH
+         /MedYBlLA9oaQuNvRSBQGGD0Qk6HFB1KvgKRg2AeTbkSDxBhIMFpIUKL77lzx/Kgz6hD
+         0BIw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1758045344; x=1758650144;
+        h=content-transfer-encoding:to:content-language:subject:from
+         :user-agent:mime-version:date:message-id:x-gm-message-state:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=wRO0nu+3hdxwhIeEOIiNSXS/TdTfFGOtGBNWk+BeCKg=;
+        b=X9MmBRVi0iOqTBW6VY/G47hx24CDcuBkua1C7MNyhpNe5bxCZVDfLZUp8QoqPoY+5U
+         QGXPp0Lf0at9j3zKYiBC92bZMW5aXRlrbUZ/ja+IqrQ7YBHN603Jm1Tco4dGEXzVON0l
+         9lSCzYbf/wy+ICwa8yf4XTh/KiJ7GuGB5LdHkGeCaVZZ8m0mNfleHgG+hUPvgX0mputt
+         OJJ4BOOkia+mH4pTzgPnZ3sTJwf0oyHyj1Aqi1dWW+xA26DXBQdZ6PX6Dhkrce22bVVS
+         oKd/Vl0tpH2b6HbWULPYEmG+TbofF/bUZCpiberoFT0I/xPiRMw2Ul5ULuVRAHBt3u0t
+         EY+Q==
+X-Gm-Message-State: AOJu0YyVLQMk7NpPT13QHBkHR5pdrlq8RcuMwSoYM2Pov235KUcUlCW/
+	BLl7vBML5H3n4h96vw6LP3PXhcRhsAaeIoDcEOOnFRJuqjc57X1C3AkghXOmNyzV
+X-Gm-Gg: ASbGncvo8dYZDedL1Iv+L40QVEdM59RqiATkXEwbiT0imk+26+6rtWCB4U1078GEVjS
+	RuBlINDzGH0xArEoZWkwPfqO9rxqEgWg4M1fkr/JLVYaW7IU5EW2S8p/jYMwpSVlfTZGSsJ8Vh/
+	F0x6DPc9Ep3FSvJLBxiR/dTQPB1pG/8bvtXq09iUUcdTxJqr2oVIu3+PJeswIKm7HMS78UUYO/N
+	3kXu1Nw0aAviNmHcPPnjbCLL/VGd8sv/kAC5Cko/BEJNYMC1W0qtpmDYslvKrqNPLGt9frzbSEr
+	9JqlWR0C+fvAVdyEODx6eChvV1QoOVtnywuwy7iGSmVlJ7wGPOIALjj9MM4a38xGMuHGrCkYxAq
+	8m3xMUn7u7Mh0CLKjARwNtCrGePqz96jJ49/Z1dPDfCvgpac8BTmA5me8Lk3Djg==
+X-Google-Smtp-Source: AGHT+IEn8Ss8O2xqlfMCRaf7I7YfcvOwfXyi2KnDmx4LDiYKHVkECCyhMR/aSpi7FuuQInlB47mKPA==
+X-Received: by 2002:a05:6870:c0cd:b0:315:c0bc:4bb6 with SMTP id 586e51a60fabf-32e560cd41fmr9579835fac.5.1758045343865;
+        Tue, 16 Sep 2025 10:55:43 -0700 (PDT)
+Received: from [192.168.7.203] (c-98-57-15-22.hsd1.tx.comcast.net. [98.57.15.22])
+        by smtp.gmail.com with ESMTPSA id 586e51a60fabf-32d32d564d2sm5002217fac.5.2025.09.16.10.55.42
+        for <yocto@lists.yoctoproject.org>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 16 Sep 2025 10:55:42 -0700 (PDT)
+Message-ID: <3458af39-2ec2-4cc1-a45d-f6e37f073090@gmail.com>
+Date: Tue, 16 Sep 2025 12:55:41 -0500
 MIME-Version: 1.0
-Date: Tue, 16 Sep 2025 13:04:54 -0700
-Message-ID: <tEoU.1758053094260077183.1RYf@lists.yoctoproject.org>
-Content-Type: multipart/alternative; boundary="C9Ni1JBvft7tfvIM8WP9"
+User-Agent: Mozilla Thunderbird
+From: "Alex G." <mr.nuke.me@gmail.com>
+Subject: Checksum failures fetching from xfce mirror (meta-xfce)
+To: yocto@lists.yoctoproject.org
+Content-Language: en-US
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Tue, 16 Sep 2025 20:04:57 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/65848
+ <yocto@lists.yoctoproject.org>; Wed, 17 Sep 2025 09:09:01 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/65849
 
---C9Ni1JBvft7tfvIM8WP9
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: quoted-printable
+Hi,
 
-Hello,
+I've noticed that xfce packages fail on do_fetch with checksum errors:
 
-I am attempting to write a couple of custom fetcher that pull secrets from =
-our password manager (using its CLI). To start, I wrote Python classes that=
- inherit from bb.fetch2.FetchMethod and registered them in poky/bitbake/lib=
-/bb/fetch2/__init__.py by importing them and appending them to methods. I c=
-onfirmed that the fetchers themselves are working as expected and the secre=
-ts are getting pulled during the recipe build process.
+ERROR: xfce4-session-4.20.0-r0 do_fetch: Checksum failure fetching
+http://archive.xfce.org/src/xfce/xfce4-session/4.20/xfce4-session-4.20.0.tar.bz2
 
-Of course, I don't (necessarily) want to contribute these fetchers upstream=
- to poky. I would like to add them to one of our company's layers. Our dire=
-ctory structure is laid out like:
+Checking what's going on with bitbake xfce4-session -c do_fetch -v
 
-top-dir/
-|--- build/
-|--- layers/
-|=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 |--- poky/
-|=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 |--- meta-matrixspace/
-|=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 |=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
-=A0 =C2=A0 =C2=A0 |--- meta-mtrx-core/=C2=A0 (this is the layer I want to a=
-dd my fetchers to)
-|=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 |=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
-=A0 =C2=A0 =C2=A0 |--- meta-mtrx-other-layer/
-|=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 |=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
-=A0 =C2=A0 =C2=A0 |--- meta-mtrx-yet-another-layer/
+     [0] Downloading 'http://archive.xfce.org/ ...
+     HTTP response 301 Moved Permanently [http://archive.xfce.org/...]
+     Adding URL: https://archive.xfce.org/...
+     Adding URL: https://archive.xfce.org/
+     [0] Downloading 'https://archive.xfce.org/src/xfce/xfce4-session/4.20/xfce4-session-4.20.0.tar.bz2' ...
+     HTTP response 302  [https://archive.xfce.org/src/xfce/xfce4-session/4.20/xfce4-session-4.20.0.tar.bz2]
+     Adding URL: https://archive.al-us.xfce.org/...
+     Adding URL: https://mirror.slackbuilds.org/...
+     [0] Downloading 'https://archive.al-us.xfce.org/...
+     Saving '.../xfce4-session-4.20.0.tar.bz2.tmp'
+     [1] Downloading 'https://mirror.slackbuilds.org//...
+     Saving '.../xfce4-session-4.20.0.tar.bz2.tmp'
 
-We're based off of scarthgap. I've put my fetchers into top-dir/layers/meta=
--matrixspace/meta-mtrx-core/lib/bb/fetch2/op.py and updated top-dir/layers/=
-meta-matrixspace/meta-mtrx-core/conf/layer.conf to include
+We see that the XFCE mirror gives us two redirects. Both are concatenated to the same file, hence the
+checksum failures. We can reproduce the same behavior with `wget`:
 
-PYTHONPATH .=3D ":${LAYERDIR}/lib"
+     $ wget http://archive.xfce.org/src/xfce/xfce4-session/4.20/xfce4-session-4.20.0.tar.bz2
+     ...
+     Saving 'xfce4-session-4.20.0.tar.bz2'
+     Saving 'xfce4-session-4.20.0.tar.bz2.1'
 
-When building recipes that use the fetchers, I get parsing errors saying th=
-at no fetchers could be found to support the URL:
+     $ wget -O xfce4-session-o.tar.bz2 http://archive.xfce.org/src/xfce/xfce4-session/4.20/xfce4-session-4.20.0.tar.bz2
+     ...
+     Saving 'xfce4-session-o.tar.bz2'
+     Saving 'xfce4-session-o.tar.bz2'
 
-bb.data_smart.ExpansionError: Failure expanding variable fetcher_hashes_dum=
-myfunc[vardepvalue], expression was ${@bb.fetch.get_hashvalue(d)} which tri=
-ggered exception NoMethodError: Could not find a fetcher which supports the=
- URL: 'optemplate://aes_key.tpl;output=3Daes.key'
-The variable dependency chain for the failure is: fetcher_hashes_dummyfunc[=
-vardepvalue]
+     $ $ ls -lh xfce4-session-*
+     -rw-r--r--. 1 mrnuke mrnuke 1.2M Dec 15  2024 xfce4-session-4.20.0.tar.bz2
+     -rw-r--r--. 1 mrnuke mrnuke 1.2M Dec 15  2024 xfce4-session-4.20.0.tar.bz2.1
+     -rw-r--r--. 1 mrnuke mrnuke 2.3M Dec 15  2024 xfce4-session-o.tar.bz2
 
-I'm not seeing any documentation on how to add a custom fetcher to a layer,=
- and the fetchers in poky don't provide enough information on how to regist=
-er these fetchers. Is this functionality supported, or will we have to fork=
- poky and keep it up-to-date to add a new fetcher?
 
-Thanks,
-Seth
+The first `wget` call realized that this is two files. The '-O' argument causes the them to be concatenated. I wonder
+if this is a bug in the wget fetcher, or if the XFCE mirror is doing something weird.
 
---C9Ni1JBvft7tfvIM8WP9
-Content-Type: text/html; charset="utf-8"
-Content-Transfer-Encoding: quoted-printable
+Either way, what is the correct way to resolve this?
 
-<div>Hello,</div>
-<div>&nbsp;</div>
-<div>I am attempting to write a couple of custom fetcher that pull secrets =
-from our password manager (using its CLI). To start, I wrote Python classes=
- that inherit from bb.fetch2.FetchMethod and registered them in poky/bitbak=
-e/lib/bb/fetch2/__init__.py by importing them and appending them to methods=
-. I confirmed that the fetchers themselves are working as expected and the =
-secrets are getting pulled during the recipe build process.</div>
-<div>&nbsp;</div>
-<div>Of course, I don't (necessarily) want to contribute these fetchers ups=
-tream to poky. I would like to add them to one of our company's layers. Our=
- directory structure is laid out like:</div>
-<div>&nbsp;</div>
-<div>top-dir/</div>
-<div>&nbsp; &nbsp; |--- build/</div>
-<div>&nbsp; &nbsp; |--- layers/</div>
-<div>&nbsp; &nbsp; |&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; |--- poky/</div>
-<div>&nbsp; &nbsp; |&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; |--- meta-matrixspac=
-e/</div>
-<div>&nbsp; &nbsp; |&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; |&nbsp; &nbsp; &nbsp=
-; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; |--- meta-mtrx-core/&nbsp; (this is th=
-e layer I want to add my fetchers to)</div>
-<div>&nbsp; &nbsp; |&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; |&nbsp; &nbsp; &nbsp=
-; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; |--- meta-mtrx-other-layer/</div>
-<div>&nbsp; &nbsp; |&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; |&nbsp; &nbsp; &nbsp=
-; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; |--- meta-mtrx-yet-another-layer/</div=
->
-<div>&nbsp;</div>
-<div>We're based off of scarthgap. I've put my fetchers into top-dir/layers=
-/meta-matrixspace/meta-mtrx-core/lib/bb/fetch2/op.py and updated top-dir/la=
-yers/meta-matrixspace/meta-mtrx-core/conf/layer.conf to include<br /><br />=
-PYTHONPATH .=3D ":${LAYERDIR}/lib"</div>
-<div>&nbsp;</div>
-<div>When building recipes that use the fetchers, I get parsing errors sayi=
-ng that no fetchers could be found to support the URL:<br /><br />bb.data_s=
-mart.ExpansionError: Failure expanding variable fetcher_hashes_dummyfunc[va=
-rdepvalue], expression was ${@bb.fetch.get_hashvalue(d)} which triggered ex=
-ception NoMethodError: Could not find a fetcher which supports the URL: 'op=
-template://aes_key.tpl;output=3Daes.key'<br />The variable dependency chain=
- for the failure is: fetcher_hashes_dummyfunc[vardepvalue]<br /><br /></div=
->
-<div>I'm not seeing any documentation on how to add a custom fetcher to a l=
-ayer, and the fetchers in poky don't provide enough information on how to r=
-egister these fetchers. Is this functionality supported, or will we have to=
- fork poky and keep it up-to-date to add a new fetcher?</div>
-<div>&nbsp;</div>
-<div>Thanks,</div>
-<div>Seth</div>
-
---C9Ni1JBvft7tfvIM8WP9--
+Alex
 
