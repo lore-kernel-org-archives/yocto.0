@@ -1,77 +1,209 @@
-Return-Path: <matteo.orlandini@tastitalia.com>
+Return-Path: <sjolley.yp.pm@gmail.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id E4185CAC599
-	for <webhook@archiver.kernel.org>; Tue, 16 Sep 2025 14:06:35 +0000 (UTC)
-Subject: Re: [yocto] Virtual Keyboard on Wayland
-To: "Takuro Ashie" <ashie@clear-code.com>, yocto@lists.yoctoproject.org
-From: matteo.orlandini@tastitalia.com
-X-Originating-Location: Torgiano, Umbria, IT (37.77.97.75)
-X-Originating-Platform: Windows Chrome 139
-User-Agent: GROUPS.IO Web Poster
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 1CC0FCAC599
+	for <webhook@archiver.kernel.org>; Tue, 16 Sep 2025 14:42:36 +0000 (UTC)
+Received: from mail-pf1-f169.google.com (mail-pf1-f169.google.com [209.85.210.169])
+ by mx.groups.io with SMTP id smtpd.web11.22270.1758033749116010155
+ for <yocto@lists.yoctoproject.org>;
+ Tue, 16 Sep 2025 07:42:29 -0700
+Authentication-Results: mx.groups.io;
+ dkim=pass header.i=@gmail.com header.s=20230601 header.b=KF0Tsut/;
+ spf=pass (domain: gmail.com, ip: 209.85.210.169, mailfrom: sjolley.yp.pm@gmail.com)
+Received: by mail-pf1-f169.google.com with SMTP id d2e1a72fcca58-7741991159bso7001373b3a.0
+        for <yocto@lists.yoctoproject.org>; Tue, 16 Sep 2025 07:42:29 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1758033748; x=1758638548; darn=lists.yoctoproject.org;
+        h=to:subject:message-id:date:from:mime-version:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=6QGbt/C4J0xFGLDYMepdsoyXVa8E/CQRW5yzYxVO098=;
+        b=KF0Tsut/QM4FeSVVavErd/IuBdOgB3uKk1k0+GyZj6sAmFGKn0dK0t1Yp6x2PVaUMh
+         ur8v7/eObMcEfUZVdYgFXcUPe60qYV9YTvz66wNF/FIWIg+/Yv+HIEjrTF6tVX5btlKa
+         6BsehP8bs2S1zc1NSW6bofA8eDl1qFMsCQ/KIfOtQo59cp+fj3F+bKXSNJv6nYpUhcDa
+         sR8f/2OjONXMP8Dx1W5E7gT5C2WE0GcDlwL5WSDuGOr5fSZNUTdQ9TkaRaHCGScGkPz6
+         tOQzGaq6vfIXpKXqXRUas4VxcEzDmWKCN/wdmhU17g0kxUsjvt9CzWbK3OhOh2zdt1C4
+         aD+Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1758033748; x=1758638548;
+        h=to:subject:message-id:date:from:mime-version:x-gm-message-state
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=6QGbt/C4J0xFGLDYMepdsoyXVa8E/CQRW5yzYxVO098=;
+        b=rSLpNIBoYil83O4LsbY2uMp+D6PDxqMJHTrqZgUikkDGdZwalRl4qpHRHkQ3NbFh8T
+         UUtYpiMdnbd/tanXWYAhboRBhxCa5ICuzU+JiafflVgoCLugfsFqZLqJKclakq0MqraW
+         I3UCVtrUXd22AluA7JCg/y+dsarBeUFP+fRjAyJ9LlImE8eKIiW16BiDBWFHZtt796ra
+         7/sq5rHderweCuNL6Ri2GL2n8QO7tnOIPMVY/QBByeCOlE2zZCwpbUnb9GmeGrVCKzo0
+         yZdpUGLgceE/hl3z8qs+mmON9UDIACwE27t5XcLhcoRoZV1zecL3dnX7J2gS8Nz/UwFE
+         0Eqw==
+X-Forwarded-Encrypted: i=1; AJvYcCX4jxGsuEBNc6642faTligJ02TNtVKdN5aAXT5eIjqTYpvGMwSyoZuc9msA9M5MCROXHoEKvw==@lists.yoctoproject.org
+X-Gm-Message-State: AOJu0Yx6UfAsZqQRsA6ftGGiPfB4UJa8A1In6G+t63tI2cxz7bM1UD9z
+	5lkO3r33kfZy8yV4m+1FB4pkQC+jWTmqF7UOAbs44c/t1mD7leLrXYcO2EaXppGLbPLfdG7rCUg
+	F0B3f1n0VChhXyxjMTBBCGCMBgxB3eP8=
+X-Gm-Gg: ASbGnculTh7y7tCJqi2rvv8/6hPh1PmxBL/xZJjDWx9zR8DX2kqAmJY6vHZLLBgKMgR
+	/cF3M4kdaJntzEzmGGNw6v9SJx2amdWziKsZwnPM7YuQKeqhv72mjpld7zlQlUycMxWC274+TQ+
+	/+k7XlsoQUGa+tMPDDoZo1U6AA23jM7gYyg8asiU6DNAaLvK4X1txD4KizELmgjVQZ7bxiwiePB
+	VrLaNJTUrfjCiGr15sOq2MDbtnUutMEhj+ljP/S5Ej86JAk9herFrE56oLfh8cSSkg=
+X-Google-Smtp-Source: AGHT+IHXba+cpbHUD/7aqUr1ROyKrGIFHOF1nzuBB4VquPv7zCFi4Un8ySygQh2eZg0Sh348aYJWAFBd+11sgJ1jCt4=
+X-Received: by 2002:a17:902:ea10:b0:24e:bdfa:112b with SMTP id
+ d9443c01a7336-25d289e9988mr179252955ad.61.1758033748161; Tue, 16 Sep 2025
+ 07:42:28 -0700 (PDT)
 MIME-Version: 1.0
-Date: Tue, 16 Sep 2025 07:06:27 -0700
-References: <dab6042d-bdf7-4573-954e-e122059e3c8d@clear-code.com>
-In-Reply-To: <dab6042d-bdf7-4573-954e-e122059e3c8d@clear-code.com>
-Message-ID: <13687.1758031587789597717@lists.yoctoproject.org>
-Content-Type: multipart/alternative; boundary="XID1yMzgaefenqD3f4SU"
+From: Stephen K Jolley <sjolley.yp.pm@gmail.com>
+Date: Tue, 16 Sep 2025 07:42:15 -0700
+X-Gm-Features: AS18NWBiqh9tfPQfvod8dtMDJG9tvyZatZfRlHso0EIbPj3Z0HSF9vi0vZaDN48
+Message-ID: <CAK5yBb_78KB1Sz9r9te2Zb0Z6Z0g0Nn6S3Tg7F_eG9gu=W-OhQ@mail.gmail.com>
+Subject: Yocto Project Newcomer & Unassigned Bugs - Help Needed
+To: openembedded-devel@lists.openembedded.org, 
+	Yocto-mailing-list <yocto@lists.yoctoproject.org>
+Content-Type: multipart/alternative; boundary="0000000000000ffa5e063eec21e1"
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Tue, 16 Sep 2025 14:06:35 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/65841
+ <yocto@lists.yoctoproject.org>; Tue, 16 Sep 2025 14:42:36 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/65842
 
---XID1yMzgaefenqD3f4SU
-Content-Type: text/plain; charset="utf-8"
+--0000000000000ffa5e063eec21e1
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-On Sat, Jun 28, 2025 at 01:02 AM, Takuro Ashie wrote:
+All,
 
->=20
-> Hi
->=20
-> On 2025/06/27 23:33, via lists.yoctoproject.org wrote:
->=20
->> Also, I should use Chromium, but I see that the Weston keyboard
->> doesn't work. Can I use your virtual keyboard? Is it compatible with
->> both Chromium and GTK3?
->=20
-> Please try --enable-wayland-ime option of chromium, it will enable
-> text-input-v1 protocol implementation of it.
->=20
-> Regards,
->=20
-> --
-> Takuro Ashie <ashie@clear-code.com>
+The triage team is starting to try and collect up and classify bugs which a
+newcomer to the project would be able to work on in a way which means
+people can find them. They're being listed on the triage page under the
+appropriate heading:
+https://wiki.yoctoproject.org/wiki/Bug_Triage#Newcomer_Bugs Also please
+review:
+https://www.openembedded.org/wiki/How_to_submit_a_patch_to_OpenEmbedded and
+how to create a bugzilla account at:
+https://bugzilla.yoctoproject.org/createaccount.cgi
 
-Is there a way to edit the virtual keyboard dimensions? Also, I find out so=
-me bugs when I try to cancel some characters in a GTK entry: even if I pres=
-s the cancel key, the character is not deleted, seems like the cursor got l=
-ost the last character. Any suggestion?
+The idea is these bugs should be straight forward for a person to help work
+on who doesn't have deep experience with the project. If anyone can help,
+please take ownership of the bug and send patches! If anyone needs
+help/advice there are people on irc who can likely do so, or some of the
+more experienced contributors will likely be happy to help too.
 
-Thank you,
-Matteo
+Also, the triage team meets weekly and does its best to handle the bugs
+reported into the Bugzilla. The number of people attending that meeting has
+fallen, as have the number of people available to help fix bugs. One of the
+things we hear users report is they don't know how to help. We (the triage
+team) are therefore going to start reporting out the currently 466
+unassigned or newcomer bugs.
 
---XID1yMzgaefenqD3f4SU
-Content-Type: text/html; charset="utf-8"
+We're hoping people may be able to spare some time now and again to help
+out with these. Bugs are split into two types, "true bugs" where things
+don't work as they should and "enhancements" which are features we'd want
+to add to the system. There are also roughly four different "priority"
+classes right now, =E2=80=9C5.3=E2=80=9D, =E2=80=9C6.0", "5.99" and "Future=
+", the more
+pressing/urgent issues being in "5.3" and then =E2=80=9C6.0=E2=80=9D.
+
+Please review this link and if a bug is something you would be able to help
+with either take ownership of the bug, or send me (sjolley.yp.pm@gmail.com)
+an e-mail with the bug number you would like and I will assign it to you
+(please make sure you have a Bugzilla account). The list is at:
+https://wiki.yoctoproject.org/wiki/Bug_Triage_Archive#Unassigned_or_Newcome=
+r_Bugs
+
+Thanks,
+
+
+
+*Stephen K. Jolley*
+
+*Yocto Project Program Manager*
+
+(    *Cell*:                (208) 244-4460
+
+* *Email*:                 *s
+<stephen.k.jolley@intel.com>jolley.yp.pm@gmail.com <jolley.yp.pm@gmail.com>=
+*
+
+--0000000000000ffa5e063eec21e1
+Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-<div>On Sat, Jun 28, 2025 at 01:02 AM, Takuro Ashie wrote:</div>
-<div>
-<blockquote>Hi<br /><br />On 2025/06/27 23:33, via lists.yoctoproject.org w=
-rote:<br />
-<blockquote>Also, I should use Chromium, but I see that the Weston keyboard=
- <br />doesn't work. Can I use your virtual keyboard? Is it compatible with=
- <br />both Chromium and GTK3?</blockquote>
-Please try --enable-wayland-ime option of chromium, it will enable<br />tex=
-t-input-v1 protocol implementation of it.<br /><br />Regards,<br /><br />--=
- <br />Takuro Ashie &lt;ashie@clear-code.com&gt;</blockquote>
-<br />Is there a way to edit the virtual keyboard dimensions? Also, I find =
-out some bugs when I try to cancel some characters in a GTK entry: even if =
-I press the cancel key, the character is not deleted, seems like the cursor=
- got lost the last character. Any suggestion?<br /><br />Thank you,</div>
-<div>Matteo</div>
+<div dir=3D"ltr"><div><span style=3D"font-size:11pt;font-family:Calibri,Ari=
+al">All,<br><br>The triage team is starting to try and collect up and class=
+ify bugs which a newcomer to the project would be able to work on in a way =
+which means people can find them. They&#39;re being listed on the triage pa=
+ge under the appropriate heading: <a href=3D"https://wiki.yoctoproject.org/=
+wiki/Bug_Triage#Newcomer_Bugs">https://wiki.yoctoproject.org/wiki/Bug_Triag=
+e#Newcomer_Bugs</a>  Also please review: <a href=3D"https://www.openembedde=
+d.org/wiki/How_to_submit_a_patch_to_OpenEmbedded">https://www.openembedded.=
+org/wiki/How_to_submit_a_patch_to_OpenEmbedded</a> and how to create a bugz=
+illa account at: <a href=3D"https://bugzilla.yoctoproject.org/createaccount=
+.cgi">https://bugzilla.yoctoproject.org/createaccount.cgi</a><br><br>The id=
+ea is these bugs should be straight forward for a person to help work on wh=
+o doesn&#39;t have deep experience with the project.  If anyone can help, p=
+lease take ownership of the bug and send patches!  If anyone needs help/adv=
+ice there are people on irc who can likely do so, or some of the more exper=
+ienced contributors will likely be happy to help too.<br><br>Also, the tria=
+ge team meets weekly and does its best to handle the bugs reported into the=
+ Bugzilla. The number of people attending that meeting has fallen, as have =
+the number of people available to help fix bugs. One of the things we hear =
+users report is they don&#39;t know how to help. We (the triage team) are t=
+herefore going to start reporting out the currently 466 unassigned or newco=
+mer bugs.<br><br>We&#39;re hoping people may be able to spare some time now=
+ and again to help out with these.  Bugs are split into two types, &quot;tr=
+ue bugs&quot; where things don&#39;t work as they should and &quot;enhancem=
+ents&quot; which are features we&#39;d want to add to the system.  There ar=
+e also roughly four different &quot;priority&quot; classes right now, =E2=
+=80=9C5.3=E2=80=9D, =E2=80=9C6.0&quot;, &quot;5.99&quot; and &quot;Future&q=
+uot;, the more pressing/urgent issues being in &quot;5.3&quot; and then =E2=
+=80=9C6.0=E2=80=9D.<br><br>Please review this link and if a bug is somethin=
+g you would be able to help with either take ownership of the bug, or send =
+me (<a href=3D"mailto:sjolley.yp.pm@gmail.com">sjolley.yp.pm@gmail.com</a>)=
+ an e-mail with the bug number you would like and I will assign it to you (=
+please make sure you have a Bugzilla account).  The list is at: <a href=3D"=
+https://wiki.yoctoproject.org/wiki/Bug_Triage_Archive#Unassigned_or_Newcome=
+r_Bugs">https://wiki.yoctoproject.org/wiki/Bug_Triage_Archive#Unassigned_or=
+_Newcomer_Bugs</a></span></div><div dir=3D"ltr" class=3D"gmail_signature" d=
+ata-smartmail=3D"gmail_signature"><div dir=3D"ltr"><div dir=3D"ltr"><p clas=
+s=3D"MsoNormal" style=3D"background-image:initial;background-position:initi=
+al;background-repeat:initial"><span style=3D"font-size:12pt;font-family:Ari=
+al,sans-serif">Thanks,<span></span></span></p>
 
---XID1yMzgaefenqD3f4SU--
+<p class=3D"MsoNormal" style=3D"background-image:initial;background-positio=
+n:initial;background-repeat:initial"><span style=3D"font-size:12pt;font-fam=
+ily:Arial,sans-serif">=C2=A0<span></span></span></p>
+
+<p class=3D"MsoNormal" style=3D"background-image:initial;background-positio=
+n:initial;background-repeat:initial"><b><i><span style=3D"font-size:16pt;co=
+lor:purple">Stephen K. Jolley</span></i></b><span style=3D"font-size:12pt;f=
+ont-family:Arial,sans-serif"><span></span></span></p>
+
+<p class=3D"MsoNormal" style=3D"background-image:initial;background-positio=
+n:initial;background-repeat:initial"><b><span style=3D"font-size:8pt;font-f=
+amily:&quot;Courier New&quot;;color:blue">Yocto Project Program Manager</sp=
+an></b></p>
+
+<p class=3D"MsoNormal" style=3D"background-image:initial;background-positio=
+n:initial;background-repeat:initial"><span style=3D"font-size:9pt;font-fami=
+ly:Wingdings;color:black">(</span><span style=3D"font-size:9pt;font-family:=
+&quot;MS Sans Serif&quot;,serif;color:teal">=C2=A0=C2=A0=C2=A0=C2=A0</span>=
+<b><span style=3D"font-size:8pt;font-family:&quot;Comic Sans MS&quot;;color=
+:teal">Cell</span></b><span style=3D"font-size:9pt;font-family:&quot;MS San=
+s Serif&quot;,serif;color:teal">:=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 </span><span style=3D"font=
+-size:9pt;font-family:&quot;MS Sans Serif&quot;,serif">(208) 244-4460</span=
+><span style=3D"font-size:12pt;font-family:Arial,sans-serif"><span></span><=
+/span></p>
+
+<p class=3D"MsoNormal" style=3D"background-image:initial;background-positio=
+n:initial;background-repeat:initial"><span style=3D"font-size:9pt;font-fami=
+ly:Wingdings">*=C2=A0</span><b><span lang=3D"FR" style=3D"font-size:8pt;fon=
+t-family:&quot;Comic Sans MS&quot;;color:teal">Email</span></b><span lang=
+=3D"FR" style=3D"font-size:9pt;font-family:&quot;MS Sans Serif&quot;,serif;=
+color:teal">:</span><span lang=3D"FR" style=3D"font-size:9pt;font-family:&q=
+uot;MS Sans Serif&quot;,serif">=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0</span><u><span=
+ lang=3D"FR" style=3D"font-size:9pt;font-family:&quot;MS Sans Serif&quot;,s=
+erif;color:blue"><span style=3D"color:rgb(17,85,204)"><a href=3D"mailto:ste=
+phen.k.jolley@intel.com" target=3D"_blank">s</a><a href=3D"mailto:jolley.yp=
+.pm@gmail.com" target=3D"_blank">jolley.yp.pm@gmail.com</a></span></span></=
+u></p></div></div></div></div>
+
+--0000000000000ffa5e063eec21e1--
 
