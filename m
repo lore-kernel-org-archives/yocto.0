@@ -2,164 +2,96 @@ Return-Path: <skandigraun@gmail.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id C4395CAC592
-	for <webhook@archiver.kernel.org>; Mon, 15 Sep 2025 17:07:14 +0000 (UTC)
-Received: from mail-ej1-f44.google.com (mail-ej1-f44.google.com [209.85.218.44])
- by mx.groups.io with SMTP id smtpd.web11.296.1757956029683345058
+	by smtp.lore.kernel.org (Postfix) with ESMTP id D05C8CAC598
+	for <webhook@archiver.kernel.org>; Tue, 16 Sep 2025 13:48:55 +0000 (UTC)
+Received: from mail-ej1-f52.google.com (mail-ej1-f52.google.com [209.85.218.52])
+ by mx.groups.io with SMTP id smtpd.web11.20827.1758030534758697055
  for <yocto@lists.yoctoproject.org>;
- Mon, 15 Sep 2025 10:07:10 -0700
+ Tue, 16 Sep 2025 06:48:55 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20230601 header.b=hxf6tlQL;
- spf=pass (domain: gmail.com, ip: 209.85.218.44, mailfrom: skandigraun@gmail.com)
-Received: by mail-ej1-f44.google.com with SMTP id a640c23a62f3a-afcb7322da8so127249366b.0
-        for <yocto@lists.yoctoproject.org>; Mon, 15 Sep 2025 10:07:09 -0700 (PDT)
+ dkim=pass header.i=@gmail.com header.s=20230601 header.b=YWfrAo84;
+ spf=pass (domain: gmail.com, ip: 209.85.218.52, mailfrom: skandigraun@gmail.com)
+Received: by mail-ej1-f52.google.com with SMTP id a640c23a62f3a-b04b55d5a2cso952998166b.2
+        for <yocto@lists.yoctoproject.org>; Tue, 16 Sep 2025 06:48:54 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1757956028; x=1758560828; darn=lists.yoctoproject.org;
+        d=gmail.com; s=20230601; t=1758030533; x=1758635333; darn=lists.yoctoproject.org;
         h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:to:subject:user-agent:mime-version:date:message-id:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=icTbSWTu3/OeimZXoCAwii17svCbyLuXCSPpuJ7feIM=;
-        b=hxf6tlQLOxAcXMbR1nVQ3IYjietkpo4REG08WGRhphREKFLTD7B1S7ojFb7aMb0xaw
-         yAwZFaH9RdTa5wgdebSj8NEb1p8eSYIKJ7i7K1jNW/ruTw0um7IDj3L1RaPOICguWCbK
-         aja9g0sw+e/LGxprygOLMch4fgFOyE/py9gAUeke4smnIbobKCgJeDeVbJa6Ky5f9LfT
-         bIYAvmd9NAN0e8sQ2SXYHyRS7TVaCoXP38ZckDhzh9jY6klDy8CZXtt6rG6ocl4YKIIy
-         5Bw/NOeA18pn4yVHbOpuuaEzFKuygP3Md8VvefqXbzM4g3HRGuwsUOLIAQp2t1vP2ebY
-         QmkQ==
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=BDqc6JwFPt6g+zkCtcN8zBgihcPZV7fCBTqjBtLKC8U=;
+        b=YWfrAo848zkg98BBYi/SCCmlGMGyYP2S7oh4kw7we6QyE8GWXYkG46ktMV05dU1cnl
+         gBe8Gt7prORwxqlZeEu0cADrskyjWyjN+UfkL2D5jHeoFTIlafFSif56onrMpIWkuQa7
+         lTWNZhP9MWOPTJIqrxcFCf4B8UaEdg4HmHW/o5cxBP/wrt8AndVamNGRKNThSEtXi1Ji
+         ehYSY/ahQajUYOVGJ/pCwZXDydcLjzpcj06uBfRllPjkvY/XTII3gNeme1FsTEEfJ0nA
+         4ucrdjlESKeUtkPFRGtKIvu/q4GpBD1EUo8Dj4CK0/DFqRku3U8zGN3XwtADXlbBCoqj
+         OPmw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1757956028; x=1758560828;
+        d=1e100.net; s=20230601; t=1758030533; x=1758635333;
         h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:to:subject:user-agent:mime-version:date:message-id
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=icTbSWTu3/OeimZXoCAwii17svCbyLuXCSPpuJ7feIM=;
-        b=QnaCrZhx98F/WTTCOuGxKY8ZVq8ARNxLzwS5DzQkU6FMk1YIboB8+tCps7pC8sVCi7
-         p78AV0uX+xpW+1P2jn7JR1XVXmL4GYVOnSwwKUnXQRRwooPbRwGeCV8R3eqDuY2TqDVP
-         mp8+MFTkS91cYnl3r8xu6zBtrsS7nBAp+llPWNJJ1XI47z2PPlOS1GxBtpdK5Z3BggN1
-         gMOthZaDU1LNjQM9reS1y1pBEVvznysZISk4UytKr+dJzgKVPNU3of5F6ulrDhreX+cq
-         pTyxjUr3QwvuP2f1YhxrZc115YQCE11KxYGsYLSG40lExrs0Q8EAAuZA/UJNMuvcIzeY
-         rW8w==
-X-Forwarded-Encrypted: i=1; AJvYcCVRHcQofdJCEjzXLiFJQi2uNtkLgUOMt8MHjm7U3tPbsvjX73KADw2q/3G3dzTIGNL9mCigsQ==@lists.yoctoproject.org
-X-Gm-Message-State: AOJu0YyMYeP5dZSwcU5kl3aJyJK1oZKjYMoGooBV/wO5fSJo55B5tDnQ
-	HMqFi2wzBIkI0KdbSr6NmRgULGjL2N9uqRiWs/taaxsiup89gFaanTUV
-X-Gm-Gg: ASbGncu0uwXffuvb8Reifj8ieOh9XnOfjDw6bXgUAafmRNFZUxcDBo3IVPoP7UgaFoe
-	trVRSOh/S3orr6WtzWcOBCxvBynRqSlFzJ7j71cfWYXel14TFbxdddb9UMhWmvbs1pwmVVpEsTd
-	aVNtNi/3gentUJYATjRUDtsxwWegUsY8hoaXcdHfedb2pdr41YzUOuT/JljKua11O9bCr0k7sln
-	HSpdFAEq7+MAVwZIJUio9VD1uu7adX6+SWy2LXQHs5csLUrgL90bg0Jhpz+MfGCSSPUqC7LKAb7
-	TjhfRdeUKpvANO7ed4StCfg1Rsgw7ASNKQiILzfX0Ji8QocpSbO1oRdQMtK4e/P8P+Z9C4t9e2i
-	1K4Llwc56xtzJH7zG4fifj9PebjmF7cR1Mh3mTHuQBA==
-X-Google-Smtp-Source: AGHT+IH95WTGRRRbYSM3eANeCmtZ2VHq9H+Gqu+Oe69MisxATfVjb4gZFLwTTDelilI2Y6db8u7V6w==
-X-Received: by 2002:a17:906:6a10:b0:b12:162:8347 with SMTP id a640c23a62f3a-b120162f945mr406905666b.16.1757956027662;
-        Mon, 15 Sep 2025 10:07:07 -0700 (PDT)
+        bh=BDqc6JwFPt6g+zkCtcN8zBgihcPZV7fCBTqjBtLKC8U=;
+        b=T1Frk9WNJOYuG3lOoAdL/gjTLwvTHfBNHrCuV8RCgRZFOIQsRsD+M+nT4iJPyNW0i6
+         U7buB3FWat1lsuqt1kiNrlNttnRHNG3rg0eiMil1HLulUOikzxZKKp4Nm8J08Nqb0RfZ
+         LQbMYED6fZ+gHXOMihwMKSlTFX7vjkv/CIOOINth4pLItDPVPHWweljQJmkA+vKQVVc2
+         35zbzVhjTh5LXLMAq7qfqVLZwwOtDOVtm4bOgIFQvEWfcSD6VRWkuSN/ZmtbcSWW5FVj
+         UVOoTrZbStjP6tOrjrHWtqUr/pNV5dXk5wqxqOvcK1PCcyr04At3USPV+Zz+dkaATvtF
+         VTUg==
+X-Gm-Message-State: AOJu0Yz48d2p0Ilap91jkzdfeVAJCtYbgFbwcbpBrXV4XeNrgGaSbK2j
+	dGcIS9VRRJv5SLKoOXWkTfOi6XWGcZRWb/ne+WSwH+jGdOWxaY0SM1koacO8i0xq
+X-Gm-Gg: ASbGncsoPcBB+tQRJudI4VTpvKXViaXMpr4/A/UjQDdO8x5KDDjQzL6Tr1Ne/GDzbbw
+	WTOVJgS3s79bYa/jMBesIxUxdQYr5gVbGNEfaWHm2jUK0XkpMThLZ5pV4ESD9EECKPDc+JAKfVQ
+	eGmyHHnVH+aLVpCoMKIAqQfChNsH9BE31LyDIW6UEus3QbXV6TGGEh+utTjKcSn/yFGCSaM5LvI
+	tFhGnupxuV0D289jWxE7RoteimF81IQk7/cvhvXhL+eQJBekYvxn6fjBEf7rWcuSshQYRXqSpqr
+	8OMb7CetzqC3z9wCv9SruPXzFi7Z3cFYyOeoo9PI7tuObN1mJd+lqzjTx3x3yI0/XZIsWhLrJ4k
+	QUlVLsQt6UELvRUAV2fkEATQgyWNkvf4=
+X-Google-Smtp-Source: AGHT+IEhkPAxjdUgd+UJp6x5bvnzbjns5hHS009aAw+HPfZpLiJVfQ5hCZmycRSmBGra3IPixjBE3g==
+X-Received: by 2002:a17:907:742:b0:b04:32ff:5d3a with SMTP id a640c23a62f3a-b07c333e6f9mr1626387766b.0.1758030532735;
+        Tue, 16 Sep 2025 06:48:52 -0700 (PDT)
 Received: from [192.168.1.106] ([51.154.145.205])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-b07b316e2d4sm982398366b.45.2025.09.15.10.07.06
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-b07b3347a2dsm1154091466b.98.2025.09.16.06.48.52
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 15 Sep 2025 10:07:07 -0700 (PDT)
-Message-ID: <5b4dd6f2-7f22-43c6-ae66-7052f7c379b5@gmail.com>
-Date: Mon, 15 Sep 2025 19:07:06 +0200
+        Tue, 16 Sep 2025 06:48:52 -0700 (PDT)
+Message-ID: <22fc023e-0937-4c6d-a726-54079059463f@gmail.com>
+Date: Tue, 16 Sep 2025 15:48:51 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [yocto] do_package error after building meta-tensorflow and
- libcamera-apps does not detect tensorflow-lite
-To: ashish.shrikhande@gmail.com, yocto@lists.yoctoproject.org
-References: <0990cea5-1a65-4c61-a627-cd1b7f9875b9@gmail.com>
- <11853.1757954326050371090@lists.yoctoproject.org>
+Subject: Re: [yocto] bitbake-setup configurations for existing LTS releases
+To: yocto@lists.yoctoproject.org, alex.kanavin@gmail.com,
+ openembedded-architecture <openembedded-architecture@lists.openembedded.org>
+Cc: Richard Purdie <richard.purdie@linuxfoundation.org>
+References: <CANNYZj8nqMP_riFmfOeaig0XA1MkArTcL48g9iYVdZHdjrsXvQ@mail.gmail.com>
 Content-Language: en-US
 From: Gyorgy Sarvari <skandigraun@gmail.com>
-In-Reply-To: <11853.1757954326050371090@lists.yoctoproject.org>
+In-Reply-To: <CANNYZj8nqMP_riFmfOeaig0XA1MkArTcL48g9iYVdZHdjrsXvQ@mail.gmail.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Mon, 15 Sep 2025 17:07:14 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/65839
+ <yocto@lists.yoctoproject.org>; Tue, 16 Sep 2025 13:48:55 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/65840
 
-Have you applied all the mentioned changes? The first 2 should be fixed
-by the tflite patch[1] (which packages these missing headers).
-For the 3rd point there is an extra patch in the github PR[2], which
-addresses it. I haven't seen the last error, but the first three at
-least should be gone...
+On 9/11/25 19:03, Alexander Kanavin via lists.yoctoproject.org wrote:
+> Hello,
+>
+> I've been asked to look into adding bitbake-setup configurations for
+> existing LTS releases (e.g. scarthgap).
 
-[1]: https://patchwork.yoctoproject.org/project/yocto/patch/20250913173840.3216545-1-skandigraun@gmail.com/
-[2]:
-https://github.com/agherzan/meta-raspberrypi/pull/1522/files#diff-c47f7714624569c0978292d85655edf001a084d2c2b830147b52647eccba602b
+I have one question: would introducing bitbake-setup in LTS mean that
+poky repo would be abandoned in those branches? If yes, I'd plead to
+reconsider - it would silently break countless setups and tutorials.
 
-On 9/15/25 18:38, ashish shrikhande6 via Lists.Yoctoproject.Org wrote:
-> After Integrating tflite with libcamera I am getting some compilation
-> errors:
-> 1. 
-> | In file included from
-> ../sources/libcamera-apps-1.9.0+git/post_processing_stages/tf_stage.cpp:7:
-> |
-> ../sources/libcamera-apps-1.9.0+git/post_processing_stages/tf_stage.hpp:16:10:
-> fatal error: tensorflow/lite/builtin_op_data.h: No such file or directory
-> |    16 | #include "tensorflow/lite/builtin_op_data.h"
-> |       |          ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-> | compilation terminated.
->  
-> 2. 
->  
-> | In file included from
-> ../sources/libcamera-apps-1.9.0+git/post_processing_stages/tensorflow/lite/schema/schema_generated.h:18,
-> |                  from
-> ../sources/libcamera-apps-1.9.0+git/post_processing_stages/tensorflow/lite/core/api/op_resolver.h:29,
-> |                  from
-> ../sources/libcamera-apps-1.9.0+git/post_processing_stages/tensorflow/lite/core/subgraph.h:36,
-> |                  from
-> ../sources/libcamera-apps-1.9.0+git/post_processing_stages/tensorflow/lite/core/async/async_subgraph.h:27,
-> |                  from
-> ../sources/libcamera-apps-1.9.0+git/post_processing_stages/tensorflow/lite/core/async/async_signature_runner.h:24,
-> |                  from
-> ../sources/libcamera-apps-1.9.0+git/post_processing_stages/tensorflow/lite/core/interpreter.h:48,
-> |                  from
-> ../sources/libcamera-apps-1.9.0+git/post_processing_stages/tensorflow/lite/interpreter.h:21,
-> |                  from
-> ../sources/libcamera-apps-1.9.0+git/post_processing_stages/tf_stage.hpp:18,
-> |                  from
-> ../sources/libcamera-apps-1.9.0+git/post_processing_stages/object_classify_tf_stage.cpp:8:
-> |
-> ../sources/libcamera-apps-1.9.0+git/post_processing_stages/tensorflow/compiler/mlir/lite/schema/schema_generated.h:21:10:
-> fatal error: flatbuffers/flatbuffers.h: No such file or directory
-> |    21 | #include "flatbuffers/flatbuffers.h"
-> |       |          ^~~~~~~~~~~~~~~~~~~~~~~~~~~
-> | compilation terminated.
->  
-> 3.
->  
-> | In file included from
-> ../sources/libcamera-apps-1.9.0+git/post_processing_stages/segmentation_tf_stage.cpp:8:
-> |
-> ../sources/libcamera-apps-1.9.0+git/post_processing_stages/segmentation.hpp:15:82:
-> error: 'uint8_t' was not declared in this scope
-> |    15 |         Segmentation(int w, int h, std::vector<std::string>
-> l, const std::vector<uint8_t> &s)
-> |       |                                                            
->                      ^~~~~~~
-> |
-> ../sources/libcamera-apps-1.9.0+git/post_processing_stages/segmentation.hpp:12:1:
-> note: 'uint8_t' is defined in header '<cstdint>'; this is probably
-> fixable by adding '#include <cstdint>'
->  
-> 4.
->  
-> | In file included from
-> ../sources/libcamera-apps-1.9.0+git/post_processing_stages/tensorflow/lite/core/c/builtin_op_data.h:24,
-> |                  from
-> ../sources/libcamera-apps-1.9.0+git/post_processing_stages/tensorflow/lite/builtin_op_data.h:20,
-> |                  from
-> ../sources/libcamera-apps-1.9.0+git/post_processing_stages/tf_stage.hpp:16,
-> |                  from
-> ../sources/libcamera-apps-1.9.0+git/post_processing_stages/object_detect_tf_stage.cpp:9:
-> |
-> ../sources/libcamera-apps-1.9.0+git/post_processing_stages/tensorflow/lite/core/c/common.h:125:7:
-> error: ISO C++ forbids flexible array member 'data' [-Werror=pedantic]
-> |   125 |   int data[];
-> |       |       ^~~~
-> |
-> ../sources/libcamera-apps-1.9.0+git/post_processing_stages/tensorflow/lite/core/c/common.h:169:9:
-> error: ISO C++ forbids flexible array member 'data' [-Werror=pedantic]
-> |   169 |   float data[];
-> |       |         ^~~~
-> | cc1plus: all warnings being treated as errors
->  
+> TLDR: this is not impossible, but bitbake-setup relies on a few
+> important features in oe-core and bitbake, and so such configurations
+> would be limited, and awkward and not really showcase bitbake-setup
+> well - basically reducing it to an equivalent of "clone poky;
+> oe-init-built-env", with more steps and hurdles.
+
+I don't have a very strong opinion, but I tend to agree with your
+conclusion: if the feature wouldn't (couldn't) be actually useful, then
+what would be the rationale to backport it? Yocto is already considered
+to have a steep learning curve, new hurdles are the last thing new
+people need.
 
 
