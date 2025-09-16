@@ -1,85 +1,131 @@
-Return-Path: <alex.kanavin@gmail.com>
+Return-Path: <seth.raymond@matrixspace.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 064A3CAC599
-	for <webhook@archiver.kernel.org>; Tue, 16 Sep 2025 15:37:57 +0000 (UTC)
-Received: from mail-qv1-f51.google.com (mail-qv1-f51.google.com [209.85.219.51])
- by mx.groups.io with SMTP id smtpd.web11.1741.1758037074984429520
- for <yocto@lists.yoctoproject.org>;
- Tue, 16 Sep 2025 08:37:55 -0700
-Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20230601 header.b=l8hH2VFZ;
- spf=pass (domain: gmail.com, ip: 209.85.219.51, mailfrom: alex.kanavin@gmail.com)
-Received: by mail-qv1-f51.google.com with SMTP id 6a1803df08f44-770db3810a7so29791626d6.0
-        for <yocto@lists.yoctoproject.org>; Tue, 16 Sep 2025 08:37:54 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1758037074; x=1758641874; darn=lists.yoctoproject.org;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=YfKbeQs/n1Q7IaN7amT6jdRO+q/rnA1JGwVE34pJ71U=;
-        b=l8hH2VFZXCFLZPWYeNxnRBtZX+C28KhA5+CpqtVAbwoYQajnrfW1lxQDM0TMzGHe6v
-         nsdF81szPbC+FE7j/aqYG9nx340fOt3pQfHif7akQGsDXFECZAfVoeg/Ldh0CVo14nLw
-         eDLbQO6o1rdVCfcIxRdDet6fLXRlZdgYskSGHOjxd9NWEiAQZDXwXRxXARGZ172w1sw/
-         M7kuSc0KMKGiLOCVTb9VMWL9q9loJ6QdKdnk+aiJiH6ZiD3bKVW8DFA+/c5oM0e97cDq
-         X979/ms4xyPi8DG65OtQI2KHx2zaBlVt9T6MpIAftL8Ijx6NNKMUmuZ2wU8OfQraZcwy
-         STdg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1758037074; x=1758641874;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=YfKbeQs/n1Q7IaN7amT6jdRO+q/rnA1JGwVE34pJ71U=;
-        b=RnN2emkLUi9s0Pg/MvI2JvCspjVybSf3Ck8Q+6AIcNHHrED79I9SPZyBMhHkW2KEU0
-         3SxZkc1TxbTIZGvtJBeUPoVHm10um6wTKSI5pOZqvPIPHeTAmu/1oLBi0dng1hZlVw4/
-         Mgtffhd2aSovey1s3DO74fWQb0SWgOqa/r0Gap1ArBW8Hv9ci5w02V09e/tBGHumSuzk
-         Qu1ix8N4nUZGvYMizcABWBDTVJEwI2aBo5uzXqnpBOVFTyDbECbjiRQTCvnTJN0cNwXW
-         NqDsvaLTeKSOA5KD8jk8/kyrvfLVpGTYOju0h6yQNEpj8UzM+uQZyV/zUMIAdzsJNhyO
-         rmHg==
-X-Gm-Message-State: AOJu0YxtWmqnAPXUssvg4syaBdJ0iuhHxbY7891N/H6cghXhr1XuRrYI
-	U36gUdwTQOEUxLAgimTjEwd3oe2d7i942ejRHthhnfwm1WVty8JVOyYLXvhbyqofu0JjW1UqSgr
-	ouLtZEsvlYATUJD0bsj/0hxiwsxRAtmU=
-X-Gm-Gg: ASbGnctAENPHYaUfYFiiRAI4S095XH0CJ0vivqf3/x1lhTQjaoOPRP1vX8RwxqwYQbs
-	HZfuodZFjyNp4g3MCnhg1GUFcjW3LmDK5xjuhRNPZG61y61/enIOxOrSdqChkbPxGhB561RUtWM
-	jzyOeDgoXUGHuKZ0mP2NmKmVi7OWwvltuY4Bc75+9Sh3jec9H3EDraNBrFF8tmhDu2OFSE4iQ3t
-	wGdcbG2bG0g+3qQGZY1rtZHkEy4k3ZjGBNogL7bDsWt7gl3RO8Imbngh2/j9/8uGhzL3AS0XQ3N
-	djH/
-X-Google-Smtp-Source: AGHT+IF0DQR/2Vnrf/05H3QOUfMd1NWaEOBWga5MEjU76zYWSrOfW8CePsqYmUs2BdapPiCwtKhcPGmGHythPB89mSo=
-X-Received: by 2002:a05:6214:21a5:b0:78d:b474:8e3e with SMTP id
- 6a1803df08f44-78db47490ccmr24088266d6.49.1758037073707; Tue, 16 Sep 2025
- 08:37:53 -0700 (PDT)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 625D6CAC59B
+	for <webhook@archiver.kernel.org>; Tue, 16 Sep 2025 20:04:57 +0000 (UTC)
+Subject: Documentation around adding custom fetchers to layer
+To: yocto@lists.yoctoproject.org
+From: seth.raymond@matrixspace.com
+X-Originating-Location: Saugus, Massachusetts, US (71.26.215.193)
+X-Originating-Platform: Linux Firefox 142
+User-Agent: GROUPS.IO Web Poster
 MIME-Version: 1.0
-References: <CANNYZj8nqMP_riFmfOeaig0XA1MkArTcL48g9iYVdZHdjrsXvQ@mail.gmail.com>
- <22fc023e-0937-4c6d-a726-54079059463f@gmail.com>
-In-Reply-To: <22fc023e-0937-4c6d-a726-54079059463f@gmail.com>
-From: Alexander Kanavin <alex.kanavin@gmail.com>
-Date: Tue, 16 Sep 2025 17:37:41 +0200
-X-Gm-Features: AS18NWB6fwtgwkrxGa1xSYMjYoToEcJGTEdBqBqnlks5vfM3xAKuv3hmPEC5RNc
-Message-ID: <CANNYZj8edg0stXfpP1Q3jRMTGCwBax4BeW8KdNjY9CWC_p=cgw@mail.gmail.com>
-Subject: Re: [yocto] bitbake-setup configurations for existing LTS releases
-To: Gyorgy Sarvari <skandigraun@gmail.com>
-Cc: yocto@lists.yoctoproject.org, 
-	openembedded-architecture <openembedded-architecture@lists.openembedded.org>, 
-	Richard Purdie <richard.purdie@linuxfoundation.org>
-Content-Type: text/plain; charset="UTF-8"
+Date: Tue, 16 Sep 2025 13:04:54 -0700
+Message-ID: <tEoU.1758053094260077183.1RYf@lists.yoctoproject.org>
+Content-Type: multipart/alternative; boundary="C9Ni1JBvft7tfvIM8WP9"
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Tue, 16 Sep 2025 15:37:57 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/65847
+ <yocto@lists.yoctoproject.org>; Tue, 16 Sep 2025 20:04:57 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/65848
 
-On Tue, 16 Sept 2025 at 15:48, Gyorgy Sarvari <skandigraun@gmail.com> wrote:
-> > I've been asked to look into adding bitbake-setup configurations for
-> > existing LTS releases (e.g. scarthgap).
+--C9Ni1JBvft7tfvIM8WP9
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
+
+Hello,
+
+I am attempting to write a couple of custom fetcher that pull secrets from =
+our password manager (using its CLI). To start, I wrote Python classes that=
+ inherit from bb.fetch2.FetchMethod and registered them in poky/bitbake/lib=
+/bb/fetch2/__init__.py by importing them and appending them to methods. I c=
+onfirmed that the fetchers themselves are working as expected and the secre=
+ts are getting pulled during the recipe build process.
+
+Of course, I don't (necessarily) want to contribute these fetchers upstream=
+ to poky. I would like to add them to one of our company's layers. Our dire=
+ctory structure is laid out like:
+
+top-dir/
+|--- build/
+|--- layers/
+|=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 |--- poky/
+|=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 |--- meta-matrixspace/
+|=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 |=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
+=A0 =C2=A0 =C2=A0 |--- meta-mtrx-core/=C2=A0 (this is the layer I want to a=
+dd my fetchers to)
+|=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 |=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
+=A0 =C2=A0 =C2=A0 |--- meta-mtrx-other-layer/
+|=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 |=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
+=A0 =C2=A0 =C2=A0 |--- meta-mtrx-yet-another-layer/
+
+We're based off of scarthgap. I've put my fetchers into top-dir/layers/meta=
+-matrixspace/meta-mtrx-core/lib/bb/fetch2/op.py and updated top-dir/layers/=
+meta-matrixspace/meta-mtrx-core/conf/layer.conf to include
+
+PYTHONPATH .=3D ":${LAYERDIR}/lib"
+
+When building recipes that use the fetchers, I get parsing errors saying th=
+at no fetchers could be found to support the URL:
+
+bb.data_smart.ExpansionError: Failure expanding variable fetcher_hashes_dum=
+myfunc[vardepvalue], expression was ${@bb.fetch.get_hashvalue(d)} which tri=
+ggered exception NoMethodError: Could not find a fetcher which supports the=
+ URL: 'optemplate://aes_key.tpl;output=3Daes.key'
+The variable dependency chain for the failure is: fetcher_hashes_dummyfunc[=
+vardepvalue]
+
+I'm not seeing any documentation on how to add a custom fetcher to a layer,=
+ and the fetchers in poky don't provide enough information on how to regist=
+er these fetchers. Is this functionality supported, or will we have to fork=
+ poky and keep it up-to-date to add a new fetcher?
+
+Thanks,
+Seth
+
+--C9Ni1JBvft7tfvIM8WP9
+Content-Type: text/html; charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div>Hello,</div>
+<div>&nbsp;</div>
+<div>I am attempting to write a couple of custom fetcher that pull secrets =
+from our password manager (using its CLI). To start, I wrote Python classes=
+ that inherit from bb.fetch2.FetchMethod and registered them in poky/bitbak=
+e/lib/bb/fetch2/__init__.py by importing them and appending them to methods=
+. I confirmed that the fetchers themselves are working as expected and the =
+secrets are getting pulled during the recipe build process.</div>
+<div>&nbsp;</div>
+<div>Of course, I don't (necessarily) want to contribute these fetchers ups=
+tream to poky. I would like to add them to one of our company's layers. Our=
+ directory structure is laid out like:</div>
+<div>&nbsp;</div>
+<div>top-dir/</div>
+<div>&nbsp; &nbsp; |--- build/</div>
+<div>&nbsp; &nbsp; |--- layers/</div>
+<div>&nbsp; &nbsp; |&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; |--- poky/</div>
+<div>&nbsp; &nbsp; |&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; |--- meta-matrixspac=
+e/</div>
+<div>&nbsp; &nbsp; |&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; |&nbsp; &nbsp; &nbsp=
+; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; |--- meta-mtrx-core/&nbsp; (this is th=
+e layer I want to add my fetchers to)</div>
+<div>&nbsp; &nbsp; |&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; |&nbsp; &nbsp; &nbsp=
+; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; |--- meta-mtrx-other-layer/</div>
+<div>&nbsp; &nbsp; |&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; |&nbsp; &nbsp; &nbsp=
+; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; |--- meta-mtrx-yet-another-layer/</div=
 >
-> I have one question: would introducing bitbake-setup in LTS mean that
-> poky repo would be abandoned in those branches? If yes, I'd plead to
-> reconsider - it would silently break countless setups and tutorials.
+<div>&nbsp;</div>
+<div>We're based off of scarthgap. I've put my fetchers into top-dir/layers=
+/meta-matrixspace/meta-mtrx-core/lib/bb/fetch2/op.py and updated top-dir/la=
+yers/meta-matrixspace/meta-mtrx-core/conf/layer.conf to include<br /><br />=
+PYTHONPATH .=3D ":${LAYERDIR}/lib"</div>
+<div>&nbsp;</div>
+<div>When building recipes that use the fetchers, I get parsing errors sayi=
+ng that no fetchers could be found to support the URL:<br /><br />bb.data_s=
+mart.ExpansionError: Failure expanding variable fetcher_hashes_dummyfunc[va=
+rdepvalue], expression was ${@bb.fetch.get_hashvalue(d)} which triggered ex=
+ception NoMethodError: Could not find a fetcher which supports the URL: 'op=
+template://aes_key.tpl;output=3Daes.key'<br />The variable dependency chain=
+ for the failure is: fetcher_hashes_dummyfunc[vardepvalue]<br /><br /></div=
+>
+<div>I'm not seeing any documentation on how to add a custom fetcher to a l=
+ayer, and the fetchers in poky don't provide enough information on how to r=
+egister these fetchers. Is this functionality supported, or will we have to=
+ fork poky and keep it up-to-date to add a new fetcher?</div>
+<div>&nbsp;</div>
+<div>Thanks,</div>
+<div>Seth</div>
 
-We are not insane :) This was never considered. Also, bitbake-setup
-will not be added to LTS bitbake repo. The consideration is only
-whether to provide a bitbake-setup configuration for setting up LTS
-from the master branch of bitbake.
-
-Alex
+--C9Ni1JBvft7tfvIM8WP9--
 
