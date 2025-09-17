@@ -1,211 +1,132 @@
-Return-Path: <seth.raymond@matrixspace.com>
+Return-Path: <richard.purdie@linuxfoundation.org>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 9DC07CAC59A
-	for <webhook@archiver.kernel.org>; Wed, 17 Sep 2025 14:46:03 +0000 (UTC)
-Subject: Re: [yocto] Documentation around adding custom fetchers to layer
-To: "Alexander Kanavin" <alex.kanavin@gmail.com>, yocto@lists.yoctoproject.org
-From: seth.raymond@matrixspace.com
-X-Originating-Location: Saugus, Massachusetts, US (71.26.215.193)
-X-Originating-Platform: Linux Firefox 142
-User-Agent: GROUPS.IO Web Poster
-MIME-Version: 1.0
-Date: Wed, 17 Sep 2025 07:45:54 -0700
-References: <CANNYZj-Sk_VEMa8--q-s3G6KP1zih5KqZC4uv5WJzAd7sQrzzQ@mail.gmail.com>
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 20D96CAC59A
+	for <webhook@archiver.kernel.org>; Wed, 17 Sep 2025 22:33:07 +0000 (UTC)
+Received: from mail-wm1-f54.google.com (mail-wm1-f54.google.com [209.85.128.54])
+ by mx.groups.io with SMTP id smtpd.web11.43.1758148383811529917
+ for <yocto@lists.yoctoproject.org>;
+ Wed, 17 Sep 2025 15:33:04 -0700
+Authentication-Results: mx.groups.io;
+ dkim=pass header.i=@linuxfoundation.org header.s=google header.b=BnmJsM4G;
+ spf=pass (domain: linuxfoundation.org, ip: 209.85.128.54, mailfrom: richard.purdie@linuxfoundation.org)
+Received: by mail-wm1-f54.google.com with SMTP id 5b1f17b1804b1-45ed646b656so2463055e9.3
+        for <yocto@lists.yoctoproject.org>; Wed, 17 Sep 2025 15:33:03 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linuxfoundation.org; s=google; t=1758148382; x=1758753182; darn=lists.yoctoproject.org;
+        h=mime-version:user-agent:content-transfer-encoding:references
+         :in-reply-to:date:cc:to:from:subject:message-id:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=D7tMaHV6pb8E88PTghCJg8R+To4kHvkTgSdsB5gzwR8=;
+        b=BnmJsM4GKOWCcDO4GcPbB+4i92plA+xtqy6zIzdT0tqGQzCtnwuPn+p1PQT5uENZ83
+         Br0Z6yD8uD/fkAGz4lwUQv0sme3NFWGN/7pHNcs269iGIfTmA2J9u1/CIAxpOTIjqYmK
+         6QaJgIje9MadV6HCuNXNbHi0Ojh+At58SxjVg=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1758148382; x=1758753182;
+        h=mime-version:user-agent:content-transfer-encoding:references
+         :in-reply-to:date:cc:to:from:subject:message-id:x-gm-message-state
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=D7tMaHV6pb8E88PTghCJg8R+To4kHvkTgSdsB5gzwR8=;
+        b=wKEFaWKLDjOrDC0w2do+b0AiBShtI1Qs3arKQ7erwX1HsmwIMlcO7Kp0lemfJ2zVXe
+         q2RWotf4HYrRSMKVeB6NysY/okoJuVd0pm92kL3mj8Mu13HDYNRUlmpg4+GEyBSECaB7
+         klQO3Um8FpFp3bckv+OLxo/IwLIDc4HPHBnWYX8AKK0fFIDFn9Dsx54O4CE74sUpe3Xa
+         B0RJAkKLOmbxdW8XF0hV7R2DWaMyHATQxQ5WZuzWB312KawKIwLyha2468xXw6tLpczr
+         XEvSvGEfepCmzLUCAKDrQu6Pu796RvEGfyiI1iTMSTUT4vSH1eTokTh45RYeExutEmHJ
+         4uvA==
+X-Forwarded-Encrypted: i=1; AJvYcCUXBVmwuco7rKdPL33Q1KDLvP7PUWfP4Mv59jyXhXuEFH5FKA26FsZG/bkkV1yVOZwNwCDBGA==@lists.yoctoproject.org
+X-Gm-Message-State: AOJu0YwzRXih9DiuyENvxudLzwoHNGx5Vx9p/r2mB23SLnyEz3YeJaRU
+	7QUSzTyRST+cR/fCIK8CCfW6D2dEk3bHl+I9CcDmY87p69aSt5u7FoxI6rvkoA3wMc8=
+X-Gm-Gg: ASbGncsO+Dz+G5+Lj+1SVESwHKXsIxAONLuLQn55dC646T46a+qR2R0tLTJzGubn/iL
+	PYXLDG48cvvMprjt+Ao+umAsSqzOlOGU0R+dAi+YxINm1+r9LJBSS6LuM3+4QK9627duwHYzeI4
+	96cr4EKfngNf8MPeYbB1cb6qkt6UETnHyUl5zeg1Rn3e5qhaq0djZbzVJvkNwUGWVqDDIT6Fk2b
+	/22O9FLEDOCIpeIDzEbYKsgxcGF/UNrZPi3V5EEvm9qn5WZ/gn3+a5ypJ73rcvOsoZ+aUqVJbvD
+	v74FLUx/pRcgRtKRY41AhlIeD0Sp/qIb3kWTweSe5XshmhNcADeiEAcCbXDs0ZCud3vGv7QBxHf
+	In00RPcekVODrdLNKUfUfZD9wSOfPQF4+fioCnxw/1ypbDdhWkWKNzh/3DM9d2+Jtqri2fE5Jiw
+	s7Cm/DxlHB9gIoBywwVxtTduEYmgsqUzisUOuWAFvp
+X-Google-Smtp-Source: AGHT+IFG2c89QdEDMDXUM22Gx2k53J/jpvMBP0ypr+bCXl57xcgaL9E23pRArkICL9RFOFjRAx/dwg==
+X-Received: by 2002:a05:600c:444c:b0:45b:47e1:ef69 with SMTP id 5b1f17b1804b1-46207897e75mr35767555e9.36.1758148381988;
+        Wed, 17 Sep 2025 15:33:01 -0700 (PDT)
+Received: from ?IPv6:2001:8b0:aba:5f3c:a42a:bde0:2db0:730d? ([2001:8b0:aba:5f3c:a42a:bde0:2db0:730d])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4613e754140sm52342115e9.21.2025.09.17.15.33.01
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 17 Sep 2025 15:33:01 -0700 (PDT)
+Message-ID: <e47db6c5eab25b2614139d9c33fe7e253962ceb8.camel@linuxfoundation.org>
+Subject: Re: [bitbake-devel] [yocto] Documentation around adding custom
+ fetchers to layer
+From: Richard Purdie <richard.purdie@linuxfoundation.org>
+To: alex.kanavin@gmail.com, yocto@lists.yoctoproject.org, ross.burton@arm.com
+Cc: "seth.raymond@matrixspace.com" <seth.raymond@matrixspace.com>, 
+ bitbake-devel <bitbake-devel@lists.openembedded.org>
+Date: Wed, 17 Sep 2025 23:33:00 +0100
 In-Reply-To: <CANNYZj-Sk_VEMa8--q-s3G6KP1zih5KqZC4uv5WJzAd7sQrzzQ@mail.gmail.com>
-Message-ID: <27586.1758120354644994131@lists.yoctoproject.org>
-Content-Type: multipart/mixed; boundary="ekQHwCdCGpFJswlKo8WR"
+References: <tEoU.1758053094260077183.1RYf@lists.yoctoproject.org>
+	 <9EEFEABC-1B2A-4C76-B0CC-0E0CADAEB744@arm.com>
+	 <CANNYZj-Sk_VEMa8--q-s3G6KP1zih5KqZC4uv5WJzAd7sQrzzQ@mail.gmail.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.56.0-1 
+MIME-Version: 1.0
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Wed, 17 Sep 2025 14:46:03 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/65852
+ <yocto@lists.yoctoproject.org>; Wed, 17 Sep 2025 22:33:07 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/65853
 
---ekQHwCdCGpFJswlKo8WR
-Content-Type: multipart/alternative; boundary="9ibMlp8H8ylAY7a1PclP"
+On Wed, 2025-09-17 at 11:19 +0200, Alexander Kanavin via lists.openembedded=
+.org wrote:
+> On Wed, 17 Sept 2025 at 11:15, Ross Burton via lists.yoctoproject.org
+> <ross.burton=3Darm.com@lists.yoctoproject.org> wrote:
+> > > I'm not seeing any documentation on how to add a custom fetcher to a =
+layer, and the fetchers in poky don't provide enough information on how to =
+register these fetchers. Is this functionality supported, or will we have t=
+o fork poky and keep it up-to-date to add a new fetcher?
+> >=20
+> > This is a bitbake issue, so I=E2=80=99ve copied in the bitbake list.
+> >=20
+> > There=E2=80=99s no standard way to add out-of-bitbake fetchers, as you =
+say you need to add the fetcher instance to bb.fetch2.methods.
+> >=20
+> > I guess you might be able to write a do_fetch prefunc that creates an i=
+nstance of your fetcher and adds it to the list, but I would not be surpris=
+ed if there were more places where that would be needed.
+> >=20
+> > python use_my_fetcher() {
+> > =C2=A0 bb.fetch2.methods.append(MyFetcher())
+> > }
+> > do_fetch[prefuncs] +=3D =E2=80=9Cuse_my_fetcher=E2=80=9D
+>=20
+> To be honest, I was going to say that custom fetchers are not
+> supported. Doing that would fragment the ecosystem and make people
+> invent all kinds of private magic in their builds, and subvert the
+> promises that standard fetchers make.
+>=20
+> Perhaps it would help to step back and look at what this customer
+> fecher does. Can we see its source? Or an extended description of how
+> the password manager is used, what data it takes and produces, and how
+> that data is used in actual fetching? Then we'd think of how to do
+> this with regular fetchers.
 
---9ibMlp8H8ylAY7a1PclP
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: quoted-printable
+I'm struggling with time/bandwidth so I'll just mention what I can
+remember without digging too much.
 
-Hi Alex,
+There have been cases of successfully injecting extra fetchers from the
+metadata, particularly if you do it from the global class code,
+probably in an event handler. I think some of the early npm/node/crate
+code did this (I don't remember which) before we merged things into
+bitbake itself.
 
-Sure, I can share the source. It grabs secrets from our password manager (1=
-Password) and injects them into the build system. We currently have two use=
- cases for this:
-1. We use AES keys for encrypting/decrypting our SWU payloads. Those key/iv=
- pairs are held in our password manager, so we need to take one of them out=
- at build-time and hand it to the swupdate bbclass to encrypt the payload. =
-We do the same thing for a signing .pem key
-2. We want to install an SSH key into our OS so that we can SSH into our de=
-vices. 1Password also acts as an SSH agent, so it makes life seamless when =
-we store the keys in there.
-
-My source is attached. The use case in a recipe would be:
-
-SRC_URI =3D " \
-op://MyVault/SSHKey/public%20key ;output=3Dssh_key.pub \
-optemplate://aes_key.tpl;output=3Daes_key \
-"
-
-The output would be:
-1. The content of the MyVault > SSHKey > public key dumped into a file call=
-ed ssh_key.pub in the $WORKDIR
-2. Depending on the template ( https://developer.1password.com/docs/cli/sec=
-rets-template-syntax/ ), ${WORKDIR}/aes_key would be filled in with referen=
-ced secrets
-
-Someone at my last company wrote a custom fetcher to fetch conan packages, =
-but I unfortunately wasn't super plugged in to what he was doing. I vaguely=
- remember he did something with a bbclass and might have used something sim=
-ilar to the proposed do_fetch[prefuncs] method.
-
-We currently have a hacky workaround right now where we have a *-init-build=
--env script that pulls the secrets from the 1Password vault(s) and put them=
- in the correct place. But persisting secrets on-disk, unencrypted is non-i=
-deal. My preference would be for us to only grab the secrets as we need the=
-m and then clean them up from build/ after they've been consumed.
+There was an open bug for making it easier to define new fetchers from
+the metadata and we did get most things working. Sadly I can't spot the
+bug. The one area that was problematic was AUTOREV since that happened
+before you could inject the fetcher in the class code in some cases. We
+never did work out an API which would allow AUTOREV to work and allow a
+general API.
 
 Cheers,
-Seth
 
---9ibMlp8H8ylAY7a1PclP
-Content-Type: text/html; charset="utf-8"
-Content-Transfer-Encoding: quoted-printable
+Richard
 
-<div>Hi Alex,</div>
-<div>&nbsp;</div>
-<div>Sure, I can share the source. It grabs secrets from our password manag=
-er (1Password) and injects them into the build system. We currently have tw=
-o use cases for this:</div>
-<div>1. We use AES keys for encrypting/decrypting our SWU payloads. Those k=
-ey/iv pairs are held in our password manager, so we need to take one of the=
-m out at build-time and hand it to the swupdate bbclass to encrypt the payl=
-oad. We do the same thing for a signing .pem key</div>
-<div>2. We want to install an SSH key into our OS so that we can SSH into o=
-ur devices. 1Password also acts as an SSH agent, so it makes life seamless =
-when we store the keys in there.</div>
-<div>&nbsp;</div>
-<div>My source is attached. The use case in a recipe would be:<br /><br />S=
-RC_URI =3D " \</div>
-<div>&nbsp; &nbsp; <a href=3D"op://MyVault/SSHKey/public%20key" target=3D"_=
-blank" rel=3D"noopener">op://MyVault/SSHKey/public%20key</a>;output=3Dssh_k=
-ey.pub \</div>
-<div>&nbsp; &nbsp; optemplate://aes_key.tpl;output=3Daes_key \</div>
-<div>"</div>
-<div>&nbsp;</div>
-<div>The output would be:</div>
-<div>1. The content of the MyVault &gt; SSHKey &gt; public key dumped into =
-a file called ssh_key.pub in the $WORKDIR</div>
-<div>2. Depending on the template (<a href=3D"https://developer.1password.c=
-om/docs/cli/secrets-template-syntax/" target=3D"_blank" rel=3D"noopener">ht=
-tps://developer.1password.com/docs/cli/secrets-template-syntax/</a>), ${WOR=
-KDIR}/aes_key would be filled in with referenced secrets</div>
-<div>&nbsp;</div>
-<div>Someone at my last company wrote a custom fetcher to fetch conan packa=
-ges, but I unfortunately wasn't super plugged in to what he was doing. I va=
-guely remember he did something with a bbclass and might have used somethin=
-g similar to the proposed do_fetch[prefuncs] method.</div>
-<div>&nbsp;</div>
-<div>We currently have a hacky workaround right now where we have a *-init-=
-build-env script that pulls the secrets from the 1Password vault(s) and put=
- them in the correct place. But persisting secrets on-disk, unencrypted is =
-non-ideal. My preference would be for us to only grab the secrets as we nee=
-d them and then clean them up from build/ after they've been consumed.</div=
->
-<div>&nbsp;</div>
-<div>Cheers,</div>
-<div>Seth</div>
 
---9ibMlp8H8ylAY7a1PclP--
 
---ekQHwCdCGpFJswlKo8WR
-Content-Type: text/x-python; name="op.py"
-Content-Transfer-Encoding: base64
-Content-Disposition: attachment; filename="op.py"
-
-aW1wb3J0IG9zCmZyb20gcGF0aGxpYiBpbXBvcnQgUGF0aAoKaW1wb3J0IGJiCmZyb20gYmIuZmV0
-Y2gyIGltcG9ydCBGZXRjaEVycm9yLCBGZXRjaE1ldGhvZCwgcnVuZmV0Y2hjbWQKCgpjbGFzcyBP
-cEl0ZW0oRmV0Y2hNZXRob2QpOgogICAgIiIiRmV0Y2ggbWV0aG9kIHRoYXQgcnVucyBgb3AgcmVh
-ZGAgb24gYSAxUGFzc3dvcmQgQ0xJIGl0ZW0gcGF0aC4gVVJJIHNob3VsZCBiZSBpbiB0aGUgZm9y
-bWF0IG9mOgogICAgb3A6Ly88VmF1bHQ+LzxJdGVtPi9bPFNlY3Rpb24+L108RmllbGQ+CgogICAg
-Tm90ZSB0aGF0IGFsbCBzcGFjZXMgaW4gdGhlIHN0cmluZyBzaG91bGQgYmUgcmVwbGFjZWQgd2l0
-aCAlMjAgc28gdGhhdCBiaXRiYWtlIGNhbiBwYXJzZSBpdCBwcm9wZXJseS4KICAgICIiIgoKICAg
-IGRlZiBzdXBwb3J0cyhzZWxmLCB1ZCwgZCk6CiAgICAgICAgIyBSZWNvZ25pemUgVVJMcyBsaWtl
-OiBvcDovL1ZhdWx0L0l0ZW0vW1NlY3Rpb24vXUZpZWxkCiAgICAgICAgcmV0dXJuIHVkLnR5cGUg
-aW4gWyJvcCJdCgogICAgZGVmIHJlY29tbWVuZHNfY2hlY2tzdW0oc2VsZiwgdXJsZGF0YSk6CiAg
-ICAgICAgcmV0dXJuIEZhbHNlCgogICAgZGVmIHN1cHBvcnRzX2NoZWNrc3VtKHNlbGYsIHVybGRh
-dGEpOgogICAgICAgIHJldHVybiBGYWxzZQoKICAgIGRlZiB1cmxkYXRhX2luaXQoc2VsZiwgdWQs
-IGQpOgogICAgICAgICMgVGhlIDFQYXNzd29yZCBwYXRoIGlzIGdpdmVuIGFzIHRoZSAncGF0aCcg
-cGFydCBvZiB0aGUgVVJMLgogICAgICAgICMgRm9yIGV4YW1wbGU6IG9wOi8vVmF1bHQvSXRlbS9b
-U2VjdGlvbi9dRmllbGQKICAgICAgICB1ZC5wYXRoID0gdWQudXJsLnNwbGl0KCI6Ly8iLCAxKVsx
-XS5zcGxpdCgiOyIpWzBdCiAgICAgICAgaWYgbm90IHVkLnBhdGg6CiAgICAgICAgICAgIHJhaXNl
-IEZldGNoRXJyb3IoIkludmFsaWQgb3A6Ly8gVVJJIikKICAgICAgICB1ZC5wYXRoID0gZidvcDov
-L3t1ZC5wYXRoLnJlcGxhY2UoIiUyMCIsICIgIil9JwoKICAgICAgICAjIE9wdGlvbmFsIHF1ZXJ5
-IHBhcmFtZXRlcjogb3V0cHV0PTxmaWxlbmFtZT4KICAgICAgICB1ZC5vdXRwdXQgPSB1ZC5wYXJt
-LmdldCgib3V0cHV0Iikgb3Igb3MucGF0aC5iYXNlbmFtZSh1ZC5wYXRoKSArICIucmVuZGVyZWQi
-CgogICAgICAgICMgU3RvcmUgbG9jYWwgZGVzdGluYXRpb24gcGF0aAogICAgICAgIHVkLmxvY2Fs
-ZmlsZSA9IHVkLm91dHB1dAoKICAgIGRlZiBkb3dubG9hZChzZWxmLCB1ZCwgZCk6CiAgICAgICAg
-IiIiCiAgICAgICAgUnVuIGBvcCByZWFkYCB0byBkdW1wIHRoZSBjb250ZW50cyBvZiBhIGZpZWxk
-IGludG8gYSBmaWxlLgogICAgICAgICIiIgogICAgICAgIGRsX2RpciA9IGQuZ2V0VmFyKCJETF9E
-SVIiKQogICAgICAgIGRlc3QgPSBvcy5wYXRoLmpvaW4oZGxfZGlyLCB1ZC5vdXRwdXQpCiAgICAg
-ICAgb3MuZW52aXJvblsiT1BfU0VSVklDRV9BQ0NPVU5UX1RPS0VOIl0gPSBkLmdldFZhcigiT1Bf
-U0VSVklDRV9BQ0NPVU5UX1RPS0VOIikKCiAgICAgICAgY21kID0gZiIvdXNyL2xvY2FsL2Jpbi9v
-cCByZWFkIC0tb3V0LWZpbGUge2Rlc3R9ICd7dWQucGF0aH0nIgogICAgICAgIHJ1bmZldGNoY21k
-KGNtZCwgZCkKCiAgICAgICAgaWYgbm90IG9zLnBhdGguZXhpc3RzKGRlc3QpOgogICAgICAgICAg
-ICByYWlzZSBGZXRjaEVycm9yKCJvcCByZWFkIGRpZCBub3QgcHJvZHVjZSBhbiBvdXRwdXQgZmls
-ZSIpCgogICAgICAgICMgVGhlIGxvY2FsZmlsZSBpcyB0aGUgZmlsZSBCaXRCYWtlIHdpbGwgY2hl
-Y2tzdW0gYW5kIHN0YWdlLgogICAgICAgIHVkLmxvY2FscGF0aCA9IGRlc3QKCiAgICBkZWYgdW5w
-YWNrKHNlbGYsIHVkLCBkZXN0ZGlyLCBkKToKICAgICAgICAiIiIKICAgICAgICBTdGFuZGFyZCBm
-ZXRjaGVyIEFQSTogY29weSB0aGUgaW5qZWN0ZWQgZmlsZSBpbnRvIHRoZSB1bnBhY2tlZCBzb3Vy
-Y2UgZGlyLgogICAgICAgICIiIgogICAgICAgIGJiLnV0aWxzLmNvcHlmaWxlKHVkLmxvY2FscGF0
-aCwgb3MucGF0aC5qb2luKGRlc3RkaXIsIHVkLm91dHB1dCkpCgogICAgZGVmIGNoZWNrc3RhdHVz
-KHNlbGYsIGZldGNoLCB1cmxkYXRhLCBkKToKICAgICAgICByZXR1cm4gVHJ1ZQoKCmNsYXNzIE9w
-VGVtcGxhdGUoRmV0Y2hNZXRob2QpOgogICAgIiIiRmV0Y2ggbWV0aG9kIHRoYXQgcnVucyBgb3Ag
-aW5qZWN0YCBvbiBhIDFQYXNzd29yZCBDTEkgaW5qZWN0YWJsZSB0ZW1wbGF0ZS4iIiIKCiAgICBk
-ZWYgc3VwcG9ydHMoc2VsZiwgdWQsIGQpOgogICAgICAgICMgUmVjb2duaXplIFVSTHMgbGlrZTog
-b3B0ZW1wbGF0ZTovL3BhdGgvdG8vdGVtcGxhdGUKICAgICAgICByZXR1cm4gdWQudHlwZSBpbiBb
-Im9wdGVtcGxhdGUiXQoKICAgIGRlZiByZWNvbW1lbmRzX2NoZWNrc3VtKHNlbGYsIHVybGRhdGEp
-OgogICAgICAgIHJldHVybiBGYWxzZQoKICAgIGRlZiBzdXBwb3J0c19jaGVja3N1bShzZWxmLCB1
-cmxkYXRhKToKICAgICAgICByZXR1cm4gRmFsc2UKCiAgICBkZWYgdXJsZGF0YV9pbml0KHNlbGYs
-IHVkLCBkKToKICAgICAgICAjIFRoZSB0ZW1wbGF0ZSBmaWxlIGlzIGdpdmVuIGFzIHRoZSAncGF0
-aCcgcGFydCBvZiB0aGUgVVJMLgogICAgICAgICMgRm9yIGV4YW1wbGU6IG9wdGVtcGxhdGU6Ly8v
-YWJzb2x1dGUvcGF0aC90by90ZW1wbGF0ZQogICAgICAgIHVkLnRlbXBsYXRlID0gdWQudXJsLnNw
-bGl0KCI6Ly8iLCAxKVsxXS5zcGxpdCgiOyIpWzBdCiAgICAgICAgaWYgbm90IHVkLnRlbXBsYXRl
-OgogICAgICAgICAgICByYWlzZSBGZXRjaEVycm9yKCJNaXNzaW5nIHRlbXBsYXRlIHBhdGggaW4g
-b3B0ZW1wbGF0ZTovLyBVUkwiKQoKICAgICAgICAjIE9wdGlvbmFsIHF1ZXJ5IHBhcmFtZXRlcjog
-b3V0cHV0PTxmaWxlbmFtZT4KICAgICAgICB1ZC5vdXRwdXQgPSB1ZC5wYXJtLmdldCgib3V0cHV0
-Iikgb3Igb3MucGF0aC5iYXNlbmFtZSh1ZC50ZW1wbGF0ZSkgKyAiLnJlbmRlcmVkIgoKICAgICAg
-ICAjIFN0b3JlIGxvY2FsIGRlc3RpbmF0aW9uIHBhdGgKICAgICAgICB1ZC5sb2NhbGZpbGUgPSB1
-ZC5vdXRwdXQKCiAgICBkZWYgZG93bmxvYWQoc2VsZiwgdWQsIGQpOgogICAgICAgICIiIgogICAg
-ICAgIFJ1biBgb3AgaW5qZWN0YCB0byByZXNvbHZlIHNlY3JldHMgaW4gdGhlIHRlbXBsYXRlIGFu
-ZAogICAgICAgIHByb2R1Y2UgdGhlIGZvcm1hdHRlZCBvdXRwdXQgZmlsZS4KICAgICAgICAiIiIK
-ICAgICAgICB0ZW1wbGF0ZV9wYXRoID0gIiIKICAgICAgICBpZiBub3Qgb3MucGF0aC5leGlzdHMo
-dWQudGVtcGxhdGUpOgogICAgICAgICAgICBmaWxlc3BhdGggPSBkLmdldFZhcigiRklMRVNQQVRI
-IikKICAgICAgICAgICAgZm9yIGxvY2F0aW9uIGluIGZpbHRlcihOb25lLCBbUGF0aChwKSBmb3Ig
-cCBpbiBmaWxlc3BhdGguc3BsaXQoIjoiKV0pOgogICAgICAgICAgICAgICAgZm9yIGdsb2JfaGl0
-IGluIGxvY2F0aW9uLmdsb2IodWQudGVtcGxhdGUpOgogICAgICAgICAgICAgICAgICAgIGlmIGds
-b2JfaGl0LmV4aXN0cygpOgogICAgICAgICAgICAgICAgICAgICAgICB0ZW1wbGF0ZV9wYXRoID0g
-bG9jYXRpb24gLyB1ZC50ZW1wbGF0ZQogICAgICAgICAgICAgICAgICAgICAgICBiYi5ub3RlKGYi
-Rm91bmQgdGVtcGxhdGUgZmlsZSBhdCB7dGVtcGxhdGVfcGF0aH0iKQogICAgICAgICAgICAgICAg
-ICAgICAgICBicmVhawogICAgICAgICAgICBpZiBub3QgdGVtcGxhdGVfcGF0aDoKICAgICAgICAg
-ICAgICAgIHJhaXNlIEZldGNoRXJyb3IoZiJUZW1wbGF0ZSBmaWxlIG5vdCBmb3VuZDoge3VkLnRl
-bXBsYXRlfSIpCgogICAgICAgIGRsX2RpciA9IGQuZ2V0VmFyKCJETF9ESVIiKQogICAgICAgIGRl
-c3QgPSBvcy5wYXRoLmpvaW4oZGxfZGlyLCB1ZC5vdXRwdXQpCiAgICAgICAgb3MuZW52aXJvblsi
-T1BfU0VSVklDRV9BQ0NPVU5UX1RPS0VOIl0gPSBkLmdldFZhcigiT1BfU0VSVklDRV9BQ0NPVU5U
-X1RPS0VOIikKCiAgICAgICAgYmIubm90ZShmIkluamVjdGluZyAxUGFzc3dvcmQgdGVtcGxhdGU6
-IHt1ZC50ZW1wbGF0ZX0gLT4ge2Rlc3R9IikKICAgICAgICBjbWQgPSBmIi91c3IvbG9jYWwvYmlu
-L29wIGluamVjdCAtZiAtaSB7dGVtcGxhdGVfcGF0aH0gLW8ge2Rlc3R9IgogICAgICAgIHJ1bmZl
-dGNoY21kKGNtZCwgZCkKCiAgICAgICAgaWYgbm90IG9zLnBhdGguZXhpc3RzKGRlc3QpOgogICAg
-ICAgICAgICByYWlzZSBGZXRjaEVycm9yKCJvcCBpbmplY3QgZGlkIG5vdCBwcm9kdWNlIG91dHB1
-dCBmaWxlIikKCiAgICAgICAgIyBUaGUgbG9jYWxmaWxlIGlzIHRoZSBmaWxlIEJpdEJha2Ugd2ls
-bCBjaGVja3N1bSBhbmQgc3RhZ2UuCiAgICAgICAgdWQubG9jYWxwYXRoID0gZGVzdAoKICAgIGRl
-ZiB1bnBhY2soc2VsZiwgdWQsIGRlc3RkaXIsIGQpOgogICAgICAgICIiIgogICAgICAgIFN0YW5k
-YXJkIGZldGNoZXIgQVBJOiBjb3B5IHRoZSBpbmplY3RlZCBmaWxlIGludG8gdGhlIHVucGFja2Vk
-IHNvdXJjZSBkaXIuCiAgICAgICAgIiIiCiAgICAgICAgYmIudXRpbHMuY29weWZpbGUodWQubG9j
-YWxwYXRoLCBvcy5wYXRoLmpvaW4oZGVzdGRpciwgdWQub3V0cHV0KSkKCiAgICBkZWYgY2hlY2tz
-dGF0dXMoc2VsZiwgZmV0Y2gsIHVybGRhdGEsIGQpOgogICAgICAgIHJldHVybiBUcnVlCg==
-
---ekQHwCdCGpFJswlKo8WR--
 
