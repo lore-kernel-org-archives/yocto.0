@@ -1,109 +1,75 @@
-Return-Path: <emailaddress.ashish@gmail.com>
+Return-Path: <pokybuild@yoctoproject.org>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id E8E2ACAC5A7
-	for <webhook@archiver.kernel.org>; Thu, 18 Sep 2025 13:47:33 +0000 (UTC)
-Received: from mail-pj1-f52.google.com (mail-pj1-f52.google.com [209.85.216.52])
- by mx.groups.io with SMTP id smtpd.web10.14611.1758203247424150394
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 70393CAC592
+	for <webhook@archiver.kernel.org>; Fri, 19 Sep 2025 17:42:10 +0000 (UTC)
+Received: from a27-193.smtp-out.us-west-2.amazonses.com (a27-193.smtp-out.us-west-2.amazonses.com [54.240.27.193])
+ by mx.groups.io with SMTP id smtpd.web11.2629.1758303723898548240
  for <yocto@lists.yoctoproject.org>;
- Thu, 18 Sep 2025 06:47:27 -0700
+ Fri, 19 Sep 2025 10:42:04 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20230601 header.b=EJEY1Q8m;
- spf=pass (domain: gmail.com, ip: 209.85.216.52, mailfrom: emailaddress.ashish@gmail.com)
-Received: by mail-pj1-f52.google.com with SMTP id 98e67ed59e1d1-32e74ae0306so1651601a91.1
-        for <yocto@lists.yoctoproject.org>; Thu, 18 Sep 2025 06:47:27 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1758203247; x=1758808047; darn=lists.yoctoproject.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=16nM0t+oDYXVXblvFndiQ8aHpKHqCPl6eKfXDofg+lE=;
-        b=EJEY1Q8mfIxEjfTX+kT4/pLKa33x1k9LZykYvj56Ezy5xB1+oTj0ZkgsuCKUmG65ky
-         acuLZT/vI5nEyc6BglJYZAmDVwU0d4D5o9PkuBsx4bDiZoiGvHywGkAIBGC8/+yfw2x7
-         BophFK23HswnXryYq2c9+793LOcrej9orwWWO7krpjVxpvy/+XqnUwlsBM+HQCgR++oU
-         KBx8kImeLkc5WLO7XUobdDFNKFFQKOzPFW7sYStta2B3WTSMnFDIYmgthVOnTFLIGS8E
-         JMBPEaUjix7i+w3DWsTUKueN2gqOqXYok7RkE6WHeEAh8AT7UNhl6YYT7Ofrub4ZKqlj
-         Qf6w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1758203247; x=1758808047;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=16nM0t+oDYXVXblvFndiQ8aHpKHqCPl6eKfXDofg+lE=;
-        b=PKdB8pOfn5X0mxrHDTiZRupohQDD19sK09zc4rBPkMVKiPtTJLlEyelqxhe7iFgi79
-         jqqCOlqzl0fLACEaj/67LOpIFqOH+gi1X08wDDTRdEuWXQ5zT6suWNHFXpXFzvYwXIB2
-         2MXJu7m/3DQvFsr61VSLGLc2kplMgS71/K+awMHXtsfNskoCcNZItMm1huf+d3LMnJsw
-         n2mFhvdjQhqLBH6f70uKk8Nm7Q9jXri0bB+4hu7pN5QMBMGdpO/K6eL57bhpBZ+2vr18
-         GTUB0ttnZq6yAyOaxUz4bf7AC96NetGN/XzRWZpV2kVvRgEEYg5g4I7owoO6os20Jat9
-         qemQ==
-X-Forwarded-Encrypted: i=1; AJvYcCUfJ/Wihy/+Ff4Nv0MOqJd9Yj2NKHwSC0dGrikeTaGJTG/ysP4I7YOAlvZG1N3adNr8yy6Zhw==@lists.yoctoproject.org
-X-Gm-Message-State: AOJu0Yy8/65wJy1uIBrSbC/kCzM5DwP+2tTpx601ZK08dAP+eZ/KyIK7
-	2TQkem5QzYiPUEyCBsG9ophA0C/55WQdhioWtsRqdpOcoqukpt82nUyF
-X-Gm-Gg: ASbGncvDQJ98qc5T9jW28AVWriFE/lJTrRLK3WpdhfBp1nybkyO4kRgo0bUyExCJMyr
-	0/zUFq3rIMzS1uIIrSuE3fGC2QR8xoIHIQwPBc5NQB5j096azAZM3GOqaehzFv85o/mNMkqOqOF
-	pdq4OJI35fWyCeVTPbeRKOdoVTQ8ygGUwHW2ZBD3GLaN/5Az0KJX7CUQBVLzN1+G1fmokIpRk8/
-	HY6qyCVp4mRqf+W0sOk0Ys3WSnYcmQ5t3CAiidH7rKqdWDsOkGrqvCWr5kNmjYju/MZ8VMPtrLQ
-	mbExQK9+iH26nRBTsYZW0SjvyG0Fp16PG1YsW96HgsybmbQXkyl2TCJ5C9FL7vs6S+KUKEnrJFZ
-	Z48LfbM8NjkRWC8ar3Lxh
-X-Google-Smtp-Source: AGHT+IEXtUwOpMheaVE9Sq7GXcN8VJWzjnTdOlaVIg5vQ0JFsjB5xtz8i1wc+Jbh90tNIBeai1CQkw==
-X-Received: by 2002:a17:90b:2cd0:b0:32e:7277:9a81 with SMTP id 98e67ed59e1d1-3305c5d42f6mr4331097a91.4.1758203246588;
-        Thu, 18 Sep 2025 06:47:26 -0700 (PDT)
-Received: from ashishkumar.. ([2401:4900:1f27:b34:d313:75f4:7791:1cf1])
-        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-32ea0fb679asm4267178a91.2.2025.09.18.06.47.24
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 18 Sep 2025 06:47:26 -0700 (PDT)
-From: AshishKumar Mishra <emailaddress.ashish@gmail.com>
-X-Google-Original-From: AshishKumar Mishra
-To: openembedded-core@lists.openembedded.org,
-	yocto@lists.yoctoproject.org
-Cc: Qi.Chen@windriver.com,
-	AshishKumar Mishra <emailaddress.ashish@gmail.com>,
-	Philip Lorenz <philip.lorenz@bmw.de>,
-	Mathieu Dubois-Briand <mathieu.dubois-briand@bootlin.com>,
-	Richard Purdie <richard.purdie@linuxfoundation.org>
-Subject: [PATCH] systemd: backport fix for handle USE_NLS from master
-Date: Thu, 18 Sep 2025 19:17:09 +0530
-Message-ID: <20250918134710.1170816-1-emailaddress.ashish@gmail.com>
-X-Mailer: git-send-email 2.43.0
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+ dkim=pass header.i=@yoctoproject.org header.s=j46ser6a2yusdzubpv7m7ewqgesde2ie header.b=VBSVtsnC;
+ dkim=pass header.i=@amazonses.com header.s=gdwg2y3kokkkj5a55z2ilkup5wp5hhxx header.b=hWtR9ENz;
+ spf=pass (domain: us-west-2.amazonses.com, ip: 54.240.27.193, mailfrom: 0101019963119e49-b80291dd-c154-4031-a123-aa81512780a8-000000@us-west-2.amazonses.com)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/simple;
+	s=j46ser6a2yusdzubpv7m7ewqgesde2ie; d=yoctoproject.org;
+	t=1758303723; h=To:Cc:Subject:Message-Id:Date:From;
+	bh=l56JG/h9N1rauWqvM3JCfG9VP4MRcwDx2EV7VuQPWBI=;
+	b=VBSVtsnCkcdIKOX8M6s9LfqoEFf+tsAPypxmCxcDPje7xbl/gbudSf22DVeBgFEd
+	Oo0UPgaESTb7A11VuXlsrNlcjKWsHGZoZ0fV5GF5EbjfEplJqlm8ZZHYSD21ntjsiZB
+	1O9yzz80GCMROEzVTFLHExXU3/LXNp/H34bNPf44=
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/simple;
+	s=gdwg2y3kokkkj5a55z2ilkup5wp5hhxx; d=amazonses.com; t=1758303723;
+	h=To:Cc:Subject:Message-Id:Date:From:Feedback-ID;
+	bh=l56JG/h9N1rauWqvM3JCfG9VP4MRcwDx2EV7VuQPWBI=;
+	b=hWtR9ENzTKa2wSJ+WCdrzT9OgD3eD4aSB/eQ8uS8p+KjmGFOHB4ZMifz3+t4sEyL
+	VG4kk/Od0UPe7+9jca3FRSQdFISI65fw0dYPEQ4Yf7M/E9OatspqJUe8G8FZ4ske02b
+	4riMzRY2onmKTsXIiZq/FIX5TH4QRc4RAP8Pfom0=
+To: yocto@lists.yoctoproject.org
+Cc: qa-build-notification@lists.yoctoproject.org
+Subject: QA notification for completed autobuilder build (yocto-4.0.30.rc1)
+Message-ID: <0101019963119e49-b80291dd-c154-4031-a123-aa81512780a8-000000@us-west-2.amazonses.com>
+Date: Fri, 19 Sep 2025 17:42:03 +0000
+From: Pokybuild User <pokybuild@yoctoproject.org>
+Feedback-ID: ::1.us-west-2.9np3MYPs3fEaOBysGKSlUD4KtcmPijcmS9Az2Hwf7iQ=:AmazonSES
+X-SES-Outgoing: 2025.09.19-54.240.27.193
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Thu, 18 Sep 2025 13:47:33 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/65858
+ <yocto@lists.yoctoproject.org>; Fri, 19 Sep 2025 17:42:10 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/65859
 
-From: AshishKumar Mishra <emailaddress.ashish@gmail.com>
 
-Do not build translations when NLS is disabled.
-(From OE-Core rev: 83795ef6c3fa12a863cd20b7ec1a2607606987b6)
+A build flagged for QA (yocto-4.0.30.rc1) was completed on the autobuilder and is available at:
 
-This change corresponds to upstream d848b454e64ffbd642590b4bbc378619e1547ad3
-from master .
-Since the systemd version are different between master & scarthgap
-applied the patch manually
 
-Signed-off-by: Philip Lorenz <philip.lorenz@bmw.de>
-Signed-off-by: Mathieu Dubois-Briand <mathieu.dubois-briand@bootlin.com>
-Signed-off-by: Richard Purdie <richard.purdie@linuxfoundation.org>
-Signed-off-by: AshishKumar Mishra <emailaddress.ashish@gmail.com>
----
- meta/recipes-core/systemd/systemd_255.21.bb | 1 +
- 1 file changed, 1 insertion(+)
+    https://valkyrie.yocto.io/pub/releases/yocto-4.0.30.rc1
 
-diff --git a/meta/recipes-core/systemd/systemd_255.21.bb b/meta/recipes-core/systemd/systemd_255.21.bb
-index e866f9921b..87e186bbfa 100644
---- a/meta/recipes-core/systemd/systemd_255.21.bb
-+++ b/meta/recipes-core/systemd/systemd_255.21.bb
-@@ -247,6 +247,7 @@ EXTRA_OEMESON += "-Dnobody-user=nobody \
-                   -Dmode=release \
-                   -Dsystem-alloc-uid-min=101 \
-                   -Dsystem-uid-max=999 \
-+                  -Dtranslations=${@'false' if d.getVar('USE_NLS') == 'no' else 'true'} \
-                   -Dsystem-alloc-gid-min=101 \
-                   -Dsystem-gid-max=999 \
-                   ${@bb.utils.contains('DISTRO_FEATURES', 'zeroconf', '-Ddefault-mdns=no -Ddefault-llmnr=no', '', d)} \
--- 
-2.43.0
 
+Build URL: https://autobuilder.yoctoproject.org/valkyrie/#/builders/29/builds/2408
+
+Build hash information: 
+
+bitbake: 8e2d1f8de055549b2101614d85454fcd1d0f94b2
+meta-agl: 8ea88240e6ff89b006da04923171736fa07bb84e
+meta-arm: 10c27f061b22af78e17a23cf540b69501afc7160
+meta-aws: 66cc5b4b07a1d4aaab5eea0fbfe1e311ec674fbe
+meta-clang: 26de1c560ef3caf3cf641cd54ed0b7cbdc219ed9
+meta-gplv2: d2f8b5cdb285b72a4ed93450f6703ca27aa42e8a
+meta-intel: 82eb2406e04a89d6ed0650a99ba13224e43e4f0d
+meta-mingw: 87c22abb1f11be430caf4372e6b833dc7d77564e
+meta-openembedded: 5c138125018fef4b240e62b664a809d19f4b26a5
+meta-virtualization: 5429fc0f5c2ebd7187e54913220f579417fcbaed
+oecore: d381eeb5e70bd0ce9e78032c909e4a23564f4dd7
+poky: 51dc9c464de0703bfbc6f1ee71ac9bea20933a45
+
+
+
+This is an automated message from the Yocto Project Autobuilder
+Git: git://git.yoctoproject.org/yocto-autobuilder2
+Email: richard.purdie@linuxfoundation.org
+
+
+ 
 
