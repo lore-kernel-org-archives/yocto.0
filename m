@@ -1,122 +1,112 @@
-Return-Path: <steve@sakoman.com>
+Return-Path: <chuck@wolber.net>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 8D144CAC5A7
-	for <webhook@archiver.kernel.org>; Sat, 20 Sep 2025 13:27:33 +0000 (UTC)
-Received: from mail-yw1-f179.google.com (mail-yw1-f179.google.com [209.85.128.179])
- by mx.groups.io with SMTP id smtpd.web11.9740.1758374848942070421
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 324C6CAC5A7
+	for <webhook@archiver.kernel.org>; Sun, 21 Sep 2025 21:22:34 +0000 (UTC)
+Received: from fhigh-a6-smtp.messagingengine.com (fhigh-a6-smtp.messagingengine.com [103.168.172.157])
+ by mx.groups.io with SMTP id smtpd.web11.37509.1758489753666176631
  for <yocto@lists.yoctoproject.org>;
- Sat, 20 Sep 2025 06:27:29 -0700
+ Sun, 21 Sep 2025 14:22:33 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@sakoman-com.20230601.gappssmtp.com header.s=20230601 header.b=KGehKXEa;
- spf=softfail (domain: sakoman.com, ip: 209.85.128.179, mailfrom: steve@sakoman.com)
-Received: by mail-yw1-f179.google.com with SMTP id 00721157ae682-71d60150590so20218857b3.0
-        for <yocto@lists.yoctoproject.org>; Sat, 20 Sep 2025 06:27:28 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=sakoman-com.20230601.gappssmtp.com; s=20230601; t=1758374848; x=1758979648; darn=lists.yoctoproject.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=aLnrA2yB6uPkwXM/E+4Sz+JXO4AAf3zzXeReKKNT1Gg=;
-        b=KGehKXEaihK9GykInokZHnsA9e/07Njct8/oxmzzHHWQ4+E/4WIvpuM+rmMm0NrylH
-         jVPpDgTzXo+uU+za+9/Tzd8ViJXq25jYidTmAZZTxWVpMNgseh1TFaZQVeo7McOlpsvG
-         33zfq2zLS5CL35i586cMJO5zKt6K4H12AbLQDinJ0sEpQ7Ec42hLJ4htzW71XuAF4/ak
-         ZlJqintv0Kw7tCpuV5WsFAofJw8WtwDs8Q8A+bDf3M7SqzR3YeC/JBaZA1uPQYepmgAe
-         N3+9D2gyu3Ut6bdGhSHBipv/vvzSDOZKrYdnDV9PVPCzccMmH0qmwklkwba5A70++FAG
-         ASRA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1758374848; x=1758979648;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=aLnrA2yB6uPkwXM/E+4Sz+JXO4AAf3zzXeReKKNT1Gg=;
-        b=n57xSXJg9HmrMboWAdNBIZaKzPpabpo57PcxCIP4JJ8w1Huo4+UdaNPRrcETe4bzOJ
-         EL5PUsNdXHAsVGiXe61Nnd8mQEQMTie+SeJfBgawRzD3haV4lgdbtzxJw0V4YbPTPPZO
-         JyTwxYNr/s/zxem9jik9IbBOm1I+cGKcXJaXImNfvl3C9jQGB4AhncKa7Tzzcz2exYsj
-         qNiGfHVHc0Fpm3D8TmOb8sB5D2Q+K+iLeBMN+8SYd++B7EL5Fr+caTn2Vr3DUsc0gr88
-         RP5oRO9+TGukPUPW2aCjPyLVl0wfFrWp6J29viFdM54PJlOY3HjqXoTiqdaNbtSeTd66
-         mYpg==
-X-Gm-Message-State: AOJu0YzlWs7QDjyF/ewlh44+MSHpA4B0Kv0OZna1EpXqrK34+CPcNJZU
-	zeM746fpaUtEPAWq4CFc2GRdCoacsTXzmfRmK2DC+apGACUiiH5vVOykFEbuByCJWvkO7wDPJhC
-	BINOsBJWPhuS4jCSp+pAK5KuwGe7n0pQg6UjEi9bgZWIExoh77IcQ
-X-Gm-Gg: ASbGncuOyL4P+Kpbc098Fr1IT2jbYkPiO20AaRGyFDwKJW6gh2zW+ulq5pXau55UfZF
-	EP4OWNXDbfivsw7iKYI6fKFu9VA9gx0zvHpWyktcyhwdpkZnG7PptsqMuQ1FL0c6wQDjTq7iPUw
-	+2sesxqN5JJ+wbtpKKxNNZWAGtc8Rn7B9mybj5NcZs553q79YfK16ls6DU2lkKWuIuvkfzTtj48
-	sFfS9Eynp2zZjbekfrGYZhOBNLeAztW/3rkVyA=
-X-Google-Smtp-Source: AGHT+IG3aXN0RUypuT6kjH2nJBqsnCRWS0Sj1s4Idu+JHFuLOya7bu4Pdt9U6HdQXJ4ja1jWchdiQ/T9R9xZaJuUyPo=
-X-Received: by 2002:a81:b048:0:b0:702:52af:7168 with SMTP id
- 00721157ae682-73d32a338e5mr47189647b3.2.1758374847925; Sat, 20 Sep 2025
- 06:27:27 -0700 (PDT)
-MIME-Version: 1.0
-References: <0101019964d4d762-b79f194a-8ed1-4579-9c27-90439b076fb2-000000@us-west-2.amazonses.com>
-In-Reply-To: <0101019964d4d762-b79f194a-8ed1-4579-9c27-90439b076fb2-000000@us-west-2.amazonses.com>
-From: Steve Sakoman <steve@sakoman.com>
-Date: Sat, 20 Sep 2025 06:27:17 -0700
-X-Gm-Features: AS18NWDB9xqz55CxmdCwnaT19UHMxRuycjCKWJYXhtB2WqsavEh3AlwWnL8_p_w
-Message-ID: <CAOSpxdb4hsyOtkNxj5dOzgQ9w+Ar-zH7yk-B8YWNeGNtm+GOMw@mail.gmail.com>
-Subject: Re: [yocto] QA notification for completed autobuilder build (yocto-4.0.30.rc2)
-To: yocto@lists.yoctoproject.org, pokybuild@yoctoproject.org
-Cc: qa-build-notification@lists.yoctoproject.org
-Content-Type: text/plain; charset="UTF-8"
+ dkim=pass header.i=@wolber.net header.s=fm3 header.b=puH0pTEh;
+ dkim=pass header.i=@messagingengine.com header.s=fm1 header.b=c5e2cgAB;
+ spf=pass (domain: wolber.net, ip: 103.168.172.157, mailfrom: chuck@wolber.net)
+Received: from phl-compute-02.internal (phl-compute-02.internal [10.202.2.42])
+	by mailfhigh.phl.internal (Postfix) with ESMTP id F1960140009C;
+	Sun, 21 Sep 2025 17:22:32 -0400 (EDT)
+Received: from phl-imap-03 ([10.202.2.93])
+  by phl-compute-02.internal (MEProxy); Sun, 21 Sep 2025 17:22:32 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=wolber.net; h=cc
+	:content-transfer-encoding:content-type:content-type:date:date
+	:from:from:in-reply-to:in-reply-to:message-id:mime-version
+	:references:reply-to:subject:subject:to:to; s=fm3; t=1758489752;
+	 x=1758576152; bh=A0UOakxzFtxlK1V9ROaJIf4T7CU5tNwANywgdZQycGs=; b=
+	puH0pTEhKgJay9mXFDsdMknkIZ/NG7SAl1uk+2uSob2c9ly1jyjjrvpkRDRKrbNi
+	xiVyfzy2G0ANttqU/Z4KEol64eoCJ21jlYp0xCGrzb3pTMGskpjQS2JFbEEy9BS/
+	E4n1Ji2YO10u7Q2U8YHaEAkpO5DEKI6jSOfB8dguAhpt5aaFn/EZffpj9ecWT7jz
+	O2YsvfIVyS8qYi8Qy1siyebrhr6hJ7rtXQh/O+UnsWCJ9pdMxypuBkEXMxW02+78
+	1rzqR3hjvzF9GZCcOKS6SzfqfhsDE/yeByXWosH5g6gEP2/Xk8ZqwtoqLLo17/Ut
+	i/6nVH5LOqAHkte88McvCQ==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+	messagingengine.com; h=cc:content-transfer-encoding:content-type
+	:content-type:date:date:feedback-id:feedback-id:from:from
+	:in-reply-to:in-reply-to:message-id:mime-version:references
+	:reply-to:subject:subject:to:to:x-me-proxy:x-me-sender
+	:x-me-sender:x-sasl-enc; s=fm1; t=1758489752; x=1758576152; bh=A
+	0UOakxzFtxlK1V9ROaJIf4T7CU5tNwANywgdZQycGs=; b=c5e2cgABmGodOUufO
+	rZ334/UcXqNw/TNSfKDFyFjHq+Kib8cGsx8fNd0lyxQNBlaQtxQhmH7dmNoRPve0
+	I4IzSlEeO+kZ6A8RUAyR8f2L13WERE7vseaf81oMdiWW6Or9OjZwx+bWs2E42mN7
+	BttNvW7Xshm33UHswRXMbeCgSpSjQuWQSVb+ZCnJL/4OrVpVyGmfGPSArhjjLhRX
+	VHGviwtsXXbgOqyYFuxRN/fHGSJ2HGsHMa4Ix4psTfR14dTN+6d5eTNpd4aAxXRK
+	d/pAg9GWrhvetCUOyi+MmcTXsohqfGIHORWjRIVrGXJeBSotY0iEwn/650IO8tH+
+	Nr+3A==
+X-ME-Sender: <xms:mGzQaDxpxXATx1D3GJBfEasjhEBamEi_5r0RQ_cUpCYh8XIrzSix-w>
+    <xme:mGzQaLTS37PaiNcwWCjtKlCJ0kn0oUjJcoBlExazZYkWJas_phkfoLJBJHp7IQl-e
+    qvW3wZPPQd-pGKlSH4>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeeffedrtdeggdehiedtgecutefuodetggdotefrod
+    ftvfcurfhrohhfihhlvgemucfhrghsthforghilhdpuffrtefokffrpgfnqfghnecuuegr
+    ihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenucfjug
+    hrpefoggfgtgffkffuhffvofhfjgesthhqredtredtjeenucfhrhhomhepfdevhhhutghk
+    ucghohhlsggvrhdfuceotghhuhgtkhesfiholhgsvghrrdhnvghtqeenucggtffrrghtth
+    gvrhhnpeehvedtvedutddtjeejgedukeeuueetkedutdehjefgleehgfdtffeijeffffeu
+    veenucffohhmrghinhephihotghtohhprhhojhgvtghtrdhorhhgnecuvehluhhsthgvrh
+    fuihiivgeptdenucfrrghrrghmpehmrghilhhfrhhomheptghhuhgtkhesfiholhgsvghr
+    rdhnvghtpdhnsggprhgtphhtthhopeefpdhmohguvgepshhmthhpohhuthdprhgtphhtth
+    hopegrlhgvgidrkhgrnhgrvhhinhesghhmrghilhdrtghomhdprhgtphhtthhopeihohgt
+    thhosehlihhsthhsrdihohgtthhophhrohhjvggtthdrohhrghdprhgtphhtthhopehsvg
+    hthhdrrhgrhihmohhnugesmhgrthhrihigshhprggtvgdrtghomh
+X-ME-Proxy: <xmx:mGzQaJ6nWos-vs5-ENxQibasmAv1IDpRZXUiy_6Z8RLNkeMUZg7a9A>
+    <xmx:mGzQaNzNOryf5ZSMs2Wa_VV9qjleXL9ZFKKRtD_F6r_tkp7Ns4bMPg>
+    <xmx:mGzQaNbPXpOmPOwm9XG-OhvYTBxhRcrBY7TIkXzi56zxrYYUGjCqQw>
+    <xmx:mGzQaPTLM4m0ig5e73bjJJ3uQdZeUMw1TRuFhczE75mOS4c89KVEsw>
+    <xmx:mGzQaL0a4iJp7XoWEtbSLiNIO_PmpbIdUUQqTXXS7AC5jAa8Bm0xedh_>
+Feedback-ID: i5cf64821:Fastmail
+Received: by mailuser.phl.internal (Postfix, from userid 501)
+	id 8E8E518E0069; Sun, 21 Sep 2025 17:22:32 -0400 (EDT)
+X-Mailer: MessagingEngine.com Webmail Interface
+Mime-Version: 1.0
 Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=UTF-8
+Date: Sun, 21 Sep 2025 21:22:31 +0000
+Message-Id: <DCYSLBD104MG.18TCJAXRPR4ZS@wolber.net>
+Subject: Re: [yocto] Documentation around adding custom fetchers to layer
+From: "Chuck Wolber" <chuck@wolber.net>
+To: <yocto@lists.yoctoproject.org>, <seth.raymond@matrixspace.com>,
+ "Alexander Kanavin" <alex.kanavin@gmail.com>
+X-Mailer: aerc 0.21.0
+References: <CANNYZj-Sk_VEMa8--q-s3G6KP1zih5KqZC4uv5WJzAd7sQrzzQ@mail.gmail.com> <27586.1758120354644994131@lists.yoctoproject.org>
+In-Reply-To: <27586.1758120354644994131@lists.yoctoproject.org>
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Sat, 20 Sep 2025 13:27:33 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/65862
+ <yocto@lists.yoctoproject.org>; Sun, 21 Sep 2025 21:22:34 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/65863
 
-This was an "all green" build, so OK to proceed with QA.
+On Wed Sep 17, 2025 at 2:53 PM UTC, seth.raymond via lists.yoctoproject.org=
+ wrote:
+>
+> Sure, I can share the source. It grabs secrets from our password manager
+> (1Password) and injects them into the build system. We currently have two=
+ use
+> cases for this:
 
-Steve
+It is probably worth noting that the 1Password v8 CLI and SDK both require =
+a
+round trip to the cloud even if you run the desktop 1P client locally (whic=
+h
+maintains a local copy of your vaults). The 1P CLI and SDK do _some_ cachin=
+g,
+but they still require a round trip for every call. My testing has shown th=
+at
+this round-trip adds about a second when taking full advantage of what they
+cache locally.
 
-On Fri, Sep 19, 2025 at 6:54=E2=80=AFPM Pokybuild User via
-lists.yoctoproject.org
-<pokybuild=3Dyoctoproject.org@lists.yoctoproject.org> wrote:
->
->
-> A build flagged for QA (yocto-4.0.30.rc2) was completed on the autobuilde=
-r and is available at:
->
->
->     https://valkyrie.yocto.io/pub/releases/yocto-4.0.30.rc2
->
->
-> Build URL: https://autobuilder.yoctoproject.org/valkyrie/#/builders/29/bu=
-ilds/2410
->
-> Build hash information:
->
-> bitbake: 8e2d1f8de055549b2101614d85454fcd1d0f94b2
-> meta-agl: 8ea88240e6ff89b006da04923171736fa07bb84e
-> meta-arm: 10c27f061b22af78e17a23cf540b69501afc7160
-> meta-aws: 66cc5b4b07a1d4aaab5eea0fbfe1e311ec674fbe
-> meta-clang: 26de1c560ef3caf3cf641cd54ed0b7cbdc219ed9
-> meta-gplv2: d2f8b5cdb285b72a4ed93450f6703ca27aa42e8a
-> meta-intel: 82eb2406e04a89d6ed0650a99ba13224e43e4f0d
-> meta-mingw: 87c22abb1f11be430caf4372e6b833dc7d77564e
-> meta-openembedded: 5c138125018fef4b240e62b664a809d19f4b26a5
-> meta-virtualization: 5429fc0f5c2ebd7187e54913220f579417fcbaed
-> oecore: d381eeb5e70bd0ce9e78032c909e4a23564f4dd7
-> poky: 51dc9c464de0703bfbc6f1ee71ac9bea20933a45
->
->
->
-> This is an automated message from the Yocto Project Autobuilder
-> Git: git://git.yoctoproject.org/yocto-autobuilder2
-> Email: richard.purdie@linuxfoundation.org
->
->
->
->
-> -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
-> Links: You receive all messages sent to this group.
-> View/Reply Online (#65861): https://lists.yoctoproject.org/g/yocto/messag=
-e/65861
-> Mute This Topic: https://lists.yoctoproject.org/mt/115338849/3620601
-> Group Owner: yocto+owner@lists.yoctoproject.org
-> Unsubscribe: https://lists.yoctoproject.org/g/yocto/unsub [steve@sakoman.=
-com]
-> -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
->
+For a tool meant to help with automation, this falls into the "egregious"
+category of oversights as far as I am concerned. After 12 years of 1P use, =
+I am
+actively exploring other options.
+
+..Ch:W..
+
 
