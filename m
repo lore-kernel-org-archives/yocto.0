@@ -1,157 +1,162 @@
-Return-Path: <rustyhowell@gmail.com>
+Return-Path: <sandeep.gundlupet-raju@amd.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id BA53CCCA470
-	for <webhook@archiver.kernel.org>; Wed,  1 Oct 2025 16:09:26 +0000 (UTC)
-Received: from mail-oa1-f47.google.com (mail-oa1-f47.google.com [209.85.160.47])
- by mx.groups.io with SMTP id smtpd.web11.1105.1759334963610271444
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 28D29CCA470
+	for <webhook@archiver.kernel.org>; Wed,  1 Oct 2025 21:59:04 +0000 (UTC)
+Received: from DM5PR21CU001.outbound.protection.outlook.com (DM5PR21CU001.outbound.protection.outlook.com [52.101.62.16])
+ by mx.groups.io with SMTP id smtpd.web11.612.1759355939979746968
  for <yocto@lists.yoctoproject.org>;
- Wed, 01 Oct 2025 09:09:23 -0700
+ Wed, 01 Oct 2025 14:59:00 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20230601 header.b=G8iIRKxr;
- spf=pass (domain: gmail.com, ip: 209.85.160.47, mailfrom: rustyhowell@gmail.com)
-Received: by mail-oa1-f47.google.com with SMTP id 586e51a60fabf-378aa12c13dso46652fac.2
-        for <yocto@lists.yoctoproject.org>; Wed, 01 Oct 2025 09:09:23 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1759334963; x=1759939763; darn=lists.yoctoproject.org;
-        h=to:subject:message-id:date:from:mime-version:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=uEL89D2cVm8d+RHm8hmT3e+L9Rg9X9+gaQfn/r4YgVM=;
-        b=G8iIRKxr2S4EWL+c80P4LUnoEruzOgvBwgS93/6KA5Duc/mw3/dxBkjY+rAUOqSgR5
-         wF1yRfvyDGqppm9u+hQN1xFTQtpK08u6ySE3oXwaVMkA/LIBY2gdXf+LbAC8dZjMpY8s
-         ZTqcdzRLR04pJdLWaWqHkxBM0CeWw6QtrWdC8ox82Wf7aBSJ/sslR8AnR5Zr+8d5Wpac
-         Mc8IHBa6GdQov1cgHj9ilJA0ax9qUcY3KwL2CwIPV4EJj70lJ2oc9lE7SLqWyYBF2kF2
-         qk5C/px1VX/GwRiVsVOU8KcN8F24Ez0tdJjsNDcHpycLxHuZD3kVudmJ2kwiuflLGpMm
-         StgA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1759334963; x=1759939763;
-        h=to:subject:message-id:date:from:mime-version:x-gm-message-state
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=uEL89D2cVm8d+RHm8hmT3e+L9Rg9X9+gaQfn/r4YgVM=;
-        b=Oej1Hykx83WwgPPvKKd+8EWE5yvFv2ygNnersaUm3ymErrv3QXLiwNnur3rXE80hD1
-         EWB1ZLCqjNdvoEUjY7h536irEYYx0psEjYDRYfS8m3/Cgs58gNWAbYKDqrSvhGNooKsM
-         Z9mI0ChCuda2aRL/GwAGKOG13AVDMANCX0P4FajrRH+KDmXf2tVqHW2P4f+9MF+YKCV+
-         u4GR7kPjy3B2pYUbgtBpop+itFnM7CS1AWcSGKUjXy1vD6jePqm4pTHvmcPEdEyAtb3M
-         a2eUSYG59Rev9DKUBHzt8SMNZL3W1xuWnM/yEdoHbTGv9/3cHdjF0kq2Yv6jjjveJIzr
-         NXQA==
-X-Gm-Message-State: AOJu0YyToOpPGGAJ4/QReIyXE/0tkoU7wA7cbWIb0aMZtG16l0huuK7i
-	iNnfGjp20f7yxW6jmm5nsdru5CpbqqiYyxI5uvonDd6E1/Ac9RsowVmufw5jcC8uZTSagnXC9ir
-	+6IuMqbItQB4xLxSMBYpV5IPnWPJ57URnF3Zc0c0=
-X-Gm-Gg: ASbGncuaSvXr2MrrgC14FG1WBfGUi+w1adoMa6KrxzL8v/lasJGugsU6WU+L4TRyngg
-	bNf8NjnLh3c0eGWotA3tTaBuv+rrWB+kg0QkUL1Ts3nbnI+kQvd77Px5Vav1O8CnLu5u5LdkDbv
-	ihOrONCwlZMnemYt3uFxhTOSjNaMF+LIadEGjlO4THvIGEswOL16yA7yo1nW+e019crk+55d3Mp
-	6R19R2DEkAZtCCPRZOOnbHHcQhvPSmW57BrFpeDQfs=
-X-Google-Smtp-Source: AGHT+IFz7bBubAf3pMF2yNpcpxBaC578s1MB5FvvsYYn9li5Xsj1GNKknRK55J1WndYAmLavwUDWRQoDbWBqM6yTk4U=
-X-Received: by 2002:a05:6870:a088:b0:348:7139:66b8 with SMTP id
- 586e51a60fabf-39bb12c09a1mr2121289fac.38.1759334962456; Wed, 01 Oct 2025
- 09:09:22 -0700 (PDT)
+ dkim=pass header.i=@amd.com header.s=selector1 header.b=wNGE2wHD;
+ spf=permerror, err=parse error for token &{10 18 %{i}._ip.%{h}._ehlo.%{d}._spf.vali.email}: invalid domain name (domain: amd.com, ip: 52.101.62.16, mailfrom: sandeep.gundlupet-raju@amd.com)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=ia+HWvJ4z8VGuvwEQnB1Oyat9ZLkuAkfaEyaCzqejGU2ArGnKAW+wFMcxhri9wli1X8uN87OpzdJofsUNJDHc6ZRJ7DlTlsYx2aNPPl4zid0tFi8T/sj4QrS3IrheAZrzK9EZMiEKWx6QG/9KPzKVoFnt/V8b41VoaNr/TIQxUC9SnXQQlWp7vLxzQK3m4HgjCQXaI6wbHqzn5fnbWjSZp+9GZhdYlrYeYXW2KjdTXMaP8d94kzhO8UxNn+BAP0/eKjh68f0zlJ1c8dMAX3vSRpc4Snw+h0u6LHJJOORB9OAaDS2vMj9NMIru2xKLCOn3N7S1Dcc5VX3Hsz67z9MPg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=xkbsfA4DyFJqYW17ocMGFW2SQ1Ru7INDembsda0Vd1A=;
+ b=mxOn9+MIVcBbEBKaUobNyZQqQ/Edo6YVr6k8lfNqnP8u7+MikIxU7mEH+M3lAw/9J3Vq1cOCIgiC1Cx0Rsy5C51pf42ufRmcsxJF7oSKobrHZtt0Ztf5Cc8ucZXVwdIWSlaJrFHlUYiSUiXO4gqqinJVMzc5Y3IFhukGlhmLk/Zd/TcLgiefY1A3gdIUQU4nk/sgmL3lVQNEBZ30QiG1k0dorv+5/RL1cYe33WBtyq5iSQEuwLXiwBf0mFK48Qjw3P1cWyEkboTc5N6Tr91cFBLBB6u2b1ENyGpL4bagQZcFkQ/D+eukhRCwX4NBygFXwpFwtiSKGU0bk3chILpSzQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
+ header.d=amd.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=xkbsfA4DyFJqYW17ocMGFW2SQ1Ru7INDembsda0Vd1A=;
+ b=wNGE2wHDL6UqxSgMDRdZKn92MJJWmbhtOdJL5ClmwetENfP/lZudrGN2/temoRHSwGIQ1SdIIivVxw65jPheGBdFNLGnEZEXIx5SrhxTsUVbueVpwh/V+Ajstqrf9hqQzrHcuq0Lxot4y/j5WQMgAbPDwCdOWUT3FiSXL5CIl8Y=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=amd.com;
+Received: from PH7PR12MB8778.namprd12.prod.outlook.com (2603:10b6:510:26b::16)
+ by PH0PR12MB7905.namprd12.prod.outlook.com (2603:10b6:510:28b::21) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9160.18; Wed, 1 Oct
+ 2025 21:58:57 +0000
+Received: from PH7PR12MB8778.namprd12.prod.outlook.com
+ ([fe80::936f:22dd:d75c:188c]) by PH7PR12MB8778.namprd12.prod.outlook.com
+ ([fe80::936f:22dd:d75c:188c%5]) with mapi id 15.20.9160.017; Wed, 1 Oct 2025
+ 21:58:57 +0000
+Message-ID: <7d479171-ff95-4473-b420-b168dca2b7d8@amd.com>
+Date: Wed, 1 Oct 2025 15:58:54 -0600
+User-Agent: Mozilla Thunderbird
+Content-Language: en-US
+From: "Gundlupet Raju, Sandeep" <sandeep.gundlupet-raju@amd.com>
+To: yocto@lists.yoctoproject.org, JPEWhacker@gmail.com
+Subject: Run weston as custom user and non-root
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: CH2PR03CA0010.namprd03.prod.outlook.com
+ (2603:10b6:610:59::20) To PH7PR12MB8778.namprd12.prod.outlook.com
+ (2603:10b6:510:26b::16)
 MIME-Version: 1.0
-From: Rusty Howell <rustyhowell@gmail.com>
-Date: Wed, 1 Oct 2025 10:09:06 -0600
-X-Gm-Features: AS18NWAisLD3x8zL9U2pbSokGt-jQW9Gp8CkTgV1_wACvy_hJf5HUYRXU_AiGZ8
-Message-ID: <CAE+BM3mF4Gn8YdwbN_kYZYBngMBc36fpFhGZzUFYCgc2eSHrkQ@mail.gmail.com>
-Subject: Writing custom hardware tests
-To: "yocto@lists.yoctoproject.org" <yocto@lists.yoctoproject.org>
-Content-Type: multipart/alternative; boundary="0000000000007a6d1606401b1769"
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: PH7PR12MB8778:EE_|PH0PR12MB7905:EE_
+X-MS-Office365-Filtering-Correlation-Id: 2b707585-1d7c-4c08-cdef-08de0135b838
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;ARA:13230040|1800799024|366016|376014;
+X-Microsoft-Antispam-Message-Info: 
+	=?utf-8?B?bzdDYnI4cmpjUXlVc1ZXOEZVZ0d1T0tlUnErVjc4RHF6RUdhZ3F3WGdMQ0Fm?=
+ =?utf-8?B?enlOUy9aSzRqYUM3U3dyc0VyZUp6VFRJSXV4clkraG5sQ2pWUWhYRnFZbjQ2?=
+ =?utf-8?B?clFQZEZpSlpma1dzczRmcmNUczdLNFpDZFUyNU9lQnZhMnFZVFNxYUY4dVhj?=
+ =?utf-8?B?cUF3c1ZzQmpBKzBwa01yNWl4SWFraUIxaytDclB5YlN5TFFwazkzTnQ1bjhj?=
+ =?utf-8?B?VnJ6ZUM0LzhzNDZvU1NnUWRpU0k0R0MwNjc4VWVlV3hvK0Fha3p1QTlRYmJn?=
+ =?utf-8?B?djVNaVVHc1FvWTFLbmU3R1dNNDlYNDdtTENVVnJDQzRHMU4wK2ljSjhqcEtr?=
+ =?utf-8?B?ajZDeVJjWWs2YlU4aWhhZ2hieGdMeG93eU1ZVW5NbUV5WlJlaXFCcDhNM05q?=
+ =?utf-8?B?TTJUQVVScWQ1UFZoby9RanFDNkxIdktERDdVbnVROEY4MXNMbE05MFRqcVdF?=
+ =?utf-8?B?Z0J1bitydElJaVBuOHBWQnpvVkZiRzFlbEZoVDhSMHB5dVJGdjB4SkVPbFRz?=
+ =?utf-8?B?Ym1tTmFCbGhWNEpQM0ZiMGZOV2JteVoxQVRpYkVQUlJPMVltVHM4cjFHcjRo?=
+ =?utf-8?B?K3VVQnV0WGc1UnUrb3R1YnArdEt3Vlh3TzFUWjNWbzNCNzVNaG83L21uU0NW?=
+ =?utf-8?B?b3JySmJmQmpFUTZzd010ckFBNDlxd3FvT1hUUXhJenhUSXcyTERtNG1uS2NY?=
+ =?utf-8?B?eXNoU0l0azJvM2hsTG1BRWVKcU1TNGw1VU5RTUFGZXBaSjA0eDJmR3ZiY3FI?=
+ =?utf-8?B?VzU3bGZiS1ZXcm5TN1ZubEY1RTl3MDBGMGVOTEJ2NjkzTG1GMmZiVXJSVSto?=
+ =?utf-8?B?RmN2cW0vaHlMc2ZHSloyeTA4NTNRb2ZRNVZpTzZoaENBanBNVytQSjMxeFl6?=
+ =?utf-8?B?VVlvS1NJRUROWm5qdUFveUhRYWthZFV6TGJoNkVseVBDbTRzWTF1dHJwQSsz?=
+ =?utf-8?B?YjcwU2NDdlFKZHE4V1dPV0ViTTIyajFXYkp6N05IVjZnajExbDdMdU4xZkMz?=
+ =?utf-8?B?NzNsNFZuQmpHRlMxeGNueVFNZGV4MU15Mk1SOEVwNklDUTR4VC9LQVF5US9M?=
+ =?utf-8?B?YVBCZ1UwckpkajhtcW10UjJyR3BIMi9KMVUxSFUvQnRnV1ZkalRQOE51M0Nh?=
+ =?utf-8?B?M2tuV0ppS0tlcC9ianlhWTFLbFIrcEUwRTdrZDBOTjBIVXNwMjhnK3pHT2xm?=
+ =?utf-8?B?UEo4T0M1Tk1DRzhseWd4Rm9qNUQ2YXlCY0xBTFhXZU9MaXc2S0RYNzYzbjJu?=
+ =?utf-8?B?R1pBNU9ncy85NkVXaHpKcTVWZkdPa3RuSjd6VC9lRTVwREljZlpuNEdDUVZK?=
+ =?utf-8?B?a2VvcEtaeFZ6eUVZVzJVWGUrTk5SUG1NZjJuMkNBaFppYWRINFVwUmEzRUtW?=
+ =?utf-8?B?cU82ME9pT1dlY2NTRnFQWnNUWnl5N244eGNYVU5vNUErb0VEMkNuRmxVMmUr?=
+ =?utf-8?B?aFdSQ1B3aDA3cS9BQWw3aFU1ZVN2RUJYSk95NEY5c29ReXQrR1VVdXdmajh2?=
+ =?utf-8?B?bUJWWDJBNHBHWEFxRzRyVFBSaWJLNDNVN0JXTFJiSlEvd2g3azQxL2x2S0tQ?=
+ =?utf-8?B?V2llNy9wZmtrT0NGbU96UTNTVmpzeTdIbnVPZmZrZFdLM0piYlBQQjdhQnZY?=
+ =?utf-8?B?M2FVUlpQUk5qNldzSklmc3AwT3pER2p0d28rUnR6blZHK0hOdVhBSXFhcmV6?=
+ =?utf-8?B?cjVuNitvSnJacEc1dTdib1Y1dDJOWTBnZjIyQ3poSmM4cHJFS1ArU3htR0RT?=
+ =?utf-8?B?Rm9ESVJVbTZXSm1ISDFzelVzd0lzakdVbk8vMWZpTnY2L096cjBibkViZWJ5?=
+ =?utf-8?B?YzlEVHMzbzZoWS9rMklUU2F0RFlKd25yb1oyL09TTnBrZjhuOGE2UzdaMGxp?=
+ =?utf-8?B?bmJSd0lrR3daeHZ5MUUvMjloVWdWZ0p6TG5GOElmN2lOTHMxV2FLSmZHWlkz?=
+ =?utf-8?Q?f5XkCwj0iKNjY7aBaL3lNDJHIIxB7IMi?=
+X-Forefront-Antispam-Report: 
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PH7PR12MB8778.namprd12.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(1800799024)(366016)(376014);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: 
+	=?utf-8?B?Sjlkc2dTdmlJakVrNXd1Z20yb25jejVkQ2lUNUh1Y3YrTXF2bWdRMzhML3Fx?=
+ =?utf-8?B?WFlHL25Gc25pSXh5OEt0QTFTRWFOcVNwSlY3TDBrbXJqWG44OEh3TkQ3Nmhu?=
+ =?utf-8?B?UVZxOFFmNkJYdEprNHBpUXdJRERodGJhOFRkZHZKMExoTmx3ekRSa0QrL2RH?=
+ =?utf-8?B?VkpPM1BtaVZScnMvOWI5aW5mYUtiUDFoaklSbTQ5Z2xJRk1vVERHQm5PRWhT?=
+ =?utf-8?B?WUFDTFFKMFZlY0dSVFU2c21POFdZZTk1YkVrM1VrNkR0NWErL0xzQlpYSnNq?=
+ =?utf-8?B?cndoZ1FUaEhhZEZRbjJDL0NGZEtQWFhDbWgrTTFjWEV0NHVmTkprRzk4N1ov?=
+ =?utf-8?B?RGZ0THBFZU94dmVMd2lSZmdPb2tkb09Ianp0UTN1L0ZpaGY2KzdzUk5oT0py?=
+ =?utf-8?B?MGQ5SGZQTS8xNkxDU0ZNM2xRUHNyZ3dXK2s0N1Vncnc0T0NsNGpZekQrWmJ5?=
+ =?utf-8?B?ZjNyLzB4b3hoZDFlQUZQaE4zYzd6ZUtQSDltVkRDYWM0cHpldWl1WkpQVkdD?=
+ =?utf-8?B?Q2tqRTljRHk4Z21zWHMrZkZrakpucWhCckdFV1Q4VUZzSXRnY01LNE9XTEtR?=
+ =?utf-8?B?WWl2ZnZiY2c0SHdtSkh6WTI5TlBickVxM2VKZkprVzlWZDNKbGVEN2lNbHRT?=
+ =?utf-8?B?QlRBK2NrTTB4a0wyeEtQT0g1L2lNMEpObm9YSWxkcU5qUldRZ2JQb0ErNHN5?=
+ =?utf-8?B?UVVia2tRN1FKQkdkbkNsZEYzV0xyWEpldWRyZE5LY3AvZW9wbHRseTdpMlBX?=
+ =?utf-8?B?YkMzZXkyZm1VZXdvWEdDWWszMnBpQ0toYzdiajJnRENReVZoMEN0bWZ3U3Vw?=
+ =?utf-8?B?NmV0NStONVBaOHNpOUQ0SWxIbTRtV0RYRStQRW9vc20xMlhnVnJyaUFSWEdr?=
+ =?utf-8?B?NXZHMnRmUEh3RTkxQjhOT2I2cDFjY0xoWm9Mbnc0bTZrUmo1VzRmNUtOTzFp?=
+ =?utf-8?B?VjVMeGJiTFlFTitNdUt1ejdzbzRweE9uZzZ6TE5paCs1M2RUR05iKzQ1N0ZW?=
+ =?utf-8?B?akpTUXBDV3hjaTZzaGhvRUU1R1l3T2J3ems4QThzOXZUUkxyNk1Db0FYRXpi?=
+ =?utf-8?B?aW11OER2dUl0d2gzdmVZR1huQWRxU2tLN0JwTXYyV0NDSmE3NU5zendTYkJm?=
+ =?utf-8?B?endaeVJXY0JvOXNjZi9tdHhPVmVuNnN2VWphcEp0MFh2YjJ3azJNSkwrZWRJ?=
+ =?utf-8?B?ODFHM3JtVjFZVzJDOXhjK0ltRGdtdmRlMFBoUjc5YWQyanRLNHFYRTE3MUlh?=
+ =?utf-8?B?Um53ZFNIcHVnSGNDTmtOUDZLVlRGTU9vTS9EVXYxdEphTVQ1NGJwNkYrRGF5?=
+ =?utf-8?B?c2trOUNuRXloeXNJYVVwcHN1U0hYKzNlcUFUNGFpUXRSSkJyU0NadEdSMzhx?=
+ =?utf-8?B?OVpFZThnUm1PR05VOXg0NzBMbjJVdXFYanorK05ObkZ4eE90cDJ3WXh0V09H?=
+ =?utf-8?B?ZUlCVUtoSDFvZWVqeUxnTWF0eHFidFVZQnVjR2g1VkZxTldyNWN2MzViU2dR?=
+ =?utf-8?B?NkF2Wlh3WEJHeERDVjEvRUl0eHRha2VFMjlrZWhVdU5TOTB0Nit6U1FFT0tv?=
+ =?utf-8?B?a0s0MHEvVTNpSHJQNlNLbzc0TEhBYkMzUDJ1UFlTelY2emVwMTYxMTdWZUFD?=
+ =?utf-8?B?U2xsVTFoTTU5TTZCS0VYL3h3dEZXQXRSeW01NE5DQTgvejcxbDNkaXZycVo5?=
+ =?utf-8?B?M084a1k5MDM2VFg2ZUlMdWFLYm05bElFTUVtaHV0RnJTdk4xZFJMQVJxYTdk?=
+ =?utf-8?B?eVh4RkNGWUpYdDNYNVI3bXNJVVZROTUyTnZRNnNXYlBqNklTZUZjNFpKTURD?=
+ =?utf-8?B?S3pNR1Y3Mk5LU054STZLdGlQSnc0cU1BWks0TXlYK242NURZM2Vra0VROCsy?=
+ =?utf-8?B?dlVjYndwcHRRa0UweEMxdERNVkNMeER2QzBkQnV5cEVpUkNjY21GOFF4Y2o5?=
+ =?utf-8?B?MlVKRFM1T1EzeVk3bWtaTUVyTjlXSjN4d3AzaUF0YlBHZjlCclRwZ1VOTG9F?=
+ =?utf-8?B?TEtmN0gzVFRRUW5vekkrdTFTd2JJVEw2RUtCYnZjaW9xdU90NEUrR2FBc0xY?=
+ =?utf-8?B?T1Z2cDc5ZDFwZ2dqMU5DRWRVb0JHMGNSSU50UGhlVzdrdUtqZjIzc1NqNWF1?=
+ =?utf-8?Q?ceSTcx/qyL+EJTLnQYvu8Krbh?=
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 2b707585-1d7c-4c08-cdef-08de0135b838
+X-MS-Exchange-CrossTenant-AuthSource: PH7PR12MB8778.namprd12.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 01 Oct 2025 21:58:57.1783
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: cWtynddXUSslWOU75+N0v2i/59n4NDUJ4DUncU9DKcbKIbb+aQIDNSPIvSPb3/+sB6P1V5xuqt30qPSQcbaMJw==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH0PR12MB7905
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Wed, 01 Oct 2025 16:09:26 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/65897
+ <yocto@lists.yoctoproject.org>; Wed, 01 Oct 2025 21:59:04 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/65898
 
---0000000000007a6d1606401b1769
-Content-Type: text/plain; charset="UTF-8"
+Hi All,
 
-Hi all,
-
-I am trying to write some automated hardware tests for my device. I'm
-following the instructions in
-https://docs.yoctoproject.org/5.0.12/test-manual/runtime-testing.html#performing-automated-runtime-testing
-
-In local.conf I have the following:
-
-DISTRO_FEATURES:append = " ptest"
-EXTRA_IMAGE_FEATURES += "ptest-pkgs"
-TEST_SERIALCONTROL_CMD = "microcom -s 115200 -p /dev/ttyUSB0"
-IMAGE_CLASSES += "testimage"
-#INHERIT += "testexport"
-TEST_TARGET = "MyTarget"
-
-In my layer I have a custom target
-meta-my-layer/lib/oeqa/controllers/mytarget.py  (copied from
-meta-yocto-bsp/lib/oeqa/controllers/grubtarget.py and modified for MyTarget
-class)
-
-When I run bitbake -c testimage my-image I get this error
-
-     0182:    @staticmethod
-     0183:    def _loadControllerFromModule(target, modulename):
-Exception: AttributeError: Unable to load MyTarget from available modules:
-['oeqa.controllers.controllerimage', 'oeqa.controllers.testtargetloader',
-'oeqa.controllers.fvp']
-
-If I add  addpylib ${LAYERDIR}/lib oeqa to my layer.conf (like other layers
-have) I get this new error
-
-File:
-'/workspaces/my-distro/sources/poky/meta/classes-recipe/testimage.bbclass',
-lineno: 181, function: testimage_main
-     0177:    import logging
-     0178:    import shutil
-     0179:
-     0180:    from bb.utils import export_proxies
- *** 0181:    from oeqa.runtime.context import OERuntimeTestContext
-     0182:    from oeqa.runtime.context import OERuntimeTestContextExecutor
-     0183:    from oeqa.core.target.qemu import supported_fstypes
-     0184:    from oeqa.core.utils.test import getSuiteCases
-     0185:    from oeqa.utils import make_logger_bitbake_compatible
-Exception: ModuleNotFoundError: No module named 'oeqa.runtime.context'
+I'm trying to run weston as a custom user(non-weston user) and non-root 
+on arm64 using scarthgap, I can modify 
+/etc/systemd/system/graphical.target.wants/weston.service with username 
+User=root, Group=video and then run as root user which works OOB, but 
+end goal to run weston as custom user which belongs to video group.
 
 Any help is appreciated.
-Rusty Howell
 
---0000000000007a6d1606401b1769
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Thanks,
+Sandeep
 
-<div dir=3D"ltr"><div>Hi all,</div><div><br></div><div>I am trying to write=
- some automated hardware tests for my device. I&#39;m following the instruc=
-tions in=C2=A0<a href=3D"https://docs.yoctoproject.org/5.0.12/test-manual/r=
-untime-testing.html#performing-automated-runtime-testing">https://docs.yoct=
-oproject.org/5.0.12/test-manual/runtime-testing.html#performing-automated-r=
-untime-testing</a></div><div><br></div><div>In local.conf I have the follow=
-ing:</div><div><br></div><div><span style=3D"font-family:monospace">DISTRO_=
-FEATURES:append =3D &quot; ptest&quot;<br>EXTRA_IMAGE_FEATURES +=3D &quot;p=
-test-pkgs&quot;<br>TEST_SERIALCONTROL_CMD =3D &quot;microcom -s 115200 -p /=
-dev/ttyUSB0&quot;<br>IMAGE_CLASSES +=3D &quot;testimage&quot;<br>#INHERIT +=
-=3D &quot;testexport&quot;<br>TEST_TARGET =3D &quot;MyTarget&quot;</span></=
-div><div><br></div><div>In my layer I have a custom target=C2=A0 meta-my-la=
-yer/lib/oeqa/controllers/mytarget.py=C2=A0 (copied from meta-yocto-bsp/lib/=
-oeqa/controllers/grubtarget.py and modified for MyTarget class)</div><div><=
-br></div><div>When I run bitbake -c testimage my-image I get this error</di=
-v><div><br></div><div><span style=3D"font-family:monospace">=C2=A0 =C2=A0 =
-=C2=A00182: =C2=A0 =C2=A0@staticmethod<br>=C2=A0 =C2=A0 =C2=A00183: =C2=A0 =
-=C2=A0def _loadControllerFromModule(target, modulename):<br>Exception: Attr=
-ibuteError: Unable to load MyTarget from available modules: [&#39;oeqa.cont=
-rollers.controllerimage&#39;, &#39;oeqa.controllers.testtargetloader&#39;, =
-&#39;oeqa.controllers.fvp&#39;]</span></div><div><br></div><div>If I add=C2=
-=A0=C2=A0addpylib<span style=3D"font-family:monospace"> ${LAYERDIR}/lib oeq=
-a</span> to my layer.conf (like other layers have) I get this new error</di=
-v><div><br></div><div><span style=3D"font-family:monospace">File: &#39;/wor=
-kspaces/my-distro/sources/poky/meta/classes-recipe/testimage.bbclass&#39;, =
-lineno: 181, function: testimage_main<br>=C2=A0 =C2=A0 =C2=A00177: =C2=A0 =
-=C2=A0import logging<br>=C2=A0 =C2=A0 =C2=A00178: =C2=A0 =C2=A0import shuti=
-l<br>=C2=A0 =C2=A0 =C2=A00179:<br>=C2=A0 =C2=A0 =C2=A00180: =C2=A0 =C2=A0fr=
-om bb.utils import export_proxies<br>=C2=A0*** 0181: =C2=A0 =C2=A0from oeqa=
-.runtime.context import OERuntimeTestContext<br>=C2=A0 =C2=A0 =C2=A00182: =
-=C2=A0 =C2=A0from oeqa.runtime.context import OERuntimeTestContextExecutor<=
-br>=C2=A0 =C2=A0 =C2=A00183: =C2=A0 =C2=A0from oeqa.core.target.qemu import=
- supported_fstypes<br>=C2=A0 =C2=A0 =C2=A00184: =C2=A0 =C2=A0from oeqa.core=
-.utils.test import getSuiteCases<br>=C2=A0 =C2=A0 =C2=A00185: =C2=A0 =C2=A0=
-from oeqa.utils import make_logger_bitbake_compatible<br>Exception: ModuleN=
-otFoundError: No module named &#39;oeqa.runtime.context&#39;</span><br><br>=
-</div><div>Any help is appreciated.</div><div>Rusty Howell</div></div>
-
---0000000000007a6d1606401b1769--
 
