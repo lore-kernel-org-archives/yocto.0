@@ -1,153 +1,72 @@
-Return-Path: <skandigraun@gmail.com>
+Return-Path: <jester@theyoctojester.info>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 748EFCAC5B8
-	for <webhook@archiver.kernel.org>; Thu,  2 Oct 2025 11:38:56 +0000 (UTC)
-Received: from mail-ed1-f52.google.com (mail-ed1-f52.google.com [209.85.208.52])
- by mx.groups.io with SMTP id smtpd.web11.6528.1759405131518471433
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 0C068CAC5B0
+	for <webhook@archiver.kernel.org>; Thu,  2 Oct 2025 16:30:39 +0000 (UTC)
+Received: from mail-pl1-f179.google.com (mail-pl1-f179.google.com [209.85.214.179])
+ by mx.groups.io with SMTP id smtpd.web10.13248.1759422630411681138
  for <yocto@lists.yoctoproject.org>;
- Thu, 02 Oct 2025 04:38:51 -0700
+ Thu, 02 Oct 2025 09:30:30 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20230601 header.b=m0KAZIx3;
- spf=pass (domain: gmail.com, ip: 209.85.208.52, mailfrom: skandigraun@gmail.com)
-Received: by mail-ed1-f52.google.com with SMTP id 4fb4d7f45d1cf-637dbabdb32so1594955a12.2
-        for <yocto@lists.yoctoproject.org>; Thu, 02 Oct 2025 04:38:51 -0700 (PDT)
+ dkim=pass header.i=@theyoctojester-info.20230601.gappssmtp.com header.s=20230601 header.b=tgeMRxps;
+ spf=neutral (domain: theyoctojester.info, ip: 209.85.214.179, mailfrom: jester@theyoctojester.info)
+Received: by mail-pl1-f179.google.com with SMTP id d9443c01a7336-27edcbbe7bfso15773195ad.0
+        for <yocto@lists.yoctoproject.org>; Thu, 02 Oct 2025 09:30:30 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1759405130; x=1760009930; darn=lists.yoctoproject.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:to:subject:user-agent:mime-version:date:message-id:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=OQmdu3IWpVSBpCZlVGyXsA9LOZflJ0CxYcTxwuw9qa8=;
-        b=m0KAZIx3FCFTAlT2L/Yzq+FJcf8IDIYlN5DOrWJljT9wLggzBD6AFMZpw+12Y1uolf
-         SYVqLrK646LLt+yyRIQp/KIwVygPYqq2GBSOLp+94TiM4XucI2DNprJkWmb83MQpnDOp
-         cfpLqdzwQgXU12hMbYp3aGsOv50612XY5hR9zYwu2fgjPTS5v89o35UtE2p5tfKlpbvm
-         Ws0ZpdcLKQTbDdmgxiEE/jcCzmmueusjCYG51pf532qSQMkhQQz/sD4kZO4AYuxccqDT
-         Qqcyb/wy00A1n9ljqZDLqdIZzEsQZkKVkATMKeoo03UbTeshDOEHflOVfuejWeROi9dh
-         Gnwg==
+        d=theyoctojester-info.20230601.gappssmtp.com; s=20230601; t=1759422629; x=1760027429; darn=lists.yoctoproject.org;
+        h=to:subject:message-id:date:from:mime-version:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=FXd+3bmgzFKOxSsARkU947DO5x1ocL+VU1rjRq3EgQM=;
+        b=tgeMRxpsNrFEAd3TAtv0Xy6aZ3tk/Eo6/KeHaqGwRB2Y9S5ZnXmMhbrMDM/pD7KIPO
+         n19onFOKD/4Eh0N5XGCsoJ602G0X7s3pSTLxQjOazawOeaLzm/sM/h5ewuU/IH6WA2e0
+         wvzG1JIQhV685uTC14F8EJQ8K2WO6sBpnoM0tCf5utHYuHqQ8YiV//FgTbr0GHNiiX8n
+         iaKV3xy3AGJ5jTGfFPebmYdCpF4uZp54Ku8Qe7fNIir++jUzdUKzIGr6qngIpoQ3soNx
+         g1HWZPaw/fNQK5cRJJ+UHC6qMk6/muBvCSoARvA2F3azJIhl9Osu5TPexr8XzpojXSza
+         uuZg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1759405130; x=1760009930;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=OQmdu3IWpVSBpCZlVGyXsA9LOZflJ0CxYcTxwuw9qa8=;
-        b=apxxBqrhIkfn0gDMPNuMVHzRG3Uoi0nCU/SFqD05R/fc0QZ2Fxx1twW3NsJMyzf8mr
-         Al9oCqSp0QcJpcuHo10gFnUtuBj0PlZ5s8huQK4I9xKkXICV+Vt/0afxpWcbcZDlLIY0
-         PA3/yyvfFRXoZ97/UJb5mW4j0bd1pxZkM1a8ZQ3lfx7w8RnbeXw7maSJUvYHpTzuo+wL
-         OUxdgmy5Wy+Era4AORQxWE2EVIkcfeHjRLGoVa8PskWGmNSXdYQF4w7+mSs3Q3MlMERl
-         r9D0DeN8f0W1VNCDwR3E8pf6SSHQXwx4c9n5cMIsT3e+R4seSzB2YQvNwkPcPPx/H6fQ
-         1vtA==
-X-Gm-Message-State: AOJu0YwOIywqPGMjC1J41Um+0OsGM/jEQqKEQxvG6WUqzWMumCRlArfY
-	53uhqvSMpK4TWMDzjEZGctgpeIR1kuHxeNzFVflyaNU291YHV6tBt6PpuwPQpw==
-X-Gm-Gg: ASbGncsDf71lhWBTX8b/iG8QCxcLihrMCzBFJJUGDT3X4j4O9E9vE9iO3ybU9xM6fsX
-	WZ2NlbyIwhIN93h8nRVu/tHin7Boi7XE7/rC0xWpI2jbQg3Gul3AR28jlkd/aklLwsa6CA+2b2X
-	rrvD/fPxivNGt5K5c+HnBBLYTU373lHEprHRBC4PdmOtzKbBsRMFr2sBAQR7aWLijXKRXc57lw2
-	K+bLiOzx2VE9lk8mmeGDcqkROS1qp7cNoUL3uOhI338KkTZS9nLTfoa2fXU8Dcg9/zJpJY0qKLq
-	SqFgRBHDCyL8g4PQXB9duV/Jc4nMwlCUhOa+d0yIGtgU/nU6rbllNXG96o7OGITYzpFsobX7aSh
-	CEa/g5eyOFUkKXkt84ReFFr3qJ6P2KDf8MW/K9msedFb7Kj1Bil5LLRuwE1dOeuam5Q==
-X-Google-Smtp-Source: AGHT+IFZIst2zO9GhYm4bGQLY/pNEc5Y/vH7kjmOs+2XUbNxIvdoky/bcAEyF5f7hFbk1oPmRMWfLA==
-X-Received: by 2002:a05:6402:1d51:b0:634:cb54:8115 with SMTP id 4fb4d7f45d1cf-63678ba9b40mr7968986a12.7.1759405129723;
-        Thu, 02 Oct 2025 04:38:49 -0700 (PDT)
-Received: from [192.168.1.106] ([51.154.145.205])
-        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-637881011e9sm1643249a12.25.2025.10.02.04.38.48
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 02 Oct 2025 04:38:49 -0700 (PDT)
-Message-ID: <0d99c39c-1f0d-436d-9f63-dc27f02c95c2@gmail.com>
-Date: Thu, 2 Oct 2025 13:38:48 +0200
+        d=1e100.net; s=20230601; t=1759422629; x=1760027429;
+        h=to:subject:message-id:date:from:mime-version:x-gm-message-state
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=FXd+3bmgzFKOxSsARkU947DO5x1ocL+VU1rjRq3EgQM=;
+        b=lYemBH/kWYFvo1LH7au8fjldbKXfxYY+AfFBeRoITfc5R1WgKNvAJaBhpHSF1yi9qj
+         rTAghDGGbLdsq+gxv0aBe3JGg1Mp6Iya1p029QzFeIhsZ7zygWAplfrOTDJQ4KmYSD2x
+         eaU7zaQJ9BijhXG03+8wcKe91ulUCBdjJfdiVTB3jLBzVziUGguQTUhFgQcwZSNO9bU7
+         +fi0S6wxvc5zqS1k4Vtv+1GOVbq2hmHePowOJseEt6onaGwAugrWbkY4SLT9l2GXfAH4
+         C5OD66dwcrLkzmB3pkYZlrYX0tDF9QRy7KxYJGBYsyzo6EnrZ5zJZndW11ACkP+6ApXv
+         fuaQ==
+X-Forwarded-Encrypted: i=1; AJvYcCWL+RDkvX6UQ2RsUpUvzHKW/0oNMZcyv7TLzmOMllzrs53ijWI3FpfavD0/1Sb/cBx0Zipnyg==@lists.yoctoproject.org
+X-Gm-Message-State: AOJu0Yz18QslWtjMJ/ts7skPS02GUGJZbfnhy3apizfflC39nkg9IZB6
+	bTrayuKK86uSK5PlCPGeUoglh/L+orvj0WSGUFWbTwEfm9pbWcC6ENlx8N0fzGx2rzKNswS3hKD
+	4sKE0saoVU/fJoEjJRQVaH5iXL+/B02za+DhRRaUOFQ==
+X-Gm-Gg: ASbGncvkXZZiESPSmQgVeHFQ21oMkylyFFKeRW5icJnfH9SlozXCDM0n0knEKxr0GhO
+	rJJ6oD24zDUAZPmY09t5MH0OhG2+H+UOyulzKO5TczDNDCrUZK8PNGAOwSOM/1lvZyr1qIV3YEF
+	8/AgBgN61E0U8xwZGhX5kbHntwPn8sbXdjTp/p4LY91f4IpJ1Tq/lO3JQZO7KjluxqlyGwSHUMs
+	rDijJB4NwicWH23ayJgTLsnnFECFzGTLX3akhEAGrP40eTxRZKYWhnPZtleijrsuTdNhg0lt0Ge
+X-Google-Smtp-Source: AGHT+IF0oLXMb5y4l+iqwomp3/f6AbSlTUJJgwgOKRg/ure+4t9JwIHBllhnlntkUlX1vLY1ODQTW5x5tB+U3dXVC20=
+X-Received: by 2002:a17:903:fa7:b0:264:ee2:c40f with SMTP id
+ d9443c01a7336-28e7f45448dmr91775455ad.52.1759422629498; Thu, 02 Oct 2025
+ 09:30:29 -0700 (PDT)
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [yocto] Writing custom hardware tests
-To: yocto@lists.yoctoproject.org, rustyhowell@gmail.com
-References: <CAE+BM3mF4Gn8YdwbN_kYZYBngMBc36fpFhGZzUFYCgc2eSHrkQ@mail.gmail.com>
-Content-Language: en-US
-From: Gyorgy Sarvari <skandigraun@gmail.com>
-In-Reply-To: <CAE+BM3mF4Gn8YdwbN_kYZYBngMBc36fpFhGZzUFYCgc2eSHrkQ@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+From: Josef Holzmayr <jester@theyoctojester.info>
+Date: Thu, 2 Oct 2025 18:30:03 +0200
+X-Gm-Features: AS18NWCirtmmLQolD9eh5lHCW3i4_X_96mndztU259OD8IgaRfw068bI4rNroXM
+Message-ID: <CAEt6Nwrci00muZsVX0aCyeQcW3GD1aYDntwei4Goxpm3qudnow@mail.gmail.com>
+Subject: Shh... RFQ
+To: openembedded-architecture <openembedded-architecture@lists.openembedded.org>, 
+	Yocto-mailing-list <yocto@lists.yoctoproject.org>, openembedded-devel@lists.openembedded.org, 
+	openembedded-core <openembedded-core@lists.openembedded.org>, 
+	members <members@lists.yoctoproject.org>, members@lists.openembedded.org
+Content-Type: text/plain; charset="UTF-8"
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Thu, 02 Oct 2025 11:38:56 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/65901
+ <yocto@lists.yoctoproject.org>; Thu, 02 Oct 2025 16:30:39 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/65902
 
-On 10/1/25 18:09, Rusty Howell via lists.yoctoproject.org wrote:
-> Hi all,
->
-> I am trying to write some automated hardware tests for my device. I'm
-> following the instructions
-> in https://docs.yoctoproject.org/5.0.12/test-manual/runtime-testing.html#performing-automated-runtime-testing
->
-> In local.conf I have the following:
->
-> DISTRO_FEATURES:append = " ptest"
-> EXTRA_IMAGE_FEATURES += "ptest-pkgs"
-> TEST_SERIALCONTROL_CMD = "microcom -s 115200 -p /dev/ttyUSB0"
-> IMAGE_CLASSES += "testimage"
-> #INHERIT += "testexport"
-> TEST_TARGET = "MyTarget"
->
-> In my layer I have a custom target 
-> meta-my-layer/lib/oeqa/controllers/mytarget.py  (copied from
-> meta-yocto-bsp/lib/oeqa/controllers/grubtarget.py and modified for
-> MyTarget class)
->
-> When I run bitbake -c testimage my-image I get this error
->
->      0182:    @staticmethod
->      0183:    def _loadControllerFromModule(target, modulename):
-> Exception: AttributeError: Unable to load MyTarget from available
-> modules: ['oeqa.controllers.controllerimage',
-> 'oeqa.controllers.testtargetloader', 'oeqa.controllers.fvp']
->
-> If I add  addpylib${LAYERDIR}/lib oeqa to my layer.conf (like other
-> layers have) I get this new error
->
-> File:
-> '/workspaces/my-distro/sources/poky/meta/classes-recipe/testimage.bbclass',
-> lineno: 181, function: testimage_main
->      0177:    import logging
->      0178:    import shutil
->      0179:
->      0180:    from bb.utils import export_proxies
->  *** 0181:    from oeqa.runtime.context import OERuntimeTestContext
->      0182:    from oeqa.runtime.context import
-> OERuntimeTestContextExecutor
->      0183:    from oeqa.core.target.qemu import supported_fstypes
->      0184:    from oeqa.core.utils.test import getSuiteCases
->      0185:    from oeqa.utils import make_logger_bitbake_compatible
-> Exception: ModuleNotFoundError: No module named 'oeqa.runtime.context'
->
-> Any help is appreciated.
->
+Shhhh... have you heard of our opening as Ecosystem and Engineering
+Operations Lead? If not, hurry up! Applications will close on October
+6th.
 
-I believe unfortunately that this part has been without too much
-attention lately. addpylib directive is not needed for this.
-
-There are two things:
-
-1. For runtime tests controllers are searched in PATH[1], instead of
-BBPATH - that's why it can't find your test controller. You can work
-around by adding this to your image recipe:
-
-python __anonymous () {
-    import sys
-    sys.path.append("<start_of_path>/meta-my-layer/lib")
-}
-
-(Alternatively you can also extend path with d.getVar("BBPATH").split(":")) 
-It's may not be nice, but it gets you to the next step for now.
-
-2. Some time ago there was some refactoring[2] done in the testimage
-bbclass (instead of passing "d" to init the controller a bunch of kwargs
-are sent), however these example hw controllers were not refactored
-apparently from meta-yocto-bsp layer. You could try to adapt the grub
-example (and its ancestor) to the new format or, if other classes are
-also usable for you, you could give them a try too (SSHTarget for example).
-
-
-[1]:
-https://git.openembedded.org/openembedded-core/tree/meta/lib/oeqa/runtime/context.py#n161
-[2]:
-https://git.yoctoproject.org/poky/commit/meta/classes/testimage.bbclass?id=3857e5c91da678d7bdc07712a1df9daa14354986
-(search for "robot dance")
+https://jobs.smartrecruiters.com/LinuxFoundation/744000080228346-ecosystem-engineering-and-operations-lead-remote-contractor
 
