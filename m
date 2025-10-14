@@ -1,121 +1,248 @@
-Return-Path: <mikko.rapeli@linaro.org>
+Return-Path: <skandigraun@gmail.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 7EC5CCCD184
-	for <webhook@archiver.kernel.org>; Tue, 14 Oct 2025 07:24:17 +0000 (UTC)
-Received: from mail-lj1-f181.google.com (mail-lj1-f181.google.com [209.85.208.181])
- by mx.groups.io with SMTP id smtpd.web11.9477.1760426649181703532
+	by smtp.lore.kernel.org (Postfix) with ESMTP id CE185CCD194
+	for <webhook@archiver.kernel.org>; Tue, 14 Oct 2025 09:21:18 +0000 (UTC)
+Received: from mail-wm1-f48.google.com (mail-wm1-f48.google.com [209.85.128.48])
+ by mx.groups.io with SMTP id smtpd.web10.10956.1760433672750956916
  for <yocto@lists.yoctoproject.org>;
- Tue, 14 Oct 2025 00:24:09 -0700
+ Tue, 14 Oct 2025 02:21:13 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@linaro.org header.s=google header.b=VlJ0dzqn;
- spf=pass (domain: linaro.org, ip: 209.85.208.181, mailfrom: mikko.rapeli@linaro.org)
-Received: by mail-lj1-f181.google.com with SMTP id 38308e7fff4ca-371e4858f74so59236281fa.1
-        for <yocto@lists.yoctoproject.org>; Tue, 14 Oct 2025 00:24:08 -0700 (PDT)
+ dkim=pass header.i=@gmail.com header.s=20230601 header.b=XLNqel0L;
+ spf=pass (domain: gmail.com, ip: 209.85.128.48, mailfrom: skandigraun@gmail.com)
+Received: by mail-wm1-f48.google.com with SMTP id 5b1f17b1804b1-46b303f7469so33122995e9.1
+        for <yocto@lists.yoctoproject.org>; Tue, 14 Oct 2025 02:21:12 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1760426647; x=1761031447; darn=lists.yoctoproject.org;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:to:from:date:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=3+RDzGwkdsKdjLW7/2rVoE5ZGmpbSNcamAhfWHTTCKo=;
-        b=VlJ0dzqnisB6qiaFVf/4rPM6TI+KUXKEIv0yCaQbnu3SYEOlMsIB5eb6+eNpDbwYBR
-         Ue/n+HvSAn55mXV9luOH2KBFpHma3kDbq3DoaT2criYLdBeo5QpLKj80phP72/L+TFQv
-         D5XnUCLougbHOnrd4Jzt5zIGJX75QFsJV3TtZ5F8z0UsCckZBTPKCuaq3Qo0IW29siM5
-         79GgCd30PZPEa6UYaP0whsKcoClPqVppmYCBYWnUgYKs7gX08/ULf0fMiDEIzdp0r1BC
-         pNswiSP8JWOayi2dZDYWxCVFmGYqExvHPKjftKmfoMAa4LGFDORJr3V0e3FSX/ATb83m
-         aA3g==
+        d=gmail.com; s=20230601; t=1760433671; x=1761038471; darn=lists.yoctoproject.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:to:subject:user-agent:mime-version:date:message-id:from
+         :to:cc:subject:date:message-id:reply-to;
+        bh=2DqqKfM2swhxKJgWnhl719ZL12TCZfl97bMsHpJnJrM=;
+        b=XLNqel0La4JV4qO1bN3U4xQ0zzlU4fDK2HVqRPJzsYJ2frWEWV8mKOJ4JOKAOTG5Tj
+         p4xIefcaI1gGJVUWZDKp8o7pnrBXU36tWLjM8vmyJINoBaU8ncKO1oZ64ZNeApYMNRyU
+         hvo4Dnj6lg56DWs8kdR1L/lrh2ELsDaoRUcn85ke5v5nmfdAaOo52pMKDtXsNrm3C0hV
+         1tvHEUADGsTTUrSlnQF0gV9XTT4RMvJ0CSLJnEdqnM+TMc1w/IxoQgZ8QLg4Tv6jePVx
+         3gv9YbbrrXf55vz202x3KJey7fZI8n2vkF1ljzHemQUEQP3uLf3MZVjgRwQlSWMBvXJo
+         4eJQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1760426647; x=1761031447;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:to:from:date
+        d=1e100.net; s=20230601; t=1760433671; x=1761038471;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:to:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=3+RDzGwkdsKdjLW7/2rVoE5ZGmpbSNcamAhfWHTTCKo=;
-        b=u6VOXsAAsdvZ/YvWspfT0ODm3F059gVG2CAdQidBeWUxG9KD6zJ8pjZDLQJ/FCDu6k
-         PKpVv811HQR4iHsCH+ibFZrn5wormj+ERwUhOlv1ACIiJtm+sJMoD5wroFuz5kYDXS1Q
-         1r3vm+fwlp0PtZsSsfp85i709JSi8OgK2E14gX+K+mUvhYTaiGBUexic9cODibctf2Z4
-         6xjhGosvHl7Ph/Vs2Z2/Fy/rMDFvxO6HNhrxJTwKFb1PvLh2LGkN7AuiqyE9FSiXSrhE
-         Z66k1xrhFOeIxwx/dG7ZB8+UQ7SqkXZYGtt9P4sEUa9tYRX1j8JDQXG2QJdDfaglHag0
-         xC2A==
-X-Gm-Message-State: AOJu0Yy9HNeaTeWpRCzCz9HzJQsVydfcTTYTPnTTBWvpicUl/0Y4uEch
-	KMjmlxChdPkQoDFt8X3ZmvsQ9eO7ieiazCD0UlTtr0+VHJob48QLQyZbfIrG8Ic9EjkF+PJBSYW
-	sxBlP/6I=
-X-Gm-Gg: ASbGncsSJvDCmawbvlv5Cky09mJXnQxh+Jsnymn9yKSXBSXP8zviiXvvx9Wsjrs4+qT
-	uYeapKfx/tgmjftccLuV/kBCbq7ZQoyOvXi8YLZJhqGFlo+cx1fnhuHxcDGaxoVb+uTMCbadxDG
-	T1PAcNkHSqr8qtDh3emr+dECTy/YNwDAeSfF0UNUyLHVoIxZHGq6aBCbWfDrt6AsWP/Dv5jxxBq
-	RJT58EMDUbTXFK9F4MPOhtltPX/AujM6/HyqQwplE2h4tcd7MsxoJ9I0S1dPxhm181YFQpbyDk2
-	hQ8uxl2/qzD0n4LtiFzl9MQhEC1TKiQC2RpKhuEdU8mxU2+9ZZ7OCCqIipImkGhmaedCxDh9FnF
-	ZUHMB+J2HOdmlVs7n2qC5cp+NyGqAZ5XU5gFA+pEQcUS3UXYYr0uO7SVvEEqsOEZzMG7frtu1td
-	ZEf/tlEtR7PM3H3Q==
-X-Google-Smtp-Source: AGHT+IFHQmlE+gzNBu2z79c0VxRITOBoUEMuTLs1dE9Di5K/uXLdfmcjsMuav5HDwnGa4Fa+WXYFkQ==
-X-Received: by 2002:a2e:a781:0:b0:376:41f5:a6ca with SMTP id 38308e7fff4ca-37641f5d400mr27963401fa.0.1760426646860;
-        Tue, 14 Oct 2025 00:24:06 -0700 (PDT)
-Received: from nuoska (87-100-249-247.bb.dnainternet.fi. [87.100.249.247])
-        by smtp.gmail.com with ESMTPSA id 38308e7fff4ca-3762ea3a002sm37404261fa.41.2025.10.14.00.24.06
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 14 Oct 2025 00:24:06 -0700 (PDT)
-Date: Tue, 14 Oct 2025 10:24:05 +0300
-From: Mikko Rapeli <mikko.rapeli@linaro.org>
-To: yocto@lists.yoctoproject.org, bmarty@kochag.ch
-Subject: Re: [yocto] Secure Boot and LUKS-encrypted rootfs on Raspberry Pi CM4
-Message-ID: <aO36lSRn0CJeZkUo@nuoska>
-References: <AS8PR08MB100979905EC066383DD0FA283C7EAA@AS8PR08MB10097.eurprd08.prod.outlook.com>
+        bh=2DqqKfM2swhxKJgWnhl719ZL12TCZfl97bMsHpJnJrM=;
+        b=azxQRqg20ruR+CFIyL8dcrq3cVq/ic9/T1WVzVBCuQ2Iiwaw/yRwrxMIKEEBPXD/Lb
+         LeQ/0mT/kE9QV+Hkr44X/Eyg/hqAqZFP+0Jqm1yfZ0rqBoKPgxZxoKjVjG88pxiIXNfP
+         1OTTxEstbhpGf/MdXCofZmUKygY5sXPJrRHL9HvbMTolTg0YnQHSkse2F/yfLJEGlBl4
+         Tx5ctgXc4xv/TjgW00PDPP21Tg4pHKpJCgk7whJttvtvcZciXgF1xwEptbO8EoOAhI2/
+         tB3BxseILk2zg07D8x9a+UfVZyxZidgBOmjq0VPSO9zUVyc+eTakycG4VprOfQNKDAsy
+         3NPw==
+X-Gm-Message-State: AOJu0YxK/wTkBGyzY9JkvRFljKnOaRrR56aLKS8Y0feZdnIPQNKHqoCB
+	MziIIHjI4px+zvNL7thUGZtbvArz8bUOd+vEJOwOs/4zU/9Yk0xZbi5x6513vQ==
+X-Gm-Gg: ASbGncttvXiM0dMmsgRva11B0hKkod4Jc/yzH/PvVUqjbpNhAH57kmWz7OvZQekvs7j
+	OiaYy3dhv748FrQNL4q9bMWYI54EOLim3CbUPe6wqTqex+qtT19dWMr6YBEYGEEgU1CJ7CrCJj6
+	LKTi5nCWcxNauHcgj86hIcsBiuUOHu+YxWlUGHOX7vLBDA8xWb6Z80Yuu9DNmH7roL3U/n5fZhL
+	sbi7CxKRd2aNH9TZbuXcawdy5jCJxzIZjNNaAXpzo8LBcQoMDAYdynI0er6LFD1itcZ2Lh3ZrN4
+	FghX5bP6tZLW3ccTw3KxFUfKp2fYMaWTrD63ojvpySiI9Ny7IoBHTVa2QqWzwvix432s/d6qVle
+	ZY+r3oNCw0rwnptcpvqBsYuI5gG8+62jSk+Kmf3p+VkhUS2k63NdRaOD4jPVg
+X-Google-Smtp-Source: AGHT+IHFs5HXOt7KsjCkexI2IujEpgXu0Kbjm40cxIvp+5+F11l+rS1JaWFyRnki9dXd0KL09n7GPQ==
+X-Received: by 2002:a05:600c:8487:b0:45b:79fd:cb3d with SMTP id 5b1f17b1804b1-46fa9b13ab7mr168137585e9.36.1760433670899;
+        Tue, 14 Oct 2025 02:21:10 -0700 (PDT)
+Received: from [192.168.1.106] ([51.154.145.205])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-46fb482b9absm264269215e9.2.2025.10.14.02.21.10
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 14 Oct 2025 02:21:10 -0700 (PDT)
+Message-ID: <9b7974b8-a008-4763-b118-fcef94d96170@gmail.com>
+Date: Tue, 14 Oct 2025 11:21:09 +0200
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
+User-Agent: Mozilla Thunderbird
+Subject: Re: [yocto] [kirkstone 4.0.30] libpam-1.5.2 do_compile fails due to
+ missing headers in pam_namespace.c
+To: yocto@lists.yoctoproject.org, phelge@semtech.com
+References: <CY8PR20MB5618082EADE97E0FA4EDE9F5C7EAA@CY8PR20MB5618.namprd20.prod.outlook.com>
+Content-Language: en-US
+From: Gyorgy Sarvari <skandigraun@gmail.com>
+In-Reply-To: <CY8PR20MB5618082EADE97E0FA4EDE9F5C7EAA@CY8PR20MB5618.namprd20.prod.outlook.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <AS8PR08MB100979905EC066383DD0FA283C7EAA@AS8PR08MB10097.eurprd08.prod.outlook.com>
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Tue, 14 Oct 2025 07:24:17 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/65928
+ <yocto@lists.yoctoproject.org>; Tue, 14 Oct 2025 09:21:18 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/65929
 
-Hi,
+On 10/13/25 20:19, Pushkar Helge via lists.yoctoproject.org wrote:
+> Hi Yocto team,
+>
+> I encountered a compilation failure with libpam-1.5.2-r0 when building
+> an image with Yocto kirkstone 4.0.30 on aarch64 target architecture.
+> The issue appears to be introduced by the CVE-2025-6020 patches
+> backported in the 4.0.29 release.
+>
+> === ENVIRONMENT ===
+> - Yocto Version: 4.0.30 kirkstone
+> - Target Architecture: aarch64-poky-linux
+> - Host System: Linux 5.15.0-139-generic
+> - Package: libpam-1.5.2-r0
+> - Recipe: /poky/meta/recipes-extended/pam/libpam_1.5.2.bb
+>
+> === ERROR LOG ===
+>
+> ERROR: libpam-1.5.2-r0 do_compile: oe_runmake failed
+>
+>
+> The compilation fails in modules/pam_namespace/pam_namespace.c with:
+>
+>
+> ../../../Linux-PAM-1.5.2/modules/pam_namespace/pam_namespace.c: In
+> function 'secure_try_rmdir':
+>
+> ../../../Linux-PAM-1.5.2/modules/pam_namespace/pam_namespace.c:326:18:
+> warning: implicit declaration of function 'dirname'
+> [-Wimplicit-function-declaration]
+>
+>   326 |         parent = dirname(buf);
+>
+>       |                  ^~~~~~~
+>
+> ../../../Linux-PAM-1.5.2/modules/pam_namespace/pam_namespace.c:326:16:
+> warning: assignment to 'char *' from 'int' makes pointer from integer
+> without a cast [-Wint-conversion]
+>
+>   326 |         parent = dirname(buf);
+>
+>       |                ^
+>
+> ../../../Linux-PAM-1.5.2/modules/pam_namespace/pam_namespace.c: In
+> function 'parse_config_file':
+>
+> ../../../Linux-PAM-1.5.2/modules/pam_namespace/pam_namespace.c:944:17:
+> warning: implicit declaration of function 'setlocale'
+> [-Wimplicit-function-declaration]
+>
+>   944 |     oldlocale = setlocale(LC_COLLATE, "C");
+>
+>       |                 ^~~~~~~~~
+>
+> ../../../Linux-PAM-1.5.2/modules/pam_namespace/pam_namespace.c:944:27:
+> error: 'LC_COLLATE' undeclared (first use in this function)
+>
+>   944 |     oldlocale = setlocale(LC_COLLATE, "C");
+>
+>       |                           ^~~~~~~~~~
+>
+> make[3]: *** [Makefile:795: pam_namespace.lo] Error 1
+>
+>
+> === ROOT CAUSE ===
+> The CVE-2025-6020-01.patch (added in 4.0.29) removes <libgen.h> and
+> <locale.h> from modules/pam_namespace/pam_namespace.h as part of
+> header cleanup:
+>
+> diff --git a/modules/pam_namespace/pam_namespace.h
+> b/modules/pam_namespace/pam_namespace.h
+> ...
+> -#include <libgen.h>
+> ...
+> -#include <locale.h>
+>
+> However, modules/pam_namespace/pam_namespace.c still uses:
+>
+>  *
+>     dirname() function (requires <libgen.h>)
+>  *
+>     setlocale() function and LC_COLLATE constant (requires <locale.h>)
+>     These functions are called but the headers are no longer included
+>     anywhere, causing the compilation to fail.
+>
+>
+> === PROPOSED FIX ===
+> The fix is to add the missing header includes directly to
+> pam_namespace.c. I've attached a patch that resolves this issue.
+> This patch should be added to the libpam_1.5.2.bb recipe SRC_URI after
+> the CVE-2025-6020 patches.
+>
+> === PATCH ===
+>
+> From: Pushkar
+>
+> Date: Mon, 13 Oct 2025
+>
+> Subject: [PATCH] libpam: fix missing headers in pam_namespace.c after
+> CVE-2025-6020 patches
+>
+>
+> The CVE-2025-6020-01 patch removed libgen.h and locale.h from
+>
+> pam_namespace.h, but pam_namespace.c still uses dirname(), setlocale(),
+>
+> and LC_COLLATE from these headers. Add them back to the C file.
+>
+>
+> This fixes compilation errors on aarch64 and potentially other
+> architectures.
+>
+>
+> Signed-off-by:
+>
+>
+> ---
+>
+>  modules/pam_namespace/pam_namespace.c | 2 ++
+>
+>  1 file changed, 2 insertions(+)
+>
+>
+> diff --git a/modules/pam_namespace/pam_namespace.c
+> b/modules/pam_namespace/pam_namespace.c
+>
+> index 22d8445..1234567 100644
+>
+> --- a/modules/pam_namespace/pam_namespace.c
+>
+> +++ b/modules/pam_namespace/pam_namespace.c
+>
+> @@ -38,6 +38,8 @@
+>
+>  #include "config.h"
+>
+>  #include <stdint.h>
+>
+>  #include "pam_cc_compat.h"
+>
+> +#include <libgen.h>
+>
+> +#include <locale.h>
+>
+>  #include "pam_inline.h"
+>
+>  #include "pam_namespace.h"
+>
+>  #include "argv_parse.h"
+>
+> --
+>
+> 2.25.1
+>
+>
+> Please let me know if this is a valid issue and or if need any
+> additional information or testing results.
+>
 
-On Mon, Oct 13, 2025 at 03:39:56PM +0000, Benjamin Marty via lists.yoctoproject.org wrote:
-> Hello all
-> 
-> I have an A/B system running on a Raspberry Pi CM4 using the tryboot_a_b mode from the Raspberry Pi Firmware (via the https://github.com/agherzan/meta-raspberrypi layer).
-> 
-> I’m now exploring how to implement Secure Boot using the Raspberry Pi Firmware (without U-Boot) and have run into a few design challenges:
-> - The files on the boot partition (cmdline.txt, config.txt, kernel8.img, initramfs etc.) need to be packed into a boot.img file using the Raspberry Pi script https://github.com/raspberrypi/usbboot/blob/master/tools/rpi-make-boot-image. I believe this could be integrated with a .bbclass file.
-> - The resulting boot.img file then needs to be signed using https://github.com/raspberrypi/rpi-eeprom/blob/master/rpi-eeprom-digest, which could also be handled through a .bbclass file.
-> - Both rootfs partitions (A/B) should be LUKS-encrypted, unlocked during boot via an initramfs. This seems like the biggest challenge, I'm not sure if this is even possible with WIC, especially because the key for the partition needs to be device-specific.
-> 
-> Has anyone worked on something similar, or have pointers on how to best approach this?
+To me your investigation and findings make sense at the first sight...
+would like to add two notes:
 
-I would abstract away from LUKS a bit. What is usually needed is
-data which is signed but shared across all devices and then data
-and/or storage which unique and protected on each device seprately.
-Thus somewhere on each device there is a device specific secret
-which is used to create device specific keys and encrypted storage.
+1. I didn't manage to reproduce this. This doesn't invalidate the
+problem though - but I'm curious if it requires some extra
+config/environment. (I tried it in debian12 docker image, for qemuarm64
+target, with default toolchain).
+2. This seems to be an upstream issue. Could you please send your fix to
+the openembedded-core mailing list[1] (so it can be included in the next
+release), and to open an issue/PR with libpam also (so they can fix it
+too)? My previous point about reproduction touches this point also.
 
-Once you have secure boot from HW to a Linux kernel and initramfs
-on a device, I would split the common read-only mass storage, e.g.
-rootfs, to a dm-verity partition which can be created by yocto
-into a wic image. The dm-verity root hash can be bound into
-e.g. UKI image with kernel, kernel command line and initrd which
-are signed with secureboot keys which the firmware always verifies.
-For non-UEFI firmware there must be ways to achieve the same.
+[1]:
+https://docs.yoctoproject.org/dev/contributor-guide/submit-changes.html#sending-the-patches-via-email
 
-Then the device specific protected storage can be created with a TPM.
-For example systemd-repart in the initrd can be configured to create
-a TPM backed encrypted storage with even variable size. Depending on
-the TPM PCR policy this can 'measure' the boot and make sure that decrypting
-the storage only works if boot binaries were correct, or the default
-which AFAIK ties the encrypted storage to UEFI secureboot keys, which allows
-changes and updates to the kernel, initrd, rootfs etc. If there is no
-HW TPM device available, it may be an option to use OP-TEE and firmware
-TPM (fTPM) TA, but that also depends on RPMB secure storage support
-which needs to be available.
 
-Sample systemd-repart config is here:
-https://gitlab.com/Linaro/trustedsubstrate/meta-ledge-secure/-/blob/systemd_uki/meta-ledge-secure/recipes-core/systemd/systemd-repart-conf.bb?ref_type=heads#L21
-
-Hope this helps.
-
-Cheers,
-
--Mikko
 
