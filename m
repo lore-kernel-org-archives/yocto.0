@@ -1,248 +1,185 @@
-Return-Path: <skandigraun@gmail.com>
+Return-Path: <bongini.simone@gmail.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id CE185CCD194
-	for <webhook@archiver.kernel.org>; Tue, 14 Oct 2025 09:21:18 +0000 (UTC)
-Received: from mail-wm1-f48.google.com (mail-wm1-f48.google.com [209.85.128.48])
- by mx.groups.io with SMTP id smtpd.web10.10956.1760433672750956916
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 73353CCD187
+	for <webhook@archiver.kernel.org>; Tue, 14 Oct 2025 10:44:09 +0000 (UTC)
+Received: from mail-oo1-f43.google.com (mail-oo1-f43.google.com [209.85.161.43])
+ by mx.groups.io with SMTP id smtpd.web11.12325.1760438640574676912
  for <yocto@lists.yoctoproject.org>;
- Tue, 14 Oct 2025 02:21:13 -0700
+ Tue, 14 Oct 2025 03:44:00 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20230601 header.b=XLNqel0L;
- spf=pass (domain: gmail.com, ip: 209.85.128.48, mailfrom: skandigraun@gmail.com)
-Received: by mail-wm1-f48.google.com with SMTP id 5b1f17b1804b1-46b303f7469so33122995e9.1
-        for <yocto@lists.yoctoproject.org>; Tue, 14 Oct 2025 02:21:12 -0700 (PDT)
+ dkim=pass header.i=@gmail.com header.s=20230601 header.b=fucxDnHW;
+ spf=pass (domain: gmail.com, ip: 209.85.161.43, mailfrom: bongini.simone@gmail.com)
+Received: by mail-oo1-f43.google.com with SMTP id 006d021491bc7-65033a46e9dso828373eaf.2
+        for <yocto@lists.yoctoproject.org>; Tue, 14 Oct 2025 03:44:00 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1760433671; x=1761038471; darn=lists.yoctoproject.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:to:subject:user-agent:mime-version:date:message-id:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=2DqqKfM2swhxKJgWnhl719ZL12TCZfl97bMsHpJnJrM=;
-        b=XLNqel0La4JV4qO1bN3U4xQ0zzlU4fDK2HVqRPJzsYJ2frWEWV8mKOJ4JOKAOTG5Tj
-         p4xIefcaI1gGJVUWZDKp8o7pnrBXU36tWLjM8vmyJINoBaU8ncKO1oZ64ZNeApYMNRyU
-         hvo4Dnj6lg56DWs8kdR1L/lrh2ELsDaoRUcn85ke5v5nmfdAaOo52pMKDtXsNrm3C0hV
-         1tvHEUADGsTTUrSlnQF0gV9XTT4RMvJ0CSLJnEdqnM+TMc1w/IxoQgZ8QLg4Tv6jePVx
-         3gv9YbbrrXf55vz202x3KJey7fZI8n2vkF1ljzHemQUEQP3uLf3MZVjgRwQlSWMBvXJo
-         4eJQ==
+        d=gmail.com; s=20230601; t=1760438639; x=1761043439; darn=lists.yoctoproject.org;
+        h=to:subject:message-id:date:from:mime-version:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=UlRrLQltejElLkX9DHO4R/lfhUBodokln4PEYVoCk/I=;
+        b=fucxDnHW628ddwh5Csu0Ey03v25bl4falvMobKeAgdvbAbbaGY8nsbu7kmXTWzGgoH
+         AvqqnecPixGOVkSzk6BS0xkwUU9OY7IHJiDjsbjPUNykTie30pfOtvV7sM1jlWflq9xd
+         W5m0n53lvtoEBeL+sZNuqIfnTGrwlhLcQDpyqltSD6QH63u/JuB/JJerMjSvKwY/yTMm
+         Oo8KXvDHhy5mnXjcLn4QBDDXPZFWeMsplPghQVLuLCZ9h1RerHago4lbakVQWXt1oglM
+         G6lcK5Derko57P2qhN8Y+HuxsBEKzJK8gM/Fpmed1CFfIW8JkxTwuYXmOBpAMpD0IM8o
+         A/nA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1760433671; x=1761038471;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=2DqqKfM2swhxKJgWnhl719ZL12TCZfl97bMsHpJnJrM=;
-        b=azxQRqg20ruR+CFIyL8dcrq3cVq/ic9/T1WVzVBCuQ2Iiwaw/yRwrxMIKEEBPXD/Lb
-         LeQ/0mT/kE9QV+Hkr44X/Eyg/hqAqZFP+0Jqm1yfZ0rqBoKPgxZxoKjVjG88pxiIXNfP
-         1OTTxEstbhpGf/MdXCofZmUKygY5sXPJrRHL9HvbMTolTg0YnQHSkse2F/yfLJEGlBl4
-         Tx5ctgXc4xv/TjgW00PDPP21Tg4pHKpJCgk7whJttvtvcZciXgF1xwEptbO8EoOAhI2/
-         tB3BxseILk2zg07D8x9a+UfVZyxZidgBOmjq0VPSO9zUVyc+eTakycG4VprOfQNKDAsy
-         3NPw==
-X-Gm-Message-State: AOJu0YxK/wTkBGyzY9JkvRFljKnOaRrR56aLKS8Y0feZdnIPQNKHqoCB
-	MziIIHjI4px+zvNL7thUGZtbvArz8bUOd+vEJOwOs/4zU/9Yk0xZbi5x6513vQ==
-X-Gm-Gg: ASbGncttvXiM0dMmsgRva11B0hKkod4Jc/yzH/PvVUqjbpNhAH57kmWz7OvZQekvs7j
-	OiaYy3dhv748FrQNL4q9bMWYI54EOLim3CbUPe6wqTqex+qtT19dWMr6YBEYGEEgU1CJ7CrCJj6
-	LKTi5nCWcxNauHcgj86hIcsBiuUOHu+YxWlUGHOX7vLBDA8xWb6Z80Yuu9DNmH7roL3U/n5fZhL
-	sbi7CxKRd2aNH9TZbuXcawdy5jCJxzIZjNNaAXpzo8LBcQoMDAYdynI0er6LFD1itcZ2Lh3ZrN4
-	FghX5bP6tZLW3ccTw3KxFUfKp2fYMaWTrD63ojvpySiI9Ny7IoBHTVa2QqWzwvix432s/d6qVle
-	ZY+r3oNCw0rwnptcpvqBsYuI5gG8+62jSk+Kmf3p+VkhUS2k63NdRaOD4jPVg
-X-Google-Smtp-Source: AGHT+IHFs5HXOt7KsjCkexI2IujEpgXu0Kbjm40cxIvp+5+F11l+rS1JaWFyRnki9dXd0KL09n7GPQ==
-X-Received: by 2002:a05:600c:8487:b0:45b:79fd:cb3d with SMTP id 5b1f17b1804b1-46fa9b13ab7mr168137585e9.36.1760433670899;
-        Tue, 14 Oct 2025 02:21:10 -0700 (PDT)
-Received: from [192.168.1.106] ([51.154.145.205])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-46fb482b9absm264269215e9.2.2025.10.14.02.21.10
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 14 Oct 2025 02:21:10 -0700 (PDT)
-Message-ID: <9b7974b8-a008-4763-b118-fcef94d96170@gmail.com>
-Date: Tue, 14 Oct 2025 11:21:09 +0200
+        d=1e100.net; s=20230601; t=1760438639; x=1761043439;
+        h=to:subject:message-id:date:from:mime-version:x-gm-message-state
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=UlRrLQltejElLkX9DHO4R/lfhUBodokln4PEYVoCk/I=;
+        b=ESj7PActLdBfj1Z19nYN0kZ6DShraKMiS9FUFGzgzONJDuAq50A+uSoV70MgtBDJ8/
+         i2UkHZSnD8I+gJS5dzym/LBDQWyX8FTdtUm8jfgl6EQQ682OnLAO1QKI5+P/bjNUwtr1
+         eaxXnkErNliljrtUEdOoTJmPe+/QAIQGKi0NEtm7WGrm1MwJlNQjbsbo31gWQMKxRtEP
+         sWH4dRdUc5F6o1gYAiV6hJR4rb9hXIP0y2JbJeX8EDwVCSQ7uK1jc6jXOE0scQ5E9gbW
+         N+ugBU1BGGPz3ZkD9VY4UgppHksKXqCSnWYPAxhjP8ylJu40TDgpQMiKaOi5d7zFud2v
+         RrTw==
+X-Gm-Message-State: AOJu0YyCfm5vDsT/ryUVfiVmZG+GVGvvgDD4V3+jBaonE8G9PB6GqBOT
+	Bxo89Ia6Qs2geCvUMah6upGdCg/nyt18ORAg2aMz9RuIEmYSlO5ph6qcMg6SOpc4Tpew9RaFemF
+	hFQ+eS++GM83j2XcERzo9AB+3Yv4EVphf7xx9
+X-Gm-Gg: ASbGnctLX6vP67C0xQB5HHdeP3UC2ZiNkbzcs3vedYG4+d2Y0SfgxQ3nutRnvOpqGHj
+	DjrPyn0gVRKHWfvKPBfKfDCmSn+2pTjS1ANe7Jy5Gt4KLf5QzLXRXwRnha+4y8VB5jc1bg1chC6
+	KfpTPcq5d0GoyFVehWa0M4ZJsFmjUK6jHV813qrv69BkQXGfPu46Vjs4rewhrSNpn+ICNP1Kjun
+	Q7rhsaUQCNjYiuRbbrQ65H+2Tk=
+X-Google-Smtp-Source: AGHT+IGH9uYdM/Pc/03ReaZzoEXP9sA2pGgoPRwtkg+8g83rxxE4ucpWHzH0+WIBx7cT6eqFBqxwDDBD06TbwvDIkBw=
+X-Received: by 2002:a05:6870:1698:b0:342:2140:32bc with SMTP id
+ 586e51a60fabf-3c0f81eaf40mr10417243fac.26.1760438639517; Tue, 14 Oct 2025
+ 03:43:59 -0700 (PDT)
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [yocto] [kirkstone 4.0.30] libpam-1.5.2 do_compile fails due to
- missing headers in pam_namespace.c
-To: yocto@lists.yoctoproject.org, phelge@semtech.com
-References: <CY8PR20MB5618082EADE97E0FA4EDE9F5C7EAA@CY8PR20MB5618.namprd20.prod.outlook.com>
-Content-Language: en-US
-From: Gyorgy Sarvari <skandigraun@gmail.com>
-In-Reply-To: <CY8PR20MB5618082EADE97E0FA4EDE9F5C7EAA@CY8PR20MB5618.namprd20.prod.outlook.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+From: simone bongini <bongini.simone@gmail.com>
+Date: Tue, 14 Oct 2025 12:43:48 +0200
+X-Gm-Features: AS18NWDPm4zMlve9HIp6kZbdWch5OCws_9vOC6ex078XjeCamqQsgKPobnNOU_g
+Message-ID: <CAHdr16oXZoe5fVbvqRvv5Q3SOTodRfMKKdRrR0uY6dZTN7xTQA@mail.gmail.com>
+Subject: [Scarthgap] "ModuleNotFoundError: No module named 'imp'"
+To: yocto@lists.yoctoproject.org
+Content-Type: multipart/alternative; boundary="000000000000c1e48106411c0f97"
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Tue, 14 Oct 2025 09:21:18 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/65929
+ <yocto@lists.yoctoproject.org>; Tue, 14 Oct 2025 10:44:09 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/65930
 
-On 10/13/25 20:19, Pushkar Helge via lists.yoctoproject.org wrote:
-> Hi Yocto team,
->
-> I encountered a compilation failure with libpam-1.5.2-r0 when building
-> an image with Yocto kirkstone 4.0.30 on aarch64 target architecture.
-> The issue appears to be introduced by the CVE-2025-6020 patches
-> backported in the 4.0.29 release.
->
-> === ENVIRONMENT ===
-> - Yocto Version: 4.0.30 kirkstone
-> - Target Architecture: aarch64-poky-linux
-> - Host System: Linux 5.15.0-139-generic
-> - Package: libpam-1.5.2-r0
-> - Recipe: /poky/meta/recipes-extended/pam/libpam_1.5.2.bb
->
-> === ERROR LOG ===
->
-> ERROR: libpam-1.5.2-r0 do_compile: oe_runmake failed
->
->
-> The compilation fails in modules/pam_namespace/pam_namespace.c with:
->
->
-> ../../../Linux-PAM-1.5.2/modules/pam_namespace/pam_namespace.c: In
-> function 'secure_try_rmdir':
->
-> ../../../Linux-PAM-1.5.2/modules/pam_namespace/pam_namespace.c:326:18:
-> warning: implicit declaration of function 'dirname'
-> [-Wimplicit-function-declaration]
->
->   326 |         parent = dirname(buf);
->
->       |                  ^~~~~~~
->
-> ../../../Linux-PAM-1.5.2/modules/pam_namespace/pam_namespace.c:326:16:
-> warning: assignment to 'char *' from 'int' makes pointer from integer
-> without a cast [-Wint-conversion]
->
->   326 |         parent = dirname(buf);
->
->       |                ^
->
-> ../../../Linux-PAM-1.5.2/modules/pam_namespace/pam_namespace.c: In
-> function 'parse_config_file':
->
-> ../../../Linux-PAM-1.5.2/modules/pam_namespace/pam_namespace.c:944:17:
-> warning: implicit declaration of function 'setlocale'
-> [-Wimplicit-function-declaration]
->
->   944 |     oldlocale = setlocale(LC_COLLATE, "C");
->
->       |                 ^~~~~~~~~
->
-> ../../../Linux-PAM-1.5.2/modules/pam_namespace/pam_namespace.c:944:27:
-> error: 'LC_COLLATE' undeclared (first use in this function)
->
->   944 |     oldlocale = setlocale(LC_COLLATE, "C");
->
->       |                           ^~~~~~~~~~
->
-> make[3]: *** [Makefile:795: pam_namespace.lo] Error 1
->
->
-> === ROOT CAUSE ===
-> The CVE-2025-6020-01.patch (added in 4.0.29) removes <libgen.h> and
-> <locale.h> from modules/pam_namespace/pam_namespace.h as part of
-> header cleanup:
->
-> diff --git a/modules/pam_namespace/pam_namespace.h
-> b/modules/pam_namespace/pam_namespace.h
-> ...
-> -#include <libgen.h>
-> ...
-> -#include <locale.h>
->
-> However, modules/pam_namespace/pam_namespace.c still uses:
->
->  *
->     dirname() function (requires <libgen.h>)
->  *
->     setlocale() function and LC_COLLATE constant (requires <locale.h>)
->     These functions are called but the headers are no longer included
->     anywhere, causing the compilation to fail.
->
->
-> === PROPOSED FIX ===
-> The fix is to add the missing header includes directly to
-> pam_namespace.c. I've attached a patch that resolves this issue.
-> This patch should be added to the libpam_1.5.2.bb recipe SRC_URI after
-> the CVE-2025-6020 patches.
->
-> === PATCH ===
->
-> From: Pushkar
->
-> Date: Mon, 13 Oct 2025
->
-> Subject: [PATCH] libpam: fix missing headers in pam_namespace.c after
-> CVE-2025-6020 patches
->
->
-> The CVE-2025-6020-01 patch removed libgen.h and locale.h from
->
-> pam_namespace.h, but pam_namespace.c still uses dirname(), setlocale(),
->
-> and LC_COLLATE from these headers. Add them back to the C file.
->
->
-> This fixes compilation errors on aarch64 and potentially other
-> architectures.
->
->
-> Signed-off-by:
->
->
-> ---
->
->  modules/pam_namespace/pam_namespace.c | 2 ++
->
->  1 file changed, 2 insertions(+)
->
->
-> diff --git a/modules/pam_namespace/pam_namespace.c
-> b/modules/pam_namespace/pam_namespace.c
->
-> index 22d8445..1234567 100644
->
-> --- a/modules/pam_namespace/pam_namespace.c
->
-> +++ b/modules/pam_namespace/pam_namespace.c
->
-> @@ -38,6 +38,8 @@
->
->  #include "config.h"
->
->  #include <stdint.h>
->
->  #include "pam_cc_compat.h"
->
-> +#include <libgen.h>
->
-> +#include <locale.h>
->
->  #include "pam_inline.h"
->
->  #include "pam_namespace.h"
->
->  #include "argv_parse.h"
->
-> --
->
-> 2.25.1
->
->
-> Please let me know if this is a valid issue and or if need any
-> additional information or testing results.
->
+--000000000000c1e48106411c0f97
+Content-Type: text/plain; charset="UTF-8"
 
-To me your investigation and findings make sense at the first sight...
-would like to add two notes:
+Hello All
+i'm trying to build an image based on scarthgap.
+I'm facing
 
-1. I didn't manage to reproduce this. This doesn't invalidate the
-problem though - but I'm curious if it requires some extra
-config/environment. (I tried it in debian12 docker image, for qemuarm64
-target, with default toolchain).
-2. This seems to be an upstream issue. Could you please send your fix to
-the openembedded-core mailing list[1] (so it can be included in the next
-release), and to open an issue/PR with libpam also (so they can fix it
-too)? My previous point about reproduction touches this point also.
+ERROR: our-image-initramfs-1.0-r0 do_rootfs: Could not invoke dnf. Command
+'/home/devlinux/BOARD.1/scarthgap/board-bsp/build-sd96/tmp/work/sama5d27-poky-linux-gnueabi/our-image-initramfs/1.0/recipe-sysroot-native/usr/bin/dnf
+-v --rpmverbosity=info -y -c
+/home/devlinux/BOARD.1/scarthgap/board-bsp/build-sd96/tmp/work/sama5d27-poky-linux-gnueabi/our-image-initramfs/1.0/rootfs/etc/dnf/dnf.conf
+--setopt=reposdir=/home/devlinux/BOARD.1/scarthgap/board-bsp/build-sd96/tmp/work/sama5d27-poky-linux-gnueabi/our-image-initramfs/1.0/rootfs/etc/yum.repos.d
+--installroot=/home/devlinux/BOARD.1/scarthgap/board-bsp/build-sd96/tmp/work/sama5d27-poky-linux-gnueabi/our-image-initramfs/1.0/rootfs
+--setopt=logdir=/home/devlinux/BOARD.1/scarthgap/board-bsp/build-sd96/tmp/work/sama5d27-poky-linux-gnueabi/our-image-initramfs/1.0/temp
+--repofrompath=oe-repo,/home/devlinux/board.1/scarthgap/board-bsp/build-sd96/tmp/work/sama5d27-poky-linux-gnueabi/our-image-initramfs/1.0/oe-rootfs-repo
+makecache --refresh' returned 1:
+Traceback (most recent call last):
+  File
+"/home/devlinux/BOARD.1/scarthgap/board-bsp/build-sd96/tmp/work/sama5d27-poky-linux-gnueabi/our-image-initramfs/1.0/recipe-sysroot-native/usr/bin/dnf.real",
+line 61, in <module>
+    from dnf.cli import main
+  File
+"/home/devlinux/BOARD.1/scarthgap/board-bsp/build-sd96/tmp/work/sama5d27-poky-linux-gnueabi/our-image-initramfs/1.0/recipe-sysroot-native/usr/lib/python3.12/site-packages/dnf/__init__.py",
+line 30, in <module>
+    import dnf.base
+  File
+"/home/devlinux/BOARD.1/scarthgap/board-bsp/build-sd96/tmp/work/sama5d27-poky-linux-gnueabi/our-image-initramfs/1.0/recipe-sysroot-native/usr/lib/python3.12/site-packages/dnf/base.py",
+line 29, in <module>
+    import libdnf.transaction
+  File
+"/home/devlinux/BOARD.1/scarthgap/board-bsp/build-sd96/tmp/work/sama5d27-poky-linux-gnueabi/our-image-initramfs/1.0/recipe-sysroot-native/usr/lib/python3.12/site-packages/libdnf/__init__.py",
+line 8, in <module>
+    from . import error
+  File
+"/home/devlinux/BOARD.1/scarthgap/board-bsp/build-sd96/tmp/work/sama5d27-poky-linux-gnueabi/our-image-initramfs/1.0/recipe-sysroot-native/usr/lib/python3.12/site-packages/libdnf/error.py",
+line 28, in <module>
+    _error = swig_import_helper()
+             ^^^^^^^^^^^^^^^^^^^^
+  File
+"/home/devlinux/BOARD.1/scarthgap/board-bsp/build-sd96/tmp/work/sama5d27-poky-linux-gnueabi/our-image-initramfs/1.0/recipe-sysroot-native/usr/lib/python3.12/site-packages/libdnf/error.py",
+line 15, in swig_import_helper
+    import imp
+ModuleNotFoundError: No module named 'imp'
 
-[1]:
-https://docs.yoctoproject.org/dev/contributor-guide/submit-changes.html#sending-the-patches-via-email
+ERROR: Logfile of failure stored in:
+/home/devlinux/BOARD.1/scarthgap/board-bsp/build-sd96/tmp/work/sama5d27-poky-linux-gnueabi/our-image-initramfs/1.0/temp/log.do_rootfs.3572531
+ERROR: Task
+(/home/devlinux/BOARD.1/scarthgap/board-bsp/meta-sd96/meta-sd96/recipes-core/initramfs/our-image-initramfs.bb:do_rootfs)
+failed with exit code '1'
 
+issue caused by Python 3.12 that is not compatible with "imp" library.
+But, why swig in scarthgap generate error.py that includes "imp" library?
 
+our-image-initramfs.bb is an our recipes that inherit core-image in order
+to create a DM-Verity fitImage.
+Note that it works with kirkstone poky.
+
+Thank you all,
+SB
+
+--000000000000c1e48106411c0f97
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div di=
+r=3D"ltr"><div dir=3D"ltr">Hello All<br><div><div><div><div>i&#39;m trying =
+to build an image based on scarthgap.</div><div>I&#39;m facing=C2=A0</div><=
+/div><div><br></div><div>ERROR: our-image-initramfs-1.0-r0 do_rootfs: Could=
+ not invoke dnf. Command &#39;/home/devlinux/BOARD.1/scarthgap/board-bsp/bu=
+ild-sd96/tmp/work/sama5d27-poky-linux-gnueabi/our-image-initramfs/1.0/recip=
+e-sysroot-native/usr/bin/dnf -v --rpmverbosity=3Dinfo -y -c /home/devlinux/=
+BOARD.1/scarthgap/board-bsp/build-sd96/tmp/work/sama5d27-poky-linux-gnueabi=
+/our-image-initramfs/1.0/rootfs/etc/dnf/dnf.conf --setopt=3Dreposdir=3D/hom=
+e/devlinux/BOARD.1/scarthgap/board-bsp/build-sd96/tmp/work/sama5d27-poky-li=
+nux-gnueabi/our-image-initramfs/1.0/rootfs/etc/yum.repos.d --installroot=3D=
+/home/devlinux/BOARD.1/scarthgap/board-bsp/build-sd96/tmp/work/sama5d27-pok=
+y-linux-gnueabi/our-image-initramfs/1.0/rootfs --setopt=3Dlogdir=3D/home/de=
+vlinux/BOARD.1/scarthgap/board-bsp/build-sd96/tmp/work/sama5d27-poky-linux-=
+gnueabi/our-image-initramfs/1.0/temp --repofrompath=3Doe-repo,/home/devlinu=
+x/board.1/scarthgap/board-bsp/build-sd96/tmp/work/sama5d27-poky-linux-gnuea=
+bi/our-image-initramfs/1.0/oe-rootfs-repo makecache --refresh&#39; returned=
+ 1:</div><div>Traceback (most recent call last):</div><div>=C2=A0 File &quo=
+t;/home/devlinux/BOARD.1/scarthgap/board-bsp/build-sd96/tmp/work/sama5d27-p=
+oky-linux-gnueabi/our-image-initramfs/1.0/recipe-sysroot-native/usr/bin/dnf=
+.real&quot;, line 61, in &lt;module&gt;</div><div>=C2=A0 =C2=A0 from dnf.cl=
+i import main</div><div>=C2=A0 File &quot;/home/devlinux/BOARD.1/scarthgap/=
+board-bsp/build-sd96/tmp/work/sama5d27-poky-linux-gnueabi/our-image-initram=
+fs/1.0/recipe-sysroot-native/usr/lib/python3.12/site-packages/dnf/__init__.=
+py&quot;, line 30, in &lt;module&gt;</div><div>=C2=A0 =C2=A0 import dnf.bas=
+e</div><div>=C2=A0 File &quot;/home/devlinux/BOARD.1/scarthgap/board-bsp/bu=
+ild-sd96/tmp/work/sama5d27-poky-linux-gnueabi/our-image-initramfs/1.0/recip=
+e-sysroot-native/usr/lib/python3.12/site-packages/dnf/base.py&quot;, line 2=
+9, in &lt;module&gt;</div><div>=C2=A0 =C2=A0 import libdnf.transaction</div=
+><div>=C2=A0 File &quot;/home/devlinux/BOARD.1/scarthgap/board-bsp/build-sd=
+96/tmp/work/sama5d27-poky-linux-gnueabi/our-image-initramfs/1.0/recipe-sysr=
+oot-native/usr/lib/python3.12/site-packages/libdnf/__init__.py&quot;, line =
+8, in &lt;module&gt;</div><div>=C2=A0 =C2=A0 from . import error</div><div>=
+=C2=A0 File &quot;/home/devlinux/BOARD.1/scarthgap/board-bsp/build-sd96/tmp=
+/work/sama5d27-poky-linux-gnueabi/our-image-initramfs/1.0/recipe-sysroot-na=
+tive/usr/lib/python3.12/site-packages/libdnf/error.py&quot;, line 28, in &l=
+t;module&gt;</div><div>=C2=A0 =C2=A0 _error =3D swig_import_helper()</div><=
+div>=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0^^^^^^^^^^^^^^^^^^^^</d=
+iv><div>=C2=A0 File &quot;/home/devlinux/BOARD.1/scarthgap/board-bsp/build-=
+sd96/tmp/work/sama5d27-poky-linux-gnueabi/our-image-initramfs/1.0/recipe-sy=
+sroot-native/usr/lib/python3.12/site-packages/libdnf/error.py&quot;, line 1=
+5, in swig_import_helper</div><div>=C2=A0 =C2=A0 import imp</div><div>Modul=
+eNotFoundError: No module named &#39;imp&#39;</div><div><br></div><div>ERRO=
+R: Logfile of failure stored in: /home/devlinux/BOARD.1/scarthgap/board-bsp=
+/build-sd96/tmp/work/sama5d27-poky-linux-gnueabi/our-image-initramfs/1.0/te=
+mp/log.do_rootfs.3572531</div><div>ERROR: Task (/home/devlinux/BOARD.1/scar=
+thgap/board-bsp/meta-sd96/meta-sd96/recipes-core/initramfs/our-image-initra=
+mfs.bb:do_rootfs) failed with exit code &#39;1&#39;</div></div></div><div><=
+br></div><div><div>issue caused by Python 3.12 that is not compatible with =
+&quot;imp&quot; library.</div><div>But, why swig in scarthgap generate erro=
+r.py that includes &quot;imp&quot; library?</div><div><br></div><div><a hre=
+f=3D"http://our-image-initramfs.bb">our-image-initramfs.bb</a> is an our re=
+cipes that inherit core-image in order to create a DM-Verity fitImage.</div=
+><div>Note that it works with kirkstone poky.=C2=A0</div><div><br></div><di=
+v>Thank you all,</div><div>SB</div></div></div></div></div></div></div></di=
+v>
+
+--000000000000c1e48106411c0f97--
 
