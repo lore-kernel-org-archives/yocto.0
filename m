@@ -1,83 +1,76 @@
-Return-Path: <jester@theyoctojester.info>
+Return-Path: <pokybuild@yoctoproject.org>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 81EC7CCD18F
-	for <webhook@archiver.kernel.org>; Mon, 13 Oct 2025 19:00:41 +0000 (UTC)
-Received: from mail-pl1-f182.google.com (mail-pl1-f182.google.com [209.85.214.182])
- by mx.groups.io with SMTP id smtpd.web11.53084.1760382032195763807
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 324D1CCD185
+	for <webhook@archiver.kernel.org>; Tue, 14 Oct 2025 00:13:15 +0000 (UTC)
+Received: from a27-193.smtp-out.us-west-2.amazonses.com (a27-193.smtp-out.us-west-2.amazonses.com [54.240.27.193])
+ by mx.groups.io with SMTP id smtpd.web10.3887.1760400785458888034
  for <yocto@lists.yoctoproject.org>;
- Mon, 13 Oct 2025 12:00:32 -0700
+ Mon, 13 Oct 2025 17:13:06 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@theyoctojester-info.20230601.gappssmtp.com header.s=20230601 header.b=uofpwj43;
- spf=neutral (domain: theyoctojester.info, ip: 209.85.214.182, mailfrom: jester@theyoctojester.info)
-Received: by mail-pl1-f182.google.com with SMTP id d9443c01a7336-273a0aeed57so67854585ad.1
-        for <yocto@lists.yoctoproject.org>; Mon, 13 Oct 2025 12:00:32 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=theyoctojester-info.20230601.gappssmtp.com; s=20230601; t=1760382031; x=1760986831; darn=lists.yoctoproject.org;
-        h=to:subject:message-id:date:from:mime-version:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=B406qVbW/Di84q48SP0jRnMNywVBf6H98g8cIAf0inY=;
-        b=uofpwj43R7Wbq7s2GxrcPHaB2OmgJ20Jwd3fGM4+GcN/zlt4+1RCD1j6hApY8Edjxx
-         qVfTo1n6tUG6bwBmT4pYVwxO1pDC+xj5gnn5JyRrV3u9s5sRObAdG2Pt9YXFyL3EDFrt
-         62ak4cZ9qcuvhnSuiAciGLEzL4fXyuI3Q8ehWk07Dzrxk6Giv/DmaZCYP2DZHmL0IThJ
-         5uXqpwlQsYCPnMCEpUsPBfw0+W0rLUnrR18vcmZpEowLclvYIfiVSfrBD5pMpJBZQKi7
-         XaV7+bYsp7fXMJhtF652gYiwhP0jVWoqVMGBeyS4aDsAc44I/8RMfqcpPF/b1fdClQt6
-         7bbQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1760382031; x=1760986831;
-        h=to:subject:message-id:date:from:mime-version:x-gm-message-state
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=B406qVbW/Di84q48SP0jRnMNywVBf6H98g8cIAf0inY=;
-        b=P9L6ho/R5D8sluwnab1bQLmlORFcsOVMEqs3qw3LuZgAvryLtsUmx+kbgFDnZZsI0m
-         tj9O3ZJLDrJ0LhAnsmV4ILhxjWSBdQ0EEKC1lEPgTWyuPhw8iM16jDlYpTgniTHe8AO1
-         4prtj2oI80i9TYlCTF55txfXAchGi/nUuoV/ZZdGkBOaonb1fssl+8VMFM3gzQjIZQEl
-         80V3piHQrfWMP2P+4DfOlPyOioE2dgeGsHW7B4FuCviTmnGsfWxfqtik+59kMEzbrXlt
-         ZeJxvzn1heEqLe6UnC22bmAHt9cRAvIrUBUjlpJ5qurmM/LPcfudcQU8EcrZa7SmD9hj
-         V31A==
-X-Forwarded-Encrypted: i=1; AJvYcCUx2/thHkjD7zarcQrtvZJ1EPj2fBGI9u2e0hpgnsnASPCPSFY47voLcd2cVQnoIYlKhxDQRA==@lists.yoctoproject.org
-X-Gm-Message-State: AOJu0Yw3ZBEV3YPZmOat0WhBWcKUvDhiY4cQ1JnAvH1yq5saj2RlwoWf
-	57arawymvev0atZcv2LUz84+lcS2AqOGz86ovMYXL3/8pGX38H5z2Y5YhAkh+9WQ4neZrNTEo6N
-	w7131yICG1WHVksIWncHHYkulrlAfR1UNkCC/a+D4Gg==
-X-Gm-Gg: ASbGncvzSXTXymTxNSF1RvhcCY6MwCRDSPxinBvckHaiNNS9IWDJ/ZEoS/MLAp1IWHS
-	DJBlf8xIOpzKyGud16QpGcmyJDIgLjK14PbNkqLfcFt+EY3f19/b5MOjh/4Gib/v2YOBne5h+f8
-	eM7afsKYhpGaMd3n+YyVNsi/gL5+HXHddhCKjUpJ7BpVM+KpKUgpofYV9zly7TDyJakp+FmkLvs
-	Td1l4v8w+4ba7yHIh6YHtT388BtDT9vKIB3eU/PTa2d73PURniY2ycPbsFGQPIuJSt0GQ==
-X-Google-Smtp-Source: AGHT+IGwpr5HxxsMDrw1kRLbewyUoegpFAtLdTBgykRSSjhQg9uayI9WJtj2geYJH0B6YxelyQQ3+45qlZw23tKEvMk=
-X-Received: by 2002:a17:903:3d10:b0:283:f19a:bffe with SMTP id
- d9443c01a7336-29027e734acmr282414455ad.7.1760382030293; Mon, 13 Oct 2025
- 12:00:30 -0700 (PDT)
-MIME-Version: 1.0
-From: Josef Holzmayr <jester@theyoctojester.info>
-Date: Mon, 13 Oct 2025 21:00:04 +0200
-X-Gm-Features: AS18NWCMdN3SjIn28o2bWZF1tkG4xMEYQ8uLxmGTdFKLREWp3JU3fZUWiR4kg4w
-Message-ID: <CAEt6Nwq7EGH06tGA8q=+4RLBLfOuuidDh-LRrE3g4MXoPxwuqQ@mail.gmail.com>
-Subject: OE Workshop Brussels 2026
-To: members@lists.openembedded.org, 
-	openembedded-core <openembedded-core@lists.openembedded.org>, 
-	openembedded-devel@lists.openembedded.org, 
-	Yocto-mailing-list <yocto@lists.yoctoproject.org>
-Content-Type: text/plain; charset="UTF-8"
+ dkim=pass header.i=@yoctoproject.org header.s=j46ser6a2yusdzubpv7m7ewqgesde2ie header.b=OkFFP5ns;
+ dkim=pass header.i=@amazonses.com header.s=gdwg2y3kokkkj5a55z2ilkup5wp5hhxx header.b=Wj2yw6kU;
+ spf=pass (domain: us-west-2.amazonses.com, ip: 54.240.27.193, mailfrom: 01010199e0103c28-07425f6d-9aa5-4b81-91b4-e75a01ecb62e-000000@us-west-2.amazonses.com)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/simple;
+	s=j46ser6a2yusdzubpv7m7ewqgesde2ie; d=yoctoproject.org;
+	t=1760400784; h=To:Cc:Subject:Message-Id:Date:From;
+	bh=iOqlJVkw5PCtfosnpZjPLxs/RktICR0DyNgLe9BDEqU=;
+	b=OkFFP5nsBedjutWSwBDJKd/V1thFOIx4NXME1z7GkQPcvrdQX1S/QKO20tq+rR1T
+	aMP1SMELHQSJ/7cKwkpASPPoyebpYaSF1X+69dINTaCh7dPXC6tox16cQz8AedWSF+y
+	EgeE4KfcHJyB7NnCA2pIK+IQVOiazX9ak4vJLY0E=
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/simple;
+	s=gdwg2y3kokkkj5a55z2ilkup5wp5hhxx; d=amazonses.com; t=1760400784;
+	h=To:Cc:Subject:Message-Id:Date:From:Feedback-ID;
+	bh=iOqlJVkw5PCtfosnpZjPLxs/RktICR0DyNgLe9BDEqU=;
+	b=Wj2yw6kUXVX3IfvER/FDltc6BwW7IkEFH7IqD8Yb0rWzKzZnrAWhNXW+fBea6Czr
+	cTo+u4r+HYrRXKo1FfMSugOZ7aK+K4+xA5HNn8vIqB714D4j5COcS+fvYz/LlrRchUU
+	RPM8ZHHw3w1mgHcEHLpxWIthup71se/IAw8qxZ/4=
+To: yocto@lists.yoctoproject.org
+Cc: qa-build-notification@lists.yoctoproject.org
+Subject: QA notification for completed autobuilder build (yocto-5.0.13.rc1)
+Message-ID: <01010199e0103c28-07425f6d-9aa5-4b81-91b4-e75a01ecb62e-000000@us-west-2.amazonses.com>
+Date: Tue, 14 Oct 2025 00:13:04 +0000
+From: Pokybuild User <pokybuild@yoctoproject.org>
+Feedback-ID: ::1.us-west-2.9np3MYPs3fEaOBysGKSlUD4KtcmPijcmS9Az2Hwf7iQ=:AmazonSES
+X-SES-Outgoing: 2025.10.14-54.240.27.193
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Mon, 13 Oct 2025 19:00:41 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/65921
+ <yocto@lists.yoctoproject.org>; Tue, 14 Oct 2025 00:13:15 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/65922
 
-Some people don't like them Mondays. But we say, the Monday after
-FOSDEM is the best time to gather for a day full of networking and
-discussions around OpenEmbedded.
 
-So here it is, the CFP and registration for the OE Workshop 2026, on
-February 2nd in Brussels.
-https://pretalx.com/openembedded-workshop-2026-2025/
+    A build flagged for QA (yocto-5.0.13.rc1) was completed on the autobuilder and is available at:
 
-We will spare you the rambling about all the nice people, cool
-presentations, ways to convince your boss... in the end its easy: sign
-up, show up, and if you have something to share then please submit.
 
-See you there!
+        https://valkyrie.yocto.io/pub/releases/yocto-5.0.13.rc1
 
-Josef
-on behalf of the usual suspects who run all the events.
+
+    Build URL: https://autobuilder.yoctoproject.org/valkyrie/#/builders/29/builds/2576
+
+    Build hash information: 
+
+    bitbake: 1c9ec1ffde75809de34c10d3ec2b40d84d258cb4
+meta-agl: 07a44280ecb27c3cc794a79cd46c53caf7da925d
+meta-arm: 0f1e7bf92c89759f0ab74cfa5be4ee47b092ad46
+meta-aws: 446379f6892ce2145e68d9b95dbc7a208e9558d2
+meta-clang: 731488911f55ebfe746068512b426351192f82f2
+meta-intel: 6fc37057c7f0293a2345e303588901889df8b937
+meta-mingw: bd9fef71ec005be3c3a6d7f8b99d8116daf70c4f
+meta-openembedded: e621da947048842109db1b4fd3917a02e0501aa2
+meta-virtualization: af1db2042caf8021d767dce1b26c08b59b96f3d1
+meta-yocto: 3ff7ca786732390cd56ae92ff4a43aba46a1bf2e
+oecore: 7af6b75221d5703ba5bf43c7cd9f1e7a2e0ed20b
+poky: f16cffd030d21d12dd57bb95cfc310bda41f8a1f
+yocto-docs: 6f086fd3d9dbbb0c80f6c3e89b8df4fed422e79a
+
+
+    
+This is an automated message from the Yocto Project Autobuilder
+Git: git://git.yoctoproject.org/yocto-autobuilder2
+Email: richard.purdie@linuxfoundation.org
+
+
+     
 
