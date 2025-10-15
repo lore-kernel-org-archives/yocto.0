@@ -1,318 +1,209 @@
-Return-Path: <bongini.simone@gmail.com>
+Return-Path: <skandigraun@gmail.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id BB317CCD18E
-	for <webhook@archiver.kernel.org>; Wed, 15 Oct 2025 09:20:41 +0000 (UTC)
-Received: from mail-oa1-f52.google.com (mail-oa1-f52.google.com [209.85.160.52])
- by mx.groups.io with SMTP id smtpd.web10.11463.1760520035548336976
+	by smtp.lore.kernel.org (Postfix) with ESMTP id D837DCCD193
+	for <webhook@archiver.kernel.org>; Wed, 15 Oct 2025 09:47:01 +0000 (UTC)
+Received: from mail-wr1-f50.google.com (mail-wr1-f50.google.com [209.85.221.50])
+ by mx.groups.io with SMTP id smtpd.web11.11892.1760521614612031766
  for <yocto@lists.yoctoproject.org>;
- Wed, 15 Oct 2025 02:20:35 -0700
+ Wed, 15 Oct 2025 02:46:54 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20230601 header.b=YBrkUb0F;
- spf=pass (domain: gmail.com, ip: 209.85.160.52, mailfrom: bongini.simone@gmail.com)
-Received: by mail-oa1-f52.google.com with SMTP id 586e51a60fabf-355102ff142so1374834fac.0
-        for <yocto@lists.yoctoproject.org>; Wed, 15 Oct 2025 02:20:35 -0700 (PDT)
+ dkim=pass header.i=@gmail.com header.s=20230601 header.b=TGYWUtDF;
+ spf=pass (domain: gmail.com, ip: 209.85.221.50, mailfrom: skandigraun@gmail.com)
+Received: by mail-wr1-f50.google.com with SMTP id ffacd0b85a97d-426f9ba85a2so138310f8f.2
+        for <yocto@lists.yoctoproject.org>; Wed, 15 Oct 2025 02:46:54 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1760520034; x=1761124834; darn=lists.yoctoproject.org;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=2aIF1G+f89Ze3Exluvvt13qBoV5tQCOMrbiV6pGaFAI=;
-        b=YBrkUb0FG1P7I9A/AxHvFIMH4SNNFDY+90NG7NDU62tlEFMHdGLzIc8PTHpUDxPOmI
-         Bu3nJ7wSsYg3YnOuenVKwZpThXqODoFf1v1EtHyKnZNwr9fD6dy8pWNwrsd+GxxCgvxo
-         0dCZjq0uJ9nB3HZHv+nkMrIQOUooTgfy0/12aEFTe2OStxVtFcxcktXxhF0Y6zl+4SHa
-         leq7Ym9VqJvnGKymr7GAD9zRzkr0FhwmJPh4+zwWtvBak1UbRPpgMCKbiW+Hbz+IQTzP
-         y2iDtqHnXxhz441dLRsa2KVQjiC3sAQbEPryjyMF5gxSBJLLYdVudwYcnplcORXvp/tx
-         ZUBA==
+        d=gmail.com; s=20230601; t=1760521613; x=1761126413; darn=lists.yoctoproject.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=MC/zMOUJ9+hkJmQY0p9a5VsewOQcNUOz+XfkPgXRMIc=;
+        b=TGYWUtDFmYumFxTgADXNGMvsZtvl9jGczDPnHXtDFVq5ubub/76RMscoM0jplEutvR
+         cjBZ0YHCOsx+eGo64WJSJEdKpCvyTdZSPQOnEkiQAOEj4O4yDx1pXbqFvoZs4gpoX8GL
+         xCtoyUN2jPKeLHsMBIty+rsNqtfGIqwAeO+TEK5Po8Dgq9fnaOedOXIDvRX0MKpNeyK8
+         9zyKrqcFNBybNSZp78EYOp4hnb4Y9yKTECqbmjcJZbviy4jcRWWsgQkraM1gbAJtF6gm
+         df0OaUnJo2aoU8Af2wRecDsLoykJUIih6R67330bB9rK1GP8zvrkXD4niF68cSBpe/S9
+         88Nw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1760520034; x=1761124834;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=2aIF1G+f89Ze3Exluvvt13qBoV5tQCOMrbiV6pGaFAI=;
-        b=MtMChr8WJpsw25GaBZWhA2o3NZbXHcAWqcdtCsRn8MxzA5mvUu9NL5i/nGBLK0AdcU
-         odMZ6Nyyh7gUhlR0YQDFn1eEVuTBCPPGUEssMGZ09KU3tK+oNA8INBLTzjItLYI3qBOS
-         FTUTsUfmCWiIn+VF9GRW/06sSRS1u8Rcuwhk7tYvbmKGpYh9ktuXejEckkYPOo+m7Y1r
-         N44RyHJWZVpYpg1+crCsnnmi/hlu4+Que1Y4nPqLuvXnXrghksVoXhiqkkwEth3qxtIg
-         u0J4AhfHxKwkJbdTOXEx2FtDZazqHlocGMNIPax8ipXSQaZMkW/em3eznSjWH77w2nH1
-         fiEw==
-X-Gm-Message-State: AOJu0YzFTThuP+fEehxtpDdIBLy1DQAcCewzTpm3/8FrhFeBzRV+EZdO
-	SuV5QEKB3jmD+zW1KZ83/puOlYI5TBdSFCEKjTjrvc4mVxXKyv4SsXMjNWy6ZLGjAkT/p1HdyCw
-	DE7WODcFIhoKiicx/hzbxosHjP693M2k=
-X-Gm-Gg: ASbGnctz/aMNqtzk7bbEGX49aLKSuWQhdr0lN4a0eRLaTsG5ublube8SDLCcM0E1hUk
-	hBNETWxH06FWWj3Y5/VnoIgZiXw+uM8Erq09mYfoOYQDhk5D0Q7wrljK1LSbY1UXPrr3imER/gq
-	1AZMy4pldeS9vMe9HtKTwX6sne2k28jub1wcv/ZLME+96/4zHy5lcUXCP2hSjTqpDgrkqMO4VaT
-	9XhzmenWt6Uc0c9qRV/8EEVW6+2
-X-Google-Smtp-Source: AGHT+IGnwqTYnnmS9R4A4Y3ErCjcD0aF0+O7O9JbELNyyQcS4+F0QDBgeWelK8f+ZdbV0/PaxE4LSDYAWDWet5wPHlQ=
-X-Received: by 2002:a05:6870:eca9:b0:345:d297:f4ff with SMTP id
- 586e51a60fabf-3c0f51a3c02mr11922218fac.10.1760520033645; Wed, 15 Oct 2025
- 02:20:33 -0700 (PDT)
+        d=1e100.net; s=20230601; t=1760521613; x=1761126413;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=MC/zMOUJ9+hkJmQY0p9a5VsewOQcNUOz+XfkPgXRMIc=;
+        b=cDZbsnfjcAs1pPmfI3sABsPx+bw3J2kedN2FOwMLv92Pwvs6Q7/9uM50oU9D9lUDfK
+         Vs/swmyRp2lzi1s2/zNog0NNb21c77nzxu2LERM8hMvN8N+2BxRarnbLCxVbX4p20PxE
+         a2xKvFSZLW6QC4071YWG0W7YA2WIDp/GKRMZEpHZuolMfJ8HhqJggaqOPuaA+v32Vj/B
+         8VbDJetzc6ddxxHrfTRAtNMdrG5LAyqpJi+jrXR39++xdGfHzcy2W0mgNIWYs6z3NsXu
+         cRmdnHWH9//e10C2MkVWiukUFb/FGY+fQTDZyMbVkeP7AZBuRUVROTJZ6mBULemLSxnz
+         Fh5A==
+X-Gm-Message-State: AOJu0YzdINL84mr1S1CCmHNxvdwdoGRTrRvdHoNR++4h9ZjfyDqYsqft
+	vVpLmsIxdYP+aN83wo2gWu3BhcE43KpMyK6LZBQVTjWUnpm6sUOt4FhD
+X-Gm-Gg: ASbGnctIT9siaftzRf20MQGrOFWaU+tMNv4lN7hyhh6dfwgPQh+WjQAy53RumgfdjJ9
+	dL9OwQ33MFTAJ7LOYY//1AaIs0dBCIhOxB51ERLKzv7zBrG91gZBTNNDP1Gcbi5XX7kGbKbUEpr
+	OxE+/N71yMt1ip1yBJHEslX9/Q/7w664HoTcpyYd5OxCkWkXuqcbIX07FhCfnyENseauoxvYI6U
+	Ear1kWYOtoG+P6PqpZsb9Nd+v4gIpo3qTGsOdOmdaVebWmI4oMdcjOqppzEensOj6GcYF7JnRO6
+	AxpazOaRZRPK2NFGUPt3l5cZGokE47oJsBCsWEVSUcK/Ist5eVidpULX6RXI1Kih4RPgjWqNmck
+	eN3pdypZIHzS6h5fvCLekpL/buBVEqcBFS5oBQEjWneGTozVuY8Ngy+lRMdnI
+X-Google-Smtp-Source: AGHT+IHd3lmY/R8EIhis3AtRZRCD3V8Zw/VJUysxADxIiUBPN0ssySlkIWTAoVVnw0n3U1a5c9Pjcg==
+X-Received: by 2002:a05:6000:2504:b0:3ec:a019:3936 with SMTP id ffacd0b85a97d-4266e8e4a51mr18132956f8f.55.1760521612781;
+        Wed, 15 Oct 2025 02:46:52 -0700 (PDT)
+Received: from [192.168.1.106] ([51.154.145.205])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-426ce5cfe69sm28861358f8f.32.2025.10.15.02.46.52
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 15 Oct 2025 02:46:52 -0700 (PDT)
+Message-ID: <35e0d767-7f83-4084-b0d7-d716a8c3e92c@gmail.com>
+Date: Wed, 15 Oct 2025 11:46:51 +0200
 MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [yocto] [Scarthgap] "ModuleNotFoundError: No module named 'imp'"
+To: simone bongini <bongini.simone@gmail.com>
+Cc: yocto@lists.yoctoproject.org
 References: <CAHdr16oXZoe5fVbvqRvv5Q3SOTodRfMKKdRrR0uY6dZTN7xTQA@mail.gmail.com>
  <b3332a61-b4a9-44dc-a1dc-84543f45192a@gmail.com>
-In-Reply-To: <b3332a61-b4a9-44dc-a1dc-84543f45192a@gmail.com>
-From: simone bongini <bongini.simone@gmail.com>
-Date: Wed, 15 Oct 2025 11:20:22 +0200
-X-Gm-Features: AS18NWCXmJDJSXqOdQLVi7awlF4LgEwe_U2NVLF61L_JoMccvF-0Ejag8Pm-9CM
-Message-ID: <CAHdr16qK++o8tZpYrUQkTb_hSzpX4HfYOD7ijSoPQrpEppo40Q@mail.gmail.com>
-Subject: Re: [yocto] [Scarthgap] "ModuleNotFoundError: No module named 'imp'"
-To: Gyorgy Sarvari <skandigraun@gmail.com>
-Cc: yocto@lists.yoctoproject.org
-Content-Type: multipart/alternative; boundary="00000000000039d46506412f033d"
+ <CAHdr16qK++o8tZpYrUQkTb_hSzpX4HfYOD7ijSoPQrpEppo40Q@mail.gmail.com>
+Content-Language: en-US
+From: Gyorgy Sarvari <skandigraun@gmail.com>
+In-Reply-To: <CAHdr16qK++o8tZpYrUQkTb_hSzpX4HfYOD7ijSoPQrpEppo40Q@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Wed, 15 Oct 2025 09:20:41 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/65935
+ <yocto@lists.yoctoproject.org>; Wed, 15 Oct 2025 09:47:01 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/65936
 
---00000000000039d46506412f033d
-Content-Type: text/plain; charset="UTF-8"
-
-Hello,
-I'm not able to find log.do_configure from libdnf-native, but....
-
-From the generated error.py of libdnf file I can read
-
-# This file was automatically generated by SWIG (http://www.swig.org).
-# Version 3.0.8
-#
-# Do not make changes to this file unless you know what you are
-doing--modify
-# the SWIG interface file instead.
-
-Indeed I got that the proper version is the 4.2.1, but seems generated from
-3.0.8 version
-
-
-
-Il giorno mer 15 ott 2025 alle ore 09:56 Gyorgy Sarvari <
-skandigraun@gmail.com> ha scritto:
-
-> On 10/14/25 12:43, simone bongini via lists.yoctoproject.org wrote:
-> > Hello All
-> > i'm trying to build an image based on scarthgap.
-> > I'm facing
-> >
-> > ERROR: our-image-initramfs-1.0-r0 do_rootfs: Could not invoke dnf.
-> > Command
-> >
-> '/home/devlinux/BOARD.1/scarthgap/board-bsp/build-sd96/tmp/work/sama5d27-poky-linux-gnueabi/our-image-initramfs/1.0/recipe-sysroot-native/usr/bin/dnf
-> > -v --rpmverbosity=info -y -c
-> >
-> /home/devlinux/BOARD.1/scarthgap/board-bsp/build-sd96/tmp/work/sama5d27-poky-linux-gnueabi/our-image-initramfs/1.0/rootfs/etc/dnf/dnf.conf
-> >
-> --setopt=reposdir=/home/devlinux/BOARD.1/scarthgap/board-bsp/build-sd96/tmp/work/sama5d27-poky-linux-gnueabi/our-image-initramfs/1.0/rootfs/etc/yum.repos.d
-> >
-> --installroot=/home/devlinux/BOARD.1/scarthgap/board-bsp/build-sd96/tmp/work/sama5d27-poky-linux-gnueabi/our-image-initramfs/1.0/rootfs
-> >
-> --setopt=logdir=/home/devlinux/BOARD.1/scarthgap/board-bsp/build-sd96/tmp/work/sama5d27-poky-linux-gnueabi/our-image-initramfs/1.0/temp
-> >
-> --repofrompath=oe-repo,/home/devlinux/board.1/scarthgap/board-bsp/build-sd96/tmp/work/sama5d27-poky-linux-gnueabi/our-image-initramfs/1.0/oe-rootfs-repo
-> > makecache --refresh' returned 1:
-> > Traceback (most recent call last):
-> >   File
-> >
-> "/home/devlinux/BOARD.1/scarthgap/board-bsp/build-sd96/tmp/work/sama5d27-poky-linux-gnueabi/our-image-initramfs/1.0/recipe-sysroot-native/usr/bin/dnf.real",
-> > line 61, in <module>
-> >     from dnf.cli import main
-> >   File
-> >
-> "/home/devlinux/BOARD.1/scarthgap/board-bsp/build-sd96/tmp/work/sama5d27-poky-linux-gnueabi/our-image-initramfs/1.0/recipe-sysroot-native/usr/lib/python3.12/site-packages/dnf/__init__.py",
-> > line 30, in <module>
-> >     import dnf.base
-> >   File
-> >
-> "/home/devlinux/BOARD.1/scarthgap/board-bsp/build-sd96/tmp/work/sama5d27-poky-linux-gnueabi/our-image-initramfs/1.0/recipe-sysroot-native/usr/lib/python3.12/site-packages/dnf/base.py",
-> > line 29, in <module>
-> >     import libdnf.transaction
-> >   File
-> >
-> "/home/devlinux/BOARD.1/scarthgap/board-bsp/build-sd96/tmp/work/sama5d27-poky-linux-gnueabi/our-image-initramfs/1.0/recipe-sysroot-native/usr/lib/python3.12/site-packages/libdnf/__init__.py",
-> > line 8, in <module>
-> >     from . import error
-> >   File
-> >
-> "/home/devlinux/BOARD.1/scarthgap/board-bsp/build-sd96/tmp/work/sama5d27-poky-linux-gnueabi/our-image-initramfs/1.0/recipe-sysroot-native/usr/lib/python3.12/site-packages/libdnf/error.py",
-> > line 28, in <module>
-> >     _error = swig_import_helper()
-> >              ^^^^^^^^^^^^^^^^^^^^
-> >   File
-> >
-> "/home/devlinux/BOARD.1/scarthgap/board-bsp/build-sd96/tmp/work/sama5d27-poky-linux-gnueabi/our-image-initramfs/1.0/recipe-sysroot-native/usr/lib/python3.12/site-packages/libdnf/error.py",
-> > line 15, in swig_import_helper
-> >     import imp
-> > ModuleNotFoundError: No module named 'imp'
-> >
-> > ERROR: Logfile of failure stored in:
-> >
-> /home/devlinux/BOARD.1/scarthgap/board-bsp/build-sd96/tmp/work/sama5d27-poky-linux-gnueabi/our-image-initramfs/1.0/temp/log.do_rootfs.3572531
-> > ERROR: Task
-> >
-> (/home/devlinux/BOARD.1/scarthgap/board-bsp/meta-sd96/meta-sd96/recipes-core/initramfs/our-image-initramfs.bb:
-> do_rootfs)
-> > failed with exit code '1'
-> >
-> > issue caused by Python 3.12 that is not compatible with "imp" library.
-> > But, why swig in scarthgap generate error.py that includes "imp" library?
->
-> Interesting question - I think also that it shouldn't do that.
-> Random first thought: if you look into the log.do_configure of
-> libdnf-native, what does it say, which version of swig did it find, and
-> at what path? Is it v4.2.1, somewhere from ${RECIPE_SYSROOT_NATIVE}?
->
-> >
-> > our-image-initramfs.bb <http://our-image-initramfs.bb> is an our
-> > recipes that inherit core-image in order to create a DM-Verity fitImage.
-> > Note that it works with kirkstone poky.
-> >
-> > Thank you all,
-> > SB
-> >
-> > -=-=-=-=-=-=-=-=-=-=-=-
-> > Links: You receive all messages sent to this group.
-> > View/Reply Online (#65930):
-> https://lists.yoctoproject.org/g/yocto/message/65930
-> > Mute This Topic: https://lists.yoctoproject.org/mt/115750455/6084445
-> > Group Owner: yocto+owner@lists.yoctoproject.org
-> > Unsubscribe: https://lists.yoctoproject.org/g/yocto/unsub [
-> skandigraun@gmail.com]
-> > -=-=-=-=-=-=-=-=-=-=-=-
-> >
->
+On 10/15/25 11:20, simone bongini wrote:
+> Hello,
+> I'm not able to find log.do_configure from libdnf-native, but....
 >
 
---00000000000039d46506412f033d
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+You can recreate is with "bitbake -c configure libdnf-native"
 
-<div dir=3D"ltr"><div dir=3D"ltr">Hello,<div>I&#39;m not able to find log.d=
-o_configure from libdnf-native, but....</div><div><br></div><div>From the g=
-enerated error.py of libdnf file I can read</div><div><div><br></div><div>#=
- This file was automatically generated by SWIG (<a href=3D"http://www.swig.=
-org">http://www.swig.org</a>).</div><div># Version 3.0.8</div><div>#</div><=
-div># Do not make changes to this file unless you know what you are doing--=
-modify</div><div># the SWIG interface file instead.</div><div><br></div><di=
-v>Indeed I got that the proper version is the 4.2.1, but seems generated fr=
-om 3.0.8 version</div><div><br></div><div><br></div></div></div></div><br><=
-div class=3D"gmail_quote gmail_quote_container"><div dir=3D"ltr" class=3D"g=
-mail_attr">Il giorno mer 15 ott 2025 alle ore 09:56 Gyorgy Sarvari &lt;<a h=
-ref=3D"mailto:skandigraun@gmail.com">skandigraun@gmail.com</a>&gt; ha scrit=
-to:<br></div><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px =
-0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex">On 10/14/25 =
-12:43, simone bongini via <a href=3D"http://lists.yoctoproject.org" rel=3D"=
-noreferrer" target=3D"_blank">lists.yoctoproject.org</a> wrote:<br>
-&gt; Hello All<br>
-&gt; i&#39;m trying to build an image based on scarthgap.<br>
-&gt; I&#39;m facing=C2=A0<br>
-&gt;<br>
-&gt; ERROR: our-image-initramfs-1.0-r0 do_rootfs: Could not invoke dnf.<br>
-&gt; Command<br>
-&gt; &#39;/home/devlinux/BOARD.1/scarthgap/board-bsp/build-sd96/tmp/work/sa=
-ma5d27-poky-linux-gnueabi/our-image-initramfs/1.0/recipe-sysroot-native/usr=
-/bin/dnf<br>
-&gt; -v --rpmverbosity=3Dinfo -y -c<br>
-&gt; /home/devlinux/BOARD.1/scarthgap/board-bsp/build-sd96/tmp/work/sama5d2=
-7-poky-linux-gnueabi/our-image-initramfs/1.0/rootfs/etc/dnf/dnf.conf<br>
-&gt; --setopt=3Dreposdir=3D/home/devlinux/BOARD.1/scarthgap/board-bsp/build=
--sd96/tmp/work/sama5d27-poky-linux-gnueabi/our-image-initramfs/1.0/rootfs/e=
-tc/yum.repos.d<br>
-&gt; --installroot=3D/home/devlinux/BOARD.1/scarthgap/board-bsp/build-sd96/=
-tmp/work/sama5d27-poky-linux-gnueabi/our-image-initramfs/1.0/rootfs<br>
-&gt; --setopt=3Dlogdir=3D/home/devlinux/BOARD.1/scarthgap/board-bsp/build-s=
-d96/tmp/work/sama5d27-poky-linux-gnueabi/our-image-initramfs/1.0/temp<br>
-&gt; --repofrompath=3Doe-repo,/home/devlinux/board.1/scarthgap/board-bsp/bu=
-ild-sd96/tmp/work/sama5d27-poky-linux-gnueabi/our-image-initramfs/1.0/oe-ro=
-otfs-repo<br>
-&gt; makecache --refresh&#39; returned 1:<br>
-&gt; Traceback (most recent call last):<br>
-&gt; =C2=A0 File<br>
-&gt; &quot;/home/devlinux/BOARD.1/scarthgap/board-bsp/build-sd96/tmp/work/s=
-ama5d27-poky-linux-gnueabi/our-image-initramfs/1.0/recipe-sysroot-native/us=
-r/bin/dnf.real&quot;,<br>
-&gt; line 61, in &lt;module&gt;<br>
-&gt; =C2=A0 =C2=A0 from dnf.cli import main<br>
-&gt; =C2=A0 File<br>
-&gt; &quot;/home/devlinux/BOARD.1/scarthgap/board-bsp/build-sd96/tmp/work/s=
-ama5d27-poky-linux-gnueabi/our-image-initramfs/1.0/recipe-sysroot-native/us=
-r/lib/python3.12/site-packages/dnf/__init__.py&quot;,<br>
-&gt; line 30, in &lt;module&gt;<br>
-&gt; =C2=A0 =C2=A0 import dnf.base<br>
-&gt; =C2=A0 File<br>
-&gt; &quot;/home/devlinux/BOARD.1/scarthgap/board-bsp/build-sd96/tmp/work/s=
-ama5d27-poky-linux-gnueabi/our-image-initramfs/1.0/recipe-sysroot-native/us=
-r/lib/python3.12/site-packages/dnf/base.py&quot;,<br>
-&gt; line 29, in &lt;module&gt;<br>
-&gt; =C2=A0 =C2=A0 import libdnf.transaction<br>
-&gt; =C2=A0 File<br>
-&gt; &quot;/home/devlinux/BOARD.1/scarthgap/board-bsp/build-sd96/tmp/work/s=
-ama5d27-poky-linux-gnueabi/our-image-initramfs/1.0/recipe-sysroot-native/us=
-r/lib/python3.12/site-packages/libdnf/__init__.py&quot;,<br>
-&gt; line 8, in &lt;module&gt;<br>
-&gt; =C2=A0 =C2=A0 from . import error<br>
-&gt; =C2=A0 File<br>
-&gt; &quot;/home/devlinux/BOARD.1/scarthgap/board-bsp/build-sd96/tmp/work/s=
-ama5d27-poky-linux-gnueabi/our-image-initramfs/1.0/recipe-sysroot-native/us=
-r/lib/python3.12/site-packages/libdnf/error.py&quot;,<br>
-&gt; line 28, in &lt;module&gt;<br>
-&gt; =C2=A0 =C2=A0 _error =3D swig_import_helper()<br>
-&gt; =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0^^^^^^^^^^^^^^^^^^^^<b=
-r>
-&gt; =C2=A0 File<br>
-&gt; &quot;/home/devlinux/BOARD.1/scarthgap/board-bsp/build-sd96/tmp/work/s=
-ama5d27-poky-linux-gnueabi/our-image-initramfs/1.0/recipe-sysroot-native/us=
-r/lib/python3.12/site-packages/libdnf/error.py&quot;,<br>
-&gt; line 15, in swig_import_helper<br>
-&gt; =C2=A0 =C2=A0 import imp<br>
-&gt; ModuleNotFoundError: No module named &#39;imp&#39;<br>
-&gt;<br>
-&gt; ERROR: Logfile of failure stored in:<br>
-&gt; /home/devlinux/BOARD.1/scarthgap/board-bsp/build-sd96/tmp/work/sama5d2=
-7-poky-linux-gnueabi/our-image-initramfs/1.0/temp/log.do_rootfs.3572531<br>
-&gt; ERROR: Task<br>
-&gt; (/home/devlinux/BOARD.1/scarthgap/board-bsp/meta-sd96/meta-sd96/recipe=
-s-core/initramfs/our-image-initramfs.bb:do_rootfs)<br>
-&gt; failed with exit code &#39;1&#39;<br>
-&gt;<br>
-&gt; issue caused by Python 3.12 that is not compatible with &quot;imp&quot=
-; library.<br>
-&gt; But, why swig in scarthgap generate error.py that includes &quot;imp&q=
-uot; library?<br>
-<br>
-Interesting question - I think also that it shouldn&#39;t do that.<br>
-Random first thought: if you look into the log.do_configure of<br>
-libdnf-native, what does it say, which version of swig did it find, and<br>
-at what path? Is it v4.2.1, somewhere from ${RECIPE_SYSROOT_NATIVE}?<br>
-<br>
-&gt;<br>
-&gt; <a href=3D"http://our-image-initramfs.bb" rel=3D"noreferrer" target=3D=
-"_blank">our-image-initramfs.bb</a> &lt;<a href=3D"http://our-image-initram=
-fs.bb" rel=3D"noreferrer" target=3D"_blank">http://our-image-initramfs.bb</=
-a>&gt; is an our<br>
-&gt; recipes that inherit core-image in order to create a DM-Verity fitImag=
-e.<br>
-&gt; Note that it works with kirkstone poky.=C2=A0<br>
-&gt;<br>
-&gt; Thank you all,<br>
-&gt; SB<br>
-&gt;<br>
-&gt; -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-<br>
-&gt; Links: You receive all messages sent to this group.<br>
-&gt; View/Reply Online (#65930): <a href=3D"https://lists.yoctoproject.org/=
-g/yocto/message/65930" rel=3D"noreferrer" target=3D"_blank">https://lists.y=
-octoproject.org/g/yocto/message/65930</a><br>
-&gt; Mute This Topic: <a href=3D"https://lists.yoctoproject.org/mt/11575045=
-5/6084445" rel=3D"noreferrer" target=3D"_blank">https://lists.yoctoproject.=
-org/mt/115750455/6084445</a><br>
-&gt; Group Owner: <a href=3D"mailto:yocto%2Bowner@lists.yoctoproject.org" t=
-arget=3D"_blank">yocto+owner@lists.yoctoproject.org</a><br>
-&gt; Unsubscribe: <a href=3D"https://lists.yoctoproject.org/g/yocto/unsub" =
-rel=3D"noreferrer" target=3D"_blank">https://lists.yoctoproject.org/g/yocto=
-/unsub</a> [<a href=3D"mailto:skandigraun@gmail.com" target=3D"_blank">skan=
-digraun@gmail.com</a>]<br>
-&gt; -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-<br>
-&gt;<br>
-<br>
-</blockquote></div>
+> From the generated error.py of libdnf file I can read
+>
+> # This file was automatically generated by SWIG (http://www.swig.org).
+> # Version 3.0.8
+> #
+> # Do not make changes to this file unless you know what you are
+> doing--modify
+> # the SWIG interface file instead.
+>
+> Indeed I got that the proper version is the 4.2.1, but seems generated
+> from 3.0.8 version
+>
 
---00000000000039d46506412f033d--
+I guess the question is, where does this version come from.
+
+Do you have swig installed on the build host? If yes, which version? I'm
+just curious is maybe somehow cmake breaks out of the build environment,
+and uses a wrong swig... (I just did a test in docker with swig
+installed, and it used the correct version. But that doesn't mean that
+it's impossible.)
+Also, do you happen to have any bbappend or similar modifications for
+either the swig of libdnf recipes?
+
+
+>
+> Il giorno mer 15 ott 2025 alle ore 09:56 Gyorgy Sarvari
+> <skandigraun@gmail.com> ha scritto:
+>
+>     On 10/14/25 12:43, simone bongini via lists.yoctoproject.org
+>     <http://lists.yoctoproject.org> wrote:
+>     > Hello All
+>     > i'm trying to build an image based on scarthgap.
+>     > I'm facing 
+>     >
+>     > ERROR: our-image-initramfs-1.0-r0 do_rootfs: Could not invoke dnf.
+>     > Command
+>     >
+>     '/home/devlinux/BOARD.1/scarthgap/board-bsp/build-sd96/tmp/work/sama5d27-poky-linux-gnueabi/our-image-initramfs/1.0/recipe-sysroot-native/usr/bin/dnf
+>     > -v --rpmverbosity=info -y -c
+>     >
+>     /home/devlinux/BOARD.1/scarthgap/board-bsp/build-sd96/tmp/work/sama5d27-poky-linux-gnueabi/our-image-initramfs/1.0/rootfs/etc/dnf/dnf.conf
+>     >
+>     --setopt=reposdir=/home/devlinux/BOARD.1/scarthgap/board-bsp/build-sd96/tmp/work/sama5d27-poky-linux-gnueabi/our-image-initramfs/1.0/rootfs/etc/yum.repos.d
+>     >
+>     --installroot=/home/devlinux/BOARD.1/scarthgap/board-bsp/build-sd96/tmp/work/sama5d27-poky-linux-gnueabi/our-image-initramfs/1.0/rootfs
+>     >
+>     --setopt=logdir=/home/devlinux/BOARD.1/scarthgap/board-bsp/build-sd96/tmp/work/sama5d27-poky-linux-gnueabi/our-image-initramfs/1.0/temp
+>     >
+>     --repofrompath=oe-repo,/home/devlinux/board.1/scarthgap/board-bsp/build-sd96/tmp/work/sama5d27-poky-linux-gnueabi/our-image-initramfs/1.0/oe-rootfs-repo
+>     > makecache --refresh' returned 1:
+>     > Traceback (most recent call last):
+>     >   File
+>     >
+>     "/home/devlinux/BOARD.1/scarthgap/board-bsp/build-sd96/tmp/work/sama5d27-poky-linux-gnueabi/our-image-initramfs/1.0/recipe-sysroot-native/usr/bin/dnf.real",
+>     > line 61, in <module>
+>     >     from dnf.cli import main
+>     >   File
+>     >
+>     "/home/devlinux/BOARD.1/scarthgap/board-bsp/build-sd96/tmp/work/sama5d27-poky-linux-gnueabi/our-image-initramfs/1.0/recipe-sysroot-native/usr/lib/python3.12/site-packages/dnf/__init__.py",
+>     > line 30, in <module>
+>     >     import dnf.base
+>     >   File
+>     >
+>     "/home/devlinux/BOARD.1/scarthgap/board-bsp/build-sd96/tmp/work/sama5d27-poky-linux-gnueabi/our-image-initramfs/1.0/recipe-sysroot-native/usr/lib/python3.12/site-packages/dnf/base.py",
+>     > line 29, in <module>
+>     >     import libdnf.transaction
+>     >   File
+>     >
+>     "/home/devlinux/BOARD.1/scarthgap/board-bsp/build-sd96/tmp/work/sama5d27-poky-linux-gnueabi/our-image-initramfs/1.0/recipe-sysroot-native/usr/lib/python3.12/site-packages/libdnf/__init__.py",
+>     > line 8, in <module>
+>     >     from . import error
+>     >   File
+>     >
+>     "/home/devlinux/BOARD.1/scarthgap/board-bsp/build-sd96/tmp/work/sama5d27-poky-linux-gnueabi/our-image-initramfs/1.0/recipe-sysroot-native/usr/lib/python3.12/site-packages/libdnf/error.py",
+>     > line 28, in <module>
+>     >     _error = swig_import_helper()
+>     >              ^^^^^^^^^^^^^^^^^^^^
+>     >   File
+>     >
+>     "/home/devlinux/BOARD.1/scarthgap/board-bsp/build-sd96/tmp/work/sama5d27-poky-linux-gnueabi/our-image-initramfs/1.0/recipe-sysroot-native/usr/lib/python3.12/site-packages/libdnf/error.py",
+>     > line 15, in swig_import_helper
+>     >     import imp
+>     > ModuleNotFoundError: No module named 'imp'
+>     >
+>     > ERROR: Logfile of failure stored in:
+>     >
+>     /home/devlinux/BOARD.1/scarthgap/board-bsp/build-sd96/tmp/work/sama5d27-poky-linux-gnueabi/our-image-initramfs/1.0/temp/log.do_rootfs.3572531
+>     > ERROR: Task
+>     >
+>     (/home/devlinux/BOARD.1/scarthgap/board-bsp/meta-sd96/meta-sd96/recipes-core/initramfs/our-image-initramfs.bb:do_rootfs)
+>     > failed with exit code '1'
+>     >
+>     > issue caused by Python 3.12 that is not compatible with "imp"
+>     library.
+>     > But, why swig in scarthgap generate error.py that includes "imp"
+>     library?
+>
+>     Interesting question - I think also that it shouldn't do that.
+>     Random first thought: if you look into the log.do_configure of
+>     libdnf-native, what does it say, which version of swig did it
+>     find, and
+>     at what path? Is it v4.2.1, somewhere from ${RECIPE_SYSROOT_NATIVE}?
+>
+>     >
+>     > our-image-initramfs.bb <http://our-image-initramfs.bb>
+>     <http://our-image-initramfs.bb> is an our
+>     > recipes that inherit core-image in order to create a DM-Verity
+>     fitImage.
+>     > Note that it works with kirkstone poky. 
+>     >
+>     > Thank you all,
+>     > SB
+>     >
+>     > -=-=-=-=-=-=-=-=-=-=-=-
+>     > Links: You receive all messages sent to this group.
+>     > View/Reply Online (#65930):
+>     https://lists.yoctoproject.org/g/yocto/message/65930
+>     > Mute This Topic: https://lists.yoctoproject.org/mt/115750455/6084445
+>     > Group Owner: yocto+owner@lists.yoctoproject.org
+>     <mailto:yocto%2Bowner@lists.yoctoproject.org>
+>     > Unsubscribe: https://lists.yoctoproject.org/g/yocto/unsub
+>     [skandigraun@gmail.com]
+>     > -=-=-=-=-=-=-=-=-=-=-=-
+>     >
+>
+
 
