@@ -1,114 +1,121 @@
-Return-Path: <anirudh@astranis.com>
+Return-Path: <raj.khem@gmail.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 1BC06CCD183
-	for <webhook@archiver.kernel.org>; Fri, 17 Oct 2025 00:08:06 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 372D5CCD183
+	for <webhook@archiver.kernel.org>; Fri, 17 Oct 2025 00:34:36 +0000 (UTC)
 Received: from mail-yx1-f51.google.com (mail-yx1-f51.google.com [74.125.224.51])
- by mx.groups.io with SMTP id smtpd.web10.4751.1760659683414249357
+ by mx.groups.io with SMTP id smtpd.web11.5312.1760661270218908003
  for <yocto@lists.yoctoproject.org>;
- Thu, 16 Oct 2025 17:08:03 -0700
+ Thu, 16 Oct 2025 17:34:30 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@astranis.com header.s=google header.b=hUESrjhu;
- spf=pass (domain: astranis.com, ip: 74.125.224.51, mailfrom: anirudh@astranis.com)
-Received: by mail-yx1-f51.google.com with SMTP id 956f58d0204a3-635355713d9so1464383d50.3
-        for <yocto@lists.yoctoproject.org>; Thu, 16 Oct 2025 17:08:03 -0700 (PDT)
+ dkim=pass header.i=@gmail.com header.s=20230601 header.b=hMBWYJ7Q;
+ spf=pass (domain: gmail.com, ip: 74.125.224.51, mailfrom: raj.khem@gmail.com)
+Received: by mail-yx1-f51.google.com with SMTP id 956f58d0204a3-63e11347fd9so1126980d50.1
+        for <yocto@lists.yoctoproject.org>; Thu, 16 Oct 2025 17:34:30 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=astranis.com; s=google; t=1760659682; x=1761264482; darn=lists.yoctoproject.org;
-        h=to:subject:message-id:date:from:mime-version:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=ad1OmIJ5ebffUGhkbgSQbLQwiWuROxZwVXDX/xRFZGg=;
-        b=hUESrjhusUYbNXN2fd4HYOKsQKwI6/LvvtLhjIif5/sn+5HqfauhY8vdGA5lp0lehM
-         A2b/Cz5c6vaou6g5f+gfA+C+KijFG5PaN1O6sh4xW+ZMqOvOjYCPs0IzAcoFyTR3idto
-         E4ouyTSJC/EwZClOgryuFeeW8lmbVicghQlAtUNplwmpo4Y7LDn6B/yJj4SZZSbW0Av0
-         OtH7rvSbTJGNDD1PDVZvzb9yZL82kGpt0Ooc95veCOkSOYmb1BJpFRBQ5ZOVRsxgge4v
-         XwT4FFkgDbLeNcoT66mPhJJB4om76HA0ha1WuExu3QBlDAXsMExRUikZESM4/upxRgt1
-         vtAA==
+        d=gmail.com; s=20230601; t=1760661269; x=1761266069; darn=lists.yoctoproject.org;
+        h=content-transfer-encoding:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=aRcES0B5GiIim746Xjx66C9DCcTCg/e7kJzolKVhnvU=;
+        b=hMBWYJ7Q5K9LNbaXUtpM7tJD78oSBwRSbNUc+tCS0lVbZpF2hHEJ8COSnYZGkWuCPA
+         n3/HKr7DmNZhk94pYmUTVqY8Kq0MpfO/kVYSnbmtZxcTt4KedDZ9qGcYHaHw3kktuR+S
+         tlVzna4bHeiXevZ518FBDZYOvB2EzQEPmki1SmUdUCQVzjtOWIpNsNbYbo2IrUPP2QQ9
+         dtM+EtQWQdjtDj0nYZ9v1v3aRifMXszD2y5onSh01B5eoMJ6oYFQKk+DgIZl6N5cowpb
+         wjcWjCbUiMXwx4x/1/XiTrQ8427eCAUdN6UPwn3iD4gn3MynRgCZI7YX0tku0eULz/ig
+         xCOQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1760659682; x=1761264482;
-        h=to:subject:message-id:date:from:mime-version:x-gm-message-state
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=ad1OmIJ5ebffUGhkbgSQbLQwiWuROxZwVXDX/xRFZGg=;
-        b=XzqCuifHnxrKmJESb+Gqf4RhwDEyhQrmInI4q9gYo1zbdztjZtP23O2qVnmo3iK/sw
-         wGJj7yJcizHsJrjHKJMzCiUy3tGRdBCgpEdLRA4G9I4OvD1fRg9PgBSbcJmeU7Ir56+/
-         P+q8wcX89h3VvbQQduCZWM/FQkbszrqrlJ2np3ITerAgG4+bhZ4z/yIqyDH32QMiSsdD
-         IVyOSgsL42XI83XYcAa6gZjjKTTqCfxyNC7OzIBo0bMnpcz8XGqRUzM7dU0pJ3ZufiQ7
-         olcg20JC34G0Sm57Duj6cpRVdvIaSy9aXPpJz5nDQ/G1NYegFB7BQJUGolSyFmxenWmE
-         HD+A==
-X-Gm-Message-State: AOJu0YyNBTJImuVTJxgSHdWgDpIf4tN9ocYMFrK87dzwamrYktq+qnMN
-	Nt27jdnODlV9pWX4TSCEAwLfxOu9lKB7uDCH/54T2yWrL4hTiiX9qndpsxy/LpFWx++nzy0FD9w
-	7bPHmuq/BxuYSQ32KAWVRJSRA3hW5sjF0wzTIKQDIL+sN+xCk/dDVykB3DXrhngOPw/XZqyr1+F
-	HJhUVBC2dZjT0O0y95g1GbHxBe+N2XirMo0vnpmYsxbd2Ivz4ltw==
-X-Gm-Gg: ASbGnctolLERtRjVxs0Ai4OYNWj+gWxhrpaJ2ZObwjpH/TdXyTNURoq6utNRH1NEO7o
-	AIeSkF6Aug0gfQBxrJWio2AgFE6LlEt8iT6gE3YpmicE0Eijix1t+43w1e72YT6jy3u2r7SnjNn
-	MTBksRxqWuyQR6BVc7ZE80TayKwnrAcw7Ym+B4feHoo0OXZh+r3fe1vZWnrZdbNHYtIKPauFwrF
-	vAXbThHjuwZsnJxHbZpF49/HCLVv/k0HDoAA9iIeIayAmTBMCAsAz+zNvvMkA==
-X-Google-Smtp-Source: AGHT+IG332pKqoiyu3mxfKdcBuv8gBY/2pUzbUJ+Us2HTsMsF8kj8i/V5MV6ZB4snPjphrMMA6Qer+SQjR2w9hXFnWw=
-X-Received: by 2002:a05:690e:1289:b0:63e:17d8:d96b with SMTP id
- 956f58d0204a3-63e17d8daefmr1357797d50.43.1760659682142; Thu, 16 Oct 2025
- 17:08:02 -0700 (PDT)
+        d=1e100.net; s=20230601; t=1760661269; x=1761266069;
+        h=content-transfer-encoding:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=aRcES0B5GiIim746Xjx66C9DCcTCg/e7kJzolKVhnvU=;
+        b=OWp9/5ntJO+CCVWbEJySwjMDOiF+aDDduAh/JIw+Ckx3bR/2/oAY7y9WlXZwAMR65h
+         c6qSSNIvlghK9oKRqVMuJvZKovoCbZQNFnWVRpHfWCSwHrAe9k/7nnEppSx20k8EVupP
+         O7jjHTwOm8UzPUTEACi0nqCBVEQDcb2DwyP+KVYnSDh5HKaVUxAo2ecFYqjHSA4UuWSl
+         6Gm6p3ciWld9h2ZC/YxGpbIwKAuHAtd7xqm4wE3lKslvmUHF5YzKkJlfIBkoGi39813t
+         OLckbgB0C723sVMVih7UZ/jbYEAQ8jOs66N7fbZ63af39BpFLeFRO+rFmAsSc0GR+dqg
+         7+LQ==
+X-Gm-Message-State: AOJu0YzD4K6mGG2MLhIN+kRagpjbVroOurmi+KApJBqt3gI0TAkjaQNO
+	79zNBBj+KaYdBinnkDOiEeEdgnebSd5iOHNh8msYM4fHunzrOEjPIBlA2f0HNAiuBvlhec64EUg
+	g60WTFqc7aVPqQTzUOxf9WN7L6VeFY20Dfoyl
+X-Gm-Gg: ASbGncsCj/QrrS3oyaGYiXe7JEIe8M5n9I0auuAotIgV1ckASMx77dwbMkStnYraNQN
+	GhJr9E3ACWq+IP33ZGx9n7UmeKS0UKx5q8SzkJJp9yMPElOExLIL1ojnUdY568Lu8QProywLX0V
+	1j4Xa6wgNs4cmzla+g0/KgW0noq5X5ZoRqjZKfuGSNyO64bL7AIPakDGy5O1GgaNJu1GtUyMNd9
+	TedUpQwD9yMvvxE/Q653DNHe52JtMQXgSg26KTRXthAH9tH5RDv5d618fF9XADPVN6p4eT8u+LL
+	iLrX5NjKc5XmjsCAzqCR90pj1kMZ2yZLY2z+NJDXSoLdNiCVJgMJ/VMnutSlQNeHu0yCfdZDWPm
+	N8J8=
+X-Google-Smtp-Source: AGHT+IGuK2ueddMZqVorcyZf6bAXCa9L95wFykFW07bAtKXpt12PqPMpA05oRgaaVKsjHVu9UDoAygRQOUU1AEoBcn4=
+X-Received: by 2002:a05:690e:1558:20b0:63c:e0bb:2e97 with SMTP id
+ 956f58d0204a3-63e16178279mr1654275d50.10.1760661268882; Thu, 16 Oct 2025
+ 17:34:28 -0700 (PDT)
 MIME-Version: 1.0
-From: Anirudh Mathukumilli <anirudh@astranis.com>
-Date: Thu, 16 Oct 2025 17:07:51 -0700
-X-Gm-Features: AS18NWA9xdWCAfFMGOlj2_EuHeu5GkHEPtO96gpalYNWojS7m_X2h9blP1kiev4
-Message-ID: <CAH7FQfg7_Eo+B6tDbOPhx99t5hAo=oqh9arxMLZw0y7xWYfbcg@mail.gmail.com>
-Subject: Building u-boot with clang
-To: yocto@lists.yoctoproject.org
-Content-Type: multipart/alternative; boundary="000000000000ed304506414f8616"
+References: <CAH7FQfg7_Eo+B6tDbOPhx99t5hAo=oqh9arxMLZw0y7xWYfbcg@mail.gmail.com>
+In-Reply-To: <CAH7FQfg7_Eo+B6tDbOPhx99t5hAo=oqh9arxMLZw0y7xWYfbcg@mail.gmail.com>
+From: Khem Raj <raj.khem@gmail.com>
+Date: Thu, 16 Oct 2025 17:34:02 -0700
+X-Gm-Features: AS18NWCXE0pA6LYplf7tQxrG4FaPnDjHSlt56skZQPx5Ez74NXhjCR1giNpbXTY
+Message-ID: <CAMKF1srraguxbAXrVbfJDfv69=TShjSgjKmzpvDw7-3zi0wQpg@mail.gmail.com>
+Subject: Re: [yocto] Building u-boot with clang
+To: yocto@lists.yoctoproject.org, anirudh@astranis.com
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Fri, 17 Oct 2025 00:08:06 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/65939
+ <yocto@lists.yoctoproject.org>; Fri, 17 Oct 2025 00:34:36 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/65940
 
---000000000000ed304506414f8616
-Content-Type: text/plain; charset="UTF-8"
+On Thu, Oct 16, 2025 at 5:08=E2=80=AFPM Anirudh Mathukumilli via
+lists.yoctoproject.org <anirudh=3Dastranis.com@lists.yoctoproject.org>
+wrote:
+>
+> Hey folks,
+>
+> I'm trying to use Yocto to build a u-boot image using clang. I need to us=
+e clang because the system I'm targeting is not supported by GCC. So, I've =
+integrated the meta-clang layer and have assigned `TOOLCHAIN =3D "clang"` i=
+n my local.conf. This seems to correctly select clang as the correct compil=
+er to use when building u-boot; I've verified this by trying to build with =
+an arm64 machine and seeing clang work.
+>
 
-Hey folks,
+good.
 
-I'm trying to use Yocto to build a u-boot image using clang. I need to use
-clang because the system I'm targeting is not supported by GCC. So, I've
-integrated the meta-clang layer and have assigned `TOOLCHAIN = "clang"` in
-my local.conf. This seems to correctly select clang as the correct compiler
-to use when building u-boot; I've verified this by trying to build with an
-arm64 machine and seeing clang work.
+> However, when I switch my machine to the custom machine I'm targeting (a =
+powerpc variant), my yocto build fails trying to build the GCC cross compil=
+er for that architecture. Why is Yocto attempting to even build this cross =
+compiler? Is there a way for me to tell yocto to not use GCC at all?
 
-However, when I switch my machine to the custom machine I'm targeting (a
-powerpc variant), my yocto build fails trying to build the GCC cross
-compiler for that architecture. Why is Yocto attempting to even build this
-cross compiler? Is there a way for me to tell yocto to not use GCC at all?
+we have not yet bootstrapped full system with clang yet. Even though
+it can be used to build most of system some components e.g.,  glibc
+still need gcc to build, compiler-rt has dependency on gcc-runtime
+which
+also comes from gcc, so compiling gcc-cross will happen. as far as ppc
+is concerned, we do have it nominally supported but its not regularly
+tested on master so I wont be. surprised if it does not build. however
+if you share more information we might be able to help.
 
--Anirudh
-
--- 
-
-
-________
-This email and any attachments may contain Astranis confidential 
-and/or proprietary information governed by a non-disclosure agreement, and 
-are intended solely for the individual or entity specified by the message.
-
---000000000000ed304506414f8616
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr">Hey folks,<div><br></div><div>I&#39;m trying to use Yocto =
-to build a u-boot image using clang. I need to use clang because the system=
- I&#39;m targeting is not supported by GCC. So, I&#39;ve integrated the met=
-a-clang layer and have assigned `TOOLCHAIN =3D &quot;clang&quot;` in my loc=
-al.conf. This seems to correctly select clang as the correct compiler to us=
-e when building u-boot; I&#39;ve verified this by trying to build with an a=
-rm64 machine and seeing clang work.</div><div><br></div><div>However, when =
-I switch my machine to the custom machine I&#39;m targeting (a powerpc vari=
-ant), my yocto build fails=C2=A0trying to build the GCC cross compiler for =
-that architecture. Why is Yocto attempting to even build this cross compile=
-r? Is there a way for me to tell yocto to not use GCC at all?</div><font co=
-lor=3D"#888888"><div><br></div><div>-Anirudh</div></font></div>
-
-<br>
-<font size=3D"2"><br><br>________<br>This email and any attachments may con=
-tain Astranis confidential and/or proprietary information governed by a non=
--disclosure agreement, and are intended solely for the individual or entity=
- specified by the message.</font><br>
---000000000000ed304506414f8616--
+>
+> -Anirudh
+>
+>
+>
+> ________
+> This email and any attachments may contain Astranis confidential and/or p=
+roprietary information governed by a non-disclosure agreement, and are inte=
+nded solely for the individual or entity specified by the message.
+>
+> -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
+> Links: You receive all messages sent to this group.
+> You automatically follow any topics you start or reply to.
+> View/Reply Online (#65939): https://lists.yoctoproject.org/g/yocto/messag=
+e/65939
+> Mute This Topic: https://lists.yoctoproject.org/mt/115800062/1997914
+> Group Owner: yocto+owner@lists.yoctoproject.org
+> Unsubscribe: https://lists.yoctoproject.org/g/yocto/unsub [raj.khem@gmail=
+.com]
+> -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
+>
 
