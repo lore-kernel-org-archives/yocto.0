@@ -1,249 +1,330 @@
-Return-Path: <debal.ghosh@intel.com>
+Return-Path: <ross.burton@arm.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 51CACCCF9E3
-	for <webhook@archiver.kernel.org>; Thu, 23 Oct 2025 06:56:30 +0000 (UTC)
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.17])
- by mx.groups.io with SMTP id smtpd.web10.14325.1761202580617880620
+	by smtp.lore.kernel.org (Postfix) with ESMTP id D72E2CCD193
+	for <webhook@archiver.kernel.org>; Thu, 23 Oct 2025 10:21:01 +0000 (UTC)
+Received: from cloud-out-c.spamtitan.com (cloud-out-c.spamtitan.com [52.2.95.112])
+ by mx.groups.io with SMTP id smtpd.web10.902.1761008524471828485
  for <yocto@lists.yoctoproject.org>;
- Wed, 22 Oct 2025 23:56:20 -0700
+ Mon, 20 Oct 2025 18:02:04 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@intel.com header.s=Intel header.b=OO797/yA;
- spf=pass (domain: intel.com, ip: 198.175.65.17, mailfrom: debal.ghosh@intel.com)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1761202581; x=1792738581;
-  h=from:to:subject:date:message-id:references:in-reply-to:
-   content-transfer-encoding:mime-version;
-  bh=6bid4C59wy+JI+QJJKdB9ss0zVUt4TVfr58BXkMACBo=;
-  b=OO797/yAhs/xBlhWnw83kujEVlin7gZ86N3MpD1EzogKC3aMtRabc5uj
-   KqQaru7xuegAtyD8qw0ce7OcFNwQIQe2eqYKyAY/AI3i3bSIOqsOwfFc6
-   iyNb4lYT7NlLDZhreYdIhM1I+iEedsDiZoywy9FeuBRVQ+iSD7nKSDnrK
-   JLlTy2/XOJSXw7nhp/pAYYzUSyCQVM2zFX6CSO8VEC55yg1tz9TGxpZ/Y
-   l+K8EmmqU/GHZGQ3xJqhCLrJtOSGoapCCfledXpmhEn5zoEynJam7Tm1x
-   elbIysnt8YIioEaNTZ03BQjX/YdbFCNHH+uxWh4ntQJgSOYVrphiWDvB0
-   g==;
-X-CSE-ConnectionGUID: XHbrg+UFSgCbBb7u8BeZqw==
-X-CSE-MsgGUID: srZAbH2ySCyYpiyyHIKxTA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11531"; a="63284929"
-X-IronPort-AV: E=Sophos;i="6.17,312,1747724400"; 
-   d="scan'208";a="63284929"
-Received: from orviesa002.jf.intel.com ([10.64.159.142])
-  by orvoesa109.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 22 Oct 2025 23:56:21 -0700
-X-CSE-ConnectionGUID: iVXHhieKS4eDBhUuiXi81g==
-X-CSE-MsgGUID: 4yF2TjukRdqD0zhlTJdwhw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.19,249,1754982000"; 
-   d="scan'208";a="214730592"
-Received: from orsmsx901.amr.corp.intel.com ([10.22.229.23])
-  by orviesa002.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 22 Oct 2025 23:56:20 -0700
-Received: from ORSMSX903.amr.corp.intel.com (10.22.229.25) by
- ORSMSX901.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.27; Wed, 22 Oct 2025 23:56:19 -0700
-Received: from ORSEDG903.ED.cps.intel.com (10.7.248.13) by
- ORSMSX903.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.27 via Frontend Transport; Wed, 22 Oct 2025 23:56:19 -0700
-Received: from DM1PR04CU001.outbound.protection.outlook.com (52.101.61.53) by
- edgegateway.intel.com (134.134.137.113) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.27; Wed, 22 Oct 2025 23:56:19 -0700
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=N9X0PyvCPYD8UXL46EewAF/KpEtJbDV6hr3KsMXGtYnN9cI3ugkJnXaQv+mm3EzwhG/XdITqJd3H8qOPpbe4yQPFgdrPj5xVGwHUfFlTtoqRVSqWXuTKt2WOe+OC83UJ6xEIG3UpT4y1fMSKABLL2XrJ3W+tYiZKRobx/zsJ1IlzSnYSpkxlivM5pkpxOAzo9ki4Xl05LcsMxBxPsXXsOVOXDJDtmmv3gPhnm2lrAhALhKYFAXH5mFhPAKaqiiFr1aBLQxURgVolkbLLfg8Q9RZ20WMtDawlIQ8+6GNmxh637M8/5oHfBM+V9LtqPcKl/xn7fFyo1r95C9PwwsYXfA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=EukZYzrCTcsAh+/LRsmnvo4sYGIgqRcgJZp2cJvVR8E=;
- b=LNWUaPocOsHBxsfeI6EI+9MkBFjXOWvsZvVQ49aOqo8r7RehywPc59vXdNpZkdhZTIudBJjUO6YG27eCp/efj5Vohi0XXy0unazOY41Wx6PF7KiwbDDHwUm2+QC4EeORBXhEIQtenWEtyX/NHkQC12Y1PSVbUYNPGF/kXejuwSNFOTtTAFalXplH26n+CZ9xw+ePza6SyyyMO548ZpiaX+a73jSNamyifjE6mKlFaMmFwcnn9Lb8Ti0aZ+dbCHxTHF00LmcurcFMbfFkFd9bFZFjjLZOGl+kh1qP/jy2Wwfdjf6gfrVSAl9A5mkkWf+RTfIxcf4p+I1BHGz8f35K4w==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Received: from SN7PR11MB7018.namprd11.prod.outlook.com (2603:10b6:806:2ad::14)
- by IA4PR11MB9232.namprd11.prod.outlook.com (2603:10b6:208:56e::21) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9253.13; Thu, 23 Oct
- 2025 06:56:17 +0000
-Received: from SN7PR11MB7018.namprd11.prod.outlook.com
- ([fe80::3950:3558:6566:ff46]) by SN7PR11MB7018.namprd11.prod.outlook.com
- ([fe80::3950:3558:6566:ff46%3]) with mapi id 15.20.9253.011; Thu, 23 Oct 2025
- 06:56:16 +0000
-From: "Ghosh, Debal" <debal.ghosh@intel.com>
-To: "qa-build-notification@lists.yoctoproject.org"
-	<qa-build-notification@lists.yoctoproject.org>, Yocto-mailing-list
-	<yocto@lists.yoctoproject.org>, "openembedded-core@lists.openembedded.org"
-	<openembedded-core@lists.openembedded.org>, Pokybuild User
-	<pokybuild@yoctoproject.org>
-Subject: FW: [qa-build-notification] QA notification for completed autobuilder
- build (yocto-5.0.13.rc2)
-Thread-Topic: [qa-build-notification] QA notification for completed
- autobuilder build (yocto-5.0.13.rc2)
-Thread-Index: AQHcPM58JOP4r6PwKUCH6YMZakUUa7TPV1Tw
-Date: Thu, 23 Oct 2025 06:56:16 +0000
-Message-ID: <SN7PR11MB7018B73E79B75F13244B5E0CF4F0A@SN7PR11MB7018.namprd11.prod.outlook.com>
-References: <01010199e1452afe-32ecec07-e05c-46e5-adfb-fd30263242f7-000000@us-west-2.amazonses.com>
-In-Reply-To: <01010199e1452afe-32ecec07-e05c-46e5-adfb-fd30263242f7-000000@us-west-2.amazonses.com>
+ dkim=pass header.i=@aecontrols.com header.s=mail header.b=Zxm3kH/y;
+ spf=pass (domain: aecontrols.com, ip: 52.2.95.112, mailfrom: jweyer@aecontrols.com)
+Received: from cloud-out-c.spamtitan.com (localhost [127.0.0.1])
+	by cloud-out-c.spamtitan.com (Postfix) with ESMTP id B23F4D7897
+	for <yocto@lists.yoctoproject.org>; Tue, 21 Oct 2025 01:02:03 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=aecontrols.com;
+	s=mail; t=1761008523;
+	bh=XGyV/cDV6/WYPjBIh36d21D8TqaJChPdkHSYmi4gphU=;
+	h=From:To:Subject:Date;
+	b=Zxm3kH/yHtMl3pB2DA5quwgY6k8OPCuJFhwXJ0lDZJWxKVJ8GxP0HdN2aIde7vgiD
+	 QEC7EAr2y3OjI9UPrRubjcXVCIWprc5qSdHi17SPlxzOz02E7r19C/PXFyGVDf5dg1
+	 zY67MkVvCcDZtOuNDReGvRm1oDhZ7QllhsKFu9Lr17OzXPnbioK8gChb+S5H0qD/w3
+	 uPBolN2ohMArZYplZmnWIehqIumigrL17qUJ/xutrFtH90+vArgxwr02ny0ee0tzQ8
+	 GBr416MUcizghKlwPv8t498NcoCaf+UlhFT9434dYZsccIBWGtmZmuTeuChUkNXhgX
+	 LvKq0mfC49R5Q==
+Received: from localhost (localhost [127.0.0.1])
+	by cloud-out-c.spamtitan.com (Postfix) with ESMTP id AD11BD7891
+	for <yocto@lists.yoctoproject.org>; Tue, 21 Oct 2025 01:02:03 +0000 (UTC)
+X-Virus-Scanned: by SpamTitan at ec2.internal
+Received: from cloud-out-c.spamtitan.com (localhost [127.0.0.1])
+	by cloud-out-c.spamtitan.com (Postfix) with ESMTP id BEF62D78CE
+	for <yocto@lists.yoctoproject.org>; Tue, 21 Oct 2025 01:02:02 +0000 (UTC)
+Authentication-Results: cloud-out-c.spamtitan.com;
+        x-trusted-ip=pass
+Received: from mail.aecontrols.com (mail.aecontrols.com [50.248.202.241])
+	by cloud-out-c.spamtitan.com (Postfix) with ESMTPS id 8E74AD78CB
+	for <yocto@lists.yoctoproject.org>; Tue, 21 Oct 2025 01:02:02 +0000 (UTC)
+Received: from AEC-Exchange.AEC.local (192.168.0.46) by AEC-Exchange.AEC.local
+ (192.168.0.46) with Microsoft SMTP Server (TLS) id 15.0.1497.48; Mon, 20 Oct
+ 2025 18:02:01 -0700
+Received: from AEC-Exchange.AEC.local ([fe80::a53c:dc10:161f:ae5c]) by
+ AEC-Exchange.AEC.local ([fe80::a53c:dc10:161f:ae5c%13]) with mapi id
+ 15.00.1497.048; Mon, 20 Oct 2025 18:02:01 -0700
+From: "Jared Weyer" <jweyer@aecontrols.com>
+To: "yocto@lists.yoctoproject.org" <yocto@lists.yoctoproject.org>
+Subject: Issues with DEPENDS
+Thread-Topic: Issues with DEPENDS
+Thread-Index: AQHcQiDWYC4fUCIYgUmIp+MANz5ZrQ==
+Date: Tue, 21 Oct 2025 01:02:01 +0000
+Message-ID: <1761008477730.70625@aecontrols.com>
 Accept-Language: en-US
-Content-Language: en-US
 X-MS-Has-Attach: 
 X-MS-TNEF-Correlator: 
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: SN7PR11MB7018:EE_|IA4PR11MB9232:EE_
-x-ms-office365-filtering-correlation-id: 2ea8ccc3-7dc4-40b1-fc8e-08de12014346
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;ARA:13230040|376014|366016|1800799024|4022899009|7053199007|38070700021;
-x-microsoft-antispam-message-info: =?us-ascii?Q?XsvhXWfHwuGAH81UoXhaE/Gy5iElYKWthm+96Z7gqidDaT6Pj/593GWLHb+V?=
- =?us-ascii?Q?hPDAiPzSjwokr1MSR7uuehg4orylfLwijL7P/rXKWkegWFvK8jcXO911p/8a?=
- =?us-ascii?Q?aQ0RUFJD94xg82V9WkZ3wbmsaxK0TNRaVSh8qnppQKRJB+uqiLPiH8ThWaG/?=
- =?us-ascii?Q?wU4Yf8i1ObQWTFubfnYuA6eNipcTcrsBfVDRuJ8Oaw5STtuJPK3+V50EpSrG?=
- =?us-ascii?Q?9j1/3wF2cXp+tkUwE/HNXjCW0UovMKvYYNXKboYpzwWfWrG1OIBbLdk9Ywfs?=
- =?us-ascii?Q?yyr79ZLfay+d3QcMdWQTixzLkcVOhwN2fykzFIAh3o0OPy8086E1gU1ld1rr?=
- =?us-ascii?Q?7HaaDKIv/2f+qdU8fP2oNcHg975ECpww+3zvg4fTa7pzqEtbF/N9omkdqn+N?=
- =?us-ascii?Q?vVt8daPpSCAZ7FEXX8UvWFPT6MczF+yJMwNklFY7GggT40V+p7yCLObhxjW/?=
- =?us-ascii?Q?3lX3MKnMbk1EkazpEXppQIOuIFmEgNFLwIYbCat3q+b4XT4dD9dfUBcmXCxH?=
- =?us-ascii?Q?ZFcgmBj/BlgzlPkFjQl7kVbh34DLrzS/KOeMpwvdryuBBrxGsIWcTRHs7aok?=
- =?us-ascii?Q?onk4IEMvVcDG4+7sByDpdZ8GtW4v7utmDzXAgz2PkuCz9lge8Ntn7bHWl0+w?=
- =?us-ascii?Q?49jDo2uW8YaNdb835L6R6+k1nehh2eVE+/gI0k2QFUMIzk4xvlv/BCXfxkaJ?=
- =?us-ascii?Q?J3mnanmACXuF+gyM839GwqcsRq3cV3XjWerQ7mvuMksVy3SOk7bEYIxHjTrB?=
- =?us-ascii?Q?dy4Obws36oVW7V+1utWaXrGj/Ywdq6pGHQOK8aLkL9R0PMQ8A8VaYfe8kBEX?=
- =?us-ascii?Q?PSjVsOowGJaj2DPTPuk9K9G6qNaC1LFsBDf0bExmGBh0Ou66NAi0l8CkyuIj?=
- =?us-ascii?Q?rfQRq3SJNrFvsurlin9TTB0EBOzWVCxJjMwirW17f5Fe1rp+A9HNADYtWQF4?=
- =?us-ascii?Q?V+ZQoJxbIiplWX3t3lYGPVqSSjdbvQtKdHiEbJjZnS+WZVBEhaiIFcGCqjSJ?=
- =?us-ascii?Q?FntJnt1vFrz5vA9yyeEXzypA7V7b5kMBi1DnnGeG8VeN1Hf70UqUKqxoReiu?=
- =?us-ascii?Q?4JdmzsmA+lKN4BZOHCiYrlVov8HFEosNpMEjaDCU2STZRTm4RdAZBT08zEot?=
- =?us-ascii?Q?puvFp0k2mr5RG9a+VpT62MSYnndBLpu1WLPgILulPXpnSpcPK1AJyqMXDuPV?=
- =?us-ascii?Q?M9ZepHNk9Qv1sEpjb4GRYTB+yJZaQuSaVFcajj3Dn0ysl9Sq5f95QrvyuDup?=
- =?us-ascii?Q?Remct3RW74ZwJTNF+pAbKPJALdDoPdzG/h1xFgZneEKIsI8jTGvCahRb6QHH?=
- =?us-ascii?Q?qNdA3BFRekBrIPw6m97rsOXg5H8ZAeJfu9RAB/Rp/aNe0egMixa6qAmZQxSU?=
- =?us-ascii?Q?nyt//cQe2fYlyd4yoObvS9K8qiip/SoYpjT56dDypx3L+be4giSnlqAOLdnQ?=
- =?us-ascii?Q?vVGKpAMPbwD+iiKxFA3oqAT2tBg5U0KrxjzTqzTCEVGkoAj0BgVNjA=3D=3D?=
-x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:SN7PR11MB7018.namprd11.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(376014)(366016)(1800799024)(4022899009)(7053199007)(38070700021);DIR:OUT;SFP:1101;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?Rk5fF6dXkRweadar7woLpKKRyeloKMuYiJP6dyXvgp/pTollO+Hc+ZeNL7NW?=
- =?us-ascii?Q?ymrsNKlMaXDu7Z8gTmmvLHKlzYDMajPYOqmrPSdmzqyE9P7CXiaEPX7PlMRU?=
- =?us-ascii?Q?uO75whH5NG9fbNKBUO9pe7DSGrXgBotGydRTcRJtmKVlE4u7v8Grqc7tFqkK?=
- =?us-ascii?Q?+2RLPReG+J/2zzjT2EX4+t0scGiOeR6aGvlBiPziKOLg1wzB7Gk8LNowk+5S?=
- =?us-ascii?Q?pobVWvAIPeIx03S9PC10SWd2MfrBf8UEomUyc3gzJTdW47QDNkXeAepHcvsK?=
- =?us-ascii?Q?tPeFV4x1uF3KDgW3TgPmXiEhQzMyEPfFyUOksJV8KNBtYV96F9YYtcx1w4xT?=
- =?us-ascii?Q?cG+TXtpRy1zX2ajzd0aUlZNocpwgEGLKL9ex5vs1Czaj60O76J3wcH3Nh/nX?=
- =?us-ascii?Q?m8omluPw29MkItUHlVZIBYBqcDH9iqHHodZvtGPUWJvGpXO94pmGq5C9l4VK?=
- =?us-ascii?Q?uatM0sbewyADcgbpR07vrHJ4XDpRyoRV8NDPsC/T6zbBmgIDfxB+VJ40/Tdb?=
- =?us-ascii?Q?xUAia33Q9OIwbMmFJZesACWKcouXVksbWOWFCkj2rFdPHMMsj7OaiGki4s+l?=
- =?us-ascii?Q?BRjmrWjw8KR8tP5/O9ZSOoO/DjP9rmQbBupRssfojO20jJ1S9f023xjiMqha?=
- =?us-ascii?Q?FAVVJMyDo0E3aT/YXL0cnw/XZDW9ghRubbpQacjw8JDwWzFHaie/Zu6FqgXx?=
- =?us-ascii?Q?VpP1dEquSmUVc/mmNsxIeAOic2u0469PQmIdGg3t1X5AOtDc6Dr1yGqPk3Gc?=
- =?us-ascii?Q?eqf/73HkUbS0Rz7YVGPv52QiFfYxGw3hQ2VqSiWQIsehlvnqJ9x5SqfVOypg?=
- =?us-ascii?Q?UHkNXVs1D5Mt4dF5Eel1ALogmPVIVu5kWcAE4IStHbvpfKNUPf/PUHsnVFvZ?=
- =?us-ascii?Q?2z1vsivoRjPneq/Qd2whN4svpjKPIJjoO4yr5+VE/uRSXu08cAvpmP3zyndc?=
- =?us-ascii?Q?K5piinWczOcTaU5Px93cKJuhXLWlfahC20VZ4ygifJyYWaoarLLwt7mmLw8s?=
- =?us-ascii?Q?6JfprJ/ZJMTT3pbc1X1qC0KW20khdMlcwJrH8sK2462x+WxSY5trWF6rwV7e?=
- =?us-ascii?Q?9o1qrbXzvOVtpwnIrC/quy2CFU6gwDYrO34cfsfo9eQZI0yG0W7bh/crXHEO?=
- =?us-ascii?Q?kftMphflex0zQgu4H5Uf7eODgKIaz6PfLIIhmM4pOiQYq4U+w+JnC4+gSNQo?=
- =?us-ascii?Q?3GQcRSden3TVUNUksuWeBXYaD0j3Mz7gp7Za1nwmi7zoLvE+D3RWt9pj6Q5Y?=
- =?us-ascii?Q?GhqKPT8EGY74O8SRO26kmP0x9XBXiegHdD0lvuf1BJGOJNaUgpEzxJPQ/UDk?=
- =?us-ascii?Q?e1mdx7Yq+f4LQTJSSYefaS5mbTlHri8mkcMG2otKH+ruupJkLTPZYhJODFV8?=
- =?us-ascii?Q?CgQ2W5VHCa68f7iuj6NjE/PHrM58cba8TWr11jFSH5yG3DK33swRmvp6HANV?=
- =?us-ascii?Q?RyegP5EN/VTXQ8SuNcTsi3BgELjY7CAfjj8mmGBIZbfG/owaW6HFj9P22yRm?=
- =?us-ascii?Q?4G7H6pQB9RT83Lr3c2S7WtY3KeVAf1bpYv3HT+UG56Apz3rsgMqJ02S6auLi?=
- =?us-ascii?Q?RfZA+kvpJTR21AjE61F+gnm3uErDsQ+KM9VHsb2y?=
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+x-ms-exchange-transport-fromentityheader: Hosted
 MIME-Version: 1.0
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: SN7PR11MB7018.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 2ea8ccc3-7dc4-40b1-fc8e-08de12014346
-X-MS-Exchange-CrossTenant-originalarrivaltime: 23 Oct 2025 06:56:16.5666
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: 686lsQ98r8M4tGhnaziMthE4hnRE3MxwKiqBZo30AQ4UlGzQSyW9zKTOs1vWhzKkt2pjvVvvYS1HaJ2tjFlN+w==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: IA4PR11MB9232
-X-OriginatorOrg: intel.com
+Content-Language: en-US
+Content-Type: multipart/alternative;
+	boundary="_000_176100847773070625aecontrolscom_"
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Thu, 23 Oct 2025 06:56:30 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/65962
+ <yocto@lists.yoctoproject.org>; Thu, 23 Oct 2025 10:21:01 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/65963
 
-Hi All,
+--_000_176100847773070625aecontrolscom_
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 
-QA for yocto-5.0.13.rc2 is completed. This is the full report for this rele=
-ase:=20
-https://git.yoctoproject.org/cgit/cgit.cgi/yocto-testresults-contrib/tree/?=
-h=3Dintel-yocto-testresults
-
-
-=3D=3D=3D=3D=3D=3D=3D Summary =3D=3D=3D=3D=3D=3D=3D=3D
-No high milestone defects.
-
-No new issue found.
+Hi,
 
 
-
-Thanks,
-Debal Ghosh
-
------Original Message-----
-From: qa-build-notification@lists.yoctoproject.org <qa-build-notification@l=
-ists.yoctoproject.org> On Behalf Of Pokybuild User via lists.yoctoproject.o=
-rg
-Sent: 14 October 2025 11:21
-To: yocto@lists.yoctoproject.org
-Cc: qa-build-notification@lists.yoctoproject.org
-Subject: [qa-build-notification] QA notification for completed autobuilder =
-build (yocto-5.0.13.rc2)
+Hoping to get some help with an issue I have been having with DEPENDS. I'm =
+sure I am missing something obvious, but I can't seem to figure out what is=
+ going on. Essentially, I have two recipes, I will call them recipe A and r=
+ecipe B; recipe A has a build time dependency on recipe B. To troubleshoot =
+the issue, I've reduced recipe A and B to very contrived examples, but the =
+issue still persists.
 
 
-    A build flagged for QA (yocto-5.0.13.rc2) was completed on the autobuil=
-der and is available at:
+Below is recipe B:
+
+SUMMARY =3D "TI ARM-CGT-CLANG compiler tools"
+HOMEPAGE =3D "https://www-a.ti.com/downloads/sds_support/TICodegenerationTo=
+ols/download.htm"
+LICENSE =3D "CLOSED"
+
+BBCLASSEXTEND =3D "native nativesdk"
+
+# I don't believe I need this... but just in case
+SYSROOT_DIRS_NATIVE +=3D " \
+    /usr/share/ti \
+    /usr
+"
+
+FILES:${PN} +=3D " \
+   /usr \
+"
+
+do_install() {
+?    install -d ${D}/usr/share/ti
+    install -d ${D}/usr/
+
+    echo test > ${S}/test.txt
+    echo test2 > ${S}/test2.txt
+
+    install -m 0755 ${S}/test.txt ${D}/usr/share/ti
+    install -m 0755 ${S}/test2.txt ${D}/usr
+}
+
+INHIBIT_PACKAGE_STRIP =3D "1"
+INHIBIT_SYSROOT_STRIP =3D "1"
+INHIBIT_PACKAGE_DEBUG_SPLIT =3D "1"
+
+?Below is recipe A:
+??
+SUMMARY =3D "TI MCU+ SDK for AM263Px"
+HOMEPAGE =3D "https://www.ti.com/tool/MCU-PLUS-SDK-AM263PX"
+LICENSE =3D "CLOSED"
+
+BBCLASSEXTEND =3D "nativesdk native"
+
+DEPENDS =3D " \
+    ti-cgt-armllvm-native \ ### RECIPE B ###
+    sysconfig-native \
+"
+
+FILES:${PN} +=3D " \
+    /usr/share \
+"
+
+do_install() {
+    install -d ${D}/usr/share
+    cp -r ${STAGING_DIR_NATIVE}/. ${D}/usr/share
+}
+
+My understanding is that adding the DEPENDS =3D "ti-cgt-armllvm-native" sho=
+uld install all files installed by ti-cgt-armllvm (recipe B) into the STAGI=
+NG_DIR_NATIVE directory of recipe A; however, this is not occurring as ther=
+e is no 'recipe-sysroot-native/usr/test2.txt' or 'recipe-sysroot-native/usr=
+/share/ti/test.txt' file in recipe A staging directory.
+
+The issue does seem to be with DEPENDS because recipe B does install the te=
+st files correctly when run independently. When looking into this further, =
+I found that 'sysroot-components/x86_64/ti-cgt-armllvm-native' (recipe B sy=
+sroot components is empty):
+
+tmp-aec/sysroots-components/x86_64/ti-cgt-armllvm-native/
+??? sysroot-providers
+    ??? ti-cgt-armllvm-native
 
 
-        https://valkyrie.yocto.io/pub/releases/yocto-5.0.13.rc2
+My understanding is that this directory should contain the test files; howe=
+ver, I cannot figure out why it does not.
+
+Does anyone see any obvious mistakes that I am making?
+
+Apologies for the extensive email and thank you to anyone willing to help w=
+ith this!!!
+
+- Jared Weyer
 
 
-    Build URL: https://autobuilder.yoctoproject.org/valkyrie/#/builders/29/=
-builds/2579
+--_000_176100847773070625aecontrolscom_
+Content-Type: text/html; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 
-    Build hash information:=20
+<html>
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Diso-8859-=
+1">
+<style type=3D"text/css" style=3D"display:none"><!-- p { margin-top: 0px; m=
+argin-bottom: 0px; }--></style>
+</head>
+<body dir=3D"ltr" style=3D"font-size:12pt;color:#000000;background-color:#F=
+FFFFF;font-family:Calibri,Arial,Helvetica,sans-serif;">
+<p>Hi,<br>
+</p>
+<p><br>
+</p>
+<p>Hoping to get some help with an issue I have been having with DEPENDS. I=
+'m sure I am missing something obvious, but I can't seem to figure out what=
+ is going on. Essentially, I have two recipes, I will call them recipe A an=
+d recipe B; recipe A has a build
+ time dependency on recipe B. To troubleshoot the issue, I've reduced&nbsp;=
+recipe A and B to very contrived examples, but the issue still persists.<br=
+>
+</p>
+<p><br>
+</p>
+<p>Below is recipe B:<br>
+</p>
+<br>
+<blockquote style=3D"margin: 0 0 0 40px; border: none; padding: 0px;">
+<div>SUMMARY =3D &quot;TI ARM-CGT-CLANG compiler tools&quot;</div>
+<div>HOMEPAGE =3D &quot;https://www-a.ti.com/downloads/sds_support/TICodege=
+nerationTools/download.htm&quot;</div>
+<div>LICENSE =3D &quot;CLOSED&quot;</div>
+<div><br>
+</div>
+<div>BBCLASSEXTEND =3D &quot;native nativesdk&quot;</div>
+<div><br>
+# I don't believe I need this... but just in case<br>
+</div>
+<div>SYSROOT_DIRS_NATIVE &#43;=3D &quot; \<br>
+</div>
+<div>&nbsp; &nbsp; /usr/share/ti \<br>
+</div>
+<div>&nbsp; &nbsp; /usr<br>
+</div>
+<div>&quot;<br>
+</div>
+<div><br>
+</div>
+<div>FILES:${PN} &#43;=3D &quot; \</div>
+<div>&nbsp; &nbsp;/usr \</div>
+<div>&quot;</div>
+<div><br>
+</div>
+<div>do_install() {<br>
+</div>
+</blockquote>
+<blockquote style=3D"margin: 0 0 0 40px; border: none; padding: 0px;">
+<div>&#8203;&nbsp; &nbsp;&nbsp;<span style=3D"font-family: Calibri, Arial, =
+Helvetica, sans-serif; font-size: 16px; background-color: rgb(255, 255, 255=
+);">install -d ${D}/usr/share/ti</span><br>
+</div>
+</blockquote>
+<blockquote style=3D"margin: 0 0 0 40px; border: none; padding: 0px;">
+<div>&nbsp; &nbsp; install -d ${D}/usr/<br>
+</div>
+<div><br>
+</div>
+</blockquote>
+<blockquote style=3D"margin: 0 0 0 40px; border: none; padding: 0px;">
+<div>&nbsp; &nbsp; echo test &gt; ${S}/test.txt</div>
+<div>&nbsp; &nbsp; echo test2 &gt; ${S}/test2.txt<br>
+</div>
+<div><br>
+</div>
+<div>&nbsp; &nbsp; install -m 0755 ${S}/test.txt ${D}/usr/share/ti</div>
+<div>&nbsp; &nbsp; install -m 0755 ${S}/test2.txt ${D}/usr<br>
+</div>
+</blockquote>
+<blockquote style=3D"margin: 0 0 0 40px; border: none; padding: 0px;">
+<div>}</div>
+<div><br>
+</div>
+<div>INHIBIT_PACKAGE_STRIP =3D &quot;1&quot;</div>
+<div>INHIBIT_SYSROOT_STRIP =3D &quot;1&quot;</div>
+<div>INHIBIT_PACKAGE_DEBUG_SPLIT =3D &quot;1&quot;<br>
+</div>
+<div><br>
+</div>
+</blockquote>
+<span style=3D"font-size: 12pt;">&#8203;Below is recipe A:</span><br>
+<span style=3D"font-size: 12pt;">&#8203;</span><span style=3D"font-size: 12=
+pt;">&#8203;</span><br>
+<blockquote style=3D"margin: 0 0 0 40px; border: none; padding: 0px;">
+<div>SUMMARY =3D &quot;TI MCU&#43; SDK for AM263Px&quot;</div>
+<div>HOMEPAGE =3D &quot;https://www.ti.com/tool/MCU-PLUS-SDK-AM263PX&quot;<=
+/div>
+<div>LICENSE =3D &quot;CLOSED&quot;</div>
+<div><br>
+</div>
+<div>BBCLASSEXTEND =3D &quot;nativesdk native&quot;</div>
+<div><br>
+</div>
+<div>DEPENDS =3D &quot; \</div>
+<div>&nbsp; &nbsp; ti-cgt-armllvm-native \ ### RECIPE B&nbsp;###<br>
+</div>
+<div>&nbsp; &nbsp; sysconfig-native \</div>
+<div>&quot;</div>
+<div><br>
+</div>
+<div>FILES:${PN} &#43;=3D &quot; \</div>
+<div>&nbsp; &nbsp; /usr/share \</div>
+<div>&quot;</div>
+<div><br>
+</div>
+<div>do_install() {</div>
+<div>&nbsp; &nbsp; install -d ${D}/usr/share</div>
+<div>&nbsp; &nbsp; cp -r ${STAGING_DIR_NATIVE}/. ${D}/usr/share&nbsp;<br>
+</div>
+<div>}<br>
+</div>
+<br>
+</blockquote>
+My understanding is that adding the DEPENDS =3D &quot;ti-cgt-armllvm-native=
+&quot; should install all files installed by ti-cgt-armllvm (recipe B) into=
+ the STAGING_DIR_NATIVE directory of recipe A; however, this is not occurri=
+ng as there is no 'recipe-sysroot-native/usr/test2.txt'
+ or 'recipe-sysroot-native/usr/share/ti/test.txt' file in recipe A staging =
+directory.&nbsp;
+<div><br>
+</div>
+<div>The issue does seem to be with DEPENDS because recipe B&nbsp;does inst=
+all the test files correctly when run independently. When looking into this=
+ further, I found that 'sysroot-components/x86_64/ti-cgt-armllvm-native' (r=
+ecipe B sysroot components is empty):<br>
+<br>
+</div>
+<blockquote style=3D"margin: 0 0 0 40px; border: none; padding: 0px;">
+<div>tmp-aec/sysroots-components/x86_64/ti-cgt-armllvm-native/</div>
+<div>&#9492;&#9472;&#9472; sysroot-providers</div>
+<div>&nbsp; &nbsp; &#9492;&#9472;&#9472; ti-cgt-armllvm-native<br>
+</div>
+<br>
+</blockquote>
+<div><br>
+My understanding is that this directory should contain the test files; howe=
+ver, I cannot figure out why it does not.<br>
+<br>
+Does anyone see any obvious mistakes that I am making?<br>
+<br>
+Apologies for the extensive email and&nbsp;thank you to anyone willing to h=
+elp with this!!!&nbsp;</div>
+<div><br>
+</div>
+<div>- Jared Weyer<br>
+<blockquote style=3D"margin: 0 0 0 40px; border: none; padding: 0px;">
+<p><br>
+</p>
+</blockquote>
+</div>
+</body>
+</html>
 
-    bitbake: 1c9ec1ffde75809de34c10d3ec2b40d84d258cb4
-meta-agl: 07a44280ecb27c3cc794a79cd46c53caf7da925d
-meta-arm: 0f1e7bf92c89759f0ab74cfa5be4ee47b092ad46
-meta-aws: 446379f6892ce2145e68d9b95dbc7a208e9558d2
-meta-clang: 731488911f55ebfe746068512b426351192f82f2
-meta-intel: 6fc37057c7f0293a2345e303588901889df8b937
-meta-mingw: bd9fef71ec005be3c3a6d7f8b99d8116daf70c4f
-meta-openembedded: e621da947048842109db1b4fd3917a02e0501aa2
-meta-virtualization: af1db2042caf8021d767dce1b26c08b59b96f3d1
-meta-yocto: 3ff7ca786732390cd56ae92ff4a43aba46a1bf2e
-oecore: 7af6b75221d5703ba5bf43c7cd9f1e7a2e0ed20b
-poky: f16cffd030d21d12dd57bb95cfc310bda41f8a1f
-yocto-docs: 6f086fd3d9dbbb0c80f6c3e89b8df4fed422e79a
-
-
-   =20
-This is an automated message from the Yocto Project Autobuilder
-Git: git://git.yoctoproject.org/yocto-autobuilder2
-Email: richard.purdie@linuxfoundation.org
-
-
-    =20
-
-
--=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
-Links: You receive all messages sent to this group.
-View/Reply Online (#606): https://lists.yoctoproject.org/g/qa-build-notific=
-ation/message/606
-Mute This Topic: https://lists.yoctoproject.org/mt/115748439/9976127
-Group Owner: qa-build-notification+owner@lists.yoctoproject.org
-Unsubscribe: https://lists.yoctoproject.org/g/qa-build-notification/leave/1=
-4426999/9976127/44033455/xyzzy [debal.ghosh@intel.com]
--=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
-
-
+--_000_176100847773070625aecontrolscom_--
 
