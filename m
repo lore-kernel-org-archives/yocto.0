@@ -1,83 +1,86 @@
-Return-Path: <rpjday@crashcourse.ca>
+Return-Path: <leon@sidebranch.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 139C1CCD1BF
-	for <webhook@archiver.kernel.org>; Tue, 28 Oct 2025 11:37:38 +0000 (UTC)
-Received: from cpanel10.indieserve.net (cpanel10.indieserve.net [199.212.143.9])
- by mx.groups.io with SMTP id smtpd.web10.9171.1761651450490023422
+	by smtp.lore.kernel.org (Postfix) with ESMTP id E70C8CCD1BF
+	for <webhook@archiver.kernel.org>; Tue, 28 Oct 2025 13:14:38 +0000 (UTC)
+Received: from mail-pj1-f43.google.com (mail-pj1-f43.google.com [209.85.216.43])
+ by mx.groups.io with SMTP id smtpd.web11.8343.1761657273352016081
  for <yocto@lists.yoctoproject.org>;
- Tue, 28 Oct 2025 04:37:31 -0700
+ Tue, 28 Oct 2025 06:14:33 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@crashcourse.ca header.s=default header.b=dp2yo0qH;
- spf=pass (domain: crashcourse.ca, ip: 199.212.143.9, mailfrom: rpjday@crashcourse.ca)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=crashcourse.ca; s=default; h=Content-Type:MIME-Version:Message-ID:Subject:
-	To:From:Date:Sender:Reply-To:Cc:Content-Transfer-Encoding:Content-ID:
-	Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
-	:Resent-Message-ID:In-Reply-To:References:List-Id:List-Help:List-Unsubscribe:
-	List-Subscribe:List-Post:List-Owner:List-Archive;
-	bh=LlZUFyFk95OmzKPljGuXYa9Yvgjacy7qbyjxx3FeGmY=; b=dp2yo0qHymSLRVmbUvdktxS0qT
-	Gt7gSxa0P6qBYVjMAoBlrQyQeJf8zaRBvCeqTTyI/tfQwDiLvXD+yEmdKo6DJNQ5Ydj+kw1SxwrOu
-	39hNLdx7jZkyt/jjbJft1e+zeKf/fBL1xntQn1m5u+b07Mo1uQgnQweNb2DpnMoNzlYZNHjSVXsmh
-	txph94nHUxFYMXicAnLy0L9UMQ/Vtuqcdps8ISZhz5K8oac7NPKIuIX90N+Ol8r9OX5j7gPdVBYht
-	GpfRooxDEtpY8GtoOT4dk5hmBsB4zffX3WKWlFUkhSWXUzMV8RsFiljSZgvhj7cpsU5dC/85dU1wJ
-	P7pplnZQ==;
-Received: from [147.129.179.166] (port=53366 helo=rday)
-	by cpanel10.indieserve.net with esmtpsa  (TLS1.3) tls TLS_AES_256_GCM_SHA384
-	(Exim 4.98.2)
-	(envelope-from <rpjday@crashcourse.ca>)
-	id 1vDi10-0000000CYLw-3eMl
-	for yocto@lists.yoctoproject.org;
-	Tue, 28 Oct 2025 07:37:29 -0400
-Date: Tue, 28 Oct 2025 07:40:11 -0400 (EDT)
-From: "Robert P. J. Day" <rpjday@crashcourse.ca>
-To: Yocto discussion list <yocto@lists.yoctoproject.org>
-Subject: pedantic nitpickery: coding style with "FILESEXTRAPATHS:prepend"
-Message-ID: <253a0731-97d0-10ef-aef8-2f56328a81f9@crashcourse.ca>
+ dkim=pass header.i=@sidebranch-com.20230601.gappssmtp.com header.s=20230601 header.b=xfWO1TUG;
+ spf=softfail (domain: sidebranch.com, ip: 209.85.216.43, mailfrom: leon@sidebranch.com)
+Received: by mail-pj1-f43.google.com with SMTP id 98e67ed59e1d1-339d7c403b6so5857863a91.2
+        for <yocto@lists.yoctoproject.org>; Tue, 28 Oct 2025 06:14:32 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=sidebranch-com.20230601.gappssmtp.com; s=20230601; t=1761657272; x=1762262072; darn=lists.yoctoproject.org;
+        h=content-transfer-encoding:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=JQ/Cf2Pc6xg0BOiX3t/fFtGwHmTNs+8ulIQXGRkg6vQ=;
+        b=xfWO1TUGYZ6W9adDIS4whwk44sS1B3n6H0KEfjq5zwoNqsEhT1ArkHEZpoORiWxj+I
+         YdU1fvhI7fXwZwK4Wc/+wQyQXZ4ZZi7LfvxViXIjPEs2DjSAWuP/7eH/eA71L4RFo4TT
+         s8UnByrOE4Pam5AdKMh94Q3kt3W3TdmlDjehcOu4R/pReeHa1qa2g0Z3HQuwfeInFU+B
+         PM0yRFZXEd66iyHEUHP28e7MoPZMRFAL2Gs4N//gZyP6xkthBQLMrqi+1islwwvqjhzo
+         pP1TALmWqUzDcIPqh7vgSCpZ72lKfWUqFuEnci5mrgdVhog9zVK1wFVeHCA17Zpeb8sw
+         FY6w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1761657272; x=1762262072;
+        h=content-transfer-encoding:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=JQ/Cf2Pc6xg0BOiX3t/fFtGwHmTNs+8ulIQXGRkg6vQ=;
+        b=IBw64H0KUlb1DwcwnJVTae2iPUq4wQuwLDTBtTBx7wiAv8tQ+1x8b+iGND0u2Qr2A2
+         bIPfVf87WmSSmGsm2KgFrHTxHVneSNU1PFtTeTCB016P5odnPjxYSJi7YitajjpvNMHN
+         3flCzNg0mHlRlc0DgdtNtchuYXp/z3GF3Xv0ITKfQ+NdL8eDTbg43mRx5/5X5jeI7r5P
+         yovE2xhk2gDjvvukYjbGtblg75gdzpUpCr2hvIthcnQFtxDqZrHjKPuMj/cWeexp1G/O
+         lF/BY+Z3/5HyAjhozDPaDfuPo1zi4yPO+8dn61R+zfF+ccoAoWRrqw4x517tA6ENqPcg
+         Q21w==
+X-Gm-Message-State: AOJu0YzvIMsWsW5hjH7YCi/9A8d3Qm7ebPxQyinfpWe4tKmoIPXqJkzN
+	AMuwYagyLu8Y731pw/8pHO0FTQJuptRJzIgguo74Np9C2wqjCo4MJ7Qp0IZhWjEalRhwwmAxDex
+	i+bjnPvzyH+ReaRMZvMHKWadP8vb8GRUIeOE+UtDqixUcVM4ZRDek/0hQoJlg
+X-Gm-Gg: ASbGncuYp45IiqbkLjuHyPqeFwxt3cJEHBMRDwRywSSDuOhGaaJ03zcMjn8ZzbIQrDX
+	r3rSiEAEOeKSlHI0vYkAthcJQ1Ugi3lb5QTB0h5ti1H8F5ytImRr8e8nlEZP9I7XPv41NZy12b7
+	dDqQiJYc1NBMetvEShQVUkp24ixOxlCY7M6CGXIq2pGhivJqGi1u25V391dfmsBXaQpjoXjlycY
+	+DK3KN18+KF84nvnR0G6JJRSwh9ZmpOn5Xjxn09fe4y9N9gXJSIgUCucvi1Fh8=
+X-Google-Smtp-Source: AGHT+IGncvn4n4MOyGerY4RZbHBqZJNOJpFASZbY8rtSWy/EDpQoKh0iN2dl/sGzzjZoRNSAXSClRjbSz9oXT9M3yr0=
+X-Received: by 2002:a17:90b:56c6:b0:32e:749d:fcb7 with SMTP id
+ 98e67ed59e1d1-34027a03ae6mr4772497a91.13.1761657271799; Tue, 28 Oct 2025
+ 06:14:31 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
-X-AntiAbuse: Primary Hostname - cpanel10.indieserve.net
-X-AntiAbuse: Original Domain - lists.yoctoproject.org
-X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
-X-AntiAbuse: Sender Address Domain - crashcourse.ca
-X-Get-Message-Sender-Via: cpanel10.indieserve.net: authenticated_id: rpjday+crashcourse.ca/only user confirmed/virtual account not confirmed
-X-Authenticated-Sender: cpanel10.indieserve.net: rpjday@crashcourse.ca
-X-Source: 
-X-Source-Args: 
-X-Source-Dir: 
+References: <253a0731-97d0-10ef-aef8-2f56328a81f9@crashcourse.ca>
+In-Reply-To: <253a0731-97d0-10ef-aef8-2f56328a81f9@crashcourse.ca>
+From: Leon Woestenberg <leon@sidebranch.com>
+Date: Tue, 28 Oct 2025 14:14:19 +0100
+X-Gm-Features: AWmQ_bmgKqj6UIdXErpOUKBNmgEo5a8sVVjQ7sFbhT7OyKVOdWwEQRhLYXHDtic
+Message-ID: <CAMjhiJibGPcqNB2ERP=Gxo44VTqnW+BXxQ8HjBOjHemQ_pjmJQ@mail.gmail.com>
+Subject: Re: [yocto] pedantic nitpickery: coding style with "FILESEXTRAPATHS:prepend"
+To: yocto@lists.yoctoproject.org, rpjday@crashcourse.ca
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Tue, 28 Oct 2025 11:37:38 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/65974
+ <yocto@lists.yoctoproject.org>; Tue, 28 Oct 2025 13:14:38 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/65975
 
+On Tue, Oct 28, 2025 at 12:37=E2=80=AFPM Robert P. J. Day via
+lists.yoctoproject.org <rpjday=3Dcrashcourse.ca@lists.yoctoproject.org>
+wrote:
+>
+>   (spoiler: turns out this is fine, but it's non-intuitive)
+> arm-ffa-transport.inc:FILESEXTRAPATHS:prepend :=3D "${ARMFILESPATHS}"
+> linux-yocto%.bbappend:ARMFILESPATHS :=3D "${THISDIR}/files:"
 
-  (spoiler: turns out this is fine, but it's non-intuitive)
+Indeed, I would have written this, as the trailing double colon is
+needed in the prepend context of using the variable.
 
-while checking for any other syntactically incorrect assignments to
-FILESEXTRAPATHS, i ran across this in
-meta-arm/meta-arm/recipes-kernel/linux:
+arm-ffa-transport.inc:FILESEXTRAPATHS:prepend :=3D "${ARMFILESPATHS}:"
+linux-yocto%.bbappend:ARMFILESPATHS :=3D "${THISDIR}/files"
 
-arm-ffa-transport.inc:FILESEXTRAPATHS:prepend := "${ARMFILESPATHS}"
+But as you said, it works, so that's typically enough barrier to keep as-is=
+.
 
-  "aha," i thought, that's clearly another error as it is missing the
-trailing colon. turns out, not so, if you examine the contents of that
-directory more closely:
-
-arm-ffa-transport.inc:FILESEXTRAPATHS:prepend := "${ARMFILESPATHS}"
-linux-yocto%.bbappend:ARMFILESPATHS := "${THISDIR}/files:"
-linux-yocto%.bbappend:FILESEXTRAPATHS:prepend:qemuarm64-secureboot = "${ARMFILESPATHS}"
-linux-yocto%.bbappend:FILESEXTRAPATHS:prepend:qemuarm-secureboot = "${ARMFILESPATHS}"
-linux-yocto%.bbappend:FILESEXTRAPATHS:prepend:qemuarm64 = "${ARMFILESPATHS}"
-linux-yocto%.bbappend:FILESEXTRAPATHS:prepend:qemuarm = "${ARMFILESPATHS}"
-
-because the variable ARMFILESPATHS is defined with the trailing colon
-already built in.
-
-  yuck. so while this works, i'm not a big fan of adding delimiters to
-the value of variables like this.
-
-rday
+Leon.
 
