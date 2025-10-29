@@ -1,125 +1,97 @@
-Return-Path: <skandigraun@gmail.com>
+Return-Path: <richard.purdie@linuxfoundation.org>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id EF39ACCF9EB
-	for <webhook@archiver.kernel.org>; Wed, 29 Oct 2025 13:05:17 +0000 (UTC)
-Received: from mail-wm1-f46.google.com (mail-wm1-f46.google.com [209.85.128.46])
- by mx.groups.io with SMTP id smtpd.web11.5700.1761743117317922516
+	by smtp.lore.kernel.org (Postfix) with ESMTP id AE7DFCCF9F0
+	for <webhook@archiver.kernel.org>; Wed, 29 Oct 2025 15:00:18 +0000 (UTC)
+Received: from mail-wm1-f43.google.com (mail-wm1-f43.google.com [209.85.128.43])
+ by mx.groups.io with SMTP id smtpd.web01.7920.1761750011719238118
  for <yocto@lists.yoctoproject.org>;
- Wed, 29 Oct 2025 06:05:17 -0700
+ Wed, 29 Oct 2025 08:00:12 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20230601 header.b=mSOAV9rI;
- spf=pass (domain: gmail.com, ip: 209.85.128.46, mailfrom: skandigraun@gmail.com)
-Received: by mail-wm1-f46.google.com with SMTP id 5b1f17b1804b1-475dbb524e4so30154465e9.2
-        for <yocto@lists.yoctoproject.org>; Wed, 29 Oct 2025 06:05:17 -0700 (PDT)
+ dkim=pass header.i=@linuxfoundation.org header.s=google header.b=V/ICRoZ+;
+ spf=pass (domain: linuxfoundation.org, ip: 209.85.128.43, mailfrom: richard.purdie@linuxfoundation.org)
+Received: by mail-wm1-f43.google.com with SMTP id 5b1f17b1804b1-475dab5a5acso28575725e9.0
+        for <yocto@lists.yoctoproject.org>; Wed, 29 Oct 2025 08:00:11 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1761743116; x=1762347916; darn=lists.yoctoproject.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=s3zsXkVYpmmVIi0GvyMZaGNuvHftacyigAAiMFoVVwQ=;
-        b=mSOAV9rIvgWBkgWs9suMxpflZ0C6nlFODjtW9ap+oNa4wiQQs4wyPcpVEmWve0hDML
-         QGoB8hYbA7bLSBx16Ui6xq8MPeWls4Pm9qhI3h8FzOJxeRK0xu+I39bn3m8HFMvKas7e
-         vEboObwdRob/eOZ1yDyoqF+U5QWb2xpgn3KP+P7j7vWqHhwfaSHDknbuov5n4nANvwx8
-         ubPQMvOLQBdtTPkerMk9dIl5azZiV5zTnLKHa7D13dfcWJRQjWKKH6OqbBOmL8cE2I9X
-         ScNBdt3GRCe2fjWViJrMZ3l4t4JVBf0jDLAHQ8aUMWMkr7qOua9om90DQEmR+R1PTgN/
-         yEng==
+        d=linuxfoundation.org; s=google; t=1761750009; x=1762354809; darn=lists.yoctoproject.org;
+        h=mime-version:user-agent:content-transfer-encoding:references
+         :in-reply-to:date:to:from:subject:message-id:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=rwq85A2a2ulG35CA18OquvG1I/GM1pHMkc175jor0aA=;
+        b=V/ICRoZ+EtF0FxD+wzVN6NYuAmvJ9K87sggsr63fkhemtZvf0tOs259P99XWZ7W8FN
+         c9GLFE5P9WDAqYmpRfDgReQAbCZWAjVfjwdhsNotgbvWNC1UNvQsRv4WDpPNLsZ1z6sY
+         kAR5GGGswiTvv/cufzozLuWFOGVM/nm80OIeY=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1761743116; x=1762347916;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=s3zsXkVYpmmVIi0GvyMZaGNuvHftacyigAAiMFoVVwQ=;
-        b=iCgsLYL/JdTVxCoQu3XEjv6Fn8dz2zA6bbbBmcAIAAyxsQCMBxoEIJgPm4FgIVMJVZ
-         vkTAhGEhxGfl/3WIbLXUpVvN4g9d1Iak6smxfBQuVw35t1/gbFZK07cfiMhC5b4pIBK3
-         JM+IuArNtUEDJftXqnDw+ClJ9lXjjfAohnuxt1ytF4M8QgToQzRxx9A2aqPxrZAYj8/Q
-         S73HOnHVUHBzN9EkfVKY+miEWa/rJtaIvby+DzhTdmfLQwe5HAGERtlhZmf5lYSC0i0b
-         an+ny6+f7JoLweUxGh0IsXXKRW6eCaY0wR0VDA41s1Som45W5hd3sUcDBLAKfCHXZF0I
-         zh1g==
-X-Gm-Message-State: AOJu0Yw90FBGVfaFTWwlqFhdSFAMRKAtxj6gdh73c8QkhG72/kiiaqV0
-	mX3nuRkmslJTimXmOO85C0phnKFJaubnVNuZIVrvgpf00lAbcPNElCdGRCPa6+KT
-X-Gm-Gg: ASbGncsUEXpeGq78QsgOsIdhXVaIibSKVwYpGHW6NuIGPPZfrOqopbBa2U8ZwYe6t4b
-	ntPFQLujowhcH0SBp3JirBRcX6jwoGS4ooPu4zSGMlRmF0RtdFVtg/ArZ5rgFAXOpePlqFu/8Bn
-	yXVcOWkANAN+F7/2HrMQGds35UxJZIk/NR3gqxeoNzuk+AAhVe8TyYP08v29de3rLhviMn3lWwS
-	+mq406/rtqBroiy1GiYSWQLaVFwzosCRM4tN9VBUewuOdujeILk6zhlmlstTkWt7HAuR2o5TGQs
-	5uzeSdaX0G1PsxDYCnIM2DJtyWr9ClW0G9cGhMYBn316P79J3PrIgcWjaW80jxqEDeMIJuubhyj
-	WMqU1jcLTYwZC8et9g0a/r1/7GuTWZCI2lfxPU0XIBo+ShqjDhXUO9SyfqWNFgNBTssg/svsxxa
-	LgZO6ZnOJy
-X-Google-Smtp-Source: AGHT+IHU7sDPFWYv+p2sL60HYXJcz7JxY6ZtxBgWA64P3QyCet/SuvP4Btq3VmeAh96vHnQB6NpIpQ==
-X-Received: by 2002:a05:600c:4587:b0:46e:37af:f90e with SMTP id 5b1f17b1804b1-4771e1658f5mr27218455e9.6.1761743115288;
-        Wed, 29 Oct 2025 06:05:15 -0700 (PDT)
-Received: from [192.168.1.106] ([51.154.145.205])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4771e2358cdsm49291105e9.16.2025.10.29.06.05.14
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 29 Oct 2025 06:05:14 -0700 (PDT)
-Message-ID: <498ad45f-6a80-4d1f-bf07-92babf68e225@gmail.com>
-Date: Wed, 29 Oct 2025 14:05:13 +0100
-MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
+        d=1e100.net; s=20230601; t=1761750009; x=1762354809;
+        h=mime-version:user-agent:content-transfer-encoding:references
+         :in-reply-to:date:to:from:subject:message-id:x-gm-message-state:from
+         :to:cc:subject:date:message-id:reply-to;
+        bh=rwq85A2a2ulG35CA18OquvG1I/GM1pHMkc175jor0aA=;
+        b=ryJ9XpKFkgvLk1toDKGLoiXArbSJlXVjAkJoX8VTSFsOBMc0pMwQ8iUtMMxTQppmWw
+         0EwvNcblV0xnwDvGv8QAum7zGIz65eYat4ChlPAx/nMjPD6H1hvjnfuSq+i7GHLlZ5fA
+         pQ+gKD4w+bp1B3jhbn2wbhfn5lAEQHNar8lLAt4/o2VzO+NhY9BzoFK3nMriJ2UZVYM2
+         TNtx/KtTBLQEJ1MZlkjOXr+alpZX6rAZDYQB1xSaMbCoFdAsaylhEF4eiqmoczCKps9a
+         YaA9ESj0x8z68YKustYCuvbWr9YKOrNWChZWfmXxuOKPaNxdgZo7v9DflQHLOuDvBayZ
+         jwhA==
+X-Gm-Message-State: AOJu0YzKkhm2BhjAVvWp9H+ys+RCGfDw8+y/tyxJItbHU0t/iPwchIwv
+	eVNLTyhcL7HnhPm3duJpipzg2XSaqqKYYLK3fzFv2unaxXS9cSe1UbgJxSnzYA8tAM9vb4nHNUC
+	B4SRW
+X-Gm-Gg: ASbGncuxPvDho8fwGJ9uikiJiJVDK1Pz9E9BwFAGAPpHlXzcMbbbqN6dbtyXf542x76
+	rBe/5WXmZ7bsFld9AT6dOK/cqdX7yn5UB8QmVufIb7AKxliAlQ19utmokZ/IsmzobaQThgN98QG
+	HZ3622nmR/57iarQBJYy+r5d4wwEGYA8Re5g6jkWaMBnpVvzqsOCMZ1pPmhDqDcsw28tTVzBRKX
+	XBPXZIIbeWdSddR+ng+XdOuZ3R6j8ha9dVX21img+A+wfOOuIxi3NEYTZqpMe3Ghbb/ZS3wHeJx
+	raBJ7kJg0NfSOtb+U7sltdeYsuc7WKKd0rBAyVwJP6hZvNecDk802rDN/pty8caS9rfjQlczZLV
+	4aSUbxVnqCS1YR5sRUk/1ck0mcKx/5OrCbGBsQjUUmGCTfENcr2lpWdC/8wKz32Nk1tJJhWYp9q
+	7n1aGV7fOUedSL6R5zd0xtb/4nqt+M9t3RCPkOgblUlPJQUdTKtwre9nra1f+WVSIO
+X-Google-Smtp-Source: AGHT+IFZB+Gqre+Mjx9x+yaXnnVTNUgzgIwUCoRsU7E+ENqyHGiwya/gvbxCLIItEJBdxw1QhbzEtg==
+X-Received: by 2002:a05:600c:4686:b0:476:6ef6:e28c with SMTP id 5b1f17b1804b1-4771e3ba62emr26668705e9.38.1761750009326;
+        Wed, 29 Oct 2025 08:00:09 -0700 (PDT)
+Received: from ?IPv6:2001:8b0:aba:5f3c:20a6:9403:5f14:a9f7? ([2001:8b0:aba:5f3c:20a6:9403:5f14:a9f7])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4771e20205esm50825235e9.12.2025.10.29.08.00.06
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 29 Oct 2025 08:00:07 -0700 (PDT)
+Message-ID: <d1feed09d97a4de0413dc2af3452bb949c9deef4.camel@linuxfoundation.org>
 Subject: Re: [yocto] [yocto-autobuilder-helper][PATCH] config.json: add
  meta-beagle sublayer of meta-ti to check-layer
-To: yocto@lists.yoctoproject.org, denis@denix.org
-Cc: Richard Purdie <richard.purdie@linuxfoundation.org>
+From: Richard Purdie <richard.purdie@linuxfoundation.org>
+To: yocto@lists.yoctoproject.org, skandigraun@gmail.com, denis@denix.org
+Date: Wed, 29 Oct 2025 15:00:06 +0000
+In-Reply-To: <498ad45f-6a80-4d1f-bf07-92babf68e225@gmail.com>
 References: <18692C680F0ED8BC.31910@lists.yoctoproject.org>
- <20251028155114.GD3125@denix.org>
-Content-Language: en-US
-From: Gyorgy Sarvari <skandigraun@gmail.com>
-In-Reply-To: <20251028155114.GD3125@denix.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+	 <20251028155114.GD3125@denix.org>
+	 <498ad45f-6a80-4d1f-bf07-92babf68e225@gmail.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.56.0-1 
+MIME-Version: 1.0
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from li982-79.members.linode.com [45.33.32.79] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Wed, 29 Oct 2025 13:05:17 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/65980
+ <yocto@lists.yoctoproject.org>; Wed, 29 Oct 2025 15:00:18 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/65981
 
-On 10/28/25 16:51, Denys Dmytriyenko via lists.yoctoproject.org wrote:
-> Hi Richard,
->
-> I know you are overloaded with the release and getting bitbake-setup working 
-> on the AB. While this change is not critical, I just wanted to make sure it's 
-> in for the YP Compat v3 launch. Thanks.
+On Wed, 2025-10-29 at 14:05 +0100, Gyorgy Sarvari via lists.yoctoproject.or=
+g wrote:
+> On 10/28/25 16:51, Denys Dmytriyenko via lists.yoctoproject.org wrote:
+> > Hi Richard,
+> >=20
+> > I know you are overloaded with the release and getting bitbake-setup wo=
+rking=20
+> > on the AB. While this change is not critical, I just wanted to make sur=
+e it's=20
+> > in for the YP Compat v3 launch. Thanks.
+>=20
+> Though I'm not Richard, I think for good measure maybe you want to send
+> this patch to the yocto-patches ML too - that's where AB patches
+> supposed to go according to the readme. I'd expect the chances to be
+> seen are better there.
+>=20
+>=20
 
-Though I'm not Richard, I think for good measure maybe you want to send
-this patch to the yocto-patches ML too - that's where AB patches
-supposed to go according to the readme. I'd expect the chances to be
-seen are better there.
+Which is why it fell through the cracks. I've merged it now though.
 
->
-> On Sat, Sep 27, 2025 at 11:12:20AM -0400, Denys Dmytriyenko wrote:
->> From: Denys Dmytriyenko <denys@konsulko.com>
->>
->> Also run nightly yocto-check-layer for meta-beagle sublayer of meta-ti.
->>
->> Signed-off-by: Denys Dmytriyenko <denys@konsulko.com>
->> ---
->>  config.json | 2 +-
->>  1 file changed, 1 insertion(+), 1 deletion(-)
->>
->> diff --git a/config.json b/config.json
->> index 90cb791..ce1fdc8 100644
->> --- a/config.json
->> +++ b/config.json
->> @@ -1221,7 +1221,7 @@
->>              },
->>              "step5" : {
->>                  "shortname" : "Test meta-ti YP Compatibility",
->> -                "EXTRACMDS" : ["yocto-check-layer-wrapper ../meta-ti/meta-ti-bsp ../meta-ti/meta-ti-extras --dependency ../meta-arm --no-auto-dependency"]
->> +                "EXTRACMDS" : ["yocto-check-layer-wrapper ../meta-ti/meta-ti-bsp ../meta-ti/meta-ti-extras ../meta-ti/meta-beagle --dependency ../meta-arm --no-auto-dependency"]
->>              },
->>              "step6" : {
->>                  "shortname" : "Test meta-oe YP Compatibility",
->> -- 
->> 2.25.1
->>
->> -=-=-=-=-=-=-=-=-=-=-=-
->> Links: You receive all messages sent to this group.
->> View/Reply Online (#65979): https://lists.yoctoproject.org/g/yocto/message/65979
->> Mute This Topic: https://lists.yoctoproject.org/mt/115996150/6084445
->> Group Owner: yocto+owner@lists.yoctoproject.org
->> Unsubscribe: https://lists.yoctoproject.org/g/yocto/unsub [skandigraun@gmail.com]
->> -=-=-=-=-=-=-=-=-=-=-=-
->>
+Cheers,
 
+Richard
 
