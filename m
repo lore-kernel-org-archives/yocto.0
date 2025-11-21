@@ -1,51 +1,52 @@
-Return-Path: <jarno.katajainen@solotop.fi>
+Return-Path: <swami310@gmail.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id E770FCF8575
-	for <webhook@archiver.kernel.org>; Thu, 20 Nov 2025 09:21:34 +0000 (UTC)
-Subject: Re: [yocto] weston 13.0.1 assert fail #scarthgap
-To: "Gyorgy Sarvari" <skandigraun@gmail.com>, yocto@lists.yoctoproject.org
-From: "Jarno" <jarno.katajainen@solotop.fi>
-X-Originating-Location: Turku, Southwest Finland, FI (62.78.136.11)
-X-Originating-Platform: Linux Chrome 141
+	by smtp.lore.kernel.org (Postfix) with ESMTP id EED2CCFA754
+	for <webhook@archiver.kernel.org>; Fri, 21 Nov 2025 08:47:34 +0000 (UTC)
+Subject: Re: [yocto] Yocto Project Newcomer & Unassigned Bugs - Help Needed
+To: "Stephen Jolley" <sjolley.yp.pm@gmail.com>, yocto@lists.yoctoproject.org
+From: swami310@gmail.com
+X-Originating-Location: Chennai, Tamil Nadu, IN (49.37.220.71)
+X-Originating-Platform: Linux Firefox 145
 User-Agent: GROUPS.IO Web Poster
 MIME-Version: 1.0
-Date: Thu, 20 Nov 2025 01:21:32 -0800
-References: <NWUB.1763560336855590654.KUb9@lists.yoctoproject.org> <48750926-4ee5-4d46-b452-8d0c0dd680bc@gmail.com>
-In-Reply-To: <48750926-4ee5-4d46-b452-8d0c0dd680bc@gmail.com>
-Message-ID: <564360.1763630492381329900@lists.yoctoproject.org>
-Content-Type: multipart/alternative; boundary="pgSQmm0WU7hOQIlRNhzu"
+Date: Fri, 21 Nov 2025 00:47:29 -0800
+References: <CAK5yBb-xUF-+Av5wZgfErwCavLpJ1wd27BD5dgQ9Py7_2wC=8g@mail.gmail.com>
+In-Reply-To: <CAK5yBb-xUF-+Av5wZgfErwCavLpJ1wd27BD5dgQ9Py7_2wC=8g@mail.gmail.com>
+Message-ID: <580804.1763714849616118716@lists.yoctoproject.org>
+Content-Type: multipart/alternative; boundary="opzQqt5uatzTsiN6sHDA"
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from 45-33-107-173.ip.linodeusercontent.com [45.33.107.173] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Thu, 20 Nov 2025 09:21:34 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/66038
+ <yocto@lists.yoctoproject.org>; Fri, 21 Nov 2025 08:47:34 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/66039
 
---pgSQmm0WU7hOQIlRNhzu
+--opzQqt5uatzTsiN6sHDA
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: quoted-printable
 
-there's a issue at github where's detailed istructions how to reproduce it.
-https://github.com/agherzan/meta-raspberrypi/issues/1407
+I can spare time and would like to help with this. However, I am a complete=
+ novice and need guidance on how to get started.
+If someone could guide me on how to get started, I would understand the pro=
+cess and start contributing.
+Kindly let me know
 
-I'm working on raspberrypi4-64, and my layer/recipes based on core-image-we=
-ston. I had this previously working but stopped working due to recent updat=
-e.
+regards
+Swami
 
---pgSQmm0WU7hOQIlRNhzu
+--opzQqt5uatzTsiN6sHDA
 Content-Type: text/html; charset="utf-8"
 Content-Transfer-Encoding: quoted-printable
 
-<div>there's a issue at github where's detailed istructions how to reproduc=
-e it.</div>
-<div><a href=3D"https://github.com/agherzan/meta-raspberrypi/issues/1407" t=
-arget=3D"_blank" rel=3D"noopener">https://github.com/agherzan/meta-raspberr=
-ypi/issues/1407</a></div>
+<div>I can spare time and would like to help with this. However, I am a com=
+plete novice and need guidance on how to get started.</div>
+<div>If someone could guide me on how to get started, I would understand th=
+e process and start contributing.</div>
+<div>Kindly let me know</div>
 <div>&nbsp;</div>
-<div>I'm working on raspberrypi4-64, and my layer/recipes based on core-ima=
-ge-weston. I had this previously working but stopped working due to recent =
-update.</div>
+<div>regards</div>
+<div>Swami</div>
 
---pgSQmm0WU7hOQIlRNhzu--
+--opzQqt5uatzTsiN6sHDA--
 
