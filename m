@@ -1,97 +1,141 @@
-Return-Path: <skandigraun@gmail.com>
+Return-Path: <osama.abdelkader@gmail.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 9AD53CFA466
-	for <webhook@archiver.kernel.org>; Mon, 24 Nov 2025 14:46:38 +0000 (UTC)
-Received: from mail-wm1-f52.google.com (mail-wm1-f52.google.com [209.85.128.52])
- by mx.groups.io with SMTP id smtpd.msgproc02-g2.18287.1763995595097774127
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 5E4EACFD31C
+	for <webhook@archiver.kernel.org>; Mon, 24 Nov 2025 17:24:19 +0000 (UTC)
+Received: from mail-wm1-f43.google.com (mail-wm1-f43.google.com [209.85.128.43])
+ by mx.groups.io with SMTP id smtpd.msgproc01-g2.22210.1764005050935434647
  for <yocto@lists.yoctoproject.org>;
- Mon, 24 Nov 2025 06:46:35 -0800
+ Mon, 24 Nov 2025 09:24:11 -0800
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20230601 header.b=bfy56khF;
- spf=pass (domain: gmail.com, ip: 209.85.128.52, mailfrom: skandigraun@gmail.com)
-Received: by mail-wm1-f52.google.com with SMTP id 5b1f17b1804b1-477563e28a3so30055155e9.1
-        for <yocto@lists.yoctoproject.org>; Mon, 24 Nov 2025 06:46:34 -0800 (PST)
+ dkim=pass header.i=@gmail.com header.s=20230601 header.b=iS9mA8xQ;
+ spf=pass (domain: gmail.com, ip: 209.85.128.43, mailfrom: osama.abdelkader@gmail.com)
+Received: by mail-wm1-f43.google.com with SMTP id 5b1f17b1804b1-4775e891b5eso19509495e9.2
+        for <yocto@lists.yoctoproject.org>; Mon, 24 Nov 2025 09:24:10 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1763995593; x=1764600393; darn=lists.yoctoproject.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:to:subject:user-agent:mime-version:date:message-id:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=siflZI9lKb5gkgBqeSNZCcEQSO8npfqiMLrxS5JOsdQ=;
-        b=bfy56khFMLdlb2rNol7KvhDkizDvwvcxLkrjoX1/sMtVT1hDm//fAVVj4xm4x3NgG1
-         Th+pAG8HSA9RfbNAXkWAfXheH5NWquQIetymcCCDWI2lJjt+b2u2oDuEpNMCq/TrnIq1
-         jNQE5ZzbnvirPuaYXwwZzY0cXYtQ++BvX28Vrmnb53RS2hw9+qhnUQBKIetkCe7pk1YO
-         or/nq4I9IVNWLMR0rAP3ctbFeID1+nAdR5UjYomd4+2zxP3X2fEGs3khKxq56xzfbsgs
-         JVZqdBBFDmhzDKYRWX0VTZH9rmvBc/rDUwoYKr0vTYVTdsEALa6Hn/qZH/E+A5qc0Xq8
-         NuVQ==
+        d=gmail.com; s=20230601; t=1764005049; x=1764609849; darn=lists.yoctoproject.org;
+        h=content-transfer-encoding:content-disposition:mime-version
+         :message-id:subject:cc:to:from:date:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=Z1w4Edq4dQOsXAUQy6Awzvx150CoxD4fFYbvbZfQETw=;
+        b=iS9mA8xQ9ginCvodtj3nc0yiYXQEXtZl4AAH3ilMRemeyija6ePuV3ftwUIM1BPytn
+         3uV56YNNacOvpDlnFoSB+BlUMThXOKoAtPmrL+PsTvGKVPO4BAvhhGLHIkUZE0t8SeNv
+         sNBcuNEryPZ2ewBPO37C7117tCIrv7pzG4YhHrxmmOQ8c9YsvamFTpw7IM07dBNPwknV
+         9amQwaPGNG/9qkz0YkLq8+Lg5NdvM1JJIVYIvT6rQv0E6Km+LF79xUTqutJjubMnexJ6
+         GvX/ntIqKPwc5KvCaD4OBjqy9w0/wieDnCTl5Mme69xKt4pv3j5HHudfngJ+n62P1TJ7
+         EDVw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1763995593; x=1764600393;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=siflZI9lKb5gkgBqeSNZCcEQSO8npfqiMLrxS5JOsdQ=;
-        b=Zm8FwOvlvtdjuVSUeVtn0xrqOSwT3DO42lwrHkz6dt6x0P4W1LnHjIHu0Llu/3FhzN
-         TVT7FroN/5SseK7oJB4ImoGKfEI69t/sBVBxLheKcWc5wiYHUVWS7h4NiwvRWs6Ab4hW
-         CP2Cf4zdtrMJ0GdktE7AbMUmlURNwetItfUKuHnt5oaXOyqLAhrhinT6uL8RSH7JgcEC
-         iANlljutLUnDEFspdqPlXteWYtanIP34UEvq05KXIdbndHOQ3cN0rTYnSBkeH1xku3Jy
-         lKN0LgJGF1oX3M5h21jlUURGAo2G9GfeoByU4oP59W6nk4qifT2QuczVpz7n8aKOrzyg
-         6r8Q==
-X-Gm-Message-State: AOJu0YwCGiB0FDUnRH/pDDYZHWgPVo+NfkDc3IK+NhgG2q4+8lKgtV82
-	O/m58BWnMaqKAkaoaq9OlcJXBfIKcZX/J3D7DRZ2QCfuK7aYVkXJbpn02O7QyDoJ
-X-Gm-Gg: ASbGncu9NkNZwTRLJIxFbDlllBSWdeJto0q9f0wkZowCVSWtXSHborm7AeKA0tjsVQI
-	lCKo7vfY+ysDY+Dr3l1e+iEC8ZLh4XB4fwAi6GoEvDOgLTE8XPWPP5BXzXGh/DuzLBvAFC8gQeM
-	/V/cEqHCK7/lxWR0EOCodGKNgLVTqG6uaTC+GYtuCn4JPTPVCk7xOpVe3V7jlWv6SttZn0iWCY8
-	ALqxkhkE6dDUSkLFVyTyRGFglA5lusNZZm9zR7ZniI/d07zAcYUBmXpPqHD3tEWTWd6vcX/ktDL
-	g8jd5UnkJpiWa0v4vet1G4ZoFMB7TJODLoWxHuco8a9d+ptTG7jO+mbhd7Fm4EWW3wuyP3DEkha
-	lboR6MRXNWXOgqRUC89dggKviUTc3B6sLro1K7Bqzdlp03Zn8uby39gpIkHety4RLwVrGWPXKle
-	kMxebHbwGTfcTyH/+DjfI=
-X-Google-Smtp-Source: AGHT+IErQXwyxjnAo7dkikxTi5WJHmPYwHfCoKmqVIX5wykHZIySzMP1JA6mdLJCe6Nuv7VpF9dtDw==
-X-Received: by 2002:a05:600c:1d14:b0:477:9d88:2da6 with SMTP id 5b1f17b1804b1-477c026ed62mr120788485e9.0.1763995593269;
-        Mon, 24 Nov 2025 06:46:33 -0800 (PST)
-Received: from [192.168.1.106] ([51.154.145.205])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-477bf1e872esm199109675e9.5.2025.11.24.06.46.32
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 24 Nov 2025 06:46:32 -0800 (PST)
-Message-ID: <d8c5fc86-eac2-486c-9dec-c03b076a3e5e@gmail.com>
-Date: Mon, 24 Nov 2025 15:46:32 +0100
+        d=1e100.net; s=20230601; t=1764005049; x=1764609849;
+        h=content-transfer-encoding:content-disposition:mime-version
+         :message-id:subject:cc:to:from:date:x-gm-gg:x-gm-message-state:from
+         :to:cc:subject:date:message-id:reply-to;
+        bh=Z1w4Edq4dQOsXAUQy6Awzvx150CoxD4fFYbvbZfQETw=;
+        b=FM063e/Dz+Q3JmXe2/5KxMo2i6o3IBjm/Wrp/K6FuH5jqWgHYzBvkkpsY7ZtKQ1Dre
+         SpJ0yRws1anqWRNNVHJhRVbFZsPLfwiNxLKnJjaFofLQvRJy8xRKkr0FZ3U1z6sYKpRa
+         AQMnQue+M+MFgYULrf8LTQuI0C8AnVs93lwKRQKE7XMj6Zs52yDfRpxJsQJ+jVJ3FIng
+         7UDpAxwnz0RVVwre6ijWDQByDz+VJ2EPjx2hRmya5cj1SOrVOevgzkUCDmAi8SO0vi/O
+         ya9Dae1sTwVZ/5ZGcz3EumIrqxY44wowCJJeYH+wc4SHJZdXnm6HUVD3tifRQDdFiaC2
+         F8TA==
+X-Gm-Message-State: AOJu0YxVK7ngyAqvZotMiMjsIDm8WvacGNBA97VB2ziDnP2cbcy8aaIN
+	slCFeeu94dRkf7UV8h7ZPajZzWaZ5oL4YXl+v4eaXsJk4UBBU1yZHYiRavGZlLkG
+X-Gm-Gg: ASbGncuaqm9uNgSNaApWJyMoHikBsc6jyFs7DpstZBGRwX9R8xZq5LebqRdhXgn3t42
+	EYelehEh2xABwfujgspoo36RqZWPWEr3HUNdNRvDciDEJzyOUwmXYjYVb9w0kSpbLTyHElwrUJf
+	XCiktfPlpBgr57/qXAv6DEpP0plXOTSkiM1mvzslLnPsHRVmrYCqvkvy/jKShQAm07B1JnFKR/A
+	ryRK/4Z+d2vNa2+JnOJLqWB8tiM7fh5WKC2C/PNdBK2fhDnmSgh/1dMe9bKX1EaEWSQGwEaCYMW
+	sEa/JLB4ySqw+eRBeusBChvvKzMPSiDsJJabMsBUwStzpmLkEwzIlXS939ScFcxVuC1BdLd8ybq
+	/YuJ0HrcVt8D4RObSapqpfPij1US+ss0pLZex/DiPLqcb3o4b1qapHSVeeChwLqgC393dquIww0
+	r3UTROxUVZb2Uu
+X-Google-Smtp-Source: AGHT+IGUs/f3tHVysB1ZlKntMi7sxySBVZQRtXWjJhMqnNWGPV/qgKkNy1XRXLpitVWnH7qtYFQzVQ==
+X-Received: by 2002:a05:600c:1994:b0:477:7af8:c88b with SMTP id 5b1f17b1804b1-477c01740e1mr121978775e9.11.1764005048828;
+        Mon, 24 Nov 2025 09:24:08 -0800 (PST)
+Received: from osama ([156.223.112.153])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-477bf3af0ecsm208610655e9.9.2025.11.24.09.24.07
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 24 Nov 2025 09:24:08 -0800 (PST)
+Date: Mon, 24 Nov 2025 19:24:04 +0200
+From: Osama Abdelkader <osama.abdelkader@gmail.com>
+To: yocto@lists.yoctoproject.org
+Cc: bitbake-devel@lists.openembedded.org
+Subject: [RFC] Proposal: New tool to display recipe dependency trees
+Message-ID: <aSSUtHYFQlychNQk@osama>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [yocto] weston 13.0.1 assert fail #scarthgap
-To: yocto@lists.yoctoproject.org, jarno.katajainen@solotop.fi
-References: <NWUB.1763560336855590654.KUb9@lists.yoctoproject.org>
- <48750926-4ee5-4d46-b452-8d0c0dd680bc@gmail.com>
- <564360.1763630492381329900@lists.yoctoproject.org>
- <46e999f4-7254-453d-8414-b019d0381209@gmail.com>
- <686098.1763993744038185859@lists.yoctoproject.org>
-Content-Language: en-US
-From: Gyorgy Sarvari <skandigraun@gmail.com>
-In-Reply-To: <686098.1763993744038185859@lists.yoctoproject.org>
-Content-Type: text/plain; charset=UTF-8
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from 45-33-107-173.ip.linodeusercontent.com [45.33.107.173] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Mon, 24 Nov 2025 14:46:38 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/66044
+ <yocto@lists.yoctoproject.org>; Mon, 24 Nov 2025 17:24:19 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/66045
 
-On 11/24/25 15:15, Jarno via lists.yoctoproject.org wrote:
-> Hey yes of course i will. Being quite novice could you tell me how to
-> test, thank you.
->  
-> So far i did bitbake -c cleanall weston && bitbake <my image> and
-> still have the same behaviour.
->  
+Hi All,
 
-That supposed to be enough, after pulling the latest version of the
-scarthgap branch of meta-raspberrypi. Which revision are you using now?
-It should be 5240b5c200e594b494a7f1a8f9d81e7c09bc8939.
+I would like to propose adding a new command-line tool (or BitBake subcommand) that generates
+dependency trees, including:
 
-Otherwise, if you are already using this revision, what is the output of
-"MACHINE=${YOUR_MACHINE_NAME} bitbake -e weston | grep ^SRC_URI"
-command? Does it contain the newly added patch? (Currently the patch
-should be applied automatically for rpi machines, but if you are using a
-custom derivative, it might not be present, depending on how you
-configured it)
+DEPENDS (build-time)
+RDEPENDS (runtime)
+Optional graph output (text, JSON)
+
+Motivation
+
+Currently, BitBake provides:
+
+bitbake -g produces task-depends.dot (task-level, not recipe-level, must use graphviz)
+oe-pkgdata-util runtime dependency only
+bitbake -e <recipe> view variables, but manually
+Errors from the dependency resolver (if a recipe is missing)
+
+But there is no built-in CLI tool to display a recipe dependency tree, e.g.:
+
+bitbake-deptree dnf
+
+dnf
+ ├── libdnf
+ │    ├── libsolv
+ │    └── json-c
+ └── sqlite3
+
+
+Such a tool would help:
+
+layer developers understanding complex deps
+learning how Yocto resolves recipe names, PROVIDES, virtual/ mappings
+documenting or visualizing architecture
+
+I started experimenting with a prototype using Tinfoil to walk DEPENDS and collect data through BitBake’s recipecache, and it seems feasible.
+
+Questions for the community
+
+Before developing this further, I would like guidance on the following:
+
+Is this functionality valuable upstream? Would BitBake benefit from such a tool?
+
+Where should it live?
+Options I see:
+
+new BitBake subcommand (e.g. bitbake-deptree)
+extension to oe-pkgdata-util
+standalone Python tool under scripts/
+part of devtool?
+
+Preferred output format(s)?
+Plain ASCII tree (default)
+JSON
+
+
+Should the tool:
+
+cover only DEPENDS (build-time)?
+include RDEPENDS with pkgdata?
+resolve virtual/ providers?
+
+Any prior work I may have missed?
+
+If the idea is acceptable, I will prepare a proper implementation and send a patchset to the appropriate mailing list.
+Thank you for your feedback!
+
+Best regards,
+Osama
 
