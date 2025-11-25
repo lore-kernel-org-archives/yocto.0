@@ -2,117 +2,155 @@ Return-Path: <osama.abdelkader@gmail.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id BBB66D0EE22
-	for <webhook@archiver.kernel.org>; Tue, 25 Nov 2025 20:15:39 +0000 (UTC)
-Received: from mail-wm1-f42.google.com (mail-wm1-f42.google.com [209.85.128.42])
- by mx.groups.io with SMTP id smtpd.msgproc01-g2.3388.1764101737704658718
+	by smtp.lore.kernel.org (Postfix) with ESMTP id C6452D0EE25
+	for <webhook@archiver.kernel.org>; Tue, 25 Nov 2025 20:26:29 +0000 (UTC)
+Received: from mail-wr1-f47.google.com (mail-wr1-f47.google.com [209.85.221.47])
+ by mx.groups.io with SMTP id smtpd.msgproc02-g2.3671.1764102381189947737
  for <yocto@lists.yoctoproject.org>;
- Tue, 25 Nov 2025 12:15:38 -0800
+ Tue, 25 Nov 2025 12:26:21 -0800
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20230601 header.b=WnNs8+oN;
- spf=pass (domain: gmail.com, ip: 209.85.128.42, mailfrom: osama.abdelkader@gmail.com)
-Received: by mail-wm1-f42.google.com with SMTP id 5b1f17b1804b1-47755de027eso32070835e9.0
-        for <yocto@lists.yoctoproject.org>; Tue, 25 Nov 2025 12:15:37 -0800 (PST)
+ dkim=pass header.i=@gmail.com header.s=20230601 header.b=AErVygGV;
+ spf=pass (domain: gmail.com, ip: 209.85.221.47, mailfrom: osama.abdelkader@gmail.com)
+Received: by mail-wr1-f47.google.com with SMTP id ffacd0b85a97d-42b39d51dcfso3611534f8f.2
+        for <yocto@lists.yoctoproject.org>; Tue, 25 Nov 2025 12:26:20 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1764101736; x=1764706536; darn=lists.yoctoproject.org;
+        d=gmail.com; s=20230601; t=1764102379; x=1764707179; darn=lists.yoctoproject.org;
         h=in-reply-to:content-transfer-encoding:content-disposition
          :mime-version:references:message-id:subject:cc:to:from:date:from:to
          :cc:subject:date:message-id:reply-to;
-        bh=B/ajuzIoEZBr9d69arPz3m/iHMyMbmnwNsLsK+C9nkc=;
-        b=WnNs8+oNw0kZrKfeXL9qgnfob0C/2Fk/YG+P6QwVhibdlZP8qIhasPbNT1YkVNDJ8G
-         EeEY6QKJhBaCmk01qGqShvKTlcXnbcl7OJpEljGeht7Ny/QZsViuvd/pHOsspIZ10NjN
-         p6w+UlLr9wS9G4Ln4lm2l/gld7GPjc5ekzs9HWGpEvPV0WqriYdZh3MHVYgptL9AScmL
-         cg+LDR26BIqxhWfbKhMmBXLwW1JE1dr/ooCiY0mGd0WVfL0Zw0slHoRwzBBRuIe3//U6
-         5Q7PboZlLt2JXF3av62Bd9h8OofQ+652OegiC5EsyVOwAUNJsmJ8yxJPcpExSI9HmSjO
-         yLcg==
+        bh=lGjtrlUjs3tet43inieWPcWI1WolvyJZuYcLAUeCaho=;
+        b=AErVygGVy71gtKL7JnMksyUZoOcyv9j5j0doLmhC2fRjrDHuguldpYfj1kpDQzz6Ep
+         Z1bwgo9MpXY5sGrbWx38QmGHwr2anMMjP8rMgBDq8RUeooChW2/loadYa4fT+KvVcfwS
+         jiBKJLlRWTBRmyCf+Sm++0urZfvW/IJiqrdxk798Cw/MpgAaSBWD1MA6+BGHqQoQLQN6
+         7yGkbOJPSfU58oI+wfoTrzR96rjH+NxMC2FrH+tGjdI/fQXoqIh8lrN/qpWiQ5tTG3N6
+         khejfliaZz5Plu/8kepWv7ynkSSIlCzNtzITN6yidhnzHlOPgU/uNYpxfqURhv9Z5Yz0
+         8DDg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1764101736; x=1764706536;
+        d=1e100.net; s=20230601; t=1764102379; x=1764707179;
         h=in-reply-to:content-transfer-encoding:content-disposition
          :mime-version:references:message-id:subject:cc:to:from:date:x-gm-gg
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=B/ajuzIoEZBr9d69arPz3m/iHMyMbmnwNsLsK+C9nkc=;
-        b=hSb0vVe86czVMVN0MXWLVt4cLGXygYiuSF0z33xqc1nOPKYXLEkWVzFJ9R62wOAekh
-         j+qI921SRAQDi//IntLxStne+tyHtSCw61YdSVnEgzs+jFP4mUoJXUKebbX5kZwOFRw4
-         PyPW6iWWTX/Cw5pijvY7oOCnuBUrSg5lw5KyQ2Ly8wmI03N/conACRqR7WWxJWKLxnfp
-         AVWvvbOT0gyolyg+Kb7RxzBE3sT6DCW+dQyoRE5nkIJNSVJdIVsVrTx0Q416IE/x2VKp
-         zxSSlCHfG7+lxmQXNNXTIoqyqr2FUWBeL/t7naTZP5xA+NZ5yi7Jp1HuFM00Vv5J2PQW
-         skbw==
-X-Gm-Message-State: AOJu0Yweow5STTq74xbBthGVQrtpJWMZMq3oU2S1qmyVDRYI8blOIqco
-	+YgYWaU/iQRx/nMyos0Egl9W1g+tDZgTTanJg67wO7AcKXo4tvkG2nDr
-X-Gm-Gg: ASbGncsARN+06kglJSXs3IeoF6wIQp7+JwTO6/xQht7x0Fa947DgpoqJl+5SHq1oz9P
-	v2I58bbsTX2WeSJfRoo6KRxEtJ2YvXOpwLP2YMdwSyvgrZ5Z2OgRbDIDbAotDXh3BEiPvY8EXAB
-	EArh9M14WOYgUQLKGLf0yi6PMzsDX2UjKqI4zxK/TbWroT4BFmLlMY/9yIl1grVq8dCL5gnWNxF
-	Mnqc2fsMoxGtKZG2JMF7PZtec7j3kv0mu9sIA2OkYCgDTgSSBw5KqP7zyQPyfLF56GoeoKIlFij
-	kZfCF+m+O+FEIbs8JjvypTwVR7Bv2I5EVDswkqssdo5Pv4RJnxJ5pZ7/v1BZski/zAvYozWciGG
-	Af58uHXuI8+M8AA4EnQluhvw3W3gB9ERVgEt+oWoCOVLhRrh4GQr7L+/erVLWIAvDjGEIZl40l2
-	sRXhE6GWW6xn0=
-X-Google-Smtp-Source: AGHT+IGpYYeAkXAlsHdGwcmJQQDm+COxGICyoZZpSgpYayVfhwHMeeYpm2pOtGU9tF8FF6mKt5fPZw==
-X-Received: by 2002:a05:600c:c8c:b0:471:1435:b0ea with SMTP id 5b1f17b1804b1-47904b242eemr50794325e9.24.1764101735866;
-        Tue, 25 Nov 2025 12:15:35 -0800 (PST)
+        bh=lGjtrlUjs3tet43inieWPcWI1WolvyJZuYcLAUeCaho=;
+        b=Vvu9XG3ibKCj29YzhpTSGXluAY5gOHfWuWw3FssEAqyZCZBOSBozNOdURvyNi7/3aB
+         ItloMb/voqKYd0s/rnUl1vyrRLHd70/sLhH5t85tnqhfzDhZUR8D7aPKm4yNqGSXAFXj
+         BAARinMGT7OoF3jhi/UJsyJUegVa0G3D+RqBjdwz84XaszJgjafe9sQGg1Za8KWCVZeY
+         bWynu8wbtT/n7+xvEiq3UP18UYCASkATcvvP2UjURo7knvi2nFTTqtTsrxTXshwunSG0
+         oqR+W9V1voPijGa9s6fY/Zwrsdavxxx7r+LVBxf0Tk2eafq0tAt8UFfvjo3vivDTwQ0H
+         dTFg==
+X-Gm-Message-State: AOJu0YzrxqjUbiW+1U6J1OtOcwjBUh13EdhSYpbSzfzhN1CAAbwIYsuw
+	ThyNVQP/JFs4+bFx0+NaHQsadqpAOU8v+JPH4EO63qCqzfsuNNosik9t
+X-Gm-Gg: ASbGnctiTDknmYENK28fobYsoeyx76+kj8BYNhofFotC67KszKII5kh0ti8XASt1Zlg
+	keh1HweqaSSVH5WKcWTZ7WY5iSd4v6V2REsoUBz6PTRNv2/Mf2ntQzFW5rHd45TZz1CMw28F8ud
+	9gZEJWrwbzTamByadAQol3UX88WsHVqoqr32wdeyukwtHDqvbVJpev65ya+LieiqBngWi4qR6Tc
+	/G5p7PvNpn7MwqQQ9RElcR4SAOb2pFHT3xZ0KnSt175MHoF+KrGTdv0utNhpGOqQj3jNHfFrkYm
+	4/8Kf+Hg6rt3a26esmyvsfO2jETiE8A7APPR+B+6wYOgxquKvQ7BcWYd/dyWIJqVYNOkHNDF9m+
+	qUrk2jMr+lD1DA7ZfEbxD82nECjArg4zbihwAoPkzE4vjoMbLhUcbpLhIp1QWPvZMOUiF14i59d
+	Uu4f44e+rHj04=
+X-Google-Smtp-Source: AGHT+IEeh1Q6t3gaxnoYVDjokJOyDFsCxfny52VNSBp9JA1glyVs+gjSomKS2V9w13W3Dr3XarYgGw==
+X-Received: by 2002:a05:6000:430e:b0:42b:2e94:5a94 with SMTP id ffacd0b85a97d-42cc1cf4540mr17263274f8f.29.1764102379421;
+        Tue, 25 Nov 2025 12:26:19 -0800 (PST)
 Received: from osama ([197.46.139.116])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-47903c7360fsm28222045e9.0.2025.11.25.12.15.33
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-42cb7fb9022sm36254857f8f.36.2025.11.25.12.26.17
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 25 Nov 2025 12:15:35 -0800 (PST)
-Date: Tue, 25 Nov 2025 22:15:30 +0200
+        Tue, 25 Nov 2025 12:26:18 -0800 (PST)
+Date: Tue, 25 Nov 2025 22:26:16 +0200
 From: Osama Abdelkader <osama.abdelkader@gmail.com>
-To: Alexander Kanavin <alex.kanavin@gmail.com>
+To: Ross Burton <Ross.Burton@arm.com>
 Cc: yocto@lists.yoctoproject.org, bitbake-devel@lists.openembedded.org
-Subject: Re: [bitbake-devel] [RFC] Proposal: New tool to display recipe
- dependency trees
-Message-ID: <aSYOYgiB4gtFMB85@osama>
+Subject: Re: [yocto] [RFC] Proposal: New tool to display recipe dependency
+ trees
+Message-ID: <aSYQ6IxFgosukd2B@osama>
 References: <aSSUtHYFQlychNQk@osama>
- <CANNYZj85vK7o4KVDUtJ_DkW73bxs7UMA-bM6K2VRada-yCFpfA@mail.gmail.com>
- <aSSnE0X9kycDc60G@osama>
- <CANNYZj9ieQUQUEEjxV7bAznc3=A0rESOSr_+hy=RFragEA1Y1A@mail.gmail.com>
+ <74C05E37-CEB7-49C9-AA53-CCA988FC7E7B@arm.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <CANNYZj9ieQUQUEEjxV7bAznc3=A0rESOSr_+hy=RFragEA1Y1A@mail.gmail.com>
+In-Reply-To: <74C05E37-CEB7-49C9-AA53-CCA988FC7E7B@arm.com>
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from 45-33-107-173.ip.linodeusercontent.com [45.33.107.173] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Tue, 25 Nov 2025 20:15:39 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/66066
+ <yocto@lists.yoctoproject.org>; Tue, 25 Nov 2025 20:26:29 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/66067
 
-On Mon, Nov 24, 2025 at 07:53:52PM +0100, Alexander Kanavin wrote:
-> On Mon, 24 Nov 2025 at 19:42, Osama Abdelkader
-> <osama.abdelkader@gmail.com> wrote:
-> 
-> > My motivation actually was so simple, to know why a certain package is needed in an image.
-> > The simple way now AFAIK is to exclude it, then bitbake prints backtrace e.g.
-> >
+On Mon, Nov 24, 2025 at 08:49:31PM +0000, Ross Burton wrote:
+> On 24 Nov 2025, at 17:24, Osama Abdelkader via lists.yoctoproject.org <osama.abdelkader=gmail.com@lists.yoctoproject.org> wrote:
+> > 
+> > Hi All,
+> > 
+> > I would like to propose adding a new command-line tool (or BitBake subcommand) that generates
+> > dependency trees, including:
+> > 
+> > DEPENDS (build-time)
+> > RDEPENDS (runtime)
+> > Optional graph output (text, JSON)
+> > 
+> > Motivation
+> > 
+> > Currently, BitBake provides:
+> > 
+> > bitbake -g produces task-depends.dot (task-level, not recipe-level, must use graphviz)
+> > oe-pkgdata-util runtime dependency only
+> > bitbake -e <recipe> view variables, but manually
+> > Errors from the dependency resolver (if a recipe is missing)
+> > 
+> > But there is no built-in CLI tool to display a recipe dependency tree, e.g.:
+> > 
+> > bitbake-deptree dnf
+> > 
 > > dnf
-> >  ├── libdnf
-> >  │    ├── libsolv
-> >  │    └── json-c
-> >  └── sqlite3
-> >
-> > dnf -> libdnf -> libsolv
-> >
-> > libsolv is needed for dnf. so would be good to have a query command or simple tool to show that?
-> > something like apt-rdepends output.
+> > ├── libdnf
+> > │    ├── libsolv
+> > │    └── json-c
+> > └── sqlite3
+> > 
+> Note that the build-time and run-time dependency trees will be a _lot_ deeper than that.
 > 
-> Yes, absolutely, and this is missing. You can deduce it from 'bitbake
-> -g', but it requires look at dependencies of particular tasks
-> (package_write_* if memory serves) and ignoring all other task
-> dependencies, and then making a mental dependency chain in your head
-> if the dependency is indirect. This could probably be post-processed
-> with some filtering tool to only make a tree of those dependencies,
-> and present it in a human friendly tree format.
+> The ability to mark some dependencies as “soft roots” (eg gcc-cross, glibc) and optionally stop at them would be useful.
 > 
-> One other idea is to add a task to image recipes that would produce a
-> tree of package dependencies. E.g. instead of making a package repo
-> and then constructing a root filesystem from it with a package
-> manager, it would use the repo to write out a tree of their
-> dependencies - unrolling the top level packages that the image
-> specifies to install. Probably it could use package managers like
-> dnf/apt/opkg to assist with that.
+> > Is this functionality valuable upstream? Would BitBake benefit from such a tool?
 > 
-> Alex
+> Yes
+> 
+> > Where should it live?
+> > Options I see:
+> > 
+> > new BitBake subcommand (e.g. bitbake-deptree)
+> > extension to oe-pkgdata-util
+> > standalone Python tool under scripts/
+> > part of devtool?
+> 
+> I’d say this is a question for later, the question for now is “make it work”.
+> 
+> > Preferred output format(s)?
+> > Plain ASCII tree (default)
+> > JSON
+> 
+> And HTML/SVG graphs.
+> 
+> > Should the tool:
+> > 
+> > cover only DEPENDS (build-time)?
+> > include RDEPENDS with pkgdata?
+> > resolve virtual/ providers?
+> 
+> Yes to all.
+> 
+> > Any prior work I may have missed?
+> 
+> bitbake’s own taskexp (bitbake -g taskexp) is basically this with more granularity (because it’s task dependencies, not recipe) and without the drawing of an actual tree (partly because I just implemented it as a three pane window for convenience.
+> 
+> oe-pkgdata-browser (oe-core/scripts) and pkgexp (https://gitlab.com/rossburton/pkgexp) let you dig around the pkgdata interactively.
+> 
+> bitbake-whatdepends does basic processing on the dot file output from bitbake to let you see _why_ recipe A depends on recipe B.
+> 
+> Many people ask for this tool, so I hope you manage to implement something that works well.  I’ve started a few times, but never finished…
+> 
+> Ross
 
-Thanks Alex for the feedback, I'm going to work on that soon.
+Thanks Ross, this is very helpful, I'm going to look at that and start the implementation soon.
+Will need your feedback for sure, but as you said, let's make it work first then we discuss further details in the patchset thread.
 
 BR,
-Osama
+Osama 
 
