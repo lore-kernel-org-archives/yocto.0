@@ -1,177 +1,160 @@
-Return-Path: <peter.marko@siemens.com>
+Return-Path: <yoann.congal@smile.fr>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id BB4D5CFD364
-	for <webhook@archiver.kernel.org>; Tue, 25 Nov 2025 07:52:27 +0000 (UTC)
-Received: from GVXPR05CU001.outbound.protection.outlook.com (GVXPR05CU001.outbound.protection.outlook.com [52.101.83.24])
- by mx.groups.io with SMTP id smtpd.msgproc01-g2.12322.1764057137264650349
+	by smtp.lore.kernel.org (Postfix) with ESMTP id AAA53CFD315
+	for <webhook@archiver.kernel.org>; Tue, 25 Nov 2025 07:55:07 +0000 (UTC)
+Received: from mail-ej1-f48.google.com (mail-ej1-f48.google.com [209.85.218.48])
+ by mx.groups.io with SMTP id smtpd.msgproc01-g2.12344.1764057302294146647
  for <yocto@lists.yoctoproject.org>;
- Mon, 24 Nov 2025 23:52:17 -0800
+ Mon, 24 Nov 2025 23:55:02 -0800
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@siemens.com header.s=selector2 header.b=J2o3N50/;
- spf=pass (domain: siemens.com, ip: 52.101.83.24, mailfrom: peter.marko@siemens.com)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=xCeF6B1XGsYHIZVbzy1QulbVLkUzKi47R5yUUuTFinRGBJhzIYTPIPO4fJ1RZB0M8LNnEuUFmIbHAPmZYa3dC4yEpcSpAb1jucz8InCFnzzHm4Pb0CjgKD8TwIEogfJPOJAlNFh0GTT2qEG3lpbhtswqRxYkhr7X/nRbVPaNECLg6cl6fy8IyaWemRNy8rsXP9vIRWNCGItXUwQwASgMvYDYqhkNyqkCS4LE1lvOiSw5WCg1DRi4vkaOuXbNmhb9hcvOdDtQQ08aEdiJCEeBooYx0G/OznipXXAkG/5UCLOqLrxHwEyrVTgTGwwzxqOeohp0sPZrAYQ4XYLzdQpyFg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=0eBzCLbshncIeRW44ys3BzE4MHR2ubX91nIxN0wsee4=;
- b=MoNprRFz2KWPgMWUPsL6cCrZi8Ge4w2siI+JxdYxudU8ro5IhJFUeZPnGk5HniGR33f8/l/0tweQRU60PqYex0KTrCB4+hqpvXQzvTypnyuhFsutRFJFzHLuVCGK9bjbKl0bybdDAyrz3zy5s8VQ7mNNCuu8y0GDYbpQ9xEi2mxAZuZ3eSWHBEIyGLEzv5n9KywfKjUHB5sgO544HVJzA4IwMWB5JZ8Z8+Nmfj/XSyFb2CYPGy0lFxqyM5toz1jFydoMqUdtHY51/FGx8c56xDvLFzwRUx/A67fORdLUzH2gH7Bn0WbPQ8yfi1DCuh/0o9M1RSqTAxj39tznwwQrdw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=siemens.com; dmarc=pass action=none header.from=siemens.com;
- dkim=pass header.d=siemens.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=siemens.com;
- s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=0eBzCLbshncIeRW44ys3BzE4MHR2ubX91nIxN0wsee4=;
- b=J2o3N50/WODFlZu3c1vL//eBWFdC1xrzmHXnoCP3CJDQ950eDVCd90GJnwHSYswsWu4b8Q7kb24k4sw1x1PaMdZpUI5SXecFMMQ2snFxvEU/0TPXEnoGIG7Ab4GnKHwmNJ3VYC8QYCxRTra024dE5XL4NLeA8+9aI6ZPBhvftjyEyPIN6Q9Ghm1QHtivGjebROVbd2rtmgzF+C9fOQnK9ZuAPTzTojMTlKbhruBV/cxpO419S4Sv8CJoqL1DUrnwa8pB3ZD7eW4dTVrWMtKFSoMKo7Zc+CI0+ZjdYXjbEI+V56GrdTizWnvgnbP/iB9ZRbQr7oztZcMcDt0CIueH1w==
-Received: from AS1PR10MB5697.EURPRD10.PROD.OUTLOOK.COM (2603:10a6:20b:479::20)
- by PRAPR10MB5250.EURPRD10.PROD.OUTLOOK.COM (2603:10a6:102:290::13) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9366.11; Tue, 25 Nov
- 2025 07:52:12 +0000
-Received: from AS1PR10MB5697.EURPRD10.PROD.OUTLOOK.COM
- ([fe80::6c68:267b:6fd1:d3f2]) by AS1PR10MB5697.EURPRD10.PROD.OUTLOOK.COM
- ([fe80::6c68:267b:6fd1:d3f2%6]) with mapi id 15.20.9343.016; Tue, 25 Nov 2025
- 07:52:12 +0000
-From: "Marko, Peter" <Peter.Marko@siemens.com>
-To: "yocto@lists.yoctoproject.org" <yocto@lists.yoctoproject.org>,
-	"mwen@ambarella.com" <mwen@ambarella.com>
-Subject: RE: [yocto] [Poky-Scarthgap][OpenSSL] Whether upgrade OpenSSL to
- 3.5.x for Scarthgap.
-Thread-Topic: [yocto] [Poky-Scarthgap][OpenSSL] Whether upgrade OpenSSL to
- 3.5.x for Scarthgap.
-Thread-Index: AQHcXd344JPoLI7VEUuIfdInOIheLbUDBHhw
-Date: Tue, 25 Nov 2025 07:52:12 +0000
-Message-ID: 
- <AS1PR10MB5697FC319CCD9A0BD7D549C9FDD1A@AS1PR10MB5697.EURPRD10.PROD.OUTLOOK.COM>
+ dkim=pass header.i=@smile.fr header.s=google header.b=R4zAN9S1;
+ spf=pass (domain: smile.fr, ip: 209.85.218.48, mailfrom: yoann.congal@smile.fr)
+Received: by mail-ej1-f48.google.com with SMTP id a640c23a62f3a-b7697e8b01aso444835966b.2
+        for <yocto@lists.yoctoproject.org>; Mon, 24 Nov 2025 23:55:02 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=smile.fr; s=google; t=1764057300; x=1764662100; darn=lists.yoctoproject.org;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=hnLejo1gDckBWZnytWRyqiZdI+LDp6C9dkhdn4KMYDM=;
+        b=R4zAN9S1jNwPxazc9mWfQheAqIBwE43kiD+RcM95byJ/mEcT8GROhH2tHmWvYrdEKQ
+         gXoldkH93rZozro8kbAgW8XYaNTZ41duLQpqmbfBcwXcLkveAFkbJY1u+/+O9q5fkG/F
+         DaRyQW3TT93YLNfHPzXCG5BqxDhyZzoZJHDto=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1764057300; x=1764662100;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=hnLejo1gDckBWZnytWRyqiZdI+LDp6C9dkhdn4KMYDM=;
+        b=mj1I/9sUfyajUJZ3oRFHLo3ztpGWGfVPCVF4DrWgHKDOXpzgEQ4eGThaS3IsSSW6Zs
+         KqAE3FxoCjPABJEV7q8feBfDSAJvDVVytwIQzvjhMt0kK1Z0zp928Kgwe4EiCqrRzzj3
+         9OKXVoUDpgq3YCRDxcA65ifnjzm4GV/h2XWVqz8UuuTdEoMQYgRpk+97ykwho6RJdexD
+         LauegE9SJGJStz1Y3x4zs49bB8yQb9cU5aAZP2SfzS29bIQfaTShTjUjPWpsyGUP+qTW
+         5ol43y5x8ZeZpDbdRwq8g+8Xd64+E+ERgr4RxjmAHywoec4Nov/YDD3LiQmHK36Tf4QS
+         o6nQ==
+X-Gm-Message-State: AOJu0YzdFDzBRFx+4maiJBQLPPVIhYKN11+neO9l48nB6/wzsMW/NZRI
+	cfEeG7JSZQ2Jn/wCnuWvIz/MvhmHvkNTJ2rcXF7oG110wIM0mxzEGnvqx1K7digbwZepJBohm/y
+	VeDW07ite/+yAHhdoppjeLcAIdt7K0EZYLA4GkMxd2eZtBJeB+RYy9nTrPw==
+X-Gm-Gg: ASbGncu6oqIHYmXtrcwtpBvqExPDEYKhU77zR6XcK3I3E3irOOAFnoZb6iFFi7rYZg5
+	LHieWavWZqDyD/QaKz/ujcLN40LuVAYf4pMlROIIFR/KPi5WwroyOVHPGjIlrE2GbOpVEzA7A3T
+	KOPsl9L51rh60pYArqueAdLKK2g4NfjfG/ai5AJUT1v9/xorS2CI5GtNgHJYpOW+FYRtb58lTd4
+	FE5QIkIGnXPuTenCUpNoieHSFW8+f68SQNbiLtN9f08Hs93KpfQsXiKpYmtGVj143p8oVE1f0bu
+	B1KbflDpZVTOE9Idwayo2CePp/OIIA==
+X-Google-Smtp-Source: AGHT+IHvd2khm6z/aX3uN3OxabhRQxheMJVu4yQ1oxwIVduAQs8JMlpnswn7TwbQTGohJ6mdiC1WmAk4ZMEqo/b0FY4=
+X-Received: by 2002:a17:907:1c25:b0:b72:5d08:486c with SMTP id
+ a640c23a62f3a-b76715b02cbmr1587219166b.27.1764057300112; Mon, 24 Nov 2025
+ 23:55:00 -0800 (PST)
+MIME-Version: 1.0
 References: <iRKs.1764055991245768371.SmVd@lists.yoctoproject.org>
 In-Reply-To: <iRKs.1764055991245768371.SmVd@lists.yoctoproject.org>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-msip_labels: 
- MSIP_Label_9d258917-277f-42cd-a3cd-14c4e9ee58bc_ActionId=d12732af-0609-4d4f-8594-1301e9a02994;MSIP_Label_9d258917-277f-42cd-a3cd-14c4e9ee58bc_ContentBits=0;MSIP_Label_9d258917-277f-42cd-a3cd-14c4e9ee58bc_Enabled=true;MSIP_Label_9d258917-277f-42cd-a3cd-14c4e9ee58bc_Method=Standard;MSIP_Label_9d258917-277f-42cd-a3cd-14c4e9ee58bc_Name=restricted;MSIP_Label_9d258917-277f-42cd-a3cd-14c4e9ee58bc_SetDate=2025-11-25T07:50:00Z;MSIP_Label_9d258917-277f-42cd-a3cd-14c4e9ee58bc_SiteId=38ae3bcd-9579-4fd4-adda-b42e1495d55a;MSIP_Label_9d258917-277f-42cd-a3cd-14c4e9ee58bc_Tag=10,
- 3, 0, 1;
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=siemens.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: AS1PR10MB5697:EE_|PRAPR10MB5250:EE_
-x-ms-office365-filtering-correlation-id: ddcc35d7-d3bf-4eda-0cf9-08de2bf78b09
-x-ms-exchange-atpmessageproperties: SA
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: 
- BCL:0;ARA:13230040|1800799024|366016|376014|7053199007|38070700021;
-x-microsoft-antispam-message-info: 
- =?utf-8?B?aGRpaXN0UXlRUldJU2tHU3FHTFFsWHRBaWlpNlVqdWllUDJhK2ZpSGZKVWYx?=
- =?utf-8?B?OGswb25NblpJTlZqUXBzanRRSDllWkk0Sy95Ti9xSUpMUXFCRmtZSDZEbVRS?=
- =?utf-8?B?ZVhiYnIzb1h3S2k0a01iU1o2Z0pLcWtiQ2VvMkRjT1hBWTNWNnIwQ2FXdE9V?=
- =?utf-8?B?R3RpNFB4NVozZTZ6Zm9ORjdob1BZYmNQb1JSS2t4VmdpREp2djVtcEJPMkt6?=
- =?utf-8?B?a3JUUDExN01aNmlBUjhUVTVTL0VvaEF0dUJqWks0L0dhb1g1UnBqSytOSU83?=
- =?utf-8?B?V1luY2VyUDRiS2FjRUZabDMzYklUVGhOc3pJdXlVOUFqTlVYK2x4Sm5wM0t4?=
- =?utf-8?B?bzVBck9GTXVZRmlKVVNJUlpQbmc5N0FmNno5bllMcjd4cjlWb05aNnhRUSty?=
- =?utf-8?B?cFZtWUYxSVhFZHM3S28yMUF4SVBDYVBWalZqWDlnaGZXdmd2VkdnRGJqMUJV?=
- =?utf-8?B?eHF1UkZZSXFnWFZFTEtab2xObXFJS3VZWlFEdzJORHQ0Nk1pZS9acVFWK0Vo?=
- =?utf-8?B?TXNXN0ZWT21hN212aFdJQTZmbXUraUVNM2JrbG9kZTBFUW5ZNXZPZWk5Zmpy?=
- =?utf-8?B?ZVpDWDUyY2paTjFxcTAxS1hXU0FnOXhvb3kzQmQ3R2JocnZ2REg3NnVsd0Ix?=
- =?utf-8?B?L011djRpMUlBZkplSS84NkJmUy9NZittdmRsbis4MGlJcDU3TTlUZHF0VHFT?=
- =?utf-8?B?d1YvcEF4R2lHNzVpUDVDcVFraVFFL0lHL2FjN1BwSFJ1Sk0rN3VFcDJVWjND?=
- =?utf-8?B?Z1g1czBmeUswNjJlekhaN1ladkdQNkFlWXh3bFBSUzV0UnFVUHNNODQ5OGRo?=
- =?utf-8?B?dWdSMWlQYkpKc0JCb3RQemZ2eFJvMTV2U2dLNWhkalplcnVIVlZqZlBuSEJP?=
- =?utf-8?B?TTNNY2pUOUh4UGdGeHBQYmdKMDJwc2JSOWFGWUJiOHlwZDN2cjY4M2RlSkdq?=
- =?utf-8?B?ZFVRbWhWK2IyQjQyaU1VSlNjc0twWlNWbVk3MU9abUFPclNHKy9pTFNwL3Fp?=
- =?utf-8?B?YjY2U2xHSW5mVkx3bjVya05IdzE1cWtxdkFNcS90RXM0ZlQ4aVFEcEwrR3hj?=
- =?utf-8?B?aUZ1SUttTHkvNnk0TEw0RHpSYkoxSkJJR0lzNTlMNnV2WUZKSGdqcXlDRW5O?=
- =?utf-8?B?aUVKcUpMbXVtcU1SbXF4SmhyUFI5V1RZaFAyZ0M5ZVNicGV1bm5jSE1wTWxz?=
- =?utf-8?B?ZG5yMXJsc1BKSktndWNReHE5aFgzeWpZdGFyaytWNkFpZjJNS0NLcUwzRHZF?=
- =?utf-8?B?Unhrb2dCMDlYbHo0d0RjNEhZYkdoUVV2YnhJQXpPSEd1dlZBMzRJZzd2MXZ4?=
- =?utf-8?B?dnVhZ3VlVmI4RUg4MnJxbmhwLzR3eTVWQzc3Z2RPNitzQUhwcm9DZDVoMWRx?=
- =?utf-8?B?aU9WWW5xbDRscXhPdGV6bTBXczZnaUdXYm1QVkFpUGFteUs2UlBndDE3UnZG?=
- =?utf-8?B?SlgwbTdyUzZBdGU4cWFrSDR5bEtUR082M0x6Yy9ScHNUL3JzdmJTRFN3TklT?=
- =?utf-8?B?K3hmcWxRbjZUVUN5STdhdGpQRVd1Uk1oM2Y5TGlETGVUSThmYk93WkliNUtQ?=
- =?utf-8?B?Wml6dFRXVFN5aVQ4RS9pTlcvL3ErbVdYS0U1UDdiSnlDSWUvQjVJZ2xNUXMv?=
- =?utf-8?B?Qm5RZ1hKdHQySnZ3eC9oNnNlMHNOUVBUQmZBOFBDOXNqZkJZc3o5b2RrdVcy?=
- =?utf-8?B?cXpHZGNiV1cyMGdXOEltNEMzb2J0TnVFUGNqZnUvSDYvdXZCRzI5eFBVZGMw?=
- =?utf-8?B?UENtbXVXR3Rzclh5RUo4cVl4cGZSS1p5cDZTemtoVjZJWDlHUG9ZT2pPOGdU?=
- =?utf-8?B?QlYxeVlpQUVvUFYreW8xSnUxbzMxakd3RzNPdndMWHIrOTBXNjVrOUpBb2d3?=
- =?utf-8?B?ZjlkcCtIcFJVKzJmQ0g2TWlhQWdTbmYxWm1KT1M5M3o1MmlVUGhSSm5nSElW?=
- =?utf-8?B?TFc3dTdLa1ZKd3VKZjhYWGk1NHMwOFh6QW9neUZpY2RqeCtrdnkwU2kydHpB?=
- =?utf-8?B?ZTlYSFptS0FNWHg3dHRIMHdHNnJxQUNjVkhKaE1sYWkrYUk0RmxrNkNKRlJI?=
- =?utf-8?Q?5CDDxd?=
-x-forefront-antispam-report: 
- CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AS1PR10MB5697.EURPRD10.PROD.OUTLOOK.COM;PTR:;CAT:NONE;SFS:(13230040)(1800799024)(366016)(376014)(7053199007)(38070700021);DIR:OUT;SFP:1101;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: 
- =?utf-8?B?UkFCMkhIdHgrUzJNbWhzUURCQ1hkNjdLZ2VWQm9JYitQc3d6STlDTUhXTEl6?=
- =?utf-8?B?RlZiOGlPeEdkc25HT0lTV01RQWZ5SGNjTzgwc0JSOGNyYzV2bzdyQzRlbVZU?=
- =?utf-8?B?ZDNneUZENlJkMHdRV0tSSjQ3QnF1Q2VKbzR0eXNycFZjdjljM293cmNIZTZj?=
- =?utf-8?B?UnVpd1EyelZrMStzay9zZEVxQTdsenV4N0NHSFZORWgzbjI5YWxGNkZLVlUy?=
- =?utf-8?B?WUpkeFhHM1VzcHNlRXFUQU5pdE5YNDZvQmw5MmswNDc3aWY1TzJVMVlMWXRL?=
- =?utf-8?B?YnFKN3JzdkNuRE11WFh6YXdHb3BCL0RjbXNNUTNwM0QwQzdweldKYUovc3c0?=
- =?utf-8?B?WWRmQW5UYlMxSTloU0o1NmsxTjVLNllJL1VYb2F6TGExUGVKTk1wN3VtMGNv?=
- =?utf-8?B?YVFPRjFZVGVtNnFlK2ROS3VUS0h2aUZLWnJsQjdqdDhNeVlSOGFhUlRibDZX?=
- =?utf-8?B?UENnQzZ5RmZlQlNqelJVY2ZCTWJpRGkva1N0WkN0RUFlUlIycFFOd1VFWU5D?=
- =?utf-8?B?aXhJRTNDalN5dlVYWnpDQUc1MmlTVk9KeXo1cnFkeXdKSUlUTk44a2c3SkNp?=
- =?utf-8?B?U1gxVVU1L1JKMWlERDl3SGR3b3JzV0c1MGx1MjI3UUJqcWhQYWxuREdnSWhN?=
- =?utf-8?B?UHVVTWtHU2dXdGliT0J5WkpoK3B3OXVXUzFZYTl3eHpBTXpTa2FiaU5HQkR5?=
- =?utf-8?B?dFJXWnY4eUlzem02S25iTFNoSCs3K3p5a0Q1Z3o1c1AzWGJhS1E0VStBZUxN?=
- =?utf-8?B?Z21QUmlHQ1dFeG11bVhvR1hvWFhxY2xqNU13TGlTTGwvQm0yY1RObk1ud1Zz?=
- =?utf-8?B?SFRwY2JYRjBLRTlEdzIwZHJvTWpTa1N3REJNNGtyMGl4aFp2VERTT05vY2lS?=
- =?utf-8?B?VUd4UmxqeUJlRDBRdVNvcE5wYW1jR0NLaDBqSkJzYUw1eTNwQ092MmlPMUdE?=
- =?utf-8?B?TXFvU0x5bVM4UzY1bnZKZnJsRU1CTTYwUzZ2N3ZaNWlRczBZTmNpdEdWT1hy?=
- =?utf-8?B?MEZNWjluZW5kVmNiTFk0UnlRdThJSFJDN0kzNW9yem9BdU1ITlJpSVVNMHB3?=
- =?utf-8?B?MnhHdWFtdlpBRmtDTGhMOERKUjJpUlFLSW1WNjFZcTd4aGNhUm5JdWdhSGRW?=
- =?utf-8?B?ZVg4WEUvWThNSnF6Z0R6bXdnWHhvTnRtRTZNK1RuQ1ZSWHJZaTBxNGVub1NB?=
- =?utf-8?B?NkxJdUJMMzhLSW1uQmFza29xWUFReDhEZWQ0SklPM0duaEV6Wk5lcWtuNlV6?=
- =?utf-8?B?c0UvdGw5T1Q5OGNoUHI2VUIrbHQ2UVJLZ1d1OTFrU25HVnp2UHpaQUVFZFFp?=
- =?utf-8?B?aVFTNUFzeG9kV1VPYm9PaVM2NW1hdEhJdzNINjJGRHVzUWVxQkFQdTJKZ0w0?=
- =?utf-8?B?OUdwTFJSOHNpdk9RcVZpS3p6ZHBITGpobEdjcGdzQm14Q2hqQWRWSGl0QlIr?=
- =?utf-8?B?OWpUTjFjQzJWdlhyQzFoUGxBQ3pzUldsWlRPam9HTWVjTG5BVGw1VmNaZUl0?=
- =?utf-8?B?KzVLSGREb0tEaGpwK3h4OFFGdVdJdDdzVE5VUFNqdlNpTkQ2b2paQVJEU3lh?=
- =?utf-8?B?NTVaS2k5cWp3L2s5TW9tQXFveUJaaVlBN2xjYWF2YTc1K1pmS1hzRnVTRVJs?=
- =?utf-8?B?OSthWlh0NFZ3bFgwYkVxZG4rdGp2T3AyNW1xMWdwVDdKaTlLY09JVjRiSERC?=
- =?utf-8?B?cXJ2alVaNkpxSktqb1BVMGU5Z0tTekJUTTdZUDdVZWdKZ1liZjVPcWUrMjVY?=
- =?utf-8?B?dkRPQjlRNDhiYU9ZTk5abDJERzR2WmcxT1E5Y3BBZURlUDlEWHU2R20rSk1V?=
- =?utf-8?B?eVRIYTA1ZXVUWkZjMUluWUk3VktoUWdkN1g5WDR6N25jdlI4cWhJd3h2T1hi?=
- =?utf-8?B?R25IOWZ0TGNzNVFxbEI1blAyMERDbU9LdnBOSHFXcCtoY0xaTENZWmlVRnlO?=
- =?utf-8?B?eXBENCtmQzE3cXk1Mk4zV2QxdkUwc05FMjZySTNremp1S0NzRzVnRzRXa2Jv?=
- =?utf-8?B?TDBIeVh6aWNZVmE3dXZiWVRwd2lWN1FwMGxBVml5NndmbW1COVo4SlJkZmp2?=
- =?utf-8?B?OVBRYURaUjZnUFpnQlhDUElrTGhwd3o2bDRQZnhMV1gzblRia2l0am5Scnox?=
- =?utf-8?Q?ztIbQwnuAhzeOdz0ZLuiWtK1m?=
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
-MIME-Version: 1.0
-X-OriginatorOrg: siemens.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: AS1PR10MB5697.EURPRD10.PROD.OUTLOOK.COM
-X-MS-Exchange-CrossTenant-Network-Message-Id: ddcc35d7-d3bf-4eda-0cf9-08de2bf78b09
-X-MS-Exchange-CrossTenant-originalarrivaltime: 25 Nov 2025 07:52:12.2656
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 38ae3bcd-9579-4fd4-adda-b42e1495d55a
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: 2M6zc25r88QTo3SMRddY3M9SD7d5EP9F7xxpfYIquwxiTm4V7wNBkCJqRgioitS8qtcDJm0wVamsEiNjirRB4g==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PRAPR10MB5250
+From: Yoann Congal <yoann.congal@smile.fr>
+Date: Tue, 25 Nov 2025 08:54:27 +0100
+X-Gm-Features: AWmQ_bn3or3xbTvR8bHDWU2jOY6PRbnTdZPyiAvWE5fbO3EPiG1AcGHJSXzliNY
+Message-ID: <CAMSfU+6g-_6G+=RiVHDJVU=Tp12Ut8Sbo4xB+ax2vyMYYx7fDw@mail.gmail.com>
+Subject: Re: [yocto] [Poky-Scarthgap][OpenSSL] Whether upgrade OpenSSL to
+ 3.5.x for Scarthgap.
+To: yocto@lists.yoctoproject.org, mwen@ambarella.com
+Cc: piotr.l.lewicki@hitachienergy.com
+Content-Type: multipart/alternative; boundary="000000000000bca7f20644669809"
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from 45-33-107-173.ip.linodeusercontent.com [45.33.107.173] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Tue, 25 Nov 2025 07:52:27 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/66053
+ <yocto@lists.yoctoproject.org>; Tue, 25 Nov 2025 07:55:07 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/66054
 
-VGhpcyBxdWVzdGlvbiB3YXMgYWxyZWFkeSBhc2tlZCBjb3VwbGUgdGltZXMuDQpQbGVhc2UgY2hl
-Y2sgdGhpcyBtZXNzYWdlIGZyb20gWWVzdGVyZGF5Og0KaHR0cHM6Ly9saXN0cy5vcGVuZW1iZWRk
-ZWQub3JnL2cvb3BlbmVtYmVkZGVkLWNvcmUvbWVzc2FnZS8yMjY3NDINCg0KUGV0ZXINCg0KPiAt
-LS0tLU9yaWdpbmFsIE1lc3NhZ2UtLS0tLQ0KPiBGcm9tOiB5b2N0b0BsaXN0cy55b2N0b3Byb2pl
-Y3Qub3JnIDx5b2N0b0BsaXN0cy55b2N0b3Byb2plY3Qub3JnPiBPbiBCZWhhbGYgT2YNCj4gTWlu
-ZyBXZW4gdmlhIGxpc3RzLnlvY3RvcHJvamVjdC5vcmcNCj4gU2VudDogVHVlc2RheSwgTm92ZW1i
-ZXIgMjUsIDIwMjUgODozMw0KPiBUbzogeW9jdG9AbGlzdHMueW9jdG9wcm9qZWN0Lm9yZw0KPiBT
-dWJqZWN0OiBbeW9jdG9dIFtQb2t5LVNjYXJ0aGdhcF1bT3BlblNTTF0gV2hldGhlciB1cGdyYWRl
-IE9wZW5TU0wgdG8gMy41LngNCj4gZm9yIFNjYXJ0aGdhcC4NCj4gDQo+IEhpIFlvY3RvIENvbW11
-bml0eToNCj4gDQo+IEFzIHlvdSBrbm93LCBPcGVuU1NMIDMuMi54IGlzIGdvaW5nIHRvIEVPTCBi
-eSB0aGUgZW5kIG9mIDIwMjUuIERvIHlvdSBoYXZlIGENCj4gcGxhbiB0byB1cGdyYWRlIGl0IHRv
-IE9wZW5TU0wgMy41LnggZm9yIFNjYXJ0aGdhcCBhcyB5b3UgZGlkIGZvciBQb2t5IG1hc3Rlcg0K
-PiBicmFuY2g/DQo+IA0KPiBCZXN0IFJlZ2FyZHMNCj4gTWluZyBXZW4NCg==
+--000000000000bca7f20644669809
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+Le mar. 25 nov. 2025 =C3=A0 08:33, Ming Wen via lists.yoctoproject.org <mwe=
+n=3D
+ambarella.com@lists.yoctoproject.org> a =C3=A9crit :
+
+> Hi Yocto Community:
+>
+> As you know, OpenSSL 3.2.x is going to EOL by the end of 2025. Do you hav=
+e
+> a plan to upgrade it to OpenSSL 3.5.x for Scarthgap as you did for Poky
+> master branch?
+>
+Hello,
+This very question was asked recently:
+https://lists.openembedded.org/g/openembedded-core/topic/116449512#msg22674=
+1
+(CC'ing the author)
+Note the answer from Alexander Kanavin:
+https://lists.openembedded.org/g/openembedded-core/message/226742
+
+Regards,
+
+
+> Best Regards
+> Ming Wen
+>
+> -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
+> Links: You receive all messages sent to this group.
+> View/Reply Online (#66052):
+> https://lists.yoctoproject.org/g/yocto/message/66052
+> Mute This Topic: https://lists.yoctoproject.org/mt/116465760/4316185
+> Group Owner: yocto+owner@lists.yoctoproject.org
+> Unsubscribe: https://lists.yoctoproject.org/g/yocto/unsub [
+> yoann.congal@smile.fr]
+> -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
+>
+>
+
+--=20
+Yoann Congal
+Smile ECS
+
+--000000000000bca7f20644669809
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr"><div dir=3D"ltr">Le=C2=A0mar. 25 nov. 2025 =C3=A0=C2=A008:=
+33, Ming Wen via <a href=3D"http://lists.yoctoproject.org">lists.yoctoproje=
+ct.org</a> &lt;mwen=3D<a href=3D"mailto:ambarella.com@lists.yoctoproject.or=
+g">ambarella.com@lists.yoctoproject.org</a>&gt; a =C3=A9crit=C2=A0:</div><d=
+iv class=3D"gmail_quote gmail_quote_container"><blockquote class=3D"gmail_q=
+uote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,2=
+04);padding-left:1ex"><div>Hi Yocto Community:</div>
+<div>=C2=A0</div>
+<div>As you know, OpenSSL 3.2.x is going to EOL by the end of 2025. Do you =
+have a plan to upgrade it to OpenSSL 3.5.x for Scarthgap as you did for Pok=
+y master branch?</div></blockquote><div>Hello,</div><div>This very question=
+ was asked recently:=C2=A0<a href=3D"https://lists.openembedded.org/g/opene=
+mbedded-core/topic/116449512#msg226741">https://lists.openembedded.org/g/op=
+enembedded-core/topic/116449512#msg226741</a></div><div>(CC&#39;ing the aut=
+hor)</div><div>Note the answer from Alexander Kanavin:=C2=A0<a href=3D"http=
+s://lists.openembedded.org/g/openembedded-core/message/226742">https://list=
+s.openembedded.org/g/openembedded-core/message/226742</a></div><div><br></d=
+iv><div>Regards,</div><div><br></div><blockquote class=3D"gmail_quote" styl=
+e=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);paddin=
+g-left:1ex"><div>=C2=A0</div>
+<div>Best Regards</div>
+<div>Ming Wen</div>
+<br>
+-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-<br>
+Links: You receive all messages sent to this group.<br>
+View/Reply Online (#66052): <a href=3D"https://lists.yoctoproject.org/g/yoc=
+to/message/66052" rel=3D"noreferrer" target=3D"_blank">https://lists.yoctop=
+roject.org/g/yocto/message/66052</a><br>
+Mute This Topic: <a href=3D"https://lists.yoctoproject.org/mt/116465760/431=
+6185" rel=3D"noreferrer" target=3D"_blank">https://lists.yoctoproject.org/m=
+t/116465760/4316185</a><br>
+Group Owner: <a href=3D"mailto:yocto%2Bowner@lists.yoctoproject.org" target=
+=3D"_blank">yocto+owner@lists.yoctoproject.org</a><br>
+Unsubscribe: <a href=3D"https://lists.yoctoproject.org/g/yocto/unsub" rel=
+=3D"noreferrer" target=3D"_blank">https://lists.yoctoproject.org/g/yocto/un=
+sub</a> [<a href=3D"mailto:yoann.congal@smile.fr" target=3D"_blank">yoann.c=
+ongal@smile.fr</a>]<br>
+-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-<br>
+<br>
+</blockquote></div><div><br clear=3D"all"></div><br><span class=3D"gmail_si=
+gnature_prefix">-- </span><br><div dir=3D"ltr" class=3D"gmail_signature"><d=
+iv dir=3D"ltr"><font face=3D"Raleway, regular">Yoann Congal</font><div><fon=
+t face=3D"Raleway, regular">Smile ECS</font></div></div></div></div>
+
+--000000000000bca7f20644669809--
 
