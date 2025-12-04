@@ -1,125 +1,199 @@
-Return-Path: <skandigraun@gmail.com>
+Return-Path: <christian.leeb@hitachienergy.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id C4B3FD29FB5
-	for <webhook@archiver.kernel.org>; Thu,  4 Dec 2025 19:23:19 +0000 (UTC)
-Received: from mail-wr1-f48.google.com (mail-wr1-f48.google.com [209.85.221.48])
- by mx.groups.io with SMTP id smtpd.msgproc02-g2.52301.1764876197385226913
- for <yocto@lists.yoctoproject.org>;
- Thu, 04 Dec 2025 11:23:17 -0800
-Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20230601 header.b=evRmP0A2;
- spf=pass (domain: gmail.com, ip: 209.85.221.48, mailfrom: skandigraun@gmail.com)
-Received: by mail-wr1-f48.google.com with SMTP id ffacd0b85a97d-42b3c965cc4so681337f8f.0
-        for <yocto@lists.yoctoproject.org>; Thu, 04 Dec 2025 11:23:17 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1764876195; x=1765480995; darn=lists.yoctoproject.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:to:subject:user-agent:mime-version:date:message-id:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=xZDFbrtRlbl3n/hqlT22Qqsc9JCSgJvskmJAkYC0Xss=;
-        b=evRmP0A2dqiNVUla0spVQSOJ2MjZP3fhCNXpGVmnBHaI8rfV4E7NdZacBaMGVs/cOc
-         Lx3e97Q7fWMPvD1/R8jlT95tKGx4uP/QADd7DvUNtRYa++U3LYYj7PCfdtH80JzcC1Kx
-         0iY724xacKHGJmVnTqba39LLda2P0ZIPJHXIjQ247CzXMgg9WWiMjwByiHaIsQP8FYv7
-         EQu/QMGGJqkyqgvrv76VseiBMUZbAPvHh7T65ApdxBFnw82r9n0J3o11zb80w7+42Gq0
-         CAGOk2fjnXT4CiqnSCwzd/y0cx0axK4FA3O2flgSIf9mWhF6UBOERZ1C+6DBX6JrSNfB
-         9CrA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1764876195; x=1765480995;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=xZDFbrtRlbl3n/hqlT22Qqsc9JCSgJvskmJAkYC0Xss=;
-        b=fm6WbIhNahWLgfS9SGcCCXxLpY9LbiAlRpxOEUfXx7PYwf0zsfrEPns3w7MHCmb8J7
-         GnyplOXyRM/VMT5QzRETJz5Gil0y6DB5LAif4oXc8EE4e5+Mnhejd2636TI1TuvrxeqA
-         n1lmN3kUbBEOaiL0wFPB8FZq4pUNy34K4GuFQXNVyCIsF67vR4/46Q2upVLCqPl7NkgH
-         wtmR7LTjzAROX2m7YU84vYg3xLH3pdF6BrZORvchTWkcareJiiYoNr6AJou/uve4hlfr
-         +Z05Fm4YymrlIEgdzKmeItJ9Uxv1DmNTw3IFWTw74/sz0O8DO6jGQ4lkIiygVOriVcQN
-         DllA==
-X-Gm-Message-State: AOJu0Yz0jgi5ULKoFwYxvqLuz4rpfo/L55LLG9VBn/VZjwuIp0m+lUGu
-	qmg9Wuzs4jFaQSQlYNrt7rj6Ynr8lFYJQG1sgTemKqRqe7GuNln+MNwZD6v+lw==
-X-Gm-Gg: ASbGncu68keqTpfUmSpSffa/Ru+KL8KGS8Lz7vsahRcS7ut8H6uW+VLM+dfxQkW0Ri6
-	EpnTKiPYb8w5SpRG4Gp474g4qyp1u4vpajzfuBHbJcfyBqbC97PIiIoMscA5/6f9ZNDYzivGrf+
-	Hw/KHT3shlnM972s20lu25KI2a4mHd4Es9mB8AsWp1s2/XWMI5DGAiD8BBOvwLyNvq9erYS0dzI
-	PmVS/4GHZLFpu/CPefnVsGkn+vH9m5xPcZNRAixGrVo+ez1XVoF+GIoe70KnjzuxCLka9rO8yK1
-	k1cpso8PZ0TFNIxwTM9uJjRO52QXQZAs0KjzZ2gd3zA84jPk74qYYJFU1P6q8u7gDiMCke+aLCV
-	vMKrgsnLi3TyB/O0aRMoQGblnqALgjkq4vEtCh/MKDcAFyMirzPve+rT5KZEPLHdZN67iAgP26Q
-	w8+gk1Ilb5HgOJy/3uWteHzt1OCzmPKg==
-X-Google-Smtp-Source: AGHT+IFmh15JOITcda/zLjBBjoPAyISEqifFtnhjCZ2dD7vBFDB2D1FtvyCL6cN1GeLUrfpDxFtuAw==
-X-Received: by 2002:a5d:458f:0:b0:411:3c14:3ad9 with SMTP id ffacd0b85a97d-42f78872f97mr4191345f8f.21.1764876195392;
-        Thu, 04 Dec 2025 11:23:15 -0800 (PST)
-Received: from [192.168.1.106] ([51.154.145.205])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-42f7d353f75sm4935542f8f.42.2025.12.04.11.23.14
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 04 Dec 2025 11:23:14 -0800 (PST)
-Message-ID: <6a0d63c8-3a01-44a3-bc52-27ce3f5587dc@gmail.com>
-Date: Thu, 4 Dec 2025 20:23:14 +0100
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 557A2D2A552
+	for <webhook@archiver.kernel.org>; Thu,  4 Dec 2025 21:41:50 +0000 (UTC)
+Subject: Re: [yocto] Bitbake fetch does not re-fetch from network if gitrepo is found in DL_DIR
+To: "Gyorgy Sarvari" <skandigraun@gmail.com>, yocto@lists.yoctoproject.org
+From: christian.leeb@hitachienergy.com
+X-Originating-Location: Zurich, CH (147.161.246.94)
+X-Originating-Platform: Windows Edge 142
+User-Agent: GROUPS.IO Web Poster
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [yocto] Bitbake fetch does not re-fetch from network if gitrepo
- is found in DL_DIR
-To: yocto@lists.yoctoproject.org, christian.leeb@hitachienergy.com
-References: <MUyE.1764856618420625622.Sp84@lists.yoctoproject.org>
-Content-Language: en-US
-From: Gyorgy Sarvari <skandigraun@gmail.com>
-In-Reply-To: <MUyE.1764856618420625622.Sp84@lists.yoctoproject.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Date: Thu, 04 Dec 2025 13:41:45 -0800
+References: <MUyE.1764856618420625622.Sp84@lists.yoctoproject.org> <6a0d63c8-3a01-44a3-bc52-27ce3f5587dc@gmail.com>
+In-Reply-To: <6a0d63c8-3a01-44a3-bc52-27ce3f5587dc@gmail.com>
+Message-ID: <96936.1764884505239996619@lists.yoctoproject.org>
+Content-Type: multipart/alternative; boundary="k97tyyMpfPdOo5WAmzzu"
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from 45-33-107-173.ip.linodeusercontent.com [45.33.107.173] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Thu, 04 Dec 2025 19:23:19 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/66089
+ <yocto@lists.yoctoproject.org>; Thu, 04 Dec 2025 21:41:50 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/66090
 
-On 12/4/25 14:56, christian.leeb via lists.yoctoproject.org wrote:
-> Hi,
->
-> I did a bitbake virtual/kernel --runall=fetch, with a DL_DIR
-> containing kernel git repo. This git repo does not contain the SRCREV
-> 7818dfe57e requested.
->
-> Log suggests the fetch ran fine with the 7818dfe57e
-> recipe linux-ti-staging-rt-5.4.106+gitAUTOINC+7818dfe57e-r7a.spark10:
-> task do_fetch: Succeeded
->  
-> At this point I would have expected the fetch found the repo in DL_DIR
-> but the requested commit is t's not up-to-date hence it would reach
-> out to the network.
->  
-> Later I call bitbake again to build the kernel and I'm getting this error.
->
-> ERROR: linux-ti-staging-rt-5.4.106+gitAUTOINC+7818dfe57e-r7a.spark10
-> do_unpack: Bitbake Fetcher Error: UnpackError('No up to date source
-> found: clone directory not available or not up to date:
-> /home/vsts-agent/azagents/build-1/_work/_temp/localdl//git2/dev.azure.com.PG-CT.PGLinux._git.pg-linux;
-> shallow clone not enabled',
-> 'git://dev.azure.com/PG-CT/PGLinux/_git/pg-linux;protocol=https;branch=pg-am57xx-ti-rt-linux-5.4.106')
->
-> This suggests that fetch was happy finding the repo in DL_DIR but did
-> not care that the requested commit was missing.
-> Is this the intended behavior?
->
+--k97tyyMpfPdOo5WAmzzu
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
 
-Generally speaking this does not sound intentional - Bitbake has checks
-for this, it verifies during do_fetch explicitly if the requested
-revision is already present in the local clone, or it needs to be updated.
+I'm using Yocto 4.0, kirkstone.
 
-Which version of Bitbake/Yocto are you using? Also, how do you specify
-the revision in the recipe? (revision, tagname in SRCREV, something else?) 
-A minimal reproduction could be also useful, if available.
+We set
+URI is git://dev.azure.com/PG-CT/PGLinux/_git/pg-linux;protocol=3Dhttps;bra=
+nch=3Dpg-am57xx-ti-rt-linux-5.4.106
+SRCREV=3D"7818dfe57e1d1e2d2eaf039d1231560611811d67"
+BRANCH=3D"pg-am57xx-ti-rt-linux-5.4.106"
 
-> BR, Chris
->
->
-> -=-=-=-=-=-=-=-=-=-=-=-
-> Links: You receive all messages sent to this group.
-> View/Reply Online (#66088): https://lists.yoctoproject.org/g/yocto/message/66088
-> Mute This Topic: https://lists.yoctoproject.org/mt/116612004/6084445
-> Group Owner: yocto+owner@lists.yoctoproject.org
-> Unsubscribe: https://lists.yoctoproject.org/g/yocto/unsub [skandigraun@gmail.com]
-> -=-=-=-=-=-=-=-=-=-=-=-
->
+The DL_DIR contains above repo (git2/dev.azure.com.PG-CT.PGLinux._git.pg-li=
+nux) and above branch but just not the latest commit of this branch.
+Also, between
+recipe linux-ti-staging-rt-5.4.106+gitAUTOINC+7818dfe57e-r7a.spark10: task =
+do_fetch: Started
+and
+recipe linux-ti-staging-rt-5.4.106+gitAUTOINC+7818dfe57e-r7a.spark10: task =
+do_fetch: Succeeded
+there is only a few seconds. Another proof IMHO that there was no network a=
+ccess.
 
+Fetch works properly if the repo is not present at all in the DL_DIR.
+
+I also check if shallow clone is set: seems that this is not the case unles=
+s there is some other setting to consider.
+
+bitbake virtual/kernel -e | grep ^BB_GIT_SHALLOW
+BB_GIT_SHALLOW:pn-binutils=3D"1"
+BB_GIT_SHALLOW:pn-binutils-cross-arm=3D"1"
+BB_GIT_SHALLOW:pn-binutils-cross-canadian-arm=3D"1"
+BB_GIT_SHALLOW:pn-binutils-cross-testsuite=3D"1"
+BB_GIT_SHALLOW:pn-binutils-crosssdk-x86_64-spark-linux=3D"1"
+BB_GIT_SHALLOW:pn-binutils-native=3D"1"
+BB_GIT_SHALLOW:pn-glibc=3D"1"
+
+In addition I got this info from the internet:
+Why do_fetch didn=E2=80=99t update the repo:
+BitBake=E2=80=99s fetcher logic:
+If the repo exists in DL_DIR and the SRCREV is marked as available (based o=
+n metadata), it skips network fetch.
+It doesn=E2=80=99t *verify the actual commit presence during do_fetch* =E2=
+=80=94that check happens in do_unpack.
+So the 2-second fetch means it reused the cached repo without pulling new c=
+ommits.
+
+I wonder what it means " SRCREV is marked as available (based on metadata) =
+". It's obviously not there.
+
+Thanks a lot for your support.
+
+Chris
+
+--k97tyyMpfPdOo5WAmzzu
+Content-Type: text/html; charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div>I'm using Yocto 4.0, kirkstone.</div>
+<div>&nbsp;</div>
+<div>We set<br />URI is git://dev.azure.com/PG-CT/PGLinux/_git/pg-linux;pro=
+tocol=3Dhttps;branch=3Dpg-am57xx-ti-rt-linux-5.4.106</div>
+<div>SRCREV=3D"7818dfe57e1d1e2d2eaf039d1231560611811d67"</div>
+<div>BRANCH=3D"pg-am57xx-ti-rt-linux-5.4.106"</div>
+<div><br />The DL_DIR contains above repo (git2/dev.azure.com.PG-CT.PGLinux=
+._git.pg-linux) and above branch but just not the latest commit of this bra=
+nch.</div>
+<div>Also, between&nbsp;</div>
+<div><span style=3D"color: #242424; font-family: courier; font-size: 14px; =
+font-style: normal; font-variant-ligatures: normal; font-variant-caps: norm=
+al; font-weight: 400; letter-spacing: normal; orphans: 2; text-align: start=
+; text-indent: 0px; text-transform: none; widows: 2; word-spacing: 0px; -we=
+bkit-text-stroke-width: 0px; white-space: normal; background-color: #ffffff=
+; text-decoration-thickness: initial; text-decoration-style: initial; text-=
+decoration-color: initial; display: inline !important; float: none;">recipe=
+ linux-ti-staging-rt-5.4.106+gitAUTOINC+7818dfe57e-r7a.spark10: task do_fet=
+ch: Started</span></div>
+<div><span style=3D"color: #242424; font-family: system-ui, 'helvetica neue=
+'; font-size: 14px; font-style: normal; font-variant-ligatures: normal; fon=
+t-variant-caps: normal; font-weight: 400; letter-spacing: normal; orphans: =
+2; text-align: start; text-indent: 0px; text-transform: none; widows: 2; wo=
+rd-spacing: 0px; -webkit-text-stroke-width: 0px; white-space: normal; backg=
+round-color: #ffffff; text-decoration-thickness: initial; text-decoration-s=
+tyle: initial; text-decoration-color: initial; float: none; display: inline=
+ !important;">and</span></div>
+<div><span style=3D"color: #242424; font-family: courier; font-size: 14px; =
+font-style: normal; font-variant-ligatures: normal; font-variant-caps: norm=
+al; font-weight: 400; letter-spacing: normal; orphans: 2; text-align: start=
+; text-indent: 0px; text-transform: none; widows: 2; word-spacing: 0px; -we=
+bkit-text-stroke-width: 0px; white-space: normal; background-color: #ffffff=
+; text-decoration-thickness: initial; text-decoration-style: initial; text-=
+decoration-color: initial; display: inline !important; float: none;"><span =
+style=3D"color: #242424; font-family: courier; font-size: 14px; font-style:=
+ normal; font-variant-ligatures: normal; font-variant-caps: normal; font-we=
+ight: 400; letter-spacing: normal; orphans: 2; text-align: start; text-inde=
+nt: 0px; text-transform: none; widows: 2; word-spacing: 0px; -webkit-text-s=
+troke-width: 0px; white-space: normal; background-color: #ffffff; text-deco=
+ration-thickness: initial; text-decoration-style: initial; text-decoration-=
+color: initial; display: inline !important; float: none;">recipe linux-ti-s=
+taging-rt-5.4.106+gitAUTOINC+7818dfe57e-r7a.spark10: task do_fetch: Succeed=
+ed</span></span></div>
+<div><span style=3D"color: #242424; font-family: system-ui, 'helvetica neue=
+'; font-size: 14px; font-style: normal; font-variant-ligatures: normal; fon=
+t-variant-caps: normal; font-weight: 400; letter-spacing: normal; orphans: =
+2; text-align: start; text-indent: 0px; text-transform: none; widows: 2; wo=
+rd-spacing: 0px; -webkit-text-stroke-width: 0px; white-space: normal; backg=
+round-color: #ffffff; text-decoration-thickness: initial; text-decoration-s=
+tyle: initial; text-decoration-color: initial; float: none; display: inline=
+ !important;"><span style=3D"color: #242424; font-size: 14px; font-style: n=
+ormal; font-variant-ligatures: normal; font-variant-caps: normal; font-weig=
+ht: 400; letter-spacing: normal; orphans: 2; text-align: start; text-indent=
+: 0px; text-transform: none; widows: 2; word-spacing: 0px; -webkit-text-str=
+oke-width: 0px; white-space: normal; background-color: #ffffff; text-decora=
+tion-thickness: initial; text-decoration-style: initial; text-decoration-co=
+lor: initial; float: none; display: inline !important;">there is only a few=
+ seconds. Another proof IMHO that there was no network access.<br /><br />F=
+etch works properly if the repo is not present at all in the DL_DIR.<br /><=
+br />I also check if shallow clone is set: seems that this is not the case =
+unless there is some other setting to consider.<br /><br />bitbake virtual/=
+kernel -e | grep ^BB_GIT_SHALLOW<br />BB_GIT_SHALLOW:pn-binutils=3D"1"<br /=
+>BB_GIT_SHALLOW:pn-binutils-cross-arm=3D"1"<br />BB_GIT_SHALLOW:pn-binutils=
+-cross-canadian-arm=3D"1"<br />BB_GIT_SHALLOW:pn-binutils-cross-testsuite=
+=3D"1"<br />BB_GIT_SHALLOW:pn-binutils-crosssdk-x86_64-spark-linux=3D"1"<br=
+ />BB_GIT_SHALLOW:pn-binutils-native=3D"1"<br />BB_GIT_SHALLOW:pn-glibc=3D"=
+1"<br /></span></span></div>
+<div><span style=3D"color: #242424; font-family: system-ui, 'helvetica neue=
+'; font-size: 14px; font-style: normal; font-variant-ligatures: normal; fon=
+t-variant-caps: normal; font-weight: 400; letter-spacing: normal; orphans: =
+2; text-align: start; text-indent: 0px; text-transform: none; widows: 2; wo=
+rd-spacing: 0px; -webkit-text-stroke-width: 0px; white-space: normal; backg=
+round-color: #ffffff; text-decoration-thickness: initial; text-decoration-s=
+tyle: initial; text-decoration-color: initial; float: none; display: inline=
+ !important;"><span style=3D"color: #242424; font-family: system-ui, 'helve=
+tica neue'; font-size: 14px; font-style: normal; font-variant-ligatures: no=
+rmal; font-variant-caps: normal; font-weight: 400; letter-spacing: normal; =
+orphans: 2; text-align: start; text-indent: 0px; text-transform: none; wido=
+ws: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; white-space: norm=
+al; background-color: #ffffff; text-decoration-thickness: initial; text-dec=
+oration-style: initial; text-decoration-color: initial; float: none; displa=
+y: inline !important;"><span style=3D"color: #242424; font-size: 14px; font=
+-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; =
+font-weight: 400; letter-spacing: normal; orphans: 2; text-align: start; te=
+xt-indent: 0px; text-transform: none; widows: 2; word-spacing: 0px; -webkit=
+-text-stroke-width: 0px; white-space: normal; background-color: #ffffff; te=
+xt-decoration-thickness: initial; text-decoration-style: initial; text-deco=
+ration-color: initial; float: none; display: inline !important;"><br />In a=
+ddition I got this info from the internet:<br /></span></span></span>
+<div><em>Why do_fetch didn&rsquo;t update the repo:</em><br /><em>BitBake&r=
+squo;s fetcher logic:</em></div>
+<div><em>If the repo exists in DL_DIR and the SRCREV is marked as available=
+ (based on metadata), it skips network fetch.</em><br /><em>It doesn&rsquo;=
+t <strong>verify the actual commit presence during do_fetch</strong>&mdash;=
+that check happens in do_unpack.</em></div>
+<div><em>So the 2-second fetch means it reused the cached repo without pull=
+ing new commits.</em></div>
+<span style=3D"color: #242424; font-family: system-ui, 'helvetica neue'; fo=
+nt-size: 14px; font-style: normal; font-variant-ligatures: normal; font-var=
+iant-caps: normal; font-weight: 400; letter-spacing: normal; orphans: 2; te=
+xt-align: start; text-indent: 0px; text-transform: none; widows: 2; word-sp=
+acing: 0px; -webkit-text-stroke-width: 0px; white-space: normal; background=
+-color: #ffffff; text-decoration-thickness: initial; text-decoration-style:=
+ initial; text-decoration-color: initial; float: none; display: inline !imp=
+ortant;"><span style=3D"color: #242424; font-size: 14px; font-style: normal=
+; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 4=
+00; letter-spacing: normal; orphans: 2; text-align: start; text-indent: 0px=
+; text-transform: none; widows: 2; word-spacing: 0px; -webkit-text-stroke-w=
+idth: 0px; white-space: normal; background-color: #ffffff; text-decoration-=
+thickness: initial; text-decoration-style: initial; text-decoration-color: =
+initial; float: none; display: inline !important;"><br />I wonder what it m=
+eans "<em>SRCREV is marked as available (based on metadata)</em>". It's obv=
+iously not there.<br /><br />Thanks a lot for your support.<br /><br />Chri=
+s<br /><br /></span></span></div>
+
+--k97tyyMpfPdOo5WAmzzu--
 
