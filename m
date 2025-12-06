@@ -1,117 +1,300 @@
-Return-Path: <skandigraun@gmail.com>
+Return-Path: <dchvs11@gmail.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 0006FD339AD
-	for <webhook@archiver.kernel.org>; Fri,  5 Dec 2025 18:12:11 +0000 (UTC)
-Received: from mail-wm1-f42.google.com (mail-wm1-f42.google.com [209.85.128.42])
- by mx.groups.io with SMTP id smtpd.msgproc01-g2.56.1764958326162716686
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 8A543D3ABE7
+	for <webhook@archiver.kernel.org>; Sat,  6 Dec 2025 03:31:50 +0000 (UTC)
+Received: from mail-ej1-f47.google.com (mail-ej1-f47.google.com [209.85.218.47])
+ by mx.groups.io with SMTP id smtpd.msgproc02-g2.430.1764991901185227809
  for <yocto@lists.yoctoproject.org>;
- Fri, 05 Dec 2025 10:12:06 -0800
+ Fri, 05 Dec 2025 19:31:41 -0800
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20230601 header.b=MaZqCahb;
- spf=pass (domain: gmail.com, ip: 209.85.128.42, mailfrom: skandigraun@gmail.com)
-Received: by mail-wm1-f42.google.com with SMTP id 5b1f17b1804b1-4779a637712so18758795e9.1
-        for <yocto@lists.yoctoproject.org>; Fri, 05 Dec 2025 10:12:05 -0800 (PST)
+ dkim=pass header.i=@gmail.com header.s=20230601 header.b=bfFhR+3S;
+ spf=pass (domain: gmail.com, ip: 209.85.218.47, mailfrom: dchvs11@gmail.com)
+Received: by mail-ej1-f47.google.com with SMTP id a640c23a62f3a-b79af62d36bso459949366b.3
+        for <yocto@lists.yoctoproject.org>; Fri, 05 Dec 2025 19:31:40 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1764958324; x=1765563124; darn=lists.yoctoproject.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=3CrC5XVudSjIyaxJ9wm2EWktQNanpNAkaXkZQ6hPRN4=;
-        b=MaZqCahbqQPVavgzQFZrSKNbP7OgP9dMqTKZdGMlUl3XT8laEZ3lgOEXjKJu8jekcb
-         RX99s4X5WdS/q7jKJpSP6kM5shvwOzDzJaFfDoU+ztHIFYHVQJWpSyCPvxLTOiyYzpqw
-         vrYnAz8oivfg16xFTev4mz7b4i+LAqEXSyG/oY9tC//zf+8ezjOy3e5J8umbG4U88Lv7
-         Fn8XOvgrLNiZf2rPdjXZ+kV5p69tZyaAVhvPatagHz4iDnljOW35vG3cpmGCjm/UFKb8
-         /kfl16m2F/tnl78v+q0wrryjBvF9ZXVH26odlz4kPM5U5hA/pMwrqHpiS9lT5GDLL6fQ
-         ASaA==
+        d=gmail.com; s=20230601; t=1764991899; x=1765596699; darn=lists.yoctoproject.org;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=17Ihnip6LgltUFYlOkIVcrTHjEsH+oqDnzOrDdJ0M2Q=;
+        b=bfFhR+3Sxgshn96LcoNkqbQWLXWHQ00LX/S1NDtKK+kQoc/vykTbvpURYkZ1VsZRuh
+         9Jc22/vKLQxlLZLELMPiRe4PEafMD1Qs5Tb/8O8bd4HGlQkrzRo4ZfBIzTXjS3PEzq//
+         PnVXsqnb8PCCfC8pHXC79PoiYxX2S8YcIr1R7MzKu5kxgpvkRUnH8RsIOPNN2hct395b
+         rP1Otyezku98A1Q0L24rN/yyIHVi4dn7ShEu3/l1VEnMZm9QhQKHh0gWy42ZAOmId0r7
+         kKpzmoOUF6TRjiHry0iJZc1RUPNcFF7XSswu5sfaROajgZ0E7sDKB8eB5esDAMmOPBp6
+         oXpw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1764958324; x=1765563124;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=3CrC5XVudSjIyaxJ9wm2EWktQNanpNAkaXkZQ6hPRN4=;
-        b=Ddxqg/z4rNRW45GpOm2bj+Sa82fs4D+HZLP/zmNMaeYNFbVE0TgPcP4ftT4HN5RsZ0
-         FnmLzJqPvJcNlugm0aXKd4vAfN98o1jB2/hfZt0bo84XF+Beue9pm+cJZUDv86LYM+Oi
-         S7ycT7JFOVVVmza6K3mtP7/t5Ww2SshMZK7crx/OQYTGD7csngUyNo7TzgHsaiP4WwSm
-         BLOxCGDpRw+FeLkxyNlgfF29qs6n8SrixJDsVX0vl8jgvtabGEpJFn4302PABATKHdph
-         SGkPdGsdubMF1ObgxIbfdybTRivaUWKwlnkdyK/fxi0x4LudsaDHkb10IuaKW5Mzasvt
-         gdJQ==
-X-Forwarded-Encrypted: i=1; AJvYcCUxh5M+cJu1ywfjGdxblfV2i1Idelsc0QXqv2NiGWKfkQGTaoXpum4dhpnHak4wYpcJMmRCRQ==@lists.yoctoproject.org
-X-Gm-Message-State: AOJu0Yx2dK038V1AynTkNVVQFnHKBs4BebNgmBio7fUlM4Fvr7UziUeY
-	UqoHCjDdJF3D9EaXYAi4um3+7ZMR/YgooTGFqa5qzKoDCK0opJXzs/KU
-X-Gm-Gg: ASbGnctQfMP/J56KmHayOclfphMzgeVdJ18JqPgkK79fy09EliSjuzwExaOKKsS/MHm
-	KFoyzwZIHQCf6Pddt5R5QXXvnaVS1HRg6C4iwk8FSMIUdqf3EipS6opqcAKiNk05VVEZB5M5oEo
-	1TFTYhVjXBNabJfXcPU6R4swIEr334yFKA1aeJFt8ZXexXDrHihwxfsqcnequJhCQCrORZKW59D
-	Zqw26M/WeFOhphRUe1lXHzO9l7HBAj+MUMNjqEeaQrqSiF0O0M5dmMeAlW/pat6jgWRIRP3ijLo
-	JqPmVx9iHzFUzr44utpNIjfQLRn29uGEYq5vE6VuvQ7mLSzxH+ZJ7m2X5cPWok9lCqDA1OuBcaR
-	A63lDEa3w3sXPXgH68cFT4eyoBIz1wgKkxV3TQx40eMj5rkoF+MUgILboBCikK4si1p7UKO7LBU
-	vdPWzlIi3DAxLSYgbaWVM=
-X-Google-Smtp-Source: AGHT+IHn7L0GSYGHqGH/kRMK2aSzFYqSu+eCUNHSlHwr+VLPs+TXm0x1OJsw0kKoT7ElKqg3ta9Qvw==
-X-Received: by 2002:a05:600c:a04:b0:477:9650:3184 with SMTP id 5b1f17b1804b1-47939df14d2mr2685095e9.2.1764958324433;
-        Fri, 05 Dec 2025 10:12:04 -0800 (PST)
-Received: from [192.168.1.106] ([51.154.145.205])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-479310b693csm93195165e9.4.2025.12.05.10.12.03
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 05 Dec 2025 10:12:04 -0800 (PST)
-Message-ID: <96c47e76-9e94-4d53-90a1-57488b165612@gmail.com>
-Date: Fri, 5 Dec 2025 19:12:03 +0100
+        d=1e100.net; s=20230601; t=1764991899; x=1765596699;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=17Ihnip6LgltUFYlOkIVcrTHjEsH+oqDnzOrDdJ0M2Q=;
+        b=uH9dZEFEUCd2skvQgzqfIsCgJiJu8jX+gGjEaSy3wHnakADO7tY2DiypMQ+/ycNTUW
+         5ocTmXUcIn7LlSuVDK6/VcLqn3W9FCJxFWXDA+9ieP2nHQpbjDtIsMtM3L0u/7/zMgYa
+         ottdQPWg4vSVpiVTQ95F+3O8Bq9ZlMAVMC4FsvfzGSN4Hn3N+PjkPTfXvNirMO3RyxkU
+         lTyvj2fIGX9Wxxil89awE97Bm2P3RZKr+hm55D+tELRKQwmFYwT8sANfnkVkN/Pat1Mi
+         m0T22EevG5810iZM6iXADtztg4o27v8cokl+YDaWM+spfjNx9a+WkyhFvgczMQamL122
+         O8/Q==
+X-Forwarded-Encrypted: i=1; AJvYcCXyhRSqzp8buz70qzaemgnQxFxAiMRXMzP3UrHybHHjAisLLG+MCkLn8QT7+oP0uc1COIj90Q==@lists.yoctoproject.org
+X-Gm-Message-State: AOJu0Yy2Z1BiW+SlEgRxHqR9SsFl9AzHJpYmA+QHHMMCfLrdp0DUkJ3O
+	fRoH9OE+xL8FHkCKEsutvy5n3TwNScZtLdjhCpkZMV2ooRIvoe9FQXmZrOIOPAXgjdGNWuDT91X
+	fpU96t+UE/sErcAvnBUZKua54HUts14c=
+X-Gm-Gg: ASbGncv+pgKgZGBeVgfX/+0Jx4cN6n15Gc+s7XxubTv8GoPdMSqjznDLPfdgSsGWIR2
+	tvhBCLHAvzveOCdvsV1W+Tcltj6DlZ7cK1ticbNOCjPAWwuUbf0F0K146T8dXmOebpec016uau5
+	IRHEVsbQ+VWsBvq91e4joraKKRXWkibFktW54mAa3uGnfdNUd0bX8ux99/CiHWTQsxqiQf/ejZ6
+	zIHa4vJLdITNYGbjnaYYh/PvvMcgp/1v5fnxLLRNXIjG4IbYb0eAH8oT76vG+D9DEyNA74y
+X-Google-Smtp-Source: AGHT+IGJ4NnpKtbrNceIYBYJHySwUfYObKtNSHhQRl74W6dWkB21gFbP1r4DIlgJAviA64d8vuEBcXGKdIw5/Tu0jZI=
+X-Received: by 2002:a17:906:6a0b:b0:b76:69d6:f9fe with SMTP id
+ a640c23a62f3a-b7a248487ebmr112874766b.60.1764991899223; Fri, 05 Dec 2025
+ 19:31:39 -0800 (PST)
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [yocto] Bitbake fetch does not re-fetch from network if gitrepo
- is found in DL_DIR
-To: Alexander Kanavin <alex.kanavin@gmail.com>, yocto@lists.yoctoproject.org
-Cc: christian.leeb@hitachienergy.com
-References: <MUyE.1764856618420625622.Sp84@lists.yoctoproject.org>
- <6a0d63c8-3a01-44a3-bc52-27ce3f5587dc@gmail.com>
- <96936.1764884505239996619@lists.yoctoproject.org>
- <33793480-bdcc-4b88-ab11-0d493118836e@gmail.com>
- <CANNYZj8A46=oc3sD=F2H=A33rjmue=tVhTtVBJTabfO3EJLuDQ@mail.gmail.com>
-Content-Language: en-US
-From: Gyorgy Sarvari <skandigraun@gmail.com>
-In-Reply-To: <CANNYZj8A46=oc3sD=F2H=A33rjmue=tVhTtVBJTabfO3EJLuDQ@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+References: <CAK5yBb8SJ79GDs5aGpz0MGuNNdKf26Z7nw81yNtAsUr9VNq01A@mail.gmail.com>
+ <187B446507D0D6B0.100836@lists.yoctoproject.org> <CANNYZj_QRWSTZMne1B0PO8rdo19Ltb=QqQGVmSRk7ZpnaY2MAQ@mail.gmail.com>
+ <7cefc9025cec54cc835cd3b065aa653f95a38634.camel@linuxfoundation.org> <CANNYZj8bbNnMYWsJb0oz0a3F_gr=zTYkbj8YLKoRYGdF+XbmBQ@mail.gmail.com>
+In-Reply-To: <CANNYZj8bbNnMYWsJb0oz0a3F_gr=zTYkbj8YLKoRYGdF+XbmBQ@mail.gmail.com>
+From: Daniel Chaves <dchvs11@gmail.com>
+Date: Fri, 5 Dec 2025 21:31:27 -0600
+X-Gm-Features: AWmQ_bmXBv4vk5WysCmFlmPfveDLZeG5kIWfCtWoUwWeSwNFr7h4p3MmR6frQgI
+Message-ID: <CANDCFSy8dJjVm2qbAgxGDeH3_ywUGLpq=eknCo6n-tgt_7_nsA@mail.gmail.com>
+Subject: Re: [OE-core] sharing sstate in bitbake-setup
+To: alex.kanavin@gmail.com
+Cc: Richard Purdie <richard.purdie@linuxfoundation.org>, 
+	Yocto-mailing-list <yocto@lists.yoctoproject.org>, 
+	",openembedded-core@lists.openembedded.org" <openembedded-core@lists.openembedded.org>, 
+	Joshua Watt <jpewhacker@gmail.com>
+Content-Type: multipart/alternative; boundary="0000000000002f4b0f0645403321"
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from 45-33-107-173.ip.linodeusercontent.com [45.33.107.173] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Fri, 05 Dec 2025 18:12:11 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/66095
+ <yocto@lists.yoctoproject.org>; Sat, 06 Dec 2025 03:31:50 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/66096
+
+--0000000000002f4b0f0645403321
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+Hi, Alexander, I saw your question about integrating the hash equivalence
+server setup into Bitbake Setup. I've have actually tinkered with the basic
+hash equivalence setup, and after diving into the documentation for the
+hash equivalence looks like we could share hash equivalence data through
+following the "Hash Equivalence Server Setup" instructions here:
+https://docs.yoctoproject.org/dev/_sources/dev-manual/hashequivserver.rst.t=
+xt
+.
+
+Look at the `bind` and `database` options used when starting `
+bitbake-hashserv`. Then, on the client side, the configuration would look
+something like this:
+
+```
+BB_HASHSERVE =3D "<bind address of the running BitBake hash server>"
+BB_SIGNATURE_HANDLER =3D "OEEquivHash"
+```
+
+So, in that scenario the site.conf for Bitbake Setup could enable a bind
+address of `unix://${TOPDIR}/../hashserv.sock` to the BB_HASHSERVE.
+
+And the server can be started with something like:
+
+`bitbake-hashserv --bind unix://${TOPDIR}/../hashserv.sock --database
+${TOPDIR}/../hashserv.db`
+
+Hope that helps.
+Regards
+Daniel
+
+RidgeRun Embedded SW Engineer
+Contact us: support@ridgerun.com
+Developers wiki: https://developer.ridgerun.com/
+Website: https://www.ridgerun.com
 
 
+On Wed, Nov 26, 2025 at 10:53=E2=80=AFAM Alexander Kanavin via
+lists.openembedded.org <alex.kanavin=3Dgmail.com@lists.openembedded.org>
+wrote:
 
-On 12/5/25 18:24, Alexander Kanavin wrote:
-> On Fri, 5 Dec 2025 at 16:46, Gyorgy Sarvari via lists.yoctoproject.org
-> <skandigraun=gmail.com@lists.yoctoproject.org> wrote:
->> I have been thinking about this, and also tried to reproduce it,
->> unsuccessfully...
->>
->> If fetch is deemed successful, it is stored in the shared state cache,
->> and then it is not repeated until the relevant signature changes - I
->> think this is the metadata reference you found.
->> However as long as the download folder's content is only modified by one
->> project only, it supposed keep track of it fine.
->>
->> One question about the DL_DIR: is it possible that it is shared between
->> multiple projects, while keeping separate shared state cache? Or that
->> the DL_DIR's content modified manually?
->> The shared state cache supposed to keep track of what is downloaded by
->> bitbake and what is not, but if the DL_DIR's content is changed without
->> bitbake (or by a separate bitbake), that can break the shared state, and
->> cause such issues.
-> This is not correct. Shared state does not track what is downloaded.
-
-It depends on how you interpret it. Sstate does track the do_fetch task,
-and does know if it needs to re-executed or not.
-
-> It is also fine to share DL_DIR between multiple builds and projects.
-
-I did not write that it is not fine to share DL_DIR, but but you need to
-know some caveats. If you run bitbake -c cleanall in one project, you
-are up for a good time in the other one, if they use the same recipe.
-
+> On Wed, 26 Nov 2025 at 17:41, Richard Purdie
+> <richard.purdie@linuxfoundation.org> wrote:
+> linked into every build.
+> > >
+> > > I quickly hacked bitbake's cooker.py to try this out:
+> > >
+> > > -                dbfile =3D (self.data.getVar("PERSISTENT_DIR") or
+> > > self.data.getVar("CACHE")) + "/hashserv.db"
+> > > +                dbfile =3D "/home/alex" + "/hashserv.db"
+> > >
+> > >
+> > > And then made two build directories with shared SSTATE_DIR.
+> > >
+> > > TL;DR: everything ran smoothly and as expected.
+> > >
+> > > I ran overlapping builds, added no-ops to gnu-config recipe to 'force=
+'
+> > > hash equivalency, and there were no errors or crashes, and sstate was
+> > > reused as expected.
+> > >
+> > > So I think we should do it like this, subject to 'shared-sstate'
+> > > setting in bitbake-setup, on by default.
+> >
+> > PERSISTENT_DIR is *not* designed to be shared between builds. it might
+> > happen to work but is a really bad idea. Personally, I think those
+> > cache directory variables and cache layout need redesigning so we
+> > should probably take the opportunity to do that.
+>
+> I am not sharing PERSISTENT_DIR. Only the hash equivalency database in
+> hashserv.db, which I believe is fine because sqlite has locking
+> mechanisms and is explicitly designed for it.
 >
 > Alex
+>
+> -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
+> Links: You receive all messages sent to this group.
+> View/Reply Online (#226806):
+> https://lists.openembedded.org/g/openembedded-core/message/226806
+> Mute This Topic: https://lists.openembedded.org/mt/116487236/7043332
+> Group Owner: openembedded-core+owner@lists.openembedded.org
+> Unsubscribe: https://lists.openembedded.org/g/openembedded-core/unsub [
+> dchvs11@gmail.com]
+> -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
+>
+>
 
+--0000000000002f4b0f0645403321
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr"><div><div style=3D"color:rgb(69,71,73);background-color:rg=
+b(255,255,255);font-weight:normal;font-size:14px;line-height:19px;white-spa=
+ce:pre-wrap"><div><span style=3D"color:rgb(69,71,73);font-family:arial,sans=
+-serif">Hi, Alexander, I saw your question about integrating the hash equiv=
+alence server setup into Bitbake Setup. I&#39;ve have actually tinkered wit=
+h the basic hash equivalence setup, and after diving into the documentation=
+ for the hash equivalence looks like we could share hash equivalence data t=
+hrough following the &quot;Hash Equivalence Server Setup&quot; instructions=
+ here:</span></div><div><span style=3D"color:rgb(75,131,205);text-decoratio=
+n:underline;font-family:arial,sans-serif"><a href=3D"https://docs.yoctoproj=
+ect.org/dev/_sources/dev-manual/hashequivserver.rst.txt" target=3D"_blank">=
+https://docs.yoctoproject.org/dev/_sources/dev-manual/hashequivserver.rst.t=
+xt</a></span><span style=3D"font-family:arial,sans-serif">.</span></div><sp=
+an style=3D"font-family:arial,sans-serif"><br></span><div><span style=3D"co=
+lor:rgb(69,71,73);font-family:arial,sans-serif">Look at the </span><span st=
+yle=3D"color:rgb(119,119,119);font-family:arial,sans-serif">`</span><span s=
+tyle=3D"color:rgb(171,101,38);font-family:arial,sans-serif">bind</span><spa=
+n style=3D"color:rgb(119,119,119);font-family:arial,sans-serif">`</span><sp=
+an style=3D"color:rgb(69,71,73);font-family:arial,sans-serif"> and </span><=
+span style=3D"color:rgb(119,119,119);font-family:arial,sans-serif">`</span>=
+<span style=3D"color:rgb(171,101,38);font-family:arial,sans-serif">database=
+</span><span style=3D"color:rgb(119,119,119);font-family:arial,sans-serif">=
+`</span><span style=3D"color:rgb(69,71,73);font-family:arial,sans-serif"> o=
+ptions used when starting </span><span style=3D"color:rgb(119,119,119);font=
+-family:arial,sans-serif">`</span><span style=3D"color:rgb(171,101,38);font=
+-family:arial,sans-serif">bitbake-hashserv</span><span style=3D"color:rgb(1=
+19,119,119);font-family:arial,sans-serif">`</span><span style=3D"color:rgb(=
+69,71,73);font-family:arial,sans-serif">. Then, on the client side, the con=
+figuration would look something like this:</span></div><span style=3D"font-=
+family:arial,sans-serif"><br></span><div><span style=3D"color:rgb(119,119,1=
+19);font-family:arial,sans-serif">```</span></div><div><span style=3D"color=
+:rgb(69,71,73);font-family:arial,sans-serif">BB_HASHSERVE =3D &quot;&lt;bin=
+d address of the running BitBake hash server&gt;&quot;</span></div><div><sp=
+an style=3D"color:rgb(69,71,73);font-family:arial,sans-serif">BB_SIGNATURE_=
+HANDLER =3D &quot;OEEquivHash&quot;</span></div><div><span style=3D"color:r=
+gb(119,119,119);font-family:arial,sans-serif">```</span></div><span style=
+=3D"font-family:arial,sans-serif"><br></span><div><span style=3D"color:rgb(=
+69,71,73);font-family:arial,sans-serif">So, in that scenario the site.conf =
+for Bitbake Setup could enable a bind address of </span><span style=3D"colo=
+r:rgb(119,119,119);font-family:arial,sans-serif">`</span><span style=3D"col=
+or:rgb(171,101,38);font-family:arial,sans-serif">unix://${TOPDIR}/../hashse=
+rv.sock</span><span style=3D"color:rgb(119,119,119);font-family:arial,sans-=
+serif">`</span><span style=3D"color:rgb(69,71,73);font-family:arial,sans-se=
+rif"> to the BB_HASHSERVE.</span></div><span style=3D"font-family:arial,san=
+s-serif"><br></span><div><span style=3D"color:rgb(69,71,73);font-family:ari=
+al,sans-serif">And the server can be started with something like:</span></d=
+iv><div><span style=3D"color:rgb(69,71,73);font-family:arial,sans-serif"><b=
+r></span></div><div><span style=3D"color:rgb(119,119,119);font-family:arial=
+,sans-serif">`</span><span style=3D"color:rgb(171,101,38);font-family:arial=
+,sans-serif">bitbake-hashserv --bind </span><span style=3D"color:rgb(119,11=
+9,119);font-family:arial,sans-serif"></span><span style=3D"color:rgb(171,10=
+1,38);font-family:arial,sans-serif">unix://${TOPDIR}/../hashserv.sock</span=
+><span style=3D"color:rgb(119,119,119);font-family:arial,sans-serif"></span=
+><span style=3D"color:rgb(171,101,38);font-family:arial,sans-serif"> --data=
+base </span><span style=3D"color:rgb(171,101,38);font-family:arial,sans-ser=
+if">${TOPDIR}/../hashserv.db</span><span style=3D"color:rgb(119,119,119);fo=
+nt-family:arial,sans-serif">`</span></div><span style=3D"font-family:arial,=
+sans-serif"><br></span></div><span style=3D"font-family:arial,sans-serif">H=
+ope that helps.</span></div><div><span style=3D"font-family:arial,sans-seri=
+f">Regards<br></span></div><div><span style=3D"font-family:arial,sans-serif=
+">Daniel</span></div><div><span style=3D"font-family:arial,sans-serif"><br>=
+RidgeRun Embedded SW Engineer<br>Contact us: <a href=3D"mailto:support@ridg=
+erun.com" target=3D"_blank">support@ridgerun.com</a><br>Developers wiki: <a=
+ href=3D"https://developer.ridgerun.com/" target=3D"_blank">https://develop=
+er.ridgerun.com/</a><br>Website: <a href=3D"https://www.ridgerun.com/" targ=
+et=3D"_blank">https://www.ridgerun.com</a></span></div><br></div><br><div c=
+lass=3D"gmail_quote gmail_quote_container"><div dir=3D"ltr" class=3D"gmail_=
+attr">On Wed, Nov 26, 2025 at 10:53=E2=80=AFAM Alexander Kanavin via <a hre=
+f=3D"http://lists.openembedded.org">lists.openembedded.org</a> &lt;alex.kan=
+avin=3D<a href=3D"mailto:gmail.com@lists.openembedded.org">gmail.com@lists.=
+openembedded.org</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote" =
+style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);pa=
+dding-left:1ex">On Wed, 26 Nov 2025 at 17:41, Richard Purdie<br>
+&lt;<a href=3D"mailto:richard.purdie@linuxfoundation.org" target=3D"_blank"=
+>richard.purdie@linuxfoundation.org</a>&gt; wrote:<br>
+linked into every build.<br>
+&gt; &gt;<br>
+&gt; &gt; I quickly hacked bitbake&#39;s cooker.py to try this out:<br>
+&gt; &gt;<br>
+&gt; &gt; -=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 dbfile =
+=3D (self.data.getVar(&quot;PERSISTENT_DIR&quot;) or<br>
+&gt; &gt; self.data.getVar(&quot;CACHE&quot;)) + &quot;/hashserv.db&quot;<b=
+r>
+&gt; &gt; +=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 dbfile =
+=3D &quot;/home/alex&quot; + &quot;/hashserv.db&quot;<br>
+&gt; &gt;<br>
+&gt; &gt;<br>
+&gt; &gt; And then made two build directories with shared SSTATE_DIR.<br>
+&gt; &gt;<br>
+&gt; &gt; TL;DR: everything ran smoothly and as expected.<br>
+&gt; &gt;<br>
+&gt; &gt; I ran overlapping builds, added no-ops to gnu-config recipe to &#=
+39;force&#39;<br>
+&gt; &gt; hash equivalency, and there were no errors or crashes, and sstate=
+ was<br>
+&gt; &gt; reused as expected.<br>
+&gt; &gt;<br>
+&gt; &gt; So I think we should do it like this, subject to &#39;shared-ssta=
+te&#39;<br>
+&gt; &gt; setting in bitbake-setup, on by default.<br>
+&gt;<br>
+&gt; PERSISTENT_DIR is *not* designed to be shared between builds. it might=
+<br>
+&gt; happen to work but is a really bad idea. Personally, I think those<br>
+&gt; cache directory variables and cache layout need redesigning so we<br>
+&gt; should probably take the opportunity to do that.<br>
+<br>
+I am not sharing PERSISTENT_DIR. Only the hash equivalency database in<br>
+hashserv.db, which I believe is fine because sqlite has locking<br>
+mechanisms and is explicitly designed for it.<br>
+<br>
+Alex<br>
+<br>
+-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-<br>
+Links: You receive all messages sent to this group.<br>
+View/Reply Online (#226806): <a href=3D"https://lists.openembedded.org/g/op=
+enembedded-core/message/226806" rel=3D"noreferrer" target=3D"_blank">https:=
+//lists.openembedded.org/g/openembedded-core/message/226806</a><br>
+Mute This Topic: <a href=3D"https://lists.openembedded.org/mt/116487236/704=
+3332" rel=3D"noreferrer" target=3D"_blank">https://lists.openembedded.org/m=
+t/116487236/7043332</a><br>
+Group Owner: <a href=3D"mailto:openembedded-core%2Bowner@lists.openembedded=
+.org" target=3D"_blank">openembedded-core+owner@lists.openembedded.org</a><=
+br>
+Unsubscribe: <a href=3D"https://lists.openembedded.org/g/openembedded-core/=
+unsub" rel=3D"noreferrer" target=3D"_blank">https://lists.openembedded.org/=
+g/openembedded-core/unsub</a> [<a href=3D"mailto:dchvs11@gmail.com" target=
+=3D"_blank">dchvs11@gmail.com</a>]<br>
+-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-<br>
+<br>
+</blockquote></div>
+
+--0000000000002f4b0f0645403321--
 
