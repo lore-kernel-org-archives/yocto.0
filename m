@@ -2,113 +2,125 @@ Return-Path: <alex.kanavin@gmail.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 54D9DD3B7C1
-	for <webhook@archiver.kernel.org>; Sat,  6 Dec 2025 08:41:00 +0000 (UTC)
-Received: from mail-qv1-f44.google.com (mail-qv1-f44.google.com [209.85.219.44])
- by mx.groups.io with SMTP id smtpd.msgproc01-g2.2533.1765010454239583142
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 5C00BD3B7DE
+	for <webhook@archiver.kernel.org>; Mon,  8 Dec 2025 10:32:01 +0000 (UTC)
+Received: from mail-qv1-f45.google.com (mail-qv1-f45.google.com [209.85.219.45])
+ by mx.groups.io with SMTP id smtpd.msgproc01-g2.5457.1765189920511160750
  for <yocto@lists.yoctoproject.org>;
- Sat, 06 Dec 2025 00:40:54 -0800
+ Mon, 08 Dec 2025 02:32:00 -0800
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20230601 header.b=HjAUH/4U;
- spf=pass (domain: gmail.com, ip: 209.85.219.44, mailfrom: alex.kanavin@gmail.com)
-Received: by mail-qv1-f44.google.com with SMTP id 6a1803df08f44-88677f91e9dso27051876d6.1
-        for <yocto@lists.yoctoproject.org>; Sat, 06 Dec 2025 00:40:54 -0800 (PST)
+ dkim=pass header.i=@gmail.com header.s=20230601 header.b=QiB/N04/;
+ spf=pass (domain: gmail.com, ip: 209.85.219.45, mailfrom: alex.kanavin@gmail.com)
+Received: by mail-qv1-f45.google.com with SMTP id 6a1803df08f44-882399d60baso38416586d6.0
+        for <yocto@lists.yoctoproject.org>; Mon, 08 Dec 2025 02:32:00 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1765010453; x=1765615253; darn=lists.yoctoproject.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=5JyRh9D/1rkGIXnF+qVeNqIRMSI/V5YSr67cqwHoN7o=;
-        b=HjAUH/4UXJL/nDqc7LqtU5cyi/iernFjqEiUJqXx86HymLJOB6R0FnofMAkQ7L2GFY
-         UBUUAzd4WfQEG2/LaE4M6edBrlZXh+hE5OQU44tEIbDFMMTAH0Pikpr83xRyrOqScZut
-         QAZNbrC+SbkXMlpGZxuZXtc8Uxd67g1lOWpoV3k0f/eEgsN0DP3lqccgrkR0y3yJdrrS
-         KVigaeLQIjm4uWCB2LdyQTt/qCxrse4VzWZNhqwm0jNDj6t7KCW1amomhfoelsm9TUgF
-         q0hRojfQB1KZPCyz0yvXKb44t1mPen9e0HGMxAT/yZ8tQsh9pHyfEjH8H2PLV+EVTifp
-         aDeA==
+        d=gmail.com; s=20230601; t=1765189919; x=1765794719; darn=lists.yoctoproject.org;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=u+hCXlP/9g8z7qly2i9qD3h1gK8dQCM4RzmawBWdWOw=;
+        b=QiB/N04/Yu5oAtq1vd1/NiO3tr1Sue/585VTkbY+I6kVaJOo3IPUPHZFt/JAhdBUfe
+         xXvL5J7XCmg7q39QmVmjwkLCAaRBXiktp7jxa5AHuoVTrhpEpXmG+6J0Al6R4e43bMus
+         hOnkMGU4Jm9LutIPCPHvLajnau5GhtaFfE0hlx0eusb1KDC8vS1XsW2eGIeHcikzQZ0K
+         IdFBv2OqrfjoFYZ9N1WBHHTMUbZMB6JKTxAvU+I/7Tldjffwr53QLU8qb7O5ReCqP1av
+         oycpEf8h2csZ6ywqNftWzvMkjT9Sx/17FFAXgA9+9BSugmpFi+htMeaw5hA/MuexV+tu
+         3jKQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1765010453; x=1765615253;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=5JyRh9D/1rkGIXnF+qVeNqIRMSI/V5YSr67cqwHoN7o=;
-        b=W0Us+SkV8O9pU2jBUZVlSapzYZt94FuvgvkHRJCgvrNSzlK01usKGhpBeezy9wU3tG
-         fSKA8AV5EtBxJNqWipVgrf/P8oREbf7UzCAiMwL8caCgPrgYJER03PH0EFc21TGpyglI
-         zNJRZLI8w9reC3GZeVEgdyuPJhTqg2RonBOv0d3kBLpNt1D3a1LFP8RTUZUIfjTPiRv/
-         nye1QT1QoZo+QkEa3g7BaEjYKEubhIgz4oQV9C34ePb1tMcUDHV2Lg4JixUdCvvJfhGS
-         8GTlIRBRU6JnPC0NaqkT93pbyK0GtyX4MDLcZbTrDVbc659w/JPI60Qk+TV1fUqV17vy
-         cVGA==
-X-Forwarded-Encrypted: i=1; AJvYcCUT7f8YpyNHkp9DWs4Mps3a3z7n1Wfw8Xiv6MRDP6xxIpYxaehY8xXWmgw0ZN6m108kbN/huQ==@lists.yoctoproject.org
-X-Gm-Message-State: AOJu0Yx02cg2Vd/rIebWUaNUoyKV5fkE0YaDe57Hg+TTcfmbrTAJ0e/H
-	EotBWjjHj3rMylWD/ctlf72YDKGI/W+r9Yozvnpe1gnRyo+PnvarVukO8PSAX6m6qoRcKZxGWY2
-	Afl2iF29almNe5cAwPPA9bw3v1J70y2E=
-X-Gm-Gg: ASbGncur88XNF3EBQTP95q3QYjJnp60hSYRX6Ccxrd+JMPiHzNxYa47NfZsXWDtPfpA
-	mN3Gt6DHvB8JjTZz54ViBy+nYUPcdSoBNxSgs4v1lXntyJK9Fx+PhJ2MsmxFdzo6YckdVgvhKFK
-	8vlfn6uvsRg+k2IJQ9hJWkJLXiush4E1rw+6u1WgYWRvWjIZZFPfKNR31lbfgCMvii9igBdYLfK
-	l7soNDTYYc4AaVoFD8sBqbmbecaHaBnrsfK9+zL3iylW9htubUu2Q6tjOgktRUt1kfJdenK7JQU
-	/OtYdLvFhIP+JrOy/0RpgjtUC27G3A==
-X-Google-Smtp-Source: AGHT+IGchlBt9l+pJSIoz5zt6mU5ZuF+SJRYH3u4NRqOahbAAEWwDjKSEHnDBlcON1N5jNmQwxSaG4Q7ftqTydFO2ks=
-X-Received: by 2002:a05:6214:ca7:b0:882:4580:a86f with SMTP id
- 6a1803df08f44-888244f33bfmr169245946d6.6.1765010453153; Sat, 06 Dec 2025
- 00:40:53 -0800 (PST)
+        d=1e100.net; s=20230601; t=1765189919; x=1765794719;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=u+hCXlP/9g8z7qly2i9qD3h1gK8dQCM4RzmawBWdWOw=;
+        b=okAksiVJVxvPTR0lfoTxIyE9hLDW6tkeNWRwSR/O+V7xoy2JFWXtuR8X3IpVEpvFqk
+         efjlrrQc3PJpdMj4isiDJ8pir5rTCZRgFu1TTAhKH8ppjWvndba1Faha9V/cR6MDLo/s
+         g4bGh69eGRNYH3yz1+S6FYZEg/nQHD4sjsNxb46tcYTkxe3QhoxnvBgiQ9ovQq5cdrBL
+         S29ucHpFZN6VZxZWYs9C8y7VyX7A8bVSnDNZ+ue1wROM75cy0g9zbTQqVrC0u8iDGeKD
+         Q9DZsQ7EoyTSBcEORISojv86NeeQO5bdehe5U+F0iCnuQpkkOomoSFHk1S11TlsbBgnU
+         TLbg==
+X-Gm-Message-State: AOJu0YybdqGUqD9LecgM9ysSydKEeijrcZuf4W4VEY3Ddglc691y8FNh
+	zFlFNnln5qWjrG7b8h00seH5MZHUjeP1q00QuuH0L4dQ8yZgM1Qx2brFYQO7qvrCE+iE/S1gkXn
+	yydkMQR5Dpne5wdC/mqludvdkp7aFxJNoZQ==
+X-Gm-Gg: ASbGncvfgvBXY5Grjg1QS5hG6rrKgxZyp9qsHqsbaB5ig1SnfDgkxmIiZpf3ZzlhUnv
+	6W128jfGzsDKoi4XrrH6LBH1SmOLEuALuCHWpVkP/m4kumZ9KwLQ6UW7etHxiMuI8sPzx3OYJ1t
+	sm0KxnwBAoahU2/om1QriPI7zZG7i6gaukNAc+s6uOvDBtlH9o9oeRf5QSGNWOvHm887W2pjUUn
+	eA1qLjjPnbDdQCosChocmRhMPC7T6FN+C01G08jrnxXalzQQOGKDyFC9KtkxtYo5AlU2qvxitaA
+	wrho37r7Sqeu1008/gtIu5WMOCZyxnGe7q1W4M0y
+X-Google-Smtp-Source: AGHT+IGDRcx5W4Gf6KsDSQvJRtn4K/FmlN9ijXjITi1zvTuo0aOiyOrSSLkoc40niNXzcZUJYqTm/scJwMNBcSFn+hc=
+X-Received: by 2002:a05:6214:f2d:b0:880:501f:5dd with SMTP id
+ 6a1803df08f44-8883db686f7mr141094266d6.14.1765189919349; Mon, 08 Dec 2025
+ 02:31:59 -0800 (PST)
 MIME-Version: 1.0
-References: <CAK5yBb8SJ79GDs5aGpz0MGuNNdKf26Z7nw81yNtAsUr9VNq01A@mail.gmail.com>
- <187B446507D0D6B0.100836@lists.yoctoproject.org> <CANNYZj_QRWSTZMne1B0PO8rdo19Ltb=QqQGVmSRk7ZpnaY2MAQ@mail.gmail.com>
- <7cefc9025cec54cc835cd3b065aa653f95a38634.camel@linuxfoundation.org>
- <CANNYZj8bbNnMYWsJb0oz0a3F_gr=zTYkbj8YLKoRYGdF+XbmBQ@mail.gmail.com> <CANDCFSy8dJjVm2qbAgxGDeH3_ywUGLpq=eknCo6n-tgt_7_nsA@mail.gmail.com>
-In-Reply-To: <CANDCFSy8dJjVm2qbAgxGDeH3_ywUGLpq=eknCo6n-tgt_7_nsA@mail.gmail.com>
+References: <MUyE.1764856618420625622.Sp84@lists.yoctoproject.org>
+ <6a0d63c8-3a01-44a3-bc52-27ce3f5587dc@gmail.com> <96936.1764884505239996619@lists.yoctoproject.org>
+ <33793480-bdcc-4b88-ab11-0d493118836e@gmail.com> <CANNYZj8A46=oc3sD=F2H=A33rjmue=tVhTtVBJTabfO3EJLuDQ@mail.gmail.com>
+ <96c47e76-9e94-4d53-90a1-57488b165612@gmail.com>
+In-Reply-To: <96c47e76-9e94-4d53-90a1-57488b165612@gmail.com>
 From: Alexander Kanavin <alex.kanavin@gmail.com>
-Date: Sat, 6 Dec 2025 09:40:42 +0100
-X-Gm-Features: AQt7F2ohvYCMf6kdC7IeTewp2no4jK561v8mFJZcbTvr1Cdlgq9E1Ep_9MZ3dGQ
-Message-ID: <CANNYZj8ff3=tVXJt3rxa3fE0_m9OmDsyBP6A5rrw0b-M7EiUsQ@mail.gmail.com>
-Subject: Re: [OE-core] sharing sstate in bitbake-setup
-To: Daniel Chaves <dchvs11@gmail.com>
-Cc: Richard Purdie <richard.purdie@linuxfoundation.org>, 
-	Yocto-mailing-list <yocto@lists.yoctoproject.org>, 
-	",openembedded-core@lists.openembedded.org" <openembedded-core@lists.openembedded.org>, 
-	Joshua Watt <jpewhacker@gmail.com>
+Date: Mon, 8 Dec 2025 11:31:48 +0100
+X-Gm-Features: AQt7F2pD_fE3iMUbFL4dWCokHWis_sMph6cuLICDByXaUSC73Jgdr88xBbxhySA
+Message-ID: <CANNYZj-x+c_QTSaLPSwMkLPBpG16UdOcNcQCREnBYK3a=11WmA@mail.gmail.com>
+Subject: Re: [yocto] Bitbake fetch does not re-fetch from network if gitrepo
+ is found in DL_DIR
+To: yocto@lists.yoctoproject.org
+Cc: christian.leeb@hitachienergy.com, Gyorgy Sarvari <skandigraun@gmail.com>
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from 45-33-107-173.ip.linodeusercontent.com [45.33.107.173] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Sat, 06 Dec 2025 08:41:00 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/66097
+ <yocto@lists.yoctoproject.org>; Mon, 08 Dec 2025 10:32:01 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/66098
 
-On Sat, 6 Dec 2025 at 04:31, Daniel Chaves <dchvs11@gmail.com> wrote:
-> Hi, Alexander, I saw your question about integrating the hash equivalence=
- server setup into Bitbake Setup. I've have actually tinkered with the basi=
-c hash equivalence setup, and after diving into the documentation for the h=
-ash equivalence looks like we could share hash equivalence data through fol=
-lowing the "Hash Equivalence Server Setup" instructions here:
-> https://docs.yoctoproject.org/dev/_sources/dev-manual/hashequivserver.rst=
-.txt.
->
-> Look at the `bind` and `database` options used when starting `bitbake-has=
-hserv`. Then, on the client side, the configuration would look something li=
-ke this:
->
-> ```
-> BB_HASHSERVE =3D "<bind address of the running BitBake hash server>"
-> BB_SIGNATURE_HANDLER =3D "OEEquivHash"
-> ```
->
-> So, in that scenario the site.conf for Bitbake Setup could enable a bind =
-address of `unix://${TOPDIR}/../hashserv.sock` to the BB_HASHSERVE.
->
-> And the server can be started with something like:
->
-> `bitbake-hashserv --bind unix://${TOPDIR}/../hashserv.sock --database ${T=
-OPDIR}/../hashserv.db`
+On Fri, 5 Dec 2025 at 19:12, Gyorgy Sarvari <skandigraun@gmail.com> wrote:
+> >> If fetch is deemed successful, it is stored in the shared state cache,
+> >> and then it is not repeated until the relevant signature changes - I
+> >> think this is the metadata reference you found.
+> >> However as long as the download folder's content is only modified by one
+> >> project only, it supposed keep track of it fine.
+> >>
+> >> One question about the DL_DIR: is it possible that it is shared between
+> >> multiple projects, while keeping separate shared state cache? Or that
+> >> the DL_DIR's content modified manually?
+> >> The shared state cache supposed to keep track of what is downloaded by
+> >> bitbake and what is not, but if the DL_DIR's content is changed without
+> >> bitbake (or by a separate bitbake), that can break the shared state, and
+> >> cause such issues.
+> > This is not correct. Shared state does not track what is downloaded.
+> It depends on how you interpret it. Sstate does track the do_fetch task,
+> and does know if it needs to re-executed or not.
 
-Hello Daniel,
+The process by which bitbake determines which tasks need to be
+executed, and in which order, is well defined, and it is not like
+that.
 
-the mechanics of configuring and starting the server are not the
-problem. The problem is how to do it in bitbake-setup workflows such
-that users don't need to know or care: no separate configuration,
-separate commands or leftover background processes. It should just
-work, quietly and without fuss. I have some ideas (around sharing the
-database between servers started privately by bitbake invocations (if
-BB_HASHSERVE is "auto")), just need to sit down and write patches.
+This is how it is:
+1. Bitbake unrolls the target specified on a command line into a
+directed graph, where nodes are tasks and edges are task dependencies.
+Each task is given a signature with a hash.
+2. For each task bitbake checks if there's a stamp in the build
+directory with a matching hash (meaning the build directory already
+has the outcome of the task), and if so, the task, and everything it
+depends on, is pruned from the graph.
+3. For each task that is sstate-enabled (neither fetch nor unpack
+tasks are in that set), bitbake checks if sstate contains an object
+matching the task signature. If so, everything that the task depends
+on is pruned from the graph, and the task is replaced with its
+setscene variant that unpacks the sstate.
+4. Remaining tasks are executed in order that respects their dependencies.
+
+Sstate cache (or code that manages it) does not track tasks, it only
+stores and retrieves sstate objects, and it does not know anything
+about what tasks in a particular build need to be executed.
+
+> > It is also fine to share DL_DIR between multiple builds and projects.
+>
+> I did not write that it is not fine to share DL_DIR, but but you need to
+> know some caveats. If you run bitbake -c cleanall in one project, you
+> are up for a good time in the other one, if they use the same recipe.
+
+That is fine to do as well, as long as no other builds are running at
+the same time as cleanall. The other project either does not need to
+run fetch/unpack and won't notice sources are absent, or it will run
+fetch, fetch will notice the sources are absent in DL_DIR, and then it
+will simply re-fetch them.
 
 Alex
 
