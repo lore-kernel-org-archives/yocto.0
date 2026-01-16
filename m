@@ -1,92 +1,100 @@
-Return-Path: <ManWag@FastMail.FM>
+Return-Path: <jester@theyoctojester.info>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 362ABD44C5E
-	for <webhook@archiver.kernel.org>; Thu, 15 Jan 2026 14:54:34 +0000 (UTC)
-Received: from fhigh-a7-smtp.messagingengine.com (fhigh-a7-smtp.messagingengine.com [103.168.172.158])
- by mx.groups.io with SMTP id smtpd.msgproc01-g2.37540.1768488872784386101
+	by smtp.lore.kernel.org (Postfix) with ESMTP id BD008D47CD0
+	for <webhook@archiver.kernel.org>; Fri, 16 Jan 2026 10:30:15 +0000 (UTC)
+Received: from mail-dy1-f181.google.com (mail-dy1-f181.google.com [74.125.82.181])
+ by mx.groups.io with SMTP id smtpd.msgproc01-g2.3092.1768559411618643767
  for <yocto@lists.yoctoproject.org>;
- Thu, 15 Jan 2026 06:54:33 -0800
+ Fri, 16 Jan 2026 02:30:12 -0800
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@fastmail.fm header.s=fm2 header.b=Ph3MmAsv;
- dkim=pass header.i=@messagingengine.com header.s=fm2 header.b=felEBAWa;
- spf=pass (domain: fastmail.fm, ip: 103.168.172.158, mailfrom: manwag@fastmail.fm)
-Received: from phl-compute-03.internal (phl-compute-03.internal [10.202.2.43])
-	by mailfhigh.phl.internal (Postfix) with ESMTP id F212A14001CC
-	for <yocto@lists.yoctoproject.org>; Thu, 15 Jan 2026 09:54:31 -0500 (EST)
-Received: from phl-imap-12 ([10.202.2.86])
-  by phl-compute-03.internal (MEProxy); Thu, 15 Jan 2026 09:54:31 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=fastmail.fm; h=
-	cc:content-transfer-encoding:content-type:content-type:date:date
-	:from:from:in-reply-to:message-id:mime-version:reply-to:subject
-	:subject:to:to; s=fm2; t=1768488871; x=1768575271; bh=GhrcO1If4A
-	SpOPdUT7l55NnlIvhklOxFqUmgBCutZ7g=; b=Ph3MmAsvS6UwYWknPhdDKxSIq9
-	jQawmR6qWkqsDATtgnZA9MJkLA49n9qq0qa221HixX3wAuB3IDy58eOoJlZrVWM1
-	DOieUWxW+k7peEeggodsZDVYfMZjH5DUiQcmUVMnbwF1LWEnNA2DSqtj/3CPl9tu
-	tbOwpx0mPzLVsVbP5snDtZOngasDmRd5ZVd4hC8t132E8JHwDJID8asIcLY7kjOd
-	UIw1idvnQR8IBQibZPOLtXvpMIYM2vynQQ7tL776BnDKBnQXLnCjFapNkKVkeKHU
-	8CSxSGPRlv9iK/JEH2bQe8k1t+RJpDXUpvhkx0imOpTlWwhrhyP3iiH0aWBQ==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-	messagingengine.com; h=cc:content-transfer-encoding:content-type
-	:content-type:date:date:feedback-id:feedback-id:from:from
-	:in-reply-to:message-id:mime-version:reply-to:subject:subject:to
-	:to:x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm2; t=
-	1768488871; x=1768575271; bh=GhrcO1If4ASpOPdUT7l55NnlIvhklOxFqUm
-	gBCutZ7g=; b=felEBAWa0yQSTrIAn4oIUKtOJzOnBQQaF9MgZOdLPdxs8wjxDOL
-	cULNgtFRq/8HnvHI032TjeCAecGlKGjn3uaGfJ6E1AvgCE5g1mM32WbF3j9aSdKT
-	0d3IwOP8hgCK8dxruuQq5fARw48Hn3hJSll2hbekjDdLKX4BujfiOltYNDI/esDo
-	A+ApkEOyreausjZMzFH01BBRwoLjf2+lenChtfePm23amngZMAC6pYFNI6nHBLE7
-	u+cJOumCh5B9BfstSoNOUakFoKVbrrQMfPpNGtZTzy3N6DYonWrhOmztN0CZJFX9
-	j3gcLq/TeGDF8L+5D687oRk6HbHBWyQfHOA==
-X-ME-Sender: <xms:p_9oaYtpMgMLGKhsZT0OXIojHHanANunK7MHsAxAVtgwWT_N1KEVMQ>
-    <xme:p_9oaQSm_Fjl3fwxrCmdk9ID_hrdsaMahdF05NIsuNqtoBBLYF-hDy0YOfgmzjref
-    ipWq32IpaDnfHbKqXWYl8s1x8WQOeWeOOGfcVwofGkJKoDyHpnF9w>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeefgedrtddtgdduvdeifeehucetufdoteggodetrf
-    dotffvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfurfetoffkrfgpnffqhgenuceu
-    rghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmnecujf
-    gurhepofggfffhvffkufgtgfesthejredtredttdenucfhrhhomhepfdforghnuhgvlhcu
-    hggrghgvshhrvghithhhvghrfdcuoeforghnhggrgheshfgrshhtofgrihhlrdfhofeqne
-    cuggftrfgrthhtvghrnhepjeetheefheffueekvddvheffieeiueeitdevvdffffeiuedu
-    jeeghfevveeuffelnecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehmrghilh
-    hfrhhomhepofgrnhghrghgsefhrghsthforghilhdrhffopdhnsggprhgtphhtthhopedu
-    pdhmohguvgepshhmthhpohhuthdprhgtphhtthhopeihohgtthhosehlihhsthhsrdihoh
-    gtthhophhrohhjvggtthdrohhrgh
-X-ME-Proxy: <xmx:p_9oaTe2ApkG5r7If6fckcdAt4dU8QB5RJbbkFPzYZF4WsQJTqDK6Q>
-    <xmx:p_9oaZKABquokdarYNIpmTX8kdKSgTDYQ-_Et2DVIqkXcJucQsXXbA>
-    <xmx:p_9oaZbfBG3n0heXrBGxwE1VW9dVhPxrj-HVuEnG4Zf6p2gasQE1mA>
-    <xmx:p_9oacvj5r9HdfTTvUTjrQasj3tU2ac2a6GdR-VKGOLz74gcnlpjsA>
-    <xmx:p_9oae3ll-I-_2WrCfMsoSEqozfnX05hrlgvQ9hkyKGsjVcPJDupgOoT>
-Feedback-ID: icb4a41f2:Fastmail
-Received: by mailuser.phl.internal (Postfix, from userid 501)
-	id CE03A1060065; Thu, 15 Jan 2026 09:54:31 -0500 (EST)
-X-Mailer: MessagingEngine.com Webmail Interface
+ dkim=pass header.i=@theyoctojester-info.20230601.gappssmtp.com header.s=20230601 header.b=BCMH0qSX;
+ spf=neutral (domain: theyoctojester.info, ip: 74.125.82.181, mailfrom: jester@theyoctojester.info)
+Received: by mail-dy1-f181.google.com with SMTP id 5a478bee46e88-2ae5af476e1so926594eec.1
+        for <yocto@lists.yoctoproject.org>; Fri, 16 Jan 2026 02:30:11 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=theyoctojester-info.20230601.gappssmtp.com; s=20230601; t=1768559411; x=1769164211; darn=lists.yoctoproject.org;
+        h=content-transfer-encoding:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=6hB+Ueav/leIcdou1/F8CqUnMUsVQJomw5RSJBhAkUU=;
+        b=BCMH0qSX7kTa17q5eOAfdDukIOERJ/tsK6MuWs8ODb10nqiNLn7laxfssedr0QZzXK
+         nQqO8UU+aAsNXTX/lh48BcvwmvFIekA6EM/X0bvQ2AbjzfY0kUSGyrn6aBhFfrj5dL/G
+         qisFOElmDgx0raSEWKEF+S6KxKKRFbk0YHD7oXlchqDIDZOa26YkwBdgAlYlRdoAZslt
+         4zBLyKkxKnCfrpIR0S2rpxyDByYlwmcxXdumnKKym5MxEeSyH+VNTxihiTtico7WWeQs
+         L0BhQ0DmAcHsZtFosDUSLN+4chZ6FblfL5K9yyhG/tTE4HeU5gOHq+0aUERZ/NOvDSV0
+         VIyw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1768559411; x=1769164211;
+        h=content-transfer-encoding:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
+         :to:cc:subject:date:message-id:reply-to;
+        bh=6hB+Ueav/leIcdou1/F8CqUnMUsVQJomw5RSJBhAkUU=;
+        b=qXt0Ie3vV9vdHhGGzpCfuVeJFGfOO9nKZmdaH2ijawtZQhk7ZnD2iCeAbhH2Xj6RTv
+         j/k81ResRKc7JBjIiQhakbO74OWPPprq5SOZAd9PfZ3LM9tJtUxOGd+OEWRf/M46sYLH
+         ZQkLDFQn4XIr9ulBxe6HOfhzgzA8qHuKGvEogc7n9Pi9BJKHjwwHksmw4Ag69KeMhrqt
+         /QR2KKMITvsmCqYwYdcawFN8JrUpcmaG/detRpzLF8bkcdLpHl+xBJ/EO+wC3tIkTRj4
+         fPjaR2XHDQeHRFjaseLM8A9kyqlqHZEGAOyYbkfBWIRWdDyFJDtieeeKuM69zqloV9of
+         +miQ==
+X-Gm-Message-State: AOJu0YxYImei45m6aArcoht4Adm4W0p581g/UaSFxujx5Hm2ZUa21+gv
+	Hmm7S92Ijxp3T6YMXUSXbR+Z0yHyO4l7/oXbmPWLJsThjVaJnTCr27r9zBMEv0S9lai9NeKwsMM
+	PhnqomT39JO0yyMb/Kbxf0RYrD36hJA7kkQ2KCPgW7nCXu5RII+abh/s=
+X-Gm-Gg: AY/fxX6DKnTkaa7k7kVxct2ggBoGbo1Swa//ljGvUBuJBG1qJbikIWcB5KaQESD6/MQ
+	JQU0y553EFyn9NzmbATV+rqW6ugbMTxdjmFCU50rxdenxe8Zny7blzRprjaBy9RcZiJ2I63Z+OS
+	PEdZcfFWu6BpGkZ3Kq0sp8/q+T+2QitSHxJzE9P4wkEfY4jb3pTuHHgxeXH0Z0U+3pp9Ny5CrJ2
+	athCQtxIcKmbGihAShot/dGgc8N/+R6e0/+DSAYsrPqSb3ALqThOu+Tb4gIUMUv+uQC7bpWnnqH
+	Uk1utpSs5re0/94pUFinQSLvJYZ/7A==
+X-Received: by 2002:a05:7300:f60b:b0:2ae:5022:fe7c with SMTP id
+ 5a478bee46e88-2b65b8c27b9mr6303810eec.1.1768559410545; Fri, 16 Jan 2026
+ 02:30:10 -0800 (PST)
 MIME-Version: 1.0
-Date: Thu, 15 Jan 2026 15:52:40 +0100
-From: "Manuel Wagesreither" <ManWag@FastMail.FM>
-To: Yocto-mailing-list <yocto@lists.yoctoproject.org>
-Message-Id: <7b5cf64b-cac2-4346-a038-2ac334162651@app.fastmail.com>
-Subject: Want to select a SoC with good Yocto support, please advise
-Content-Type: text/plain
-Content-Transfer-Encoding: 7bit
+References: <7b5cf64b-cac2-4346-a038-2ac334162651@app.fastmail.com>
+In-Reply-To: <7b5cf64b-cac2-4346-a038-2ac334162651@app.fastmail.com>
+From: Josef Holzmayr <jester@theyoctojester.info>
+Date: Fri, 16 Jan 2026 11:29:43 +0100
+X-Gm-Features: AZwV_QhI_KrLX8Pev1kDkkOVZ96AQUUa5oj6o2mXZS8_O8VrlFPJLr_XKHIxEME
+Message-ID: <CAEt6Nwo=Feq4d_1USjT6E4Q0LNueuxM6hxWw73VY4DBNM9y3RQ@mail.gmail.com>
+Subject: Re: [yocto] Want to select a SoC with good Yocto support, please advise
+To: yocto@lists.yoctoproject.org, ManWag@fastmail.fm
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from 45-33-107-173.ip.linodeusercontent.com [45.33.107.173] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Thu, 15 Jan 2026 14:54:34 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/66151
+ <yocto@lists.yoctoproject.org>; Fri, 16 Jan 2026 10:30:15 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/66152
 
-Hello everyone,
+Howdy!
 
-I'm looking for SoCs that can read 3 MIPI CSI-2 virtual channels (768x576x60fps), do (preferably hardware-accelerated) Lens Distortion Correction (= de-fisheye) and encode the streams to h.264/h.265 or VP8/VP9. I'm not yet sure if I need hardware-assisted auto-exposure control loops via V4L2 and I2C to the camera sensor. Might very well be.
+On Thu, Jan 15, 2026 at 3:54=E2=80=AFPM Manuel Wagesreither via
+lists.yoctoproject.org <ManWag=3DFastMail.FM@lists.yoctoproject.org>
+wrote:
+> * Texas Instruments AM62x
 
-Based on my research, the following SoCs qualify. I don't yet have any practical experience with any of them, and would like to consider the quality of their Yocto support in my decision finding process. In other words: I don't want to shoot myself in the foot by selecting a chip that is a pain to work with or is lazy in updating newer Yocto versions.
+meta-ti is one of the least painful BSP platforms that I have worked
+with so far. Your board vendor might (probably) not stay up to date,
+but it's a super solid starting point.
 
-* Texas Instruments AM62x
-* NXP i.MX9
-* MediaTek Genio
+> * NXP i.MX9
 
-I'd appreciate any comments or advice on these and other SoCs that you think would be worth considering.
+iMX6, 7, 8 were solid workhorses under Yocto, but with iMX9 and the
+move to meta-imx I found the BSPs to be a lot more painful to use,
+sadly. Still it depends a lot on what your board vendor makes of it.
 
-Warm regards,
-Manuel
+> * MediaTek Genio
+
+No hands-on experience, cannot comment.
+
+> -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
+> Links: You receive all messages sent to this group.
+> You automatically follow any topics you start or reply to.
+> View/Reply Online (#66151): https://lists.yoctoproject.org/g/yocto/messag=
+e/66151
+> Mute This Topic: https://lists.yoctoproject.org/mt/117280167/4689568
+> Group Owner: yocto+owner@lists.yoctoproject.org
+> Unsubscribe: https://lists.yoctoproject.org/g/yocto/unsub [jester@theyoct=
+ojester.info]
+> -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
+>
 
