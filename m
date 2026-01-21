@@ -1,511 +1,430 @@
-Return-Path: <debal.ghosh@intel.com>
+Return-Path: <niko.mauno@vaisala.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 67578C4450D
-	for <webhook@archiver.kernel.org>; Wed, 21 Jan 2026 11:57:01 +0000 (UTC)
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.16])
- by mx.groups.io with SMTP id smtpd.msgproc01-g2.9899.1768996613144001016
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 71B98C44524
+	for <webhook@archiver.kernel.org>; Wed, 21 Jan 2026 12:40:31 +0000 (UTC)
+Received: from AS8PR04CU009.outbound.protection.outlook.com (AS8PR04CU009.outbound.protection.outlook.com [52.101.70.113])
+ by mx.groups.io with SMTP id smtpd.msgproc02-g2.10590.1768999224579268721
  for <yocto@lists.yoctoproject.org>;
- Wed, 21 Jan 2026 03:56:53 -0800
+ Wed, 21 Jan 2026 04:40:27 -0800
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@intel.com header.s=Intel header.b=icvusmOE;
- spf=pass (domain: intel.com, ip: 198.175.65.16, mailfrom: debal.ghosh@intel.com)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1768996613; x=1800532613;
-  h=from:to:subject:date:message-id:references:in-reply-to:
-   mime-version;
-  bh=M2bZxKAMqNwbNJSscZtWXuE7SXpP6SnL347zajB4bf0=;
-  b=icvusmOEFmwsPncDKOJDqYe+12tJDgji+/1p/ZU1GSZv7qnN43WiloUN
-   jTRsOYSHtQl64HIPvXy65OyLm9sIX/G+UWxlI/YyyOD6/559tx2VLsYfh
-   4CEfqJ/AsR4XjyJ15JanlK88RuIJ/nYRxM+oUVclpk3/vME8S6FdOD9FV
-   xlFnfyi3Eq2+trLJPvSMdJWY7j990OkXepkjV51bdwbS1mWRCThB6jrJv
-   nIGV1B0xQbbi4jG5C8BNgWDOUT9nJGH2ufPvCuGWt7jXYpDM7G1+YGVMe
-   KqFGqrU/gO4GrAM4mfdYRAYon0DIhoMyE9jq9ao4N6mmBjQPnSZ93+89J
-   A==;
-X-CSE-ConnectionGUID: v/TS+jRAS7OqgUGe2j5YWQ==
-X-CSE-MsgGUID: HOMvtVOQROmFYAfLx6TsHQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11677"; a="70385800"
-X-IronPort-AV: E=Sophos;i="6.21,242,1763452800"; 
-   d="scan'208,217";a="70385800"
-Received: from fmviesa001.fm.intel.com ([10.60.135.141])
-  by orvoesa108.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 21 Jan 2026 03:56:52 -0800
-X-CSE-ConnectionGUID: HGewIokbS+CqMhUdX/Y9kw==
-X-CSE-MsgGUID: K4Ox6iPISH61+nsDVSvuJg==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,242,1763452800"; 
-   d="scan'208,217";a="237671474"
-Received: from orsmsx901.amr.corp.intel.com ([10.22.229.23])
-  by fmviesa001.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 21 Jan 2026 03:56:51 -0800
-Received: from ORSMSX902.amr.corp.intel.com (10.22.229.24) by
- ORSMSX901.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.35; Wed, 21 Jan 2026 03:56:50 -0800
-Received: from ORSEDG903.ED.cps.intel.com (10.7.248.13) by
- ORSMSX902.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.35 via Frontend Transport; Wed, 21 Jan 2026 03:56:50 -0800
-Received: from CY3PR05CU001.outbound.protection.outlook.com (40.93.201.6) by
- edgegateway.intel.com (134.134.137.113) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.35; Wed, 21 Jan 2026 03:56:50 -0800
+ dkim=fail reason="dkim: body hash did not verify" header.i=@vaisala.com header.s=selector1 header.b=c/TJlz7b;
+ spf=permerror, err=parse error for token &{10 18 spf.protection.outlook.com}: limit exceeded (domain: vaisala.com, ip: 52.101.70.113, mailfrom: niko.mauno@vaisala.com)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=Cf6Y9dwmqjVQeUBbx0tvEOb2clnmpcEdPn/F9TY4OggtlNcwhwjaygDAbgZ49201JDDCtUn//EZSpWL5zElk/cP2OToy0pfvRrcDhfG8NdXOvpSIGS0k4GRJxkhSj5SUC+jQF+9CrSHY91LnDh75f4incza3zJz4dmbFs8MfLV5NmAaKM/ZqBlKLQ8/VFEUS0+oUiYGyaWxmf8X373PRL/qyG9JkYkjsnVpbu5AC7KoJ+FOebAhz4MeLMbbaQzA6PxMAaqe2FOABw5InTyJPKxhyJT5P/Z4Anm5ii/ln/oNFPH9pq9rAnY49/q0xZCAr5vSw5VvdNS/1lwy7mJXMDA==
+ b=Co9PmGLGQELTe3FrkkKFaLtCIGW0C/GA5ou7KA+ir/o+6bJKDlY31vdF2NshxcLNzrdC/ZRLosl5G4vWq7ieqT1H8Y0vwf5wSCYuvoglM5LJTnAnQsxuY7XgPvx4Nj9vj36PCoRKaGaPBFCMSjhJMa7Xb3d8Jqc6cKaHEwgIMAfXzkI0Nga51nYjT4seka6N2EbO9WoE9Zg4bKpMjKU7z7V/Jft2asavcwCfk51D2Nj7f79JGh1SYfmfpHcUCwJF8sWkAt88Z+0pOOwOSLxCmCHup/VXn3K2EEReKqdeVN3a7L5RIqJ+mB6AWFaixElxd5UkwRxBfmaxtwAh+jjQpA==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=QIrPWmNdVDMJiCXihKsLC/dgF3LMDlzBNJbz0RhfioU=;
- b=usjTlg8z/7/8CdimDr4leK3/iP7xaQsQlrmUCn7QHH6jeuhPdvWZ6vjDUGIe60WnOOD4Vv3KJKoNWg7rTGluk+Ih1Johf22R0RQEvQOHrKqlqWhJV5wIw50TnvWGYfMnXk2O9Bm7skSKg8q8oRfxyNPY6E/BXPlL/MgBgboox0Z4l9pSkIAD1huzJzQxb/gY/D2Mj9DFO6J8njQDR6rJwOcEfAl1ibMDNfLKAeXF9xQI/LVxJLTx9ThgktgjH1xA/IreZC4PbOihpvgAasv5vzmPpEVTgbdOCLFjaLJmQZo8NmYzpe2Cx+MwVCQ3MumZjKWzfz7o+afC5PMplDhGEw==
+ bh=UBfZ0KGuYs3RsyNjfuR8ZbF8fP2sjGxzf5o5Sk8FIvU=;
+ b=kVyJ/hVaVYgT1RuBXIxbaPvzDOziXnItutovBzROgulKYnI+RZ/cC6uBECDh8Jubq/MREz1iK+0Z0Kl5w4PepjthF1CTKUoZI094RWreO38z35wRWKvQ9djupe9FU9Qi82V40mOJjDn6JjdJloa1DpesuiyVY3HPLTk9c9/bRW5NBXMZ6s6fH0psxVrJvXlilrR9ooc67IMKeTdQhQ/tqx3xYDLpvWF0hKX1LrJRJOhdCpG6uK+yqg3ETJgiYkA8YYHKh1549q/XbUg8IMaaD2Ca7uZJ0pGmHCtNh3UrQnYsM3OqXdtBIbLzPDlmr3+RZRj9cJq5zAxFq8+zs6c9Ng==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Received: from SN7PR11MB7018.namprd11.prod.outlook.com (2603:10b6:806:2ad::14)
- by SJ2PR11MB7547.namprd11.prod.outlook.com (2603:10b6:a03:4cd::22) with
+ smtp.mailfrom=vaisala.com; dmarc=pass action=none header.from=vaisala.com;
+ dkim=pass header.d=vaisala.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=vaisala.com;
+ s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=UBfZ0KGuYs3RsyNjfuR8ZbF8fP2sjGxzf5o5Sk8FIvU=;
+ b=c/TJlz7bcEarkKVWLPqc1HwqbrFIDddJRCeChn0mk7T15JuPGkp6MRa/6kRKl6BmNVSEBA0OaI+CobFiRh72HRZF31pq+0wsD/aHY1FPqRY+Ap+zocu3b3oFx5YtdjeIRi8nRhdC3Eo14vQDmWDH3EMmipI1s7/Xsduk/O/eAeRp4zVuZNjBVAXXnX8Pc6de2H2sdOSzNfV7osIFSDZUOWkGsf30YOtWRIImEqLcqL457Gg7NYNiF6aTp4T5X067N2U8Mmo0lMLrXvN4NAVhYFEWD0MdI6+D7Gq18z1faV4kPwsPsQ2dLKy1I2wGOR6v98UfP34aJJSD2dEaqIMnnA==
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=vaisala.com;
+Received: from AS4PR06MB8447.eurprd06.prod.outlook.com (2603:10a6:20b:4e2::11)
+ by GV2PR06MB9874.eurprd06.prod.outlook.com (2603:10a6:150:27c::14) with
  Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9542.9; Wed, 21 Jan
- 2026 11:56:43 +0000
-Received: from SN7PR11MB7018.namprd11.prod.outlook.com
- ([fe80::bc48:bc16:39d:b43]) by SN7PR11MB7018.namprd11.prod.outlook.com
- ([fe80::bc48:bc16:39d:b43%7]) with mapi id 15.20.9520.010; Wed, 21 Jan 2026
- 11:56:43 +0000
-From: "Ghosh, Debal" <debal.ghosh@intel.com>
-To: "qa-build-notification@lists.yoctoproject.org"
-	<qa-build-notification@lists.yoctoproject.org>, Yocto-mailing-list
-	<yocto@lists.yoctoproject.org>, openembedded-core
-	<openembedded-core@lists.openembedded.org>, Pokybuild User
-	<pokybuild@yoctoproject.org>
-Subject: Re: [qa-build-notification] QA notification for completed autobuilder
- build (yocto-5.3.1.rc2)
-Thread-Topic: [qa-build-notification] QA notification for completed
- autobuilder build (yocto-5.3.1.rc2)
-Thread-Index: AQHchBhDX8PZ2I/g/kG4erUw19Nit7VPm3hggAz1ff4=
-Date: Wed, 21 Jan 2026 11:56:43 +0000
-Message-ID: <SN7PR11MB7018229D5EA9755643B9A9B2F496A@SN7PR11MB7018.namprd11.prod.outlook.com>
-References: <0101019bb476ef27-8b7fdc51-0e56-4f57-96dd-07d91ed02b9a-000000@us-west-2.amazonses.com>
- <188A35157A84AFC6.2436516@lists.yoctoproject.org>
-In-Reply-To: <188A35157A84AFC6.2436516@lists.yoctoproject.org>
-Accept-Language: en-US
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9520.12; Wed, 21 Jan
+ 2026 12:40:18 +0000
+Received: from AS4PR06MB8447.eurprd06.prod.outlook.com
+ ([fe80::af93:b150:b886:b2bc]) by AS4PR06MB8447.eurprd06.prod.outlook.com
+ ([fe80::af93:b150:b886:b2bc%5]) with mapi id 15.20.9542.008; Wed, 21 Jan 2026
+ 12:40:16 +0000
+Message-ID: <39e25689-f4d2-40d3-8495-00aadb0c331e@vaisala.com>
+Date: Wed, 21 Jan 2026 14:41:14 +0200
+User-Agent: Mozilla Thunderbird
+Subject: Re: [yocto] [ANNOUNCEMENT] Yocto Project 5.0.15(scarthgap-5.0.15) is
+ Released
+To: yocto@lists.yoctoproject.org, chee.yang.lee@intel.com,
+ "yocto-announce@lists.yoctoproject.org"
+ <yocto-announce@lists.yoctoproject.org>
+References: <BL4PR11MB8797B987D5F7D6B03DBACE5EB996A@BL4PR11MB8797.namprd11.prod.outlook.com>
 Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-msip_labels: 
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: SN7PR11MB7018:EE_|SJ2PR11MB7547:EE_
-x-ms-office365-filtering-correlation-id: 901d9a19-f7d3-4fa6-f146-08de58e42561
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;ARA:13230040|376014|1800799024|366016|4022899009|13003099007|8096899003|7053199007|7142099003|38070700021;
-x-microsoft-antispam-message-info: =?iso-8859-1?Q?LzDUFIcK+PV7uxSvuJK5ozjd4Fi7iX0XxPUpNNuskG2r2Yd0wL3XKLssDn?=
- =?iso-8859-1?Q?qtmM23s1moFEcRn3wRhBbLkaEm2RD6xX8Y6CiOtlJiubxUX1Ll4lAYMdmr?=
- =?iso-8859-1?Q?VDKzteIOAfkGnUPl88gFxTPkC1yGzGO/R1MJVA4R07FTn//Mu7Cp4OqZaV?=
- =?iso-8859-1?Q?tl3zOjRVwMFGSD/KMcRi9XtCtAz26JvoD5qwXoUD4gjXm2y+KHMsSAXl/D?=
- =?iso-8859-1?Q?6vzmlzKb3nJEv+DI+jz+zbwcxPFH26nTuKQNDJkTgYhsOsSlccjbWOh6uy?=
- =?iso-8859-1?Q?U4MDVaHWneEJuhAqcdbCMawq33gUHRfLsuhZYg5nrndFDTB6JLDxvENOUj?=
- =?iso-8859-1?Q?kBYW2DhaTmYucRGh3b0L+zsTtVr1RVmmjQdVZP39wROYhbxin7zb481puS?=
- =?iso-8859-1?Q?f8TU73CpJqPVgCtoqydkC2I838S7vszFzPXgpf3F1ACDJkBZwg9u64fdlK?=
- =?iso-8859-1?Q?YVaYB5k1O0Klvc1oRMuM130zwbC5L0yrd6DhDV4kK85LP2axEk7f7x61Ph?=
- =?iso-8859-1?Q?SuZfqqrpKHCNBfKSp2C1ooMSXsaJ8axpBIZ4sWlKzRy7KD7WoeXT3opZWp?=
- =?iso-8859-1?Q?xcYZZbe51v5CPdTpBnm8QrdE9XORewpJUcu/o6lpYw7inpKE9Pyxbm+HX+?=
- =?iso-8859-1?Q?v9CCDTZ4sO5MhMDfOHd497zTmF6OTDojTa7cYATkN2QXOeD7xrmQmfOE6I?=
- =?iso-8859-1?Q?8FtkhmKFn1V/RUUoBTm0qs3+vw19b2iBaRwwXFD5QkNqxn3EdnKv8xweJA?=
- =?iso-8859-1?Q?cAF1xZCr9CgHbcQWmRWl1LYRAIDnlDu9N5OlQPCpvv1w/UfusYicmoQlTk?=
- =?iso-8859-1?Q?9p0aKEoHKWwH+H+BABFGmomG2q3h5G9haFbAh12hio3yDzmxT0Cspd55oR?=
- =?iso-8859-1?Q?FX6UoDz+WCb6Tt78sOHkts3NCfudja0gMthKQXaC+8m4QNX8ERlXuMcD5/?=
- =?iso-8859-1?Q?lMPHX8rwbfpRgmQS83OL2zy5G8M5NvrnHrdqJLjEZaMkYIY5QHlrhXBMTM?=
- =?iso-8859-1?Q?t0qbNlQMlc/nRrfVNQemgT2nm4hS1BHJRX/bQhplP6vlk7Jl9EWi+IYiCE?=
- =?iso-8859-1?Q?0/y0cvemWmc3VwmtOvNAcOLacPH5wiTMDRnp31igL2qOe4lYsuJ6ZEu1XI?=
- =?iso-8859-1?Q?aeZOSc80xjYQqm9gUk6goTi07ftCI2jV1OyZ3qZzZ17gaybdgfDsj2v7LF?=
- =?iso-8859-1?Q?xJh0Bl8yzCCEg2Y9qYFYvWrfoZxHPmfPcNsMpR763xnxNRIN9YbHQ6p6o3?=
- =?iso-8859-1?Q?yCQlhCR1DcU/kXzDgrtRpyXAuN+yWqRiK8zwDP3MLNh4TjCo07RRp6lDRJ?=
- =?iso-8859-1?Q?qvSRoHWclUfZXnnhrtnMY9HKvk3QR0ZMVD4gZVyxHxxeZbRlU3m0nW1OU6?=
- =?iso-8859-1?Q?1bxM0jaGrCugfN/d1vKoQURjhh1GrZiRlrj0ZIRZdQoXtgv/1xRiHJDoXM?=
- =?iso-8859-1?Q?dFe+Lgk67rjH7N6TjFGYQUITJfNU95xECKM+KCe1epYs6D07IcfwPGGqGm?=
- =?iso-8859-1?Q?gkCttoM64ovJY0jbc3HFJ8BFjIcIAhHt11Gb1R85mcxYKhsexMRF9xpSIg?=
- =?iso-8859-1?Q?+Gg4BLy3JC8TMg5WdRh1Tn3iTZ7sz0njOWxp/Tv0ZDYe4M9/lZF/C/1F9O?=
- =?iso-8859-1?Q?7o8mwHPl/h3MtyZq0KzNFnZAOoP5LD0rDo?=
-x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:SN7PR11MB7018.namprd11.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(376014)(1800799024)(366016)(4022899009)(13003099007)(8096899003)(7053199007)(7142099003)(38070700021);DIR:OUT;SFP:1101;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?iso-8859-1?Q?y1IdZDA1vmXVHZEW2fAb8ZGnPG7QjnAecqjJRFVierYNbflx7T0zP2S7s4?=
- =?iso-8859-1?Q?8rghD2/4eAJYtVHBwmKdhQVfLjJytu+BJZyZOuCaI7wE/EF1Bas1GgSbGv?=
- =?iso-8859-1?Q?XtO5QbS4Jjn5gbLJ1pnKWznXOpbdQynMq6KfEK3sbSPbltaAtrFEGtJuvk?=
- =?iso-8859-1?Q?HnG3u+BZpPKg/+9Klt6m2V71xPhTiJEZGtxp/bIpCIB43t9fHcd5ZV8Nyo?=
- =?iso-8859-1?Q?CNAYpXlQCmK2oNFZIvY7B1zNr0ihiP8pdAYuwvbvmTQyTdKrgRTbKA89GW?=
- =?iso-8859-1?Q?yb70JmbkMNsyFSufoVU/eWZbHjkvnuTUUVv8P/q15r7ee+OszCnCb1tEZV?=
- =?iso-8859-1?Q?fDCTtYxVlM7nFnqbrit8pObbtnIholE3rSstffSz+hbj8lgED0mBZV+GoA?=
- =?iso-8859-1?Q?xiJVaDTQq2nuXWwjf9zseYCYH4FvdQ7E2BvNUR3+gWwlpGMfPecO7I56Sg?=
- =?iso-8859-1?Q?3whaEabTgcrNtX26ko6s1x6LpTMDtpTv1LoXa7N1TXFguP3jawCeYmsURX?=
- =?iso-8859-1?Q?ZYU07rDKevqwNn92lO4AFo8eRXQ+wHtHHTsfOTkbCmpY0jsBR6MwPVuYyn?=
- =?iso-8859-1?Q?8PDQtpVxGsM937gtHTFnWfM5znZxQ/8lTKtrQKd+A1CwwOvqBnAui11UMf?=
- =?iso-8859-1?Q?Jw4eFcegCxbcZvJnTHi2PdQGH7cAB/pvPoNY9zJByxnVPg32OJpqz6PIRi?=
- =?iso-8859-1?Q?MKunOFPrp4EWVZ9Mb29F1oZnI8lqsRsD8t9Yossr7Gu0+fc2oggcRcc07Q?=
- =?iso-8859-1?Q?1Ok2VLa2muuiXsqVRY9mq1bMuH20wdHlvhF5LnMheHeGvV1AXlw0Muo09a?=
- =?iso-8859-1?Q?wTk5O+g29RDtwkP+dpBxpqZD7cbm78TsRW334A2dJ0IcKhP39SalW4F1YT?=
- =?iso-8859-1?Q?cW0d1wbvtgwPB71K1pSTDHFLDzSbgFgUkg6xrHY9BCin+zp4abTkJGAf9n?=
- =?iso-8859-1?Q?i6LZ7dxD7K38IfZDhDcQq+JswKdRmiiLgCUv0GWvis5tnIkCTbFOkPlvI/?=
- =?iso-8859-1?Q?YVTH8gO0TO7vlSAsVw7Ku5aWsPNzJEHhsli2grUXa5ZNDFieERx8NjLmsv?=
- =?iso-8859-1?Q?omWxb5yeUCWmW8TUkAwm0reP0Fei+bH8Khgn2AUHPOa21EvdsYjUCduIrU?=
- =?iso-8859-1?Q?DmQAaOoRNWAXrVly1710OoBMuxXoU9t/9WrS1SppSbW1swtq/lkqJjGc1o?=
- =?iso-8859-1?Q?I88/V8PBGPlrylDro1v6nlZmi9XD6srcUaqwZzQ0NczFooQ6H4NvuGLJ/Z?=
- =?iso-8859-1?Q?h7FmIchPDHt4ctzNbL4cWnGitprCKYQQ5OZRXJK7GudNa9YEfBfeTePhUF?=
- =?iso-8859-1?Q?TpDmLe2bb94LUrq2KhPUTfzWiASxtDYSFi/AvCv5SkAFFLZNk89cdKQ0mH?=
- =?iso-8859-1?Q?48puf1G8HbIsYUjtKMyIiJ6Kt6vdjqz5ACwoOhVvJ0vFfcQQCb5ycmB5aW?=
- =?iso-8859-1?Q?sc+3jF5u2wgU4USCP1dBb6rkA9mRlWg44/iWnxGymEIXN6hSCH9P9SEUUY?=
- =?iso-8859-1?Q?EStgdQYNcj6RLkQApSOVuInCXUCII/OQFRQGk8nMBwHdaCMSRMup4YkvU2?=
- =?iso-8859-1?Q?abx62ut2dkNTZofb2jAsnt7wE8NgU26Ey8t57JY3hWOJqW9TwY7b0STKTI?=
- =?iso-8859-1?Q?QsuqmAWo6vih9KrZbheG04iexEDV+1ebT9Rm/LKp/PfKVCf5/3WCoOw4np?=
- =?iso-8859-1?Q?XLwRw+MewZB4UnndDWn7EAJuGIIAwUa9Io1sxR/EMM78OnWz8zyMu8VmLn?=
- =?iso-8859-1?Q?Cld2rweKWPE20UgxjAGBw4nXfV1xbE3wdTCBOsGNJztzc3?=
-Content-Type: multipart/alternative;
-	boundary="_000_SN7PR11MB7018229D5EA9755643B9A9B2F496ASN7PR11MB7018namp_"
+From: Niko Mauno <niko.mauno@vaisala.com>
+In-Reply-To: <BL4PR11MB8797B987D5F7D6B03DBACE5EB996A@BL4PR11MB8797.namprd11.prod.outlook.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: quoted-printable
+X-ClientProxiedBy: GVZP280CA0026.SWEP280.PROD.OUTLOOK.COM
+ (2603:10a6:150:276::17) To AS4PR06MB8447.eurprd06.prod.outlook.com
+ (2603:10a6:20b:4e2::11)
 MIME-Version: 1.0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: AS4PR06MB8447:EE_|GV2PR06MB9874:EE_
+X-MS-Office365-Filtering-Correlation-Id: 08ce219a-c425-44eb-3b94-08de58ea3a8e
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: 
+	BCL:0;ARA:13230040|1800799024|366016|376014|4022899009|13003099007;
+X-Microsoft-Antispam-Message-Info: 
+	=?us-ascii?Q?sr1Nw5XxhZUI89i74aLNKWB8Mjk9v2o/BEMC1CqvvEvfpXdWAT8U2hoP47g3?=
+ =?us-ascii?Q?WdAwroxAqUWa72VMv+NpgGhHzCh/WfijpDNQebQiRYKNJbILf/N3Y1dqRYFm?=
+ =?us-ascii?Q?8zjs/aJM7iwPXV7DkgSvIW+IKK/El4/pawARtWrI+XT0JK/VnfbOXPSrH5CS?=
+ =?us-ascii?Q?fIsfwSXLKujqxzYj3DC729c1hGb/cscTVr/8fuQ2zGGb2FGowJZEnYq5QgXv?=
+ =?us-ascii?Q?2YxIUEkm9iF9G8Mqq6jLUoQuF5zJyhp66H1iLXk7z3cfXQEuMQeAVtV6zusy?=
+ =?us-ascii?Q?LzeFcD0wm7neE5iI1rGgwsCB8OSoVE8zKbL2KBsynH7wFht0S2EZSFqeQzlq?=
+ =?us-ascii?Q?t6zuNsgxFjtn3ZQDIm8H050/8vNQ4ZQs2gDYb6RIfSb1HG1ASj786vIOtN4L?=
+ =?us-ascii?Q?5C2lflVXhuMFGGu6YxsChWpmlhiBI+WOCCAx0oqUiokaOtFxjZEo6lAnGyD5?=
+ =?us-ascii?Q?i8KZtUihk9NsrEkt13xzTzw1/yNSmxOKFsd7xdwFf3Wj+ZpgNh5R0+kmpAlo?=
+ =?us-ascii?Q?YBUYbVslnp2XHhuRMjpZVFlVoUUvVcNvh6XcO9eJ5p4N4Xi15YYVv06jHi9O?=
+ =?us-ascii?Q?UNId/ImV1aEoKIuw/nEx0DcDgJFcu7+pYcZfyPvpoFU2gc69ZaDSRztVE03Q?=
+ =?us-ascii?Q?9W7VPTBKt/WP7ZmM2e7p9JHoRPH6cm1k1ti+RMdwOxEzwbEvsI89bG2RfdTk?=
+ =?us-ascii?Q?/F3VJ4dT7ma3hPJw6EqZDYhk+NDS3XejW/ll73n9k4JHtLYxB6DWGIuI568Y?=
+ =?us-ascii?Q?cgYXIeVRcL/JxsYO0qHVXWtM+sU27R1cEO8wJcQlNNvv9PJnZ/STH1szoz6O?=
+ =?us-ascii?Q?Sp7O/JnkziaahwIhLYyS9lO3H69Q46yfkPInJVgsowapOVh+kJNqe5ZGEdEL?=
+ =?us-ascii?Q?xZHfIJFi/jZTvfA4GOBeAWFKkVswKTn8X7kVpj4rIJW8dltcz7uOlSE+nkRl?=
+ =?us-ascii?Q?1BsTkJgybKJxcsuo/sJLEWS+XCgx2No7mvG+7r1CBppI3BfDoduOul9x8cTB?=
+ =?us-ascii?Q?rBkSuBXmDBoMs5xyRj8qMF3Li/JJ9VV+YpAfCh5iSNAZIVYiMYe558Hov+go?=
+ =?us-ascii?Q?8ddd/Noatu2okG8vXzY9cDRqr+HPmLRX1/kHs9gPBtBErceTEoWDFJR2SAay?=
+ =?us-ascii?Q?YlW3lUnG+E4hCTcd5KuqFYiqMUBe3aIi8jhxoUZWdRPBBqS2AtCfODaDRAZc?=
+ =?us-ascii?Q?capR8uuF1beiAghhipG8R66tj4rFhtFtR4EHKDTQ5nMm5q7JNyMrfCaVUcKE?=
+ =?us-ascii?Q?edtUweqdwy0A+xUdFnxX/kpayR+OMFuNHAlo6ArrKd8smFxw5KpOMTTwP/eZ?=
+ =?us-ascii?Q?HgAEKzk93gZKp9yGrVeKtzMWvolTKbILZIPf/7WwUpgluqct64cbF9PWOFbw?=
+ =?us-ascii?Q?+aFVExnPrOBRc+PQcgDAN5zeuHqWohxxmkvZ+VNUJbGky+KD/ByDG3rNFB0A?=
+ =?us-ascii?Q?L7jHyQaTsNXsKgpTqfVHbKjlUhRF0JyxmCJNZJni/HEXjFH1sz5edBgAxTPp?=
+ =?us-ascii?Q?Bu6Pzwgt77YnSRtTjkpg4veynGtb7uy0Zc81?=
+X-Forefront-Antispam-Report: 
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AS4PR06MB8447.eurprd06.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(1800799024)(366016)(376014)(4022899009)(13003099007);DIR:OUT;SFP:1102;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: 
+	=?us-ascii?Q?0hccx+ox+QPYDsgLHpxK3+WLkoD4LqhR/ibWFAALWyIil/12mO0+3rAVxwYj?=
+ =?us-ascii?Q?oF6PUKfunuYMCmNMQJVlUNlXGKevg0cUK+vNzqKlAgQwXgTQ0yER/2h5Z+3m?=
+ =?us-ascii?Q?w8Kq04x7a6fmX8RE6pL9kjieId6QpqK79w2oXfpYAESf4wzuby2L0Unuwwn+?=
+ =?us-ascii?Q?VXJZJ5UfbnoxnnPPzsATBnp/FcZ3fmKcSELA4TJOobHbnbiMGjxbgXRcuWVa?=
+ =?us-ascii?Q?xVnUJD+MavXg9hGdkuJc3oH+wc9Bcv1LNQF1YvmV9ENGrRsCqotFgCV1dzX2?=
+ =?us-ascii?Q?bAuQLn0vs9ZbX878TEK0gkxhtvxmNrHEGJOe8uJTYKfJ8PAkyFUfhlXVSInh?=
+ =?us-ascii?Q?0aIssbHnS5ON5N46Yug6ieTdUGe6aCtGw6Tpib6LMFzH31lxPe/FanK19LQB?=
+ =?us-ascii?Q?1aqQjZdYxONjYnE6x4+5SSkTiZgr9DfV2cnuKrBmE0rrb1ztPXcINrDbbFnH?=
+ =?us-ascii?Q?4Oibp1YkaO+baqfBqWLO3yYeG+QTwqZWM8ZCDnVOreB8OojE9vZOPUwymumf?=
+ =?us-ascii?Q?ztEn17u1AE0205BDDPInpoKjBoUa3ms/MTGG2/RUqP6wDG67dzkpxxhCAFq3?=
+ =?us-ascii?Q?ld3pr6G72oN8QCsOqS8MJprm5JSDthf5lljvbuU2fwHuz5QS0uo3+eKgS7rb?=
+ =?us-ascii?Q?uMAZi8gWExtwNUsdhBCBeFqz1rIx8T6WE6AIQ0iBr2SbthQKaEWlmFma8M6/?=
+ =?us-ascii?Q?km+7sfzCvIQeM5zHY9FXdkGFiSMoYAkHiPk9E2thsuqgDm1TyURq+kkkp5LZ?=
+ =?us-ascii?Q?k7m7KiT4r4/M/R/B/nOE9h/vdK8q5jcqMpCNasW1in2AB3n0vJXSktLPoJep?=
+ =?us-ascii?Q?4VoBEXIjCaTbjBRa0t+S1iRddK983QH3GHLQz7ozcdlphbR4FneXiH0RTvkl?=
+ =?us-ascii?Q?IjdzEI/8l0wCRO290gXCCfuQ7sCwhg8JcR+w1oScFj3b7iA7UsQxRyXJZhwa?=
+ =?us-ascii?Q?DrJh4VpHsfOLT72ZeSsEkA+jaVrFwxAtL4kHgT8lJhQqoqscRIt5AMDTjPM3?=
+ =?us-ascii?Q?s/04uzVAIDMUNIb/KARbJBUfdZpUPulFB4dqaDxfi9G1I1aA+/9IUyJogMCE?=
+ =?us-ascii?Q?X3v/VKMugwLB0mZHGyW3gCApzB/Hrcg+ArQrnOFt5WCiE5c1auynoyNHrJZc?=
+ =?us-ascii?Q?WljW0mylLnlyLOegqVcllDrvRUhk5c1kSRwdslym/ez/SUeBlpI8X3PREusW?=
+ =?us-ascii?Q?71x3m54o0PZx2Y3WDEUdQnHpRwAVI9AXcsYcuSrZzWfAYw3vpYw0l+bu/rOo?=
+ =?us-ascii?Q?bBwjZRJnYQ9DluPRukYh0S5hJumb3vRtn5zc0tdnDCLgsXuSoI94CpdR1qcl?=
+ =?us-ascii?Q?UAO0QU9KnKB6HoTtZMhzcl/hjRF5nLKijVNK9MiofZ+Hs45R4lmTKom+s11w?=
+ =?us-ascii?Q?QDv5K8prW4kE7Z5IK1Ul/Sn4PX6Vf5aMZrxWYg9OxP3oFFwY/6xAS0Ngx3cv?=
+ =?us-ascii?Q?MjgSynKp7n0yMTOR2NOqi5QhrYRth6Xaq6fFvFok2VFSRvM1p7xDoLiccVtN?=
+ =?us-ascii?Q?ABXS5LuArPtfQhSyrYiMN02Qtdo/4AIqqqYxeGlstB88UcbMnO/6AErU3YS4?=
+ =?us-ascii?Q?m9hKJiK7s7fe6q816aHdME7tj9d5FpknVasTReEizp7hQyLF6578j9N+x6A3?=
+ =?us-ascii?Q?2CdFuDeUjmqisfODa6082ZKGlbwwznLhaXtgYnEMQaenw4tUQzhBCk1RvLs2?=
+ =?us-ascii?Q?/M3U+lr8tbQNp8dDe6oCr6GO1MDwTv/8rfSOMQAHCJcfD+bCDVE14tXsQu68?=
+ =?us-ascii?Q?8NfDQePdI96gtSLbYapbCXTocL+xV3U=3D?=
+X-OriginatorOrg: vaisala.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 08ce219a-c425-44eb-3b94-08de58ea3a8e
+X-MS-Exchange-CrossTenant-AuthSource: AS4PR06MB8447.eurprd06.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: SN7PR11MB7018.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 901d9a19-f7d3-4fa6-f146-08de58e42561
-X-MS-Exchange-CrossTenant-originalarrivaltime: 21 Jan 2026 11:56:43.5726
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 21 Jan 2026 12:40:16.2433
  (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: mOMz2Uf9uyLZE9FHzmYgNN2s1Jz51M3f1zDafWcbx2EicUtqN544BB9+wq4UjSnWbYPaHr7LimBqfcxvN1qfSA==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SJ2PR11MB7547
-X-OriginatorOrg: intel.com
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 6d7393e0-41f5-4c2e-9b12-4c2be5da5c57
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: V6WIo8H7HW+vvfJ9uPTtexoEy6Ir/5vHeE7OixkBbRIWwj8snq52wMTMspj0AuzZQiYOsJAp/4htVtca2DlNzw==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: GV2PR06MB9874
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from 45-33-107-173.ip.linodeusercontent.com [45.33.107.173] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Wed, 21 Jan 2026 11:57:01 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/66169
+ <yocto@lists.yoctoproject.org>; Wed, 21 Jan 2026 12:40:31 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/66170
 
---_000_SN7PR11MB7018229D5EA9755643B9A9B2F496ASN7PR11MB7018namp_
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+On 1/21/26 12:02 PM, Lee Chee Yang via lists.yoctoproject.org wrote:
+> Hi
+>=20
+> We are pleased to announce the Yocto Project 5.0.15 Release is now availa=
+ble for download.
+>=20
+> https://downloads.yoctoproject.org/releases/yocto/yocto-5.0.15/poky-72983=
+ac391008ebceb45edc7a8f0f6d5f4fe715c.tar.bz2 <https://downloads.yoctoproject=
+.org/releases/yocto/yocto-5.0.15/poky-72983ac391008ebceb45edc7a8f0f6d5f4fe7=
+15c.tar.bz2>
+> https://mirrors.kernel.org/yocto/yocto/yocto-5.0.15/poky-72983ac391008ebc=
+eb45edc7a8f0f6d5f4fe715c.tar.bz2 <https://mirrors.kernel.org/yocto/yocto/yo=
+cto-5.0.15/poky-72983ac391008ebceb45edc7a8f0f6d5f4fe715c.tar.bz2>
+>=20
+> A gpg signed version of these release notes is available at:
+>=20
+> https://downloads.yoctoproject.org/releases/yocto/yocto-5.0.15/RELEASENOT=
+ES <https://downloads.yoctoproject.org/releases/yocto/yocto-5.0.15/RELEASEN=
+OTES>
+>=20
+> Full Test Report:
+>=20
+> https://downloads.yoctoproject.org/releases/yocto/yocto-5.0.15/testreport=
+.txt <https://downloads.yoctoproject.org/releases/yocto/yocto-5.0.15/testre=
+port.txt>
+>=20
+> Thank you for everyone's contributions to this release.
+>=20
+> Chee Yang
+> chee.yang.lee@intel.com
+> Yocto Project Build and Release
+>=20
+>=20
+> --------------------------
+> yocto-5.0.15 Release Notes
+> --------------------------
+>=20
+> Users of Alma 9, Rocky 9 and Centos Stream 9 rolling releases have seen o=
+btuse failures in the execution of tar in various tasks after recent host d=
+istro updates. These newer versions of tar contain a CVE fix
+> which uses a new glibc call/syscall (openat2). The fix is to update to a =
+newer pseudo version which handles this syscall. This is not included in th=
+is stable release but we aim to include it in the next one.
+>=20
+> --------------------------
+>  =C2=A0Repositories/Downloads
+> --------------------------
+>=20
+> Repository Name: yocto-docs
+> Repository Location: https://git.yoctoproject.org/yocto-docs
+> Branch: scarthgap
+> Tag: yocto-5.0.15
+> Git Revision: d84d916d4fc505e8386693306b6a90b0064c0518
+> Release Artefact: yocto-docs-d84d916d4fc505e8386693306b6a90b0064c0518
+> sha: 9020251d0bc11277df0afc1baad05566433d665f31c0b3a45e6cd01c0de6c099
+> Download Locations:
+> https://downloads.yoctoproject.org/releases/yocto/yocto-5.0.15/yocto-docs=
+-d84d916d4fc505e8386693306b6a90b0064c0518.tar.bz2
+> https://mirrors.kernel.org/yocto/yocto/yocto-5.0.15/yocto-docs-d84d916d4f=
+c505e8386693306b6a90b0064c0518.tar.bz2
+>=20
+> Repository Name: poky
+> Repository Location: https://git.yoctoproject.org/poky
+> Branch: scarthgap
+> Tag: yocto-5.0.15
+> Git Revision: 72983ac391008ebceb45edc7a8f0f6d5f4fe715c
+> Release Artefact: poky-72983ac391008ebceb45edc7a8f0f6d5f4fe715c
+> sha: d5336d1ef1dd48b88cb92748c669360901004d458b7786ddc1918da12fef4edd
+> Download Locations:
+> https://downloads.yoctoproject.org/releases/yocto/yocto-5.0.15/poky-72983=
+ac391008ebceb45edc7a8f0f6d5f4fe715c.tar.bz2
+> https://mirrors.kernel.org/yocto/yocto/yocto-5.0.15/poky-72983ac391008ebc=
+eb45edc7a8f0f6d5f4fe715c.tar.bz2
+>=20
+> Repository Name: openembedded-core
+> Repository Location: https://git.openembedded.org/openembedded-core
+> Branch: scarthgap
+> Tag: yocto-5.0.15
+> Git Revision: 6988157ad983978ffd6b12bcefedd4deaffdbbd1
+> Release Artefact: oecore-6988157ad983978ffd6b12bcefedd4deaffdbbd1
+> sha: 98a691ce87f9aba57007e91b56bbe0af6d6c8f62aacb68820026478ff8e1f819
+> Download Locations:
+> https://downloads.yoctoproject.org/releases/yocto/yocto-5.0.15/oecore-698=
+8157ad983978ffd6b12bcefedd4deaffdbbd1.tar.bz2
+> https://mirrors.kernel.org/yocto/yocto/yocto-5.0.15/oecore-6988157ad98397=
+8ffd6b12bcefedd4deaffdbbd1.tar.bz2
+>=20
+> Repository Name: meta-yocto
+> Repository Location: https://git.yoctoproject.org/meta-yocto
+> Branch: scarthgap
+> Tag: yocto-5.0.15
+> Git Revision: e1363aa3333cda3a4ae4706ce6577b987ba3a815
+> Release Artefact: meta-yocto-e1363aa3333cda3a4ae4706ce6577b987ba3a815
+> sha: 91a1f0c65bd4fff4af2aef4b583d1366efc347726feb36a4d2cdfb480774cc19
+> Download Locations:
+> https://downloads.yoctoproject.org/releases/yocto/yocto-5.0.15/meta-yocto=
+-e1363aa3333cda3a4ae4706ce6577b987ba3a815.tar.bz2
+> https://mirrors.kernel.org/yocto/yocto/yocto-5.0.15/meta-yocto-e1363aa333=
+3cda3a4ae4706ce6577b987ba3a815.tar.bz2
 
-Hi All,
+Hi, curious if the 'yocto-5.0.15' tag for meta-yocto is on appropriate comm=
+it, since the layer compatibility at that point seems to be whinlatter, not=
+ scarthgap: https://git.yoctoproject.org/meta-yocto/tree/meta-poky/conf/lay=
+er.conf?h=3Dyocto-5.0.15#n12
 
-QA for Yocto-5.3.1.rc2 is completed. This is the full report for this relea=
-se:
-https://git.yoctoproject.org/cgit/cgit.cgi/yocto-testresults-contrib/tree/?=
-h=3Dintel-yocto-testresults
+This seems to induce following error, when bitbake is issued:
 
-=3D=3D=3D=3D=3D=3D=3D Summary =3D=3D=3D=3D=3D=3D=3D=3D
-No high milestone defects.
-No new issue found.
+   ERROR: Layer yocto is not compatible with the core layer which only supp=
+orts these series: scarthgap (layer is compatible with whinlatter)
 
+BR, Niko
 
-Thanks,
-Debal Ghosh
+>=20
+> Repository Name: meta-mingw
+> Repository Location: https://git.yoctoproject.org/meta-mingw
+> Branch: scarthgap
+> Tag: yocto-5.0.15
+> Git Revision: bd9fef71ec005be3c3a6d7f8b99d8116daf70c4f
+> Release Artefact: meta-mingw-bd9fef71ec005be3c3a6d7f8b99d8116daf70c4f
+> sha: ab073def6487f237ac125d239b3739bf02415270959546b6b287778664f0ae65
+> Download Locations:
+> https://downloads.yoctoproject.org/releases/yocto/yocto-5.0.15/meta-mingw=
+-bd9fef71ec005be3c3a6d7f8b99d8116daf70c4f.tar.bz2
+> https://mirrors.kernel.org/yocto/yocto/yocto-5.0.15/meta-mingw-bd9fef71ec=
+005be3c3a6d7f8b99d8116daf70c4f.tar.bz2
+>=20
+> Repository Name: bitbake
+> Repository Location: https://git.openembedded.org/bitbake
+> Branch: 2.8
+> Tag: yocto-5.0.15
+> Git Revision: 8dcf084522b9c66a6639b5f117f554fde9b6b45a
+> Release Artefact: bitbake-8dcf084522b9c66a6639b5f117f554fde9b6b45a
+> sha: 766eda21f2a914276d2723b1d8248be11507f954aef8fc5bb1767f3cb65688dd
+> Download Locations:
+> https://downloads.yoctoproject.org/releases/yocto/yocto-5.0.15/bitbake-8d=
+cf084522b9c66a6639b5f117f554fde9b6b45a.tar.bz2
+> https://mirrors.kernel.org/yocto/yocto/yocto-5.0.15/bitbake-8dcf084522b9c=
+66a6639b5f117f554fde9b6b45a.tar.bz2
+>=20
+>=20
+> ---------------
+>  =C2=A0Contributors
+> ---------------
+>=20
+> Thanks to the following people who contributed to this release:
+>=20
+> Adarsh Jagadish Kamini
+> Aleksandar Nikolic
+> Alexander Kanavin
+> Benjamin Robin (Schneider Electric)
+> Changqing Li
+> Daniel Turull
+> Deepak Rathore
+> Deepesh Varatharajan
+> Enrico J=C3=B6rns
+> Gyorgy Sarvari
+> Hitendra Prajapati
+> Hongxu Jia
+> Hugo SIMELIERE
+> Jiaying Song
+> Kai Kang
+> Kamel Bouhara (Schneider Electric)
+> Lee Chee Yang
+> Martin Jansa
+> Mingli Yu
+> Moritz Haase
+> Osama Abdelkader
+> Ovidiu Panait
+> Peter Marko
+> Praveen Kumar
+> Quentin Schulz
+> Robert P. J. Day
+> Ross Burton
+> Steve Sakoman
+> Vijay Anusuri
+> Walter Werner SCHNEIDER
+> Yash Shinde
+> Yogita Urade
+>=20
+> ---------------
+>  =C2=A0Known Issues
+> ---------------
+> N/A
+>=20
+>=20
+> ---------------
+> Security Fixes
+> ---------------
+> binutils: Fix CVE-2025-11494 CVE-2025-11839 CVE-2025-11840
+> cmake-native: Fix CVE-2025-9301
+> cups: Fix CVE-2025-58436 CVE-2025-61915
+> gnutls: Fix CVE-2025-9820
+> go: Fix CVE-2025-61727 CVE-2025-61729
+> go: Update CVE-2025-58187 patches
+> grub: Fix CVE-2025-54770 CVE-2025-61661 CVE-2025-61662 CVE-2025-61663 CVE=
+-2025-61664
+> libarchive: Fix CVE-2025-60753
+> libarchive: Fix 2 security issue (https://github.com/libarchive/libarchiv=
+e/pull/2753 and =C2=A0https://github.com/libarchive/libarchive/pull/2768)
+> libmicrohttpd: Ignore CVE-2025-59777 CVE-2025-62689 by disable experiment=
+al code
+> libpng: Fix CVE-2025-64505 CVE-2025-64506 CVE-2025-64720 CVE-2025-65018 C=
+VE-2025-66293
+> libsoup: Fix CVE-2025-12105
+> libssh2: Fix CVE-2023-48795
+> libxml2: Fix CVE-2025-7425
+> libxslt: Fix CVE-2025-11731
+> musl: Fix CVE-2025-26519
+> python3-urllib3: Fix CVE-2025-66418 CVE-2025-66471
+> python3: Fix CVE-2025-6075
+> qemu: Fix CVE-2025-12464
+> rsync: Fix CVE-2025-10158
+> ruby: Fix CVE-2025-24294 CVE-2025-25186 CVE-2025-61594
+> sqlite3: Fix CVE-2025-7709
+> xserver-xorg: Fix CVE-2025-62229 CVE-2025-62230 CVE-2025-62231
+> xwayland: Fix CVE-2025-62229 CVE-2025-62230 CVE-2025-62231
+>=20
+>=20
+> ---------------
+> Fixes/Feature Changes
+> ---------------
+> build-appliance-image: Update to scarthgap head revision
+> classes/create-spdx-2.2: Define SPDX_VERSION to 2.2
+> cml1.bbclass: use consistent make flags for menuconfig
+> cross.bbclass: Propagate dependencies to outhash
+> curl: Ensure 'CURL_CA_BUNDLE' from host env is indeed respected
+> curl: Use host CA bundle by default for native(sdk) builds
+> cve-check: extract extending CVE_STATUS to library function
+> dev-manual/layers.rst: document "bitbake-layers show-machines"
+> dev-manual/new-recipe.rst: replace 'bitbake -e' with 'bitbake-getvar'
+> dev-manual/new-recipe.rst: typo, "whith" -> "which"
+> dev-manual/new-recipe.rst: update "recipetool -h" output
+> dev-manual/sbom.rst: reflect that create-spdx is enabled by default
+> dev-manual: debugging: use bitbake-getvar in Viewing Variable Values sect=
+ion
+> documentation: link to the Releases page on yoctoproject.org instead of w=
+iki
+> glslang: fix compiling with gcc15
+> go: add sdk test
+> go: extend runtime test
+> go: remove duplicate arch map in sdk test
+> goarch.bbclass: do not leak TUNE_FEATURES into crosssdk task signatures
+> kernel-dev: add disable config example
+> kernel-dev: common: migrate bitbake -e to bitbake-getvar
+> kernel.bbclass: Add task to export kernel configuration to SPDX
+> libssh2: fix regression in KEX method validation (GH-1553)
+> libssh2: upgrade to 1.11.1
+> migration-guides: add release notes for 4.0.31 and 5.0.13
+> oe/sdk: fix empty SDK manifests
+> oeqa/sdk/buildepoxy: skip test in eSDK
+> oeqa/selftest: oe-selftest: Add SPDX tests for kernel config and PACKAGEC=
+ONFIG
+> oeqa: drop unnecessary dependency from go runtime tests
+> oeqa: fix package detection in go sdk tests
+> overview-manual: migrate to SVG + fix typo
+> poky.conf: bump version for 5.0.15
+> ref-manual: variables: migrate the OVERRIDES note to bitbake-getvar
+> ruby: Upgrade to 3.3.10
+> rust-target-config: fix nativesdk-libstd-rs build with baremetal
+> scripts/install-buildtools: Update to 5.0.14
+> spdx30: Provide software_packageUrl field in SPDX 3.0 SBOM
+> spdx30: fix cve status for patch files in VEX
+> spdx30: provide all CVE_STATUS, not only Patched status
+> spdx30_tasks: Add support for exporting PACKAGECONFIG to SPDX
+> spdx: Revert "spdx: Update for bitbake changes"
+> spdx: extend CVE_STATUS variables
+> testsdk: allow user to specify which tests to run
+> vex.bbclass: add a new class
+> vex: fix rootfs manifest
+> xserver-xorg: remove redundant patch
+>=20
+>=20
+>=20
+>=20
+>=20
+>=20
+> -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
+> Links: You receive all messages sent to this group.
+> View/Reply Online (#66165): https://lists.yoctoproject.org/g/yocto/messag=
+e/66165
+> Mute This Topic: https://lists.yoctoproject.org/mt/117378981/3618471
+> Group Owner: yocto+owner@lists.yoctoproject.org
+> Unsubscribe: https://lists.yoctoproject.org/g/yocto/unsub [niko.mauno@vai=
+sala.com]
+> -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
+>=20
 
-________________________________
-From: qa-build-notification@lists.yoctoproject.org <qa-build-notification@l=
-ists.yoctoproject.org> on behalf of Ghosh, Debal via lists.yoctoproject.org=
- <debal.ghosh=3Dintel.com@lists.yoctoproject.org>
-Sent: Tuesday, January 13, 2026 11:32 AM
-To: qa-build-notification@lists.yoctoproject.org <qa-build-notification@lis=
-ts.yoctoproject.org>; Yocto-mailing-list <yocto@lists.yoctoproject.org>; op=
-enembedded-core <openembedded-core@lists.openembedded.org>; Pokybuild User =
-<pokybuild@yoctoproject.org>
-Subject: Re: [qa-build-notification] QA notification for completed autobuil=
-der build (yocto-5.3.1.rc2)
-
-Hi all,
-
-Intel and WR YP QA is planning for QA execution for YP build Yocto-5.3.1.rc=
-2. We are planning to execute the following tests for this cycle:
-
-
-OEQA-manual tests for following module:
-OE-Core
-BSP-hw
-
-
-Runtime auto test for following platforms:
-
-MinnowBoard Turbot - 32bit
-Alder Lake-S
-Meteor Lake-P
-Arrow lake
-Bartlett lake-S
-Amston lake
-Twin lake
-Beaglebone
-BeaglePlay
-
-
-
-
-ETA for completion: 21/01/2026.
-
-
-Best regards,
-Debal Ghosh
-
------Original Message-----
-From: qa-build-notification@lists.yoctoproject.org <qa-build-notification@l=
-ists.yoctoproject.org> On Behalf Of Pokybuild User via lists.yoctoproject.o=
-rg
-Sent: 13 January 2026 04:38
-To: yocto@lists.yoctoproject.org
-Cc: qa-build-notification@lists.yoctoproject.org
-Subject: [qa-build-notification] QA notification for completed autobuilder =
-build (yocto-5.3.1.rc2)
-
-
-    A build flagged for QA (yocto-5.3.1.rc2) was completed on the autobuild=
-er and is available at:
-
-
-        https://valkyrie.yocto.io/pub/releases/yocto-5.3.1.rc2
-
-
-    Build URL: https://autobuilder.yoctoproject.org/valkyrie/#/builders/29/=
-builds/3041
-
-    Build hash information:
-
-    bitbake: 663021740bc086bd959a8457ad9ddb6da52a8278
-meta-agl: fcc4176504cd4b5b9d27d20797b11be5330e9f10
-meta-arm: 955b1d8e6921d8e03388c5013dfaebbb0cfc5099
-meta-aws: dde608c015c80442356bd180202f955cc9b61267
-meta-clang: cf20f8bd1366d41094c945597b95dd746e87b871
-meta-intel: 9182026daca13f7efca0bb6ff1eacb039946c476
-meta-mingw: 00323de97e397d4f6734ef2191806616989f5e10
-meta-openembedded: a4e768dcfae181dd99e39c4286fa0729ca7f4e47
-meta-qcom: dc5f692bff1032c40a19f4ab4cd7eb63afcfaab1
-meta-virtualization: 28d26fd95397bf575e65fcca0cbb302b1e9bc7ff
-meta-yocto: 6973ca663aaa9c3ab517ee960ab7985a5bf54c07
-oecore: dd10706cfafb5574b7cf316fca2300d166ef71b0
-yocto-docs: 102a33294e63a5581c413555040f790161fc80ff
-
-
-
-This is an automated message from the Yocto Project Autobuilder
-Git: git://git.yoctoproject.org/yocto-autobuilder2
-Email: richard.purdie@linuxfoundation.org
-
-
-
-
-
-
-
-
-
-
--=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
-Links: You receive all messages sent to this group.
-View/Reply Online (#641): https://lists.yoctoproject.org/g/qa-build-notific=
-ation/message/641
-Mute This Topic: https://lists.yoctoproject.org/mt/117234373/9976127
-Group Owner: qa-build-notification+owner@lists.yoctoproject.org
-Unsubscribe: https://lists.yoctoproject.org/g/qa-build-notification/leave/1=
-4426999/9976127/44033455/xyzzy [debal.ghosh@intel.com]
--=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
-
-
-
---_000_SN7PR11MB7018229D5EA9755643B9A9B2F496ASN7PR11MB7018namp_
-Content-Type: text/html; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
-
-<html>
-<head>
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Diso-8859-=
-1">
-<style type=3D"text/css" style=3D"display:none;"> P {margin-top:0;margin-bo=
-ttom:0;} </style>
-</head>
-<body dir=3D"ltr">
-<div style=3D"text-align: left; text-indent: 0px; margin: 0px; font-family:=
- Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, Calibri, Helvetica, sans-s=
-erif; font-size: 12pt; color: rgb(0, 0, 0);" class=3D"elementToProof">
-Hi All,</div>
-<div style=3D"text-align: left; text-indent: 0px; margin: 10px 0px 0px; fon=
-t-family: Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, Calibri, Helvetic=
-a, sans-serif; font-size: 12pt; color: rgb(0, 0, 0);" class=3D"elementToPro=
-of">
-<br>
-</div>
-<div style=3D"text-align: left; text-indent: 0px; margin: 10px 0px 0px; fon=
-t-family: Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, Calibri, Helvetic=
-a, sans-serif;" class=3D"elementToProof">
-<span style=3D"font-size: 12pt; color: rgb(0, 0, 0);">QA for </span><span s=
-tyle=3D"font-size: 11pt; color: rgb(0, 0, 0);">Yocto-5.3.1.rc2</span><span =
-style=3D"font-size: 12pt; color: rgb(0, 0, 0);">&nbsp;is completed. This is=
- the full report for this release:&nbsp;</span></div>
-<div style=3D"text-align: left; text-indent: 0px; margin: 10px 0px 0px; fon=
-t-family: Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, Calibri, Helvetic=
-a, sans-serif; font-size: 12pt; color: rgb(12, 102, 228);" class=3D"element=
-ToProof">
-<a style=3D"color: rgb(12, 102, 228);" rel=3D"nofollow" class=3D"external-l=
-ink OWAAutoLink" id=3D"OWA7c05aad5-8184-6376-208a-f0c39a63ea1e" href=3D"htt=
-ps://git.yoctoproject.org/cgit/cgit.cgi/yocto-testresults-contrib/tree/?h=
-=3Dintel-yocto-testresults">https://git.yoctoproject.org/cgit/cgit.cgi/yoct=
-o-testresults-contrib/tree/?h=3Dintel-yocto-testresults</a></div>
-<div style=3D"font-family: Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, =
-Calibri, Helvetica, sans-serif; font-size: 12pt; color: rgb(0, 0, 0);">
-<br>
-</div>
-<div style=3D"text-align: left; text-indent: 0px; margin: 10px 0px 0px; fon=
-t-family: Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, Calibri, Helvetic=
-a, sans-serif; font-size: 12pt; color: rgb(0, 0, 0);" class=3D"elementToPro=
-of">
-=3D=3D=3D=3D=3D=3D=3D Summary =3D=3D=3D=3D=3D=3D=3D=3D<br>
-No high milestone defects.</div>
-<div style=3D"text-align: left; text-indent: 0px; margin: 10px 0px 0px; fon=
-t-family: Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, Calibri, Helvetic=
-a, sans-serif; font-size: 12pt; color: rgb(0, 0, 0);" class=3D"elementToPro=
-of">
-No new issue found.</div>
-<div style=3D"font-family: Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, =
-Calibri, Helvetica, sans-serif; font-size: 12pt; color: rgb(0, 0, 0);">
-<br>
-<br>
-</div>
-<div style=3D"text-align: left; text-indent: 0px; margin: 10px 0px 0px; fon=
-t-family: Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, Calibri, Helvetic=
-a, sans-serif; font-size: 12pt; color: rgb(0, 0, 0);" class=3D"elementToPro=
-of">
-Thanks,</div>
-<div style=3D"text-align: left; text-indent: 0px; margin: 10px 0px 0px; fon=
-t-family: Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, Calibri, Helvetic=
-a, sans-serif; font-size: 12pt; color: rgb(0, 0, 0);" class=3D"elementToPro=
-of">
-Debal Ghosh</div>
-<div style=3D"font-family: Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, =
-Calibri, Helvetica, sans-serif; font-size: 12pt; color: rgb(0, 0, 0);">
-<br>
-</div>
-<hr style=3D"display: inline-block; width: 98%;">
-<div id=3D"divRplyFwdMsg">
-<div style=3D"direction: ltr; font-family: Calibri, sans-serif; font-size: =
-11pt; color: rgb(0, 0, 0);">
-<b>From:</b>&nbsp;qa-build-notification@lists.yoctoproject.org &lt;qa-build=
--notification@lists.yoctoproject.org&gt; on behalf of Ghosh, Debal via list=
-s.yoctoproject.org &lt;debal.ghosh=3Dintel.com@lists.yoctoproject.org&gt;<b=
-r>
-<b>Sent:</b>&nbsp;Tuesday, January 13, 2026 11:32 AM<br>
-<b>To:</b>&nbsp;qa-build-notification@lists.yoctoproject.org &lt;qa-build-n=
-otification@lists.yoctoproject.org&gt;; Yocto-mailing-list &lt;yocto@lists.=
-yoctoproject.org&gt;; openembedded-core &lt;openembedded-core@lists.openemb=
-edded.org&gt;; Pokybuild User &lt;pokybuild@yoctoproject.org&gt;<br>
-<b>Subject:</b>&nbsp;Re: [qa-build-notification] QA notification for comple=
-ted autobuilder build (yocto-5.3.1.rc2)</div>
-<div style=3D"direction: ltr;">&nbsp;</div>
-</div>
-<div style=3D"font-size: 11pt;">Hi all,<br>
-<br>
-Intel and WR YP QA is planning for QA execution for YP build Yocto-5.3.1.rc=
-2. We are planning to execute the following tests for this cycle:<br>
-<br>
-<br>
-OEQA-manual tests for following module:<br>
-OE-Core<br>
-BSP-hw<br>
-<br>
-<br>
-Runtime auto test for following platforms:<br>
-<br>
-MinnowBoard Turbot - 32bit<br>
-Alder Lake-S<br>
-Meteor Lake-P<br>
-Arrow lake<br>
-Bartlett lake-S<br>
-Amston lake<br>
-Twin lake<br>
-Beaglebone<br>
-BeaglePlay<br>
-<br>
-<br>
-<br>
-<br>
-ETA for completion: 21/01/2026.<br>
-<br>
-<br>
-Best regards,<br>
-Debal Ghosh<br>
-<br>
------Original Message-----<br>
-From: qa-build-notification@lists.yoctoproject.org &lt;qa-build-notificatio=
-n@lists.yoctoproject.org&gt; On Behalf Of Pokybuild User via lists.yoctopro=
-ject.org<br>
-Sent: 13 January 2026 04:38<br>
-To: yocto@lists.yoctoproject.org<br>
-Cc: qa-build-notification@lists.yoctoproject.org<br>
-Subject: [qa-build-notification] QA notification for completed autobuilder =
-build (yocto-5.3.1.rc2)<br>
-<br>
-<br>
-&nbsp;&nbsp;&nbsp; A build flagged for QA (yocto-5.3.1.rc2) was completed o=
-n the autobuilder and is available at:<br>
-<br>
-<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a data-auth=3D"NotApplicable" c=
-lass=3D"OWAAutoLink" id=3D"OWA3f4aa35c-4f89-3fe3-b227-74d1df5eedf6" href=3D=
-"https://valkyrie.yocto.io/pub/releases/yocto-5.3.1.rc2">
-https://valkyrie.yocto.io/pub/releases/yocto-5.3.1.rc2</a><br>
-<br>
-<br>
-&nbsp;&nbsp;&nbsp; Build URL: <a data-auth=3D"NotApplicable" class=3D"OWAAu=
-toLink" id=3D"OWA9a1eb706-d3d4-eeab-770d-a33dff605f77" href=3D"https://auto=
-builder.yoctoproject.org/valkyrie/#/builders/29/builds/3041">
-https://autobuilder.yoctoproject.org/valkyrie/#/builders/29/builds/3041</a>=
-<br>
-<br>
-&nbsp;&nbsp;&nbsp; Build hash information:<br>
-<br>
-&nbsp;&nbsp;&nbsp; bitbake: 663021740bc086bd959a8457ad9ddb6da52a8278<br>
-meta-agl: fcc4176504cd4b5b9d27d20797b11be5330e9f10<br>
-meta-arm: 955b1d8e6921d8e03388c5013dfaebbb0cfc5099<br>
-meta-aws: dde608c015c80442356bd180202f955cc9b61267<br>
-meta-clang: cf20f8bd1366d41094c945597b95dd746e87b871<br>
-meta-intel: 9182026daca13f7efca0bb6ff1eacb039946c476<br>
-meta-mingw: 00323de97e397d4f6734ef2191806616989f5e10<br>
-meta-openembedded: a4e768dcfae181dd99e39c4286fa0729ca7f4e47<br>
-meta-qcom: dc5f692bff1032c40a19f4ab4cd7eb63afcfaab1<br>
-meta-virtualization: 28d26fd95397bf575e65fcca0cbb302b1e9bc7ff<br>
-meta-yocto: 6973ca663aaa9c3ab517ee960ab7985a5bf54c07<br>
-oecore: dd10706cfafb5574b7cf316fca2300d166ef71b0<br>
-yocto-docs: 102a33294e63a5581c413555040f790161fc80ff<br>
-<br>
-<br>
-&nbsp;&nbsp;&nbsp;<br>
-This is an automated message from the Yocto Project Autobuilder<br>
-Git: git://git.yoctoproject.org/yocto-autobuilder2<br>
-Email: richard.purdie@linuxfoundation.org<br>
-<br>
-<br>
-&nbsp;&nbsp;&nbsp;&nbsp;<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
--=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-<br>
-Links: You receive all messages sent to this group.<br>
-View/Reply Online (#641): <a data-auth=3D"NotApplicable" class=3D"OWAAutoLi=
-nk" id=3D"OWA6951fb5c-85ba-ad7d-0ae8-5563639e8e64" href=3D"https://lists.yo=
-ctoproject.org/g/qa-build-notification/message/641">
-https://lists.yoctoproject.org/g/qa-build-notification/message/641</a><br>
-Mute This Topic: <a data-auth=3D"NotApplicable" class=3D"OWAAutoLink" id=3D=
-"OWA64299653-9e4f-7614-d6d6-e54897a2c441" href=3D"https://lists.yoctoprojec=
-t.org/mt/117234373/9976127">
-https://lists.yoctoproject.org/mt/117234373/9976127</a><br>
-Group Owner: qa-build-notification+owner@lists.yoctoproject.org<br>
-Unsubscribe: <a data-auth=3D"NotApplicable" class=3D"OWAAutoLink" id=3D"OWA=
-4cfbe799-c209-bd59-915e-fa1feaebfe17" href=3D"https://lists.yoctoproject.or=
-g/g/qa-build-notification/leave/14426999/9976127/44033455/xyzzy">
-https://lists.yoctoproject.org/g/qa-build-notification/leave/14426999/99761=
-27/44033455/xyzzy</a>&nbsp;[debal.ghosh@intel.com]<br>
--=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-<br>
-<br>
-<br>
-</div>
-</body>
-</html>
-
---_000_SN7PR11MB7018229D5EA9755643B9A9B2F496ASN7PR11MB7018namp_--
 
