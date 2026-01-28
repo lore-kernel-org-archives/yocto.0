@@ -1,86 +1,69 @@
-Return-Path: <rg@braneaudio.com>
+Return-Path: <pierre.daye@p3lab.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id C3627D46BE7
-	for <webhook@archiver.kernel.org>; Wed, 28 Jan 2026 17:56:33 +0000 (UTC)
-Subject: Image UNPACKDIR is being cleared
-To: yocto@lists.yoctoproject.org
-From: "Richard Greer" <rg@braneaudio.com>
-X-Originating-Location: Austin, Texas, US (136.62.46.126)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 27E39D46BF4
+	for <webhook@archiver.kernel.org>; Wed, 28 Jan 2026 19:18:44 +0000 (UTC)
+Subject: Re: [yocto] System device tree, AMD EDF, custom board
+To: "Sergei Nikulov" <sergey.nikulov@gmail.com>, yocto@lists.yoctoproject.org
+From: pierre.daye@p3lab.com
+X-Originating-Location: Jumet, Wallonia, BE (91.86.174.204)
 X-Originating-Platform: Linux Chrome 144
 User-Agent: GROUPS.IO Web Poster
 MIME-Version: 1.0
-Date: Wed, 28 Jan 2026 09:56:32 -0800
-Message-ID: <2hjc.1769622992022831072.Xhaw@lists.yoctoproject.org>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: quoted-printable
+Date: Wed, 28 Jan 2026 11:18:35 -0800
+References: <g06F.1769608737933360301.CF5c@lists.yoctoproject.org> <CAE7Ac0D9xT6KDqr4NgM5mX95Z6aNhv46JNw+dGDqh4VdnseVsw@mail.gmail.com>
+In-Reply-To: <CAE7Ac0D9xT6KDqr4NgM5mX95Z6aNhv46JNw+dGDqh4VdnseVsw@mail.gmail.com>
+Message-ID: <1007393.1769627915286057389@lists.yoctoproject.org>
+Content-Type: multipart/alternative; boundary="zEGu3YenCpE7oJpoU7fi"
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from 45-33-107-173.ip.linodeusercontent.com [45.33.107.173] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Wed, 28 Jan 2026 17:56:33 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/66200
+ <yocto@lists.yoctoproject.org>; Wed, 28 Jan 2026 19:18:44 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/66201
 
-I am trying to build an image that built correctly for years up through our=
- last supported Yocto release which was nanbield.
+--zEGu3YenCpE7oJpoU7fi
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
 
-We are now trying to move to Walnascar (it is the latest release of other l=
-ayers we pull in).
+Thanks Sergei,
 
-I changed things to account for the migration, including the move to UNPACK=
-DIR, and now it does not build any more.  The reason it fails is that UNPAC=
-KDIR (or S since they are the same) is getting cleared before our tasks can=
- run after do_rootfs.
+The issue is that with the system device tree approach, there is a clear cu=
+t between the linux (from what I understand, interacts only with the cortex=
+ a53) and the logic part (related to the fpga).
+Your approach is ok as long as you don't have interactions between the two,=
+ which is exactly my target!
+For example, I want to set the i2c devices that are connected to a i2c port=
+ linked to the logic part (aka FPGA) on my SoC.
+This is where it is complicated for me to understand what I should do.
+In the process described by AMD ( https://xilinx-wiki.atlassian.net/wiki/sp=
+aces/A/pages/3250586081/Development+Flows+-+How+it+all+works ), it remains =
+unclear to me how I can define these points?
+Should I use an append to xilinx-bootbin or should I try to append it durin=
+g the build of the image (as it was done previously).
 
-My image recipe has some proprietary git repos in SRC_URI to be put into th=
-e UNPACKDIR:
-SRC_URI =3D " ${BRANE_GIT_IMAGE_BASE};branch=3D${BRANE_GIT_IMAGE_BRANCH};su=
-bpath=3D${BRANE_MIC_GIT_PATH};protocol=3D${BRANE_GIT_PROTOCOL};destsuffix=
-=3D${BRANE_MIC_FOLDER};name=3Dmic \
-            ${BRANE_GIT_IMAGE_BASE};branch=3D${BRANE_GIT_IMAGE_BRANCH};subp=
-ath=3D${BRANE_IMAGE_VER_GIT_PATH};protocol=3D${BRANE_GIT_PROTOCOL};destsuff=
-ix=3D${BRANE_IMG_VER_FOLDER};name=3Dimgver \
-            ${BRANE_GIT_SOUND_BASE};branch=3D${BRANE_GIT_SOUND_BRANCH};prot=
-ocol=3D${BRANE_GIT_PROTOCOL};lfs=3D0;destsuffix=3D${BRANE_SOUND_FOLDER};nam=
-e=3Dsound \
-           "
-BRANE_MIC_FOLDER =3D "mic-images"
-BRANE_IMG_VER_FOLDER =3D "image-ver-git"
-BRANE_SOUND_FOLDER =3D "sound"
+--zEGu3YenCpE7oJpoU7fi
+Content-Type: text/html; charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
 
-S =3D "${WORKDIR}/brane_sources"
-UNPACKDIR =3D "${S}"
+<div>Thanks Sergei,</div>
+<div>&nbsp;</div>
+<div>The issue is that with the system device tree approach, there is a cle=
+ar cut between the linux (from what I understand, interacts only with the c=
+ortex a53) and the logic part (related to the fpga).</div>
+<div>Your approach is ok as long as you don't have interactions between the=
+ two, which is exactly my target!</div>
+<div>For example, I want to set the i2c devices that are connected to a i2c=
+ port linked to the logic part (aka FPGA) on my SoC.</div>
+<div>This is where it is complicated for me to understand what I should do.=
+</div>
+<div>In the process described by AMD (<a href=3D"https://xilinx-wiki.atlass=
+ian.net/wiki/spaces/A/pages/3250586081/Development+Flows+-+How+it+all+works=
+" target=3D"_blank" rel=3D"noopener">https://xilinx-wiki.atlassian.net/wiki=
+/spaces/A/pages/3250586081/Development+Flows+-+How+it+all+works</a>), it re=
+mains unclear to me how I can define these points?<br />Should I use an app=
+end to xilinx-bootbin or should I try to append it during the build of the =
+image (as it was done previously).</div>
 
-If I run "bitbake -c unpack brane-image", the UNPACKDIR has everything in i=
-t as I would expect.
-
-If I run "bitbake brane-image", I get an error in my do_brane_rootfs_change=
-s task because it cannot find a file in the UNPACKDIR.  When I go and look =
-at the UNPACKDIR, it is now empty.
-
-Here is my addtask line for that task:
-addtask brane_rootfs_changes after do_rootfs do_unpack before do_image_tar
-
-Here is the error:
-| /home/gu/development/event/Image/yocto/speaker4-login-ssh-dev-cred-build/=
-tmp/work/speaker4_ssh_dev_cred-poky-linux-gnueabi/brane-fsl-image/1.0/temp/=
-run.do_brane_rootfs_changes.3187189: 1: cannot open /home/gu/development/ev=
-ent/Image/yocto/speaker4-login-ssh-dev-cred-build/tmp/work/speaker4_ssh_dev=
-_cred-poky-linux-gnueabi/brane-fsl-image/1.0/brane_sources/image-ver-git/co=
-mpat-version: No such file
-
-That is ${UNPACKDIR}/${BRANE_IMG_VER_FOLDER}/compat-version, which as I sai=
-d before exists if I just run up through do_unpack, but is gone when I try =
-to run the complete recipe.
-
-What is causing either S or UNPACKDIR to be cleared out after do_unpack but=
- before my task can run after do_rootfs?  Is it something to do with it bei=
-ng the image recipe which is treated differently?
-
-Any help would be appreciated since we would like to move to a later versio=
-n of Yocto.
-
-Thanks,
-
-Richard Greer
+--zEGu3YenCpE7oJpoU7fi--
 
