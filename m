@@ -1,375 +1,279 @@
-Return-Path: <chee.yang.lee@intel.com>
+Return-Path: <paul@pbarker.dev>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id E7EE3E9462A
-	for <webhook@archiver.kernel.org>; Tue, 10 Feb 2026 02:51:30 +0000 (UTC)
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
- by mx.groups.io with SMTP id smtpd.msgproc02-g2.11773.1770691881438744281
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 7F184EA8137
+	for <webhook@archiver.kernel.org>; Tue, 10 Feb 2026 15:50:15 +0000 (UTC)
+Received: from fout-a8-smtp.messagingengine.com (fout-a8-smtp.messagingengine.com [103.168.172.151])
+ by mx.groups.io with SMTP id smtpd.msgproc02-g2.22681.1770738614077815785
  for <yocto@lists.yoctoproject.org>;
- Mon, 09 Feb 2026 18:51:21 -0800
+ Tue, 10 Feb 2026 07:50:14 -0800
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@intel.com header.s=Intel header.b=KGvnr1No;
- spf=pass (domain: intel.com, ip: 198.175.65.9, mailfrom: chee.yang.lee@intel.com)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1770691881; x=1802227881;
-  h=from:to:subject:date:message-id:mime-version;
-  bh=sX/ofciyYfGKz67Gx6rqmYYQf40Xwzg1k01KoBemIDk=;
-  b=KGvnr1No5E5kAZ4fXrX4+ueLvv1s/Nv9kczEuK/NWEmhG1gUvua7ikwH
-   yM+seIdNTeBUjRKdOKpWxvV28B0Dcc1E7oo7vLxGMIWoVHjmp91y++Jy1
-   UePcMiVqary0sXW9dmAk5dy34d8VrEteqTLjl5fai6HJi2Aq3rZciBXzB
-   j4IuIlkIQIHmvNv+HpHZaGE/5OBav323LyKeCNGM/jeJBnIUrRtVxpyVI
-   SIoK4TpRfoue0lIEZVCD/DLTbjuFYmF1UyuepskjzDB5dPUY37lyz3dgk
-   7xQAoUp3e5kEMeJztqX0yco6NfrZDlUODm6VukUKt3HspWViJ0ZN/tDOR
-   w==;
-X-CSE-ConnectionGUID: Dz9DD9OESEGwuRIQ/ElJrg==
-X-CSE-MsgGUID: 6Ma1GYZKQ4OP9U/61I1pBg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11696"; a="94455765"
-X-IronPort-AV: E=Sophos;i="6.21,283,1763452800"; 
-   d="scan'208,217";a="94455765"
-Received: from fmviesa001.fm.intel.com ([10.60.135.141])
-  by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 09 Feb 2026 18:51:20 -0800
-X-CSE-ConnectionGUID: dTju7AGGSO+wmqzZnniwsw==
-X-CSE-MsgGUID: s3O2+ahuQNCCrz/4ziJFrQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,283,1763452800"; 
-   d="scan'208,217";a="241819884"
-Received: from orsmsx902.amr.corp.intel.com ([10.22.229.24])
-  by fmviesa001.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 09 Feb 2026 18:51:00 -0800
-Received: from ORSMSX902.amr.corp.intel.com (10.22.229.24) by
- ORSMSX902.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.35; Mon, 9 Feb 2026 18:51:00 -0800
-Received: from ORSEDG902.ED.cps.intel.com (10.7.248.12) by
- ORSMSX902.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.35 via Frontend Transport; Mon, 9 Feb 2026 18:51:00 -0800
-Received: from MW6PR02CU001.outbound.protection.outlook.com (52.101.48.60) by
- edgegateway.intel.com (134.134.137.112) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.35; Mon, 9 Feb 2026 18:51:00 -0800
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=ZZZXJNkB7/6CngQS7U7Np/q2FOqZg09TLAJIRj8Pq/CtSB3NYYQhodllMD1bnbxDQBLu1FNY1SZH1BKmzK3kEaSx5lUtJrbRIxogTGugLxM0Q7j/loKACl4b3dDk9hr8Uebd+harfeA06Cx4RGQ8n7fMODr011K3gpc8Nx40GrqKYtViDeLCqESTnMbFFf9Y0K2jo+Y5nBmy1RNt/IuP+mAvyKailAdvxkNrmWui2+BAsilkvNqDrF0zbB4jmg1TzZhPsRMsrdB5y7L3QDnm5BVLRU/jNCtXAByfIn/n17f9u5JeJWmqRQrnDV9CFoIscLTPBYcgRHHLUd2/r/tWMA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=sX/ofciyYfGKz67Gx6rqmYYQf40Xwzg1k01KoBemIDk=;
- b=TJik5nVYtliRT4G4+h0pljuSES1Kh/lBXTz2lwhQwTYVJLouHvToZGRr4dIAHYybk7wWgRwlw9jA8ithHx2xRpKYMZ6l4NErRnbyhBvoefFGk0Mx3/kksbY6XwP9KmGkDuMsOlKzy9GKETiwTBBl5TaMvZzZypDHinMkmKisxHcQQHcQ9ZSdT+eEP+v9vc1NkMGREAB+YQDvAzH/vaAn7l5yMxnWLBbY8OE5NgOpLFTqOTDsmMn+/hyQjINzixREj4Qi56RhDlWmJC3Ntlv3v9knXoj13MU/qcM9mX3+yYLZTwYqsub7urwXxUCGdMAa3azt5WG0La4iVPobB/8qIQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Received: from BL4PR11MB8797.namprd11.prod.outlook.com (2603:10b6:208:5a7::8)
- by SA1PR11MB8327.namprd11.prod.outlook.com (2603:10b6:806:378::20) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9587.16; Tue, 10 Feb
- 2026 02:50:57 +0000
-Received: from BL4PR11MB8797.namprd11.prod.outlook.com
- ([fe80::fe4:8775:47fa:b7d9]) by BL4PR11MB8797.namprd11.prod.outlook.com
- ([fe80::fe4:8775:47fa:b7d9%6]) with mapi id 15.20.9587.017; Tue, 10 Feb 2026
- 02:50:57 +0000
-From: "Lee, Chee Yang" <chee.yang.lee@intel.com>
-To: "yocto-announce@lists.yoctoproject.org"
-	<yocto-announce@lists.yoctoproject.org>, Yocto-mailing-list
-	<yocto@lists.yoctoproject.org>
-Subject: [ANNOUNCEMENT] Milestone 1 for Yocto Project 6.0 (yocto-6.0_M1)  Now
- Available
-Thread-Topic: [ANNOUNCEMENT] Milestone 1 for Yocto Project 6.0 (yocto-6.0_M1)
-  Now Available
-Thread-Index: AQHcmjNN1/JboQTcBUa+riKmvXnfCA==
-Date: Tue, 10 Feb 2026 02:50:57 +0000
-Message-ID: <BL4PR11MB8797016E244D535507130176B962A@BL4PR11MB8797.namprd11.prod.outlook.com>
-Accept-Language: en-SG, en-US
-Content-Language: en-SG
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-msip_labels: 
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: BL4PR11MB8797:EE_|SA1PR11MB8327:EE_
-x-ms-office365-filtering-correlation-id: e0432e05-5838-422b-87d9-08de684f373a
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;ARA:13230040|1800799024|376014|366016|38070700021|8096899003;
-x-microsoft-antispam-message-info: =?iso-8859-1?Q?ngyC3Q3JqO5Y88VeCd/qqh+pstc/k//9//WCyCoYqEjuXOon77ZXUrzKMA?=
- =?iso-8859-1?Q?9tqje0ZcfQTjLkqcbO3O8xmGFEQt4JPpZ1VRSiAQPczp++Dm8ZMx1KTNCr?=
- =?iso-8859-1?Q?xyY/4Lhbzvi6voaWZ5L7TTlZFHjELFTBubKPzA6D1hIxqa6bcv/W1D5owI?=
- =?iso-8859-1?Q?198WG+Ma8EzLmn5Z1mVw+c4bhs3zOYr6MnUAKyTL+Pff4qBikhP799FqUo?=
- =?iso-8859-1?Q?dia1iizDyMOvK0jUFe/DmcbNklNyQLqqb0eETkn0PSntl/mi9RPZnoS18A?=
- =?iso-8859-1?Q?2eI91tOOBZf7UG4R5rWstBBYHYNYxU8m3FvsEuyAT/TNMRDc6L4CwkqhK9?=
- =?iso-8859-1?Q?cYYQ64yPlqdUtHzi3uTx78i8WjZjA/ow4xU0nB+rqTpQ5qD50rnyabrNqT?=
- =?iso-8859-1?Q?oq71pVlU3MKtCFejnM89jwBKId/HzkeL0VC/0f6uhHQUQVDrS+XcembdJr?=
- =?iso-8859-1?Q?G4zX1647l4Iw2jubNDBrDzXyRrxSz2YTywj0jRtUuZbNsrI65OhkeOcQ+k?=
- =?iso-8859-1?Q?IVRUp3Ozi5Lb8CDkD2meAiIrLUkBBhlTt8YnGkPlrELKiF51Q6WLheU2f7?=
- =?iso-8859-1?Q?R9j12QCVel7p03NJjHKc4Z6JHAYs+Zl1VF/xE+5PxOvz+bV7gT+DL2DOmy?=
- =?iso-8859-1?Q?nq2Rj9NbzzMS5g7ZbmUAcPiTu43uUCQUvuVSpV+Xcd/+aTc9/ODEJL+blv?=
- =?iso-8859-1?Q?qxU8nRKPjBT4bnDigRv9bw0wolcJvOJzU/SK9kwvgVL+Wk3yIGNleE4rG/?=
- =?iso-8859-1?Q?k/KgucSnEbyaUEUgdSYT2Ix6jSWYJiufkULvbUjXhl1V/AmLoVSqE13MWM?=
- =?iso-8859-1?Q?D5Q5zkqSF4PB6CDY5IJD+z40AlUdbrZCeC6lUXuuK3VZQ4wFvqsJuKvUbM?=
- =?iso-8859-1?Q?+wvpAK7GdNRWONUEvkDiY1Sx1701RaWC+cTxJp+XPE9Sitf1AVwGUaCLMC?=
- =?iso-8859-1?Q?NOmkWBWmkUaRQlfh9x6xO59diPVUqXdj31oS+aGUKDPaDG1ABs4argrNN/?=
- =?iso-8859-1?Q?5MPE2n2hIRCUfwjoS7yptI6x8WAF76KCLlKMxpLGD8Os7YsEx81/hLusG5?=
- =?iso-8859-1?Q?72USH9Ty7fYfbW4n+kkK3TuBm2oKYRosd0HbL14Xu7kf/JjHH+N5/LHT0l?=
- =?iso-8859-1?Q?uERacftEZ3amH2L416q6TAaY6JisX0D/LTUqvFuwiKy7TppBjjd4bturto?=
- =?iso-8859-1?Q?0WqS/Xoz/FyARdMstdcIwqWw2gD7cmJUGB7Kdm+7W71H2ehuvj2JByi3EC?=
- =?iso-8859-1?Q?nTGbAyWg0+7+M+wlAEWAhw7hjWDFBr+xyzrBAenjarKFXnX8E89+7O4bth?=
- =?iso-8859-1?Q?RnhcQcajYdemTC0WTASNrjLIXQL13/FHD5EPlhkFAOvRxvTU4PtT3WBgDU?=
- =?iso-8859-1?Q?ErK3W4zbSCwDVXvGPM9H2icGGkJXGxCReAzyWXXL3kk5fev16loaR46Jhw?=
- =?iso-8859-1?Q?XFyYVkeDp1e57Dyv8bz2QMMNwsFCo5XH9bgNrWS/k94Mui1oNhTSE9tRgj?=
- =?iso-8859-1?Q?Yer2OjfBe1wOwQ0UERFG3mOXFQ8VM2yBkKSVUjw5p3YIZu2husrQaGQByv?=
- =?iso-8859-1?Q?ZDhd0OcfbA6bUKfSCghajdctF8wLx6eRrlU4M6BYhuHKTm3tFCGrun83O6?=
- =?iso-8859-1?Q?krf1XFr0etA2+4OAoUuWQiZdidbbYcK5RA?=
-x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:BL4PR11MB8797.namprd11.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(1800799024)(376014)(366016)(38070700021)(8096899003);DIR:OUT;SFP:1101;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?iso-8859-1?Q?jDJb0RWW0stlu0ZLRcxwPTE8exYgyohJxxqR/k/TvZCJtlmDIFMwfBC4my?=
- =?iso-8859-1?Q?ZHSxeddG6/lqM7Yi0ofaByZfIZhAqCuL8iYsxaiAKNtTBHLNmXMcFtCfH9?=
- =?iso-8859-1?Q?VwbMu9xIP8tP+/TI6j7qL8JRPhd4TJHE9jGSkVL7XUSlRfBcN/bWbpZTkX?=
- =?iso-8859-1?Q?Umaa9AT3bsdgkI3RHjDoed/0DW40/vq0W9nYmKVyQkLBOhJA9wP8/whSIm?=
- =?iso-8859-1?Q?6yt8bdxn85D8p44u+PZX0tXTWeUZNuXCtgI+AZaBiM32xVyHC8nwlQ9Bi5?=
- =?iso-8859-1?Q?i3As8wXhTrZsYxBavRtTBd67OvshGwHKIxZQnyzimin5PljV03ICzNB7aj?=
- =?iso-8859-1?Q?9kgxfOYtAMnntIwSsRI/aI7obyNZouB6i1Ql5Nl95r4rUjShKwVrxwximV?=
- =?iso-8859-1?Q?lAqTuXmsnMdSwqf0EZtwF6TXKBP8j1rCeQ4vTkkebfL7iBZjV4K+LNuy++?=
- =?iso-8859-1?Q?QxthYq4uF6Rle83oLI5PJAM7GtQatQ7nQoAJB6KmHBjGG0uhln0zNDmSZp?=
- =?iso-8859-1?Q?B4RRSqFvIBnOrUudeOS3lJC+4gld49FFNsjY4k1BR2GuPWpbS030YoLqZl?=
- =?iso-8859-1?Q?SDJ1qY8gezEQpO4F4vQVTSYo+D2aHJJIM6Ljo/jwpgKcCvahqHSkJ8cFJk?=
- =?iso-8859-1?Q?GORfvHsojf7Z/9UAsa38QubtuGAJG7zjroc4bMu+/eSCmcmoCV1kAPcB6Z?=
- =?iso-8859-1?Q?7h02d+YooHdDHFrPjq/HRxr0X5MoPzQorwzl5bHMYa15naNvMgqizFgrFc?=
- =?iso-8859-1?Q?65wA/OR/SohwOyOsclEwVtuektZniu+uOWLsR4Bm5Eh0OCtxQjBDJ0brU/?=
- =?iso-8859-1?Q?MrqJdlgE43TmYS1aU8NEDonXHkxlQQT2Z7LnJapjM0V4rVQcy4InAlB6Lh?=
- =?iso-8859-1?Q?VIvMpilvSmt6Xt2uSZAFQ3FM70SEXi137E7jJLKfsNM+U4qInss9/kHrjh?=
- =?iso-8859-1?Q?2K5oqjlsXjXcJAP+HlqodeqpXlIHSHoSLaPAwvrZOW9uPbkyp6tT2m6myu?=
- =?iso-8859-1?Q?G07Z6I5xBCrvQ2PldzgqS6PzZJDIXa7O4Q13QcdckrnzVcjdpYroIJf+8f?=
- =?iso-8859-1?Q?VIgoEKREg6T2woHh+ts56zOF3G5emEMuhp6lf1YCTF13ZtBO24gOokX4TX?=
- =?iso-8859-1?Q?OH9RnY1YIdzbObqtb80CMhIHzg64HKuqO9C4kuIA9iC9QSjtM/geWudC73?=
- =?iso-8859-1?Q?nLPYlq86R9Ug5p5MeCWIb0SJCJixhLMFdwIIAsYYQEij47X1vQHBpTHBTs?=
- =?iso-8859-1?Q?0wH4skXqeO9f3PSrbOk/noJkeNagH5l4rjIDTzAsDw7XRlryL6T+zJfYKl?=
- =?iso-8859-1?Q?IJmEmP22iuLAfDpW+Q4R3u7a8JMT96i6AJcFriRZQGYnxQx/2TvqR46nWU?=
- =?iso-8859-1?Q?nWXOIolJLBPEEJyOwzLTGkGlGSVBO0PAIzEwe9S/vOCoM9mB9S9+5jjodY?=
- =?iso-8859-1?Q?eoopHAu/gTJ5pqSp1odiD3AbO5qHXX2BH3EV95XbTpacmTGY7xvayhTkGX?=
- =?iso-8859-1?Q?kZwOQ1xkxGrmCodRWNfacfm92IN93JY+qwDL3YWtU66kScgR31DauDSJ6t?=
- =?iso-8859-1?Q?5p9UCGnAFBe0QCIkd4bb2iW4f6/3c2MRGYPsk8oVo3xYOjw/8O4tYzmyp1?=
- =?iso-8859-1?Q?Jqm2kANMU9fc1EccGunuUq5JUMSxIjoM+nL6zqtIddP3rPT0hNqDVs+Hmi?=
- =?iso-8859-1?Q?iMMxYeP6jy/C5oxGaYjLGpEQ6+dhEfdPlwdzjjKyF6pr/NOlR/QyqSvUrD?=
- =?iso-8859-1?Q?X2l+blz+n4Ova1C0ZBE6ve4uAYIpKSlgB7fkyeju81fOWb9psFcC5MpG7N?=
- =?iso-8859-1?Q?p1bPkfay5A=3D=3D?=
-Content-Type: multipart/alternative;
-	boundary="_000_BL4PR11MB8797016E244D535507130176B962ABL4PR11MB8797namp_"
+ dkim=pass header.i=@pbarker.dev header.s=fm1 header.b=bvo5Yu0t;
+ dkim=pass header.i=@messagingengine.com header.s=fm3 header.b=hDrTxK5W;
+ spf=pass (domain: pbarker.dev, ip: 103.168.172.151, mailfrom: paul@pbarker.dev)
+Received: from phl-compute-01.internal (phl-compute-01.internal [10.202.2.41])
+	by mailfout.phl.internal (Postfix) with ESMTP id 289C9EC05A8;
+	Tue, 10 Feb 2026 10:50:13 -0500 (EST)
+Received: from phl-frontend-04 ([10.202.2.163])
+  by phl-compute-01.internal (MEProxy); Tue, 10 Feb 2026 10:50:13 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=pbarker.dev; h=
+	cc:content-type:content-type:date:date:from:from:in-reply-to
+	:message-id:mime-version:reply-to:subject:subject:to:to; s=fm1;
+	 t=1770738613; x=1770825013; bh=gijKXtxmxtblmYSlIR6sJYvwIbFT0eLk
+	WwUu4QOk5zM=; b=bvo5Yu0to0wRtROsCPv8O1oOzwoS6DkY1hh9e308Ov4x7C1O
+	pDq7BJFkGpbshcHC+exu0ArGNDjp59csN3aVL/MsZyjyGQyGBc+Qye9K/tMVgKiX
+	5lfh5DnmRFfHpatBnERmBkIw/I44zHdGzytGTA2RS7i0bpbcYaZspsND060gGjEs
+	2sU4/eKzs5AUOIcpCTvt3UYQUlK/+k0Zqp554wsON6Cv0ffUKzJXQ8tFHS6HVdce
+	vSogvQO3ZDc1gGN1nHCiWZpsxxc6oBt0+tyGCe0A+y1muZvW1RXworZa0TOZXxEt
+	We1DroYPnPnhe3NZexdeNGai71HjkiPpGuFYnQ==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+	messagingengine.com; h=cc:content-type:content-type:date:date
+	:feedback-id:feedback-id:from:from:in-reply-to:message-id
+	:mime-version:reply-to:subject:subject:to:to:x-me-proxy
+	:x-me-sender:x-me-sender:x-sasl-enc; s=fm3; t=1770738613; x=
+	1770825013; bh=gijKXtxmxtblmYSlIR6sJYvwIbFT0eLkWwUu4QOk5zM=; b=h
+	DrTxK5W5UrjHgD7LZnnCY0Babi8MW7h0rtE5RW6Rv2uxZbHKDoGih5pDyIJSENPX
+	p15qcnH6HGgfC/eA32NZA/ClseIfEf8NepJL/AdN+egkhOyQde+tkaNNk7rX0+/p
+	roGIstXauIMAROF2uHqCjKUPV0a9rHPZRBs/c6NPWRneTcOzqZtpw2f/SaOf1cOk
+	9yzUImKS5U2hwZK1fpi55e+Q4gm40hHpK5kQnDF1LZ9dquZSWXDFFID3OCfZ+evK
+	cNNIl7OM+m1bplIDzN32s8lvZOPUumslhYPCmO5AKn3OG3fJaVA48Pqz8LbXQFgq
+	sFD162ZC9t0OAtlRPd3Qw==
+X-ME-Sender: <xms:tFOLadnWGThgzZYMQXJw6MXlv8dGoY8uTMVRKXgrFbN35k_CXaXGew>
+    <xme:tFOLaRzKD1yJPoQf6y16bpTwAX_uCUDRyFwcV7B9bqKJ4M52FEu7v0bP8QGmcMIgq
+    Q_NHZM3dcXQK7ES3cIBW9HXs1g4mgUDrED0XRjP2hJ4kFiWgSYcEIaV>
+X-ME-Received: <xmr:tFOLafN9V1K1ZBJJBUMESS7LOQ5WSNuQ0FjLvoQCObS9hlc85xBeDFrMYIpk1WN2lsgG9t0Pfyp88mL5p91B_W-W3b0An7L07R0Gv8w>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeefgedrtddtgddvtddttdekucetufdoteggodetrf
+    dotffvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfurfetoffkrfgpnffqhgenuceu
+    rghilhhouhhtmecufedttdenucgoufhushhpvggtthffohhmrghinhculdegledmnecujf
+    gurhepkffuhffvffgtfgggsehgtderredtreejnecuhfhrohhmpefrrghulhcuuegrrhhk
+    vghruceophgruhhlsehpsggrrhhkvghrrdguvghvqeenucggtffrrghtthgvrhhnpeduve
+    elleefgfeuudejheefjeetkeejgffhkefftefgieekgfehhedulefhiefgtdenucffohhm
+    rghinhepiihoohhmrdhushdphihotghtohhprhhojhgvtghtrdhorhhgpdhophgvnhgvmh
+    gsvgguuggvugdrohhrghdphihotghtohdrihhopdhgohhoghhlvgdrtghomhenucevlhhu
+    shhtvghrufhiiigvpedtnecurfgrrhgrmhepmhgrihhlfhhrohhmpehprghulhesphgsrg
+    hrkhgvrhdruggvvhdpnhgspghrtghpthhtohephedpmhhouggvpehsmhhtphhouhhtpdhr
+    tghpthhtohephihotghtoheslhhishhtshdrhihotghtohhprhhojhgvtghtrdhorhhgpd
+    hrtghpthhtohepohhpvghnvghmsggvugguvgguqdgtohhrvgeslhhishhtshdrohhpvghn
+    vghmsggvugguvggurdhorhhgpdhrtghpthhtohephihotghtohdqshhtrghtuhhssehlih
+    hsthhsrdihohgtthhophhrohhjvggtthdrohhrghdprhgtphhtthhopehsjhholhhlvgih
+    rdihphdrphhmsehgmhgrihhlrdgtohhmpdhrtghpthhtohepphgruhhlsehpsggrrhhkvg
+    hrrdguvghv
+X-ME-Proxy: <xmx:tFOLadoz3nfNB3Bp8NnSyYg-lGOvgXJnw_bn8QVVI_DaC4j-iHgXMQ>
+    <xmx:tFOLaYFK7c2288vgvsRLkQApGnQUhJRoQrzpZOIoYy4nzU2EFfZhJA>
+    <xmx:tFOLaaoO0k_bIKcJxPj8pUhlOH95IA5RKuMcMFUPP_Xl_uCzsNxE0w>
+    <xmx:tFOLaZbJygxUbpCEFz1x7eWSdtior8ZQ--RwO6R55GnySMuANuvEZg>
+    <xmx:tVOLaSOAw73G0gCLBQwTNjAC0l5P3IhoV0Yy3IIuQMjpKGUVSnABLcf2>
+Feedback-ID: i51494658:Fastmail
+Received: by mail.messagingengine.com (Postfix) with ESMTPA; Tue,
+ 10 Feb 2026 10:50:11 -0500 (EST)
+Message-ID: <19266426506120e17fec17b1eeb1ed03ee36d8ec.camel@pbarker.dev>
+Subject: Yocto Project Status 10 February 2026 (WW07)
+From: Paul Barker <paul@pbarker.dev>
+To: yocto@lists.yoctoproject.org, openembedded-core@lists.openembedded.org, 
+	yocto-status@lists.yoctoproject.org
+Date: Tue, 10 Feb 2026 15:50:08 +0000
+Autocrypt: addr=paul@pbarker.dev; prefer-encrypt=mutual;
+ keydata=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
+ LUewj8JVy0aJsGTwI4invl
+Content-Type: multipart/signed; micalg="pgp-sha512";
+	protocol="application/pgp-signature"; boundary="=-UXKvdn7SsWRWpEDMcbc9"
+User-Agent: Evolution 3.52.3-0ubuntu1.1 
 MIME-Version: 1.0
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: BL4PR11MB8797.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: e0432e05-5838-422b-87d9-08de684f373a
-X-MS-Exchange-CrossTenant-originalarrivaltime: 10 Feb 2026 02:50:57.1049
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: +IHZ3ly38AEIAjRdNb/FNXxLOf/ivDltNRH3jfc/NZxBx5F60n1jInRB0K/fPhlIbcr2771xdJcMnW8NiPFatQ==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA1PR11MB8327
-X-OriginatorOrg: intel.com
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from 45-33-107-173.ip.linodeusercontent.com [45.33.107.173] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Tue, 10 Feb 2026 02:51:30 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/66236
+ <yocto@lists.yoctoproject.org>; Tue, 10 Feb 2026 15:50:15 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/66237
 
---_000_BL4PR11MB8797016E244D535507130176B962ABL4PR11MB8797namp_
-Content-Type: text/plain; charset="iso-8859-1"
+
+--=-UXKvdn7SsWRWpEDMcbc9
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-Hi
+Hi all,
 
-We are pleased to announce the first milestone release for Yocto Project 6.=
-0 (yocto-6.0_M1) is now available for download.
+Current Dev Position: YP 6.0 M2
+Next Deadline: YP 6.0 M2 Build Date 2026-02-16
 
-Download:
+Next Team Meetings:
+- Bug Triage meeting - Thursday 12th Feb. 7:30am PDT
+  (https://zoom.us/j/454367603?pwd=3DZGxoa2ZXL3FkM3Y0bFd5aVpHVVZ6dz09)
+- Weekly Project Engineering Sync  - Tuesday 10rd Feb. 8am PDT
+  (https://zoom.us/j/990892712?pwd=3DcHU1MjhoM2x6ck81bkcrYjRrcmJsUT09)
+- Yocto Project Patch Review - Thursday 12th Feb. 10am GMT and Monday 16th =
+Feb. 9am PDT
+  (https://zoom.us/j/97762397148?pwd=3D1xk0iC9hp9SjEonaTaONwTb6iWry4Eb.1)
 
-https://downloads.yoctoproject.org/releases/yocto/milestones/yocto-6.0_M1
+Project data dashboard: https://dashboard.yoctoproject.org/=20
 
-bitbake: cdd79c1768ac396a9c6577e38098da4331507f24
-meta-agl: fcc4176504cd4b5b9d27d20797b11be5330e9f10
-meta-arm: c3c97a6b8f39afa7459ec21ac55fa04164c0fe92
-meta-aws: 72441d9befcb4416952f31bdd245f44d9d80f8ae
-meta-clang: cf20f8bd1366d41094c945597b95dd746e87b871
-meta-intel: c62b2d0e99e6526d0ff0d0bcdb23816cfdcb6292
-meta-mingw: 11666fce6a3cc98bcff6fe2c6bdd9e48faf03767
-meta-openembedded: 7bbe4a4e200452b1fd6c09c7fcf36c4b229146f6
-meta-qcom: 18c6e3f42ddb07f4b4a87f44324b3fb60e6c3a2e
-meta-virtualization: 28d26fd95397bf575e65fcca0cbb302b1e9bc7ff
-meta-yocto: c23c19e0b300812bad314f1d0a901965315271ae
-oecore: 6c31c2a731858108e790acaf38679a01b0d1a035
-yocto-docs: b8a56b8b2e8c0417b2f7204f80c79b05d95e9ce4
+Key Status/Updates:
+- YP 5.3.1 was released
+- YP 6.0 M1 was released
+- YP 4.0.33 is in QA
+- YP 6.0 M2 is due to build next week.
+- There are currently 5 high open bugs, which will block M2. Three have
+  line of sight to being resolved:
+    - Issues reusing binaries from fedora 42/43 on older systems (#16087)
+    - rust do_test_compile/do_install segfault (#16058)
+    - Generation of releases.json needs updating (#16138)
+- Two are currently needing further work:=20
+    - x86 kvm broken on Fedora 43 (#16074)
+    - AB-INT: opkg-build segmentation fault (#16078)
+- We are about to drop the 6.12 and 6.16 kernel recipes leaving just
+  6.18 for the next release
+- The number of intermittent failures affecting builds, both stable and
+  development, continues to be problematic - we continue to prioritise
+  addressing these since any given build is now statistically likely to
+  hit one or more of them.
+- Patch review is now using two branches:
+    - =E2=80=9Cmaster-review=E2=80=9D  - patches which pass on the autobuil=
+der and will
+      be discussed on the patch review call
+      (https://git.openembedded.org/openembedded-core-contrib/log/?h=3Dmast=
+er-review)
+    - =E2=80=9Cmaster-backlog=E2=80=9D - patches which have been discussed =
+and need
+      further investigation or more detailed feedback which we haven=E2=80=
+=99t
+      had time for yet
+      (https://git.openembedded.org/openembedded-core-contrib/log/?h=3Dmast=
+er-backlog)
+- Patches are merging but there is a backlog and we=E2=80=99ve had to prior=
+itize
+  simpler changes. We continue to struggle for bandwidth for changes
+  needing in depth review/feedback. This could impact features making it
+  into the LTS.
+
+Want to contribute? We would appreciate help with the following areas:
+- We have several open issues for pseudo and limited maintainer time to
+  work on them. Help from someone familiar with systems programming in C
+  would be greatly appreciated.
+  https://bugzilla.yoctoproject.org/buglist.cgi?list_id=3D661406&priority=
+=3DHigh&priority=3DMedium%2B&product=3DPseudo&query_format=3Dadvanced&resol=
+ution=3D---
+- There are a large number of intermittent failures on our autobuilder,
+  any help with investigating, reproducing or solving these issues would
+  be welcome! https://valkyrie.yocto.io/pub/non-release/abint/
+- Many recipes in openembedded-core would benefit from a new recipe
+  maintainer. Please look at
+  https://git.openembedded.org/openembedded-core/tree/meta/conf/distro/incl=
+ude/maintainers.inc
+  and see if you can adopt any of the unassigned recipes.
+- For more ways to contribute, see
+  https://docs.google.com/document/d/18oxKWxLorfF813h82mK6yKTIHeBp_-9owFuCW=
+bzgjOk/edit?usp=3Dsharing
+
+New to the project?
+- We have a list of issues we think are good places to start contributing:
+  https://bugzilla.yoctoproject.org/buglist.cgi?quicksearch=3DNEWCOMER
+
+Tracking Metrics:
+- WDD 2973 (last week 2945) (https://wiki.yoctoproject.org/charts/combo.htm=
+l)
+- OE-Core/Poky Patch Metrics
+    - Total patches found: 1106 (last week 1100)
+    - Patches in the Pending State: 152 (14%) [last week 152 (14%)]
+    - https://valkyrie.yocto.io/pub/non-release/patchmetrics/
+
+YP 6.0 Milestone Dates:
+- YP 6.0 M2 Build Date 2026-02-16
+- YP 6.0 M2 Release Date 2026-02-27
+- YP 6.0 M3 Build Date 2026-03-09
+- YP 6.0 M3 Release Date 2026-03-20
+- YP 6.0 M4 Build Date 2026-03-30
+- YP 6.0 M4 Release Date 2026-04-26
+
+Upcoming dot releases:
+- YP 4.0.33 is in QA.
+- YP 5.0.16 Build Date 2026-02-09
+- YP 5.0.16 Release Date 2026-02-20
+- YP 5.3.2 Build Date 2026-02-16
+- YP 5.3.2 Release Date 2026-02-27
+- YP 4.0.34 Build Date 2026-02-23
+- YP 4.0.34 Release Date 2026-03-06
+- YP 5.3.3 Build Date 2026-03-09
+- YP 5.3.3 Release Date 2026-03-20
+- YP 5.0.17 Build Date 2026-03-16
+- YP 5.0.17 Release Date 2026-03-23
+- YP 4.0.35 Build Date 2026-04-06
+- YP 4.0.35 Release Date 2026-04-17
+- YP 5.3.4 Build Date 2026-04-13
+- YP 5.3.4 Release Date 2026-04-24
+- YP 5.0.18 Build Date 2026-04-20
+- YP 5.0.18 Release Date 2026-05-01
+- YP 5.0.19 Build Date 2026-05-26
+- YP 5.0.19 Release Date 2026-06-05
+
+The Yocto Project=E2=80=99s technical governance is through its Technical
+Steering Committee, more information is available at:
+https://wiki.yoctoproject.org/wiki/TSC
+
+The Status reports are now stored on the wiki at:
+https://wiki.yoctoproject.org/wiki/Weekly_Status
+
+[If anyone has suggestions for other information you=E2=80=99d like to see =
+on
+this weekly status update, let us know!]
+
+Best regards,
+
+--=20
+Paul Barker
 
 
-Full Test Report:
+--=-UXKvdn7SsWRWpEDMcbc9
+Content-Type: application/pgp-signature; name="signature.asc"
+Content-Description: This is a digitally signed message part
 
-https://downloads.yoctoproject.org/releases/yocto/milestones/yocto-6.0_M1/t=
-estreport.txt
+-----BEGIN PGP SIGNATURE-----
 
-Thank you.
+iIcEABYKAC8WIQSzjPXf5Y1BDWhU2iCrY1Tsnbr0bgUCaYtTsBEccGF1bEBwYmFy
+a2VyLmRldgAKCRCrY1Tsnbr0bvJOAQDA6P+RgKzkYDIprAEvWBQ6N5o7I2LfEMt2
+dTduZpbXkwD/QwRpxUF9z0nQgYmBXtbJn1wpH+l2Wq07XxTzeujilgc=
+=wv93
+-----END PGP SIGNATURE-----
 
-Chee Yang
-chee.yang.lee@intel.com
-Yocto Project Build and Release
-
-
---_000_BL4PR11MB8797016E244D535507130176B962ABL4PR11MB8797namp_
-Content-Type: text/html; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
-
-<html>
-<head>
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Diso-8859-=
-1">
-<style type=3D"text/css" style=3D"display:none;"> P {margin-top:0;margin-bo=
-ttom:0;} </style>
-</head>
-<body dir=3D"ltr">
-<div style=3D"font-family: Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, =
-Calibri, Helvetica, sans-serif; font-size: 12pt; color: rgb(0, 0, 0);" clas=
-s=3D"elementToProof">
-Hi&nbsp;</div>
-<div style=3D"font-family: Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, =
-Calibri, Helvetica, sans-serif; font-size: 12pt; color: rgb(0, 0, 0);" clas=
-s=3D"elementToProof">
-<br>
-</div>
-<div style=3D"font-family: Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, =
-Calibri, Helvetica, sans-serif; font-size: 12pt; color: rgb(0, 0, 0);" clas=
-s=3D"elementToProof">
-We are pleased to announce the first milestone release for Yocto Project 6.=
-0 (yocto-6.0_M1) is now available for download.</div>
-<div style=3D"font-family: Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, =
-Calibri, Helvetica, sans-serif; font-size: 12pt; color: rgb(0, 0, 0);" clas=
-s=3D"elementToProof">
-<br>
-</div>
-<div style=3D"font-family: Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, =
-Calibri, Helvetica, sans-serif; font-size: 12pt; color: rgb(0, 0, 0);" clas=
-s=3D"elementToProof">
-Download:</div>
-<div style=3D"font-family: Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, =
-Calibri, Helvetica, sans-serif; font-size: 12pt; color: rgb(0, 0, 0);" clas=
-s=3D"elementToProof">
-<br>
-</div>
-<div style=3D"font-family: Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, =
-Calibri, Helvetica, sans-serif; font-size: 12pt; color: rgb(0, 0, 0);" clas=
-s=3D"elementToProof">
-https://downloads.yoctoproject.org/releases/yocto/milestones/yocto-6.0_M1</=
-div>
-<div style=3D"font-family: Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, =
-Calibri, Helvetica, sans-serif; font-size: 12pt; color: rgb(0, 0, 0);" clas=
-s=3D"elementToProof">
-<br>
-</div>
-<div style=3D"font-family: Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, =
-Calibri, Helvetica, sans-serif; font-size: 12pt; color: rgb(0, 0, 0);" clas=
-s=3D"elementToProof">
-bitbake: cdd79c1768ac396a9c6577e38098da4331507f24</div>
-<div style=3D"font-family: Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, =
-Calibri, Helvetica, sans-serif; font-size: 12pt; color: rgb(0, 0, 0);" clas=
-s=3D"elementToProof">
-meta-agl: fcc4176504cd4b5b9d27d20797b11be5330e9f10</div>
-<div style=3D"font-family: Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, =
-Calibri, Helvetica, sans-serif; font-size: 12pt; color: rgb(0, 0, 0);" clas=
-s=3D"elementToProof">
-meta-arm:&nbsp;c3c97a6b8f39afa7459ec21ac55fa04164c0fe92</div>
-<div style=3D"font-family: Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, =
-Calibri, Helvetica, sans-serif; font-size: 12pt; color: rgb(0, 0, 0);" clas=
-s=3D"elementToProof">
-meta-aws:&nbsp;72441d9befcb4416952f31bdd245f44d9d80f8ae</div>
-<div style=3D"font-family: Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, =
-Calibri, Helvetica, sans-serif; font-size: 12pt; color: rgb(0, 0, 0);" clas=
-s=3D"elementToProof">
-meta-clang: cf20f8bd1366d41094c945597b95dd746e87b871</div>
-<div style=3D"font-family: Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, =
-Calibri, Helvetica, sans-serif; font-size: 12pt; color: rgb(0, 0, 0);" clas=
-s=3D"elementToProof">
-meta-intel: c62b2d0e99e6526d0ff0d0bcdb23816cfdcb6292</div>
-<div style=3D"font-family: Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, =
-Calibri, Helvetica, sans-serif; font-size: 12pt; color: rgb(0, 0, 0);" clas=
-s=3D"elementToProof">
-meta-mingw: 11666fce6a3cc98bcff6fe2c6bdd9e48faf03767</div>
-<div style=3D"font-family: Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, =
-Calibri, Helvetica, sans-serif; font-size: 12pt; color: rgb(0, 0, 0);" clas=
-s=3D"elementToProof">
-meta-openembedded: 7bbe4a4e200452b1fd6c09c7fcf36c4b229146f6</div>
-<div style=3D"font-family: Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, =
-Calibri, Helvetica, sans-serif; font-size: 12pt; color: rgb(0, 0, 0);" clas=
-s=3D"elementToProof">
-meta-qcom: 18c6e3f42ddb07f4b4a87f44324b3fb60e6c3a2e</div>
-<div style=3D"font-family: Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, =
-Calibri, Helvetica, sans-serif; font-size: 12pt; color: rgb(0, 0, 0);" clas=
-s=3D"elementToProof">
-meta-virtualization: 28d26fd95397bf575e65fcca0cbb302b1e9bc7ff</div>
-<div style=3D"font-family: Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, =
-Calibri, Helvetica, sans-serif; font-size: 12pt; color: rgb(0, 0, 0);" clas=
-s=3D"elementToProof">
-meta-yocto: c23c19e0b300812bad314f1d0a901965315271ae</div>
-<div style=3D"font-family: Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, =
-Calibri, Helvetica, sans-serif; font-size: 12pt; color: rgb(0, 0, 0);" clas=
-s=3D"elementToProof">
-oecore: 6c31c2a731858108e790acaf38679a01b0d1a035</div>
-<div style=3D"font-family: Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, =
-Calibri, Helvetica, sans-serif; font-size: 12pt; color: rgb(0, 0, 0);" clas=
-s=3D"elementToProof">
-yocto-docs: b8a56b8b2e8c0417b2f7204f80c79b05d95e9ce4</div>
-<div style=3D"font-family: Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, =
-Calibri, Helvetica, sans-serif; font-size: 12pt; color: rgb(0, 0, 0);" clas=
-s=3D"elementToProof">
-<br>
-</div>
-<div style=3D"font-family: Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, =
-Calibri, Helvetica, sans-serif; font-size: 12pt; color: rgb(0, 0, 0);" clas=
-s=3D"elementToProof">
-<br>
-</div>
-<div style=3D"font-family: Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, =
-Calibri, Helvetica, sans-serif; font-size: 12pt; color: rgb(0, 0, 0);" clas=
-s=3D"elementToProof">
-Full Test Report:</div>
-<div style=3D"font-family: Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, =
-Calibri, Helvetica, sans-serif; font-size: 12pt; color: rgb(0, 0, 0);" clas=
-s=3D"elementToProof">
-<br>
-</div>
-<div style=3D"font-family: Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, =
-Calibri, Helvetica, sans-serif; font-size: 12pt; color: rgb(0, 0, 0);" clas=
-s=3D"elementToProof">
-https://downloads.yoctoproject.org/releases/yocto/milestones/yocto-6.0_M1/t=
-estreport.txt</div>
-<div style=3D"font-family: Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, =
-Calibri, Helvetica, sans-serif; font-size: 12pt; color: rgb(0, 0, 0);" clas=
-s=3D"elementToProof">
-<br>
-</div>
-<div style=3D"font-family: Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, =
-Calibri, Helvetica, sans-serif; font-size: 12pt; color: rgb(0, 0, 0);" clas=
-s=3D"elementToProof">
-Thank you.</div>
-<div style=3D"font-family: Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, =
-Calibri, Helvetica, sans-serif; font-size: 12pt; color: rgb(0, 0, 0);" clas=
-s=3D"elementToProof">
-<br>
-</div>
-<div style=3D"font-family: Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, =
-Calibri, Helvetica, sans-serif; font-size: 12pt; color: rgb(0, 0, 0);" clas=
-s=3D"elementToProof">
-Chee Yang</div>
-<div style=3D"font-family: Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, =
-Calibri, Helvetica, sans-serif; font-size: 12pt; color: rgb(0, 0, 0);" clas=
-s=3D"elementToProof">
-chee.yang.lee@intel.com</div>
-<div style=3D"font-family: Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, =
-Calibri, Helvetica, sans-serif; font-size: 12pt; color: rgb(0, 0, 0);">
-Yocto Project Build and Release</div>
-<div style=3D"font-family: Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, =
-Calibri, Helvetica, sans-serif; font-size: 12pt; color: rgb(0, 0, 0);">
-<br>
-</div>
-</body>
-</html>
-
---_000_BL4PR11MB8797016E244D535507130176B962ABL4PR11MB8797namp_--
+--=-UXKvdn7SsWRWpEDMcbc9--
 
