@@ -1,183 +1,279 @@
-Return-Path: <yoann.congal@smile.fr>
+Return-Path: <yogesh.tyagi@intel.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 2B255E9A03E
-	for <webhook@archiver.kernel.org>; Tue, 17 Feb 2026 20:07:49 +0000 (UTC)
-Received: from mail-wm1-f45.google.com (mail-wm1-f45.google.com [209.85.128.45])
- by mx.groups.io with SMTP id smtpd.msgproc01-g2.21536.1771358865467848936
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 31ED2E9A03E
+	for <webhook@archiver.kernel.org>; Tue, 17 Feb 2026 20:09:59 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.21])
+ by mx.groups.io with SMTP id smtpd.msgproc02-g2.21347.1771358994130638757
  for <yocto@lists.yoctoproject.org>;
- Tue, 17 Feb 2026 12:07:46 -0800
+ Tue, 17 Feb 2026 12:09:55 -0800
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@smile.fr header.s=google header.b=Ty0TDSR/;
- spf=pass (domain: smile.fr, ip: 209.85.128.45, mailfrom: yoann.congal@smile.fr)
-Received: by mail-wm1-f45.google.com with SMTP id 5b1f17b1804b1-4837907f535so32935775e9.3
-        for <yocto@lists.yoctoproject.org>; Tue, 17 Feb 2026 12:07:45 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=smile.fr; s=google; t=1771358864; x=1771963664; darn=lists.yoctoproject.org;
-        h=in-reply-to:references:from:subject:to:message-id:date
-         :content-transfer-encoding:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=9aBVQXc97vI+gQd/5zcX3cO8CL11MAKK+7u4ZUVgE6E=;
-        b=Ty0TDSR/9yBDRBBg8gKnijY2PM8H/EbVpusNgRLmUIAYPT9AETI4H5KjQuLV4QkBFK
-         EUCSbWdqIJNqArUadURmHk9AAfRCnox+TI/UE90nyHDv6YcozvVblyWVfzD11cWd8uey
-         s2qGbEH8z3pZPx01zFKtNv2h2voZmh8J1XJ5E=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1771358864; x=1771963664;
-        h=in-reply-to:references:from:subject:to:message-id:date
-         :content-transfer-encoding:mime-version:x-gm-gg:x-gm-message-state
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=9aBVQXc97vI+gQd/5zcX3cO8CL11MAKK+7u4ZUVgE6E=;
-        b=l+eaBv8kdoBIAPz4e9eFv2nINk7HostqhuZZ5OqtSKfV9VTXZ/BcRl8M6O+RNLMInd
-         cHJkURt+GfMrcwi0igtru4Y7mK+ED+dukef6oOCJ6Ijr3lnrzHXncisQqgWoQlAEz64X
-         77sGBDRZESd1YEhAefZkVySE2Y9mcoLas87J14aLrCS5W1cGZ4antTWB+Z0098YCCzgv
-         tOz4RxT+6q6UKVwkItTEKRUKGMwfz+RzTPwnKpEpXsrVpNEF/dLb86l5YYBP74w6nNYC
-         fUWgUw+pIOx8qZ+bA6JMQx9ci6HD2vCUs5oQEvfrN2TBD0/XfBdxy1UndRQWmzjss7Su
-         59pA==
-X-Forwarded-Encrypted: i=1; AJvYcCXiINlZ6wCBrvHEvgto2PpIeh/Wnkd2SN02UqUWnObDfNBnDLuAFzqRnzyyIH1evrEyXWpGaw==@lists.yoctoproject.org
-X-Gm-Message-State: AOJu0Yyh8a30TKD68FmgESJUn3keVGL1Cy57mfCQJzhoKKcZy5knBOQP
-	zvnNl0QNias88sOUNZqv+9AmwLE2prw51qhIgYDrQHQpwGLJpIbQABg3E6DjMrGAV6Q=
-X-Gm-Gg: AZuq6aK9oKmMgY5Oj3ZXecoGzV1c8IHvO15c8FBm6PcA/AqbsKwLbMMLVQcKSHBFMSq
-	CKPWfQZE07Jn7UrUBi6+rfblToauQ7p/om/CfaFyUEAueYpBKq1wRvFhWEOvKLcr+gFMNa7ysSw
-	jAt5GY9D/PQGdW89p6qjW8c6Qyvrp7mInAnerORGrKu1T8STINEdq466P2mK0nhtDlRWYhOoXxA
-	B9yr2ps24uvFhFxm8tjATcBGKpt7tGrBkp1dclFcNq3yQbXYb/qWXx19euSeoVOf9XczVQLjosu
-	oGoyxL4FFgiW+lB3gfGkBsRqqrP852bGNJ2z5Xb1fRc7pfds17MPAt1WrPF6GcH/hILhMzWo7gT
-	vQW8MS8dcTqtUNT767CMpedq7SeOjraYzgAmM/aL0Xq4ZMshoLKsCCLILAAL/q1Gr9OzS8kXiKi
-	OTh3Mf61uE7bCBsPOSyBsGIjTmhdVJbCsPKGk8c6AyJ+lmmNbQXpnJNNJmQEoYJ7tWzC6gYqWU4
-	ZPAZTJxgEJz3XQ=
-X-Received: by 2002:a05:600c:4ed1:b0:483:71f7:2796 with SMTP id 5b1f17b1804b1-48379b9898cmr231356355e9.10.1771358863765;
-        Tue, 17 Feb 2026 12:07:43 -0800 (PST)
-Received: from localhost (2a01cb001331aa00a2e4fb7b0d887544.ipv6.abo.wanadoo.fr. [2a01:cb00:1331:aa00:a2e4:fb7b:d88:7544])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-43796a5b2d1sm39735545f8f.4.2026.02.17.12.07.43
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 17 Feb 2026 12:07:43 -0800 (PST)
-Mime-Version: 1.0
+ dkim=pass header.i=@intel.com header.s=Intel header.b=Wl5bjex1;
+ spf=pass (domain: intel.com, ip: 198.175.65.21, mailfrom: yogesh.tyagi@intel.com)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1771358994; x=1802894994;
+  h=from:to:cc:subject:date:message-id:references:
+   in-reply-to:content-transfer-encoding:mime-version;
+  bh=hnQceiQWzi2owLSMebeqk/vUHiS40bQWcgz8FVYGLdo=;
+  b=Wl5bjex1UnftfmakExohQBA4xbXlufuxO8CW9iU1Y/r/QdhzxXJUF+WR
+   wMjoK4M2X3Px140W8/aoXseY87c40I6BQrIT6x3tCq4UafCq/hvsZsAUX
+   PIhj/XqlQ3KsJCXDcgENetPW4xPHeThiI0F11CFalXgRoqNs3/aas9bBy
+   iRLr/lXw+fJGq/lPlexynYuWYg/tMlq50ZYnXmwDs7un6m2eVyQOZUjE/
+   oluvqxEwTLbTQBtT5mdMIm5LaNTLMO+hjXGFxPkPXNMd9/0p8N7amRUlu
+   s4uPb9RQsmeOABytFPo7YaoJpPc7bbsRtXxlp0sved3BUBui2qagy2o67
+   g==;
+X-CSE-ConnectionGUID: qtRxBOn/TlijJ0YxBfzv9w==
+X-CSE-MsgGUID: gaY6mjvYSPOuWlfD+JtKPQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11704"; a="72326680"
+X-IronPort-AV: E=Sophos;i="6.21,296,1763452800"; 
+   d="scan'208";a="72326680"
+Received: from fmviesa005.fm.intel.com ([10.60.135.145])
+  by orvoesa113.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 17 Feb 2026 12:09:53 -0800
+X-CSE-ConnectionGUID: UaZAjWF8QOuiNG0jgmZrAQ==
+X-CSE-MsgGUID: DEKB8o8KQfqNbfRqLagFww==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.21,296,1763452800"; 
+   d="scan'208";a="218520605"
+Received: from fmsmsx902.amr.corp.intel.com ([10.18.126.91])
+  by fmviesa005.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 17 Feb 2026 12:09:53 -0800
+Received: from FMSMSX903.amr.corp.intel.com (10.18.126.92) by
+ fmsmsx902.amr.corp.intel.com (10.18.126.91) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.35; Tue, 17 Feb 2026 12:09:53 -0800
+Received: from fmsedg903.ED.cps.intel.com (10.1.192.145) by
+ FMSMSX903.amr.corp.intel.com (10.18.126.92) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.35 via Frontend Transport; Tue, 17 Feb 2026 12:09:53 -0800
+Received: from PH0PR06CU001.outbound.protection.outlook.com (40.107.208.34) by
+ edgegateway.intel.com (192.55.55.83) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.35; Tue, 17 Feb 2026 12:09:53 -0800
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=ipqJ6IcauRAYnSYLoJJb60CyxfBVb7AZwhsb0wazpA2U/grcEwwruRECtTalBi2vcVidefS/yFsXHzGq+xpJtvPMO6p1qNlnWEfPLXjbZs8jamaswMxV4u4veioC015JZD6y5XWytuoqFidl5mVHb7HfswnPREuAVqAEZKjSBThQ3t9YmqSbUN6r3Q7zaKyZq76fHDF5PWwvhhBpJ9lXbuykE/Ks4LDx9usXNr9+ngdYur3fb4SCkwqqYfaIZH0GFRHVXOOSsZ74xxfYG8Xo2KfPcesUKoC3YdeL46kiW7XfUYZY2jJEC027lnQkinzIZOJI9MPzrPPJnYHqfc25EQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=hnQceiQWzi2owLSMebeqk/vUHiS40bQWcgz8FVYGLdo=;
+ b=W1FFkDMEryw44gCfiERst2+YhDNK8wsC0/aj7X3n035ZdWsownSsepHD3PgeEWQkwH5DoWVY15zieuhUIoB1bbI+lo8LwFQL4oxKZJ99p+AqVWR/GwFoYUlGRt+cx1JUP3t5eAxrNBaTa9ZCJMX7GgHQdX3JNT5O9v7GqbXePVbJ4N5YX5dFFDrxj9NP22cDRbmdqFtpbWeH+QhJrZz5k5QnoJ431Ws0Vgzlq+veJa7GAD3iWy4Nzow3pDS4PLXhUdFN6xirhkooadIlLEklOiwqxqU1fAee80WFfKR6+dvoajqOZwavvlCM1NAodWUj3RDyTKzd6aIz8QZcevDkBQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+Received: from IA3PR11MB8987.namprd11.prod.outlook.com (2603:10b6:208:574::18)
+ by SJ2PR11MB7427.namprd11.prod.outlook.com (2603:10b6:a03:4c1::15) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9611.15; Tue, 17 Feb
+ 2026 20:09:50 +0000
+Received: from IA3PR11MB8987.namprd11.prod.outlook.com
+ ([fe80::f91f:4301:96d7:1925]) by IA3PR11MB8987.namprd11.prod.outlook.com
+ ([fe80::f91f:4301:96d7:1925%6]) with mapi id 15.20.9611.008; Tue, 17 Feb 2026
+ 20:09:50 +0000
+From: "Tyagi, Yogesh" <yogesh.tyagi@intel.com>
+To: Yoann Congal <yoann.congal@smile.fr>
+CC: Yocto ML <yocto@lists.yoctoproject.org>
+Subject: Re: [meta-intel] intel-media-driver_26.1.0.bb:do_compile fails on
+ master
+Thread-Topic: [meta-intel] intel-media-driver_26.1.0.bb:do_compile fails on
+ master
+Thread-Index: AQHclO+Z6680zGoDCk2LSLjHEQiat7V8Kr6SgAMEBACACDmRdA==
+Date: Tue, 17 Feb 2026 20:09:50 +0000
+Message-ID: <IA3PR11MB898731D307DB9D0641D1F5678C6DA@IA3PR11MB8987.namprd11.prod.outlook.com>
+References: <DG57YRQ7R76H.1FVPAEO7JT8Y6@smile.fr>
+ <IA3PR11MB89872EF6500D42F1A753C0188C62A@IA3PR11MB8987.namprd11.prod.outlook.com>
+ <DGD219WBW417.38KFVSE5F8O4R@smile.fr>
+In-Reply-To: <DGD219WBW417.38KFVSE5F8O4R@smile.fr>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+msip_labels: 
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: IA3PR11MB8987:EE_|SJ2PR11MB7427:EE_
+x-ms-office365-filtering-correlation-id: 4f956b3e-2625-4863-6d33-08de6e6081c6
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;ARA:13230040|1800799024|366016|10070799003|376014|38070700021;
+x-microsoft-antispam-message-info: =?Windows-1252?Q?6HkyxjUL8/EOthu2s2rm1dY41/fdMGg6zef6oVnqr+vD4uLa1VINiDth?=
+ =?Windows-1252?Q?BJD/J5glMaD7NZ+8K3aSmb6o/a0BBwQA+hBpy1bJQ3Gjqz89KcbaWo6d?=
+ =?Windows-1252?Q?xicjgD6ajjZtE8MQENibpMvkPYLd8dcff6Ldqifs3FqW+Kbsv5YkEazE?=
+ =?Windows-1252?Q?Qa7JLbWrBG102wX61VfNHz+9/7RUMvJZ4adKJEjrvOT1NEKTuZvCOOmT?=
+ =?Windows-1252?Q?jQ9Tu3fNncPS6w1qAZSTV/oy+BvjOfJkHI0xIKAUMn0uiXane7QUk/Ar?=
+ =?Windows-1252?Q?u8OJdOqGbCebCLE2K4zOfmHqXA+plLKgXy0jSEeEH2CST3Ha7T7uwY4h?=
+ =?Windows-1252?Q?wpLJRFZp9yL6qSuVsz0Psdty35HSACAIvcdKl5itIAxYcd33ncSvMd+u?=
+ =?Windows-1252?Q?IvQGN4pdq2/mQjWPrcxAk5+KIokOaES7n9kj0DaoVTDO+Y+a3/zXrDFP?=
+ =?Windows-1252?Q?nlujnyFUh0et1vpMs7+idrXSEDVjSGUa438blhEcbR7xOkENbK1EGqh1?=
+ =?Windows-1252?Q?1bvl79nJqECXhU3cb9rwZgmfV4AjYBIeBlOYbuh7+QivDkxIRqHCOJfk?=
+ =?Windows-1252?Q?in+mqoiraLH0VqTY/Th9dwNlDfuocsh0LXs2JghukDRe+elPPk91zNgY?=
+ =?Windows-1252?Q?txAiDla/K4V40TPi0xbpzOlRJ1HZV4HDyWCyTRTpdRqrzVaZBJIk9MKn?=
+ =?Windows-1252?Q?C/bJjLnCIW+9YT1TOppAPhD8gePrJGHUcKt6zZSr6ewhcKKQuuvLKzou?=
+ =?Windows-1252?Q?8REhLIDISfo7lijgEZc51yRQrqvbj+6YOTxk0qjSUaPJ0M74biDVCu2U?=
+ =?Windows-1252?Q?53NdodAAoBSZr4L1FDzDuIA1tkywv4+RptaAfMLxmC23n9tjEFn8L1EP?=
+ =?Windows-1252?Q?lCcOc/v6gaUtRtkQnDKp5erNF3Bzw3BwkHPjJBzTLWyozMAKsiL/LOGf?=
+ =?Windows-1252?Q?EFrg/YVhv5SCOkGmgxw/gRMa6L3zsXnQAJAscvCyVX+mp9oJ9lff11Rp?=
+ =?Windows-1252?Q?CBiU1qRB7q76Ok0BRvWgQLbg3sjEatTsSLdACnfGKRk117yMzPiOCIdh?=
+ =?Windows-1252?Q?liIA7O/+IdUctHsoLfC0n8wduBKPG/KbXrG+MCelSfqtwN+X3rUJ7OAm?=
+ =?Windows-1252?Q?3BzNGLMY8nrKN+nEmcd7lb31x309VzPbqjGGHtxQSvt87Oqd1MGGzPHu?=
+ =?Windows-1252?Q?mQPkA9s8htjsvtpnsDJNcMFSTF9E0wzyvxhiHpSh0lmIrLLDBwk6IpRS?=
+ =?Windows-1252?Q?hAltdzdOFjr6NVQmVgsdid1DBXW8/UHOrRypHeIHB1QK9Vja6EkuLe0z?=
+ =?Windows-1252?Q?cpIE35vf3XxPZ0b8SJ1TYSXXqj0cH5wQLA6JIbbHsfuB+pRzlhZZVCaw?=
+ =?Windows-1252?Q?dm8oy9vp8Oq7iv6cqX/za8+wrLpNXywc8+VU5/wqVPR92lKsTz7CkkDv?=
+ =?Windows-1252?Q?EChiut0Lktn/33igt/30Ifb+dxBTATopP64xCQSkKiLHO91qDyU+4RVa?=
+ =?Windows-1252?Q?d7uF2K8/B9Coa0JV5qc6nBdJCO9wakGyHDICOeZPC8cq1ozdGK3vIjyR?=
+ =?Windows-1252?Q?JexpxkRmvwiKpD1iAcAL89lfOVsUSvvBId0FDkeQ08nEgETsmyF+3Flx?=
+ =?Windows-1252?Q?MmQpf2ND7oEICIaNeud0bBEgrH1M+0QkojX54DpSscGPANM9qd7eye+c?=
+ =?Windows-1252?Q?Y6LWFSZcWyu98IDgxTJmFKqD+SgNJKGN?=
+x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:IA3PR11MB8987.namprd11.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(1800799024)(366016)(10070799003)(376014)(38070700021);DIR:OUT;SFP:1101;
+x-ms-exchange-antispam-messagedata-chunkcount: 2
+x-ms-exchange-antispam-messagedata-0: =?Windows-1252?Q?g6idoLBA1KVz0SY1ipDUeFj5UWAi10lOYfwbnf0w5uqxeiYt3RagtEaq?=
+ =?Windows-1252?Q?7xHKppWpbrfs8mntRYCwjdDOudLM+qAAbQjPxS3k3AFAxEljlKukaPk/?=
+ =?Windows-1252?Q?scErmdFqQRPNOYMLY1BaY124qIT6019f84LfFYiqduSF6U+HGYk9Jm8/?=
+ =?Windows-1252?Q?fGc48d/sbSKy0a13SfGeYyu5+fRk9nF//ExZtuZrgBNFOMRqkmzExJ3b?=
+ =?Windows-1252?Q?IHwPjy04tQiQaHXkd75msLzq67/WbrYgOqAOIC6HgZoxwC6ud2ezKMqM?=
+ =?Windows-1252?Q?kTXTwKWOEjg3Ou9O5DXm6gW1ulNHCM3S8RcNtZbVFuQKHC5xxUxdDsCg?=
+ =?Windows-1252?Q?0RmagbZr9bf4jSHk0lnriwfLI7VlcyhaooIOfKBqtvaVu2KLpKwKKJ40?=
+ =?Windows-1252?Q?O3WCHkE0V4X8VIIgIgv6CcHUxsnQyPE70ncEbOfqz+ZaTfHZGWpZ6vGV?=
+ =?Windows-1252?Q?aW/tQdIEyO8H4zynCear4NOtu8VTp8PhotgtdjSi7nUgTC2mkvPsowsH?=
+ =?Windows-1252?Q?DMfDOOUI4OYo7rftccsiUzrPL3qaBKcmnqHFpM7a07u1w2h64IfOtvf7?=
+ =?Windows-1252?Q?eS4KSscl0MzIyULWPhFSTpVBJpQTXpsH7S0GtxX+5oiAQ2S1uwhnJ7UK?=
+ =?Windows-1252?Q?XZLa+NdDzcaqb86Z0QsPz7MhOszd0b5b9ROU35DXIBRrXXYqp8eYyoaJ?=
+ =?Windows-1252?Q?9iQoEieHJXoKA1FTLKSW6KPxKIcABSVHEa2TGds57TgpOTtxK2l5k/Ao?=
+ =?Windows-1252?Q?x0MToLIE2CRLI/e2VvvD7hIL6CBIMH/6PjXuMjlglaBbnY0Y3pENgso8?=
+ =?Windows-1252?Q?xqPrwjSAlacyve6V+25ZNHqkgbF7JWtvwygXrXXfZAD0rSiho5zPCoJD?=
+ =?Windows-1252?Q?lEbYf/r4ePPc/tJ+Gjbw3dGtZx/9zgLN9EyL2KNQGdvYdDhV5q2FqvX+?=
+ =?Windows-1252?Q?o9TIbaXgzNgf4WKQkL8s/Top6SvssGOPqNQ1/OQj0hxtty6Ze7wMW6L4?=
+ =?Windows-1252?Q?STZifNwpjBDwygH+ht4MO1CP8GuokVmmbUu0Hwqk7n+QusItDiKCbbo4?=
+ =?Windows-1252?Q?vkisWhfW3kcmOl5+K1f7rtKI/0C4IZF+XWJaZaZxETgB8xXNgVtHu0jv?=
+ =?Windows-1252?Q?kmlxsp7gxwSJuvLGlZGyjRENTDEBhWKps1II4JbWOpH3XvgGofa2ZVW+?=
+ =?Windows-1252?Q?wmNUn789DTONTrcXgXMKH/lhtbw2l9nfzfNuGZTCObmaOAl5Yiq2rdv9?=
+ =?Windows-1252?Q?HXhUY5IFmNUDO+1CAUTaRlhEE+KeRZCUCiSFfbXrHxLkl5ta5/S128to?=
+ =?Windows-1252?Q?mxg3NIe1MzCeDpyu+TaglS4LZFP1ecgUHARBuKtG+ANuGhOuBbluM6nG?=
+ =?Windows-1252?Q?ULPKj/zCyECeifilLNMBP3tvWIcJBzmp+gy1L0O5XSsEXYV3odl/U5dc?=
+ =?Windows-1252?Q?/d/aYMIiWLxAMdvbNL9gz81pK+gbaTk/szhuSxTrLGX/0iyPjyvaOuiM?=
+ =?Windows-1252?Q?gNbKOISpzHmDzwx0uwiTqNx8VkAddg7yqzF16AiSXdlYKusF6mT/lWfl?=
+ =?Windows-1252?Q?urWhTZd8atk+SN8xmSsM77/1akgfSs/xs+N6pq6XndcUcQFMjtHsLLwK?=
+ =?Windows-1252?Q?sCR3WziL1iT95oqaRfu+Ay+OJ5u4lDbwFKd6TxAJG3OZRUE26u5+Z6MX?=
+ =?Windows-1252?Q?eYf7Zc+9dlcqhd1gRL9ftVgFdbK02Je9BxmZJd/DkfeqT5R4NoKmbeHk?=
+ =?Windows-1252?Q?KHbVgPL/LsT+Joqwh+XBKJZM+p1wmedmYyEyx6+kKJ9mZQHhHA3w0ps0?=
+ =?Windows-1252?Q?9wmSSbspscXZjEETzackMmP3LGaLvDCUynap7Ma14CEnh9TYdbB6qEds?=
+ =?Windows-1252?Q?JR51qcyzBmDjfUUVJhkR1RZvDm1LO6CH4K5dhorFMFpq5W/+RNcZKfsi?=
+ =?Windows-1252?Q?L5mM0ZfJ?=
+x-ms-exchange-antispam-messagedata-1: eafTbZuRekg7hg==
+Content-Type: text/plain; charset="Windows-1252"
 Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset=UTF-8
-Date: Tue, 17 Feb 2026 21:07:42 +0100
-Message-Id: <DGHIB7MWHIHG.19IPAQZIA9X0X@smile.fr>
-To: <qa-build-notification@lists.yoctoproject.org>, "Yocto-mailing-list"
- <yocto@lists.yoctoproject.org>, "openembedded-core"
- <openembedded-core@lists.openembedded.org>, "Pokybuild User"
- <pokybuild@yoctoproject.org>
-Subject: Re: [qa-build-notification] QA notification for completed
- autobuilder build (yocto-5.0.16.rc2)
-From: "Yoann Congal" <yoann.congal@smile.fr>
-X-Mailer: aerc 0.20.0
-References: <0101019c6759c149-effcd63a-6c4d-496b-9059-b54370d7c341-000000@us-west-2.amazonses.com> <SN7PR11MB70181409902E431E5217A0F4F46DA@SN7PR11MB7018.namprd11.prod.outlook.com>
-In-Reply-To: <SN7PR11MB70181409902E431E5217A0F4F46DA@SN7PR11MB7018.namprd11.prod.outlook.com>
+MIME-Version: 1.0
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: IA3PR11MB8987.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 4f956b3e-2625-4863-6d33-08de6e6081c6
+X-MS-Exchange-CrossTenant-originalarrivaltime: 17 Feb 2026 20:09:50.6266
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: 3nltskUG61xWV7PkUYb86cxQ7/jR0KD2N8kRLn+Z4S7bF1/dEc0ifQvjV7uq4jkgzchAAgDiBDtyrxFuZIGszQ==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SJ2PR11MB7427
+X-OriginatorOrg: intel.com
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from 45-33-107-173.ip.linodeusercontent.com [45.33.107.173] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Tue, 17 Feb 2026 20:07:49 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/66252
+ <yocto@lists.yoctoproject.org>; Tue, 17 Feb 2026 20:09:59 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/66253
 
-On Tue Feb 17, 2026 at 11:03 AM CET, Debal via lists.yoctoproject.org Ghosh=
- wrote:
-> Hi all,
->
-> Intel and WR YP QA is planning for QA execution for YP build yocto-5.0.16=
-.rc2. We are planning to execute the following tests for this cycle:
->
->
-> OEQA-manual tests for following module:
-> OE-Core
-> BSP-hw
->
->
-> Runtime auto test for following platforms:
->
-> MinnowBoard Turbot - 32bit
-> Meteor Lake-P
-> Alder Lake-S
-> Raptor Lake-P
-> Beaglebone
->
->
-> ETA for completion: 25/02/2026.
-
-Hello,
-
-A user reported a build failure on Ubuntu 20.04: pseudo-native does not
-build with the default Ubuntu 20.04 kernel headers. I've developed a fix
-for pseudo and I'm currently testing it for scarthgap on AB. But it
-might take some time to get merged.
-
-This problem (and eventual fix) should not invalidate your on-target and
-manual tests.
-
-Regards,
->
->
-> Best regards,
-> Debal Ghosh
->
-> -----Original Message-----
-> From: qa-build-notification@lists.yoctoproject.org <qa-build-notification=
-@lists.yoctoproject.org> On Behalf Of Pokybuild User via lists.yoctoproject=
-.org
-> Sent: 16 February 2026 22:18
-> To: yocto@lists.yoctoproject.org
-> Cc: qa-build-notification@lists.yoctoproject.org
-> Subject: [qa-build-notification] QA notification for completed autobuilde=
-r build (yocto-5.0.16.rc2)
->
->
->     A build flagged for QA (yocto-5.0.16.rc2) was completed on the autobu=
-ilder and is available at:
->
->
->         https://valkyrie.yocto.io/pub/releases/yocto-5.0.16.rc2
->
->
->     Build URL: https://autobuilder.yoctoproject.org/valkyrie/#/builders/2=
-9/builds/3228
->
->     Build hash information:=20
->
->     bitbake: 10118785e4a670bce4980e1044c0888a8b6e84af
-> meta-agl: 8611917335f6d1f5b29ea495c8f4c2c914183e8a
-> meta-arm: a81c19915b5b9e71ed394032e9a50fd06919e1cd
-> meta-aws: 1a9605b6c4787bf20fc90c8801c36822760b4bc9
-> meta-clang: 613362523f3bf85ff4862e2f1f00113b8d2028be
-> meta-intel: 5d153e35b4e752505efeae368f188fac5e31cf33
-> meta-mingw: bd9fef71ec005be3c3a6d7f8b99d8116daf70c4f
-> meta-openembedded: 7a5075cef77b5f7af454e9868e1d0019f2fd1394
-> meta-qcom: ec80a36bce11d8182b4bb2a6fa0359adfeccde0a
-> meta-virtualization: 8b1543e121deda2445f80f74d85c10316d5b31f4
-> meta-yocto: 9bb6e6e8b016a0c9dfe290369a6ed91ef4020535
-> oecore: a1f4ae4e569bc0e36c27c1e4651e502e54d63b28
-> poky: 1d54d1c4736a114e1cecbe85a0306e3814d5ce70
-> yocto-docs: 369f3307368eaea605983e80047377fd19ebd6bf
->
->
->    =20
-> This is an automated message from the Yocto Project Autobuilder
-> Git: git://git.yoctoproject.org/yocto-autobuilder2
-> Email: richard.purdie@linuxfoundation.org
->
->
->     =20
->
->
->
->
->
->
->
-> -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
-> Links: You receive all messages sent to this group.
-> View/Reply Online (#656): https://lists.yoctoproject.org/g/qa-build-notif=
-ication/message/656
-> Mute This Topic: https://lists.yoctoproject.org/mt/117841921/4316185
-> Group Owner: qa-build-notification+owner@lists.yoctoproject.org
-> Unsubscribe: https://lists.yoctoproject.org/g/qa-build-notification/leave=
-/14721440/4316185/830777862/xyzzy [yoann.congal@smile.fr]
-> -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
-
-
---=20
-Yoann Congal
-Smile ECS
-
+________________________________________=0A=
+From: Yoann Congal <yoann.congal@smile.fr>=0A=
+Sent: Thursday, February 12, 2026 8:01 PM=0A=
+To: Tyagi, Yogesh <yogesh.tyagi@intel.com>=0A=
+Cc: Yocto ML <yocto@lists.yoctoproject.org>=0A=
+Subject: Re: [meta-intel] intel-media-driver_26.1.0.bb:do_compile fails on =
+master=0A=
+=0A=
+=0A=
+On Tue Feb 10, 2026 at 5:29 PM CET, Yogesh Tyagi wrote:=0A=
+> Hello,=0A=
+=0A=
+Hello,=0A=
+=0A=
+Thanks for the status update.=0A=
+=0A=
+> The only solution I could find at present is to shorten the build path.=
+=0A=
+>=0A=
+> Cause:=0A=
+>=0A=
+> * `intel-media-driver` CMake generates ~626 include directories per compi=
+lation unit=0A=
+> * With long paths, the expanded compiler arguments exceed Linux `ARG_MAX`=
+=0A=
+> * GCC expands response files before spawning `cc1plus`, so wrappers/respo=
+nse files don=92t help=0A=
+> * This is a kernel limitation, not a Yocto or compiler bug=0A=
+>=0A=
+> Impact:=0A=
+>=0A=
+> * Fails in Yocto builds with typical CI/workspace paths=0A=
+> * `ENABLE_NONFREE_KERNELS=3DOFF` does not reduce include count=0A=
+>=0A=
+> Workaround:=0A=
+>=0A=
+> * Use very short workspace paths (<15=9620 characters), e.g. `/w/yocto/..=
+.`=0A=
+>=0A=
+> Status:=0A=
+>=0A=
+> * Upstream issue filed with `intel-media-driver`=0A=
+=0A=
+For reference, the issue is:=0A=
+[Bug]: CMake generates 600+ include directories per compilation unit =B7 Is=
+sue #1984 =B7 intel/media-driver=0A=
+https://github.com/intel/media-driver/issues/1984=0A=
+=0A=
+> * Proper fix requires CMake refactoring upstream=0A=
+> * Path shortening is the only reliable workaround for now=0A=
+=0A=
+>Did you find what made the problem appear when we did not had it before?=
+=0A=
+>Any chance that this is something you can revert while=0A=
+>intel-media-driver cmake is fixed?=0A=
+=0A=
+=0A=
+I have reverted the intel-media-driver to old version. Please check the bui=
+ld now.=0A=
+=0A=
+> Thanks,=0A=
+> Yogesh=0A=
+> ________________________________________=0A=
+> From: Yoann Congal <yoann.congal@smile.fr>=0A=
+> Sent: Tuesday, February 3, 2026 2:59 PM=0A=
+> To: Tyagi, Yogesh <yogesh.tyagi@intel.com>=0A=
+> Cc: Yocto ML <yocto@lists.yoctoproject.org>=0A=
+> Subject: [meta-intel] intel-media-driver_26.1.0.bb:do_compile fails on ma=
+ster=0A=
+>=0A=
+>=0A=
+> Hello,=0A=
+>=0A=
+> meta-intel/master seems currently broken: intel-media-driver_26.1.0.bb:do=
+_compile fails with:=0A=
+> ninja: fatal: posix_spawn: Argument list too long=0A=
+>=0A=
+> This happens on master and also on whinlatter.=0A=
+>=0A=
+> We can see this on autobuilder:=0A=
+> https://autobuilder.yoctoproject.org/valkyrie/?#/builders/41=0A=
+> * master: https://autobuilder.yoctoproject.org/valkyrie/?#/builders/41/bu=
+ilds/2967=0A=
+> * whinlatter: https://autobuilder.yoctoproject.org/valkyrie/?#/builders/4=
+1/builds/2966=0A=
+>=0A=
+> Regards,=0A=
+=0A=
+=0A=
+-- =0A=
+Yoann Congal=0A=
+Smile ECS=0A=
+=0A=
+=0A=
+=0A=
 
