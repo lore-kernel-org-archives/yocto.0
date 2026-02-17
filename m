@@ -1,283 +1,183 @@
-Return-Path: <paul@pbarker.dev>
+Return-Path: <yoann.congal@smile.fr>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 065FDE909CF
-	for <webhook@archiver.kernel.org>; Tue, 17 Feb 2026 15:52:58 +0000 (UTC)
-Received: from fout-a3-smtp.messagingengine.com (fout-a3-smtp.messagingengine.com [103.168.172.146])
- by mx.groups.io with SMTP id smtpd.msgproc02-g2.15165.1771343568243010642
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 2B255E9A03E
+	for <webhook@archiver.kernel.org>; Tue, 17 Feb 2026 20:07:49 +0000 (UTC)
+Received: from mail-wm1-f45.google.com (mail-wm1-f45.google.com [209.85.128.45])
+ by mx.groups.io with SMTP id smtpd.msgproc01-g2.21536.1771358865467848936
  for <yocto@lists.yoctoproject.org>;
- Tue, 17 Feb 2026 07:52:48 -0800
+ Tue, 17 Feb 2026 12:07:46 -0800
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@pbarker.dev header.s=fm2 header.b=D5JEmzfZ;
- dkim=pass header.i=@messagingengine.com header.s=fm3 header.b=g9NMQ2Rw;
- spf=pass (domain: pbarker.dev, ip: 103.168.172.146, mailfrom: paul@pbarker.dev)
-Received: from phl-compute-02.internal (phl-compute-02.internal [10.202.2.42])
-	by mailfout.phl.internal (Postfix) with ESMTP id 67175EC0018;
-	Tue, 17 Feb 2026 10:52:47 -0500 (EST)
-Received: from phl-frontend-04 ([10.202.2.163])
-  by phl-compute-02.internal (MEProxy); Tue, 17 Feb 2026 10:52:47 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=pbarker.dev; h=
-	cc:content-type:content-type:date:date:from:from:in-reply-to
-	:message-id:mime-version:reply-to:subject:subject:to:to; s=fm2;
-	 t=1771343567; x=1771429967; bh=guD6V+FlcBFda/3ya97uP5oehRMz3xo3
-	s2vy3yJW+YY=; b=D5JEmzfZ6+nY+vYU3JAa5yX/YhjsC4sYRSQ2Jg9ovy/aTFeR
-	JNYMsXSoL7mEehN17x846M4avf+pSN+aqheJFvWp/1MZlPj6vzV0dxp+xmSwAmyc
-	XvqhgzB3sfc7g0v7IURs6jknDSlZrN+e8Guaif1YY5Lgea88Fj1/jzZHuK7Vsivc
-	2d/cxphiWo+utkEmmDEl08KHOsfC/R+bnVnKkoLw+lvaHap1AbI98d9zOYmYEyAW
-	5wpxwxybkR7/N3ryTC38biPMFPLTCxXX/udqnSACj0yEkqS744RFv5B1kMtNpWig
-	u/0RllBWIPJD95tiKP/EejR9Glr14/oqATlWhQ==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-	messagingengine.com; h=cc:content-type:content-type:date:date
-	:feedback-id:feedback-id:from:from:in-reply-to:message-id
-	:mime-version:reply-to:subject:subject:to:to:x-me-proxy
-	:x-me-sender:x-me-sender:x-sasl-enc; s=fm3; t=1771343567; x=
-	1771429967; bh=guD6V+FlcBFda/3ya97uP5oehRMz3xo3s2vy3yJW+YY=; b=g
-	9NMQ2RwS9jmdi+HJwjrgwd6yz7sbMgcxtjVsLEPIdyfPlDhsHzWCGK7LXsMKoKRt
-	Qd6hnkmmq1wgCc/JMqhwvThI8k/yBlEuodPany598i+cvlw3t/GRQRLDofYXfZqn
-	G0qOKr5zYff7Wak1nLgGIw4ytOpHI0LfnEt0cTvs0PSGAr0LuaZhIIbW8D+BiEGW
-	uc2/JQmuI6o91/IAJ8UsBfKf2TYWmTuxwL2oxf+Ws2rJ/0I6WVVVHRief5Cg8B3h
-	kz+jdnmSHDnz0su3BkCAlwT7RflOgIu85TGeSqTHzlpNZ2xHT2TMwSc2+qhbNdC8
-	hGS/pqfh6KMg4W1sCPtGg==
-X-ME-Sender: <xms:z46UaYVmVGapzn5bikTZWCUauFQManG080PhGmQ4td_x2dm9cAUMnQ>
-    <xme:z46UaVh-o0I4ZyMvuWdxGTKM2z7brWlu9N0ad2M0JDryEX2R5Aw7hBxESiX7OffQV
-    Wt3sjee-igV1lQw-C2DxULHYeouLQSpacpkbCo7GbbCkxkAWxhH97w>
-X-ME-Received: <xmr:z46UaX8jeWL6RAOyXN-P9w-cw1fx9Bg6jlIUSnZHy-a4ig_FDSQoVgb60vXKaptQ05ezYL3Te5IHKYfv71eF_peVakdEZI2acqer1Uj6RlQH>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeefgedrtddtgddvvddtudejucetufdoteggodetrf
-    dotffvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfurfetoffkrfgpnffqhgenuceu
-    rghilhhouhhtmecufedttdenucgoufhushhpvggtthffohhmrghinhculdegledmnecujf
-    gurhepkffuhffvffgtfgggsehgtderredtreejnecuhfhrohhmpefrrghulhcuuegrrhhk
-    vghruceophgruhhlsehpsggrrhhkvghrrdguvghvqeenucggtffrrghtthgvrhhnpeduve
-    elleefgfeuudejheefjeetkeejgffhkefftefgieekgfehhedulefhiefgtdenucffohhm
-    rghinhepiihoohhmrdhushdphihotghtohhprhhojhgvtghtrdhorhhgpdhophgvnhgvmh
-    gsvgguuggvugdrohhrghdphihotghtohdrihhopdhgohhoghhlvgdrtghomhenucevlhhu
-    shhtvghrufhiiigvpedtnecurfgrrhgrmhepmhgrihhlfhhrohhmpehprghulhesphgsrg
-    hrkhgvrhdruggvvhdpnhgspghrtghpthhtohephedpmhhouggvpehsmhhtphhouhhtpdhr
-    tghpthhtohephihotghtoheslhhishhtshdrhihotghtohhprhhojhgvtghtrdhorhhgpd
-    hrtghpthhtohepohhpvghnvghmsggvugguvgguqdgtohhrvgeslhhishhtshdrohhpvghn
-    vghmsggvugguvggurdhorhhgpdhrtghpthhtohephihotghtohdqshhtrghtuhhssehlih
-    hsthhsrdihohgtthhophhrohhjvggtthdrohhrghdprhgtphhtthhopehsjhholhhlvgih
-    rdihphdrphhmsehgmhgrihhlrdgtohhmpdhrtghpthhtohepphgruhhlsehpsggrrhhkvg
-    hrrdguvghv
-X-ME-Proxy: <xmx:z46UaXZ4_ZVXjxBQNY3v8PDwMLSILHOcchqdUO-FIaSguHUL5GvgyQ>
-    <xmx:z46Uae2osUBHFPHeSf95BnwqkKsBp5hCzSLch8fL8KFEOLDqtIUz6Q>
-    <xmx:z46UaaZK00068_LOmnO1e3mlE1xvitkmw6FgMMnxyNOlOic5_vUx_w>
-    <xmx:z46UaeK7hSNybY2iO5VgtlEI8kfv3xliNI7GxqmrA-RD7U5CErz0WA>
-    <xmx:z46UaX_9pCbsiznZ_wQlfISZuxBcbGj9g_VPye1vCvK_BoTgwnlZo-1_>
-Feedback-ID: i51494658:Fastmail
-Received: by mail.messagingengine.com (Postfix) with ESMTPA; Tue,
- 17 Feb 2026 10:52:46 -0500 (EST)
-Message-ID: <207c307fe05f93e3f12a39fb93dab0cbdd77b6bf.camel@pbarker.dev>
-Subject: Yocto Project Status 17 February 2026 (WW08)
-From: Paul Barker <paul@pbarker.dev>
-To: yocto@lists.yoctoproject.org, openembedded-core@lists.openembedded.org, 
-	yocto-status@lists.yoctoproject.org
-Date: Tue, 17 Feb 2026 15:52:42 +0000
-Autocrypt: addr=paul@pbarker.dev; prefer-encrypt=mutual;
- keydata=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
- LUewj8JVy0aJsGTwI4invl
-Content-Type: multipart/signed; micalg="pgp-sha512";
-	protocol="application/pgp-signature"; boundary="=-kWLtrU5RBeFnS0D1ugBg"
-User-Agent: Evolution 3.52.3-0ubuntu1.1 
-MIME-Version: 1.0
+ dkim=pass header.i=@smile.fr header.s=google header.b=Ty0TDSR/;
+ spf=pass (domain: smile.fr, ip: 209.85.128.45, mailfrom: yoann.congal@smile.fr)
+Received: by mail-wm1-f45.google.com with SMTP id 5b1f17b1804b1-4837907f535so32935775e9.3
+        for <yocto@lists.yoctoproject.org>; Tue, 17 Feb 2026 12:07:45 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=smile.fr; s=google; t=1771358864; x=1771963664; darn=lists.yoctoproject.org;
+        h=in-reply-to:references:from:subject:to:message-id:date
+         :content-transfer-encoding:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=9aBVQXc97vI+gQd/5zcX3cO8CL11MAKK+7u4ZUVgE6E=;
+        b=Ty0TDSR/9yBDRBBg8gKnijY2PM8H/EbVpusNgRLmUIAYPT9AETI4H5KjQuLV4QkBFK
+         EUCSbWdqIJNqArUadURmHk9AAfRCnox+TI/UE90nyHDv6YcozvVblyWVfzD11cWd8uey
+         s2qGbEH8z3pZPx01zFKtNv2h2voZmh8J1XJ5E=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1771358864; x=1771963664;
+        h=in-reply-to:references:from:subject:to:message-id:date
+         :content-transfer-encoding:mime-version:x-gm-gg:x-gm-message-state
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=9aBVQXc97vI+gQd/5zcX3cO8CL11MAKK+7u4ZUVgE6E=;
+        b=l+eaBv8kdoBIAPz4e9eFv2nINk7HostqhuZZ5OqtSKfV9VTXZ/BcRl8M6O+RNLMInd
+         cHJkURt+GfMrcwi0igtru4Y7mK+ED+dukef6oOCJ6Ijr3lnrzHXncisQqgWoQlAEz64X
+         77sGBDRZESd1YEhAefZkVySE2Y9mcoLas87J14aLrCS5W1cGZ4antTWB+Z0098YCCzgv
+         tOz4RxT+6q6UKVwkItTEKRUKGMwfz+RzTPwnKpEpXsrVpNEF/dLb86l5YYBP74w6nNYC
+         fUWgUw+pIOx8qZ+bA6JMQx9ci6HD2vCUs5oQEvfrN2TBD0/XfBdxy1UndRQWmzjss7Su
+         59pA==
+X-Forwarded-Encrypted: i=1; AJvYcCXiINlZ6wCBrvHEvgto2PpIeh/Wnkd2SN02UqUWnObDfNBnDLuAFzqRnzyyIH1evrEyXWpGaw==@lists.yoctoproject.org
+X-Gm-Message-State: AOJu0Yyh8a30TKD68FmgESJUn3keVGL1Cy57mfCQJzhoKKcZy5knBOQP
+	zvnNl0QNias88sOUNZqv+9AmwLE2prw51qhIgYDrQHQpwGLJpIbQABg3E6DjMrGAV6Q=
+X-Gm-Gg: AZuq6aK9oKmMgY5Oj3ZXecoGzV1c8IHvO15c8FBm6PcA/AqbsKwLbMMLVQcKSHBFMSq
+	CKPWfQZE07Jn7UrUBi6+rfblToauQ7p/om/CfaFyUEAueYpBKq1wRvFhWEOvKLcr+gFMNa7ysSw
+	jAt5GY9D/PQGdW89p6qjW8c6Qyvrp7mInAnerORGrKu1T8STINEdq466P2mK0nhtDlRWYhOoXxA
+	B9yr2ps24uvFhFxm8tjATcBGKpt7tGrBkp1dclFcNq3yQbXYb/qWXx19euSeoVOf9XczVQLjosu
+	oGoyxL4FFgiW+lB3gfGkBsRqqrP852bGNJ2z5Xb1fRc7pfds17MPAt1WrPF6GcH/hILhMzWo7gT
+	vQW8MS8dcTqtUNT767CMpedq7SeOjraYzgAmM/aL0Xq4ZMshoLKsCCLILAAL/q1Gr9OzS8kXiKi
+	OTh3Mf61uE7bCBsPOSyBsGIjTmhdVJbCsPKGk8c6AyJ+lmmNbQXpnJNNJmQEoYJ7tWzC6gYqWU4
+	ZPAZTJxgEJz3XQ=
+X-Received: by 2002:a05:600c:4ed1:b0:483:71f7:2796 with SMTP id 5b1f17b1804b1-48379b9898cmr231356355e9.10.1771358863765;
+        Tue, 17 Feb 2026 12:07:43 -0800 (PST)
+Received: from localhost (2a01cb001331aa00a2e4fb7b0d887544.ipv6.abo.wanadoo.fr. [2a01:cb00:1331:aa00:a2e4:fb7b:d88:7544])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-43796a5b2d1sm39735545f8f.4.2026.02.17.12.07.43
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 17 Feb 2026 12:07:43 -0800 (PST)
+Mime-Version: 1.0
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=UTF-8
+Date: Tue, 17 Feb 2026 21:07:42 +0100
+Message-Id: <DGHIB7MWHIHG.19IPAQZIA9X0X@smile.fr>
+To: <qa-build-notification@lists.yoctoproject.org>, "Yocto-mailing-list"
+ <yocto@lists.yoctoproject.org>, "openembedded-core"
+ <openembedded-core@lists.openembedded.org>, "Pokybuild User"
+ <pokybuild@yoctoproject.org>
+Subject: Re: [qa-build-notification] QA notification for completed
+ autobuilder build (yocto-5.0.16.rc2)
+From: "Yoann Congal" <yoann.congal@smile.fr>
+X-Mailer: aerc 0.20.0
+References: <0101019c6759c149-effcd63a-6c4d-496b-9059-b54370d7c341-000000@us-west-2.amazonses.com> <SN7PR11MB70181409902E431E5217A0F4F46DA@SN7PR11MB7018.namprd11.prod.outlook.com>
+In-Reply-To: <SN7PR11MB70181409902E431E5217A0F4F46DA@SN7PR11MB7018.namprd11.prod.outlook.com>
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from 45-33-107-173.ip.linodeusercontent.com [45.33.107.173] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Tue, 17 Feb 2026 15:52:58 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/66251
+ <yocto@lists.yoctoproject.org>; Tue, 17 Feb 2026 20:07:49 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/66252
 
+On Tue Feb 17, 2026 at 11:03 AM CET, Debal via lists.yoctoproject.org Ghosh=
+ wrote:
+> Hi all,
+>
+> Intel and WR YP QA is planning for QA execution for YP build yocto-5.0.16=
+.rc2. We are planning to execute the following tests for this cycle:
+>
+>
+> OEQA-manual tests for following module:
+> OE-Core
+> BSP-hw
+>
+>
+> Runtime auto test for following platforms:
+>
+> MinnowBoard Turbot - 32bit
+> Meteor Lake-P
+> Alder Lake-S
+> Raptor Lake-P
+> Beaglebone
+>
+>
+> ETA for completion: 25/02/2026.
 
---=-kWLtrU5RBeFnS0D1ugBg
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Hello,
 
-Hi all,
+A user reported a build failure on Ubuntu 20.04: pseudo-native does not
+build with the default Ubuntu 20.04 kernel headers. I've developed a fix
+for pseudo and I'm currently testing it for scarthgap on AB. But it
+might take some time to get merged.
 
-Current Dev Position: YP 6.0 M2
-Next Deadline: YP 6.0 M2 Build Date 2026-02-16
+This problem (and eventual fix) should not invalidate your on-target and
+manual tests.
 
-Next Team Meetings:
-- Bug Triage meeting - Thursday 19th Feb. 7:30am PDT
-  (https://zoom.us/j/454367603?pwd=3DZGxoa2ZXL3FkM3Y0bFd5aVpHVVZ6dz09)
-- Weekly Project Engineering Sync  - Tuesday 17th Feb. 8am PDT
-  (https://zoom.us/j/990892712?pwd=3DcHU1MjhoM2x6ck81bkcrYjRrcmJsUT09)
-- Yocto Project Patch Review - Thursday 19th Feb. 10am GMT and Monday 23rd =
-Feb. 9am PDT
-  (https://zoom.us/j/97762397148?pwd=3D1xk0iC9hp9SjEonaTaONwTb6iWry4Eb.1)
+Regards,
+>
+>
+> Best regards,
+> Debal Ghosh
+>
+> -----Original Message-----
+> From: qa-build-notification@lists.yoctoproject.org <qa-build-notification=
+@lists.yoctoproject.org> On Behalf Of Pokybuild User via lists.yoctoproject=
+.org
+> Sent: 16 February 2026 22:18
+> To: yocto@lists.yoctoproject.org
+> Cc: qa-build-notification@lists.yoctoproject.org
+> Subject: [qa-build-notification] QA notification for completed autobuilde=
+r build (yocto-5.0.16.rc2)
+>
+>
+>     A build flagged for QA (yocto-5.0.16.rc2) was completed on the autobu=
+ilder and is available at:
+>
+>
+>         https://valkyrie.yocto.io/pub/releases/yocto-5.0.16.rc2
+>
+>
+>     Build URL: https://autobuilder.yoctoproject.org/valkyrie/#/builders/2=
+9/builds/3228
+>
+>     Build hash information:=20
+>
+>     bitbake: 10118785e4a670bce4980e1044c0888a8b6e84af
+> meta-agl: 8611917335f6d1f5b29ea495c8f4c2c914183e8a
+> meta-arm: a81c19915b5b9e71ed394032e9a50fd06919e1cd
+> meta-aws: 1a9605b6c4787bf20fc90c8801c36822760b4bc9
+> meta-clang: 613362523f3bf85ff4862e2f1f00113b8d2028be
+> meta-intel: 5d153e35b4e752505efeae368f188fac5e31cf33
+> meta-mingw: bd9fef71ec005be3c3a6d7f8b99d8116daf70c4f
+> meta-openembedded: 7a5075cef77b5f7af454e9868e1d0019f2fd1394
+> meta-qcom: ec80a36bce11d8182b4bb2a6fa0359adfeccde0a
+> meta-virtualization: 8b1543e121deda2445f80f74d85c10316d5b31f4
+> meta-yocto: 9bb6e6e8b016a0c9dfe290369a6ed91ef4020535
+> oecore: a1f4ae4e569bc0e36c27c1e4651e502e54d63b28
+> poky: 1d54d1c4736a114e1cecbe85a0306e3814d5ce70
+> yocto-docs: 369f3307368eaea605983e80047377fd19ebd6bf
+>
+>
+>    =20
+> This is an automated message from the Yocto Project Autobuilder
+> Git: git://git.yoctoproject.org/yocto-autobuilder2
+> Email: richard.purdie@linuxfoundation.org
+>
+>
+>     =20
+>
+>
+>
+>
+>
+>
+>
+> -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
+> Links: You receive all messages sent to this group.
+> View/Reply Online (#656): https://lists.yoctoproject.org/g/qa-build-notif=
+ication/message/656
+> Mute This Topic: https://lists.yoctoproject.org/mt/117841921/4316185
+> Group Owner: qa-build-notification+owner@lists.yoctoproject.org
+> Unsubscribe: https://lists.yoctoproject.org/g/qa-build-notification/leave=
+/14721440/4316185/830777862/xyzzy [yoann.congal@smile.fr]
+> -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
 
-Project data dashboard: https://dashboard.yoctoproject.org/=20
-
-Key Status/Updates:
-- YP 4.0.33 is awaiting approval
-- YP 5.0.16 is in QA
-- YP 6.0 M2 is due to build this week but is blocked by high priority
-  bugs
-- There are currently 5 high open bugs, which will block M2. Three have
-  line of sight to being resolved:
-    - rust do_test_compile/do_install segfault (#16058)
-    - Generation of releases.json needs updating (#16138)
-    - AB-INT: do_image_wic: tar command return exit status 2 (#16143)
-- Two are currently needing further work:=20
-    - x86 kvm broken on Fedora 43 (#16074)
-    - AB-INT: opkg-build segmentation fault (#16078)
-- We removed the bazaar, osc and cvs fetchers since they are obsolete
-  and nobody should be using them
-- We removed sysvinit compatibility support from systemd images since
-  this will not be supported by upstream during the lifespan of our
-  upcoming LTS release.
-- We removed legacy tls support from openssl in the interests of
-  providing better secure defaults.
-- The number of intermittent failures affecting builds, both stable and
-  development, continues to be problematic - we continue to prioritise
-  addressing these since any given build is now statistically likely to
-  hit one or more of them.
-- Patch review is now using two branches:
-    - =E2=80=9Cmaster-review=E2=80=9D  - patches which pass on the autobuil=
-der and will
-      be discussed on the patch review call
-      (https://git.openembedded.org/openembedded-core-contrib/log/?h=3Dmast=
-er-review)
-    - =E2=80=9Cmaster-backlog=E2=80=9D - patches which have been discussed =
-and need
-      further investigation or more detailed feedback which we haven=E2=80=
-=99t
-      had time for yet
-      (https://git.openembedded.org/openembedded-core-contrib/log/?h=3Dmast=
-er-backlog)
-- Patches are merging but there is a backlog and we=E2=80=99ve had to prior=
-itize
-  simpler changes. We continue to struggle for bandwidth for changes
-  needing in depth review/feedback. This could impact features making it
-  into the LTS.
-
-Want to contribute? We would appreciate help with the following areas:
-- We have several open issues for pseudo and limited maintainer time to
-  work on them. Help from someone familiar with systems programming in C
-  would be greatly appreciated.
-  https://bugzilla.yoctoproject.org/buglist.cgi?list_id=3D661406&priority=
-=3DHigh&priority=3DMedium%2B&product=3DPseudo&query_format=3Dadvanced&resol=
-ution=3D---
-- There are a large number of intermittent failures on our autobuilder,
-  any help with investigating, reproducing or solving these issues would
-  be welcome! https://valkyrie.yocto.io/pub/non-release/abint/
-- Many recipes in openembedded-core would benefit from a new recipe
-  maintainer. Please look at
-  https://git.openembedded.org/openembedded-core/tree/meta/conf/distro/incl=
-ude/maintainers.inc
-  and see if you can adopt any of the unassigned recipes.
-- For more ways to contribute, see
-  https://docs.google.com/document/d/18oxKWxLorfF813h82mK6yKTIHeBp_-9owFuCW=
-bzgjOk/edit?usp=3Dsharing
-
-New to the project?
-- We have a list of issues we think are good places to start
-  contributing:
-  https://bugzilla.yoctoproject.org/buglist.cgi?quicksearch=3DNEWCOMER
-
-Tracking Metrics:
-- WDD 2941 (last week 2973) (https://wiki.yoctoproject.org/charts/combo.htm=
-l)
-- OE-Core/Poky Patch Metrics
-    - Total patches found: 1108 (last week 1106)
-    - Patches in the Pending State: 151 (14%) [last week 152 (14%)]
-    - https://valkyrie.yocto.io/pub/non-release/patchmetrics/
-
-YP 6.0 Milestone Dates:
-- YP 6.0 M2 Build Date 2026-02-16
-- YP 6.0 M2 Release Date 2026-02-27
-- YP 6.0 M3 Build Date 2026-03-09
-- YP 6.0 M3 Release Date 2026-03-20
-- YP 6.0 M4 Build Date 2026-03-30
-- YP 6.0 M4 Release Date 2026-04-26
-
-Upcoming dot releases:
-- YP 5.0.16 Release Date 2026-02-20
-- YP 5.3.2 Build Date 2026-02-16
-- YP 5.3.2 Release Date 2026-02-27
-- YP 4.0.34 Build Date 2026-02-23
-- YP 4.0.34 Release Date 2026-03-06
-- YP 5.3.3 Build Date 2026-03-09
-- YP 5.3.3 Release Date 2026-03-20
-- YP 5.0.17 Build Date 2026-03-16
-- YP 5.0.17 Release Date 2026-03-23
-- YP 4.0.35 Build Date 2026-04-06
-- YP 4.0.35 Release Date 2026-04-17
-- YP 5.3.4 Build Date 2026-04-13
-- YP 5.3.4 Release Date 2026-04-24
-- YP 5.0.18 Build Date 2026-04-20
-- YP 5.0.18 Release Date 2026-05-01
-- YP 5.0.19 Build Date 2026-05-26
-- YP 5.0.19 Release Date 2026-06-05
-
-The Yocto Project=E2=80=99s technical governance is through its Technical
-Steering Committee, more information is available at:
-https://wiki.yoctoproject.org/wiki/TSC
-
-The Status reports are now stored on the wiki at:
-https://wiki.yoctoproject.org/wiki/Weekly_Status
-
-[If anyone has suggestions for other information you=E2=80=99d like to see =
-on
-this weekly status update, let us know!]
-
-Best regards,
 
 --=20
-Paul Barker
+Yoann Congal
+Smile ECS
 
-
---=-kWLtrU5RBeFnS0D1ugBg
-Content-Type: application/pgp-signature; name="signature.asc"
-Content-Description: This is a digitally signed message part
-
------BEGIN PGP SIGNATURE-----
-
-iIcEABYKAC8WIQSzjPXf5Y1BDWhU2iCrY1Tsnbr0bgUCaZSOyhEccGF1bEBwYmFy
-a2VyLmRldgAKCRCrY1Tsnbr0bvMqAP9cV6jQ18YpjJqqSEGCMOW7Yr+MQseALWtz
-nqudAjjz/gD/fl4OBH069m6aRcuotE9bqi4QWvBfh2QBIvYqq5ohpgU=
-=IA5m
------END PGP SIGNATURE-----
-
---=-kWLtrU5RBeFnS0D1ugBg--
 
