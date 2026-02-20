@@ -1,91 +1,165 @@
-Return-Path: <yoann.congal@smile.fr>
+Return-Path: <jmeyron@gmail.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 06A0CE9A048
-	for <webhook@archiver.kernel.org>; Thu, 19 Feb 2026 13:33:45 +0000 (UTC)
-Received: from mail-wr1-f41.google.com (mail-wr1-f41.google.com [209.85.221.41])
- by mx.groups.io with SMTP id smtpd.msgproc02-g2.13759.1771508016271867763
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 2C916C5518F
+	for <webhook@archiver.kernel.org>; Fri, 20 Feb 2026 10:23:32 +0000 (UTC)
+Received: from mail-yx1-f47.google.com (mail-yx1-f47.google.com [74.125.224.47])
+ by mx.groups.io with SMTP id smtpd.msgproc02-g2.35434.1771583010520131908
  for <yocto@lists.yoctoproject.org>;
- Thu, 19 Feb 2026 05:33:36 -0800
+ Fri, 20 Feb 2026 02:23:30 -0800
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@smile.fr header.s=google header.b=myH7lrdo;
- spf=pass (domain: smile.fr, ip: 209.85.221.41, mailfrom: yoann.congal@smile.fr)
-Received: by mail-wr1-f41.google.com with SMTP id ffacd0b85a97d-4362197d174so635437f8f.3
-        for <yocto@lists.yoctoproject.org>; Thu, 19 Feb 2026 05:33:36 -0800 (PST)
+ dkim=pass header.i=@gmail.com header.s=20230601 header.b=IjQ5LRVi;
+ spf=pass (domain: gmail.com, ip: 74.125.224.47, mailfrom: jmeyron@gmail.com)
+Received: by mail-yx1-f47.google.com with SMTP id 956f58d0204a3-649dbff9727so1959066d50.3
+        for <yocto@lists.yoctoproject.org>; Fri, 20 Feb 2026 02:23:30 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; t=1771583009; cv=none;
+        d=google.com; s=arc-20240605;
+        b=TleEoxDsBn6U5d3u3amFr4JzhoSK9/CxFMGwvjNCUTKt/q2mHNW8IDD+odxTvZ3CiS
+         0tNclrR3ZsVU2UHaCyO9HmTEeD16iAxDOjH/j4KNxSr1hTO120zVB97bVMN03vpgJfHx
+         e2A3Zw1CmVPuFgxLOLJ0HV75CBjAnwaLPYa0YB9XIIThLpGhmFMTgGdiZ0tnbzFeyaCL
+         ScImE9mgMGDhhP5wR6eIujtLRHMBJTmhSZBIAbgcbaB3wSliP38/gDLOCIL6aSSipUhG
+         Ro0pOBIIPILnmIakKVbdvba0r+pkaWoVTBwTP/parUL3xWfhY4Stp8S0MaatD0k/76d7
+         nGkw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
+        h=to:subject:message-id:date:from:mime-version:dkim-signature;
+        bh=QtyCjGjRaZAoWgRSdeEDy87OrnMrLZtrO+lElX3sHXg=;
+        fh=gaHWFzVtu3p+JfCKPQnio9n4RIZglU7QiF7v1QFcvSI=;
+        b=UzDyUw1SBLbZTMhO97DZV1sHxLVkB3Hb3KX53VCcwcG401FD0ZrH1c5IjF/wC3hEEv
+         n8yroWJQRAkFmLPRE42VAdOK0+LidWOCPZ3vA8+QkloF0EaZPYasHx2jqReiuv/WOoKb
+         qBdfe6fjxCt7lbPiLsAf5vFd1/DVeaKOX5DRisrGXqtotZ9UNQ8vGpRziuBwim8m9Mre
+         R0t5k+m3+fukEtfuM+bUHuL4cB7gy/N1XMtpVMOnoEBSw9iapXWDW97OGB4gu0tVUVi/
+         cHB4bsFCEfqjMUzCmL8OvCYodu+hAYf0zHVg3AZJVlyVqdln9RN/nSsLyZ9whwWfUnpW
+         m5Iw==;
+        darn=lists.yoctoproject.org
+ARC-Authentication-Results: i=1; mx.google.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=smile.fr; s=google; t=1771508014; x=1772112814; darn=lists.yoctoproject.org;
-        h=in-reply-to:references:to:from:subject:message-id:date
-         :content-transfer-encoding:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=7qhpWEpapwOSKB8fKZRPQ2iIMNr4iAJ06ulXhSvfvsY=;
-        b=myH7lrdok0xE9mulEDcKTTKiUrJ2nXoli9szEOgWJUMDINZD1BIDMuj/4GxtZD1vQ5
-         lJfcWMGWmhSMEkqHMe9gOI7CkbRyWbEdQ3Wzm+movDlaZMORQc/TYFrTlM+phYSl9drv
-         /NUijVPDLgUwGjwKPLP8UIj6e0FathfZVC6Ak=
+        d=gmail.com; s=20230601; t=1771583009; x=1772187809; darn=lists.yoctoproject.org;
+        h=to:subject:message-id:date:from:mime-version:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=QtyCjGjRaZAoWgRSdeEDy87OrnMrLZtrO+lElX3sHXg=;
+        b=IjQ5LRViDrReKgEGgP9lYd8q9OGAP3yoWmIPwUY3Cbri8baQ62LL3Xht8GI2WGwA2U
+         fvx4UCflJ+pGl3jMhlm/32sz3A0QrnX4jrXxQUJNfGk4pkEZPKkpO/fpKssjkMAOife/
+         GfZ20Gsf7rH34Uj80b8Mjf0zFjVzEkTCKWRDc7wO3tjBuGEfuMLEtRXULFk6LBKjHwHH
+         OTxvQ0/bQtAW63UOxw3FSrq7/EucpLpB0Z9NFymtyFDh46+kwHVL25eMh540FIgYY4nj
+         Tz30TsYjRUuGJ06ztx0bsBMf+h+ZAPr5/Q8hTyjPvMsoCF4p4kuhBAGdvo8M6A2viqCG
+         R3Lg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1771508014; x=1772112814;
-        h=in-reply-to:references:to:from:subject:message-id:date
-         :content-transfer-encoding:mime-version:x-gm-gg:x-gm-message-state
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=7qhpWEpapwOSKB8fKZRPQ2iIMNr4iAJ06ulXhSvfvsY=;
-        b=SE94FxjYPLCuZHPg9AXKpZnSYnfMyoDlF5kKp0DCFaXOho37xlMjh370+Filp0Afuz
-         xIQ20cFg4PSkffogVDD1n0i0Bgq8S4Fh3ESu0Cz3LCdlZ+Wl7bdBTzubPDHnkAIDHGcg
-         lkXfFuliduki3+Y3+f/vHCbnrlR8jEFOCozWwMCT13Ez6ToK4XvsoGFtvaXd26Su7Aoj
-         T61AGXcGzvpmm3O8xExO76tEotE5SgKgjH5cofHgE5u5iXmpw/xRBJiqW9zOgery31K+
-         7woo9c96EL9ji1nNJPUcI0GGirSsaN82GBnZn0FYFaHB8GfgzFTA3OCivFu4ySfBmmNu
-         p9nA==
-X-Gm-Message-State: AOJu0Yytg5XadMN/dsS8zeNpr2/+eBIwMv7ChnTW8L5T+0slDkrRr5Jo
-	njH/VFddVHlx8Se2kvl7aEYZpArifg9oE1pLgONLiHchmhp6shPcAHM2qthJmJfkpGXy1bbKk4x
-	KpU8t
-X-Gm-Gg: AZuq6aLxFAOfrw/8Z1SoebgYAANCy6m+PsEhnWziO0G/mmmhU+ZstUOX2cpZ15ElsKh
-	8ztOODdTwf2OMmlx3VXQdiUzoQWfj82ZiY+uCBZntAyWZk8f3qnu9mZfjQCgNSYDFJX+267FmsT
-	smg4+oUQvN9+YLYejn07tDPY7C6AMPOoCZlOI3iGCIu+KKTN5jzrmh117QUZ/gFL9t3fyNIG8hR
-	JtiTEobQgLiFf8A6C140RRJSBoS3irERe54OWmA0OqCLUm0VIoNnGO06Qy85gT2gJ4XvUjJI1HO
-	ylbbWTfW35XoUYM7KvjAN3pd2pxvy/nDOVHsBCE9ylxbHQ8I63OtnbaNGnL4KHbD0m/DKJSsIEy
-	EP0reAUnp0nS6aeIv2FP5w55y77zTnzkM2uOTQFt2jEmZna8P+DqmuVExjvugWVJD+90JtD20r7
-	tZOipGAP64PwKNGtsVox8QZ5/EMsO/93HUiNfuGzy8oGLoEHj/jUIF6XlDBqBeae3bwaJKgOa7x
-	hejMbHTKc5HdBM=
-X-Received: by 2002:a05:600c:310d:b0:483:2c98:435e with SMTP id 5b1f17b1804b1-48398aefddcmr85705905e9.34.1771508014286;
-        Thu, 19 Feb 2026 05:33:34 -0800 (PST)
-Received: from localhost (2a01cb001331aa00a2e4fb7b0d887544.ipv6.abo.wanadoo.fr. [2a01:cb00:1331:aa00:a2e4:fb7b:d88:7544])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4839e7f9baasm30054615e9.0.2026.02.19.05.33.33
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 19 Feb 2026 05:33:33 -0800 (PST)
-Mime-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset=UTF-8
-Date: Thu, 19 Feb 2026 14:33:33 +0100
-Message-Id: <DGIZ6IGZSM4K.1P2TO4TDB751V@smile.fr>
-Subject: Re: [yocto] [meta-intel] intel-media-driver_26.1.0.bb:do_compile
- fails on master
-From: "Yoann Congal" <yoann.congal@smile.fr>
-To: <yocto@lists.yoctoproject.org>, <yogesh.tyagi@intel.com>
-X-Mailer: aerc 0.20.0
-References: <DG57YRQ7R76H.1FVPAEO7JT8Y6@smile.fr>
- <IA3PR11MB89872EF6500D42F1A753C0188C62A@IA3PR11MB8987.namprd11.prod.outlook.com> <DGD219WBW417.38KFVSE5F8O4R@smile.fr> <IA3PR11MB898731D307DB9D0641D1F5678C6DA@IA3PR11MB8987.namprd11.prod.outlook.com> <CAMSfU+4A=s=SwU5XNSebqSMQpg+KD8tYpMn9ncn93eUUdR7KxA@mail.gmail.com> <DGHLGO2BAP6W.31VDOO58TLKS6@smile.fr> <IA3PR11MB8987C922484CE78B7F8E2EB28C6BA@IA3PR11MB8987.namprd11.prod.outlook.com>
-In-Reply-To: <IA3PR11MB8987C922484CE78B7F8E2EB28C6BA@IA3PR11MB8987.namprd11.prod.outlook.com>
+        d=1e100.net; s=20230601; t=1771583009; x=1772187809;
+        h=to:subject:message-id:date:from:mime-version:x-gm-gg
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=QtyCjGjRaZAoWgRSdeEDy87OrnMrLZtrO+lElX3sHXg=;
+        b=Q1mekWCfhz6UFKdC4VNsJmKRPTw6xIGXCwXBp3wLs4rsrgz10eE/7tTZVpQXrYqkal
+         el4qGrsyX/npAWuHJ1OHEmXmPj9qmcgq0yXRmyz5NdarnT9PIPRITzQVlnRj47qePCiw
+         i6Coi1MkDCBmxy3bHMrXjLAhkz/8sSVcO/GSun6gVMLsC/Frvy5dXD6afO7zLuHkUAx3
+         S49BJsvNuZuWZ9UZoPNR7W/7q0igkOwPZc1mbPumVw7Bim7QyYdZNWiNEuTT8RwDcgmO
+         EVhnPxqEl+yp+aLp1jDRV4ORkqEpes+JmOA2HwcENLS0vmz9hkmoK6WCMeM5HtiKFGdU
+         WJ6Q==
+X-Gm-Message-State: AOJu0YyFcJyMk/4gLjEUBXp92f3RUa5hlqESb8sBADhxfyL9LKSdXZ1X
+	A53jBU5deIwdXC8oKKHXUPmHoMSGm/XJLZv6ZdiPalmM1XlNahHpf7//C2u9QB+eGlwvibyUn52
+	5zGHvn2+6iomj/MMYurO2Dce9vJKAOTEhNnVBPrakAA==
+X-Gm-Gg: AZuq6aJzkbeKTJ4szCYFNcE0IYxdCTIlzaZjP0TQHsIHWPNh6EuOswRni6cK9gk3rhu
+	C6fe2znFGtu0QFd9tDDOnBT3yQ/gsNlw/rvaHGAUyqdPw1iN7yxmw7ZSWn0BeQafIwn85F7/mTV
+	Qz3Nzwu3DH7i9+xkIOP8eXDTqU3B0PxAS5zkgPg/1PchqbnINB/ZgNpazAI6ZAwNcLOmfC9LyDJ
+	RPROONBjNUT3JIlTfAoDqNR+4cl2fFPyXIK9X59DdzXMdrBVw9r2U/Q/VaDkpONiTBUQHo50LBc
+	ZXbEaEGP
+X-Received: by 2002:a53:d843:0:b0:64a:d5e6:b376 with SMTP id
+ 956f58d0204a3-64c21a974dcmr12150329d50.36.1771583009433; Fri, 20 Feb 2026
+ 02:23:29 -0800 (PST)
+MIME-Version: 1.0
+From: Jocelyn Meyron <jmeyron@gmail.com>
+Date: Fri, 20 Feb 2026 11:22:52 +0100
+X-Gm-Features: AaiRm51XFPl5QID4r_uINXX9cUa8XJDI6o1DGkJltLFRMF930SgvZPUbv9BreuA
+Message-ID: <CAJ0N1+STAk7So1vRHp=BRZ5rpmtwHUmkTeeZW-m-tBEXab_f5g@mail.gmail.com>
+Subject: How to properly use the script to improve the kernel cve report?
+To: yocto@lists.yoctoproject.org
+Content-Type: multipart/alternative; boundary="000000000000f7aac8064b3ecfaf"
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from 45-33-107-173.ip.linodeusercontent.com [45.33.107.173] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Thu, 19 Feb 2026 13:33:45 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/66258
+ <yocto@lists.yoctoproject.org>; Fri, 20 Feb 2026 10:23:32 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/66259
 
-On Thu Feb 19, 2026 at 1:26 PM CET, Yogesh Tyagi via lists.yoctoproject.org=
- wrote:
-> Hello Yoann,
->
-> Is it possible to test a meta-intel development branch in autobuilder bef=
-ore pushing the changes in production?
+--000000000000f7aac8064b3ecfaf
+Content-Type: text/plain; charset="UTF-8"
 
-Hello,
+Hello everyone,
 
-Yes, you can publish a development branch on the meta-intel repo and we
-can start the builds. If you have not already, you can join the project
-IRC channel (#yocto on https://libera.chat/) to make those build requests.
+I want to use this script
+https://github.com/yoctoproject/poky/blob/scarthgap/scripts/contrib/improve_kernel_cve_report.py
+that was recently merged (to mark the CVEs impacting files I don't compile
+as not applicable).
 
-Regards,
---=20
-Yoann Congal
-Smile ECS
+My platform is based on a STM32MP1 MCU and I'm using the layer provided by
+ST https://github.com/STMicroelectronics/meta-st-stm32mp
 
+I have added
+SPDX_INCLUDE_COMPILED_SOURCES = "1"
+inherit create-spdx
+
+in the bbappend of my kernel recipe and I now run the following command:
+./layers/openembedded-core/scripts/improve_kernel_cve_report.py --spdx
+build/tmp/deploy/spdx/2.2/<MACHINE>/recipes/recipe-linux-stm32mp.spdx.json
+--kernel-version 6.6.78 --datadir ./vulns
+
+And the output is:
+[improve_kernel_cve_report.py:419] Total compiled files 82017
+[improve_kernel_cve_report.py:93] CVE-2024-0000 doesn't have good metadata
+[improve_kernel_cve_report.py:93] CVE-2024-0053 doesn't have good metadata
+[improve_kernel_cve_report.py:199] Total CVEs ignored due to not applicable
+config: 37
+[improve_kernel_cve_report.py:200] Total CVEs not vulnerable due
+version-not-in-range: 8453
+[improve_kernel_cve_report.py:201] Total vulnerable CVEs: 1950
+[improve_kernel_cve_report.py:203] Total CVEs already backported in 6.6:
+1618
+[improve_kernel_cve_report.py:454] Total kernel cves from kernel CNA: 10720
+[improve_kernel_cve_report.py:456] Total kernel before processing cves: 0
+[improve_kernel_cve_report.py:464] Total kernel cves after processing: 10720
+
+I see that some CVEs were ignored but for the majority of the other non
+applicable ones they were not. I digged a bit in the code and found out
+that the spdx file generated by my kernel contained basically all source
+files and not only the compiled ones. Did I miss any configuration to have
+the proper SPDX report?
+
+Thanks in advance.
+
+--000000000000f7aac8064b3ecfaf
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr">Hello everyone,<div><br></div><div>I want to use this scri=
+pt <a href=3D"https://github.com/yoctoproject/poky/blob/scarthgap/scripts/c=
+ontrib/improve_kernel_cve_report.py">https://github.com/yoctoproject/poky/b=
+lob/scarthgap/scripts/contrib/improve_kernel_cve_report.py</a> that was rec=
+ently merged (to mark the CVEs impacting files I don&#39;t compile as not a=
+pplicable).</div><div><br></div><div>My platform is based on a STM32MP1 MCU=
+ and I&#39;m using the layer provided by ST=C2=A0<a href=3D"https://github.=
+com/STMicroelectronics/meta-st-stm32mp">https://github.com/STMicroelectroni=
+cs/meta-st-stm32mp</a></div><div><br></div><div>I have added</div><div>SPDX=
+_INCLUDE_COMPILED_SOURCES =3D &quot;1&quot;<br>inherit create-spdx<br></div=
+><div><br></div><div>in the bbappend of my kernel recipe and I now run the =
+following command:</div><div>./layers/openembedded-core/scripts/improve_ker=
+nel_cve_report.py --spdx build/tmp/deploy/spdx/2.2/&lt;MACHINE&gt;/recipes/=
+recipe-linux-stm32mp.spdx.json --kernel-version 6.6.78 --datadir ./vulns=C2=
+=A0</div><div><br></div><div>And the output is:</div><div>[improve_kernel_c=
+ve_report.py:419] Total compiled files 82017<br>[improve_kernel_cve_report.=
+py:93] CVE-2024-0000 doesn&#39;t have good metadata<br>[improve_kernel_cve_=
+report.py:93] CVE-2024-0053 doesn&#39;t have good metadata<br>[improve_kern=
+el_cve_report.py:199] Total CVEs ignored due to not applicable config: 37<b=
+r>[improve_kernel_cve_report.py:200] Total CVEs not vulnerable due version-=
+not-in-range: 8453<br>[improve_kernel_cve_report.py:201] Total vulnerable C=
+VEs: 1950<br>[improve_kernel_cve_report.py:203] Total CVEs already backport=
+ed in 6.6: 1618<br>[improve_kernel_cve_report.py:454] Total kernel cves fro=
+m kernel CNA: 10720<br>[improve_kernel_cve_report.py:456] Total kernel befo=
+re processing cves: 0<br>[improve_kernel_cve_report.py:464] Total kernel cv=
+es after processing: 10720</div><div><br></div><div>I see that some CVEs we=
+re ignored but for the majority of the other non applicable ones they were =
+not. I digged a bit in the code and found out that the spdx file generated =
+by my kernel contained basically all source files and not only the compiled=
+ ones. Did I miss any configuration to have the proper SPDX report?<br><br>=
+Thanks in advance.</div></div>
+
+--000000000000f7aac8064b3ecfaf--
 
