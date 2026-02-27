@@ -1,243 +1,1169 @@
-Return-Path: <peter.marko@siemens.com>
+Return-Path: <chee.yang.lee@intel.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id D89BCFD8FF4
-	for <webhook@archiver.kernel.org>; Thu, 26 Feb 2026 18:25:42 +0000 (UTC)
-Received: from AM0PR02CU008.outbound.protection.outlook.com (AM0PR02CU008.outbound.protection.outlook.com [52.101.72.16])
- by mx.groups.io with SMTP id smtpd.msgproc01-g2.76967.1772130341422154417
+	by smtp.lore.kernel.org (Postfix) with ESMTP id AA027FD9E2C
+	for <webhook@archiver.kernel.org>; Fri, 27 Feb 2026 00:52:17 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.20])
+ by mx.groups.io with SMTP id smtpd.msgproc01-g2.85268.1772153533539739289
  for <yocto@lists.yoctoproject.org>;
- Thu, 26 Feb 2026 10:25:42 -0800
+ Thu, 26 Feb 2026 16:52:15 -0800
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@siemens.com header.s=selector2 header.b=IYsf3+P9;
- spf=pass (domain: siemens.com, ip: 52.101.72.16, mailfrom: peter.marko@siemens.com)
+ dkim=pass header.i=@intel.com header.s=Intel header.b=UmJan8Zq;
+ spf=pass (domain: intel.com, ip: 198.175.65.20, mailfrom: chee.yang.lee@intel.com)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1772153534; x=1803689534;
+  h=from:to:subject:date:message-id:mime-version;
+  bh=1STWRwmvwm3fmreFk5wdq8clHEtQGWsuu6GUMt4/ONY=;
+  b=UmJan8ZqX5pQwNG0Hoob7uaErGbONwKIZ4+ig+GlI5Qy7fGqvSaDuxF3
+   LMYXmcx33u3LnvruPqJHq8YsHuynVeMVI+4+zBSqOyrXVg7dTUgz42Emu
+   Gu3nL7DpCtMWL86KwnYNiCqOZo2jLDtDgjhPXxm1yHOyN2+amgh/rVi+u
+   6ijV2jhkdlZy+cf+zpWTUkLJQ6VOnvsAypU2D/isjffblK8GkvaDsXj/H
+   avspeBg2riciew9U/RiCm7rWioQGX/8NBYGI9VvLfYAyd2vBFgrDpnSNe
+   hslCqq9RsusHCy30Os8KmeOl2WqafV0o81craPpvX4bUWXN2qpIzOceKb
+   g==;
+X-CSE-ConnectionGUID: C1ps714DQ8GgSVegbXtLQQ==
+X-CSE-MsgGUID: jz647BitQty2NcDOwNKnuA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11713"; a="72933852"
+X-IronPort-AV: E=Sophos;i="6.21,313,1763452800"; 
+   d="scan'208,217";a="72933852"
+Received: from orviesa004.jf.intel.com ([10.64.159.144])
+  by orvoesa112.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 26 Feb 2026 16:52:13 -0800
+X-CSE-ConnectionGUID: R/logrRnTLqbyRUS9xATjw==
+X-CSE-MsgGUID: ouXBJ1cwQQ+iglgQv4d/sQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.21,313,1763452800"; 
+   d="scan'208,217";a="221248489"
+Received: from fmsmsx901.amr.corp.intel.com ([10.18.126.90])
+  by orviesa004.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 26 Feb 2026 16:52:13 -0800
+Received: from FMSMSX903.amr.corp.intel.com (10.18.126.92) by
+ fmsmsx901.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.37; Thu, 26 Feb 2026 16:52:12 -0800
+Received: from fmsedg902.ED.cps.intel.com (10.1.192.144) by
+ FMSMSX903.amr.corp.intel.com (10.18.126.92) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.37 via Frontend Transport; Thu, 26 Feb 2026 16:52:12 -0800
+Received: from CH1PR05CU001.outbound.protection.outlook.com (52.101.193.51) by
+ edgegateway.intel.com (192.55.55.82) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.37; Thu, 26 Feb 2026 16:52:12 -0800
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=tjW4N9LqbZHKp5bshFTU4/FU/vpQUFd9U/WapR6MPzjqiPxdGrDItNtoHVHRE09buxxxgqpQThejU52P2fWZBr+X9AkOyIS7vQvWtxhSHGstPj0fD9c5IM4HDyTZ4QKZSbWhagaXCtBMeCLe78rzjA6Q4uUrtl+TvMieLx+PHXr5JcKzM1Jb5Bg9QSjc9vvtIEyFhvEiRq9wvD4iCnXsAbxP/32JYhKY7pBq8YZHv5WAa/8FZhdpYnfFd+67Ye2gAaerz0bHybqxbgKlNRyZG/30Hp5Rp/9jJ4eHcGHaN5nwTiFodVtQoiMAEaCm6UBx3P5lo2l7bH4VfzXPAM+m8w==
+ b=u1tF24EEMti89gJVP3fPsFRfxZFcR7KxRIuMV2l273lWSsjzqaJMvr7FUCRHVqncoovLBZRGG6us+OiO5LT8/yhtTn0nL7cih6IZ4Bcwi/x4PoWjLFpQb3Q4cfUBWxn6d8m8J6A6ERmKaQrdR0yKI1I5JTY0ZS8LYr4nICM8No9hACz/v8fA1p+s09tWKD25OrfcBmr5fbd5lsW/gDV8Om3wSY+3/zmfHgvrMMdTWAv6TNaRO/7tt33W8AtW3u8KvKB03uijf1KdglffZJcO1a83qirNzV5C88AvfBmwsWwBA+8QcSmlz5MuuyYYRpQawWlGSdowcdZnhkNufJ7Rfw==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=o+VJDhHC/faV5dBe2LNsUBCpvri3hbKyLFARQSrr6lI=;
- b=iibLzrbFEbv7dsfQkVRd5dtyR30eems4X8rBEirasWtHsMOyqNqr2IXahuaMcfvfli0LPqMT0C+IJXE1VjgyofyW4lCYksvFzZf9/95lRFR22WqAVG8B6fPEDZ/YRVgB+uIhp0LzQhi2afG220f/84L+IOyw6zgmj8MKhVDBcrIF/v5O2QrJ3LUNFlt24N1s9uV966ZSFyLSQ3vpKD72l5mM1+Ry2hFHSiqru1bGTtp22jPo183EF/N+zojJBv9kElo4rhKC3r482QVr0DwL1VZukSPbpKYSnbSOGoQ3ozRclbN0YthFX5UeOXPlWdf6WCohGdrWP8LyoVytOr/v8g==
+ bh=1STWRwmvwm3fmreFk5wdq8clHEtQGWsuu6GUMt4/ONY=;
+ b=UJnEW7rUAaLTLfI73CnRcQLQem33c2qZb6hyDzWTd2uDO9sh0KYdQntGA5c4qVXEcPNQF6VswRHLdHTCxyUJDqhZLqWGFEAPtsVqkZCiCTbVrlbjqMsOC5ezMDUkUyx8mUr3yfLPv9dLybTs11+5SN6BFWr6A+7EtC7VHjQUlGaFVMFGILQUqfr65h18QW2ocEttrJ8NyqlpYGe/t63iFY3gF96f1PH/v2ibMhN7hUly7IWOzilo6LrOOxaPhiJHp636FqI6g8rw7HrGwz4XEHSoAJjFTHDTmqSunPNUh9z8tvI2bU3wbLzRogmrHXJb/1kaBAmfvLKK07lbz5TiaQ==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=siemens.com; dmarc=pass action=none header.from=siemens.com;
- dkim=pass header.d=siemens.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=siemens.com;
- s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=o+VJDhHC/faV5dBe2LNsUBCpvri3hbKyLFARQSrr6lI=;
- b=IYsf3+P9mLo6aiP27qn07gQLCJBgTTVTfv8nHcYu7JjyFr5htJHkOawEZYIvi9AfqRMiubQXMWSrG7HovMzXukjMvEXv062Ae8+3ZoX/pXVy3eVyaptU1yoIoiuOyEW0QBP9ETXDHcHJ3vR8rR6EF+6au/VXHiozkisTfqkUxqIzmDAaRGgDaXPvo4IrgV3A1MGPo+0i1WmzNzVrz5FRR5NzIcLVF87aBFEYFwcq/rT2hTAdOiqT2KQeWGF2H8RB6/Bq8KC00WNtkcghjYwwXrIziEygeOn7gT2HgghNSE8Sefw7lSnhYccL7odjArzUaLHIPAMIQHfJZuStN66PYw==
-Received: from AS1PR10MB5697.EURPRD10.PROD.OUTLOOK.COM (2603:10a6:20b:479::20)
- by DUZPR10MB8070.EURPRD10.PROD.OUTLOOK.COM (2603:10a6:10:4ad::8) with
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+Received: from BL4PR11MB8797.namprd11.prod.outlook.com (2603:10b6:208:5a7::8)
+ by IA0PR11MB7211.namprd11.prod.outlook.com (2603:10b6:208:43f::5) with
  Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9654.13; Thu, 26 Feb
- 2026 18:25:36 +0000
-Received: from AS1PR10MB5697.EURPRD10.PROD.OUTLOOK.COM
- ([fe80::b54d:255a:1abf:2dc7]) by AS1PR10MB5697.EURPRD10.PROD.OUTLOOK.COM
- ([fe80::b54d:255a:1abf:2dc7%6]) with mapi id 15.20.9654.007; Thu, 26 Feb 2026
- 18:25:36 +0000
-From: "Marko, Peter" <Peter.Marko@siemens.com>
-To: Paul Barker <paul@pbarker.dev>, "yocto@lists.yoctoproject.org"
-	<yocto@lists.yoctoproject.org>, "yocto-status@lists.yoctoproject.org"
-	<yocto-status@lists.yoctoproject.org>, Marta Rybczynska
-	<rybczynska@gmail.com>
-Subject: RE: [OE-core] Yocto Project Status 24 February 2026 (WW09)
-Thread-Topic: [OE-core] Yocto Project Status 24 February 2026 (WW09)
-Thread-Index: AQHcpaJMLZYFuDwy0kCjtgNSmlANlrWVTZsA
-Date: Thu, 26 Feb 2026 18:25:36 +0000
-Message-ID: 
- <AS1PR10MB569713CB5E8CD0E4FF61017BFD72A@AS1PR10MB5697.EURPRD10.PROD.OUTLOOK.COM>
-References: <c63eaa63b1ceb0f3a78148a6594152889ab9dabc.camel@pbarker.dev>
-In-Reply-To: <c63eaa63b1ceb0f3a78148a6594152889ab9dabc.camel@pbarker.dev>
-Accept-Language: en-US
-Content-Language: en-US
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9654.14; Fri, 27 Feb
+ 2026 00:52:03 +0000
+Received: from BL4PR11MB8797.namprd11.prod.outlook.com
+ ([fe80::fe4:8775:47fa:b7d9]) by BL4PR11MB8797.namprd11.prod.outlook.com
+ ([fe80::fe4:8775:47fa:b7d9%6]) with mapi id 15.20.9654.014; Fri, 27 Feb 2026
+ 00:52:03 +0000
+From: "Lee, Chee Yang" <chee.yang.lee@intel.com>
+To: "yocto-announce@lists.yoctoproject.org"
+	<yocto-announce@lists.yoctoproject.org>, Yocto-mailing-list
+	<yocto@lists.yoctoproject.org>
+Subject: [ANNOUNCEMENT] Yocto Project 4.0.33(kirkstone-4.0.33) is Released
+Thread-Topic: [ANNOUNCEMENT] Yocto Project 4.0.33(kirkstone-4.0.33) is
+ Released
+Thread-Index: AQHcpwhofWeruSXa9kGZ3tLZU0a2FA==
+Date: Fri, 27 Feb 2026 00:52:03 +0000
+Message-ID: <BL4PR11MB8797793B9D7BF1A9EA6E54CBB972A@BL4PR11MB8797.namprd11.prod.outlook.com>
+Accept-Language: en-SG, en-US
+Content-Language: en-SG
 X-MS-Has-Attach: 
 X-MS-TNEF-Correlator: 
 msip_labels: 
- MSIP_Label_9d258917-277f-42cd-a3cd-14c4e9ee58bc_ActionId=b912a578-8a8e-4b13-a913-6aadf0ed3ddf;MSIP_Label_9d258917-277f-42cd-a3cd-14c4e9ee58bc_ContentBits=0;MSIP_Label_9d258917-277f-42cd-a3cd-14c4e9ee58bc_Enabled=true;MSIP_Label_9d258917-277f-42cd-a3cd-14c4e9ee58bc_Method=Standard;MSIP_Label_9d258917-277f-42cd-a3cd-14c4e9ee58bc_Name=restricted;MSIP_Label_9d258917-277f-42cd-a3cd-14c4e9ee58bc_SetDate=2026-02-26T18:19:25Z;MSIP_Label_9d258917-277f-42cd-a3cd-14c4e9ee58bc_SiteId=38ae3bcd-9579-4fd4-adda-b42e1495d55a;MSIP_Label_9d258917-277f-42cd-a3cd-14c4e9ee58bc_Tag=10,
- 3, 0, 1;
 authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=siemens.com;
+ header.d=none;dmarc=none action=none header.from=intel.com;
 x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: AS1PR10MB5697:EE_|DUZPR10MB8070:EE_
-x-ms-office365-filtering-correlation-id: a03b943f-81bd-4146-13c3-08de75646fc7
-x-ms-exchange-atpmessageproperties: SA
+x-ms-traffictypediagnostic: BL4PR11MB8797:EE_|IA0PR11MB7211:EE_
+x-ms-office365-filtering-correlation-id: 2ab0d388-c261-4f5c-85f2-08de759a6c47
 x-ms-exchange-senderadcheck: 1
 x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: 
- BCL:0;ARA:13230040|1800799024|366016|376014|7142099003|38070700021;
-x-microsoft-antispam-message-info: 
- qPVEvPl+FthI+EjQVracPjkn8OYdN/JbeB7/2wIOfcAltniL8+UrIPivAMU7mNknZgttqCfdvEgz7fES4UREWQWrc59jgiX9aFxZnKHsMNMDSaGS6jJQu/2GOOLq5hQraXuksG7u/zUHn/Ukvt0gWyHYUzdAqrlp4oMKiPt/tyIUniD2UW8uC5ShYIxPK3gegv9R4t6XwgZ1g8r6f3aa4UT8718zRcruAlE2qyw5uerAM2R49s6ivP3/YsQbch4XiOs8Vm4Mkjw3PhQs0P3zvbcSiuP5r/o/akh+WWY0v/8iWzcvfWa2dZkHp+Uo+n6KnHFLvViayn7+g/NHUeZ05HS/631/9pZI4IShqae/KIMDTeOZGA68QrLOON/hQxRhbwg7ZLeOTu7mRST8kd5UoVQ7coysNY+TBYNRb7/DuYx+32fXSHiWSb4v+N3nm13/T17gbK+9J/7CzJq/QmpFxVm/C/87m94rcSf3nNoo6U8L/4KPM9pSTpE7QTYl1dlMg8tEdB9RU0jWnU1cV2pVmy0li2F83bXxV/w6+/s7Sb+tFwX7J/C/3X1NkEoboJBwUyt1d9qi5TD+E1RguV/B/l4qD+XfsowdPkgxtyW/ZR2Z4jUj/LyXQPLdSb4bi013hkL1jwmla8GWeKQSMWJ1rpxnkx50ocjmNoA1rimNzCVZmftIHE+ui9y6LWW6OKAnLeF0wOv5vTUg4XAsSSGo9xCO3xgb3q1MXotTFby1/kE=
-x-forefront-antispam-report: 
- CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AS1PR10MB5697.EURPRD10.PROD.OUTLOOK.COM;PTR:;CAT:NONE;SFS:(13230040)(1800799024)(366016)(376014)(7142099003)(38070700021);DIR:OUT;SFP:1101;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: 
- =?utf-8?B?RHVWN2Z4TUgxUnBKSmVyNkdXTTQxZlkySXM4Ui9oNWxMVXErK1I5Ky9SNFZ1?=
- =?utf-8?B?TEpaMWltd0x3dFZ5djdBVmVRWlAwMmlBNU5XSVNZa21lVVpaK2h3Rmw5ZG9L?=
- =?utf-8?B?czNWa1pBMkZRenE3NHlzM1NKWEx2YSsweXIvWUxFYzJKNU5acnFwaUV1QllZ?=
- =?utf-8?B?QTl0MC9TV2pXRExaSEUxdHFWNFJOWHJ0bWhzSWdvaGhiVkNlbGZUckJoQmNY?=
- =?utf-8?B?SHRtUnFISy91K0pUczBHRFZkaHZSUEwrTlFJcjhvQ01rRlUrKzFOU3pGK1Nv?=
- =?utf-8?B?MDFCVGhKeHNvT0RYc2pjN1RLcjBGWHBzVVR2SkVjckFwWDJVRkNjNWxjUS80?=
- =?utf-8?B?WEZRL0xOdEd2QW5nTVZRdDVQZ2NteHNuT3ovVmV5cVc1dVlBcVovU09qbUto?=
- =?utf-8?B?TUxzMmVWdGt5a2JkZ2E0cC96QWhkcW4vc0hLTzVZV1BoUVZPNjMwTUQ2MEhU?=
- =?utf-8?B?S2VDRDNrNHF5TWV3TVdSL0swazFLbkdWdC9OS1B2eDB6bStqK3N3YUN3WHpk?=
- =?utf-8?B?aE16OG9PanJIZVJEa013eFd5MDlmMU9yTlcyRlBrL0U5S0tOZGh3YVNaT0xR?=
- =?utf-8?B?UEZxaU95cU1NMG9PSUFEMmZNMTA3ay8rbUd1QUVBcU5QdWFBZXFVb2QzcWN2?=
- =?utf-8?B?Nlg4STJJcnk0M0Fnb3NLMUpJKzI4WDYySkVXdEdXTUtyZ2xRRnhqYU1UY1Rp?=
- =?utf-8?B?eDA0VnZ3THNmS3NNZVV6UWw1WkMyZ0djRHF5a05OSm1UVElQL3ZOSlVFeU05?=
- =?utf-8?B?Y1Q3dnhON2k1VW9sNVp1eVFTc0poZ3ZpbkZiWXlhcllMNmFOS0h0Vy82MHNh?=
- =?utf-8?B?cVJ3eUdzMENuakIxN2gza0hkN2Y3VTZGcnk4bktSY2sxbU9QcVhOMjVGRk1U?=
- =?utf-8?B?VlYvSWdkb2tVdWZVNkdHc1pBSmdPWkEwWVBxS0M4bGlScFd5a25lRm01ck1N?=
- =?utf-8?B?NWJ1anV3cTBMNUczR0tnYU53Nnp1R0NJT05scy9tdXZxS2Jlb3RaMnY4M1FU?=
- =?utf-8?B?L0NNTlAzYWhYWlVueHVjN0t3cDlIMFRoVTR5dWkzY1VlUHpxakpSWS9rT0Nw?=
- =?utf-8?B?Vmtwd1RLYk5sVHlaa01Ic1NrMmpaUGU1UVpKUjltS1N5a3BXS0FKRHhUOGVv?=
- =?utf-8?B?QitsK0twUzNqejFESmNMK0tpYVpSWjE3MlhKaTkvalp5Z0xkcmlxempxeWh4?=
- =?utf-8?B?QzBHSGMyVno0NUVDa1loWGZmSmFaTm9kUmRYMkZnc2ZqZ0hHNkZHVkM5bnNi?=
- =?utf-8?B?M2ptNjlCZU5tbzF2dllLczZESFdRbTlLQXB6cEVnRDA2T0ROQVBsT0VraU5K?=
- =?utf-8?B?SG1RNzdOWXRGa0E0R2djdFY3L1d6U3BXaHY5TFhodW0vcHh4aDYwU3VMdGYy?=
- =?utf-8?B?N1liU0JZOGpVUE9SRjI4Ym0zYTBxNnNEU3ZqMmxCdlhROFcyRDg1djR1R3d0?=
- =?utf-8?B?V0NCNjd4TWVWc1lUbmtpMHZsWDlweGpzMEoxalBRM2xvUTdvRXZOSWR0MEVu?=
- =?utf-8?B?ZVRDR3laeDg2cWpRWWNFZG1ac0t0ZXJUUmU3UW5IK08zenJ1MEFZcmVaaTZK?=
- =?utf-8?B?cUR6UzhDODFFcklaZ0w5dVdNb0JiU3Q3RE1USjJJUm1weDI2YU03aHBlNGNk?=
- =?utf-8?B?bm1kMHR4OE9jVkdzcWNIUG9zdFpqY2x3aVFFb1o5MzdOR0RKR2FnWjhZaTdn?=
- =?utf-8?B?ZDYxbVZWeXJSekRUQXFCMEpCRDNROXVadUE0Z3JydmpXSURFejZjN3dFQTdJ?=
- =?utf-8?B?NHlxZlI0cW03Z3U5MFZrRmpERDV3K1pMZjl3S0M1NlBsc1UwejN4MXFGZkI2?=
- =?utf-8?B?TWVnU3QvSFNaU1pmU2czNU00ZFZFVWRyeFMrRzNYQmFaLzg4RmZoTm12d1pz?=
- =?utf-8?B?Q0xLZXlLaEFqRHdGUkNSNEdsL0tuQ0ZVZTh3d2k4NTRqWk11czVGeVdVVFRu?=
- =?utf-8?B?VDRhSjFVUHZBRlB1MDJQbU1EZjBsLzQ0Vjl6aDg5SWtrcUV4Z1ZzZzJ6TlpH?=
- =?utf-8?B?UDRxOWxHdk4xSDJ2OUdmQmNEVzgrUWdadE82U0JiR09PeG55dkpWYUlXUnJv?=
- =?utf-8?B?cjhtSThTQmw3elhQVGFkSGF0T1F1K0VEM1VaL3dmRzFiM05PVEtLREpmVS9m?=
- =?utf-8?B?SUY3Wi9zL2NMRWNya3lNNmZkUlRXMG95WTJlYTk1RHFGRnF3dUt4SWU4eG5j?=
- =?utf-8?B?VVUycXpUTStFYVREZHE0bkF3d2ZtaHU5Y3ZOdkNCQUkrdDUxL0V3WDArZ2k1?=
- =?utf-8?B?ejNwVForcmcyUnVJcitIMHZDakpnYSszV3ZIZ0MrdGphMTdvN09WLzZRTjJk?=
- =?utf-8?B?VnlzWitVZ0xRVUNOZWNUdnRITFZ5THVzaStCUGFtVnk2aXBYSjhMQT09?=
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+x-microsoft-antispam: BCL:0;ARA:13230040|366016|1800799024|10070799003|376014|38070700021|8096899003|13003099007;
+x-microsoft-antispam-message-info: 66BhGp3DtWKNpRs6orqIHbdpoohAyFEgGK6AU5O0Wz/CyLGZxihW55JXWsVd7NusLqiJ0sciCDduZmCjWbxSH2ltVSgtIFX5XMdEPLl6WHI5GmXFbETGmjBqHk816utR+SSi1ogSMjGFq/KL+Y6xNFYSNEJfxuHM7ba017fk0yKb9GGCwE7NGa5qK14Mi7BMqGAxnWFziPrEC7ejhfg0Sr2qD6O05Zode4kINXvKLcQSTXjLT/S8BXYonlLwXqlsFU1fN1Ti2NWfV0KaeFg+HEs4eRH1yShXG4qOhUwWqG4m9DdFQHwBEDmndj0CWa7RUP/ne+ztQNZlRpCdL+qX9g03ynKfnNBgpNkLs90YH3BMdQs3ah1alzFmutzceShIyR2mfyiR6rhRG/P0/HAkmgueZs7C5vCG2aZLUJ0BwpeaHoOfh8I76szh3zIwh/R7jPCk0jptqxlHzkXYYh8WCUWcvKJregriKu4qSPNMyawpJlU+38ILmjRTmE987yJOggKqb3JjlesutJq2KpsvDDF3u4rN39AcII1/QaAsWJlfmFwM8msjV7D4B5Vq3SqU/joqvw1uSXBvXgyec+S9zGQ7tshxm0/OKCGQK2IyPEzHrxMUcuiifxPbZ1lqX0rSkjGIJ1yKT6Eq3bd/jHgl6/eFSRXy6mHnOusPvnoeFIgCL2JKq9O1giJ04CEw62NhIy8HB6yHwYmUtT7XX7r+T+4CCAdrLw7fxftcM47gMGQTNUJ6w8Es91wESuCnrGHj
+x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:BL4PR11MB8797.namprd11.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(366016)(1800799024)(10070799003)(376014)(38070700021)(8096899003)(13003099007);DIR:OUT;SFP:1101;
+x-ms-exchange-antispam-messagedata-chunkcount: 2
+x-ms-exchange-antispam-messagedata-0: =?iso-8859-1?Q?+F+fZ3Gaokx+T5Xz3mp1Eb9XgTOSqo+MmHyql2hXrmco12RK/mMCOBsaXk?=
+ =?iso-8859-1?Q?BORyQAW0Lsu2r/UnYFZbBwY2kIkn/Q85mMbzIquzpV0jFYvGpyWfRflvaj?=
+ =?iso-8859-1?Q?ZfF2Mf0a7/kY0vPFnaeOZDQwPWRSfmFyLxnegYQ08d2V5vLVTh7Mv2Irvr?=
+ =?iso-8859-1?Q?Z/iVbWLr9dVGWni0cdH0eJogFqUvwU7N3mnll01b//3H271LOkR6LCK3ts?=
+ =?iso-8859-1?Q?iO43pGom7ty8JW+Y3Zk2lpe0iWfdYh5XvUbqwCTre8OU5ydY/sKPOY4ppb?=
+ =?iso-8859-1?Q?1bSA7XtjnX6MYy7impL8HX5i0y0m1zh4z4ItuJvswLnGtU+WUdjx4OPQe9?=
+ =?iso-8859-1?Q?4iJhtzWJO6mwOUyQz/7onwNi8eQMSkDA7E0KncUXiOWeItkKliyUrJcJjH?=
+ =?iso-8859-1?Q?1SAx9tvhB+wD2SBfghl7un1levkSyCuFhdyB0mTKggGan04vXcRrycTeD1?=
+ =?iso-8859-1?Q?OqoPB2dirzFKP4t4R9ym2zXbd5Vz4pNdz/O4ueypwH8gPMlKi8wAHPePGp?=
+ =?iso-8859-1?Q?JEy3PI//ElkLKkyrQ3o6JujBDuGunh8hWZ1swH0z8LsYvu2tudx9zWL+pK?=
+ =?iso-8859-1?Q?OCL5704RSoElpqrqLiF7SbIQLJMeBvKG1hgNkk2D5O6nFmfVk0q1DBRCVN?=
+ =?iso-8859-1?Q?fUAh5oEoReVbupcx0rXBck3zaIczz4VmAoqZRPq5JTR9deHZC26ftgaQPc?=
+ =?iso-8859-1?Q?qP9dc38UT5oBchXa8pkE9KFYQjG0VXbDvJmVMa5xDKcH4g8+BGuv2anzY9?=
+ =?iso-8859-1?Q?q0OjWrYKZVlgEYLAIGbTZsJ/HVLCCS4HokvQFUhZ+F/zyLUBhmyr8ajFVc?=
+ =?iso-8859-1?Q?5NKAFL/0+AyfSncOq3oRlVCS5bYWiDxsD5jVaOGzgBla1h2fxfLgQzoLd3?=
+ =?iso-8859-1?Q?HL3eUS8lPriI/02Xyhkb2MjY/fJnU3r8D9YpZZw8ZZSp7BTxGs2LjDPCoq?=
+ =?iso-8859-1?Q?JFajEOQdBAhLhZiG1sCJPnZrZ+/kd7b/wsKUDx9MPvT8waBzX6Gb9weVKp?=
+ =?iso-8859-1?Q?SE7Y5w6gLSuvj11tUlUqJR9d+9a6Hpwmtp7VMDBs02epEF4C+TMQESZiuu?=
+ =?iso-8859-1?Q?uEakKU+CMEjmy6cVlcVF9EoAwPZEkFkKIC5SJISVeLWfTg1sValFpz//RQ?=
+ =?iso-8859-1?Q?UfE8ZKUpMsQPIBtAyOFTJ7VrYTyJDIZIPKXv/uYMkQlR49UuHSB/nd2znm?=
+ =?iso-8859-1?Q?booaAp3TmmRr/mpT4S0Y7gQ6+jNkkm1+8/34bMsHoqEG6/h1W1qRmREP+N?=
+ =?iso-8859-1?Q?jxV8piMiDnTrRoQQCnKmpO/Wbb+Si2nuJoeTyiAvgIFB1GbQFdmneOF2W1?=
+ =?iso-8859-1?Q?qY2CDK1P5CIlfW3SpCTPHtH+TeNurE6CzjNq7ilr3DCsdxkbLQWmxS8Ndr?=
+ =?iso-8859-1?Q?t5WlQPDxyGXg4nAe6KDQZsY+FrluseZVaiTUoCm5eB4YUV02LRFRwe7GVL?=
+ =?iso-8859-1?Q?Z4KuCF4JSooKguWAoszGg0FPUI/8MiyWDEFL2pOf+NwsuodFMiAGAx2Q3S?=
+ =?iso-8859-1?Q?ecuvrqdNjEn7GYJKNtOW8xRp7lkbiyZLOLWHNFJ31CMas3euxKafP+wTMS?=
+ =?iso-8859-1?Q?O7MAB+he1Ucvpvzuiis2D6ei6DLO+oOF+bRfVcuCOi38eWhyXJKOgM2OlB?=
+ =?iso-8859-1?Q?eegf1frAOMkXJLBL6Bu2tRWVQWtNu2XfuOfilVnTYZQfj9+CWvmOd4O058?=
+ =?iso-8859-1?Q?mVNrVHxEJ4jO4JGr1XDA3NdMc+ubnBnbGthqtPjtRYHPBSqbe0p2ZxKm3U?=
+ =?iso-8859-1?Q?CN2gPVkKkYD/Co7PYkNJYGiOQOpbxpbWhUYwo+d0piLIZ1OySyBdK1sniM?=
+ =?iso-8859-1?Q?OL13rknS6kUZau7PxWV81E74GnL4P/dBoRXReET4C27F1zLoh1fCqNIv86?=
+ =?iso-8859-1?Q?L6?=
+x-ms-exchange-antispam-messagedata-1: pIi39i1VxmOuoA==
+Content-Type: multipart/alternative;
+	boundary="_000_BL4PR11MB8797793B9D7BF1A9EA6E54CBB972ABL4PR11MB8797namp_"
 MIME-Version: 1.0
-X-OriginatorOrg: siemens.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: AS1PR10MB5697.EURPRD10.PROD.OUTLOOK.COM
-X-MS-Exchange-CrossTenant-Network-Message-Id: a03b943f-81bd-4146-13c3-08de75646fc7
-X-MS-Exchange-CrossTenant-originalarrivaltime: 26 Feb 2026 18:25:36.5059
+X-MS-Exchange-CrossTenant-AuthSource: BL4PR11MB8797.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 2ab0d388-c261-4f5c-85f2-08de759a6c47
+X-MS-Exchange-CrossTenant-originalarrivaltime: 27 Feb 2026 00:52:03.4675
  (UTC)
 X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 38ae3bcd-9579-4fd4-adda-b42e1495d55a
+X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: 8d4yq7zklDGsMxpWUkzMWrMjkQwLH1KEU5DXKCYCUdg05s8fqlEOuKj2FGD6O+iQNN8qTzIEJyie4odoYryfcw==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DUZPR10MB8070
+X-MS-Exchange-CrossTenant-userprincipalname: e+oWGUqAcMd+H+zyBzRe68Vyg6uA6w7gSoyUeeC7tzxFFlqS5qKutttXoX3SPmlKvdGRB3bLdmwPxcB9Djgp8A==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: IA0PR11MB7211
+X-OriginatorOrg: intel.com
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from 45-33-107-173.ip.linodeusercontent.com [45.33.107.173] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Thu, 26 Feb 2026 18:25:42 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/66279
+ <yocto@lists.yoctoproject.org>; Fri, 27 Feb 2026 00:52:17 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/66280
 
-DQoNCj4gLS0tLS1PcmlnaW5hbCBNZXNzYWdlLS0tLS0NCj4gRnJvbTogb3BlbmVtYmVkZGVkLWNv
-cmVAbGlzdHMub3BlbmVtYmVkZGVkLm9yZyA8b3BlbmVtYmVkZGVkLQ0KPiBjb3JlQGxpc3RzLm9w
-ZW5lbWJlZGRlZC5vcmc+IE9uIEJlaGFsZiBPZiBQYXVsIEJhcmtlcg0KPiBTZW50OiBUdWVzZGF5
-LCBGZWJydWFyeSAyNCwgMjAyNiAxNjoyOQ0KPiBUbzogeW9jdG9AbGlzdHMueW9jdG9wcm9qZWN0
-Lm9yZzsgb3BlbmVtYmVkZGVkLWNvcmVAbGlzdHMub3BlbmVtYmVkZGVkLm9yZzsNCj4geW9jdG8t
-c3RhdHVzQGxpc3RzLnlvY3RvcHJvamVjdC5vcmcNCj4gU3ViamVjdDogW09FLWNvcmVdIFlvY3Rv
-IFByb2plY3QgU3RhdHVzIDI0IEZlYnJ1YXJ5IDIwMjYgKFdXMDkpDQo+IA0KPiBIaSBhbGwsDQo+
-IA0KPiBDdXJyZW50IERldiBQb3NpdGlvbjogWVAgNi4wIE0yDQo+IE5leHQgRGVhZGxpbmU6IFlQ
-IDYuMCBNMiBCdWlsZCBEYXRlIDIwMjYtMDItMTYNCj4gDQo+IE5leHQgVGVhbSBNZWV0aW5nczoN
-Cj4gLSBCdWcgVHJpYWdlIG1lZXRpbmcgLSBUaHVyc2RheSAyNnRoIEZlYi4gNzozMGFtIFBEVA0K
-PiAgIChodHRwczovL3pvb20udXMvai80NTQzNjc2MDM/cHdkPVpHeG9hMlpYTDNGa00zWTBiRmQ1
-YVZwSFZWWjZkejA5KQ0KPiAtIFdlZWtseSBQcm9qZWN0IEVuZ2luZWVyaW5nIFN5bmMgIC0gVHVl
-c2RheSAyNHRoIEZlYi4gOGFtIFBEVA0KPiAgIChodHRwczovL3pvb20udXMvai85OTA4OTI3MTI/
-cHdkPWNIVTFNamhvTTJ4NmNrODFia2NyWWpScmNtSnNVVDA5KQ0KPiAtIFlvY3RvIFByb2plY3Qg
-UGF0Y2ggUmV2aWV3IC0gVGh1cnNkYXkgMjZ0aCBGZWIuIDEwYW0gR01UIGFuZCBNb25kYXkgMm5k
-DQo+IE1hci4gOWFtDQo+ICAgKGh0dHBzOi8vem9vbS51cy9qLzk3NzYyMzk3MTQ4P3B3ZD0xeGsw
-aUM5aHA5U2pFb25hVGFPTndUYjZpV3J5NEViLjEpDQo+IA0KPiBQcm9qZWN0IGRhdGEgZGFzaGJv
-YXJkOiBodHRwczovL2Rhc2hib2FyZC55b2N0b3Byb2plY3Qub3JnLw0KPiANCj4gS2V5IFN0YXR1
-cy9VcGRhdGVzOg0KPiAtIFlQIDQuMC4zMyBpcyBkdWUgZm9yIHJlbGVhc2UNCj4gLSBZUCA1LjAu
-MTYgaXMgaW4gUUENCj4gLSBZUCA1LjIuMyBpcyBxdWV1ZWQgZm9yIFFBDQo+IC0gWVAgNi4wIE0y
-IGlzIGR1ZSB0byBidWlsZCB3aGVuIHdlIGhhdmUgcGF0Y2hlcyBtZXJnZWQNCj4gLSBXZSBoYXZl
-IHR3byBvcGVuIGhpZ2ggaXNzdWVzIHdoaWNoIG5lZWQgZnVydGhlciB3b3JrIHRoYXQgd2lsbCBi
-bG9jayBNMzoNCj4gICAgIC0geDg2IGt2bSBicm9rZW4gb24gRmVkb3JhIDQzIChjcHUgZmVhdHVy
-ZXMgaXNzdWU/KSAoIzE2MDc0KQ0KPiAgICAgLSBBQi1JTlQ6IG9wa2ctYnVpbGQgc2VnbWVudGF0
-aW9uIGZhdWx0IChtZW1vcnkgY29ycnVwdGlvbiBpbg0KPiAgICAgICBwc2V1ZG8/KSAoIzE2MDc4
-KQ0KPiAtIFdlIGFsc28gaGF2ZSBpc3N1ZXMgd2UgbmVlZCB0byByZXNvbHZlIGJlZm9yZSByZWxl
-YXNlOg0KPiAgICAgLSBBbGxvd2luZyBub24tZGVzdHJ1Y3RpdmUgZ2l0IGZldGNoZXIgdXBkYXRl
-cyBmb3IgYml0YmFrZS1zZXR1cA0KPiAgICAgLSBTcGxpdHRpbmcgd2ljIGludG8gYW4gZXh0ZXJu
-YWwgdG9vbA0KPiAgICAgLSBLZXJuZWwgcnVzdCBzdXBwb3J0DQo+ICAgICAtIFN3aXRjaGluZyB0
-byBwa2ctY29uZmlnDQo+ICAgICAtIERlcHJlY2F0aW9uIG9mIGx0cCAodXBzdHJlYW0gZHJvcHBl
-ZCBydW5sdHAgYW5kIG1hbmRhdGUga2lyaykNCj4gICAgIC0gSG93IHRvIGltcHJvdmUgREVCVUdf
-QlVJTEQ/DQo+ICAgICAtIERJU1RST19GRUFUVVJFUyBjaGFuZ2VzIHRvIOKAmG5vZGlzdHJv4oCZ
-IGluIE9FLUNvcmUNCj4gICAgIC0gU0JPTS9jdmUtY2hlY2sgY2hhbmdlcw0KPiAtIFdlIHVwZGF0
-ZWQg4oCcbm9kaXN0cm/igJ0gdG8gdXNlIDMgb2YgdGhlIGluY2x1ZGUgZmlsZXMgcG9reSB3YXMg
-YWxyZWFkeQ0KPiAgIHVzaW5nOg0KPiAgICAgLSBTcGFjZSBvcHRpbWl6YXRpb24gdG8gcmVkdWNl
-IGJ1aWxkIGZvb3RwcmludCBhbmQgc3N0YXRlIG9iamVjdA0KPiAgICAgICBzaXplDQo+ICAgICAt
-IERpc2FibGluZyBtb3N0IHN0YXRpYyBsaWJyYXJpZXMgYnkgZGVmYXVsdCAoYnVpbGQgc2l6ZS9z
-cGVlZCB3aW5zKQ0KPiAgICAgLSBFbmFibGluZyBzZWN1cml0eSBmbGFncyBieSBkZWZhdWx0DQo+
-IC0g4oCcbm9kaXN0cm/igJ0gbm93IGFsc28gZW5hYmxlcyB1bmluYXRpdmUgYnkgZGVmYXVsdCB0
-byBhbGxvdyBmb3IgYmV0dGVyDQo+ICAgQ0ROIHNzdGF0ZSByZXVzZQ0KPiAtIERpc3Ryb3Mgbm93
-IG5lZWQgdG8gdXNlIElOSVRfTUFOQUdFUiB0byBzZWxlY3QgdGhlaXIgcHJlZmVycmVkIGluaXQN
-Cj4gICBzeXN0ZW0gd2l0aCB0aGUgZGVmYXVsdCBiZWluZyBzeXN0ZW1kIGZvciDigJxub2Rpc3Ry
-b+KAnS4gUG9reeKAmXMgZGVmYXVsdHMNCj4gICByZW1haW4gdW5jaGFuZ2VkIGFuZCB3ZSBkb27i
-gJl0IGhhdmUgcGxhbnMgdG8gY2hhbmdlIHRoaXMgYXQgdGhpcyB0aW1lDQo+ICAgZHVlIHRvIHRo
-ZSB3b3JrIGludm9sdmVkIGFuZCBpbXBhY3QgKGUuZyB0ZXN0IHJlc3VsdCBjb21wYXJpc29ucyku
-DQo+IC0gVGhlIG51bWJlciBvZiBpbnRlcm1pdHRlbnQgZmFpbHVyZXMgYWZmZWN0aW5nIGJ1aWxk
-cywgYm90aCBzdGFibGUgYW5kDQo+ICAgZGV2ZWxvcG1lbnQsIGNvbnRpbnVlcyB0byBiZSBwcm9i
-bGVtYXRpYyAtIHdlIGNvbnRpbnVlIHRvIHByaW9yaXRpc2UNCj4gICBhZGRyZXNzaW5nIHRoZXNl
-IHNpbmNlIGFueSBnaXZlbiBidWlsZCBpcyBub3cgc3RhdGlzdGljYWxseSBsaWtlbHkgdG8NCj4g
-ICBoaXQgb25lIG9yIG1vcmUgb2YgdGhlbS4NCj4gLSBQYXRjaGVzIGFyZSBtZXJnaW5nIGJ1dCB0
-aGVyZSBpcyBhIGJhY2tsb2cgYW5kIHdl4oCZdmUgaGFkIHRvIHByaW9yaXRpemUNCj4gICBzaW1w
-bGVyIGNoYW5nZXMuIFdlIGNvbnRpbnVlIHRvIHN0cnVnZ2xlIGZvciBiYW5kd2lkdGggZm9yIGNo
-YW5nZXMNCj4gICBuZWVkaW5nIGluIGRlcHRoIHJldmlldy9mZWVkYmFjay4gVGhpcyBjb3VsZCBp
-bXBhY3QgZmVhdHVyZXMgbWFraW5nIGl0DQo+ICAgaW50byB0aGUgTFRTLg0KPiANCj4gV2FudCB0
-byBjb250cmlidXRlPyBXZSB3b3VsZCBhcHByZWNpYXRlIGhlbHAgd2l0aCB0aGUgZm9sbG93aW5n
-IGFyZWFzOg0KPiAtIFdlIGhhdmUgc2V2ZXJhbCBvcGVuIGlzc3VlcyBmb3IgcHNldWRvIGFuZCBs
-aW1pdGVkIG1haW50YWluZXIgdGltZSB0bw0KPiAgIHdvcmsgb24gdGhlbS4gSGVscCBmcm9tIHNv
-bWVvbmUgZmFtaWxpYXIgd2l0aCBzeXN0ZW1zIHByb2dyYW1taW5nIGluIEMNCj4gICB3b3VsZCBi
-ZSBncmVhdGx5IGFwcHJlY2lhdGVkLg0KPiANCj4gaHR0cHM6Ly9idWd6aWxsYS55b2N0b3Byb2pl
-Y3Qub3JnL2J1Z2xpc3QuY2dpP2xpc3RfaWQ9NjYxNDA2JnByaW9yaXR5PUhpZ2gmcHJpb3JpdHk9
-DQo+IE1lZGl1bSUyQiZwcm9kdWN0PVBzZXVkbyZxdWVyeV9mb3JtYXQ9YWR2YW5jZWQmcmVzb2x1
-dGlvbj0tLS0NCj4gLSBUaGVyZSBhcmUgYSBsYXJnZSBudW1iZXIgb2YgaW50ZXJtaXR0ZW50IGZh
-aWx1cmVzIG9uIG91ciBhdXRvYnVpbGRlciwNCj4gICBhbnkgaGVscCB3aXRoIGludmVzdGlnYXRp
-bmcsIHJlcHJvZHVjaW5nIG9yIHNvbHZpbmcgdGhlc2UgaXNzdWVzIHdvdWxkDQo+ICAgYmUgd2Vs
-Y29tZSEgaHR0cHM6Ly92YWxreXJpZS55b2N0by5pby9wdWIvbm9uLXJlbGVhc2UvYWJpbnQvDQo+
-IC0gTWFueSByZWNpcGVzIGluIG9wZW5lbWJlZGRlZC1jb3JlIHdvdWxkIGJlbmVmaXQgZnJvbSBh
-IG5ldyByZWNpcGUNCj4gICBtYWludGFpbmVyLiBQbGVhc2UgbG9vayBhdA0KPiAgIGh0dHBzOi8v
-Z2l0Lm9wZW5lbWJlZGRlZC5vcmcvb3BlbmVtYmVkZGVkLQ0KPiBjb3JlL3RyZWUvbWV0YS9jb25m
-L2Rpc3Ryby9pbmNsdWRlL21haW50YWluZXJzLmluYw0KPiAgIGFuZCBzZWUgaWYgeW91IGNhbiBh
-ZG9wdCBhbnkgb2YgdGhlIHVuYXNzaWduZWQgcmVjaXBlcy4NCj4gLSBGb3IgbW9yZSB3YXlzIHRv
-IGNvbnRyaWJ1dGUsIHNlZQ0KPiAgIGh0dHBzOi8vZG9jcy5nb29nbGUuY29tL2RvY3VtZW50L2Qv
-MThveEtXeExvcmZGODEzaDgybUs2eUtUSUhlQnBfLQ0KPiA5b3dGdUNXYnpnak9rL2VkaXQ/dXNw
-PXNoYXJpbmcNCj4gDQo+IE5ldyB0byB0aGUgcHJvamVjdD8NCj4gLSBXZSBoYXZlIGEgbGlzdCBv
-ZiBpc3N1ZXMgd2UgdGhpbmsgYXJlIGdvb2QgcGxhY2VzIHRvIHN0YXJ0DQo+ICAgY29udHJpYnV0
-aW5nOg0KPiAgIGh0dHBzOi8vYnVnemlsbGEueW9jdG9wcm9qZWN0Lm9yZy9idWdsaXN0LmNnaT9x
-dWlja3NlYXJjaD1ORVdDT01FUg0KPiANCj4gVHJhY2tpbmcgTWV0cmljczoNCj4gLSBXREQgMjk0
-MSAobGFzdCB3ZWVrIDI5NzMpIChodHRwczovL3dpa2kueW9jdG9wcm9qZWN0Lm9yZy9jaGFydHMv
-Y29tYm8uaHRtbCkNCj4gLSBPRS1Db3JlL1Bva3kgUGF0Y2ggTWV0cmljcw0KPiAgICAgLSBUb3Rh
-bCBwYXRjaGVzIGZvdW5kOiAxMTA4IChsYXN0IHdlZWsgMTEwNikNCj4gICAgIC0gUGF0Y2hlcyBp
-biB0aGUgUGVuZGluZyBTdGF0ZTogMTUxICgxNCUpIFtsYXN0IHdlZWsgMTUyICgxNCUpXQ0KPiAg
-ICAgLSBodHRwczovL3ZhbGt5cmllLnlvY3RvLmlvL3B1Yi9ub24tcmVsZWFzZS9wYXRjaG1ldHJp
-Y3MvDQo+IA0KPiBZUCA2LjAgTWlsZXN0b25lIERhdGVzOg0KPiAtIFlQIDYuMCBNMiBCdWlsZCBE
-YXRlIDIwMjYtMDItMTYNCj4gLSBZUCA2LjAgTTIgUmVsZWFzZSBEYXRlIDIwMjYtMDItMjcNCj4g
-LSBZUCA2LjAgTTMgQnVpbGQgRGF0ZSAyMDI2LTAzLTA5DQo+IC0gWVAgNi4wIE0zIFJlbGVhc2Ug
-RGF0ZSAyMDI2LTAzLTIwDQo+IC0gWVAgNi4wIE00IEJ1aWxkIERhdGUgMjAyNi0wMy0zMA0KPiAt
-IFlQIDYuMCBNNCBSZWxlYXNlIERhdGUgMjAyNi0wNC0yNg0KPiANCj4gVXBjb21pbmcgZG90IHJl
-bGVhc2VzOg0KPiAtIFlQIDUuMC4xNiBSZWxlYXNlIERhdGUgMjAyNi0wMi0yMA0KPiAtIFlQIDUu
-My4yIFJlbGVhc2UgRGF0ZSAyMDI2LTAyLTI3DQo+IC0gWVAgNC4wLjM0IEJ1aWxkIERhdGUgMjAy
-Ni0wMi0yMw0KPiAtIFlQIDQuMC4zNCBSZWxlYXNlIERhdGUgMjAyNi0wMy0wNg0KPiAtIFlQIDUu
-My4zIEJ1aWxkIERhdGUgMjAyNi0wMy0wOQ0KPiAtIFlQIDUuMy4zIFJlbGVhc2UgRGF0ZSAyMDI2
-LTAzLTIwDQo+IC0gWVAgNS4wLjE3IEJ1aWxkIERhdGUgMjAyNi0wMy0xNg0KPiAtIFlQIDUuMC4x
-NyBSZWxlYXNlIERhdGUgMjAyNi0wMy0yMw0KPiAtIFlQIDQuMC4zNSBCdWlsZCBEYXRlIDIwMjYt
-MDQtMDYNCj4gLSBZUCA0LjAuMzUgUmVsZWFzZSBEYXRlIDIwMjYtMDQtMTcNCj4gLSBZUCA1LjMu
-NCBCdWlsZCBEYXRlIDIwMjYtMDQtMTMNCj4gLSBZUCA1LjMuNCBSZWxlYXNlIERhdGUgMjAyNi0w
-NC0yNA0KPiAtIFlQIDUuMC4xOCBCdWlsZCBEYXRlIDIwMjYtMDQtMjANCj4gLSBZUCA1LjAuMTgg
-UmVsZWFzZSBEYXRlIDIwMjYtMDUtMDENCj4gLSBZUCA1LjAuMTkgQnVpbGQgRGF0ZSAyMDI2LTA1
-LTI2DQo+IC0gWVAgNS4wLjE5IFJlbGVhc2UgRGF0ZSAyMDI2LTA2LTA1DQo+IA0KPiBUaGUgWW9j
-dG8gUHJvamVjdOKAmXMgdGVjaG5pY2FsIGdvdmVybmFuY2UgaXMgdGhyb3VnaCBpdHMgVGVjaG5p
-Y2FsDQo+IFN0ZWVyaW5nIENvbW1pdHRlZSwgbW9yZSBpbmZvcm1hdGlvbiBpcyBhdmFpbGFibGUg
-YXQ6DQo+IGh0dHBzOi8vd2lraS55b2N0b3Byb2plY3Qub3JnL3dpa2kvVFNDDQoNClRoaXMgVFND
-IHdpa2kgaXMgb3V0ZGF0ZWQgKGUuZy4gbmV4dCBlbGVjdGlvbiBNYXkgb2YgMjAyNSkuDQpXaWtp
-IHdoaWNoIGlzIGdldHRpbmcgdXBkYXRlcyBpcyBodHRwczovL3d3dy5vcGVuZW1iZWRkZWQub3Jn
-L3dpa2kvVFNDDQoNCklzIHRoZXJlIGFueSBwdXJwb3NlIGluIGhhdmluZyB0d28gZGlmZmVyZW50
-IHBhZ2VzIGluIFRTQyBhbmQgc3luY2luZyB0aGVtPw0KT3Igc2hvdWxkIG9uZSBvZiB0aGVtIGJl
-IGRlbGV0ZWQgKGlkZWFsbHkgcmVkaXJlY3QgdG8gdGhlIG90aGVyIG9uZSk/DQoNCj4gDQo+IFRo
-ZSBTdGF0dXMgcmVwb3J0cyBhcmUgbm93IHN0b3JlZCBvbiB0aGUgd2lraSBhdDoNCj4gaHR0cHM6
-Ly93aWtpLnlvY3RvcHJvamVjdC5vcmcvd2lraS9XZWVrbHlfU3RhdHVzDQo+IA0KPiBbSWYgYW55
-b25lIGhhcyBzdWdnZXN0aW9ucyBmb3Igb3RoZXIgaW5mb3JtYXRpb24geW914oCZZCBsaWtlIHRv
-IHNlZSBvbg0KPiB0aGlzIHdlZWtseSBzdGF0dXMgdXBkYXRlLCBsZXQgdXMga25vdyFdDQo+IA0K
-PiBCZXN0IHJlZ2FyZHMsDQo+IA0KPiAtLQ0KPiBQYXVsIEJhcmtlcg0KDQo=
+--_000_BL4PR11MB8797793B9D7BF1A9EA6E54CBB972ABL4PR11MB8797namp_
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
+
+Hi
+
+We are pleased to announce the Yocto Project 4.0.33 Release is now availabl=
+e for download.
+
+https://downloads.yoctoproject.org/releases/yocto/yocto-4.0.33/poky-ff118ed=
+e826a9ae45eb35025a5f7f612880fba01.tar.bz2
+https://mirrors.edge.kernel.org/yocto/yocto/yocto-4.0.33/poky-ff118ede826a9=
+ae45eb35025a5f7f612880fba01.tar.bz2
+
+A gpg signed version of these release notes is available at:
+
+https://downloads.yoctoproject.org/releases/yocto/yocto-4.0.33/RELEASENOTES
+
+Full Test Report:
+
+https://downloads.yoctoproject.org/releases/yocto/yocto-4.0.33/testreport.t=
+xt
+
+Thank you for everyone's contributions to this release.
+
+Chee Yang
+chee.yang.lee@intel.com
+Yocto Project Build and Release
+
+
+--------------------------
+yocto-4.0.33 Release Notes
+--------------------------
+
+
+--------------------------
+ Repositories/Downloads
+--------------------------
+
+Repository Name: yocto-docs
+Repository Location: https://git.yoctoproject.org/yocto-docs
+Branch: kirkstone
+Tag: yocto-4.0.33
+Git Revision: 6799b1be5d48f4bf5dcd0b16c2dbc2e297d4ecd9
+Release Artefact: yocto-docs-6799b1be5d48f4bf5dcd0b16c2dbc2e297d4ecd9
+sha: 42a0eb89c8f87a9a966aecb8265f463486d4383cb67d1e67382ddf9d4d7f88b5
+Download Locations:
+https://downloads.yoctoproject.org/releases/yocto/yocto-4.0.33/yocto-docs-6=
+799b1be5d48f4bf5dcd0b16c2dbc2e297d4ecd9.tar.bz2
+https://mirrors.edge.kernel.org/yocto/yocto/yocto-4.0.33/yocto-docs-6799b1b=
+e5d48f4bf5dcd0b16c2dbc2e297d4ecd9.tar.bz2
+
+Repository Name: poky
+Repository Location: https://git.yoctoproject.org/poky
+Branch: kirkstone
+Tag: yocto-4.0.33
+Git Revision: ff118ede826a9ae45eb35025a5f7f612880fba01
+Release Artefact: poky-ff118ede826a9ae45eb35025a5f7f612880fba01
+sha: 2a8c24406fa96fc52728a96f25136a3fd7ee652eea6e12319a6b7c0457ccfdfd
+Download Locations:
+https://downloads.yoctoproject.org/releases/yocto/yocto-4.0.33/poky-ff118ed=
+e826a9ae45eb35025a5f7f612880fba01.tar.bz2
+https://mirrors.edge.kernel.org/yocto/yocto/yocto-4.0.33/poky-ff118ede826a9=
+ae45eb35025a5f7f612880fba01.tar.bz2
+
+Repository Name: openembedded-core
+Repository Location: https://git.openembedded.org/openembedded-core
+Branch: kirkstone
+Tag: yocto-4.0.33
+Git Revision: 036f76ea35c49a78d612093dcd8eb1fac7ded8d7
+Release Artefact: oecore-036f76ea35c49a78d612093dcd8eb1fac7ded8d7
+sha: fc180ff224529fd73a7aec4a4cf5beb40fba17646ee694715cf603baba26610c
+Download Locations:
+https://downloads.yoctoproject.org/releases/yocto/yocto-4.0.33/oecore-036f7=
+6ea35c49a78d612093dcd8eb1fac7ded8d7.tar.bz2
+https://mirrors.edge.kernel.org/yocto/yocto/yocto-4.0.33/oecore-036f76ea35c=
+49a78d612093dcd8eb1fac7ded8d7.tar.bz2
+
+Repository Name: meta-yocto
+Repository Location: https://git.yoctoproject.org/meta-yocto
+Branch: kirkstone
+Tag: yocto-4.0.33
+Git Revision: 677379f21941363d50f9d946963542b4ccb7e27c
+Release Artefact: meta-yocto-677379f21941363d50f9d946963542b4ccb7e27c
+sha: 90f52c406f4e69748b8d73eee07b8a1247d19cc29f4893174f110a034b10415f
+Download Locations:
+https://downloads.yoctoproject.org/releases/yocto/yocto-4.0.33/meta-yocto-6=
+77379f21941363d50f9d946963542b4ccb7e27c.tar.bz2
+https://mirrors.edge.kernel.org/yocto/yocto/yocto-4.0.33/meta-yocto-677379f=
+21941363d50f9d946963542b4ccb7e27c.tar.bz2
+
+Repository Name: meta-mingw
+Repository Location: https://git.yoctoproject.org/meta-mingw
+Branch: kirkstone
+Tag: yocto-4.0.33
+Git Revision: 87c22abb1f11be430caf4372e6b833dc7d77564e
+Release Artefact: meta-mingw-87c22abb1f11be430caf4372e6b833dc7d77564e
+sha: f0bc4873e2e0319fb9d6d6ab9b98eb3f89664d4339a167d2db6a787dd12bc1a8
+Download Locations:
+https://downloads.yoctoproject.org/releases/yocto/yocto-4.0.33/meta-mingw-8=
+7c22abb1f11be430caf4372e6b833dc7d77564e.tar.bz2
+https://mirrors.edge.kernel.org/yocto/yocto/yocto-4.0.33/meta-mingw-87c22ab=
+b1f11be430caf4372e6b833dc7d77564e.tar.bz2
+
+Repository Name: meta-gplv2
+Repository Location: https://git.yoctoproject.org/meta-gplv2
+Branch: kirkstone
+Tag: yocto-4.0.33
+Git Revision: d2f8b5cdb285b72a4ed93450f6703ca27aa42e8a
+Release Artefact: meta-gplv2-d2f8b5cdb285b72a4ed93450f6703ca27aa42e8a
+sha: c386f59f8a672747dc3d0be1d4234b6039273d0e57933eb87caa20f56b9cca6d
+Download Locations:
+https://downloads.yoctoproject.org/releases/yocto/yocto-4.0.33/meta-gplv2-d=
+2f8b5cdb285b72a4ed93450f6703ca27aa42e8a.tar.bz2
+https://mirrors.edge.kernel.org/yocto/yocto/yocto-4.0.33/meta-gplv2-d2f8b5c=
+db285b72a4ed93450f6703ca27aa42e8a.tar.bz2
+
+Repository Name: bitbake
+Repository Location: https://git.openembedded.org/bitbake
+Branch: 2.0
+Tag: yocto-4.0.33
+Git Revision: 8e2d1f8de055549b2101614d85454fcd1d0f94b2
+Release Artefact: bitbake-8e2d1f8de055549b2101614d85454fcd1d0f94b2
+sha: fad4e7699bae62082118e89785324b031b0af0743064caee87c91ba28549afb0
+Download Locations:
+https://downloads.yoctoproject.org/releases/yocto/yocto-4.0.33/bitbake-8e2d=
+1f8de055549b2101614d85454fcd1d0f94b2.tar.bz2
+https://mirrors.edge.kernel.org/yocto/yocto/yocto-4.0.33/bitbake-8e2d1f8de0=
+55549b2101614d85454fcd1d0f94b2.tar.bz2
+
+
+---------------
+ Contributors
+---------------
+Aleksandar Nikolic
+Antonin Godard
+Changqing Li
+Deepesh Varatharajan
+Hitendra Prajapati
+Jiaying Song
+Kai Kang
+Khem Raj
+Libo Chen
+Liyin Zhang
+Martin Jansa
+Mingli Yu
+Paul Barker
+Peter Marko
+Richard Purdie
+Robert Yang
+Vijay Anusuri
+Yash Shinde
+
+---------------
+ Known Issues
+---------------
+N/A
+
+
+---------------
+Security Fixes
+---------------
+binutils: Fix CVE-2025-1181 CVE-2025-11494 CVE-2025-11839 CVE-2025-11840
+cups: Fix CVE-2025-58436 CVE-2025-61915
+curl: Fix CVE-2025-14017 CVE-2025-15079 CVE-2025-15224
+dropbear: Fix CVE-2019-6111
+glib-2.0: Fix CVE-2025-13601 CVE-2025-14087 CVE-2025-14512
+gnupg: Fix CVE-2025-68973
+go: Fix CVE-2023-39323 CVE-2025-61727 CVE-2025-61729
+go: Fix CVE-2025-58187 (update patch)
+grub: Fix CVE-2025-61661 CVE-2025-61662 CVE-2025-61663 CVE-2025-61664
+libarchive: Fix CVE-2025-60753 (update patch)
+libpcap: Fix CVE-2025-11961 CVE-2025-11964
+libsoup: fix CVE-2025-12105
+libxslt: Fix CVE-2025-11731
+python3: Fix CVE-2025-13836
+python3-urllib3: Fix CVE-2025-66418
+qemu: Fix CVE-2025-12464
+qemu: Ignore CVE-2025-54566 CVE-2025-54567
+rsync: Fix CVE-2025-10158
+util-linux: Fix CVE-2025-14104
+
+
+---------------
+Fixes
+---------------
+build-appliance-image: Update to kirkstone head revision
+contributor-guide/recipe-style-guide.rst: explain difference between layer =
+and recipe license(s)
+cross.bbclass: Propagate dependencies to outhash
+cups: allow unknown directives in conf files
+docs: Add a new "Security" section
+oeqa: Use 2.14 release of cpio instead of 2.13
+overview-manual/yp-intro.rst: change removed ECOSYSTEM to ABOUT
+overview-manual/yp-intro.rst: fix SDK type in bullet list
+overview-manual/yp-intro.rst: link to YP members and participants
+overview-manual: convert YP-flow-diagram.png to SVG
+poky.conf: Bump version for 4.0.33 release
+pseudo: Upgrade to 1.9.2+git125b020dd2
+ref-manual/classes.rst: document the image-container class
+ref-manual/release-process.rst: add a "Development Cycle" section
+ref-manual/svg/releases.svg: mark styhead and walnascar EOL
+ref-manual/svg/releases.svg: mark whinlatter as current release
+ref-manual/variables.rst: document the CCACHE_TOP_DIR variable
+scripts/install-buildtools: Update to 4.0.31
+test-manual/ptest.rst: detail the exit code and output requirements
+
+
+--_000_BL4PR11MB8797793B9D7BF1A9EA6E54CBB972ABL4PR11MB8797namp_
+Content-Type: text/html; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
+
+<html>
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Diso-8859-=
+1">
+<style type=3D"text/css" style=3D"display:none;"> P {margin-top:0;margin-bo=
+ttom:0;} </style>
+</head>
+<body dir=3D"ltr">
+<div style=3D"font-family: Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, =
+Calibri, Helvetica, sans-serif; font-size: 12pt; color: rgb(0, 0, 0);" clas=
+s=3D"elementToProof">
+Hi</div>
+<div style=3D"font-family: Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, =
+Calibri, Helvetica, sans-serif; font-size: 12pt; color: rgb(0, 0, 0);" clas=
+s=3D"elementToProof">
+<br>
+</div>
+<div style=3D"font-family: Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, =
+Calibri, Helvetica, sans-serif; font-size: 12pt; color: rgb(0, 0, 0);" clas=
+s=3D"elementToProof">
+We are pleased to announce the Yocto Project 4.0.33 Release is now availabl=
+e for download.</div>
+<div style=3D"font-family: Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, =
+Calibri, Helvetica, sans-serif; font-size: 12pt; color: rgb(0, 0, 0);" clas=
+s=3D"elementToProof">
+<br>
+</div>
+<div style=3D"font-family: Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, =
+Calibri, Helvetica, sans-serif; font-size: 12pt; color: rgb(0, 0, 0);" clas=
+s=3D"elementToProof">
+<a data-auth=3D"NotApplicable" class=3D"OWAAutoLink" id=3D"OWAe30a4136-87df=
+-c109-00db-9df21fd02de6" href=3D"https://downloads.yoctoproject.org/release=
+s/yocto/yocto-4.0.33/poky-ff118ede826a9ae45eb35025a5f7f612880fba01.tar.bz2"=
+>https://downloads.yoctoproject.org/releases/yocto/yocto-4.0.33/poky-ff118e=
+de826a9ae45eb35025a5f7f612880fba01.tar.bz2</a>&nbsp;</div>
+<div style=3D"font-family: Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, =
+Calibri, Helvetica, sans-serif; font-size: 12pt; color: rgb(0, 0, 0);" clas=
+s=3D"elementToProof">
+<a data-auth=3D"NotApplicable" class=3D"OWAAutoLink" id=3D"OWA9a3359c6-e9b2=
+-dc7a-eaf0-9ad1b754baef" href=3D"https://mirrors.edge.kernel.org/yocto/yoct=
+o/yocto-4.0.33/poky-ff118ede826a9ae45eb35025a5f7f612880fba01.tar.bz2">https=
+://mirrors.edge.kernel.org/yocto/yocto/yocto-4.0.33/poky-ff118ede826a9ae45e=
+b35025a5f7f612880fba01.tar.bz2</a>&nbsp;</div>
+<div style=3D"font-family: Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, =
+Calibri, Helvetica, sans-serif; font-size: 12pt; color: rgb(0, 0, 0);" clas=
+s=3D"elementToProof">
+<br>
+</div>
+<div style=3D"font-family: Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, =
+Calibri, Helvetica, sans-serif; font-size: 12pt; color: rgb(0, 0, 0);" clas=
+s=3D"elementToProof">
+A gpg signed version of these release notes is available at:</div>
+<div style=3D"font-family: Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, =
+Calibri, Helvetica, sans-serif; font-size: 12pt; color: rgb(0, 0, 0);" clas=
+s=3D"elementToProof">
+<br>
+</div>
+<div style=3D"font-family: Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, =
+Calibri, Helvetica, sans-serif; font-size: 12pt; color: rgb(0, 0, 0);" clas=
+s=3D"elementToProof">
+<a data-auth=3D"NotApplicable" class=3D"OWAAutoLink" id=3D"OWA8d0eaf7b-7acd=
+-1991-a611-9addc110a861" href=3D"https://downloads.yoctoproject.org/release=
+s/yocto/yocto-4.0.33/RELEASENOTES">https://downloads.yoctoproject.org/relea=
+ses/yocto/yocto-4.0.33/RELEASENOTES</a>&nbsp;</div>
+<div style=3D"font-family: Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, =
+Calibri, Helvetica, sans-serif; font-size: 12pt; color: rgb(0, 0, 0);" clas=
+s=3D"elementToProof">
+<br>
+</div>
+<div style=3D"font-family: Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, =
+Calibri, Helvetica, sans-serif; font-size: 12pt; color: rgb(0, 0, 0);" clas=
+s=3D"elementToProof">
+Full Test Report:</div>
+<div style=3D"font-family: Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, =
+Calibri, Helvetica, sans-serif; font-size: 12pt; color: rgb(0, 0, 0);" clas=
+s=3D"elementToProof">
+<br>
+</div>
+<div style=3D"font-family: Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, =
+Calibri, Helvetica, sans-serif; font-size: 12pt; color: rgb(0, 0, 0);" clas=
+s=3D"elementToProof">
+<a data-auth=3D"NotApplicable" class=3D"OWAAutoLink" id=3D"OWAf4f57cac-c7bb=
+-c913-1441-b0f90087b028" href=3D"https://downloads.yoctoproject.org/release=
+s/yocto/yocto-4.0.33/testreport.txt">https://downloads.yoctoproject.org/rel=
+eases/yocto/yocto-4.0.33/testreport.txt</a>&nbsp;</div>
+<div style=3D"font-family: Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, =
+Calibri, Helvetica, sans-serif; font-size: 12pt; color: rgb(0, 0, 0);" clas=
+s=3D"elementToProof">
+<br>
+</div>
+<div style=3D"font-family: Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, =
+Calibri, Helvetica, sans-serif; font-size: 12pt; color: rgb(0, 0, 0);" clas=
+s=3D"elementToProof">
+Thank you for everyone's contributions to this release.</div>
+<div style=3D"font-family: Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, =
+Calibri, Helvetica, sans-serif; font-size: 12pt; color: rgb(0, 0, 0);" clas=
+s=3D"elementToProof">
+<br>
+</div>
+<div style=3D"font-family: Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, =
+Calibri, Helvetica, sans-serif; font-size: 12pt; color: rgb(0, 0, 0);" clas=
+s=3D"elementToProof">
+Chee Yang</div>
+<div style=3D"font-family: Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, =
+Calibri, Helvetica, sans-serif; font-size: 12pt; color: rgb(0, 0, 0);" clas=
+s=3D"elementToProof">
+chee.yang.lee@intel.com</div>
+<div style=3D"font-family: Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, =
+Calibri, Helvetica, sans-serif; font-size: 12pt; color: rgb(0, 0, 0);" clas=
+s=3D"elementToProof">
+Yocto Project Build and Release</div>
+<div style=3D"font-family: Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, =
+Calibri, Helvetica, sans-serif; font-size: 12pt; color: rgb(0, 0, 0);" clas=
+s=3D"elementToProof">
+<br>
+</div>
+<div style=3D"font-family: Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, =
+Calibri, Helvetica, sans-serif; font-size: 12pt; color: rgb(0, 0, 0);" clas=
+s=3D"elementToProof">
+<br>
+</div>
+<div style=3D"font-family: Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, =
+Calibri, Helvetica, sans-serif; font-size: 12pt; color: rgb(0, 0, 0);" clas=
+s=3D"elementToProof">
+--------------------------</div>
+<div style=3D"font-family: Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, =
+Calibri, Helvetica, sans-serif; font-size: 12pt; color: rgb(0, 0, 0);" clas=
+s=3D"elementToProof">
+yocto-4.0.33 Release Notes</div>
+<div style=3D"font-family: Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, =
+Calibri, Helvetica, sans-serif; font-size: 12pt; color: rgb(0, 0, 0);" clas=
+s=3D"elementToProof">
+--------------------------</div>
+<div style=3D"font-family: Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, =
+Calibri, Helvetica, sans-serif; font-size: 12pt; color: rgb(0, 0, 0);" clas=
+s=3D"elementToProof">
+<br>
+</div>
+<div style=3D"font-family: Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, =
+Calibri, Helvetica, sans-serif; font-size: 12pt; color: rgb(0, 0, 0);" clas=
+s=3D"elementToProof">
+<br>
+</div>
+<div style=3D"font-family: Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, =
+Calibri, Helvetica, sans-serif; font-size: 12pt; color: rgb(0, 0, 0);" clas=
+s=3D"elementToProof">
+--------------------------</div>
+<div style=3D"font-family: Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, =
+Calibri, Helvetica, sans-serif; font-size: 12pt; color: rgb(0, 0, 0);" clas=
+s=3D"elementToProof">
+&nbsp;Repositories/Downloads</div>
+<div style=3D"font-family: Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, =
+Calibri, Helvetica, sans-serif; font-size: 12pt; color: rgb(0, 0, 0);" clas=
+s=3D"elementToProof">
+--------------------------</div>
+<div style=3D"font-family: Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, =
+Calibri, Helvetica, sans-serif; font-size: 12pt; color: rgb(0, 0, 0);" clas=
+s=3D"elementToProof">
+<br>
+</div>
+<div style=3D"font-family: Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, =
+Calibri, Helvetica, sans-serif; font-size: 12pt; color: rgb(0, 0, 0);" clas=
+s=3D"elementToProof">
+Repository Name: yocto-docs</div>
+<div style=3D"font-family: Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, =
+Calibri, Helvetica, sans-serif; font-size: 12pt; color: rgb(0, 0, 0);" clas=
+s=3D"elementToProof">
+Repository Location: https://git.yoctoproject.org/yocto-docs</div>
+<div style=3D"font-family: Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, =
+Calibri, Helvetica, sans-serif; font-size: 12pt; color: rgb(0, 0, 0);" clas=
+s=3D"elementToProof">
+Branch: kirkstone</div>
+<div style=3D"font-family: Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, =
+Calibri, Helvetica, sans-serif; font-size: 12pt; color: rgb(0, 0, 0);" clas=
+s=3D"elementToProof">
+Tag: yocto-4.0.33</div>
+<div style=3D"font-family: Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, =
+Calibri, Helvetica, sans-serif; font-size: 12pt; color: rgb(0, 0, 0);" clas=
+s=3D"elementToProof">
+Git Revision: 6799b1be5d48f4bf5dcd0b16c2dbc2e297d4ecd9</div>
+<div style=3D"font-family: Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, =
+Calibri, Helvetica, sans-serif; font-size: 12pt; color: rgb(0, 0, 0);" clas=
+s=3D"elementToProof">
+Release Artefact: yocto-docs-6799b1be5d48f4bf5dcd0b16c2dbc2e297d4ecd9</div>
+<div style=3D"font-family: Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, =
+Calibri, Helvetica, sans-serif; font-size: 12pt; color: rgb(0, 0, 0);" clas=
+s=3D"elementToProof">
+sha: 42a0eb89c8f87a9a966aecb8265f463486d4383cb67d1e67382ddf9d4d7f88b5</div>
+<div style=3D"font-family: Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, =
+Calibri, Helvetica, sans-serif; font-size: 12pt; color: rgb(0, 0, 0);" clas=
+s=3D"elementToProof">
+Download Locations:</div>
+<div style=3D"font-family: Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, =
+Calibri, Helvetica, sans-serif; font-size: 12pt; color: rgb(0, 0, 0);" clas=
+s=3D"elementToProof">
+https://downloads.yoctoproject.org/releases/yocto/yocto-4.0.33/yocto-docs-6=
+799b1be5d48f4bf5dcd0b16c2dbc2e297d4ecd9.tar.bz2</div>
+<div style=3D"font-family: Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, =
+Calibri, Helvetica, sans-serif; font-size: 12pt; color: rgb(0, 0, 0);" clas=
+s=3D"elementToProof">
+https://mirrors.edge.kernel.org/yocto/yocto/yocto-4.0.33/yocto-docs-6799b1b=
+e5d48f4bf5dcd0b16c2dbc2e297d4ecd9.tar.bz2</div>
+<div style=3D"font-family: Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, =
+Calibri, Helvetica, sans-serif; font-size: 12pt; color: rgb(0, 0, 0);" clas=
+s=3D"elementToProof">
+<br>
+</div>
+<div style=3D"font-family: Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, =
+Calibri, Helvetica, sans-serif; font-size: 12pt; color: rgb(0, 0, 0);" clas=
+s=3D"elementToProof">
+Repository Name: poky</div>
+<div style=3D"font-family: Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, =
+Calibri, Helvetica, sans-serif; font-size: 12pt; color: rgb(0, 0, 0);" clas=
+s=3D"elementToProof">
+Repository Location: https://git.yoctoproject.org/poky</div>
+<div style=3D"font-family: Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, =
+Calibri, Helvetica, sans-serif; font-size: 12pt; color: rgb(0, 0, 0);" clas=
+s=3D"elementToProof">
+Branch: kirkstone</div>
+<div style=3D"font-family: Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, =
+Calibri, Helvetica, sans-serif; font-size: 12pt; color: rgb(0, 0, 0);" clas=
+s=3D"elementToProof">
+Tag: yocto-4.0.33</div>
+<div style=3D"font-family: Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, =
+Calibri, Helvetica, sans-serif; font-size: 12pt; color: rgb(0, 0, 0);" clas=
+s=3D"elementToProof">
+Git Revision: ff118ede826a9ae45eb35025a5f7f612880fba01</div>
+<div style=3D"font-family: Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, =
+Calibri, Helvetica, sans-serif; font-size: 12pt; color: rgb(0, 0, 0);" clas=
+s=3D"elementToProof">
+Release Artefact: poky-ff118ede826a9ae45eb35025a5f7f612880fba01</div>
+<div style=3D"font-family: Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, =
+Calibri, Helvetica, sans-serif; font-size: 12pt; color: rgb(0, 0, 0);" clas=
+s=3D"elementToProof">
+sha: 2a8c24406fa96fc52728a96f25136a3fd7ee652eea6e12319a6b7c0457ccfdfd</div>
+<div style=3D"font-family: Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, =
+Calibri, Helvetica, sans-serif; font-size: 12pt; color: rgb(0, 0, 0);" clas=
+s=3D"elementToProof">
+Download Locations:</div>
+<div style=3D"font-family: Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, =
+Calibri, Helvetica, sans-serif; font-size: 12pt; color: rgb(0, 0, 0);" clas=
+s=3D"elementToProof">
+https://downloads.yoctoproject.org/releases/yocto/yocto-4.0.33/poky-ff118ed=
+e826a9ae45eb35025a5f7f612880fba01.tar.bz2</div>
+<div style=3D"font-family: Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, =
+Calibri, Helvetica, sans-serif; font-size: 12pt; color: rgb(0, 0, 0);" clas=
+s=3D"elementToProof">
+https://mirrors.edge.kernel.org/yocto/yocto/yocto-4.0.33/poky-ff118ede826a9=
+ae45eb35025a5f7f612880fba01.tar.bz2</div>
+<div style=3D"font-family: Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, =
+Calibri, Helvetica, sans-serif; font-size: 12pt; color: rgb(0, 0, 0);" clas=
+s=3D"elementToProof">
+<br>
+</div>
+<div style=3D"font-family: Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, =
+Calibri, Helvetica, sans-serif; font-size: 12pt; color: rgb(0, 0, 0);" clas=
+s=3D"elementToProof">
+Repository Name: openembedded-core</div>
+<div style=3D"font-family: Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, =
+Calibri, Helvetica, sans-serif; font-size: 12pt; color: rgb(0, 0, 0);" clas=
+s=3D"elementToProof">
+Repository Location: https://git.openembedded.org/openembedded-core</div>
+<div style=3D"font-family: Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, =
+Calibri, Helvetica, sans-serif; font-size: 12pt; color: rgb(0, 0, 0);" clas=
+s=3D"elementToProof">
+Branch: kirkstone</div>
+<div style=3D"font-family: Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, =
+Calibri, Helvetica, sans-serif; font-size: 12pt; color: rgb(0, 0, 0);" clas=
+s=3D"elementToProof">
+Tag: yocto-4.0.33</div>
+<div style=3D"font-family: Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, =
+Calibri, Helvetica, sans-serif; font-size: 12pt; color: rgb(0, 0, 0);" clas=
+s=3D"elementToProof">
+Git Revision: 036f76ea35c49a78d612093dcd8eb1fac7ded8d7</div>
+<div style=3D"font-family: Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, =
+Calibri, Helvetica, sans-serif; font-size: 12pt; color: rgb(0, 0, 0);" clas=
+s=3D"elementToProof">
+Release Artefact: oecore-036f76ea35c49a78d612093dcd8eb1fac7ded8d7</div>
+<div style=3D"font-family: Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, =
+Calibri, Helvetica, sans-serif; font-size: 12pt; color: rgb(0, 0, 0);" clas=
+s=3D"elementToProof">
+sha: fc180ff224529fd73a7aec4a4cf5beb40fba17646ee694715cf603baba26610c</div>
+<div style=3D"font-family: Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, =
+Calibri, Helvetica, sans-serif; font-size: 12pt; color: rgb(0, 0, 0);" clas=
+s=3D"elementToProof">
+Download Locations:</div>
+<div style=3D"font-family: Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, =
+Calibri, Helvetica, sans-serif; font-size: 12pt; color: rgb(0, 0, 0);" clas=
+s=3D"elementToProof">
+https://downloads.yoctoproject.org/releases/yocto/yocto-4.0.33/oecore-036f7=
+6ea35c49a78d612093dcd8eb1fac7ded8d7.tar.bz2</div>
+<div style=3D"font-family: Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, =
+Calibri, Helvetica, sans-serif; font-size: 12pt; color: rgb(0, 0, 0);" clas=
+s=3D"elementToProof">
+https://mirrors.edge.kernel.org/yocto/yocto/yocto-4.0.33/oecore-036f76ea35c=
+49a78d612093dcd8eb1fac7ded8d7.tar.bz2</div>
+<div style=3D"font-family: Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, =
+Calibri, Helvetica, sans-serif; font-size: 12pt; color: rgb(0, 0, 0);" clas=
+s=3D"elementToProof">
+<br>
+</div>
+<div style=3D"font-family: Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, =
+Calibri, Helvetica, sans-serif; font-size: 12pt; color: rgb(0, 0, 0);" clas=
+s=3D"elementToProof">
+Repository Name: meta-yocto</div>
+<div style=3D"font-family: Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, =
+Calibri, Helvetica, sans-serif; font-size: 12pt; color: rgb(0, 0, 0);" clas=
+s=3D"elementToProof">
+Repository Location: https://git.yoctoproject.org/meta-yocto</div>
+<div style=3D"font-family: Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, =
+Calibri, Helvetica, sans-serif; font-size: 12pt; color: rgb(0, 0, 0);" clas=
+s=3D"elementToProof">
+Branch: kirkstone</div>
+<div style=3D"font-family: Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, =
+Calibri, Helvetica, sans-serif; font-size: 12pt; color: rgb(0, 0, 0);" clas=
+s=3D"elementToProof">
+Tag: yocto-4.0.33</div>
+<div style=3D"font-family: Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, =
+Calibri, Helvetica, sans-serif; font-size: 12pt; color: rgb(0, 0, 0);" clas=
+s=3D"elementToProof">
+Git Revision: 677379f21941363d50f9d946963542b4ccb7e27c</div>
+<div style=3D"font-family: Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, =
+Calibri, Helvetica, sans-serif; font-size: 12pt; color: rgb(0, 0, 0);" clas=
+s=3D"elementToProof">
+Release Artefact: meta-yocto-677379f21941363d50f9d946963542b4ccb7e27c</div>
+<div style=3D"font-family: Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, =
+Calibri, Helvetica, sans-serif; font-size: 12pt; color: rgb(0, 0, 0);" clas=
+s=3D"elementToProof">
+sha: 90f52c406f4e69748b8d73eee07b8a1247d19cc29f4893174f110a034b10415f</div>
+<div style=3D"font-family: Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, =
+Calibri, Helvetica, sans-serif; font-size: 12pt; color: rgb(0, 0, 0);" clas=
+s=3D"elementToProof">
+Download Locations:</div>
+<div style=3D"font-family: Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, =
+Calibri, Helvetica, sans-serif; font-size: 12pt; color: rgb(0, 0, 0);" clas=
+s=3D"elementToProof">
+https://downloads.yoctoproject.org/releases/yocto/yocto-4.0.33/meta-yocto-6=
+77379f21941363d50f9d946963542b4ccb7e27c.tar.bz2</div>
+<div style=3D"font-family: Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, =
+Calibri, Helvetica, sans-serif; font-size: 12pt; color: rgb(0, 0, 0);" clas=
+s=3D"elementToProof">
+https://mirrors.edge.kernel.org/yocto/yocto/yocto-4.0.33/meta-yocto-677379f=
+21941363d50f9d946963542b4ccb7e27c.tar.bz2</div>
+<div style=3D"font-family: Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, =
+Calibri, Helvetica, sans-serif; font-size: 12pt; color: rgb(0, 0, 0);" clas=
+s=3D"elementToProof">
+<br>
+</div>
+<div style=3D"font-family: Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, =
+Calibri, Helvetica, sans-serif; font-size: 12pt; color: rgb(0, 0, 0);" clas=
+s=3D"elementToProof">
+Repository Name: meta-mingw</div>
+<div style=3D"font-family: Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, =
+Calibri, Helvetica, sans-serif; font-size: 12pt; color: rgb(0, 0, 0);" clas=
+s=3D"elementToProof">
+Repository Location: https://git.yoctoproject.org/meta-mingw</div>
+<div style=3D"font-family: Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, =
+Calibri, Helvetica, sans-serif; font-size: 12pt; color: rgb(0, 0, 0);" clas=
+s=3D"elementToProof">
+Branch: kirkstone</div>
+<div style=3D"font-family: Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, =
+Calibri, Helvetica, sans-serif; font-size: 12pt; color: rgb(0, 0, 0);" clas=
+s=3D"elementToProof">
+Tag: yocto-4.0.33</div>
+<div style=3D"font-family: Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, =
+Calibri, Helvetica, sans-serif; font-size: 12pt; color: rgb(0, 0, 0);" clas=
+s=3D"elementToProof">
+Git Revision: 87c22abb1f11be430caf4372e6b833dc7d77564e</div>
+<div style=3D"font-family: Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, =
+Calibri, Helvetica, sans-serif; font-size: 12pt; color: rgb(0, 0, 0);" clas=
+s=3D"elementToProof">
+Release Artefact: meta-mingw-87c22abb1f11be430caf4372e6b833dc7d77564e</div>
+<div style=3D"font-family: Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, =
+Calibri, Helvetica, sans-serif; font-size: 12pt; color: rgb(0, 0, 0);" clas=
+s=3D"elementToProof">
+sha: f0bc4873e2e0319fb9d6d6ab9b98eb3f89664d4339a167d2db6a787dd12bc1a8</div>
+<div style=3D"font-family: Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, =
+Calibri, Helvetica, sans-serif; font-size: 12pt; color: rgb(0, 0, 0);" clas=
+s=3D"elementToProof">
+Download Locations:</div>
+<div style=3D"font-family: Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, =
+Calibri, Helvetica, sans-serif; font-size: 12pt; color: rgb(0, 0, 0);" clas=
+s=3D"elementToProof">
+https://downloads.yoctoproject.org/releases/yocto/yocto-4.0.33/meta-mingw-8=
+7c22abb1f11be430caf4372e6b833dc7d77564e.tar.bz2</div>
+<div style=3D"font-family: Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, =
+Calibri, Helvetica, sans-serif; font-size: 12pt; color: rgb(0, 0, 0);" clas=
+s=3D"elementToProof">
+https://mirrors.edge.kernel.org/yocto/yocto/yocto-4.0.33/meta-mingw-87c22ab=
+b1f11be430caf4372e6b833dc7d77564e.tar.bz2</div>
+<div style=3D"font-family: Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, =
+Calibri, Helvetica, sans-serif; font-size: 12pt; color: rgb(0, 0, 0);" clas=
+s=3D"elementToProof">
+<br>
+</div>
+<div style=3D"font-family: Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, =
+Calibri, Helvetica, sans-serif; font-size: 12pt; color: rgb(0, 0, 0);" clas=
+s=3D"elementToProof">
+Repository Name: meta-gplv2</div>
+<div style=3D"font-family: Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, =
+Calibri, Helvetica, sans-serif; font-size: 12pt; color: rgb(0, 0, 0);" clas=
+s=3D"elementToProof">
+Repository Location: https://git.yoctoproject.org/meta-gplv2</div>
+<div style=3D"font-family: Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, =
+Calibri, Helvetica, sans-serif; font-size: 12pt; color: rgb(0, 0, 0);" clas=
+s=3D"elementToProof">
+Branch: kirkstone</div>
+<div style=3D"font-family: Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, =
+Calibri, Helvetica, sans-serif; font-size: 12pt; color: rgb(0, 0, 0);" clas=
+s=3D"elementToProof">
+Tag: yocto-4.0.33</div>
+<div style=3D"font-family: Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, =
+Calibri, Helvetica, sans-serif; font-size: 12pt; color: rgb(0, 0, 0);" clas=
+s=3D"elementToProof">
+Git Revision: d2f8b5cdb285b72a4ed93450f6703ca27aa42e8a</div>
+<div style=3D"font-family: Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, =
+Calibri, Helvetica, sans-serif; font-size: 12pt; color: rgb(0, 0, 0);" clas=
+s=3D"elementToProof">
+Release Artefact: meta-gplv2-d2f8b5cdb285b72a4ed93450f6703ca27aa42e8a</div>
+<div style=3D"font-family: Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, =
+Calibri, Helvetica, sans-serif; font-size: 12pt; color: rgb(0, 0, 0);" clas=
+s=3D"elementToProof">
+sha: c386f59f8a672747dc3d0be1d4234b6039273d0e57933eb87caa20f56b9cca6d</div>
+<div style=3D"font-family: Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, =
+Calibri, Helvetica, sans-serif; font-size: 12pt; color: rgb(0, 0, 0);" clas=
+s=3D"elementToProof">
+Download Locations:</div>
+<div style=3D"font-family: Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, =
+Calibri, Helvetica, sans-serif; font-size: 12pt; color: rgb(0, 0, 0);" clas=
+s=3D"elementToProof">
+https://downloads.yoctoproject.org/releases/yocto/yocto-4.0.33/meta-gplv2-d=
+2f8b5cdb285b72a4ed93450f6703ca27aa42e8a.tar.bz2</div>
+<div style=3D"font-family: Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, =
+Calibri, Helvetica, sans-serif; font-size: 12pt; color: rgb(0, 0, 0);" clas=
+s=3D"elementToProof">
+https://mirrors.edge.kernel.org/yocto/yocto/yocto-4.0.33/meta-gplv2-d2f8b5c=
+db285b72a4ed93450f6703ca27aa42e8a.tar.bz2</div>
+<div style=3D"font-family: Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, =
+Calibri, Helvetica, sans-serif; font-size: 12pt; color: rgb(0, 0, 0);" clas=
+s=3D"elementToProof">
+<br>
+</div>
+<div style=3D"font-family: Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, =
+Calibri, Helvetica, sans-serif; font-size: 12pt; color: rgb(0, 0, 0);" clas=
+s=3D"elementToProof">
+Repository Name: bitbake</div>
+<div style=3D"font-family: Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, =
+Calibri, Helvetica, sans-serif; font-size: 12pt; color: rgb(0, 0, 0);" clas=
+s=3D"elementToProof">
+Repository Location: https://git.openembedded.org/bitbake</div>
+<div style=3D"font-family: Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, =
+Calibri, Helvetica, sans-serif; font-size: 12pt; color: rgb(0, 0, 0);" clas=
+s=3D"elementToProof">
+Branch: 2.0</div>
+<div style=3D"font-family: Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, =
+Calibri, Helvetica, sans-serif; font-size: 12pt; color: rgb(0, 0, 0);" clas=
+s=3D"elementToProof">
+Tag: yocto-4.0.33</div>
+<div style=3D"font-family: Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, =
+Calibri, Helvetica, sans-serif; font-size: 12pt; color: rgb(0, 0, 0);" clas=
+s=3D"elementToProof">
+Git Revision: 8e2d1f8de055549b2101614d85454fcd1d0f94b2</div>
+<div style=3D"font-family: Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, =
+Calibri, Helvetica, sans-serif; font-size: 12pt; color: rgb(0, 0, 0);" clas=
+s=3D"elementToProof">
+Release Artefact: bitbake-8e2d1f8de055549b2101614d85454fcd1d0f94b2</div>
+<div style=3D"font-family: Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, =
+Calibri, Helvetica, sans-serif; font-size: 12pt; color: rgb(0, 0, 0);" clas=
+s=3D"elementToProof">
+sha: fad4e7699bae62082118e89785324b031b0af0743064caee87c91ba28549afb0</div>
+<div style=3D"font-family: Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, =
+Calibri, Helvetica, sans-serif; font-size: 12pt; color: rgb(0, 0, 0);" clas=
+s=3D"elementToProof">
+Download Locations:</div>
+<div style=3D"font-family: Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, =
+Calibri, Helvetica, sans-serif; font-size: 12pt; color: rgb(0, 0, 0);" clas=
+s=3D"elementToProof">
+https://downloads.yoctoproject.org/releases/yocto/yocto-4.0.33/bitbake-8e2d=
+1f8de055549b2101614d85454fcd1d0f94b2.tar.bz2</div>
+<div style=3D"font-family: Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, =
+Calibri, Helvetica, sans-serif; font-size: 12pt; color: rgb(0, 0, 0);" clas=
+s=3D"elementToProof">
+https://mirrors.edge.kernel.org/yocto/yocto/yocto-4.0.33/bitbake-8e2d1f8de0=
+55549b2101614d85454fcd1d0f94b2.tar.bz2</div>
+<div style=3D"font-family: Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, =
+Calibri, Helvetica, sans-serif; font-size: 12pt; color: rgb(0, 0, 0);" clas=
+s=3D"elementToProof">
+<br>
+</div>
+<div style=3D"font-family: Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, =
+Calibri, Helvetica, sans-serif; font-size: 12pt; color: rgb(0, 0, 0);" clas=
+s=3D"elementToProof">
+<br>
+</div>
+<div style=3D"font-family: Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, =
+Calibri, Helvetica, sans-serif; font-size: 12pt; color: rgb(0, 0, 0);" clas=
+s=3D"elementToProof">
+---------------</div>
+<div style=3D"font-family: Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, =
+Calibri, Helvetica, sans-serif; font-size: 12pt; color: rgb(0, 0, 0);" clas=
+s=3D"elementToProof">
+&nbsp;Contributors</div>
+<div style=3D"font-family: Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, =
+Calibri, Helvetica, sans-serif; font-size: 12pt; color: rgb(0, 0, 0);" clas=
+s=3D"elementToProof">
+---------------</div>
+<div style=3D"font-family: Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, =
+Calibri, Helvetica, sans-serif; font-size: 12pt; color: rgb(0, 0, 0);" clas=
+s=3D"elementToProof">
+Aleksandar Nikolic</div>
+<div style=3D"font-family: Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, =
+Calibri, Helvetica, sans-serif; font-size: 12pt; color: rgb(0, 0, 0);" clas=
+s=3D"elementToProof">
+Antonin Godard</div>
+<div style=3D"font-family: Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, =
+Calibri, Helvetica, sans-serif; font-size: 12pt; color: rgb(0, 0, 0);" clas=
+s=3D"elementToProof">
+Changqing Li</div>
+<div style=3D"font-family: Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, =
+Calibri, Helvetica, sans-serif; font-size: 12pt; color: rgb(0, 0, 0);" clas=
+s=3D"elementToProof">
+Deepesh Varatharajan</div>
+<div style=3D"font-family: Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, =
+Calibri, Helvetica, sans-serif; font-size: 12pt; color: rgb(0, 0, 0);" clas=
+s=3D"elementToProof">
+Hitendra Prajapati</div>
+<div style=3D"font-family: Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, =
+Calibri, Helvetica, sans-serif; font-size: 12pt; color: rgb(0, 0, 0);" clas=
+s=3D"elementToProof">
+Jiaying Song</div>
+<div style=3D"font-family: Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, =
+Calibri, Helvetica, sans-serif; font-size: 12pt; color: rgb(0, 0, 0);" clas=
+s=3D"elementToProof">
+Kai Kang</div>
+<div style=3D"font-family: Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, =
+Calibri, Helvetica, sans-serif; font-size: 12pt; color: rgb(0, 0, 0);" clas=
+s=3D"elementToProof">
+Khem Raj</div>
+<div style=3D"font-family: Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, =
+Calibri, Helvetica, sans-serif; font-size: 12pt; color: rgb(0, 0, 0);" clas=
+s=3D"elementToProof">
+Libo Chen</div>
+<div style=3D"font-family: Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, =
+Calibri, Helvetica, sans-serif; font-size: 12pt; color: rgb(0, 0, 0);" clas=
+s=3D"elementToProof">
+Liyin Zhang</div>
+<div style=3D"font-family: Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, =
+Calibri, Helvetica, sans-serif; font-size: 12pt; color: rgb(0, 0, 0);" clas=
+s=3D"elementToProof">
+Martin Jansa</div>
+<div style=3D"font-family: Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, =
+Calibri, Helvetica, sans-serif; font-size: 12pt; color: rgb(0, 0, 0);" clas=
+s=3D"elementToProof">
+Mingli Yu</div>
+<div style=3D"font-family: Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, =
+Calibri, Helvetica, sans-serif; font-size: 12pt; color: rgb(0, 0, 0);" clas=
+s=3D"elementToProof">
+Paul Barker</div>
+<div style=3D"font-family: Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, =
+Calibri, Helvetica, sans-serif; font-size: 12pt; color: rgb(0, 0, 0);" clas=
+s=3D"elementToProof">
+Peter Marko</div>
+<div style=3D"font-family: Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, =
+Calibri, Helvetica, sans-serif; font-size: 12pt; color: rgb(0, 0, 0);" clas=
+s=3D"elementToProof">
+Richard Purdie</div>
+<div style=3D"font-family: Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, =
+Calibri, Helvetica, sans-serif; font-size: 12pt; color: rgb(0, 0, 0);" clas=
+s=3D"elementToProof">
+Robert Yang</div>
+<div style=3D"font-family: Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, =
+Calibri, Helvetica, sans-serif; font-size: 12pt; color: rgb(0, 0, 0);" clas=
+s=3D"elementToProof">
+Vijay Anusuri</div>
+<div style=3D"font-family: Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, =
+Calibri, Helvetica, sans-serif; font-size: 12pt; color: rgb(0, 0, 0);" clas=
+s=3D"elementToProof">
+Yash Shinde</div>
+<div style=3D"font-family: Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, =
+Calibri, Helvetica, sans-serif; font-size: 12pt; color: rgb(0, 0, 0);" clas=
+s=3D"elementToProof">
+<br>
+</div>
+<div style=3D"font-family: Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, =
+Calibri, Helvetica, sans-serif; font-size: 12pt; color: rgb(0, 0, 0);" clas=
+s=3D"elementToProof">
+---------------</div>
+<div style=3D"font-family: Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, =
+Calibri, Helvetica, sans-serif; font-size: 12pt; color: rgb(0, 0, 0);" clas=
+s=3D"elementToProof">
+&nbsp;Known Issues</div>
+<div style=3D"font-family: Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, =
+Calibri, Helvetica, sans-serif; font-size: 12pt; color: rgb(0, 0, 0);" clas=
+s=3D"elementToProof">
+---------------</div>
+<div style=3D"font-family: Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, =
+Calibri, Helvetica, sans-serif; font-size: 12pt; color: rgb(0, 0, 0);" clas=
+s=3D"elementToProof">
+N/A</div>
+<div style=3D"font-family: Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, =
+Calibri, Helvetica, sans-serif; font-size: 12pt; color: rgb(0, 0, 0);" clas=
+s=3D"elementToProof">
+<br>
+</div>
+<div style=3D"font-family: Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, =
+Calibri, Helvetica, sans-serif; font-size: 12pt; color: rgb(0, 0, 0);" clas=
+s=3D"elementToProof">
+<br>
+</div>
+<div style=3D"font-family: Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, =
+Calibri, Helvetica, sans-serif; font-size: 12pt; color: rgb(0, 0, 0);" clas=
+s=3D"elementToProof">
+---------------</div>
+<div style=3D"font-family: Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, =
+Calibri, Helvetica, sans-serif; font-size: 12pt; color: rgb(0, 0, 0);" clas=
+s=3D"elementToProof">
+Security Fixes</div>
+<div style=3D"font-family: Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, =
+Calibri, Helvetica, sans-serif; font-size: 12pt; color: rgb(0, 0, 0);" clas=
+s=3D"elementToProof">
+---------------</div>
+<div style=3D"font-family: Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, =
+Calibri, Helvetica, sans-serif; font-size: 12pt; color: rgb(0, 0, 0);" clas=
+s=3D"elementToProof">
+binutils: Fix CVE-2025-1181 CVE-2025-11494 CVE-2025-11839 CVE-2025-11840</d=
+iv>
+<div style=3D"font-family: Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, =
+Calibri, Helvetica, sans-serif; font-size: 12pt; color: rgb(0, 0, 0);" clas=
+s=3D"elementToProof">
+cups: Fix CVE-2025-58436 CVE-2025-61915</div>
+<div style=3D"font-family: Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, =
+Calibri, Helvetica, sans-serif; font-size: 12pt; color: rgb(0, 0, 0);" clas=
+s=3D"elementToProof">
+curl: Fix CVE-2025-14017 CVE-2025-15079 CVE-2025-15224</div>
+<div style=3D"font-family: Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, =
+Calibri, Helvetica, sans-serif; font-size: 12pt; color: rgb(0, 0, 0);" clas=
+s=3D"elementToProof">
+dropbear: Fix CVE-2019-6111</div>
+<div style=3D"font-family: Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, =
+Calibri, Helvetica, sans-serif; font-size: 12pt; color: rgb(0, 0, 0);" clas=
+s=3D"elementToProof">
+glib-2.0: Fix CVE-2025-13601 CVE-2025-14087 CVE-2025-14512</div>
+<div style=3D"font-family: Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, =
+Calibri, Helvetica, sans-serif; font-size: 12pt; color: rgb(0, 0, 0);" clas=
+s=3D"elementToProof">
+gnupg: Fix CVE-2025-68973</div>
+<div style=3D"font-family: Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, =
+Calibri, Helvetica, sans-serif; font-size: 12pt; color: rgb(0, 0, 0);" clas=
+s=3D"elementToProof">
+go: Fix CVE-2023-39323 CVE-2025-61727 CVE-2025-61729</div>
+<div style=3D"font-family: Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, =
+Calibri, Helvetica, sans-serif; font-size: 12pt; color: rgb(0, 0, 0);" clas=
+s=3D"elementToProof">
+go: Fix CVE-2025-58187 (update patch)</div>
+<div style=3D"font-family: Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, =
+Calibri, Helvetica, sans-serif; font-size: 12pt; color: rgb(0, 0, 0);" clas=
+s=3D"elementToProof">
+grub: Fix CVE-2025-61661 CVE-2025-61662 CVE-2025-61663 CVE-2025-61664</div>
+<div style=3D"font-family: Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, =
+Calibri, Helvetica, sans-serif; font-size: 12pt; color: rgb(0, 0, 0);" clas=
+s=3D"elementToProof">
+libarchive: Fix CVE-2025-60753 (update patch)</div>
+<div style=3D"font-family: Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, =
+Calibri, Helvetica, sans-serif; font-size: 12pt; color: rgb(0, 0, 0);" clas=
+s=3D"elementToProof">
+libpcap: Fix CVE-2025-11961 CVE-2025-11964</div>
+<div style=3D"font-family: Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, =
+Calibri, Helvetica, sans-serif; font-size: 12pt; color: rgb(0, 0, 0);" clas=
+s=3D"elementToProof">
+libsoup: fix CVE-2025-12105</div>
+<div style=3D"font-family: Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, =
+Calibri, Helvetica, sans-serif; font-size: 12pt; color: rgb(0, 0, 0);" clas=
+s=3D"elementToProof">
+libxslt: Fix CVE-2025-11731</div>
+<div style=3D"font-family: Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, =
+Calibri, Helvetica, sans-serif; font-size: 12pt; color: rgb(0, 0, 0);" clas=
+s=3D"elementToProof">
+python3: Fix CVE-2025-13836</div>
+<div style=3D"font-family: Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, =
+Calibri, Helvetica, sans-serif; font-size: 12pt; color: rgb(0, 0, 0);" clas=
+s=3D"elementToProof">
+python3-urllib3: Fix CVE-2025-66418</div>
+<div style=3D"font-family: Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, =
+Calibri, Helvetica, sans-serif; font-size: 12pt; color: rgb(0, 0, 0);" clas=
+s=3D"elementToProof">
+qemu: Fix CVE-2025-12464</div>
+<div style=3D"font-family: Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, =
+Calibri, Helvetica, sans-serif; font-size: 12pt; color: rgb(0, 0, 0);" clas=
+s=3D"elementToProof">
+qemu: Ignore CVE-2025-54566 CVE-2025-54567</div>
+<div style=3D"font-family: Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, =
+Calibri, Helvetica, sans-serif; font-size: 12pt; color: rgb(0, 0, 0);" clas=
+s=3D"elementToProof">
+rsync: Fix CVE-2025-10158</div>
+<div style=3D"font-family: Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, =
+Calibri, Helvetica, sans-serif; font-size: 12pt; color: rgb(0, 0, 0);" clas=
+s=3D"elementToProof">
+util-linux: Fix CVE-2025-14104</div>
+<div style=3D"font-family: Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, =
+Calibri, Helvetica, sans-serif; font-size: 12pt; color: rgb(0, 0, 0);" clas=
+s=3D"elementToProof">
+<br>
+</div>
+<div style=3D"font-family: Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, =
+Calibri, Helvetica, sans-serif; font-size: 12pt; color: rgb(0, 0, 0);" clas=
+s=3D"elementToProof">
+<br>
+</div>
+<div style=3D"font-family: Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, =
+Calibri, Helvetica, sans-serif; font-size: 12pt; color: rgb(0, 0, 0);" clas=
+s=3D"elementToProof">
+---------------</div>
+<div style=3D"font-family: Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, =
+Calibri, Helvetica, sans-serif; font-size: 12pt; color: rgb(0, 0, 0);" clas=
+s=3D"elementToProof">
+Fixes</div>
+<div style=3D"font-family: Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, =
+Calibri, Helvetica, sans-serif; font-size: 12pt; color: rgb(0, 0, 0);" clas=
+s=3D"elementToProof">
+---------------</div>
+<div style=3D"font-family: Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, =
+Calibri, Helvetica, sans-serif; font-size: 12pt; color: rgb(0, 0, 0);" clas=
+s=3D"elementToProof">
+build-appliance-image: Update to kirkstone head revision</div>
+<div style=3D"font-family: Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, =
+Calibri, Helvetica, sans-serif; font-size: 12pt; color: rgb(0, 0, 0);" clas=
+s=3D"elementToProof">
+contributor-guide/recipe-style-guide.rst: explain difference between layer =
+and recipe license(s)</div>
+<div style=3D"font-family: Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, =
+Calibri, Helvetica, sans-serif; font-size: 12pt; color: rgb(0, 0, 0);" clas=
+s=3D"elementToProof">
+cross.bbclass: Propagate dependencies to outhash</div>
+<div style=3D"font-family: Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, =
+Calibri, Helvetica, sans-serif; font-size: 12pt; color: rgb(0, 0, 0);" clas=
+s=3D"elementToProof">
+cups: allow unknown directives in conf files</div>
+<div style=3D"font-family: Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, =
+Calibri, Helvetica, sans-serif; font-size: 12pt; color: rgb(0, 0, 0);" clas=
+s=3D"elementToProof">
+docs: Add a new &quot;Security&quot; section</div>
+<div style=3D"font-family: Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, =
+Calibri, Helvetica, sans-serif; font-size: 12pt; color: rgb(0, 0, 0);" clas=
+s=3D"elementToProof">
+oeqa: Use 2.14 release of cpio instead of 2.13</div>
+<div style=3D"font-family: Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, =
+Calibri, Helvetica, sans-serif; font-size: 12pt; color: rgb(0, 0, 0);" clas=
+s=3D"elementToProof">
+overview-manual/yp-intro.rst: change removed ECOSYSTEM to ABOUT</div>
+<div style=3D"font-family: Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, =
+Calibri, Helvetica, sans-serif; font-size: 12pt; color: rgb(0, 0, 0);" clas=
+s=3D"elementToProof">
+overview-manual/yp-intro.rst: fix SDK type in bullet list</div>
+<div style=3D"font-family: Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, =
+Calibri, Helvetica, sans-serif; font-size: 12pt; color: rgb(0, 0, 0);" clas=
+s=3D"elementToProof">
+overview-manual/yp-intro.rst: link to YP members and participants</div>
+<div style=3D"font-family: Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, =
+Calibri, Helvetica, sans-serif; font-size: 12pt; color: rgb(0, 0, 0);" clas=
+s=3D"elementToProof">
+overview-manual: convert YP-flow-diagram.png to SVG</div>
+<div style=3D"font-family: Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, =
+Calibri, Helvetica, sans-serif; font-size: 12pt; color: rgb(0, 0, 0);" clas=
+s=3D"elementToProof">
+poky.conf: Bump version for 4.0.33 release</div>
+<div style=3D"font-family: Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, =
+Calibri, Helvetica, sans-serif; font-size: 12pt; color: rgb(0, 0, 0);" clas=
+s=3D"elementToProof">
+pseudo: Upgrade to 1.9.2+git125b020dd2</div>
+<div style=3D"font-family: Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, =
+Calibri, Helvetica, sans-serif; font-size: 12pt; color: rgb(0, 0, 0);" clas=
+s=3D"elementToProof">
+ref-manual/classes.rst: document the image-container class</div>
+<div style=3D"font-family: Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, =
+Calibri, Helvetica, sans-serif; font-size: 12pt; color: rgb(0, 0, 0);" clas=
+s=3D"elementToProof">
+ref-manual/release-process.rst: add a &quot;Development Cycle&quot; section=
+</div>
+<div style=3D"font-family: Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, =
+Calibri, Helvetica, sans-serif; font-size: 12pt; color: rgb(0, 0, 0);" clas=
+s=3D"elementToProof">
+ref-manual/svg/releases.svg: mark styhead and walnascar EOL</div>
+<div style=3D"font-family: Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, =
+Calibri, Helvetica, sans-serif; font-size: 12pt; color: rgb(0, 0, 0);" clas=
+s=3D"elementToProof">
+ref-manual/svg/releases.svg: mark whinlatter as current release</div>
+<div style=3D"font-family: Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, =
+Calibri, Helvetica, sans-serif; font-size: 12pt; color: rgb(0, 0, 0);" clas=
+s=3D"elementToProof">
+ref-manual/variables.rst: document the CCACHE_TOP_DIR variable</div>
+<div style=3D"font-family: Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, =
+Calibri, Helvetica, sans-serif; font-size: 12pt; color: rgb(0, 0, 0);" clas=
+s=3D"elementToProof">
+scripts/install-buildtools: Update to 4.0.31</div>
+<div style=3D"font-family: Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, =
+Calibri, Helvetica, sans-serif; font-size: 12pt; color: rgb(0, 0, 0);" clas=
+s=3D"elementToProof">
+test-manual/ptest.rst: detail the exit code and output requirements</div>
+<div style=3D"font-family: Aptos, Aptos_EmbeddedFont, Aptos_MSFontService, =
+Calibri, Helvetica, sans-serif; font-size: 12pt; color: rgb(0, 0, 0);" clas=
+s=3D"elementToProof">
+<br>
+</div>
+</body>
+</html>
+
+--_000_BL4PR11MB8797793B9D7BF1A9EA6E54CBB972ABL4PR11MB8797namp_--
 
