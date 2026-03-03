@@ -1,770 +1,562 @@
-Return-Path: <sjolley.yp.pm@gmail.com>
+Return-Path: <paul@pbarker.dev>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id C632FEA4E18
-	for <webhook@archiver.kernel.org>; Tue,  3 Mar 2026 03:41:54 +0000 (UTC)
-Received: from mail-dl1-f42.google.com (mail-dl1-f42.google.com [74.125.82.42])
- by mx.groups.io with SMTP id smtpd.msgproc02-g2.10614.1772509308384406830
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 2F3A0EC1431
+	for <webhook@archiver.kernel.org>; Tue,  3 Mar 2026 11:22:18 +0000 (UTC)
+Received: from fout-a2-smtp.messagingengine.com (fout-a2-smtp.messagingengine.com [103.168.172.145])
+ by mx.groups.io with SMTP id smtpd.msgproc02-g2.15981.1772536928595577558
  for <yocto@lists.yoctoproject.org>;
- Mon, 02 Mar 2026 19:41:48 -0800
+ Tue, 03 Mar 2026 03:22:09 -0800
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20230601 header.b=LGKCJEe9;
- spf=pass (domain: gmail.com, ip: 74.125.82.42, mailfrom: sjolley.yp.pm@gmail.com)
-Received: by mail-dl1-f42.google.com with SMTP id a92af1059eb24-1270adc5121so6486978c88.0
-        for <yocto@lists.yoctoproject.org>; Mon, 02 Mar 2026 19:41:48 -0800 (PST)
-ARC-Seal: i=1; a=rsa-sha256; t=1772509308; cv=none;
-        d=google.com; s=arc-20240605;
-        b=DBcK6juw+lWSt/HzZO4oJlJ/RS60IqW0Xf1fgWZ9Sevk6PeC9OGv61M5+HsowlAgOZ
-         voFYps7ZwDP3RDOXyOCH3HuytcUU9TeeaLh/Gg7EfuMLhxSJMK5ZhiPLEU3UEdDUGYVF
-         yiz0eTXriMvcugMtOE770FvZf0x6WGbqVGWCXaFvOdWhQ0zUSGNxE6ptbZ9Wmr/W+6T1
-         21AmRBgSeiEhpqUAZZTvpl3P1vmkUNxfo5y3S3LyklX90pf4S0WAHWihogFeDCHHyWQO
-         hBRfqH9i3u0j++w6bVIJuEtvvDAJ/AGMxpP/0rFdsndgF4UlzzkVyOUblIqjsp4aZ/aq
-         conQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
-        h=to:subject:message-id:date:from:mime-version:dkim-signature;
-        bh=Q7GNNbK8HR49RzFyezAJnW7x/I7biqRAKt4nehaODgc=;
-        fh=lSe5TfEyXCYSNXfy2gGhk1YUz8/0VlieKE2hlMfyV6s=;
-        b=NcQgFxf0RWMpE8Y9uOBSlhquS5KIl5smGYOgzKHiEj4CcOAzzkJ7sOCpGQTGw7+zft
-         KnlfyieXbOWXhS8tfopG/aCsseF8GSR5n6d/BDa8eIBkcL+oymUsvDqE8sQnVX6jSakS
-         mAUASkgzcS77ceGpRpuFXifTcK/+6/8LcFxhS7kG+bsANpwLeumfF72ZoKlJbkg1C67N
-         QVaqkBv0XGqux2zRBXb5RFObNVEOeegx/sYVkVVbrRwNXOPAyJlbovqGR/jQCKtRUkag
-         jYuu5H2WAyBF3/NxJ8AUKJlpmuf4j04b1Gb9FnAmadIhHkdoGYTt81vj0+cOcuW9GBWR
-         kABw==;
-        darn=lists.yoctoproject.org
-ARC-Authentication-Results: i=1; mx.google.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1772509308; x=1773114108; darn=lists.yoctoproject.org;
-        h=to:subject:message-id:date:from:mime-version:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=Q7GNNbK8HR49RzFyezAJnW7x/I7biqRAKt4nehaODgc=;
-        b=LGKCJEe9ookSqbJE2/263SS1A08hMS77hpqKcJWxk75wX+fgrqtgS7qbix47vFSyfP
-         5T/5ROhXoHWBbtXH2CdFvxv0NEd+Nvr6VZIER5VaesfvCiZHxsIsJRC7sght8YdQd3PF
-         u579K4KV58MnBbarD2cBGA+Gm8UboWMX3pNt+vilNU/B37VfRHK/iUtk0Ich6QXQJup3
-         5gJI7UmospOLR9d6DnwizbuRkpSaXuyWVPFun11thM1NU3tor5O/+cqMFBHjFvaDuR9H
-         Y3U6QwbUDmQSTTtFdo7dwD3u6RpxI+u/a4QcPhSzh4OZur/T/BJrE9X5D5Q5Tz1uhIZl
-         ehpg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1772509308; x=1773114108;
-        h=to:subject:message-id:date:from:mime-version:x-gm-gg
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=Q7GNNbK8HR49RzFyezAJnW7x/I7biqRAKt4nehaODgc=;
-        b=s1NVXIfGa7mF+DE/eg2OFLQVtAk+xwxGNWC+rUhSBNB53Pb/mmezeySFZjGRUcyM0y
-         8YZg9JtwCZB58fHo2X02rJuUoaewx3HqaYcWfj0WbDO2inKhGzwIawlSae5VotEoxy+m
-         EZNOIRbRPQpH+UkHx+cx1pQBmxZTSMuSrXaMXxbLu2FQzkJwY79zmcDUB1HWiiO9MwFG
-         RlDh1gR79tdliP7sfS40MwEcsdYWjeTeE7bwqd7U1wu1pA0lR9bnQ6SlwwW4CHi0xxF2
-         9wvWoDMbFBQdqCEkBLz7uAtVrB0fBPfdfq8H/wyd2GF9AW24aE5oHuIBggRxC2iPO73c
-         qgcw==
-X-Gm-Message-State: AOJu0Yxwi5GCTwyquZR57qjTAnlu2biogoWR147ekyAgldt9clbGK+w3
-	oGRwlBV+eCzT5MsXNyodx4aYiPH3itJwVlky0WSgf4+QlQ/ooFCgoA7qdnD36jqEVfia0szJFvz
-	AZyp1lKLr94Z/HhUpXOaRBumMRP9WRmPSPmx9
-X-Gm-Gg: ATEYQzy7RmNDw1XJP9U+azu4lg71k6UeH3sIfdlJbP6vb4h1bNc4wmAHW/HtEePcv/+
-	yTTvXSroYBw1h0IKxJyrLnnXybdMxvwEqAawi75ZeiIQLQBiQ13+yvwQfJiGObWMxOqXFYmJHTP
-	IjbTdybP8ejPcQaEUTwZaZcecgNK4YiAJIEN/HKK5ffLiVcvD/aq2+MUim1yYkgxI9jP06XYLY3
-	r11/3otSNyf3RvkLeXifcHmdqBK0wjvX6diauJgm0nvTf6PhVKPrd7Esk5gG8Me1oQChkZs90Sj
-	ZTCRluYJIGaIZzfqj3trH2m2v72/ovivbIahOoh/BL1PeNBjbnxeaUGwbYqjxFgI5RYCgszhyH4
-	iZ7JHudXg08EYo+FPFs7KEdkzkr9D7Uf8qTea9A==
-X-Received: by 2002:a05:7301:1f10:b0:2ae:5e6b:dc41 with SMTP id
- 5a478bee46e88-2bde1c9482emr4811186eec.14.1772509307484; Mon, 02 Mar 2026
- 19:41:47 -0800 (PST)
+ dkim=pass header.i=@pbarker.dev header.s=fm2 header.b=NO7pFUI4;
+ dkim=pass header.i=@messagingengine.com header.s=fm1 header.b=Pu9qENN/;
+ spf=pass (domain: pbarker.dev, ip: 103.168.172.145, mailfrom: paul@pbarker.dev)
+Received: from phl-compute-11.internal (phl-compute-11.internal [10.202.2.51])
+	by mailfout.phl.internal (Postfix) with ESMTP id 95BEEEC0075;
+	Tue,  3 Mar 2026 06:22:07 -0500 (EST)
+Received: from phl-imap-04 ([10.202.2.82])
+  by phl-compute-11.internal (MEProxy); Tue, 03 Mar 2026 06:22:07 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=pbarker.dev; h=
+	cc:content-type:content-type:date:date:from:from:in-reply-to
+	:in-reply-to:message-id:mime-version:references:reply-to:subject
+	:subject:to:to; s=fm2; t=1772536927; x=1772623327; bh=wgk96F8xfB
+	jGaxWe/4hSQBm7iRpSbxjRAR8y3zvb8BE=; b=NO7pFUI4NGgU9FEd6JD8Jq1mov
+	0XaxCM5bav/Xjb5uPCqdAAKopBlYyz6esM+So0v69fZp43id1shsTlFu93zASuu8
+	dhMz05zapEzcT8aIWQEbn9Pz52PZTdj1+WwldTD2W3wHO5d5SDthBJAQrbp8GbcT
+	uFJTJWblj4DGKTSekbDcjJNt4jE5xXRL6xFs/TRBM4eQxh+2+h0vhGJ0dgyQfODz
+	DmOyOOe/S6PuVGl+n1AM/kvNVC2NoIBhz+JgGOu+FtWJqTU9jvlkGu7LCCaKKdWW
+	DkJm6Lsx9s0cyFjmc9AEt3LMBU95+YWvVpmq4JegMDRtCgiB3QdG/TGTzExw==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+	messagingengine.com; h=cc:content-type:content-type:date:date
+	:feedback-id:feedback-id:from:from:in-reply-to:in-reply-to
+	:message-id:mime-version:references:reply-to:subject:subject:to
+	:to:x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm1; t=
+	1772536927; x=1772623327; bh=wgk96F8xfBjGaxWe/4hSQBm7iRpSbxjRAR8
+	y3zvb8BE=; b=Pu9qENN/SgKXLySfxw8rJno2mlVKpVVLkgziU769XRGzvplpw/C
+	QPZDHG5k7OY/MTSPbNk2Y4leNVEy983DvbmXm1VSrj+p8ZhLIWyItPvjWyX7+SIA
+	Re2mt6It9k/6n89O6O3WpC62/o5VnHMn+ssQcp3F5tZWGSmWwA58g7I3KiTG+i2M
+	jrRAQCDNMvOlT3LUGvd0snA05/NRzxvEMg/lFX0mdBriwHF8ZQ+RR/C/Aanvrury
+	NfQlvc3Z7OM253g4zzRSbK14lV2X9JuOhVOuYMxCpP2C0IxYKa/WDQ8gvr/vUzzo
+	pHr5M7bG0JloOBH9AHiikhxlbtw+W80K8AA==
+X-ME-Sender: <xms:X8SmaT76Dd6W_Jtq_xHREvq1LvwqHzeerjKvobr9jqtoh8Ke9jiaHQ>
+    <xme:X8SmaTsUfmvTCc610kbluDJBpdud_sj1AzSwP8hgO7a4ea-ZHhmuJ8WvnBhDPZ5Pq
+    8vhjHiSPMxoMO_INFvcOrJgMb0gRys0VcysEodGLPWH6TA7RroM9Q0>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeefgedrtddtgddviedtgeehucetufdoteggodetrf
+    dotffvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfurfetoffkrfgpnffqhgenuceu
+    rghilhhouhhtmecufedttdenucenucfjughrpefoggffhffvkfgjfhfutgesrgdtreerre
+    dtjeenucfhrhhomhepfdfrrghulhcuuegrrhhkvghrfdcuoehprghulhesphgsrghrkhgv
+    rhdruggvvheqnecuggftrfgrthhtvghrnhepvdehteejleehveekieeuffekheegudeghe
+    eugfeuvefgheelheevheefveevvdeunecuffhomhgrihhnpehprhgvthgrlhigrdgtohhm
+    pdhophgvnhgvmhgsvgguuggvugdrohhrghdphihotghtohhprhhojhgvtghtrdhorhhgpd
+    guohgtkhgvrhdrtghomhenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepmhgr
+    ihhlfhhrohhmpehprghulhesphgsrghrkhgvrhdruggvvhdpnhgspghrtghpthhtohepvd
+    dpmhhouggvpehsmhhtphhouhhtpdhrtghpthhtohepohhpvghnvghmsggvugguvgguqdgr
+    rhgthhhithgvtghtuhhrvgeslhhishhtshdrohhpvghnvghmsggvugguvggurdhorhhgpd
+    hrtghpthhtohephihotghtoheslhhishhtshdrhihotghtohhprhhojhgvtghtrdhorhhg
+X-ME-Proxy: <xmx:X8SmaUOlsMo-Zh9h0UodUpydLzLqaQYrqbJ3m73chJCow95uhOVKTQ>
+    <xmx:X8SmafR6DBOlg3NVQIf5A5T-52APbcEEQVCTbMFxCbdXxMS4VbASIA>
+    <xmx:X8SmaaZETB8BpzzYIUSMXkrCxsO1juvlezhz2ojutia3gjXbIdIMmg>
+    <xmx:X8SmaU1WAMhfIKVZctc2KS7Kxkcqd8HHbNbEbu_V_DeQPjGPiHDdJw>
+    <xmx:X8SmafIaQ6IEPUo7z0ySe1NFS-iYKZ4PIf50n5Rh2CF-Vm4sCTNfrXnB>
+Feedback-ID: i51494658:Fastmail
+Received: by mailuser.phl.internal (Postfix, from userid 501)
+	id 49EF7B60071; Tue,  3 Mar 2026 06:22:07 -0500 (EST)
+X-Mailer: MessagingEngine.com Webmail Interface
 MIME-Version: 1.0
-From: Stephen K Jolley <sjolley.yp.pm@gmail.com>
-Date: Mon, 2 Mar 2026 20:41:35 -0700
-X-Gm-Features: AaiRm53MEDbzPAPAkwSh9CL039xZoSJSp4YLFGqpld49vYk-K69PCYgrO6Q3JkI
-Message-ID: <CAK5yBb9D1-Tx83ntpKn5a=t9i3a-BFUT2V1sK8i8AxYd_GQY=g@mail.gmail.com>
-Subject: M+ & H bugs with Milestone Movements WW09
-To: Yocto-mailing-list <yocto@lists.yoctoproject.org>
-Content-Type: multipart/alternative; boundary="000000000000a23b51064c167b4f"
+X-ThreadId: ApUGYZBwQzER
+Date: Tue, 03 Mar 2026 11:21:47 +0000
+From: "Paul Barker" <paul@pbarker.dev>
+To: yocto@lists.yoctoproject.org,
+ openembedded-architecture@lists.openembedded.org
+Message-Id: <4038ae73-4efd-47d7-bf11-59fb01bf9682@app.fastmail.com>
+In-Reply-To: <8286fd3b-1b05-47bf-95e4-0b9f0f5411cb@app.fastmail.com>
+References: <8286fd3b-1b05-47bf-95e4-0b9f0f5411cb@app.fastmail.com>
+Subject: Re: RFQ: Yocto Project Reference Containers
+Content-Type: multipart/alternative;
+ boundary=f956f82d554c4605b0d43c4ae3e3559c
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from 45-33-107-173.ip.linodeusercontent.com [45.33.107.173] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Tue, 03 Mar 2026 03:41:54 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/66294
+ <yocto@lists.yoctoproject.org>; Tue, 03 Mar 2026 11:22:18 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/66295
 
---000000000000a23b51064c167b4f
-Content-Type: text/plain; charset="UTF-8"
-
-All,
-
-YP M+ or high bugs which moved to a new milestone in WW09 are listed below:
-Priority Bug ID Short Description Changer Owner Was Became
-Medium+ 13002 <https://bugzilla.yoctoproject.org/show_bug.cgi?id=13002> Create
-a set of tests to run after upgrading patchtest randy.macleod@windriver.com
-tgamblin@baylibre.com 5.3 M3 6.0 M4
-13005 <https://bugzilla.yoctoproject.org/show_bug.cgi?id=13005> Patchtest
-did not detect missing bb files changes randy.macleod@windriver.com
-tgamblin@baylibre.com 5.3 M3 6.0 M4
-13251 <https://bugzilla.yoctoproject.org/show_bug.cgi?id=13251> Symlinks
-overridden when building multitple kernels randy.macleod@windriver.com
-bruce.ashfield@gmail.com 6.0 M1 6.99
-13360 <https://bugzilla.yoctoproject.org/show_bug.cgi?id=13360> kernel-dev:
-package full kernel source and headers for reference purposes
-randy.macleod@windriver.com bruce.ashfield@gmail.com 6.0 M1 6.99
-13428 <https://bugzilla.yoctoproject.org/show_bug.cgi?id=13428> patchtest-oe:
-test-pylint need enhancement for new files tgamblin@baylibre.com
-tgamblin@baylibre.com 5.3 6.1
-13634 <https://bugzilla.yoctoproject.org/show_bug.cgi?id=13634> patchtest
-should run maintainers test on new recipes tgamblin@baylibre.com
-tgamblin@baylibre.com 5.3 M3 6.1
-13931 <https://bugzilla.yoctoproject.org/show_bug.cgi?id=13931> evaluate
-simplification of headers_install requirements randy.macleod@windriver.com
-bruce.ashfield@gmail.com 6.0 M1 6.0 M3
-14879 <https://bugzilla.yoctoproject.org/show_bug.cgi?id=14879> Fix for
-target definitions returning 'NoneType' for arm' results in 'NoneType when
-arch_abi is arm-eabi ross.burton@arm.com ross.burton@arm.com 4.0.32 4.0.35
-14885 <https://bugzilla.yoctoproject.org/show_bug.cgi?id=14885> We need to
-rebuild all modules when the kernel is rebuild randy.macleod@windriver.com
-bruce.ashfield@gmail.com 6.0 M1 6.0 M3
-14963 <https://bugzilla.yoctoproject.org/show_bug.cgi?id=14963> qemuarm64
-doesn't have a wks file randy.macleod@windriver.com ross.burton@arm.com 5.3
-6.1
-15130 <https://bugzilla.yoctoproject.org/show_bug.cgi?id=15130> bitbake
-should warn if a function is defined only for specific cases
-randy.macleod@windriver.com tgamblin@baylibre.com 5.3 6.1
-15256 <https://bugzilla.yoctoproject.org/show_bug.cgi?id=15256> Use images
-built with Autobuilder for patchtest guest mode tgamblin@baylibre.com
-tgamblin@baylibre.com 5.3 6.1
-15257 <https://bugzilla.yoctoproject.org/show_bug.cgi?id=15257> meta-patchtest
-layer needs to be checked for Yocto Project Compatible status
-tgamblin@baylibre.com tgamblin@baylibre.com 5.3 M3 6.1
-15258 <https://bugzilla.yoctoproject.org/show_bug.cgi?id=15258> Patchtest
-should test an entire series together, rather than checking patches
-individually tgamblin@baylibre.com tgamblin@baylibre.com 5.3 M3 6.1
-15259 <https://bugzilla.yoctoproject.org/show_bug.cgi?id=15259> Patchtest
-should report test results back to Patchwork tgamblin@baylibre.com
-tgamblin@baylibre.com 5.3 M3 6.1
-15260 <https://bugzilla.yoctoproject.org/show_bug.cgi?id=15260> Patchtest
-automated test process should boot the VM once per series
-tgamblin@baylibre.com tgamblin@baylibre.com 5.3 M3 6.1
-15263 <https://bugzilla.yoctoproject.org/show_bug.cgi?id=15263> Expand
-patchtest test suite tgamblin@baylibre.com tgamblin@baylibre.com 5.3 6.1
-15265 <https://bugzilla.yoctoproject.org/show_bug.cgi?id=15265> Make
-patchtest compatible with other layers tgamblin@baylibre.com
-tgamblin@baylibre.com 5.3 6.1
-15269 <https://bugzilla.yoctoproject.org/show_bug.cgi?id=15269> patchtest
-test_lic_files_chksum_modified_not_mentioned is inconsistent between local
-and automated runs tgamblin@baylibre.com tgamblin@baylibre.com 5.3 6.1
-15329 <https://bugzilla.yoctoproject.org/show_bug.cgi?id=15329> Default
-https://localhost:8081/accounts/login throws a 403 error;
-CSRF_TRUSTED_ORIGINS needs the port appended tim.orling@konsulko.com
-tim.orling@konsulko.com 6.0 M1 6.0 M4
-15341 <https://bugzilla.yoctoproject.org/show_bug.cgi?id=15341> False
-positive on missing S-O-B ! tgamblin@baylibre.com tgamblin@baylibre.com 5.3
-6.1
-16011 <https://bugzilla.yoctoproject.org/show_bug.cgi?id=16011> Fix
-errors.yoctoproject.org after bitbake-setup switch tim.orling@konsulko.com
-unassigned@yoctoproject.org 5.3 M4 6.0 M4
-16176 <https://bugzilla.yoctoproject.org/show_bug.cgi?id=16176> FILE
-variable is inconsistent within bbclass files randy.macleod@windriver.com
-richard.purdie@linuxfoundation.org 0.0.0 6.0 M4
-
-Thanks,
-
-
-
-*Stephen K. Jolley*
-
-*Yocto Project Program Manager*
-
-(    *Cell*:                (208) 244-4460
-
-* *Email*:                 *s
-<stephen.k.jolley@intel.com>jolley.yp.pm@gmail.com <jolley.yp.pm@gmail.com>*
-
---000000000000a23b51064c167b4f
-Content-Type: text/html; charset="UTF-8"
+--f956f82d554c4605b0d43c4ae3e3559c
+Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr"><div><span style=3D"font-size:11pt;font-family:Calibri,Ari=
-al">All,<br><br>YP M+ or high bugs which moved to a new milestone in WW09 a=
-re listed below:=C2=A0<br></span></div><div dir=3D"ltr" class=3D"gmail_sign=
-ature" data-smartmail=3D"gmail_signature"><div dir=3D"ltr"><div dir=3D"ltr"=
-><table cellspacing=3D"0" cellpadding=3D"0" dir=3D"ltr" border=3D"1" style=
-=3D"table-layout:fixed;font-size:11pt;font-family:Calibri;width:0px;border-=
-collapse:collapse;border:none"><colgroup><col width=3D"63"><col width=3D"43=
-"><col width=3D"543"><col width=3D"235"><col width=3D"242"><col width=3D"53=
-"><col width=3D"53"></colgroup><tbody><tr style=3D"height:20px"><td style=
-=3D"border:1px solid rgb(0,0,0);overflow:hidden;padding:0px 3px;vertical-al=
-ign:bottom;background-color:rgb(219,229,241);font-weight:bold">Priority</td=
-><td style=3D"border-width:1px;border-style:solid;border-color:rgb(0,0,0) r=
-gb(0,0,0) rgb(0,0,0) rgb(204,204,204);overflow:hidden;padding:0px 3px;verti=
-cal-align:bottom;background-color:rgb(219,229,241);font-weight:bold">Bug ID=
-</td><td style=3D"border-width:1px;border-style:solid;border-color:rgb(0,0,=
-0) rgb(0,0,0) rgb(0,0,0) rgb(204,204,204);overflow:hidden;padding:0px 3px;v=
-ertical-align:bottom;background-color:rgb(219,229,241);font-weight:bold">Sh=
-ort Description</td><td style=3D"border-width:1px;border-style:solid;border=
--color:rgb(0,0,0) rgb(0,0,0) rgb(0,0,0) rgb(204,204,204);overflow:hidden;pa=
-dding:0px 3px;vertical-align:bottom;background-color:rgb(219,229,241);font-=
-weight:bold">Changer</td><td style=3D"border-width:1px;border-style:solid;b=
-order-color:rgb(0,0,0) rgb(0,0,0) rgb(0,0,0) rgb(204,204,204);overflow:hidd=
-en;padding:0px 3px;vertical-align:bottom;background-color:rgb(219,229,241);=
-font-weight:bold">Owner</td><td style=3D"border-width:1px;border-style:soli=
-d;border-color:rgb(0,0,0) rgb(0,0,0) rgb(0,0,0) rgb(204,204,204);overflow:h=
-idden;padding:0px 3px;vertical-align:bottom;background-color:rgb(219,229,24=
-1);font-weight:bold">Was</td><td style=3D"border-width:1px;border-style:sol=
-id;border-color:rgb(0,0,0) rgb(0,0,0) rgb(0,0,0) rgb(204,204,204);overflow:=
-hidden;padding:0px 3px;vertical-align:bottom;background-color:rgb(219,229,2=
-41);font-weight:bold">Became</td></tr><tr style=3D"height:20px"><td style=
-=3D"border-width:1px;border-style:solid;border-color:rgb(204,204,204) rgb(0=
-,0,0) rgb(0,0,0);overflow:hidden;padding:0px 3px;vertical-align:bottom;font=
--weight:bold">Medium+</td><td style=3D"border-width:1px;border-style:solid;=
-border-color:rgb(204,204,204) rgb(0,0,0) rgb(0,0,0) rgb(204,204,204);overfl=
-ow:hidden;padding:0px 3px;vertical-align:bottom;font-weight:bold;text-decor=
-ation-line:underline;text-align:right"><a class=3D"gmail-in-cell-link" href=
-=3D"https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D13002" target=3D"_b=
-lank">13002</a></td><td style=3D"border-width:1px;border-style:solid;border=
--color:rgb(204,204,204) rgb(0,0,0) rgb(0,0,0) rgb(204,204,204);overflow:hid=
-den;padding:0px 3px;vertical-align:bottom">Create a set of tests to run aft=
-er upgrading patchtest</td><td style=3D"border-width:1px;border-style:solid=
-;border-color:rgb(204,204,204) rgb(0,0,0) rgb(0,0,0) rgb(204,204,204);overf=
-low:hidden;padding:0px 3px;vertical-align:bottom"><a href=3D"mailto:randy.m=
-acleod@windriver.com">randy.macleod@windriver.com</a></td><td style=3D"bord=
-er-width:1px;border-style:solid;border-color:rgb(204,204,204) rgb(0,0,0) rg=
-b(0,0,0) rgb(204,204,204);overflow:hidden;padding:0px 3px;vertical-align:bo=
-ttom"><a href=3D"mailto:tgamblin@baylibre.com">tgamblin@baylibre.com</a></t=
-d><td style=3D"border-width:1px;border-style:solid;border-color:rgb(204,204=
-,204) rgb(0,0,0) rgb(0,0,0) rgb(204,204,204);overflow:hidden;padding:0px 3p=
-x;vertical-align:bottom">5.3 M3</td><td style=3D"border-width:1px;border-st=
-yle:solid;border-color:rgb(204,204,204) rgb(0,0,0) rgb(0,0,0) rgb(204,204,2=
-04);overflow:hidden;padding:0px 3px;vertical-align:bottom">6.0 M4</td></tr>=
-<tr style=3D"height:20px"><td style=3D"border-width:1px;border-style:solid;=
-border-color:rgb(204,204,204) rgb(0,0,0) rgb(0,0,0);overflow:hidden;padding=
-:0px 3px;vertical-align:bottom"></td><td style=3D"border-width:1px;border-s=
-tyle:solid;border-color:rgb(204,204,204) rgb(0,0,0) rgb(0,0,0) rgb(204,204,=
-204);overflow:hidden;padding:0px 3px;vertical-align:bottom;font-weight:bold=
-;text-decoration-line:underline;text-align:right"><a class=3D"gmail-in-cell=
--link" href=3D"https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D13005" t=
-arget=3D"_blank">13005</a></td><td style=3D"border-width:1px;border-style:s=
-olid;border-color:rgb(204,204,204) rgb(0,0,0) rgb(0,0,0) rgb(204,204,204);o=
-verflow:hidden;padding:0px 3px;vertical-align:bottom">Patchtest did not det=
-ect missing bb files changes</td><td style=3D"border-width:1px;border-style=
-:solid;border-color:rgb(204,204,204) rgb(0,0,0) rgb(0,0,0) rgb(204,204,204)=
-;overflow:hidden;padding:0px 3px;vertical-align:bottom"><a href=3D"mailto:r=
-andy.macleod@windriver.com">randy.macleod@windriver.com</a></td><td style=
-=3D"border-width:1px;border-style:solid;border-color:rgb(204,204,204) rgb(0=
-,0,0) rgb(0,0,0) rgb(204,204,204);overflow:hidden;padding:0px 3px;vertical-=
-align:bottom"><a href=3D"mailto:tgamblin@baylibre.com">tgamblin@baylibre.co=
-m</a></td><td style=3D"border-width:1px;border-style:solid;border-color:rgb=
-(204,204,204) rgb(0,0,0) rgb(0,0,0) rgb(204,204,204);overflow:hidden;paddin=
-g:0px 3px;vertical-align:bottom">5.3 M3</td><td style=3D"border-width:1px;b=
-order-style:solid;border-color:rgb(204,204,204) rgb(0,0,0) rgb(0,0,0) rgb(2=
-04,204,204);overflow:hidden;padding:0px 3px;vertical-align:bottom">6.0 M4</=
-td></tr><tr style=3D"height:20px"><td style=3D"border-width:1px;border-styl=
-e:solid;border-color:rgb(204,204,204) rgb(0,0,0) rgb(0,0,0);overflow:hidden=
-;padding:0px 3px;vertical-align:bottom"></td><td style=3D"border-width:1px;=
-border-style:solid;border-color:rgb(204,204,204) rgb(0,0,0) rgb(0,0,0) rgb(=
-204,204,204);overflow:hidden;padding:0px 3px;vertical-align:bottom;font-wei=
-ght:bold;text-decoration-line:underline;text-align:right"><a class=3D"gmail=
--in-cell-link" href=3D"https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D=
-13251" target=3D"_blank">13251</a></td><td style=3D"border-width:1px;border=
--style:solid;border-color:rgb(204,204,204) rgb(0,0,0) rgb(0,0,0) rgb(204,20=
-4,204);overflow:hidden;padding:0px 3px;vertical-align:bottom">Symlinks over=
-ridden when building multitple kernels</td><td style=3D"border-width:1px;bo=
-rder-style:solid;border-color:rgb(204,204,204) rgb(0,0,0) rgb(0,0,0) rgb(20=
-4,204,204);overflow:hidden;padding:0px 3px;vertical-align:bottom"><a href=
-=3D"mailto:randy.macleod@windriver.com">randy.macleod@windriver.com</a></td=
-><td style=3D"border-width:1px;border-style:solid;border-color:rgb(204,204,=
-204) rgb(0,0,0) rgb(0,0,0) rgb(204,204,204);overflow:hidden;padding:0px 3px=
-;vertical-align:bottom"><a href=3D"mailto:bruce.ashfield@gmail.com">bruce.a=
-shfield@gmail.com</a></td><td style=3D"border-width:1px;border-style:solid;=
-border-color:rgb(204,204,204) rgb(0,0,0) rgb(0,0,0) rgb(204,204,204);overfl=
-ow:hidden;padding:0px 3px;vertical-align:bottom">6.0 M1</td><td style=3D"bo=
-rder-width:1px;border-style:solid;border-color:rgb(204,204,204) rgb(0,0,0) =
-rgb(0,0,0) rgb(204,204,204);overflow:hidden;padding:0px 3px;vertical-align:=
-bottom;text-align:right">6.99</td></tr><tr style=3D"height:20px"><td style=
-=3D"border-width:1px;border-style:solid;border-color:rgb(204,204,204) rgb(0=
-,0,0) rgb(0,0,0);overflow:hidden;padding:0px 3px;vertical-align:bottom"></t=
-d><td style=3D"border-width:1px;border-style:solid;border-color:rgb(204,204=
-,204) rgb(0,0,0) rgb(0,0,0) rgb(204,204,204);overflow:hidden;padding:0px 3p=
-x;vertical-align:bottom;font-weight:bold;text-decoration-line:underline;tex=
-t-align:right"><a class=3D"gmail-in-cell-link" href=3D"https://bugzilla.yoc=
-toproject.org/show_bug.cgi?id=3D13360" target=3D"_blank">13360</a></td><td =
-style=3D"border-width:1px;border-style:solid;border-color:rgb(204,204,204) =
-rgb(0,0,0) rgb(0,0,0) rgb(204,204,204);overflow:hidden;padding:0px 3px;vert=
-ical-align:bottom">kernel-dev: package full kernel source and headers for r=
-eference purposes</td><td style=3D"border-width:1px;border-style:solid;bord=
-er-color:rgb(204,204,204) rgb(0,0,0) rgb(0,0,0) rgb(204,204,204);overflow:h=
-idden;padding:0px 3px;vertical-align:bottom"><a href=3D"mailto:randy.macleo=
-d@windriver.com">randy.macleod@windriver.com</a></td><td style=3D"border-wi=
-dth:1px;border-style:solid;border-color:rgb(204,204,204) rgb(0,0,0) rgb(0,0=
-,0) rgb(204,204,204);overflow:hidden;padding:0px 3px;vertical-align:bottom"=
-><a href=3D"mailto:bruce.ashfield@gmail.com">bruce.ashfield@gmail.com</a></=
-td><td style=3D"border-width:1px;border-style:solid;border-color:rgb(204,20=
-4,204) rgb(0,0,0) rgb(0,0,0) rgb(204,204,204);overflow:hidden;padding:0px 3=
-px;vertical-align:bottom">6.0 M1</td><td style=3D"border-width:1px;border-s=
-tyle:solid;border-color:rgb(204,204,204) rgb(0,0,0) rgb(0,0,0) rgb(204,204,=
-204);overflow:hidden;padding:0px 3px;vertical-align:bottom;text-align:right=
-">6.99</td></tr><tr style=3D"height:20px"><td style=3D"border-width:1px;bor=
-der-style:solid;border-color:rgb(204,204,204) rgb(0,0,0) rgb(0,0,0);overflo=
-w:hidden;padding:0px 3px;vertical-align:bottom"></td><td style=3D"border-wi=
-dth:1px;border-style:solid;border-color:rgb(204,204,204) rgb(0,0,0) rgb(0,0=
-,0) rgb(204,204,204);overflow:hidden;padding:0px 3px;vertical-align:bottom;=
-font-weight:bold;text-decoration-line:underline;text-align:right"><a class=
-=3D"gmail-in-cell-link" href=3D"https://bugzilla.yoctoproject.org/show_bug.=
-cgi?id=3D13428" target=3D"_blank">13428</a></td><td style=3D"border-width:1=
-px;border-style:solid;border-color:rgb(204,204,204) rgb(0,0,0) rgb(0,0,0) r=
-gb(204,204,204);overflow:hidden;padding:0px 3px;vertical-align:bottom">patc=
-htest-oe: test-pylint need enhancement for new files</td><td style=3D"borde=
-r-width:1px;border-style:solid;border-color:rgb(204,204,204) rgb(0,0,0) rgb=
-(0,0,0) rgb(204,204,204);overflow:hidden;padding:0px 3px;vertical-align:bot=
-tom"><a href=3D"mailto:tgamblin@baylibre.com">tgamblin@baylibre.com</a></td=
-><td style=3D"border-width:1px;border-style:solid;border-color:rgb(204,204,=
-204) rgb(0,0,0) rgb(0,0,0) rgb(204,204,204);overflow:hidden;padding:0px 3px=
-;vertical-align:bottom"><a href=3D"mailto:tgamblin@baylibre.com">tgamblin@b=
-aylibre.com</a></td><td style=3D"border-width:1px;border-style:solid;border=
--color:rgb(204,204,204) rgb(0,0,0) rgb(0,0,0) rgb(204,204,204);overflow:hid=
-den;padding:0px 3px;vertical-align:bottom;text-align:right">5.3</td><td sty=
-le=3D"border-width:1px;border-style:solid;border-color:rgb(204,204,204) rgb=
-(0,0,0) rgb(0,0,0) rgb(204,204,204);overflow:hidden;padding:0px 3px;vertica=
-l-align:bottom;text-align:right">6.1</td></tr><tr style=3D"height:20px"><td=
- style=3D"border-width:1px;border-style:solid;border-color:rgb(204,204,204)=
- rgb(0,0,0) rgb(0,0,0);overflow:hidden;padding:0px 3px;vertical-align:botto=
-m"></td><td style=3D"border-width:1px;border-style:solid;border-color:rgb(2=
-04,204,204) rgb(0,0,0) rgb(0,0,0) rgb(204,204,204);overflow:hidden;padding:=
-0px 3px;vertical-align:bottom;font-weight:bold;text-decoration-line:underli=
-ne;text-align:right"><a class=3D"gmail-in-cell-link" href=3D"https://bugzil=
-la.yoctoproject.org/show_bug.cgi?id=3D13634" target=3D"_blank">13634</a></t=
-d><td style=3D"border-width:1px;border-style:solid;border-color:rgb(204,204=
-,204) rgb(0,0,0) rgb(0,0,0) rgb(204,204,204);overflow:hidden;padding:0px 3p=
-x;vertical-align:bottom">patchtest should run maintainers test on new recip=
-es</td><td style=3D"border-width:1px;border-style:solid;border-color:rgb(20=
-4,204,204) rgb(0,0,0) rgb(0,0,0) rgb(204,204,204);overflow:hidden;padding:0=
-px 3px;vertical-align:bottom"><a href=3D"mailto:tgamblin@baylibre.com">tgam=
-blin@baylibre.com</a></td><td style=3D"border-width:1px;border-style:solid;=
-border-color:rgb(204,204,204) rgb(0,0,0) rgb(0,0,0) rgb(204,204,204);overfl=
-ow:hidden;padding:0px 3px;vertical-align:bottom"><a href=3D"mailto:tgamblin=
-@baylibre.com">tgamblin@baylibre.com</a></td><td style=3D"border-width:1px;=
-border-style:solid;border-color:rgb(204,204,204) rgb(0,0,0) rgb(0,0,0) rgb(=
-204,204,204);overflow:hidden;padding:0px 3px;vertical-align:bottom">5.3 M3<=
-/td><td style=3D"border-width:1px;border-style:solid;border-color:rgb(204,2=
-04,204) rgb(0,0,0) rgb(0,0,0) rgb(204,204,204);overflow:hidden;padding:0px =
-3px;vertical-align:bottom;text-align:right">6.1</td></tr><tr style=3D"heigh=
-t:20px"><td style=3D"border-width:1px;border-style:solid;border-color:rgb(2=
-04,204,204) rgb(0,0,0) rgb(0,0,0);overflow:hidden;padding:0px 3px;vertical-=
-align:bottom"></td><td style=3D"border-width:1px;border-style:solid;border-=
-color:rgb(204,204,204) rgb(0,0,0) rgb(0,0,0) rgb(204,204,204);overflow:hidd=
-en;padding:0px 3px;vertical-align:bottom;font-weight:bold;text-decoration-l=
-ine:underline;text-align:right"><a class=3D"gmail-in-cell-link" href=3D"htt=
-ps://bugzilla.yoctoproject.org/show_bug.cgi?id=3D13931" target=3D"_blank">1=
-3931</a></td><td style=3D"border-width:1px;border-style:solid;border-color:=
-rgb(204,204,204) rgb(0,0,0) rgb(0,0,0) rgb(204,204,204);overflow:hidden;pad=
-ding:0px 3px;vertical-align:bottom">evaluate simplification of headers_inst=
-all requirements</td><td style=3D"border-width:1px;border-style:solid;borde=
-r-color:rgb(204,204,204) rgb(0,0,0) rgb(0,0,0) rgb(204,204,204);overflow:hi=
-dden;padding:0px 3px;vertical-align:bottom"><a href=3D"mailto:randy.macleod=
-@windriver.com">randy.macleod@windriver.com</a></td><td style=3D"border-wid=
-th:1px;border-style:solid;border-color:rgb(204,204,204) rgb(0,0,0) rgb(0,0,=
-0) rgb(204,204,204);overflow:hidden;padding:0px 3px;vertical-align:bottom">=
-<a href=3D"mailto:bruce.ashfield@gmail.com">bruce.ashfield@gmail.com</a></t=
-d><td style=3D"border-width:1px;border-style:solid;border-color:rgb(204,204=
-,204) rgb(0,0,0) rgb(0,0,0) rgb(204,204,204);overflow:hidden;padding:0px 3p=
-x;vertical-align:bottom">6.0 M1</td><td style=3D"border-width:1px;border-st=
-yle:solid;border-color:rgb(204,204,204) rgb(0,0,0) rgb(0,0,0) rgb(204,204,2=
-04);overflow:hidden;padding:0px 3px;vertical-align:bottom">6.0 M3</td></tr>=
-<tr style=3D"height:20px"><td style=3D"border-width:1px;border-style:solid;=
-border-color:rgb(204,204,204) rgb(0,0,0) rgb(0,0,0);overflow:hidden;padding=
-:0px 3px;vertical-align:bottom"></td><td style=3D"border-width:1px;border-s=
-tyle:solid;border-color:rgb(204,204,204) rgb(0,0,0) rgb(0,0,0) rgb(204,204,=
-204);overflow:hidden;padding:0px 3px;vertical-align:bottom;font-weight:bold=
-;text-decoration-line:underline;text-align:right"><a class=3D"gmail-in-cell=
--link" href=3D"https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D14879" t=
-arget=3D"_blank">14879</a></td><td style=3D"border-width:1px;border-style:s=
-olid;border-color:rgb(204,204,204) rgb(0,0,0) rgb(0,0,0) rgb(204,204,204);o=
-verflow:hidden;padding:0px 3px;vertical-align:bottom">Fix for target defini=
-tions returning &#39;NoneType&#39; for arm&#39; results in &#39;NoneType wh=
-en arch_abi is arm-eabi</td><td style=3D"border-width:1px;border-style:soli=
-d;border-color:rgb(204,204,204) rgb(0,0,0) rgb(0,0,0) rgb(204,204,204);over=
-flow:hidden;padding:0px 3px;vertical-align:bottom"><a href=3D"mailto:ross.b=
-urton@arm.com">ross.burton@arm.com</a></td><td style=3D"border-width:1px;bo=
-rder-style:solid;border-color:rgb(204,204,204) rgb(0,0,0) rgb(0,0,0) rgb(20=
-4,204,204);overflow:hidden;padding:0px 3px;vertical-align:bottom"><a href=
-=3D"mailto:ross.burton@arm.com">ross.burton@arm.com</a></td><td style=3D"bo=
-rder-width:1px;border-style:solid;border-color:rgb(204,204,204) rgb(0,0,0) =
-rgb(0,0,0) rgb(204,204,204);overflow:hidden;padding:0px 3px;vertical-align:=
-bottom">4.0.32</td><td style=3D"border-width:1px;border-style:solid;border-=
-color:rgb(204,204,204) rgb(0,0,0) rgb(0,0,0) rgb(204,204,204);overflow:hidd=
-en;padding:0px 3px;vertical-align:bottom">4.0.35</td></tr><tr style=3D"heig=
-ht:20px"><td style=3D"border-width:1px;border-style:solid;border-color:rgb(=
-204,204,204) rgb(0,0,0) rgb(0,0,0);overflow:hidden;padding:0px 3px;vertical=
--align:bottom"></td><td style=3D"border-width:1px;border-style:solid;border=
--color:rgb(204,204,204) rgb(0,0,0) rgb(0,0,0) rgb(204,204,204);overflow:hid=
-den;padding:0px 3px;vertical-align:bottom;font-weight:bold;text-decoration-=
-line:underline;text-align:right"><a class=3D"gmail-in-cell-link" href=3D"ht=
-tps://bugzilla.yoctoproject.org/show_bug.cgi?id=3D14885" target=3D"_blank">=
-14885</a></td><td style=3D"border-width:1px;border-style:solid;border-color=
-:rgb(204,204,204) rgb(0,0,0) rgb(0,0,0) rgb(204,204,204);overflow:hidden;pa=
-dding:0px 3px;vertical-align:bottom">We need to rebuild all modules when th=
-e kernel is rebuild</td><td style=3D"border-width:1px;border-style:solid;bo=
-rder-color:rgb(204,204,204) rgb(0,0,0) rgb(0,0,0) rgb(204,204,204);overflow=
-:hidden;padding:0px 3px;vertical-align:bottom"><a href=3D"mailto:randy.macl=
-eod@windriver.com">randy.macleod@windriver.com</a></td><td style=3D"border-=
-width:1px;border-style:solid;border-color:rgb(204,204,204) rgb(0,0,0) rgb(0=
-,0,0) rgb(204,204,204);overflow:hidden;padding:0px 3px;vertical-align:botto=
-m"><a href=3D"mailto:bruce.ashfield@gmail.com">bruce.ashfield@gmail.com</a>=
-</td><td style=3D"border-width:1px;border-style:solid;border-color:rgb(204,=
-204,204) rgb(0,0,0) rgb(0,0,0) rgb(204,204,204);overflow:hidden;padding:0px=
- 3px;vertical-align:bottom">6.0 M1</td><td style=3D"border-width:1px;border=
--style:solid;border-color:rgb(204,204,204) rgb(0,0,0) rgb(0,0,0) rgb(204,20=
-4,204);overflow:hidden;padding:0px 3px;vertical-align:bottom">6.0 M3</td></=
-tr><tr style=3D"height:20px"><td style=3D"border-width:1px;border-style:sol=
-id;border-color:rgb(204,204,204) rgb(0,0,0) rgb(0,0,0);overflow:hidden;padd=
-ing:0px 3px;vertical-align:bottom"></td><td style=3D"border-width:1px;borde=
-r-style:solid;border-color:rgb(204,204,204) rgb(0,0,0) rgb(0,0,0) rgb(204,2=
-04,204);overflow:hidden;padding:0px 3px;vertical-align:bottom;font-weight:b=
-old;text-decoration-line:underline;text-align:right"><a class=3D"gmail-in-c=
-ell-link" href=3D"https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D14963=
-" target=3D"_blank">14963</a></td><td style=3D"border-width:1px;border-styl=
-e:solid;border-color:rgb(204,204,204) rgb(0,0,0) rgb(0,0,0) rgb(204,204,204=
-);overflow:hidden;padding:0px 3px;vertical-align:bottom">qemuarm64 doesn&#3=
-9;t have a wks file</td><td style=3D"border-width:1px;border-style:solid;bo=
-rder-color:rgb(204,204,204) rgb(0,0,0) rgb(0,0,0) rgb(204,204,204);overflow=
-:hidden;padding:0px 3px;vertical-align:bottom"><a href=3D"mailto:randy.macl=
-eod@windriver.com">randy.macleod@windriver.com</a></td><td style=3D"border-=
-width:1px;border-style:solid;border-color:rgb(204,204,204) rgb(0,0,0) rgb(0=
-,0,0) rgb(204,204,204);overflow:hidden;padding:0px 3px;vertical-align:botto=
-m"><a href=3D"mailto:ross.burton@arm.com">ross.burton@arm.com</a></td><td s=
-tyle=3D"border-width:1px;border-style:solid;border-color:rgb(204,204,204) r=
-gb(0,0,0) rgb(0,0,0) rgb(204,204,204);overflow:hidden;padding:0px 3px;verti=
-cal-align:bottom;text-align:right">5.3</td><td style=3D"border-width:1px;bo=
-rder-style:solid;border-color:rgb(204,204,204) rgb(0,0,0) rgb(0,0,0) rgb(20=
-4,204,204);overflow:hidden;padding:0px 3px;vertical-align:bottom;text-align=
-:right">6.1</td></tr><tr style=3D"height:20px"><td style=3D"border-width:1p=
-x;border-style:solid;border-color:rgb(204,204,204) rgb(0,0,0) rgb(0,0,0);ov=
-erflow:hidden;padding:0px 3px;vertical-align:bottom"></td><td style=3D"bord=
-er-width:1px;border-style:solid;border-color:rgb(204,204,204) rgb(0,0,0) rg=
-b(0,0,0) rgb(204,204,204);overflow:hidden;padding:0px 3px;vertical-align:bo=
-ttom;font-weight:bold;text-decoration-line:underline;text-align:right"><a c=
-lass=3D"gmail-in-cell-link" href=3D"https://bugzilla.yoctoproject.org/show_=
-bug.cgi?id=3D15130" target=3D"_blank">15130</a></td><td style=3D"border-wid=
-th:1px;border-style:solid;border-color:rgb(204,204,204) rgb(0,0,0) rgb(0,0,=
-0) rgb(204,204,204);overflow:hidden;padding:0px 3px;vertical-align:bottom">=
-bitbake should warn if a function is defined only for specific cases</td><t=
-d style=3D"border-width:1px;border-style:solid;border-color:rgb(204,204,204=
-) rgb(0,0,0) rgb(0,0,0) rgb(204,204,204);overflow:hidden;padding:0px 3px;ve=
-rtical-align:bottom"><a href=3D"mailto:randy.macleod@windriver.com">randy.m=
-acleod@windriver.com</a></td><td style=3D"border-width:1px;border-style:sol=
-id;border-color:rgb(204,204,204) rgb(0,0,0) rgb(0,0,0) rgb(204,204,204);ove=
-rflow:hidden;padding:0px 3px;vertical-align:bottom"><a href=3D"mailto:tgamb=
-lin@baylibre.com">tgamblin@baylibre.com</a></td><td style=3D"border-width:1=
-px;border-style:solid;border-color:rgb(204,204,204) rgb(0,0,0) rgb(0,0,0) r=
-gb(204,204,204);overflow:hidden;padding:0px 3px;vertical-align:bottom;text-=
-align:right">5.3</td><td style=3D"border-width:1px;border-style:solid;borde=
-r-color:rgb(204,204,204) rgb(0,0,0) rgb(0,0,0) rgb(204,204,204);overflow:hi=
-dden;padding:0px 3px;vertical-align:bottom;text-align:right">6.1</td></tr><=
-tr style=3D"height:20px"><td style=3D"border-width:1px;border-style:solid;b=
-order-color:rgb(204,204,204) rgb(0,0,0) rgb(0,0,0);overflow:hidden;padding:=
-0px 3px;vertical-align:bottom"></td><td style=3D"border-width:1px;border-st=
-yle:solid;border-color:rgb(204,204,204) rgb(0,0,0) rgb(0,0,0) rgb(204,204,2=
-04);overflow:hidden;padding:0px 3px;vertical-align:bottom;font-weight:bold;=
-text-decoration-line:underline;text-align:right"><a class=3D"gmail-in-cell-=
-link" href=3D"https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D15256" ta=
-rget=3D"_blank">15256</a></td><td style=3D"border-width:1px;border-style:so=
-lid;border-color:rgb(204,204,204) rgb(0,0,0) rgb(0,0,0) rgb(204,204,204);ov=
-erflow:hidden;padding:0px 3px;vertical-align:bottom">Use images built with =
-Autobuilder for patchtest guest mode</td><td style=3D"border-width:1px;bord=
-er-style:solid;border-color:rgb(204,204,204) rgb(0,0,0) rgb(0,0,0) rgb(204,=
-204,204);overflow:hidden;padding:0px 3px;vertical-align:bottom"><a href=3D"=
-mailto:tgamblin@baylibre.com">tgamblin@baylibre.com</a></td><td style=3D"bo=
-rder-width:1px;border-style:solid;border-color:rgb(204,204,204) rgb(0,0,0) =
-rgb(0,0,0) rgb(204,204,204);overflow:hidden;padding:0px 3px;vertical-align:=
-bottom"><a href=3D"mailto:tgamblin@baylibre.com">tgamblin@baylibre.com</a><=
-/td><td style=3D"border-width:1px;border-style:solid;border-color:rgb(204,2=
-04,204) rgb(0,0,0) rgb(0,0,0) rgb(204,204,204);overflow:hidden;padding:0px =
-3px;vertical-align:bottom;text-align:right">5.3</td><td style=3D"border-wid=
-th:1px;border-style:solid;border-color:rgb(204,204,204) rgb(0,0,0) rgb(0,0,=
-0) rgb(204,204,204);overflow:hidden;padding:0px 3px;vertical-align:bottom;t=
-ext-align:right">6.1</td></tr><tr style=3D"height:20px"><td style=3D"border=
--width:1px;border-style:solid;border-color:rgb(204,204,204) rgb(0,0,0) rgb(=
-0,0,0);overflow:hidden;padding:0px 3px;vertical-align:bottom"></td><td styl=
-e=3D"border-width:1px;border-style:solid;border-color:rgb(204,204,204) rgb(=
-0,0,0) rgb(0,0,0) rgb(204,204,204);overflow:hidden;padding:0px 3px;vertical=
--align:bottom;font-weight:bold;text-decoration-line:underline;text-align:ri=
-ght"><a class=3D"gmail-in-cell-link" href=3D"https://bugzilla.yoctoproject.=
-org/show_bug.cgi?id=3D15257" target=3D"_blank">15257</a></td><td style=3D"b=
-order-width:1px;border-style:solid;border-color:rgb(204,204,204) rgb(0,0,0)=
- rgb(0,0,0) rgb(204,204,204);overflow:hidden;padding:0px 3px;vertical-align=
-:bottom">meta-patchtest layer needs to be checked for Yocto Project Compati=
-ble status</td><td style=3D"border-width:1px;border-style:solid;border-colo=
-r:rgb(204,204,204) rgb(0,0,0) rgb(0,0,0) rgb(204,204,204);overflow:hidden;p=
-adding:0px 3px;vertical-align:bottom"><a href=3D"mailto:tgamblin@baylibre.c=
-om">tgamblin@baylibre.com</a></td><td style=3D"border-width:1px;border-styl=
-e:solid;border-color:rgb(204,204,204) rgb(0,0,0) rgb(0,0,0) rgb(204,204,204=
-);overflow:hidden;padding:0px 3px;vertical-align:bottom"><a href=3D"mailto:=
-tgamblin@baylibre.com">tgamblin@baylibre.com</a></td><td style=3D"border-wi=
-dth:1px;border-style:solid;border-color:rgb(204,204,204) rgb(0,0,0) rgb(0,0=
-,0) rgb(204,204,204);overflow:hidden;padding:0px 3px;vertical-align:bottom"=
->5.3 M3</td><td style=3D"border-width:1px;border-style:solid;border-color:r=
-gb(204,204,204) rgb(0,0,0) rgb(0,0,0) rgb(204,204,204);overflow:hidden;padd=
-ing:0px 3px;vertical-align:bottom;text-align:right">6.1</td></tr><tr style=
-=3D"height:20px"><td style=3D"border-width:1px;border-style:solid;border-co=
-lor:rgb(204,204,204) rgb(0,0,0) rgb(0,0,0);overflow:hidden;padding:0px 3px;=
-vertical-align:bottom"></td><td style=3D"border-width:1px;border-style:soli=
-d;border-color:rgb(204,204,204) rgb(0,0,0) rgb(0,0,0) rgb(204,204,204);over=
-flow:hidden;padding:0px 3px;vertical-align:bottom;font-weight:bold;text-dec=
-oration-line:underline;text-align:right"><a class=3D"gmail-in-cell-link" hr=
-ef=3D"https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D15258" target=3D"=
-_blank">15258</a></td><td style=3D"border-width:1px;border-style:solid;bord=
-er-color:rgb(204,204,204) rgb(0,0,0) rgb(0,0,0) rgb(204,204,204);overflow:h=
-idden;padding:0px 3px;vertical-align:bottom">Patchtest should test an entir=
-e series together, rather than checking patches individually</td><td style=
-=3D"border-width:1px;border-style:solid;border-color:rgb(204,204,204) rgb(0=
-,0,0) rgb(0,0,0) rgb(204,204,204);overflow:hidden;padding:0px 3px;vertical-=
-align:bottom"><a href=3D"mailto:tgamblin@baylibre.com">tgamblin@baylibre.co=
-m</a></td><td style=3D"border-width:1px;border-style:solid;border-color:rgb=
-(204,204,204) rgb(0,0,0) rgb(0,0,0) rgb(204,204,204);overflow:hidden;paddin=
-g:0px 3px;vertical-align:bottom"><a href=3D"mailto:tgamblin@baylibre.com">t=
-gamblin@baylibre.com</a></td><td style=3D"border-width:1px;border-style:sol=
-id;border-color:rgb(204,204,204) rgb(0,0,0) rgb(0,0,0) rgb(204,204,204);ove=
-rflow:hidden;padding:0px 3px;vertical-align:bottom">5.3 M3</td><td style=3D=
-"border-width:1px;border-style:solid;border-color:rgb(204,204,204) rgb(0,0,=
-0) rgb(0,0,0) rgb(204,204,204);overflow:hidden;padding:0px 3px;vertical-ali=
-gn:bottom;text-align:right">6.1</td></tr><tr style=3D"height:20px"><td styl=
-e=3D"border-width:1px;border-style:solid;border-color:rgb(204,204,204) rgb(=
-0,0,0) rgb(0,0,0);overflow:hidden;padding:0px 3px;vertical-align:bottom"></=
-td><td style=3D"border-width:1px;border-style:solid;border-color:rgb(204,20=
-4,204) rgb(0,0,0) rgb(0,0,0) rgb(204,204,204);overflow:hidden;padding:0px 3=
-px;vertical-align:bottom;font-weight:bold;text-decoration-line:underline;te=
-xt-align:right"><a class=3D"gmail-in-cell-link" href=3D"https://bugzilla.yo=
-ctoproject.org/show_bug.cgi?id=3D15259" target=3D"_blank">15259</a></td><td=
- style=3D"border-width:1px;border-style:solid;border-color:rgb(204,204,204)=
- rgb(0,0,0) rgb(0,0,0) rgb(204,204,204);overflow:hidden;padding:0px 3px;ver=
-tical-align:bottom">Patchtest should report test results back to Patchwork<=
-/td><td style=3D"border-width:1px;border-style:solid;border-color:rgb(204,2=
-04,204) rgb(0,0,0) rgb(0,0,0) rgb(204,204,204);overflow:hidden;padding:0px =
-3px;vertical-align:bottom"><a href=3D"mailto:tgamblin@baylibre.com">tgambli=
-n@baylibre.com</a></td><td style=3D"border-width:1px;border-style:solid;bor=
-der-color:rgb(204,204,204) rgb(0,0,0) rgb(0,0,0) rgb(204,204,204);overflow:=
-hidden;padding:0px 3px;vertical-align:bottom"><a href=3D"mailto:tgamblin@ba=
-ylibre.com">tgamblin@baylibre.com</a></td><td style=3D"border-width:1px;bor=
-der-style:solid;border-color:rgb(204,204,204) rgb(0,0,0) rgb(0,0,0) rgb(204=
-,204,204);overflow:hidden;padding:0px 3px;vertical-align:bottom">5.3 M3</td=
-><td style=3D"border-width:1px;border-style:solid;border-color:rgb(204,204,=
-204) rgb(0,0,0) rgb(0,0,0) rgb(204,204,204);overflow:hidden;padding:0px 3px=
-;vertical-align:bottom;text-align:right">6.1</td></tr><tr style=3D"height:2=
-0px"><td style=3D"border-width:1px;border-style:solid;border-color:rgb(204,=
-204,204) rgb(0,0,0) rgb(0,0,0);overflow:hidden;padding:0px 3px;vertical-ali=
-gn:bottom"></td><td style=3D"border-width:1px;border-style:solid;border-col=
-or:rgb(204,204,204) rgb(0,0,0) rgb(0,0,0) rgb(204,204,204);overflow:hidden;=
-padding:0px 3px;vertical-align:bottom;font-weight:bold;text-decoration-line=
-:underline;text-align:right"><a class=3D"gmail-in-cell-link" href=3D"https:=
-//bugzilla.yoctoproject.org/show_bug.cgi?id=3D15260" target=3D"_blank">1526=
-0</a></td><td style=3D"border-width:1px;border-style:solid;border-color:rgb=
-(204,204,204) rgb(0,0,0) rgb(0,0,0) rgb(204,204,204);overflow:hidden;paddin=
-g:0px 3px;vertical-align:bottom">Patchtest automated test process should bo=
-ot the VM once per series</td><td style=3D"border-width:1px;border-style:so=
-lid;border-color:rgb(204,204,204) rgb(0,0,0) rgb(0,0,0) rgb(204,204,204);ov=
-erflow:hidden;padding:0px 3px;vertical-align:bottom"><a href=3D"mailto:tgam=
-blin@baylibre.com">tgamblin@baylibre.com</a></td><td style=3D"border-width:=
-1px;border-style:solid;border-color:rgb(204,204,204) rgb(0,0,0) rgb(0,0,0) =
-rgb(204,204,204);overflow:hidden;padding:0px 3px;vertical-align:bottom"><a =
-href=3D"mailto:tgamblin@baylibre.com">tgamblin@baylibre.com</a></td><td sty=
-le=3D"border-width:1px;border-style:solid;border-color:rgb(204,204,204) rgb=
-(0,0,0) rgb(0,0,0) rgb(204,204,204);overflow:hidden;padding:0px 3px;vertica=
-l-align:bottom">5.3 M3</td><td style=3D"border-width:1px;border-style:solid=
-;border-color:rgb(204,204,204) rgb(0,0,0) rgb(0,0,0) rgb(204,204,204);overf=
-low:hidden;padding:0px 3px;vertical-align:bottom;text-align:right">6.1</td>=
-</tr><tr style=3D"height:21px"><td style=3D"border-width:1px;border-style:s=
-olid;border-color:rgb(204,204,204) rgb(0,0,0) rgb(0,0,0);overflow:hidden;pa=
-dding:0px 3px;vertical-align:bottom"></td><td style=3D"border-width:1px;bor=
-der-style:solid;border-color:rgb(204,204,204) rgb(0,0,0) rgb(0,0,0) rgb(204=
-,204,204);overflow:hidden;padding:0px 3px;vertical-align:bottom;font-weight=
-:bold;text-decoration-line:underline;text-align:right"><a class=3D"gmail-in=
--cell-link" href=3D"https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D152=
-63" target=3D"_blank">15263</a></td><td style=3D"border-width:1px;border-st=
-yle:solid;border-color:rgb(204,204,204) rgb(0,0,0) rgb(0,0,0) rgb(204,204,2=
-04);overflow:hidden;padding:0px 3px;vertical-align:bottom">Expand patchtest=
- test suite</td><td style=3D"border-width:1px;border-style:solid;border-col=
-or:rgb(204,204,204) rgb(0,0,0) rgb(0,0,0) rgb(204,204,204);overflow:hidden;=
-padding:0px 3px;vertical-align:bottom"><a href=3D"mailto:tgamblin@baylibre.=
-com">tgamblin@baylibre.com</a></td><td style=3D"border-width:1px;border-sty=
-le:solid;border-color:rgb(204,204,204) rgb(0,0,0) rgb(0,0,0) rgb(204,204,20=
-4);overflow:hidden;padding:0px 3px;vertical-align:bottom"><a href=3D"mailto=
-:tgamblin@baylibre.com">tgamblin@baylibre.com</a></td><td style=3D"border-w=
-idth:1px;border-style:solid;border-color:rgb(204,204,204) rgb(0,0,0) rgb(0,=
-0,0) rgb(204,204,204);overflow:hidden;padding:0px 3px;vertical-align:bottom=
-;text-align:right">5.3</td><td style=3D"border-width:1px;border-style:solid=
-;border-color:rgb(204,204,204) rgb(0,0,0) rgb(0,0,0) rgb(204,204,204);overf=
-low:hidden;padding:0px 3px;vertical-align:bottom;text-align:right">6.1</td>=
-</tr><tr style=3D"height:21px"><td style=3D"border-width:1px;border-style:s=
-olid;border-color:rgb(204,204,204) rgb(0,0,0) rgb(0,0,0);overflow:hidden;pa=
-dding:0px 3px;vertical-align:bottom"></td><td style=3D"border-width:1px;bor=
-der-style:solid;border-color:rgb(204,204,204) rgb(0,0,0) rgb(0,0,0) rgb(204=
-,204,204);overflow:hidden;padding:0px 3px;vertical-align:bottom;font-weight=
-:bold;text-decoration-line:underline;text-align:right"><a class=3D"gmail-in=
--cell-link" href=3D"https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D152=
-65" target=3D"_blank">15265</a></td><td style=3D"border-width:1px;border-st=
-yle:solid;border-color:rgb(204,204,204) rgb(0,0,0) rgb(0,0,0) rgb(204,204,2=
-04);overflow:hidden;padding:0px 3px;vertical-align:bottom">Make patchtest c=
-ompatible with other layers</td><td style=3D"border-width:1px;border-style:=
-solid;border-color:rgb(204,204,204) rgb(0,0,0) rgb(0,0,0) rgb(204,204,204);=
-overflow:hidden;padding:0px 3px;vertical-align:bottom"><a href=3D"mailto:tg=
-amblin@baylibre.com">tgamblin@baylibre.com</a></td><td style=3D"border-widt=
-h:1px;border-style:solid;border-color:rgb(204,204,204) rgb(0,0,0) rgb(0,0,0=
-) rgb(204,204,204);overflow:hidden;padding:0px 3px;vertical-align:bottom"><=
-a href=3D"mailto:tgamblin@baylibre.com">tgamblin@baylibre.com</a></td><td s=
-tyle=3D"border-width:1px;border-style:solid;border-color:rgb(204,204,204) r=
-gb(0,0,0) rgb(0,0,0) rgb(204,204,204);overflow:hidden;padding:0px 3px;verti=
-cal-align:bottom;text-align:right">5.3</td><td style=3D"border-width:1px;bo=
-rder-style:solid;border-color:rgb(204,204,204) rgb(0,0,0) rgb(0,0,0) rgb(20=
-4,204,204);overflow:hidden;padding:0px 3px;vertical-align:bottom;text-align=
-:right">6.1</td></tr><tr style=3D"height:21px"><td style=3D"border-width:1p=
-x;border-style:solid;border-color:rgb(204,204,204) rgb(0,0,0) rgb(0,0,0);ov=
-erflow:hidden;padding:0px 3px;vertical-align:bottom"></td><td style=3D"bord=
-er-width:1px;border-style:solid;border-color:rgb(204,204,204) rgb(0,0,0) rg=
-b(0,0,0) rgb(204,204,204);overflow:hidden;padding:0px 3px;vertical-align:bo=
-ttom;font-weight:bold;text-decoration-line:underline;text-align:right"><a c=
-lass=3D"gmail-in-cell-link" href=3D"https://bugzilla.yoctoproject.org/show_=
-bug.cgi?id=3D15269" target=3D"_blank">15269</a></td><td style=3D"border-wid=
-th:1px;border-style:solid;border-color:rgb(204,204,204) rgb(0,0,0) rgb(0,0,=
-0) rgb(204,204,204);overflow:hidden;padding:0px 3px;vertical-align:bottom">=
-patchtest test_lic_files_chksum_modified_not_mentioned is inconsistent betw=
-een local and automated runs</td><td style=3D"border-width:1px;border-style=
-:solid;border-color:rgb(204,204,204) rgb(0,0,0) rgb(0,0,0) rgb(204,204,204)=
-;overflow:hidden;padding:0px 3px;vertical-align:bottom"><a href=3D"mailto:t=
-gamblin@baylibre.com">tgamblin@baylibre.com</a></td><td style=3D"border-wid=
-th:1px;border-style:solid;border-color:rgb(204,204,204) rgb(0,0,0) rgb(0,0,=
-0) rgb(204,204,204);overflow:hidden;padding:0px 3px;vertical-align:bottom">=
-<a href=3D"mailto:tgamblin@baylibre.com">tgamblin@baylibre.com</a></td><td =
-style=3D"border-width:1px;border-style:solid;border-color:rgb(204,204,204) =
-rgb(0,0,0) rgb(0,0,0) rgb(204,204,204);overflow:hidden;padding:0px 3px;vert=
-ical-align:bottom;text-align:right">5.3</td><td style=3D"border-width:1px;b=
-order-style:solid;border-color:rgb(204,204,204) rgb(0,0,0) rgb(0,0,0) rgb(2=
-04,204,204);overflow:hidden;padding:0px 3px;vertical-align:bottom;text-alig=
-n:right">6.1</td></tr><tr style=3D"height:21px"><td style=3D"border-width:1=
-px;border-style:solid;border-color:rgb(204,204,204) rgb(0,0,0) rgb(0,0,0);o=
-verflow:hidden;padding:0px 3px;vertical-align:bottom"></td><td style=3D"bor=
-der-width:1px;border-style:solid;border-color:rgb(204,204,204) rgb(0,0,0) r=
-gb(0,0,0) rgb(204,204,204);overflow:hidden;padding:0px 3px;vertical-align:b=
-ottom;font-weight:bold;text-decoration-line:underline;text-align:right"><a =
-class=3D"gmail-in-cell-link" href=3D"https://bugzilla.yoctoproject.org/show=
-_bug.cgi?id=3D15329" target=3D"_blank">15329</a></td><td style=3D"border-wi=
-dth:1px;border-style:solid;border-color:rgb(204,204,204) rgb(0,0,0) rgb(0,0=
-,0) rgb(204,204,204);overflow:hidden;padding:0px 3px;vertical-align:bottom"=
->Default <a href=3D"https://localhost:8081/accounts/login">https://localhos=
-t:8081/accounts/login</a> throws a 403 error; CSRF_TRUSTED_ORIGINS needs th=
-e port appended</td><td style=3D"border-width:1px;border-style:solid;border=
--color:rgb(204,204,204) rgb(0,0,0) rgb(0,0,0) rgb(204,204,204);overflow:hid=
-den;padding:0px 3px;vertical-align:bottom"><a href=3D"mailto:tim.orling@kon=
-sulko.com">tim.orling@konsulko.com</a></td><td style=3D"border-width:1px;bo=
-rder-style:solid;border-color:rgb(204,204,204) rgb(0,0,0) rgb(0,0,0) rgb(20=
-4,204,204);overflow:hidden;padding:0px 3px;vertical-align:bottom"><a href=
-=3D"mailto:tim.orling@konsulko.com">tim.orling@konsulko.com</a></td><td sty=
-le=3D"border-width:1px;border-style:solid;border-color:rgb(204,204,204) rgb=
-(0,0,0) rgb(0,0,0) rgb(204,204,204);overflow:hidden;padding:0px 3px;vertica=
-l-align:bottom">6.0 M1</td><td style=3D"border-width:1px;border-style:solid=
-;border-color:rgb(204,204,204) rgb(0,0,0) rgb(0,0,0) rgb(204,204,204);overf=
-low:hidden;padding:0px 3px;vertical-align:bottom">6.0 M4</td></tr><tr style=
-=3D"height:21px"><td style=3D"border-width:1px;border-style:solid;border-co=
-lor:rgb(204,204,204) rgb(0,0,0) rgb(0,0,0);overflow:hidden;padding:0px 3px;=
-vertical-align:bottom"></td><td style=3D"border-width:1px;border-style:soli=
-d;border-color:rgb(204,204,204) rgb(0,0,0) rgb(0,0,0) rgb(204,204,204);over=
-flow:hidden;padding:0px 3px;vertical-align:bottom;font-weight:bold;text-dec=
-oration-line:underline;text-align:right"><a class=3D"gmail-in-cell-link" hr=
-ef=3D"https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D15341" target=3D"=
-_blank">15341</a></td><td style=3D"border-width:1px;border-style:solid;bord=
-er-color:rgb(204,204,204) rgb(0,0,0) rgb(0,0,0) rgb(204,204,204);overflow:h=
-idden;padding:0px 3px;vertical-align:bottom">False positive on missing S-O-=
-B !</td><td style=3D"border-width:1px;border-style:solid;border-color:rgb(2=
-04,204,204) rgb(0,0,0) rgb(0,0,0) rgb(204,204,204);overflow:hidden;padding:=
-0px 3px;vertical-align:bottom"><a href=3D"mailto:tgamblin@baylibre.com">tga=
-mblin@baylibre.com</a></td><td style=3D"border-width:1px;border-style:solid=
-;border-color:rgb(204,204,204) rgb(0,0,0) rgb(0,0,0) rgb(204,204,204);overf=
-low:hidden;padding:0px 3px;vertical-align:bottom"><a href=3D"mailto:tgambli=
-n@baylibre.com">tgamblin@baylibre.com</a></td><td style=3D"border-width:1px=
-;border-style:solid;border-color:rgb(204,204,204) rgb(0,0,0) rgb(0,0,0) rgb=
-(204,204,204);overflow:hidden;padding:0px 3px;vertical-align:bottom;text-al=
-ign:right">5.3</td><td style=3D"border-width:1px;border-style:solid;border-=
-color:rgb(204,204,204) rgb(0,0,0) rgb(0,0,0) rgb(204,204,204);overflow:hidd=
-en;padding:0px 3px;vertical-align:bottom;text-align:right">6.1</td></tr><tr=
- style=3D"height:21px"><td style=3D"border-width:1px;border-style:solid;bor=
-der-color:rgb(204,204,204) rgb(0,0,0) rgb(0,0,0);overflow:hidden;padding:0p=
-x 3px;vertical-align:bottom"></td><td style=3D"border-width:1px;border-styl=
-e:solid;border-color:rgb(204,204,204) rgb(0,0,0) rgb(0,0,0) rgb(204,204,204=
-);overflow:hidden;padding:0px 3px;vertical-align:bottom;font-weight:bold;te=
-xt-decoration-line:underline;text-align:right"><a class=3D"gmail-in-cell-li=
-nk" href=3D"https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D16011" targ=
-et=3D"_blank">16011</a></td><td style=3D"border-width:1px;border-style:soli=
-d;border-color:rgb(204,204,204) rgb(0,0,0) rgb(0,0,0) rgb(204,204,204);over=
-flow:hidden;padding:0px 3px;vertical-align:bottom">Fix <a href=3D"http://er=
-rors.yoctoproject.org">errors.yoctoproject.org</a> after bitbake-setup swit=
-ch</td><td style=3D"border-width:1px;border-style:solid;border-color:rgb(20=
-4,204,204) rgb(0,0,0) rgb(0,0,0) rgb(204,204,204);overflow:hidden;padding:0=
-px 3px;vertical-align:bottom"><a href=3D"mailto:tim.orling@konsulko.com">ti=
-m.orling@konsulko.com</a></td><td style=3D"border-width:1px;border-style:so=
-lid;border-color:rgb(204,204,204) rgb(0,0,0) rgb(0,0,0) rgb(204,204,204);ov=
-erflow:hidden;padding:0px 3px;vertical-align:bottom"><a href=3D"mailto:unas=
-signed@yoctoproject.org">unassigned@yoctoproject.org</a></td><td style=3D"b=
-order-width:1px;border-style:solid;border-color:rgb(204,204,204) rgb(0,0,0)=
- rgb(0,0,0) rgb(204,204,204);overflow:hidden;padding:0px 3px;vertical-align=
-:bottom">5.3 M4</td><td style=3D"border-width:1px;border-style:solid;border=
--color:rgb(204,204,204) rgb(0,0,0) rgb(0,0,0) rgb(204,204,204);overflow:hid=
-den;padding:0px 3px;vertical-align:bottom">6.0 M4</td></tr><tr style=3D"hei=
-ght:21px"><td style=3D"border-width:1px;border-style:solid;border-color:rgb=
-(204,204,204) rgb(0,0,0) rgb(0,0,0);overflow:hidden;padding:0px 3px;vertica=
-l-align:bottom"></td><td style=3D"border-width:1px;border-style:solid;borde=
-r-color:rgb(204,204,204) rgb(0,0,0) rgb(0,0,0) rgb(204,204,204);overflow:hi=
-dden;padding:0px 3px;vertical-align:bottom;font-weight:bold;text-decoration=
--line:underline;text-align:right"><a class=3D"gmail-in-cell-link" href=3D"h=
-ttps://bugzilla.yoctoproject.org/show_bug.cgi?id=3D16176" target=3D"_blank"=
->16176</a></td><td style=3D"border-width:1px;border-style:solid;border-colo=
-r:rgb(204,204,204) rgb(0,0,0) rgb(0,0,0) rgb(204,204,204);overflow:hidden;p=
-adding:0px 3px;vertical-align:bottom">FILE variable is inconsistent within =
-bbclass files</td><td style=3D"border-width:1px;border-style:solid;border-c=
-olor:rgb(204,204,204) rgb(0,0,0) rgb(0,0,0) rgb(204,204,204);overflow:hidde=
-n;padding:0px 3px;vertical-align:bottom"><a href=3D"mailto:randy.macleod@wi=
-ndriver.com">randy.macleod@windriver.com</a></td><td style=3D"border-width:=
-1px;border-style:solid;border-color:rgb(204,204,204) rgb(0,0,0) rgb(0,0,0) =
-rgb(204,204,204);overflow:hidden;padding:0px 3px;vertical-align:bottom"><a =
-href=3D"mailto:richard.purdie@linuxfoundation.org">richard.purdie@linuxfoun=
-dation.org</a></td><td style=3D"border-width:1px;border-style:solid;border-=
-color:rgb(204,204,204) rgb(0,0,0) rgb(0,0,0) rgb(204,204,204);overflow:hidd=
-en;padding:0px 3px;vertical-align:bottom">0.0.0</td><td style=3D"border-wid=
-th:1px;border-style:solid;border-color:rgb(204,204,204) rgb(0,0,0) rgb(0,0,=
-0) rgb(204,204,204);overflow:hidden;padding:0px 3px;vertical-align:bottom">=
-6.0 M4</td></tr></tbody></table><p class=3D"MsoNormal" style=3D"background-=
-image:initial;background-position:initial;background-repeat:initial"><span =
-style=3D"font-size:12pt;font-family:Arial,sans-serif">Thanks,<span></span><=
-/span></p>
+Hi all,
 
-<p class=3D"MsoNormal" style=3D"background-image:initial;background-positio=
-n:initial;background-repeat:initial"><span style=3D"font-size:12pt;font-fam=
-ily:Arial,sans-serif">=C2=A0<span></span></span></p>
+The response period for this RFQ is now closed and I have acknowledged e=
+ach submission that we have received. In the unlikely event that you've =
+sent a response to the RFQ and not got an acknowledgement email from me,=
+ please reach out to me this week.
 
-<p class=3D"MsoNormal" style=3D"background-image:initial;background-positio=
-n:initial;background-repeat:initial"><b><i><span style=3D"font-size:16pt;co=
-lor:purple">Stephen K. Jolley</span></i></b><span style=3D"font-size:12pt;f=
-ont-family:Arial,sans-serif"><span></span></span></p>
+I'll provide an update once the Yocto Project TSC has made a decision on=
+ our next steps.
 
-<p class=3D"MsoNormal" style=3D"background-image:initial;background-positio=
-n:initial;background-repeat:initial"><b><span style=3D"font-size:8pt;font-f=
-amily:&quot;Courier New&quot;;color:blue">Yocto Project Program Manager</sp=
-an></b></p>
+Thanks,
+Paul
 
-<p class=3D"MsoNormal" style=3D"background-image:initial;background-positio=
-n:initial;background-repeat:initial"><span style=3D"font-size:9pt;font-fami=
-ly:Wingdings;color:black">(</span><span style=3D"font-size:9pt;font-family:=
-&quot;MS Sans Serif&quot;,serif;color:teal">=C2=A0=C2=A0=C2=A0=C2=A0</span>=
-<b><span style=3D"font-size:8pt;font-family:&quot;Comic Sans MS&quot;;color=
-:teal">Cell</span></b><span style=3D"font-size:9pt;font-family:&quot;MS San=
-s Serif&quot;,serif;color:teal">:=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 </span><span style=3D"font=
--size:9pt;font-family:&quot;MS Sans Serif&quot;,serif">(208) 244-4460</span=
-><span style=3D"font-size:12pt;font-family:Arial,sans-serif"><span></span><=
-/span></p>
+On Mon, 23 Feb 2026, at 12:10, Paul Barker wrote:
+> Hi all,
+>=20
+> The Yocto Project has identified an opportunity to make a significant =
+impact within the Linux Containers space. We can build on recent improve=
+ments to the way container images can be built and tested with Yocto Pro=
+ject tooling, as presented by Bruce Ashfield at the recent OpenEmbedded =
+Workshop in Brussels (slides: https://pretalx.com/media/openembedded-wor=
+kshop-2026-2025/submissions/ZGLVF7/resources/_0Jc2imX.pdf). This approac=
+h gives us repeatable, auditable, curated containers using the Yocto Pro=
+ject=E2=80=99s standard build process, which includes all of the existin=
+g benefits that come with our builds.
+>=20
+> To achieve our goals, changes will be needed in metadata layers and th=
+e autobuilder configuration. We would like to move forward with these ch=
+anges rapidly and so we need 2-3 months of contractor help to turn this =
+into an end to end technology demo. We invite individuals and organisati=
+ons who are able to deliver the Statement of Work outlined below to subm=
+it quotations to the project.
+>=20
+> Responses should be submitted by email to tsc@lists.yoctoproject.org b=
+efore *Monday 2nd March 2026, 23:59 PST*.
+> Background
+>=20
+> The Yocto Project is a highly capable toolkit for building Linux image=
+s and distributions. We have achieved extensive use within the Embedded =
+Linux space, as well as expanding to support real-time operating systems=
+ (RTOS) such as Zephyr. We have a long history of leading the way with o=
+ur tools to support compliance, including license manifest generation, S=
+BOM creation, CVE tracking and source archival. With the advent of the E=
+U Cyber Resilience Act (CRA), these compliance tools have become even mo=
+re relevant and are needed across the whole software industry, not just =
+in the Embedded space.
+>=20
+> Within the wider Linux containers ecosystem, current compliance tools =
+work by scanning a generated container image and attempting to identify =
+the included components. This works well when all components are install=
+ed via a distribution=E2=80=99s package manager and when manually instal=
+led software components come with their own pre-generated SBOM. However,=
+ as container image generation is essentially a free-form process, there=
+ is no way to ensure that all components will be correctly identified an=
+d no guarantee of reproducibility.
+>=20
+> These approaches can be contrasted with the tooling provided by the Yo=
+cto Project. Here the builds system owns the complete image creation pro=
+cess, using strongly delineated steps of source fetching, compilation, p=
+ackaging and rootfs creation. We provide clear guidance on best practice=
+s and can detect many common mistakes that can impact the quality of com=
+pliance data (for example, we can prevent attempts to download sources o=
+utside of the appropriate fetch stage). Reproducibility is treated as a =
+first-class project goal and is covered by our test suite. These feature=
+s provide much stronger guarantees about the quality of the generated co=
+mpliance data than can be achieved with a free-form process.
+>=20
+> We support building Linux container images using Yocto Project via the=
+ meta-virtualization layer. Recent improvements allow for container gene=
+ration using standard container tools such as docker, without the need f=
+or elevated (root) privileges or other workaround, which was the missing=
+ piece of making containers a primary project technology.
+> Goals
+>=20
+> To fully demonstrate the project=E2=80=99s container capabilities, the=
+ project would like to show we can build and publish containers. We want=
+ to do this by creating and populating a reference container registry wi=
+th sample container images accompanied by comprehensive SBOMs. The proce=
+ss of building and publishing images needs to be fully automated, runnin=
+g regularly on our autobuilder cluster to ensure that the reference imag=
+es remain up-to-date with changes to our build system and are fully inte=
+grated into our CI workflow. Test cases and documentation need to be exp=
+anded to cover the new features, and developers need to be guided toward=
+s best practices when customising the reference images for production us=
+e cases.
+> Required Skills
+>=20
+>  =E2=80=A2 Experience of Yocto Project/OpenEmbedded builds
+>  =E2=80=A2 Knowledge of container image generation and best practises
+>  =E2=80=A2 Knowledge of publishing containers and container registries
+>  =E2=80=A2 Experience and knowledge of the Yocto Projects CI infrastru=
+cture and tooling/processes
+> Statement of Work
+>=20
+> **Reference container recipes**
+>=20
+> New recipes must be defined for an initial set of reference container =
+images, using the `image-oci` bbclass in meta-virtualization. The initia=
+l set should focus on software which is commonly deployed via containers=
+, such as:
+>  =E2=80=A2 A minimal image (based on core-image-minimal)
+>  =E2=80=A2 A Python 3 base image
+>  =E2=80=A2 A sample web application written in Python
+>  =E2=80=A2 A PostgreSQL database server
+>  =E2=80=A2 A multi-service container using systemd to manage services
+> The above list is not intended to be prescriptive - we appreciate inpu=
+t on appropriate reference container images. The final list of approxima=
+tely 3-5 reference container images will be agreed with the Yocto Projec=
+t TSC.
+>=20
+> Reference container images should be built with the standard poky dist=
+ro config. They should build for multiple architectures - initially x86-=
+64, aarch64 and riscv64.
+>=20
+> This task requires recipes for the agreed list of reference container =
+images to be added to the meta-virtualization layer.
+> **Test cases**
+>=20
+> We must be able to test that the container runtime and the reference c=
+ontainer images can be built and that they behave as expected.
+>=20
+> This task requires creation of new oeqa selftest cases which perform b=
+uild and runtime testing of the reference container images using the cho=
+sen container runtime. These cases should ensure that the container runt=
+ime is able to create containers from the reference container images, st=
+art the containers, interact with them and stop them without errors.
+> **Autobuilder integration**
+>=20
+> The new test cases must be executed on the project autobuilder instanc=
+e as part of our regular testing.
+>=20
+> This task consists of any integration work required to get the test ca=
+ses running on the autobuilder. It may require modification of the contr=
+oller configuration (yocto-autobuilder2), build/test scripts (yocto-auto=
+builder-helper) and working with Linux Foundation IT to make configurati=
+on changes to the autobuilder workers (such as installing additional hos=
+t software).
+> **Publishing reference containers**
+>=20
+> The reference container images must be published to a publicly accessi=
+ble container registry, as multi-arch images with support for at least x=
+86-64, aarch64 and riscv64. Images should be tagged in line with contain=
+er best practices. Due to usage restrictions and rate limits, Docker Hub=
+ should not be used. In line with the Yocto Project approach of owning o=
+ur infrastructure, we should run our own container registry if possible.
+>=20
+> This task requires working with Linux Foundation IT to setup a contain=
+er registry server for the project - all required system administration =
+tasks will be performed by Linux Foundation IT but they may require advi=
+ce and support with things like selecting a container registry implement=
+ation that meets our needs.
+>=20
+> This task also requires integration work within the project autobuilde=
+r instance to publish container images to the registry. It may require m=
+odification of the controller configuration (yocto-autobuilder2), build/=
+test scripts (yocto-autobuilder-helper) and working with Linux Foundatio=
+n IT to make configuration changes to the autobuilder workers (such as i=
+nstalling additional host software).
+> **Publishing SBOM attestations**
+>=20
+> SBOMs should be generated for the reference container images and publi=
+shed to the container registry as build attestations and/or OCI layers a=
+s appropriate.
+>=20
+> This task requires integration work within the project autobuilder ins=
+tance to publish SBOM build attestations along with container images. It=
+ is likely to require modification of the autobuilder build/test scripts=
+ (yocto-autobuilder-helper).
+> **Documentation**
+>=20
+> All new features must be well documented. Our documentation should gui=
+de developers on how to customise the reference container images, follow=
+ing best practices and making full use of compliance tools like SBOM gen=
+eration.
+>=20
+> This task requires working with our documentation writer to cover the =
+new features, bbclasses and reference container images added as part of =
+this work. The majority of documentation changes can be made by our docu=
+mentation writer, but they will require guidance and review of their pro=
+posed changes.
+> References
+>=20
+>  =E2=80=A2 openembeded-core layer: _https://git.openembedded.org/opene=
+mbedded-core/_
+>  =E2=80=A2 meta-virtualization layer: _https://git.yoctoproject.org/me=
+ta-virtualization_
+>  =E2=80=A2 Autobuilder configuration: _https://git.yoctoproject.org/yo=
+cto-autobuilder2_
+>  =E2=80=A2 Autobuilder helper scripts: _https://git.yoctoproject.org/y=
+octo-autobuilder-helper_
+>  =E2=80=A2 Documentation: _https://git.yoctoproject.org/yocto-docs_
+>  =E2=80=A2 OCI image attestation storage: _https://docs.docker.com/bui=
+ld/metadata/attestations/attestation-storage/#attestation-blob_
+>  =E2=80=A2 OCI image SBOM attestations: _https://docs.docker.com/build=
+/metadata/attestations/sbom/_
+>=20
+> Best regards,
+>=20
+> Paul Barker
+> Ecosystem Engineering & Operations Lead, Yocto Project
 
-<p class=3D"MsoNormal" style=3D"background-image:initial;background-positio=
-n:initial;background-repeat:initial"><span style=3D"font-size:9pt;font-fami=
-ly:Wingdings">*=C2=A0</span><b><span lang=3D"FR" style=3D"font-size:8pt;fon=
-t-family:&quot;Comic Sans MS&quot;;color:teal">Email</span></b><span lang=
-=3D"FR" style=3D"font-size:9pt;font-family:&quot;MS Sans Serif&quot;,serif;=
-color:teal">:</span><span lang=3D"FR" style=3D"font-size:9pt;font-family:&q=
-uot;MS Sans Serif&quot;,serif">=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0</span><u><span=
- lang=3D"FR" style=3D"font-size:9pt;font-family:&quot;MS Sans Serif&quot;,s=
-erif;color:blue"><span style=3D"color:rgb(17,85,204)"><a href=3D"mailto:ste=
-phen.k.jolley@intel.com" target=3D"_blank">s</a><a href=3D"mailto:jolley.yp=
-.pm@gmail.com" target=3D"_blank">jolley.yp.pm@gmail.com</a></span></span></=
-u></p></div></div></div></div>
 
---000000000000a23b51064c167b4f--
+--f956f82d554c4605b0d43c4ae3e3559c
+Content-Type: text/html; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+
+<!DOCTYPE html><html><head><title></title></head><body><div>Hi all,</div=
+><div><br></div><div>The response period for this RFQ is now closed and =
+I have acknowledged each submission that we have received. In the unlike=
+ly event that you've sent a response to the RFQ and not got an acknowled=
+gement email from me, please reach out to me this week.</div><div><br></=
+div><div>I'll provide an update once the Yocto Project TSC has made a de=
+cision on our next steps.</div><div><br></div><div>Thanks,</div><div>Pau=
+l</div><div><br></div><div>On Mon, 23 Feb 2026, at 12:10, Paul Barker wr=
+ote:</div><blockquote type=3D"cite" id=3D"qt" style=3D""><div>Hi all,</d=
+iv><div><br></div><div><span class=3D"qt-color" style=3D"color:rgb(0, 0,=
+ 0);">The Yocto Project has identified an opportunity to make a signific=
+ant impact within the Linux Containers space. We can build on recent imp=
+rovements to the way container images can be built and tested with Yocto=
+ Project tooling, as presented by Bruce Ashfield at the recent OpenEmbed=
+ded Workshop in Brussels (slides:&nbsp;</span><a href=3D"https://pretalx=
+.com/media/openembedded-workshop-2026-2025/submissions/ZGLVF7/resources/=
+_0Jc2imX.pdf">https://pretalx.com/media/openembedded-workshop-2026-2025/=
+submissions/ZGLVF7/resources/_0Jc2imX.pdf</a>).&nbsp;This approach gives=
+ us repeatable, auditable, curated containers using the Yocto Project=E2=
+=80=99s standard build process, which includes all of the existing benef=
+its that come with our builds.</div><div><br></div><div><span class=3D"q=
+t-color" style=3D"color:rgb(0, 0, 0);">To achieve our goals, changes wil=
+l be needed in metadata layers and the autobuilder configuration. We wou=
+ld like to move forward with these changes rapidly and so </span>we need=
+ 2-3 months of contractor help to turn this into an end to end technolog=
+y demo<span class=3D"qt-color" style=3D"color:rgb(0, 0, 0);">. We invite=
+ individuals and organisations who are able to deliver the Statement of =
+Work outlined below to submit quotations to the project.</span></div><di=
+v><br></div><div><span class=3D"qt-color" style=3D"color:rgb(0, 0, 0);">=
+Responses should be submitted by email to&nbsp;</span><a href=3D"mailto:=
+tsc@lists.yoctoproject.org" style=3D"">tsc@lists.yoctoproject.org</a>&nb=
+sp;before <b>Monday 2nd March 2026, 23:59 PST</b>.</div><h2><span class=3D=
+"qt-color" style=3D"color:rgb(0, 0, 0);"><span class=3D"qt-highlight" st=
+yle=3D"background-color:transparent;"></span>Background</span></h2><div>=
+<span class=3D"qt-color" style=3D"color:rgb(0, 0, 0);"><span class=3D"qt=
+-highlight" style=3D"background-color:transparent;"></span>The Yocto Pro=
+ject is a highly capable toolkit for building Linux images and distribut=
+ions. We have achieved extensive use within the Embedded Linux space, as=
+ well as expanding to support real-time operating systems (RTOS) such as=
+ Zephyr. We have a long history of leading the way with our tools to sup=
+port compliance, including license manifest generation, SBOM creation, C=
+VE tracking and source archival. With the advent of the EU Cyber Resilie=
+nce Act (CRA), these compliance tools have become even more relevant and=
+ are needed across the whole software industry, not just in the Embedded=
+ space.</span></div><div><br></div><div><span class=3D"qt-color" style=3D=
+"color:rgb(0, 0, 0);"><span class=3D"qt-highlight" style=3D"background-c=
+olor:transparent;"></span>Within the wider Linux containers ecosystem, c=
+urrent compliance tools work by scanning a generated container image and=
+ attempting to identify the included components. This works well when al=
+l components are installed via a distribution=E2=80=99s package manager =
+and when manually installed software components come with their own pre-=
+generated SBOM. However, as container image generation is essentially a =
+free-form process, there is no way to ensure that all components will be=
+ correctly identified and no guarantee of reproducibility.</span></div><=
+div><br></div><div><span class=3D"qt-color" style=3D"color:rgb(0, 0, 0);=
+"><span class=3D"qt-highlight" style=3D"background-color:transparent;"><=
+/span>These approaches can be contrasted with the tooling provided by th=
+e Yocto Project. Here the builds system owns the complete image creation=
+ process, using strongly delineated steps of source fetching, compilatio=
+n, packaging and rootfs creation. We provide clear guidance on best prac=
+tices and can detect many common mistakes that can impact the quality of=
+ compliance data (for example, we can prevent attempts to download sourc=
+es outside of the appropriate fetch stage). Reproducibility is treated a=
+s a first-class project goal and is covered by our test suite. These fea=
+tures provide much stronger guarantees about the quality of the generate=
+d compliance data than can be achieved with a free-form process.</span><=
+/div><div><br></div><div><span class=3D"qt-color" style=3D"color:rgb(0, =
+0, 0);"><span class=3D"qt-highlight" style=3D"background-color:transpare=
+nt;"></span>We support building Linux container images using Yocto Proje=
+ct via the meta-virtualization layer. Recent improvements allow for cont=
+ainer generation using standard container tools such as docker, without =
+the need for elevated (root) privileges or other workaround, which was t=
+he missing piece of making containers a primary project technology.</spa=
+n></div><h2><span class=3D"qt-color" style=3D"color:rgb(0, 0, 0);"><span=
+ class=3D"qt-highlight" style=3D"background-color:transparent;"></span>G=
+oals</span></h2><div><span class=3D"qt-color" style=3D"color:rgb(0, 0, 0=
+);"><span class=3D"qt-highlight" style=3D"background-color:transparent;"=
+></span>To fully demonstrate the project=E2=80=99s container capabilitie=
+s, the project would like to show we can build and publish containers. W=
+e want to do this by creating and populating a reference container regis=
+try with sample container images accompanied by comprehensive SBOMs. The=
+ process of building and publishing images needs to be fully automated, =
+running regularly on our autobuilder cluster to ensure that the referenc=
+e images remain up-to-date with changes to our build system and are full=
+y integrated into our CI workflow. Test cases and documentation need to =
+be expanded to cover the new features, and developers need to be guided =
+towards best practices when customising the reference images for product=
+ion use cases.</span></div><h2><span class=3D"qt-color" style=3D"color:r=
+gb(0, 0, 0);"><span class=3D"qt-highlight" style=3D"background-color:tra=
+nsparent;"></span>Required Skills</span></h2><ul><li><div><span class=3D=
+"qt-color" style=3D"color:rgb(0, 0, 0);"><span class=3D"qt-highlight" st=
+yle=3D"background-color:transparent;"></span>Experience of Yocto Project=
+/OpenEmbedded builds</span></div></li><li><div><span class=3D"qt-color" =
+style=3D"color:rgb(0, 0, 0);"><span class=3D"qt-highlight" style=3D"back=
+ground-color:transparent;"></span>Knowledge of container image generatio=
+n and best practises</span></div></li><li><div><span class=3D"qt-color" =
+style=3D"color:rgb(0, 0, 0);"><span class=3D"qt-highlight" style=3D"back=
+ground-color:transparent;"></span>Knowledge of publishing containers and=
+ container registries</span></div></li><li><div><span class=3D"qt-color"=
+ style=3D"color:rgb(0, 0, 0);"><span class=3D"qt-highlight" style=3D"bac=
+kground-color:transparent;"></span>Experience and knowledge of the Yocto=
+ Projects CI infrastructure and tooling/processes</span></div></li></ul>=
+<h2><span class=3D"qt-color" style=3D"color:rgb(0, 0, 0);"><span class=3D=
+"qt-highlight" style=3D"background-color:transparent;"></span>Statement =
+of Work</span></h2><h3><span class=3D"qt-color" style=3D"color:rgb(67, 6=
+7, 67);"><span class=3D"qt-highlight" style=3D"background-color:transpar=
+ent;"></span><b><i>Reference container recipes</i></b></span></h3><div><=
+span class=3D"qt-color" style=3D"color:rgb(0, 0, 0);"><span class=3D"qt-=
+highlight" style=3D"background-color:transparent;"></span>New recipes mu=
+st be defined for an initial set of reference container images, using th=
+e `image-oci` bbclass in meta-virtualization. The initial set should foc=
+us on software which is commonly deployed via containers, such as:</span=
+></div><ul><li><div><span class=3D"qt-color" style=3D"color:rgb(0, 0, 0)=
+;"><span class=3D"qt-highlight" style=3D"background-color:transparent;">=
+</span>A minimal image (based on core-image-minimal)</span></div></li><l=
+i><div><span class=3D"qt-color" style=3D"color:rgb(0, 0, 0);"><span clas=
+s=3D"qt-highlight" style=3D"background-color:transparent;"></span>A Pyth=
+on 3 base image</span></div></li><li><div><span class=3D"qt-color" style=
+=3D"color:rgb(0, 0, 0);"><span class=3D"qt-highlight" style=3D"backgroun=
+d-color:transparent;"></span>A sample web application written in Python<=
+/span></div></li><li><div><span class=3D"qt-color" style=3D"color:rgb(0,=
+ 0, 0);"><span class=3D"qt-highlight" style=3D"background-color:transpar=
+ent;"></span>A PostgreSQL database server</span></div></li><li><div><spa=
+n class=3D"qt-color" style=3D"color:rgb(0, 0, 0);"><span class=3D"qt-hig=
+hlight" style=3D"background-color:transparent;"></span>A multi-service c=
+ontainer using systemd to manage services</span></div></li></ul><div><sp=
+an class=3D"qt-color" style=3D"color:rgb(0, 0, 0);"><span class=3D"qt-hi=
+ghlight" style=3D"background-color:transparent;"></span>The above list i=
+s not intended to be prescriptive - we appreciate input on appropriate r=
+eference container images. The final list of approximately 3-5 reference=
+ container images will be agreed with the Yocto Project TSC.</span></div=
+><div><br></div><div><span class=3D"qt-color" style=3D"color:rgb(0, 0, 0=
+);"><span class=3D"qt-highlight" style=3D"background-color:transparent;"=
+></span>Reference container images should be built with the standard pok=
+y distro config. They should build for multiple architectures - initiall=
+y x86-64, aarch64 and riscv64.</span></div><div><br></div><div><span cla=
+ss=3D"qt-color" style=3D"color:rgb(0, 0, 0);"><span class=3D"qt-highligh=
+t" style=3D"background-color:transparent;"></span>This task requires rec=
+ipes for the agreed list of reference container images to be added to th=
+e meta-virtualization layer.</span></div><h3><span class=3D"qt-color" st=
+yle=3D"color:rgb(67, 67, 67);"><span class=3D"qt-highlight" style=3D"bac=
+kground-color:transparent;"></span><b><i>Test cases</i></b></span></h3><=
+div><span class=3D"qt-color" style=3D"color:rgb(0, 0, 0);"><span class=3D=
+"qt-highlight" style=3D"background-color:transparent;"></span>We must be=
+ able to test that the container runtime and the reference container ima=
+ges can be built and that they behave as expected.</span></div><div><br>=
+</div><div><span class=3D"qt-color" style=3D"color:rgb(0, 0, 0);"><span =
+class=3D"qt-highlight" style=3D"background-color:transparent;"></span>Th=
+is task requires creation of new oeqa selftest cases which perform build=
+ and runtime testing of the reference container images using the chosen =
+container runtime. These cases should ensure that the container runtime =
+is able to create containers from the reference container images, start =
+the containers, interact with them and stop them without errors.</span><=
+/div><h3><span class=3D"qt-color" style=3D"color:rgb(67, 67, 67);"><span=
+ class=3D"qt-highlight" style=3D"background-color:transparent;"></span><=
+b><i>Autobuilder integration</i></b></span></h3><div><span class=3D"qt-c=
+olor" style=3D"color:rgb(0, 0, 0);"><span class=3D"qt-highlight" style=3D=
+"background-color:transparent;"></span>The new test cases must be execut=
+ed on the project autobuilder instance as part of our regular testing.</=
+span></div><div><br></div><div><span class=3D"qt-color" style=3D"color:r=
+gb(0, 0, 0);"><span class=3D"qt-highlight" style=3D"background-color:tra=
+nsparent;"></span>This task consists of any integration work required to=
+ get the test cases running on the autobuilder. It may require modificat=
+ion of the controller configuration (yocto-autobuilder2), build/test scr=
+ipts (yocto-autobuilder-helper) and working with Linux Foundation IT to =
+make configuration changes to the autobuilder workers (such as installin=
+g additional host software).</span></div><h3><span class=3D"qt-color" st=
+yle=3D"color:rgb(67, 67, 67);"><span class=3D"qt-highlight" style=3D"bac=
+kground-color:transparent;"></span><b><i>Publishing reference containers=
+</i></b></span></h3><div><span class=3D"qt-color" style=3D"color:rgb(0, =
+0, 0);"><span class=3D"qt-highlight" style=3D"background-color:transpare=
+nt;"></span>The reference container images must be published to a public=
+ly accessible container registry, as multi-arch images with support for =
+at least x86-64, aarch64 and riscv64. Images should be tagged in line wi=
+th container best practices. Due to usage restrictions and rate limits, =
+Docker Hub should not be used. In line with the Yocto Project approach o=
+f owning our infrastructure, we should run our own container registry if=
+ possible.</span></div><div><br></div><div><span class=3D"qt-color" styl=
+e=3D"color:rgb(0, 0, 0);"><span class=3D"qt-highlight" style=3D"backgrou=
+nd-color:transparent;"></span>This task requires working with Linux Foun=
+dation IT to setup a container registry server for the project - all req=
+uired system administration tasks will be performed by Linux Foundation =
+IT but they may require advice and support with things like selecting a =
+container registry implementation that meets our needs.</span></div><div=
+><br></div><div><span class=3D"qt-color" style=3D"color:rgb(0, 0, 0);"><=
+span class=3D"qt-highlight" style=3D"background-color:transparent;"></sp=
+an>This task also requires integration work within the project autobuild=
+er instance to publish container images to the registry. It may require =
+modification of the controller configuration (yocto-autobuilder2), build=
+/test scripts (yocto-autobuilder-helper) and working with Linux Foundati=
+on IT to make configuration changes to the autobuilder workers (such as =
+installing additional host software).</span></div><h3><span class=3D"qt-=
+color" style=3D"color:rgb(67, 67, 67);"><span class=3D"qt-highlight" sty=
+le=3D"background-color:transparent;"></span><b><i>Publishing SBOM attest=
+ations</i></b></span></h3><div><span class=3D"qt-color" style=3D"color:r=
+gb(0, 0, 0);"><span class=3D"qt-highlight" style=3D"background-color:tra=
+nsparent;"></span>SBOMs should be generated for the reference container =
+images and published to the container registry as build attestations and=
+/or OCI layers as appropriate.</span></div><div><br></div><div><span cla=
+ss=3D"qt-color" style=3D"color:rgb(0, 0, 0);"><span class=3D"qt-highligh=
+t" style=3D"background-color:transparent;"></span>This task requires int=
+egration work within the project autobuilder instance to publish SBOM bu=
+ild attestations along with container images. It is likely to require mo=
+dification of the autobuilder build/test scripts (yocto-autobuilder-help=
+er).</span></div><h3><span class=3D"qt-color" style=3D"color:rgb(67, 67,=
+ 67);"><span class=3D"qt-highlight" style=3D"background-color:transparen=
+t;"></span><b><i>Documentation</i></b></span></h3><div><span class=3D"qt=
+-color" style=3D"color:rgb(0, 0, 0);"><span class=3D"qt-highlight" style=
+=3D"background-color:transparent;"></span>All new features must be well =
+documented. Our documentation should guide developers on how to customis=
+e the reference container images, following best practices and making fu=
+ll use of compliance tools like SBOM generation.</span></div><div><br></=
+div><div><span class=3D"qt-color" style=3D"color:rgb(0, 0, 0);"><span cl=
+ass=3D"qt-highlight" style=3D"background-color:transparent;"></span>This=
+ task requires working with our documentation writer to cover the new fe=
+atures, bbclasses and reference container images added as part of this w=
+ork. The majority of documentation changes can be made by our documentat=
+ion writer, but they will require guidance and review of their proposed =
+changes.</span></div><h2><span class=3D"qt-color" style=3D"color:rgb(0, =
+0, 0);"><span class=3D"qt-highlight" style=3D"background-color:transpare=
+nt;"></span>References</span></h2><ul><li><div><span class=3D"qt-color" =
+style=3D"color:rgb(0, 0, 0);"><span class=3D"qt-highlight" style=3D"back=
+ground-color:transparent;"></span>openembeded-core layer: </span><a href=
+=3D"https://git.openembedded.org/openembedded-core/"><span class=3D"qt-c=
+olor" style=3D"color:rgb(17, 85, 204);"><span class=3D"qt-highlight" sty=
+le=3D"background-color:transparent;"></span><u>https://git.openembedded.=
+org/openembedded-core/</u></span></a></div></li><li><div><span class=3D"=
+qt-color" style=3D"color:rgb(0, 0, 0);"><span class=3D"qt-highlight" sty=
+le=3D"background-color:transparent;"></span>meta-virtualization layer: <=
+/span><a href=3D"https://git.yoctoproject.org/meta-virtualization"><span=
+ class=3D"qt-color" style=3D"color:rgb(17, 85, 204);"><span class=3D"qt-=
+highlight" style=3D"background-color:transparent;"></span><u>https://git=
+.yoctoproject.org/meta-virtualization</u></span></a></div></li><li><div>=
+<span class=3D"qt-color" style=3D"color:rgb(0, 0, 0);"><span class=3D"qt=
+-highlight" style=3D"background-color:transparent;"></span>Autobuilder c=
+onfiguration: </span><a href=3D"https://git.yoctoproject.org/yocto-autob=
+uilder2"><span class=3D"qt-color" style=3D"color:rgb(17, 85, 204);"><spa=
+n class=3D"qt-highlight" style=3D"background-color:transparent;"></span>=
+<u>https://git.yoctoproject.org/yocto-autobuilder2</u></span></a></div><=
+/li><li><div><span class=3D"qt-color" style=3D"color:rgb(0, 0, 0);"><spa=
+n class=3D"qt-highlight" style=3D"background-color:transparent;"></span>=
+Autobuilder helper scripts: </span><a href=3D"https://git.yoctoproject.o=
+rg/yocto-autobuilder-helper"><span class=3D"qt-color" style=3D"color:rgb=
+(17, 85, 204);"><span class=3D"qt-highlight" style=3D"background-color:t=
+ransparent;"></span><u>https://git.yoctoproject.org/yocto-autobuilder-he=
+lper</u></span></a></div></li><li><div><span class=3D"qt-color" style=3D=
+"color:rgb(0, 0, 0);"><span class=3D"qt-highlight" style=3D"background-c=
+olor:transparent;"></span>Documentation: </span><a href=3D"https://git.y=
+octoproject.org/yocto-docs"><span class=3D"qt-color" style=3D"color:rgb(=
+17, 85, 204);"><span class=3D"qt-highlight" style=3D"background-color:tr=
+ansparent;"></span><u>https://git.yoctoproject.org/yocto-docs</u></span>=
+</a></div></li><li><div><span class=3D"qt-color" style=3D"color:rgb(0, 0=
+, 0);">OCI image attestation storage: </span><a href=3D"https://docs.doc=
+ker.com/build/metadata/attestations/attestation-storage/#attestation-blo=
+b"><span class=3D"qt-color" style=3D"color:rgb(17, 85, 204);"><u>https:/=
+/docs.docker.com/build/metadata/attestations/attestation-storage/#attest=
+ation-blob</u></span></a></div></li><li><div><span class=3D"qt-color" st=
+yle=3D"color:rgb(0, 0, 0);"><span class=3D"qt-highlight" style=3D"backgr=
+ound-color:transparent;"></span>OCI image SBOM attestations: </span><a h=
+ref=3D"https://docs.docker.com/build/metadata/attestations/sbom/"><span =
+class=3D"qt-color" style=3D"color:rgb(17, 85, 204);"><span class=3D"qt-h=
+ighlight" style=3D"background-color:transparent;"></span><u>https://docs=
+.docker.com/build/metadata/attestations/sbom/</u></span></a></div></li><=
+/ul><div><br></div><div>Best regards,</div><div><br></div><div id=3D"qt-=
+sig133588112"><div class=3D"qt-signature">Paul Barker</div></div><div>Ec=
+osystem Engineering &amp; Operations Lead, Yocto Project</div></blockquo=
+te><div><br></div><div><br></div></body></html>
+--f956f82d554c4605b0d43c4ae3e3559c--
 
