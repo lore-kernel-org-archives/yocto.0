@@ -1,61 +1,78 @@
-Return-Path: <philip@balister.org>
+Return-Path: <jmeyron@gmail.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id B3D0AF33A80
-	for <webhook@archiver.kernel.org>; Thu,  5 Mar 2026 15:03:04 +0000 (UTC)
-Received: from dkim1.emailarray.com (dkim1.emailarray.com [65.39.216.94])
- by mx.groups.io with SMTP id smtpd.msgproc02-g2.46236.1772722977067532837
- for <yocto@lists.yoctoproject.org>;
- Thu, 05 Mar 2026 07:02:57 -0800
-Authentication-Results: mx.groups.io;
- dkim=pass header.i=@balister.org header.s=eeenuy header.b=d+VX645B;
- spf=pass (domain: balister.org, ip: 65.39.216.94, mailfrom: philip@balister.org)
-Received: (qmail 4912 invoked from network); 5 Mar 2026 15:02:55 -0000
-Received: from localhost (HELO dkim1.emailarray.com) (127.0.0.1)
-  by dkim1.emailarray.com with ESMTPS (ECDHE-RSA-AES256-GCM-SHA384 encrypted); 5 Mar 2026 15:02:55 -0000
-Received: (EmailArray Haraka outbound); Thu, 05 Mar 2026 10:02:55 -0500
-Received: from smtp3.emailarray.com ([192.168.1.37])
-	by dkim1.emailarray.com (Haraka/2.8.25) with ESMTPS id 3122FBB2-3AA7-44AE-B9CE-6CABEE22DA3C.1
-	envelope-from <philip@balister.org>
-	(cipher=ECDHE-RSA-AES256-GCM-SHA384);
-	Thu, 05 Mar 2026 10:02:55 -0500
-Received: (qmail 86047 invoked by uid 89); 5 Mar 2026 15:02:55 -0000
-X-Orig-Sender: philip@balister.org
-Received: from unknown (HELO ?10.20.46.253?) (cGhpbGlwQGJhbGlzdGVyLm9yZ0A1MC4xNTIuMTkuNTg=) (POLARISLOCAL)  
-  by smtp3.emailarray.com with SMTP; 5 Mar 2026 15:02:55 -0000
-Message-ID: <d37e2dad-42a4-455f-8cc1-cb476ec07e7f@balister.org>
-Date: Thu, 5 Mar 2026 08:02:54 -0700
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 7A646F01829
+	for <webhook@archiver.kernel.org>; Fri,  6 Mar 2026 11:17:26 +0000 (UTC)
+Subject: Finer build time dependencies to optimize sysroot preparation time
+To: yocto@lists.yoctoproject.org
+From: "Jocelyn Meyron" <jmeyron@gmail.com>
+X-Originating-Location: Amsterdam, North Holland, NL (165.225.240.77)
+X-Originating-Platform: Windows Firefox 148
+User-Agent: GROUPS.IO Web Poster
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Content-Language: en-US
-To: "openembedded-devel@lists.openembedded.org"
- <openembedded-devel@lists.openembedded.org>,
- openembedded-architecture
- <openembedded-architecture@lists.openembedded.org>,
- openembedded-core <openembedded-core@lists.openembedded.org>,
- "yocto@lists.yoctoproject.org" <yocto@lists.yoctoproject.org>
-From: Philip Balister <philip@balister.org>
-Subject: Developer meetup the afternoon before Embedded Recipes
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-DKIM-Signature: v=1;a=rsa-sha256;bh=3vrk7v/tWAZAWs39JHWyOApl65jQAjlGrbhp+MwtrFI=;c=relaxed/simple;d=balister.org;h=from:subject:date:message-id:to:mime-version;s=eeenuy;b=d+VX645B32JwJrrtL7CK89mJsJFT9i0VM3zK3zyYXxtcsnBH59tVtfdKnXE2XoP3istpAx49Bzxewmeij2lHTzqYipvx9p0Q/2nvlC/o0P9VsskNi84CeTHI4wsdHH1u2+M9/46eND8UmTAnknH4nL4M0r+23ff75GstL2uBbbU=
+Date: Fri, 06 Mar 2026 03:17:24 -0800
+Message-ID: <4vYP.1772795844241663957.UURR@lists.yoctoproject.org>
+Content-Type: multipart/alternative; boundary="rec7mworGh0A6eSk56jm"
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from 45-33-107-173.ip.linodeusercontent.com [45.33.107.173] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Thu, 05 Mar 2026 15:03:04 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/66305
+ <yocto@lists.yoctoproject.org>; Fri, 06 Mar 2026 11:17:26 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/66306
 
-I am gauging interest for a developer meetup on the afternoon before 
-embedded recipes in Nice at the end of May. Please let us know if you 
-are interested by signing up here: 
-https://pretix.eu/OpenEmbedded/ER26meetup/
+--rec7mworGh0A6eSk56jm
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
 
-Follow up info will be here:
+Hello everyone,
 
-https://discussion.openembedded.org/t/developer-meetup-before-embedded-recipes/97
+I'm trying to solve the following problem (I'm using the latest scarthgap r=
+elease):
+- I have a recipe A whose job is to aggregate libraries produced by multipl=
+e recipes (basically aggregate a bunch of static libraries into a shared on=
+e to reduce the file system size).
+- Right now, I added the list of recipes into the "DEPENDS" variable of rec=
+ipe A. This works but this implies that all the files installed by the othe=
+r recipes are copied into the sysroot of recipe A. The issue is that the ot=
+her recipes package also header filers, source files, and other libraries, =
+leading to slow downs in the build process (especially when ran under a sta=
+tic analysis tool).
 
-and sent to people registered on pretix.
+I could have packaged the relevant files of the recipes into dedicated subp=
+ackages but the main recipe A can't depend on those packages (since only re=
+cipes can be used for build time dependencies).
 
-Philip
+Does someone have a proposal to work around this issue? Or maybe I need to =
+redesign this "aggregation" recipe?
+
+Thank you in advance.
+
+--rec7mworGh0A6eSk56jm
+Content-Type: text/html; charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div>Hello everyone,</div>
+<div>&nbsp;</div>
+<div>I'm trying to solve the following problem (I'm using the latest scarth=
+gap release):</div>
+<div>- I have a recipe A whose job is to aggregate libraries produced by mu=
+ltiple recipes (basically aggregate a bunch of static libraries into a shar=
+ed one to reduce the file system size).</div>
+<div>- Right now, I added the list of recipes into the "DEPENDS" variable o=
+f recipe A. This works but this implies that all the files installed by the=
+ other recipes are copied into the sysroot of recipe A. The issue is that t=
+he other recipes package also header filers, source files, and other librar=
+ies, leading to slow downs in the build process (especially when ran under =
+a static analysis tool).</div>
+<div>&nbsp;</div>
+<div>I could have packaged the relevant files of the recipes into dedicated=
+ subpackages but the main recipe A can't depend on those packages (since on=
+ly recipes can be used for build time dependencies).</div>
+<div>&nbsp;</div>
+<div>Does someone have a proposal to work around this issue? Or maybe I nee=
+d to redesign this "aggregation" recipe?</div>
+<div>&nbsp;</div>
+<div>Thank you in advance.</div>
+
+--rec7mworGh0A6eSk56jm--
 
