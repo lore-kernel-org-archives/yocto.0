@@ -1,101 +1,131 @@
-Return-Path: <rpjday@crashcourse.ca>
+Return-Path: <ajlennon@dynamicdevices.co.uk>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id F0365FED2FF
-	for <webhook@archiver.kernel.org>; Thu, 12 Mar 2026 10:20:05 +0000 (UTC)
-Received: from cpanel10.indieserve.net (cpanel10.indieserve.net [199.212.143.9])
- by mx.groups.io with SMTP id smtpd.msgproc01-g2.18310.1773310801889703348
+	by smtp.lore.kernel.org (Postfix) with ESMTP id EEE19FD88EF
+	for <webhook@archiver.kernel.org>; Thu, 12 Mar 2026 10:22:55 +0000 (UTC)
+Received: from mail-wm1-f49.google.com (mail-wm1-f49.google.com [209.85.128.49])
+ by mx.groups.io with SMTP id smtpd.msgproc02-g2.18136.1773310973519091193
  for <yocto@lists.yoctoproject.org>;
- Thu, 12 Mar 2026 03:20:02 -0700
+ Thu, 12 Mar 2026 03:22:53 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@crashcourse.ca header.s=default header.b=fO/K0msP;
- spf=pass (domain: crashcourse.ca, ip: 199.212.143.9, mailfrom: rpjday@crashcourse.ca)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=crashcourse.ca; s=default; h=Content-Type:MIME-Version:References:
-	Message-ID:In-Reply-To:Subject:cc:To:From:Date:Sender:Reply-To:
-	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:
-	List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
-	bh=fUuVz78nm53z3TraLu1KGJNkyhXK1y22Qnteath3P44=; b=fO/K0msPCBBbNR0Qnp6CF8PBDi
-	2Q3JxATBiLum02YQ30G7zUMKAbpRbXijd1k+CkzqrcNWgsQkHEC7tXNuXuFatvAoUNFXAW5+QQ/4r
-	tYlD0AmfZmLpaXRGmq7SKRACngg2h1oeVLMQ1DaCyKNsLaUrYnBHEm+9fPnQiRM+aBBXqLXV54v/g
-	5vkIkr5JswFXj2DouV0eah4+6aFHFl4XkdJG7RoJ7pPSNF2zfCLp/pMN5TDAxYaEiyau2xPOg/TJa
-	QBHf9Jpwc3EWyC3PwVMN6W3NgG/9aY6CWZ1/fnw3E6frt2hNd4SQWGtTBNUDWNllTfkY+j3pMwRPx
-	HDWEqhrA==;
-Received: from [147.129.179.166] (port=54034 helo=rday)
-	by cpanel10.indieserve.net with esmtpsa  (TLS1.3) tls TLS_AES_256_GCM_SHA384
-	(Exim 4.99.1)
-	(envelope-from <rpjday@crashcourse.ca>)
-	id 1w0d94-00000004IbE-3gB9;
-	Thu, 12 Mar 2026 06:20:00 -0400
-Date: Thu, 12 Mar 2026 06:19:55 -0400 (EDT)
-From: "Robert P. J. Day" <rpjday@crashcourse.ca>
-To: Alex J Lennon <ajlennon@dynamicdevices.co.uk>
-cc: Josef Holzmayr <jester@theyoctojester.info>, yocto@lists.yoctoproject.org
+ dkim=pass header.i=@dynamicdevices.co.uk header.s=google header.b=KrmbBpCI;
+ spf=pass (domain: dynamicdevices.co.uk, ip: 209.85.128.49, mailfrom: ajlennon@dynamicdevices.co.uk)
+Received: by mail-wm1-f49.google.com with SMTP id 5b1f17b1804b1-485410a0a8aso7960805e9.2
+        for <yocto@lists.yoctoproject.org>; Thu, 12 Mar 2026 03:22:53 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=dynamicdevices.co.uk; s=google; t=1773310972; x=1773915772; darn=lists.yoctoproject.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=kXnql9tDxRWE+IfMIK+RCSNsIJEcnSksjucdkHRgwlQ=;
+        b=KrmbBpCID0I19y0yN5+E4ge2OBkj88jxuSOuKe578bEI1mFqpAlnbstnUmG3+iF1uX
+         OIjrNJQ2yElX2MRQpRDe4T1FuB9JbIceQYUNY0iqupUBjehRxehEUTkjWEdQN+eebSg9
+         zgt6GvG8/5dZ/w1fAgYKp3r2sbdmmrYkiqt5ISRzpwgXEUh3SOfOgHusZE4+jOBYyc1I
+         RrQ4XI5+Juk9KgmC+2bLjPXTFRvff7ECZV9l1fmWMXS2vFcTCF9B+UWCwhdmuOrZrSUW
+         MnQNirxob6G9ffNbBfdLQf1hlIPTinCg5DN1zzkMTRc/7RpAC9nzNzBs6FaM07gZCMZP
+         W8pg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1773310972; x=1773915772;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=kXnql9tDxRWE+IfMIK+RCSNsIJEcnSksjucdkHRgwlQ=;
+        b=Y22HQwd4KeQoozhPP1KdCu+aNqivXUhqwDDWPWxz/XhGMY59Zg5cpnpxdf6nlvXUt0
+         z/JQMoiH5toDe5AtWwmffyCQIfqskYB1bHKVyrpa87LkufZBLfqz/nNLYG6TufqHokJH
+         xf9XB4BETry3UuRFuPKMHuNUKlr0eXrUkANfWs0UBegzylV+EOz4NZUpJ2o0E85MpsAj
+         G+0fKofP3v965N/1AYN9IHzkjqBUu8yBn9aBLv2k7GO3B9PJuzB3X63pA2qTNZ7jhVFh
+         KdtQ9MYoOH8J9aIvzUoBV5SqJJMvDm8poDV5GbFUBsOsgKkphDZO0TJGKRl3qgZwogX+
+         wRIQ==
+X-Forwarded-Encrypted: i=1; AJvYcCWJC/ZCYPJHFEo26ew2h2GdTgG4+luovtbAGI1uSGC+LmZMibXQIvM5dxMcQ8kllkkNN36VOA==@lists.yoctoproject.org
+X-Gm-Message-State: AOJu0YyQAVdrcd5cFivBDT8ThAzVzppQ14pcT+w5BxxrB1XAgwUzIP4J
+	uBOqhM7mELaLlF1K24lvTjcwWHAxV0ptaPy9a9aG+O/0AS5KLfZE+opWygcLCp3BUi8=
+X-Gm-Gg: ATEYQzyb8v3vwX47oJyMm58T/Amg16XBjAERF2ZMcDJjyY14WyGrlqS5qghbhq+eajA
+	IYRmIOvW+mldu1Udd/Hzd3heIgt8GQJmVY6dLiI3/PkuH5OEXq0Warxxr0+D0ew29pRZbwcRUGR
+	TOkJk0jY2f69xZBmQ4tnoQ9W0KILs3i6GyQZTsxYlevKzBcnvI5SJtlNFfg8vGL0vBtGlY5ML0D
+	qy+jmeaiBvP6q/Ux6/lWNsU6uGAetvMw5D+77OI+Cm3GYTE20xVUgy2iuy/uXzrPJHe1lcwJ30W
+	uuOWIY5+qjP9va1g3n6r+4pV5PYs76jDWm+mHT88tXDxzsaeFKOMTcbNlI2sq4aaHMg8RpH4Gr1
+	W61TROnIba5fk8WAB6/B/d0LbA5zYtZ9ZLyE2WcaMKIkNjRBRPguSFrYIMEuJpmGggr2XCx+Iiu
+	a62Hg00du07+AeX0eVpxcGCq2V1Iunz0BU4spRBcn05YUp7wvm/Zv9xqvIINZduGsH6hD4fwT1F
+	LhFXGHaGR2Gdp/fjntsO3L6rLyfcScy
+X-Received: by 2002:a05:600c:6383:b0:485:3586:1e28 with SMTP id 5b1f17b1804b1-4854b107956mr84569385e9.18.1773310971622;
+        Thu, 12 Mar 2026 03:22:51 -0700 (PDT)
+Received: from [192.168.68.138] (live-30-b2-v4wan-174414-cust740.vm29.cable.virginm.net. [82.14.134.229])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4854b5e912fsm307237135e9.2.2026.03.12.03.22.50
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 12 Mar 2026 03:22:51 -0700 (PDT)
+Message-ID: <fa6062e4-e320-444b-8de7-8d82835a96f8@dynamicdevices.co.uk>
+Date: Thu, 12 Mar 2026 10:22:50 +0000
+MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
 Subject: Re: [yocto] are there some recent examples of building .NET recipes
  for YP?
-In-Reply-To: <0ce0bdc6-bbce-44f3-b010-112739b8b87d@dynamicdevices.co.uk>
-Message-ID: <c258a893-b246-d8e8-4394-aa05f6b4875c@crashcourse.ca>
-References: <32336316-50a9-9193-9c85-d5e6973505c4@crashcourse.ca> <CAEt6Nwpi5DBYBvcWO6UTdo9YNm1oie1GVbusOSqkgkuq-LO9fQ@mail.gmail.com> <0ce0bdc6-bbce-44f3-b010-112739b8b87d@dynamicdevices.co.uk>
-MIME-Version: 1.0
-Content-Type: multipart/mixed; boundary="8323329-233636311-1773310802=:536312"
-X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
-X-AntiAbuse: Primary Hostname - cpanel10.indieserve.net
-X-AntiAbuse: Original Domain - lists.yoctoproject.org
-X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
-X-AntiAbuse: Sender Address Domain - crashcourse.ca
-X-Get-Message-Sender-Via: cpanel10.indieserve.net: authenticated_id: rpjday+crashcourse.ca/only user confirmed/virtual account not confirmed
-X-Authenticated-Sender: cpanel10.indieserve.net: rpjday@crashcourse.ca
-X-Source: 
-X-Source-Args: 
-X-Source-Dir: 
+To: "Robert P. J. Day" <rpjday@crashcourse.ca>
+Cc: Josef Holzmayr <jester@theyoctojester.info>, yocto@lists.yoctoproject.org
+References: <32336316-50a9-9193-9c85-d5e6973505c4@crashcourse.ca>
+ <CAEt6Nwpi5DBYBvcWO6UTdo9YNm1oie1GVbusOSqkgkuq-LO9fQ@mail.gmail.com>
+ <0ce0bdc6-bbce-44f3-b010-112739b8b87d@dynamicdevices.co.uk>
+ <c258a893-b246-d8e8-4394-aa05f6b4875c@crashcourse.ca>
+Content-Language: en-US
+From: Alex J Lennon <ajlennon@dynamicdevices.co.uk>
+In-Reply-To: <c258a893-b246-d8e8-4394-aa05f6b4875c@crashcourse.ca>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from 45-33-107-173.ip.linodeusercontent.com [45.33.107.173] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Thu, 12 Mar 2026 10:20:05 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/66328
+ <yocto@lists.yoctoproject.org>; Thu, 12 Mar 2026 10:22:55 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/66329
 
-  This message is in MIME format.  The first part should be readable text,
-  while the remaining parts are likely unreadable without MIME-aware tools.
 
---8323329-233636311-1773310802=:536312
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8BIT
-
-On Tue, 10 Mar 2026, Alex J Lennon wrote:
-
+On 12/03/2026 10:19, Robert P. J. Day wrote:
+> On Tue, 10 Mar 2026, Alex J Lennon wrote:
 >
-> On 10/03/2026 21:28, Josef Holzmayr wrote:
-> > Channeling @Alex J Lennon
-> >
-> > On Tue, Mar 10, 2026 at 3:19 PM Robert P. J. Day via
-> > lists.yoctoproject.org <rpjday=crashcourse.ca@lists.yoctoproject.org>
-> > wrote:
-> > >
-> > >    colleague wants to add a .NET package as a (systemd) service to a YP
-> > > image -- google keeps promoting this 10-year-old page:
-> > >
-> > > https://wiki.yoctoproject.org/wiki/Building_and_running_embedded_Linux_.NET_applications_from_first_principles
-> > >
-> > >    does someone have a link or two to something more recent? thank you
-> > > kindly.
-> > >
-> > > rday
+>> On 10/03/2026 21:28, Josef Holzmayr wrote:
+>>> Channeling @Alex J Lennon
+>>>
+>>> On Tue, Mar 10, 2026 at 3:19 PM Robert P. J. Day via
+>>> lists.yoctoproject.org <rpjday=crashcourse.ca@lists.yoctoproject.org>
+>>> wrote:
+>>>>     colleague wants to add a .NET package as a (systemd) service to a YP
+>>>> image -- google keeps promoting this 10-year-old page:
+>>>>
+>>>> https://wiki.yoctoproject.org/wiki/Building_and_running_embedded_Linux_.NET_applications_from_first_principles
+>>>>
+>>>>     does someone have a link or two to something more recent? thank you
+>>>> kindly.
+>>>>
+>>>> rday
+>> Hi folks. I felt a vibration in the force....
+>>
+>> I continue to maintain meta-mono and you're right this desperately needs an
+>> update.
+>>
+>> I guess that's on me but if you fancy collaborating it might go faster :)
+>    let me peruse this on the weekend. although i have no interest in
+> becoming a .NET developer, i'm probably going to have to support the
+> developers on my team who will be. i guess the simplest approach is to
+> try to replicate that documented work on my debian 13 system with
+> recent YP release.
 >
-> Hi folks. I felt a vibration in the force....
->
-> I continue to maintain meta-mono and you're right this desperately needs an
-> update.
->
-> I guess that's on me but if you fancy collaborating it might go faster :)
+> rday
 
-  let me peruse this on the weekend. although i have no interest in
-becoming a .NET developer, i'm probably going to have to support the
-developers on my team who will be. i guess the simplest approach is to
-try to replicate that documented work on my debian 13 system with
-recent YP release.
+For myself, I think I would probably start with the meta-mono CI which 
+runs and tests the build
 
-rday
---8323329-233636311-1773310802=:536312--
+https://github.com/DynamicDevices/meta-mono/actions
+
+That's not ideal as it's headless and my recollection is the Wiki has 
+various image captures.
+
+But it may be possible to combine the CI action(s) with the Wiki 
+document using AI and arrive at something relevant and maintainable as 
+meta-mono continues to be updated
+
+Just my 5c
+
+KR, Alex
+
+
 
