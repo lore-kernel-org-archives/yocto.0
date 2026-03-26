@@ -1,133 +1,180 @@
-Return-Path: <michael.opdenacker@rootcommit.com>
+Return-Path: <francesco@valla.it>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 1520A10A88F5
-	for <webhook@archiver.kernel.org>; Thu, 26 Mar 2026 17:41:20 +0000 (UTC)
-Received: from elephant.ash.relay.mailchannels.net (elephant.ash.relay.mailchannels.net [23.83.222.57])
- by mx.groups.io with SMTP id smtpd.msgproc02-g2.54461.1774546872471162952
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 870D410AB82B
+	for <webhook@archiver.kernel.org>; Thu, 26 Mar 2026 22:19:57 +0000 (UTC)
+Received: from delivery.antispam.mailspamprotection.com (delivery.antispam.mailspamprotection.com [185.56.87.10])
+ by mx.groups.io with SMTP id smtpd.msgproc01-g2.59817.1774563593088787422
  for <yocto@lists.yoctoproject.org>;
- Thu, 26 Mar 2026 10:41:12 -0700
+ Thu, 26 Mar 2026 15:19:53 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@rootcommit.com header.s=hostingermail-a header.b=Xk6dknpS;
- spf=pass (domain: rootcommit.com, ip: 23.83.222.57, mailfrom: michael.opdenacker@rootcommit.com)
-X-Sender-Id: hostingeremail|x-authuser|michael.opdenacker@rootcommit.com
-Received: from relay.mailchannels.net (localhost [127.0.0.1])
-	by relay.mailchannels.net (Postfix) with ESMTP id 20626223AAE;
-	Thu, 26 Mar 2026 17:41:11 +0000 (UTC)
-Received: from fr-int-smtpout28.hostinger.io (100-121-70-44.trex-nlb.outbound.svc.cluster.local [100.121.70.44])
-	(Authenticated sender: hostingeremail)
-	by relay.mailchannels.net (Postfix) with ESMTPA id 2F004223B2A;
-	Thu, 26 Mar 2026 17:41:09 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; d=mailchannels.net; s=arc-2022; cv=none;
-	t=1774546870;
-	b=Jz9k/ToB18aVPTtaASJvz34i8IUuXuhuSzv23wS4nPQXwZDJpr6JY5V/N77FB4mFSgrXRt
-	bWCYi2839Sur/yKvsoo+KHLonMBucJYr+qkFM1qCuEdsv477EcLJG5ShB6UJ12dT8dUUIc
-	ck/FddPu2wzYXInrSY3UUOBVQ5PYXElcrM6VCcuvn7Td6Wk+B1qTGN9pju1ngzbIfoB9vj
-	GTqtZgGT+iELbnOv2zFeh960dC+72L20lPbf08sVETuQ1jRUtE581kVOAp6VA9Jpbko2Ho
-	tolZ/TeEACRnxPAAtXQmwvliNsSGdLUjTM6u8HGVgPNcUr6gzyHRp703vkfRMg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed;
- d=mailchannels.net;
-	s=arc-2022; t=1774546870;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references:dkim-signature;
-	bh=vnU7ag3LZ3u0NA8n/pZ16cQqLL9afpBbs5GZ3qVPcy8=;
-	b=GYfX+IcSB3+Vqf5g4KriCpGCragYIiq9650jlIcBvOLZlhG/933+lubWtyxQzQsKv7QLVs
-	vbu2uk8CJBMzdmV8b4AKYzE5iI3dEZjkxNqQnfj58tS4WdYYbhWYmTRKiyK3RILroImjOb
-	AiN20iVAK2u+Pln4eRbzexiZiZRmpvHZ81kVjVinwiV0KOVrcRo3mjz2QasIttePIsM59c
-	OR5akbranIMmTuB0WvrtOBE1EzFUFU+NwK6QHo1zrFYsPudiP9yVFUsslYCuq3VIwStc4d
-	COFMVABrD9k4OwjKNoZfo3aaxxQFspl+ZQ4XVXnE0k0usYoXq8teSs4id4B9tg==
-ARC-Authentication-Results: i=1;
-	rspamd-7f98bb5847-kg2h5;
-	auth=pass smtp.auth=hostingeremail
- smtp.mailfrom=michael.opdenacker@rootcommit.com
-X-Sender-Id: hostingeremail|x-authuser|michael.opdenacker@rootcommit.com
-X-MC-Relay: Neutral
-X-MailChannels-SenderId: 
- hostingeremail|x-authuser|michael.opdenacker@rootcommit.com
-X-MailChannels-Auth-Id: hostingeremail
-X-Power-Language: 42472e4277a66464_1774546871000_3271267728
-X-MC-Loop-Signature: 1774546871000:1333976076
-X-MC-Ingress-Time: 1774546871000
-Received: from fr-int-smtpout28.hostinger.io (fr-int-smtpout28.hostinger.io
- [148.222.54.10])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384)
-	by 100.121.70.44 (trex/7.1.3);
-	Thu, 26 Mar 2026 17:41:10 +0000
-Received: from [IPV6:2001:861:4450:d360:51f3:4618:26a2:7700] (unknown [IPv6:2001:861:4450:d360:51f3:4618:26a2:7700])
-	(Authenticated sender: michael.opdenacker@rootcommit.com)
-	by smtp.hostinger.com (smtp.hostinger.com) with ESMTPSA id 4fhWKH0jW5z31w9;
-	Thu, 26 Mar 2026 17:41:07 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=rootcommit.com;
-	s=hostingermail-a; t=1774546867;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=vnU7ag3LZ3u0NA8n/pZ16cQqLL9afpBbs5GZ3qVPcy8=;
-	b=Xk6dknpSv9ADKCd01xmh6jX//ecmulwNRELBkHNEb2FQmLqU3xffzEbIvZ1eBh3TfmrJVE
-	ZTSYUP7V1gnrx2Un5pXjXdSE7d7t88t/2Ff+LVYYnZyzlXbWGOhmKyTxPGnBqTj+6TIKI5
-	i3OPrEMVLnZQp5ziqyhjgfJj3e/f8dorTXJbfRfD4m7HmZDII9s2Tull7fRkfi5o4mZ1Os
-	cNhwiKcKoqAMahQckajJ4M158i9IWDzmrhIZLzWDIyoVkEk5EBUTUjAf3F5dyLMKK7tixY
-	bykQkAj5J3NXfmgo+DZ1d7N9a/PilW6lzokiigGkEUIOlyqrCWJoj3mpvLBYYQ==
-Message-ID: <5513c75c-516a-4b3c-bf4c-dfa47d5eae52@rootcommit.com>
-MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Cc: michael.opdenacker@rootcommit.com, yocto@lists.yoctoproject.org
-Subject: Re: overlayfs-etc on top of dm-verity?
-To: Vyacheslav Yurkov <uvv.mail@gmail.com>
+ dkim=pass header.i=@antispam.mailspamprotection.com header.s=default header.b=xKeu7pLQ;
+ dkim=pass header.i=@valla.it header.s=default header.b=Bqs2CffU;
+ spf=pass (domain: valla.it, ip: 185.56.87.10, mailfrom: francesco@valla.it)
+ARC-Seal: i=1; cv=none; a=rsa-sha256; d=outgoing.instance-europe-west4-d0m4.prod.antispam.mailspamprotection.com; s=arckey; t=1774563593;
+	 b=KyTRVSdhpwoatlkvf2h8kX2BwuwbDt/ybhSOKdPEt5jxRFybAXM1Gxk+RqZxVpg6J4z6FPPvk7
+	  gBkrQSKiU8uPikynuCHkltECLm84b+dS0INin77V61dlUJmh0xiZ+IIjGBzNocFDWaLlL/aTH/
+	  brXohRLE9ucolNKNhxS4NkHSAMZz4IUSBDNsb+E+Ad/NTdx111aeW1HM1mto37ube1a2gTvYJC
+	  NR6S6F0hOTASQziPo3kgPnkzJShZtXOzrbnOh+Tg5lLnMpkhqzHyQ2Zhuyxf2XW3URFhfZDHS8
+	  vbqQQqFky8EEiiVBRUY1t+Yr51XSnaKVFQzN2M5EhUJbEg==;
+ARC-Authentication-Results: i=1; outgoing.instance-europe-west4-d0m4.prod.antispam.mailspamprotection.com; smtp.remote-ip=35.214.173.214;
+	iprev=pass (214.173.214.35.bc.googleusercontent.com) smtp.remote-ip=35.214.173.214;
+	auth=pass (LOGIN) smtp.auth=esm19.siteground.biz;
+	dkim=pass header.d=valla.it header.s=default header.a=rsa-sha256;
+	arc=none
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed; d=outgoing.instance-europe-west4-d0m4.prod.antispam.mailspamprotection.com; s=arckey; t=1774563593;
+	bh=9ri4pkj91iy6RPfOQhK2KDcDK7MGatusJX1UYb4lBxc=;
+	h=In-Reply-To:Content-Transfer-Encoding:Content-Type:MIME-Version:References:
+	  Message-ID:Subject:Cc:To:From:Date:DKIM-Signature:DKIM-Signature;
+	b=LP1DhYzj81Hw55RB5wAsTdCyhR1jkKNZ9jOXDhaRoDR9jtLAAqa8T+x1zAPLDoMd3jF5NidoIo
+	  0N+5w0gBW9MAXL7idAehTAwZLkY4N0fp7wvu4WtiIGHChA9LIP8Ys01sl6WY0BBrGCyxTaRGGu
+	  nce4V4Q8AmpEFsUtar6C3amNJ2xt24yZfeUEku7nQx2RjJt9lWG3uK++d1f4vXPveQ0EwM6boX
+	  Axp4CaUaDffFhHP5Q3n/6pSAymiR3frJryi6PXz8tOTOMeSbZWMzwh7XkicpciPpgWVVJ0rt1Z
+	  Lg+Y+WYdBGQ3BxVfn2/cO2eDY6eYvsKmHWWh7YoavIpquA==;
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+	d=antispam.mailspamprotection.com; s=default; h=CFBL-Feedback-ID:CFBL-Address
+	:Content-Transfer-Encoding:Content-Type:MIME-Version:Message-ID:Subject:Cc:To
+	:From:Date:Reply-To:List-Unsubscribe;
+	bh=gDE+MOn8myfq+CumdDUksiqT9t7WA/pkF1rgWDy/oM0=; b=xKeu7pLQ6mgS++Fq92x3Th0Sgk
+	3c1tj+L159258WzOOHahUTx7oF+TfZXIGtdfcGK4vw7EF4SkqMl5CwjxT00hoOTlyDHynCIy0ybKv
+	CV8iBHAK6Z26cgQQabcEprv6mssraiErxQBhneYBagW4L7QUFLRkXiIb1L9CekcXsIMs=;
+Received: from 214.173.214.35.bc.googleusercontent.com ([35.214.173.214] helo=esm19.siteground.biz)
+	by instance-europe-west4-d0m4.prod.antispam.mailspamprotection.com with esmtpsa  (TLS1.3) tls TLS_AES_256_GCM_SHA384
+	(Exim 4.98.1)
+	(envelope-from <francesco@valla.it>)
+	id 1w5t3M-0000000DJD0-0UX4
+	for yocto@lists.yoctoproject.org;
+	Thu, 26 Mar 2026 22:19:51 +0000
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=valla.it;
+	s=default; h=Subject:Cc:To:From:Date:list-help:list-unsubscribe:
+	list-subscribe:list-post:list-owner:list-archive;
+	bh=gDE+MOn8myfq+CumdDUksiqT9t7WA/pkF1rgWDy/oM0=; b=Bqs2CffUCZy9zKI0wHhI398iGM
+	bUGL2w1b5sGSj1M7UAy2fFBNXpi9w1kguGx29B/3fTJnbWDYEhecZKsXd52Ps5ArH8Nd+h8RhfwwU
+	59vS51j99CEATE7QVB+sgMJsxITR2utZ6txURncf4ZyrYtiiQmhTV3iAE1EJncWp0MnE=;
+Received: from [95.248.129.24] (port=62701 helo=bywater)
+	by esm19.siteground.biz with essmtpa  (TLS1.3) tls TLS_AES_256_GCM_SHA384
+	(Exim 4.99.1)
+	(envelope-from <francesco@valla.it>)
+	id 1w5t3D-000000004UJ-3hNQ;
+	Thu, 26 Mar 2026 22:19:39 +0000
+Date: Thu, 26 Mar 2026 23:19:38 +0100
+From: Francesco Valla <francesco@valla.it>
+To: michael.opdenacker@rootcommit.com
+Cc: yocto@lists.yoctoproject.org, Vyacheslav Yurkov <uvv.mail@gmail.com>
+Subject: Re: [yocto] overlayfs-etc on top of dm-verity?
+Message-ID: <acWttty52EgZmIn5@bywater>
 References: <bfaae86a-5b66-4abf-95ef-0fd345ffcada@rootcommit.com>
  <aab17025-f0f2-4c04-b370-8789624eb571@rootcommit.com>
-Content-Language: en-US
-From: Michael Opdenacker <michael.opdenacker@rootcommit.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
 In-Reply-To: <aab17025-f0f2-4c04-b370-8789624eb571@rootcommit.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-Date: Thu, 26 Mar 2026 17:41:07 +0000 (UTC)
-X-CM-Envelope: MS4xfBC2Z2BuOxC2dBrx6tKr6/l5ueAnXd8ACJlN+Yk8sKkfcNvBv7ZloCPXMO98vRvlrJPenEAJJlPiZmFxer9zrIoed1x+JsPBUtcAdBEvByRPfmvhDjxC eKhcHJdBYhBxgcMCfuKN96MmW8GWJuorUIvjGdxf4zD5PYKvmoWqKhJjKAaQBmfM3RatkQJmut/ngt6Y7PdnfXaSnTGnv9t94ZJYLUMENPFhS3d6Mt66dRnm QMNcW0Mxf7E8JuzOpExiq/m8bxrzPo0pIRLyEmrjazSMDEZOgZjVx4cXrNgawQs5hDLMFRtBQj1tWgXxDiBW21DB5sW6OfMLTHHeTj3yACqTfDzl9/mwv4ky k4ZRQMc84xPPfjwsFDXTbSR4Q+OfoLzDnXURBmb2A5KO/6UT2Hw=
-X-CM-Analysis: v=2.4 cv=ZbRPNdVA c=1 sm=1 tr=0 ts=69c56fb3 a=evcieJ2VOb0sFVU3DIXQLA==:617 a=xqWC_Br6kY4A:10 a=IkcTkHD0fZMA:10 a=VwQbUJbxAAAA:8 a=d70CFdQeAAAA:8 a=aHLGvg6tIiMUv9RRxSwA:9 a=QEXdDO2ut3YA:10 a=NcxpMcIZDGm-g932nG_k:22
-X-AuthUser: michael.opdenacker@rootcommit.com
+X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
+X-AntiAbuse: Primary Hostname - esm19.siteground.biz
+X-AntiAbuse: Original Domain - lists.yoctoproject.org
+X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
+X-AntiAbuse: Sender Address Domain - valla.it
+X-Source: 
+X-Source-Args: 
+X-Source-Dir: 
+X-SGantispam-id: ea5c3d968e482beae248400cc31ab157
+X-AntiAbuse: ID - ea5c3d968e482beae248400cc31ab157
+AntiSpam-DLS: false
+AntiSpam-DLSP: 
+AntiSpam-DLSRS: 
+AntiSpam-TS: 1.0
+CFBL-Address: feedback@antispam.mailspamprotection.com; report=arf
+CFBL-Feedback-ID: 1w5t3M-0000000DJD0-0UX4-feedback@antispam.mailspamprotection.com
+Authentication-Results: outgoing.instance-europe-west4-d0m4.prod.antispam.mailspamprotection.com;
+	iprev=pass (214.173.214.35.bc.googleusercontent.com) smtp.remote-ip=35.214.173.214;
+	auth=pass (LOGIN) smtp.auth=esm19.siteground.biz;
+	dkim=pass header.d=valla.it header.s=default header.a=rsa-sha256;
+	arc=none
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from 45-33-107-173.ip.linodeusercontent.com [45.33.107.173] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Thu, 26 Mar 2026 17:41:20 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/66356
+ <yocto@lists.yoctoproject.org>; Thu, 26 Mar 2026 22:19:57 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/66357
 
-Greetings,
+Hi Michael,
 
-So follow-up on this issue...
-
-On 3/26/26 10:56 AM, Michael Opdenacker wrote:
->
->
+On Thu, Mar 26, 2026 at 09:56:21AM +0000, Michael Opdenacker via lists.yoctoproject.org wrote:
+> Greetings,
+> 
 > On 3/25/26 10:20 PM, Michael Opdenacker wrote:
->
-> I eventually managed to get /etc mounted as an overlay. It seems that 
-> /sbin/init was started instead of /sbin/preinit as specified in the 
-> kernel command line.
-> I hardcoded the call to /sbin/preinit by customizing 
-> openembedded-core/meta/recipes-core/initrdscripts/initramfs-framework/finish 
+> > Hi Slava and community,
+> > 
+> > Do you know if overlayfs and in particular our overlayfs-etc class works
+> > when /etc is on a dm-verity root filesystem?
+> > 
+> > Without dm-verity (regular ext4 or erofs root filesystem), everything
+> > looks all right:
+> > # mount | grep overlay
+> > /data/overlay-etc/upper on /etc type overlay (rw,relatime,lowerdir=/etc,upperdir=/data/overlay-etc/upper,workdir=/data/overlay-etc/work,uuid=on)
+> > 
+> > When /etc is on /dev/mapper/rootfs (dm-verity), everything seems messed
+> > up:
+> > # mount | grep overlay
+> > overlay on /var/cache type overlay (rw,relatime,lowerdir=/var/cache,upperdir=/var/volatile/cache,workdir=/var/volatile/.cache-work,uuid=on)
+> > overlay on /var/lib type overlay (rw,relatime,lowerdir=/var/lib,upperdir=/var/volatile/lib,workdir=/var/volatile/.lib-work,uuid=on)
+> > overlay on /var/spool type overlay (rw,relatime,lowerdir=/var/spool,upperdir=/var/volatile/spool,workdir=/var/volatile/.spool-work,uuid=on)
+> > overlay on /srv type overlay (rw,relatime,lowerdir=/srv,upperdir=/var/volatile/srv,workdir=/var/volatile/.srv-work,uuid=on)
+> > 
+> > Systemd may be messing up, as only in this case, it does:
+> > � � � � �Starting Bind mount volatile /var/cache...
+> > � � � � �Starting Bind mount volatile /var/lib...
+> > � � � � �Starting Bind mount volatile /var/spool...
+> > � � � � �Starting Bind mount volatile /srv...
+> > 
+> > But these bind mounts show up as overlay mounts!
+> > 
+> > Has anyone already encountered such an issue?
+> 
+> I eventually managed to get /etc mounted as an overlay. It seems that
+> /sbin/init was started instead of /sbin/preinit as specified in the kernel
+> command line.
+> I hardcoded the call to /sbin/preinit by customizing
+> openembedded-core/meta/recipes-core/initrdscripts/initramfs-framework/finish
 > (in a bbappend file, of course).
->
+> 
 > The code looks right though, I need to understand why this happens.
+> 
+> Another weirdness that remains is these volatile mounts for /var/cache/,
+> /var/lib, /var/spool and /srv, which I didn't have with a regular read-only
+> root filesystem.
 
+AFAIK, this should be the regular behavior on a read-only root
+filesystem. The overlayfs mounts are created by services generated by:
 
-The issue (the initramfs scripts not calling the init script specified 
-in the kernel command line) was caused by an issue with kernel 
-parameters like:
-opt="value", that happen when you use the kernel's "bootconfig" 
-configuration options.
+  meta/recipes-core/volatile-binds/volatile-binds.bb
 
-This fix I've just submitted solves the issue: 
-https://lore.kernel.org/openembedded-core/20260326173432.3286250-1-michael.opdenacker@rootcommit.com/T/#u
+depending on the content of the VOLATILE_BINDS variable. For each couple
+of upperdir-lowerdir specified there, a service is generated that
+starts only if upperdir's parent is writable and lowerdir is not.
 
-Cheers
-Michael.
+E.g.:
+  lowerdir=/srv
+  upperdir=/var/volatile/srv
 
-Root Commit
-Embedded Linux Training and Consulting
-https://rootcommit.com
+In a vanilla openembedded-core system, a tmpfs is mounted on /var/volatile
+by the fstab (that is, by the fstab systemd generator), so the
+upperdir's parent directory (which is the same /var/volatile) is writable.
+
+You can force a copy+bind behavior setting AVOID_OVERLAYFS=1.
+
+> I'll keep you posted.
+> Cheers
+> Michael.
+> 
+> -- 
+> Root Commit
+> Embedded Linux Training and Consulting
+> https://rootcommit.com
+> 
+
+Best regards,
+Francesco
 
 
