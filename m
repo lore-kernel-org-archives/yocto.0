@@ -1,130 +1,299 @@
-Return-Path: <seyd.dany@gmail.com>
+Return-Path: <quaresma.jose@gmail.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 22CCB1061B3F
-	for <webhook@archiver.kernel.org>; Tue, 31 Mar 2026 12:36:31 +0000 (UTC)
-Subject: Re: [yocto] error while adding device tree overlay for UART to the image #bitbake #linux
-To: "Crane" <crane2018@gmail.com>, yocto@lists.yoctoproject.org
-From: seyd.dany@gmail.com
-X-Originating-Location: Regensburg, Bavaria, DE (95.130.167.66)
-X-Originating-Platform: Windows Chrome 146
-User-Agent: GROUPS.IO Web Poster
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 4AC21109B471
+	for <webhook@archiver.kernel.org>; Tue, 31 Mar 2026 13:50:12 +0000 (UTC)
+Received: from mail-oi1-f173.google.com (mail-oi1-f173.google.com [209.85.167.173])
+ by mx.groups.io with SMTP id smtpd.msgproc02-g2.20491.1774965011934487238
+ for <yocto@lists.yoctoproject.org>;
+ Tue, 31 Mar 2026 06:50:12 -0700
+Authentication-Results: mx.groups.io;
+ dkim=pass header.i=@gmail.com header.s=20251104 header.b=VJVAvSBe;
+ spf=pass (domain: gmail.com, ip: 209.85.167.173, mailfrom: quaresma.jose@gmail.com)
+Received: by mail-oi1-f173.google.com with SMTP id 5614622812f47-4645dde00a7so4882501b6e.1
+        for <yocto@lists.yoctoproject.org>; Tue, 31 Mar 2026 06:50:11 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1774965010; cv=none;
+        d=google.com; s=arc-20240605;
+        b=TVdipb4w1deQOiWlpeNDryO9JYFv77Ak8OWIfUqUKF6UfmIhZPaX9wyRZYJNXpGFqI
+         zV2qhUnvvgCdFfGkegF+LpUcaBqFcNcb1Uy/bmd5FqWtfVrir1GxkwGiu56+cXIKayFs
+         rDLoAB/N5W6aYBuvd8zBwqEM4Orr0fSbSpk+YJ7lwaCvX8RRK5hM4Iwjd5CUYC4VCpWz
+         fYRt5IJOdLjBsqze6AYucCjeU3L+zzplAfT3Ctse2uob80D3n7GLtcL5ndW4tM85QinP
+         99w2heAtosLTSVMniqscPw5D1FjLDc9lK5U0GygNqjNCMYmeJiXrVEnYMh8E0ZsTIYKb
+         2mHQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:dkim-signature;
+        bh=8dVxLUbSJXaNapJVkv46QrrDoa39kU+L/TUyJ4lT/0I=;
+        fh=E7Qg4Nq+7QpjT5A1aiQ/N5QNNEldy5BV1RrRoaAIhIQ=;
+        b=U+eW0srsT8yvPMvZOIYde6jPJcg19KNgboIQw4z7ONxUtkJX4iZRH053wUEdg4VsAC
+         dYTqSiWtcQQ0KmFE0TaFZTsVfHgmauX/iNwNfG+Ycl6NLVOlJxso8byoskOyy62cPgZv
+         /ZDf1zVOEfqODNk+8ng2HdVCEz4hs9QJ3EJX2RBztA1DNjJ0SQtKWS8QjG9koQWTv8Gd
+         9gK0Mwax7hIkSXr2SxWP8ZuRGxGyNXaCtbFA9J9HzBxHpYS76krdewXL++zB3aNBgmem
+         6u8AnVModJYOAOgRtR1fw/Vo09Z+m2K5CmDZDgrcwZfkR34EUyboZ6b9WWpq0sofSmP5
+         J/1A==;
+        darn=lists.yoctoproject.org
+ARC-Authentication-Results: i=1; mx.google.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20251104; t=1774965010; x=1775569810; darn=lists.yoctoproject.org;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=8dVxLUbSJXaNapJVkv46QrrDoa39kU+L/TUyJ4lT/0I=;
+        b=VJVAvSBedEnAMA7T90VDlpZGejYndIFRx/w9moGG4rdR3gEMfMVk+cnNwecDpBHXlz
+         byLHSIU+O9cDo/lcgrXKKGXEUYLpy53aXqopI9CHTDxUZjgtsjrrC55sHYUiOLnvPeui
+         n8a12kCTsIgeNTSZZpIv60aBj2m1GKWaiy2c2IP8EkuE1MEJXislRRNbzjOea1ODHxD2
+         VZ0xqKF5FT/vWYBR2y3eMFtrlrUID2fQwbzb8DKwe2v7cTbZvWGhu2nbYs5A/ZJV0fuo
+         SzZKtKLCUY1b8fTmUKqFJ4aHQq7oYUEK3o7hTeaHgZv0u/nOl/9qB1Ad/yGVk4N3d1Va
+         V4aA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20251104; t=1774965010; x=1775569810;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=8dVxLUbSJXaNapJVkv46QrrDoa39kU+L/TUyJ4lT/0I=;
+        b=I1IH1cgfy4OX7NdoekoVV+ULZB5HaFQe7Dvz8XFqKGn4qWKCGwqDZ2pHYg53PkOHEl
+         yskoDPZUFw/5/bJIzCtqgGRiw7FY9Nhqe6kWFMEFDWyk2IXUH0KSxRRFyV13F/2NTQxV
+         y7txgKnjQw4UMg+37HyTSGlkxray9a6eCxIsg3xOW5CSEPUMcDOULAAjpMECoUeg5ZrQ
+         bzlHDzcO1NuSH6yKmzvbjkErhf5oapfy0oRMFBI5fIUfyvDbQgPSH3ZyKLzubQxkLh1o
+         pQlz0Dsl7I/wlgsScoI+6J47rTjEYnD9ZKXtrWjt1aK7lvriw2bduzV1B6+4/NWcGrhV
+         wDPg==
+X-Gm-Message-State: AOJu0Yz9JUqh0dprkTDSHsryLCxAwOtL4ZBY/QLnzbf3aCCzy83sptLy
+	6RK1VFTDjckc1DBoffOb6ZAor0u6grDLMjQf0Df3vpqxszBaqwqD+aYIwxWi28nXFYr87j1HOvZ
+	X52gk7jGeOusCfUClisp/6eWsW7fCHtkfFmZt
+X-Gm-Gg: ATEYQzzTaiQYCRtJvlw1gHp8C6MHYXxiaUpwD1NXeMdfHQadRa4z5FRqz4Q7NU/+Cch
+	mxg47x3EIWTmhXe710I2R/xvJJzZSFBqxR4hQVjA19nZAEtvgF1AwnvzQtKMLp53R9aTgXjPNKv
+	EVrvadSL/mQtbrSmKaxzT01PS464p59+BUNH1bXn6bbglFskFpGG4KMb+cY4ngflUYpMJQOQpMe
+	SRd7jWHSgicuo6F1Kxg5aU55+1BLReMz7BcGr5IbwW+7JoiBMEz8EDsbjnRhCAgYOd7O88s5pD8
+	G/IYsqX+
+X-Received: by 2002:a05:6820:982:b0:67c:3142:b191 with SMTP id
+ 006d021491bc7-67e3d93ecfdmr2107112eaf.24.1774965010185; Tue, 31 Mar 2026
+ 06:50:10 -0700 (PDT)
 MIME-Version: 1.0
-Date: Tue, 31 Mar 2026 05:36:22 -0700
-References: <6kB9.1729694356995050356.znfv@lists.yoctoproject.org>
-In-Reply-To: <6kB9.1729694356995050356.znfv@lists.yoctoproject.org>
-Message-ID: <725242.1774960582612514995@lists.yoctoproject.org>
-Content-Type: multipart/alternative; boundary="qaJ0yrvtvQOhCdkXxlPs"
+References: <92b1fbe3da82c19ed2ca7a617077f6055a74f7e3.camel@bootlin.com>
+ <6C7BC2F4-364D-41C1-87CB-755547FE281E@arm.com> <CAMKF1sq=OEHMM97DiKsdBTnCdSCbsfzTLiADfyUb0=RbVBVYeA@mail.gmail.com>
+ <39d5c5061d0c220d37a302b5669df66d04ca41c0.camel@bootlin.com>
+In-Reply-To: <39d5c5061d0c220d37a302b5669df66d04ca41c0.camel@bootlin.com>
+From: Jose Quaresma <quaresma.jose@gmail.com>
+Date: Tue, 31 Mar 2026 14:49:57 +0100
+X-Gm-Features: AQROBzAE1R1LvchnQQWQWOCiDEhO6-_VixUV3V0pCbbYB_jgDbmPgJUL4uUZ2qo
+Message-ID: <CANPvuRnRmv+46uN0oebjyiq9vqePtK4p3cykLsK6zhCy=RAapw@mail.gmail.com>
+Subject: Re: [yocto] [RFC] Moving OP-TEE support from meta-arm to oe-core
+To: yocto@lists.yoctoproject.org, thomas.perrot@bootlin.com
+Cc: raj.khem@gmail.com, ross.burton@arm.com, 
+	"nylon.chen@sifive.com" <nylon.chen@sifive.com>, "peter.lin@sifive.com" <peter.lin@sifive.com>, 
+	"meta-arm@lists.yoctoproject.org" <meta-arm@lists.yoctoproject.org>
+Content-Type: multipart/alternative; boundary="000000000000ebc116064e523eb0"
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from 45-33-107-173.ip.linodeusercontent.com [45.33.107.173] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Tue, 31 Mar 2026 12:36:31 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/66365
+ <yocto@lists.yoctoproject.org>; Tue, 31 Mar 2026 13:50:12 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/66366
 
---qaJ0yrvtvQOhCdkXxlPs
-Content-Type: text/plain; charset="utf-8"
+--000000000000ebc116064e523eb0
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-Hello Crane,
+Hi Thomas,
 
-I faced a similar issue when working with UART overlays on Raspberry Pi 5 u=
-sing Yocto (scarthgap + meta-raspberrypi).
+Could this proposal be sent to the OE-core mailing list? It's probably a
+bit late for the next LTS, but it doesn't hurt to try.
 
-In my case, the problem was not the kernel build itself, but how the overla=
-ys were handled during image generation (wic stage).
+Jose
 
-What worked for me was:
+Thomas Perrot via lists.yoctoproject.org <thomas.perrot=3D
+bootlin.com@lists.yoctoproject.org> escreveu (ter=C3=A7a, 3/02/2026 =C3=A0(=
+s) 16:29):
 
-1. Instead of relying only on RPI_KERNEL_DEVICETREE_OVERLAYS, I explicitly =
-appended the overlay in my configuration:
-
-RPI_KERNEL_DEVICETREE_OVERLAYS:append =3D " \
-overlays/uart0-pi5.dtbo \
-"
-
-2. Additionally, I created a bbappend in my custom layer to ensure the over=
-lay is properly referenced in config.txt:
-
-recipes-bsp/bootfiles/rpi-config_git.bbappend
-
-with the following content:
-
-do_deploy:append() {
-echo "dtoverlay=3Duart0-pi5" >> $CONFIG
-}
-
-This ensures that:
-- the dtbo is deployed correctly
-- and also picked up by the boot configuration
-
-It seems that the WIC error ("Malformed boot file entry") can happen if the=
- overlay is present in KERNEL_DEVICETREE but not properly handled or refere=
-nced during boot file generation.
-
-After this change, the image was generated without errors and the UART over=
-lay was applied correctly at boot.
-
-Hope this helps.
-
-Best regards,
-Danyal
-
---qaJ0yrvtvQOhCdkXxlPs
-Content-Type: text/html; charset="utf-8"
-Content-Transfer-Encoding: quoted-printable
-
-<p data-start=3D"115" data-end=3D"186">Hello Crane,</p>
-<div class=3D"relative w-full mt-4 mb-1">
-<div class=3D"">
-<div class=3D"relative">
-<div class=3D"h-full min-h-0 min-w-0">
-<div class=3D"h-full min-h-0 min-w-0">
-<div class=3D"border border-token-border-light border-radius-3xl corner-sup=
-erellipse/1.1 rounded-3xl">
-<div class=3D"h-full w-full border-radius-3xl bg-token-bg-elevated-secondar=
-y corner-superellipse/1.1 overflow-clip rounded-3xl lxnfua_clipPathFallback=
-">
-<div class=3D"w-full overflow-x-hidden overflow-y-auto pe-11 pt-3">
-<div class=3D"relative z-0 flex max-w-full">
-<div id=3D"code-block-viewer" class=3D"q9tKkq_viewer cm-editor z-10 light:c=
-m-light dark:cm-light flex h-full w-full flex-col items-stretch =CD=BCk =CD=
-=BCy" dir=3D"ltr">
-<div class=3D"cm-scroller">
-<div class=3D"cm-content q9tKkq_readonly"><br /><span>I faced a similar iss=
-ue when working with UART overlays on Raspberry Pi 5 using Yocto (scarthgap=
- + meta-raspberrypi).</span><br /><br /><span>In my case, the problem was n=
-ot the kernel build itself, but how the overlays were handled during image =
-generation (wic stage).</span><br /><br /><span>What worked for me was:</sp=
-an><br /><br /><span>1. Instead of relying only on RPI_KERNEL_DEVICETREE_OV=
-ERLAYS, I explicitly appended the overlay in my configuration:</span><br />=
-<br /><span>RPI_KERNEL_DEVICETREE_OVERLAYS:append =3D " \</span><br /><span=
-> overlays/uart0-pi5.dtbo \</span><br /><span>"</span><br /><br /><span>2. =
-Additionally, I created a bbappend in my custom layer to ensure the overlay=
- is properly referenced in config.txt:</span><br /><br /><span>recipes-bsp/=
-bootfiles/rpi-config_git.bbappend</span><br /><br /><span>with the followin=
-g content:</span><br /><br /><span>do_deploy:append() {</span><br /><span> =
-echo "dtoverlay=3Duart0-pi5" &gt;&gt; $CONFIG</span><br /><span>}</span><br=
- /><br /><span>This ensures that:</span><br /><span>- the dtbo is deployed =
-correctly</span><br /><span>- and also picked up by the boot configuration<=
-/span><br /><br /><span>It seems that the WIC error ("Malformed boot file e=
-ntry") can happen if the overlay is present in KERNEL_DEVICETREE but not pr=
-operly handled or referenced during boot file generation.</span><br /><br /=
-><span>After this change, the image was generated without errors and the UA=
-RT overlay was applied correctly at boot.</span><br /><br /><span>Hope this=
- helps.</span><br /><br /><span>Best regards,<br />Danyal&nbsp;</span></div=
+> Hello,
 >
-</div>
-</div>
-</div>
-</div>
-</div>
-</div>
-</div>
-</div>
-</div>
-</div>
-</div>
+> On Thu, 2026-01-22 at 09:22 -0800, Khem Raj via lists.yoctoproject.org
+> wrote:
+>
+>
+>
+> On Thu, Jan 22, 2026 at 9:05=E2=80=AFAM Ross Burton via lists.yoctoprojec=
+t.org
+> <ross.burton=3Darm.com@lists.yoctoproject.org> wrote:
+>
+> On 22 Jan 2026, at 09:33, Thomas Perrot via lists.yoctoproject.org
+> <thomas.perrot=3Dbootlin.com@lists.yoctoproject.org> wrote:
+> >
+> > Hi,
+> >
+> > Currently, OP-TEE support is maintained in the meta-arm layer. However,
+> > OP-TEE is now being adopted by non-ARM platforms as well, notably RISC-
+> > V.
+> >
+> > Given this broader adoption, would it make sense to move the OP-TEE
+> > recipes from meta-arm to oe-core?
+> >
+> > I'd like to hear the community's thoughts on this.
+>
+> Copying in the meta-arm list.
+>
+> My immediate thought on this is =E2=80=9Cwould the riscv machines actuall=
+y use the
+> same recipes=E2=80=9D or is there enough forking and vendor branches happ=
+ening that
+> whilst in theory everyone is using OP-TEE, they=E2=80=99re not all using =
+the _same_
+> optee.
+>
+> I=E2=80=99m not against moving genuinely shared recipes somewhere common,=
+ but I do
+> think verifying this will actually happen is important.
+>
+> meta-arm tends to have several versions of optee at once for good reason=
+=E2=80=A6
+> (currently one, but about to be two)
+>
+>
+>
+> I think its a good idea, but Ross's point is good too. If optee is forked
+> for every architecture that can not be a good thing. However, if we can g=
+et
+> qemuarm64 and qemuriscv64 based machines use an upstream version reliably=
+,
+> we might be able to even help upstream to keep things sane
+> atleast for emulated machine architecture, similar to u-boot.
+>
+>
+>
+> I agree with this approach. It's worth noting that OP-TEE upstream alread=
+y
+> runs their test suite (xtest) on QEMU. This gives us confidence that the
+> upstream version works reliably on emulated machines.
+>
+> Starting with qemuarm64 and qemuriscv64 support in oe-core using upstream
+> OP-TEE would be a reasonable first step, leaving vendor-specific versions
+> and hardware-specific configurations in their respective layers.
+>
+> Kind regards,
+> Thomas Perrot
+>
+> Ross
+>
+>
+>
+>
+>
+>
+> --
+>
+> Thomas Perrot, Bootlin
+> Embedded Linux and kernel engineeringhttps://bootlin.com
+>
+>
+> -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
+> Links: You receive all messages sent to this group.
+> View/Reply Online (#66212):
+> https://lists.yoctoproject.org/g/yocto/message/66212
+> Mute This Topic: https://lists.yoctoproject.org/mt/117397331/5052612
+> Group Owner: yocto+owner@lists.yoctoproject.org
+> Unsubscribe: https://lists.yoctoproject.org/g/yocto/unsub [
+> quaresma.jose@gmail.com]
+> -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
+>
+>
 
---qaJ0yrvtvQOhCdkXxlPs--
+--=20
+Best regards,
+
+Jos=C3=A9 Quaresma
+
+--000000000000ebc116064e523eb0
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr">Hi Thomas,<div><br></div><div>Could this proposal be sent =
+to the OE-core mailing list? It&#39;s probably a bit late for the next LTS,=
+ but it doesn&#39;t hurt to try.</div><div><br></div><div>Jose</div></div><=
+br><div class=3D"gmail_quote gmail_quote_container"><div dir=3D"ltr" class=
+=3D"gmail_attr">Thomas Perrot via <a href=3D"http://lists.yoctoproject.org"=
+>lists.yoctoproject.org</a> &lt;thomas.perrot=3D<a href=3D"mailto:bootlin.c=
+om@lists.yoctoproject.org">bootlin.com@lists.yoctoproject.org</a>&gt; escre=
+veu (ter=C3=A7a, 3/02/2026 =C3=A0(s) 16:29):<br></div><blockquote class=3D"=
+gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(20=
+4,204,204);padding-left:1ex"><div class=3D"msg2835133647391530009"><div><di=
+v>Hello,</div><div><br>On Thu, 2026-01-22 at 09:22 -0800, Khem Raj via <a h=
+ref=3D"http://lists.yoctoproject.org" target=3D"_blank">lists.yoctoproject.=
+org</a> wrote:</div><blockquote type=3D"cite" style=3D"margin:0px 0px 0px 0=
+.8ex;border-left:2px solid rgb(114,159,207);padding-left:1ex"><div dir=3D"l=
+tr"><div dir=3D"ltr"><br></div><br><div class=3D"gmail_quote"><div dir=3D"l=
+tr" class=3D"gmail_attr">On Thu, Jan 22, 2026 at 9:05=E2=80=AFAM Ross Burto=
+n via <a href=3D"http://lists.yoctoproject.org" target=3D"_blank">lists.yoc=
+toproject.org</a> &lt;ross.burton=3D<a href=3D"mailto:arm.com@lists.yoctopr=
+oject.org" target=3D"_blank">arm.com@lists.yoctoproject.org</a>&gt; wrote:<=
+br></div><blockquote type=3D"cite" style=3D"margin:0px 0px 0px 0.8ex;border=
+-left:2px solid rgb(114,159,207);padding-left:1ex"><div>On 22 Jan 2026, at =
+09:33, Thomas Perrot via <a href=3D"http://lists.yoctoproject.org" rel=3D"n=
+oreferrer" target=3D"_blank">lists.yoctoproject.org</a> &lt;thomas.perrot=
+=3D<a href=3D"mailto:bootlin.com@lists.yoctoproject.org" target=3D"_blank">=
+bootlin.com@lists.yoctoproject.org</a>&gt; wrote:<br>&gt; <br>&gt; Hi,<br>&=
+gt; <br>&gt; Currently, OP-TEE support is maintained in the meta-arm layer.=
+ However,<br>&gt; OP-TEE is now being adopted by non-ARM platforms as well,=
+ notably RISC-<br>&gt; V.<br>&gt; <br>&gt; Given this broader adoption, wou=
+ld it make sense to move the OP-TEE<br>&gt; recipes from meta-arm to oe-cor=
+e?<br>&gt; <br>&gt; I&#39;d like to hear the community&#39;s thoughts on th=
+is.<br></div><div><br>Copying in the meta-arm list.<br></div><div><br>My im=
+mediate thought on this is =E2=80=9Cwould the riscv machines actually use t=
+he same recipes=E2=80=9D or is there enough forking and vendor branches hap=
+pening that whilst in theory everyone is using OP-TEE, they=E2=80=99re not =
+all using the _same_ optee.<br></div><div><br>I=E2=80=99m not against movin=
+g genuinely shared recipes somewhere common, but I do think verifying this =
+will actually happen is important.<br></div><div><br>meta-arm tends to have=
+ several versions of optee at once for good reason=E2=80=A6 (currently one,=
+ but about to be two)<br></div><div><br></div><div><br></div></blockquote><=
+div><br></div><div>I think its=C2=A0a good idea, but Ross&#39;s point is go=
+od too. If optee is forked for every architecture that can not be a good th=
+ing. However, if we can get</div><div>qemuarm64 and qemuriscv64 based machi=
+nes use an upstream version reliably, we might be able to even help upstrea=
+m to keep things sane</div><div>atleast for emulated=C2=A0machine=C2=A0arch=
+itecture, similar to u-boot.</div><div>=C2=A0</div></div></div></blockquote=
+><div><br></div><div><div>I agree with this approach. It&#39;s worth noting=
+ that OP-TEE upstream already runs their test suite (xtest) on QEMU. This g=
+ives us confidence that the upstream version works reliably on emulated mac=
+hines.                                                         </div><div><=
+br></div><div>                                                             =
+                                                                           =
+                                                                           =
+                                                                           =
+                                </div><div>  Starting with qemuarm64 and qe=
+muriscv64 support in oe-core using upstream OP-TEE would be a reasonable fi=
+rst step, leaving vendor-specific versions and hardware-specific configurat=
+ions in their respective layers.<br></div></div><div><br>Kind regards,<br>T=
+homas Perrot<br><br></div><blockquote type=3D"cite" style=3D"margin:0px 0px=
+ 0px 0.8ex;border-left:2px solid rgb(114,159,207);padding-left:1ex"><div di=
+r=3D"ltr"><div class=3D"gmail_quote"><blockquote type=3D"cite" style=3D"mar=
+gin:0px 0px 0px 0.8ex;border-left:2px solid rgb(114,159,207);padding-left:1=
+ex"><div>Ross<br></div><div><br></div><div><br></div></blockquote></div></d=
+iv><div><br></div><div><br></div><div><br></div></blockquote><div><br></div=
+><div><span><pre>-- <br></pre><pre>Thomas Perrot, Bootlin
+Embedded Linux and kernel engineering
+<a href=3D"https://bootlin.com" target=3D"_blank">https://bootlin.com</a>
+
+</pre></span></div></div>
+<br>
+-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-<br>
+Links: You receive all messages sent to this group.<br>
+View/Reply Online (#66212): <a href=3D"https://lists.yoctoproject.org/g/yoc=
+to/message/66212" rel=3D"noreferrer" target=3D"_blank">https://lists.yoctop=
+roject.org/g/yocto/message/66212</a><br>
+Mute This Topic: <a href=3D"https://lists.yoctoproject.org/mt/117397331/505=
+2612" rel=3D"noreferrer" target=3D"_blank">https://lists.yoctoproject.org/m=
+t/117397331/5052612</a><br>
+Group Owner: <a href=3D"mailto:yocto%2Bowner@lists.yoctoproject.org" target=
+=3D"_blank">yocto+owner@lists.yoctoproject.org</a><br>
+Unsubscribe: <a href=3D"https://lists.yoctoproject.org/g/yocto/unsub" rel=
+=3D"noreferrer" target=3D"_blank">https://lists.yoctoproject.org/g/yocto/un=
+sub</a> [<a href=3D"mailto:quaresma.jose@gmail.com" target=3D"_blank">quare=
+sma.jose@gmail.com</a>]<br>
+-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-<br>
+<br>
+</div></blockquote></div><div><br clear=3D"all"></div><div><br></div><span =
+class=3D"gmail_signature_prefix">-- </span><br><div dir=3D"ltr" class=3D"gm=
+ail_signature"><div dir=3D"ltr">Best regards,<div><br>Jos=C3=A9 Quaresma</d=
+iv></div></div>
+
+--000000000000ebc116064e523eb0--
 
