@@ -1,237 +1,304 @@
-Return-Path: <debal.ghosh@intel.com>
+Return-Path: <awm5463@psu.edu>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id AAA6CEF4EB6
-	for <webhook@archiver.kernel.org>; Mon,  6 Apr 2026 07:18:41 +0000 (UTC)
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.17])
- by mx.groups.io with SMTP id smtpd.msgproc02-g2.50048.1775459919374159977
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 236C1F3D5E3
+	for <webhook@archiver.kernel.org>; Mon,  6 Apr 2026 13:51:57 +0000 (UTC)
+Received: from PH7PR06CU001.outbound.protection.outlook.com (PH7PR06CU001.outbound.protection.outlook.com [52.101.201.24])
+ by mx.groups.io with SMTP id smtpd.msgproc01-g2.55369.1775483508501589308
  for <yocto@lists.yoctoproject.org>;
- Mon, 06 Apr 2026 00:18:39 -0700
+ Mon, 06 Apr 2026 06:51:49 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@intel.com header.s=Intel header.b=kg/QHOKW;
- spf=pass (domain: intel.com, ip: 192.198.163.17, mailfrom: debal.ghosh@intel.com)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1775459920; x=1806995920;
-  h=from:to:subject:date:message-id:references:in-reply-to:
-   content-transfer-encoding:mime-version;
-  bh=Hu/YzoGz1mGBnXjepHl67kvGOrff2vwIsTPs1QnjwD8=;
-  b=kg/QHOKWguuudTWYagLYYGclgNqsG46AOY3m6UvgKf6cGZXdlC+sPTBw
-   nMdSLJvFJ8Eqj4n/n/jZVkYj4SAXKDW6ri/9YG0/VML1JB1dYCcHeJhcP
-   oj4xwADFkb2WWmseVfkLNUPBZ47Ws4fgwi2BLOrtiyWuGD77Byu/m3YzO
-   v6K0Y5t85o8S3L2ZmwbaWc289zaXpmcNqQKqmeBBH96TtzHh8uX3j6L+r
-   efP1/cK03X44kCmfaX5kL2e6sx5PUTxJx54X7CJNRgK/WIQqY2ocvkNq8
-   7YFXCZhslX1oonmizU7tLfrxUH3Cc2mW52y3Mr9ZROSfXyjtrkK+qK57V
-   w==;
-X-CSE-ConnectionGUID: ssx8ANPiQkuy9v/E8yhZIQ==
-X-CSE-MsgGUID: Jt/N0CkYTZyvurVbTQdM/A==
-X-IronPort-AV: E=McAfee;i="6800,10657,11750"; a="76309797"
-X-IronPort-AV: E=Sophos;i="6.23,163,1770624000"; 
-   d="scan'208";a="76309797"
-Received: from orviesa006.jf.intel.com ([10.64.159.146])
-  by fmvoesa111.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 06 Apr 2026 00:18:39 -0700
-X-CSE-ConnectionGUID: gn9PbxUOT1mBjCKcsrwRuw==
-X-CSE-MsgGUID: YQTqE3qaSMm2KifPv+Pcwg==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,163,1770624000"; 
-   d="scan'208";a="226819261"
-Received: from fmsmsx903.amr.corp.intel.com ([10.18.126.92])
-  by orviesa006.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 06 Apr 2026 00:18:38 -0700
-Received: from FMSMSX902.amr.corp.intel.com (10.18.126.91) by
- fmsmsx903.amr.corp.intel.com (10.18.126.92) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.37; Mon, 6 Apr 2026 00:18:37 -0700
-Received: from fmsedg901.ED.cps.intel.com (10.1.192.143) by
- FMSMSX902.amr.corp.intel.com (10.18.126.91) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.37 via Frontend Transport; Mon, 6 Apr 2026 00:18:37 -0700
-Received: from CY7PR03CU001.outbound.protection.outlook.com (40.93.198.53) by
- edgegateway.intel.com (192.55.55.81) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.37; Mon, 6 Apr 2026 00:18:37 -0700
+ dkim=pass header.i=@psu.edu header.s=selector2 header.b=CIW+Mfci;
+ spf=pass (domain: psu.edu, ip: 52.101.201.24, mailfrom: awm5463@psu.edu)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=lv9KGNvcFydioSjcr/HRZa3RpAQRbu0m1anCadQfcS/mIrafQmY5h4b2VS2WBXH2e7A5b9eeYADYU603OLhzDV/oPCi0OWmTrqm551mPgvY/vdoy6wuLnjkL11kWzzSzklAiZ8pE9He79wC1Uyq6m8glcCeR6kFdJYZTJhpxaRghCn++21NWn02ghBGz3fBEn4RNhPNbWLU2PiUOdCTzzRCVwNJrBcerIQsLE9bnIFwPsWHLH7FfPkjRTTwjAE5zdSLUpAtHhmKYWy8XVUJ11PQmuFsEw1hjkmyY0Hn3QgpeNzOwT96XTpVwKWRpVeepDkCDnAM3FNU5eLJPazvX4A==
+ b=ureQy1hYAFpCfS4lCwHkWNNVjnf0U/PwfrjgqE3b8ZamI80aGpf9S6oBcS2hi56Fxo/R/oz/p4d3wAfTWuuPOLKifSFoSSX/2TWDUQ33WJqGbksbECply53j1t3WJ0gw++P7WmVCZybNzdeFhYXFh1zxMMCy7XuWMw2/r/C1fWgt9aYx2whRTmbvpcxU9VerAk6eLvHEwACdAebsJFLEjIxMgCerDFpZoO5U0CViWCkVlQtdAXiPtzJ7RCZKmjfSAbYp2UZIFKqg8vc81JWXO9408YRZzc0lczaOlBlmMZhpp59tleXbeq6gwmiy5e4eRkAqXsYHdp22aXH6rUoBWQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=0x3gdLLtaNMdzLHrL0AhVO2TZQssaSnTJ52h+dLBkLc=;
- b=CnwvZm5rngjOi6xVXncKIkkve28xkU9mXui/RWRBUQAi6eMSbuPN2Wy+m+X/LR6zW3iNaMi/4Ddfg/bAzse17VJMSPgXSm5ytKmmmF4iiym/oOuFtY6yVfQetfnbxcz5319Jpfr8LydD5UYMI6zCVyfDkqoBMDPua/vtXowQxVQAqq8bnSHrtgZdjX+wemCEDXWbPgbobzHIsRxg5EX0mfgqjszBIS3edskCitSh+mRqfwuwLYhCUYKXe2up2/2Sc3Yq1mqcXjMPRIHgkPa4ud044BVi/DtvKfr4ETWBLzi5pVyQ5gIzuveHD1OmQTY9NR+4Zf7TukQf4BJJuOwGRw==
+ bh=B2rtdXDKC5BCou6nkVzoPeHSyONbaloUnOIGjzSTrKE=;
+ b=CLCFtbj+6y42MRoLwl/vZuxBLXYU4jqOHZDaf+1i3JfNZvjeW+lYDOlV6woy6552MKTOFXqgfmQCPGdJM+wWxP8J+Ty83KhJ6nb6DrmUCHk+3pmQNqcWWE4PNxX9tW/2yw/n9JmbYlLxtDnkwN7Qz7GPDeBY8ruSmT7jo0WDcPH2sneFhhTUhk6PcyMaSGdmx7toDUmgy9ams5hcyJlOQBXARMlsB3kT0mEXxtLLDTvDk+S1wwtCR0R+AvII7PrQe3es8LlV3BYrZTgpwZuwRzKFu13fxngqBWQx34jYa3C9zn2hvFO5Y2xAmFNmjB/CI+dAWmVuSvvhFSQMKjAVWw==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Received: from SN7PR11MB7018.namprd11.prod.outlook.com (2603:10b6:806:2ad::14)
- by CY5PR11MB6282.namprd11.prod.outlook.com (2603:10b6:930:22::7) with
+ smtp.mailfrom=psu.edu; dmarc=pass action=none header.from=psu.edu; dkim=pass
+ header.d=psu.edu; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=psu.edu; s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=B2rtdXDKC5BCou6nkVzoPeHSyONbaloUnOIGjzSTrKE=;
+ b=CIW+MfciXRVPVIu/cbATV9LJvpBxOQJgOErkb46YEeaW30mT9ZydNNHdBmaDTZeK9ATeElZeUhKYk9CSf+waP9v3CI5V4l2Dv1mkhJN7lrDRaVOaLrK2OkYFy4Tu6Kx+UsE5GS7nCH7GEjEUCEYii/FECr6O1V7aNgDkFRb96odKWFc2SUdbKGAjAUud/GRHzG0Zop0SpbzcfhTkrtTKRz3cCOCi4zCwyleDxxwwdqSrdqkqjubDGYkkJwMNB6naSQFdhbc3FTLZLHSQsd41UdL+L+1uHt+j5MPqdVStXB6qW3TYnDl1+Z6E/CWAO4553aYAXT5dHuM647QEIfHVig==
+Received: from SA3PR02MB9996.namprd02.prod.outlook.com (2603:10b6:806:37d::15)
+ by SA3PR02MB11046.namprd02.prod.outlook.com (2603:10b6:806:460::11) with
  Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9769.18; Mon, 6 Apr
- 2026 07:18:35 +0000
-Received: from SN7PR11MB7018.namprd11.prod.outlook.com
- ([fe80::bc48:bc16:39d:b43]) by SN7PR11MB7018.namprd11.prod.outlook.com
- ([fe80::bc48:bc16:39d:b43%6]) with mapi id 15.20.9769.015; Mon, 6 Apr 2026
- 07:18:34 +0000
-From: "Ghosh, Debal" <debal.ghosh@intel.com>
-To: "qa-build-notification@lists.yoctoproject.org"
-	<qa-build-notification@lists.yoctoproject.org>,
-	"yocto@lists.yoctoproject.org" <yocto@lists.yoctoproject.org>,
-	openembedded-core <openembedded-core@lists.openembedded.org>, Pokybuild User
-	<pokybuild@yoctoproject.org>
-Subject: RE: [qa-build-notification] QA notification for completed autobuilder
- build (yocto-5.0.17.rc1)
-Thread-Topic: [qa-build-notification] QA notification for completed
- autobuilder build (yocto-5.0.17.rc1)
-Thread-Index: AQHcwr+Z1uFm7+dMSES/hscBpyn5r7XRpJXQ
-Date: Mon, 6 Apr 2026 07:18:34 +0000
-Message-ID: <SN7PR11MB7018EC8104302476A06ECF46F45DA@SN7PR11MB7018.namprd11.prod.outlook.com>
-References: <0101019d4f125330-7e1f1d56-809f-4925-a977-4c36436ac0d5-000000@us-west-2.amazonses.com>
-In-Reply-To: <0101019d4f125330-7e1f1d56-809f-4925-a977-4c36436ac0d5-000000@us-west-2.amazonses.com>
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9769.17; Mon, 6 Apr
+ 2026 13:51:46 +0000
+Received: from SA3PR02MB9996.namprd02.prod.outlook.com
+ ([fe80::f762:c2aa:e59:fd74]) by SA3PR02MB9996.namprd02.prod.outlook.com
+ ([fe80::f762:c2aa:e59:fd74%5]) with mapi id 15.20.9769.014; Mon, 6 Apr 2026
+ 13:51:46 +0000
+From: "Marchini, Anthony A" <awm5463@psu.edu>
+To: "yocto@lists.yoctoproject.org" <yocto@lists.yoctoproject.org>,
+	"pokybuild@yoctoproject.org" <pokybuild@yoctoproject.org>
+Subject: RE: [yocto] QA notification for completed autobuilder build
+ (yocto-5.3.2.rc1)
+Thread-Topic: [yocto] QA notification for completed autobuilder build
+ (yocto-5.3.2.rc1)
+Thread-Index: AQHcpNBGq1Em6ydGkUCNkmpVfhahh7XST2PK
+Date: Mon, 6 Apr 2026 13:51:45 +0000
+Message-ID: 
+ <SA3PR02MB999616996BFC76AC00C15988A95DA@SA3PR02MB9996.namprd02.prod.outlook.com>
+References: 
+ <0101019c8ae412ff-845f6e40-3349-408d-bf21-31af2cb42d7b-000000@us-west-2.amazonses.com>
+In-Reply-To: 
+ <0101019c8ae412ff-845f6e40-3349-408d-bf21-31af2cb42d7b-000000@us-west-2.amazonses.com>
 Accept-Language: en-US
 Content-Language: en-US
 X-MS-Has-Attach: 
 X-MS-TNEF-Correlator: 
 authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
+ header.d=none;dmarc=none action=none header.from=psu.edu;
 x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: SN7PR11MB7018:EE_|CY5PR11MB6282:EE_
-x-ms-office365-filtering-correlation-id: af745b92-baba-4045-c07e-08de93acb722
+x-ms-traffictypediagnostic: SA3PR02MB9996:EE_|SA3PR02MB11046:EE_
+x-ms-office365-filtering-correlation-id: 1c1c0f63-5c21-4c4b-7391-08de93e3a486
 x-ms-exchange-senderadcheck: 1
 x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;ARA:13230040|4022899009|1800799024|376014|366016|38070700021|22082099003|18002099003|56012099003;
-x-microsoft-antispam-message-info: wbXNNGEkpm1mNnZE1qXU1PntClv7J/yPp+Fm8LnOc/6+Z+zX6uVaq8bLjflh6AtUheAxq9+BTDGjQQ/0rpCQ95hdACkvgs5v/LUBln9QmN/9hv8b1hpPY1fnP8+e3bjLhqzDWyCqqnXU4BUtITmPCW7ibAFUHzhcK28UneFHYJmlIzxj8i5tnYIkAFFHVQEpT0fEkKdbvjBFhaAtSdIlNwSzYakGZ5PlQy2Ofp2tbtAZojtgU79g2eYZkDeoxbqIo/jM2FOl65oDjSFchB5Pm0ZyoK3eicdgyrbdFrPwEKeKTiMNu5QHlSMEYd74q0a59Uqk9Kp0jTMAyeFFzJIAcFu0b/ghTYBgqsbBYS+GcwDIXTc8v4A68p75CZra+Ckf5Wl/An4mxG2FQ/daoyArPyH2Uy6nahsFvgnfIzZSOGqbtu2grpErDTF8b2cEcrQBc2W3SnXV6uAYtfo8dFRLs1HDPuchjOWTPpmT6qGgCYVhab+RYi5s2fEHKdlW+shQEakFf9GyNmYH6JpE5BIHy32Fgx/lOxVCe62ZkIGS2WEj4Fwt/TayzWukiHKzklWczaeB/6QOm0lZJj4o5wuYwUwKzWQOTLVbrzqboriVttN5ZmZW2Udy1ayABHDqtLZIpM5msG4LY/6rVpMtGB52D2tIEFuAgxgjfyK6Wa5SekmIi1swOznRhxMc5sKdpUeCpm+GtfNpi9aomKx4Uo7zSNHk5lpYcDaKOAIVGwum/Pmd/grzHhcNtF5aFQYl+JOx
-x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:SN7PR11MB7018.namprd11.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(4022899009)(1800799024)(376014)(366016)(38070700021)(22082099003)(18002099003)(56012099003);DIR:OUT;SFP:1101;
+x-microsoft-antispam: 
+ BCL:0;ARA:13230040|10070799003|3109299003|69100299015|7049299003|376014|1800799024|366016|786006|38070700021|56012099003|8096899003|13003099007|18002099003|22082099003;
+x-microsoft-antispam-message-info: 
+ EJwOT4CIwHHK4G7SCZhpOO0cFv736Jk3lJRjiBQ2G+lmXiUcCV1A80Wl65wxkFPVREl2wtGki1vM92Y3TTbXv9OhbYEXSltdkJiaPAc6HNdd80WvNBfAtkwIg53NFwW8QXViZg+PdWn40cugFl2We7eGrUb1fIrhY6PdAqBBxTMVJbj6jBSy1gNFFrsTuZJC0Ta8CmHdG3TWjDFyE4LaUifoIW+bOF84OTIu+/XLCmQLbTwrZNIKUzI8fALuHcclWTXCKzqzrwCaB+9i65fjNYO4oB4ixGvGN7QFOdDnOYhZGctFmCoY9PRvvarTCmrwqYrTP5oMfDlQ/2NDChnp8diXoEOtTcGSBwN8QZPtFZfhxvlPkclFeGsy2c1r3xlRSReRo0IDPTGVV/a6g9IyMjeaT0QJwZesQ/8Q28+pd74Pp+MpoHQie/4eqxp0cQ9DnSI4usKkZp+PhtDKJaJxgEXOjEol2se7ny3sjpOa/skFDyMLKTXz0lTyk4DTR+ufwxN+ihq9fa0uvBC0GJTjPRA1IAvbuuFWIJkcGUSFN6ONv4Ywm2nTHIt4A7YII6L9cYSSh/qB9nbrKTJyj5lcUiwQkj4m87qaHyDDuT4Kvjrj2WBxvBYRzJwn6ikKT4kl2KPDvgDkhLZ245KdehpJcaYIg+8zCiM0gsNaWkAcXiuJrMtvIQkHpPga3V/OoqkCggM4YRfJEr1Tz/6nW6MDhM1u3Byt/kHKELyz7RFVSPvi+htMEQANKAhlTL8wseOW
+x-forefront-antispam-report: 
+ CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:SA3PR02MB9996.namprd02.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(10070799003)(3109299003)(69100299015)(7049299003)(376014)(1800799024)(366016)(786006)(38070700021)(56012099003)(8096899003)(13003099007)(18002099003)(22082099003);DIR:OUT;SFP:1101;
 x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?Rs1qtSCYs/IHMIlBr6Bmu5YkJUXnV0+WplsKU4OnyCyYr3wUrhJOID3DnUs1?=
- =?us-ascii?Q?vX4wMt/8ZRbw/coX86tp/9QiK/973Lq7pudTUxCVA7yhHJEilhE7Sz6VNR5s?=
- =?us-ascii?Q?zM5BOdqLnhrkUkONo86ke9xVmeUxIJSwLCwfh9TmKAX9djlL12MjxL8Vff1r?=
- =?us-ascii?Q?KCAGTF1ATVWQzbM3BHHWEMkMG0i2XF2Pp5LjuULzhZO9j2XCIW85zCg4IzLP?=
- =?us-ascii?Q?qGgmEL+inXtojxfDTLA9UtwGQgc8N0XKa67xOv5qLPPqG99l11dgivxXBGMw?=
- =?us-ascii?Q?3mG+hm0O9iHTzb9/9Scc4qa4rEUkrdbqNzaATfoQcxO8ilJirAb7RmTEdMV0?=
- =?us-ascii?Q?KFCZJZr29WI8snyi6FI36LpIQdf57N+1CJY8kb+dQFYm3wdbcV6NWmUm7QQG?=
- =?us-ascii?Q?DowF2VWhw8kYRd1zu4q6XJ3RCPoaCcZtNdpt9ZPlS+0I0ogaPc5fYF5NI3TG?=
- =?us-ascii?Q?YcNtEW7ji8WqxI0oRTUgUj1vmYqS57NhEPUTyyIjs+2oc9BqbJL/EHXKZhQ3?=
- =?us-ascii?Q?otLWrYaElZVqVFHFlDcAAe+IP2x5u3wpMH27hQ3IDmueieilabLvoyrT2EVN?=
- =?us-ascii?Q?h2QdNOY0HenELUcdgbOpqBn2YOce6WA/UKD1MqUv/dDS5wXW0BIHDTpOio6w?=
- =?us-ascii?Q?u1Fuid9xx9aIq+QASJIwRRxVttnDkIrtUh/6jzlB3sLDI7/4WbwVlT+f5yCS?=
- =?us-ascii?Q?SZ6c3eWjqzkbpGljasIe67UnghfNr3d3TO9Yen/te3VufZv1JwWW95u2h7qn?=
- =?us-ascii?Q?TtYyd4VidNW3j1cF/wx2ZeO58jwJkwBQS9Oc8Ua49clFlzqARXp73bhwBiZD?=
- =?us-ascii?Q?/jaI1ueuCwJpgZMeC92y4iAN1lvbaVOAGIIqB6h1fV1RtUhOjxfgIQbk2U+C?=
- =?us-ascii?Q?xryiOZgqhcLdbTXgPD8/ioqAbKmzDmFnir4UuWJlzN/81/KNVs95pqkxI4DO?=
- =?us-ascii?Q?1mojZzE3M8MyqnQT0hJVaqWhPFksHX6V1v8yM4HLNwua5g1BawN1EeHvAdZs?=
- =?us-ascii?Q?IP6PZdk8lhWhchMf09PMI7YZAkNnLJUaMfjk5NmliMsNbT3vVsKhVrkw8pBJ?=
- =?us-ascii?Q?ZAyd2QUC1+2M86oIAdk9cDcVa2rw2WriANV1khb4t2q2u6OUKYHNXmt7jRg3?=
- =?us-ascii?Q?zNVtR3ZtivPuJXx0aiq2OTbP42DJn7QUR1w83/5lfKgqHzwByN4y80plH9P6?=
- =?us-ascii?Q?xuzglQ9bTMJiFgQsEj/JrnsV1ZLHPsNsspJayrKiWz2UlScBSfi3TNN7+cU9?=
- =?us-ascii?Q?UEeC6EnJTQrWL5Uy6OFk0h2sNduV0IvuW1HHeaB4wc9AGJt3pbsSYr3KYmOY?=
- =?us-ascii?Q?GxXDXQWduOUf07+iG296eq1U1qgaMeaZWxVNe0glkRDZeTA+Y2Q6nP0JBRKe?=
- =?us-ascii?Q?qUZBBufdH0BCePUV8mgwR879HPglQaAQqxjVBBQ90wLswveElX++rlQIQFKG?=
- =?us-ascii?Q?An82wlC8gEWqAQO6d8KUcOGcx8RAykKbF3Ap83KvPA1U6xP4zjGClmGhSsrM?=
- =?us-ascii?Q?0JX8ep2cvlwtVepj1RteG07fwamU18Iwxb2k3S9Rad8vH4oqxrNUUEr67YG2?=
- =?us-ascii?Q?q/sYvFTBruqjTcxJyLL0/IIcqiL1MD7JLqNkLtVxJRQu7Bj7G+vwhj8xlBM7?=
- =?us-ascii?Q?7SKvWS1SpjBgZKwgxEcQHsmmHEQyYOX+/MbF7CVGEHdrU5/Y/V0QBjAsLprl?=
- =?us-ascii?Q?b4MgYpvZlgM/EjjRPqavXMXqoZ6lv904S/9gbr2Q2uSwFqcv?=
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+x-ms-exchange-antispam-messagedata-0: 
+ =?us-ascii?Q?ADLorHXkX7/0ovhXbZYWOyMPT2VDZwHjKEJH+YSC7hqMO8ehBz7LHitr803M?=
+ =?us-ascii?Q?m1dxG0bDctwiTa7DyUfsFO6xw7gpj96qoRcoxo5SAg6ZXtuFVxkUc6ttAEwI?=
+ =?us-ascii?Q?9JyRzBk0aaZV5joHy8hXiLzaLIQ7KRerkLt+KeUYN2+CaCpliZUe/7ulCDgz?=
+ =?us-ascii?Q?kkewCCqPZ73xxly5TEbkOtvzJbqHrhJtmbHsOKr3v9gEU6PHv8wzuiOAkr+V?=
+ =?us-ascii?Q?3zVEOLNPDN/V0dScQP+IVBD4J+IQ/MWUspS2isnkqhFBjEba8h1uCgLdWvB5?=
+ =?us-ascii?Q?GfRpqzmRitobFbRwOwNQjDUY71kHHLJs4KRh1KWhgJwi+gvj2A+2PD742EF9?=
+ =?us-ascii?Q?e+VVpTwEkglZvsF0hBW2aBV6/aXGDyhSJ2SJBJOIqKTGhVWG1YFbLu/Oevv9?=
+ =?us-ascii?Q?3Jg5TuEikg1w1QXPNq4VbMiGgoUNDJfVI6/a/mMSVTmoJa493LtkRgHuidoL?=
+ =?us-ascii?Q?6k/nl6AudXZ8s/H2wp7n6bXW+kuoLdp4FQZmf6c4BeP4geDRr6wYQ1D2S4Qa?=
+ =?us-ascii?Q?Ncb+1QxOgvWrcThVl6NarjqQ0rs6dT0BlALLBEo+3ACrmNWuR6lx7LtnhJ65?=
+ =?us-ascii?Q?Nr8Ep1hk6Ew2Bp9+VLtScyRQ/8nDWVEZwiRKaSzQOoSDOt8usglnFw29JLlF?=
+ =?us-ascii?Q?mDPu1UY4ek0ENumUdztJE4dni1XTJe9HtBdgUzQkOMMNAKxfnMKAzbDOfynI?=
+ =?us-ascii?Q?9B9dFK9BXejgvInNTr16zuVhXR8jdFIxZYzJ/rjkAWxu74AOxEYkf6oR2C4H?=
+ =?us-ascii?Q?VDjjiAc20vXiP+LhDqzbBlJNucH1lDMQrF4cZwn4wfXfbveKp081oyiJXAtP?=
+ =?us-ascii?Q?4fCfVCXLW/tv3mP62MI4tRqJz0Ob1ISL13zCVib9B8BDBL0qskooEebSQC3a?=
+ =?us-ascii?Q?v5Zk8WPnrEKYQGt8XYrdC7MAorSu1FteX6MmjjQWF7jTf+/sQSAN9Q6MJtkO?=
+ =?us-ascii?Q?cayqqPFVi0pBT1CiPEe70c0BJOGs3wj6WtNWcckFyIX0jq1tQtnWVL6IQw4+?=
+ =?us-ascii?Q?V0cCxnUcm7HpMN7gqdPtINl4Wy70DDBxdENre6bsnQk5zLTaVrxP/V7JP854?=
+ =?us-ascii?Q?74ePqa3+1utpFZuoB0t1YVODiSrKNGM44oM1OxF0ABQsoZ8Q3YoonH1IN46c?=
+ =?us-ascii?Q?Q8qfaA5cH0FPTKbw1m7KqIRcmhMmWpp2U9Z9B9nLS84mh4Rtqt4TWFQ3k7Cd?=
+ =?us-ascii?Q?iIo268KrS6JPcAvPAvNXa29Nmmd8Vf1ML5cwaU9ufbsvM0OKAOVYkjjA+Mvu?=
+ =?us-ascii?Q?B8NIw3PDYCMTQ8APV24qnIW1dQx5qWoSGURNYkqO3Lxp8yQCHbapGPReKXKb?=
+ =?us-ascii?Q?jpHbjPrEqBJgSk0lS7TBEnIcebMdYou3FsuJvXUYURiFYdnnr5gGZwLsU7lq?=
+ =?us-ascii?Q?bCpVK+KdmDRkLQ+8YNcZWwb3SAfyZfJrtJoGTX9UtC9m9Wy8420DpH4ors8T?=
+ =?us-ascii?Q?SH2q1vC+OHUoRVDaI45RQP1MhocPRvRwsatPlu01c6RakHNamuMbbkcM0DEt?=
+ =?us-ascii?Q?GeJ+tN0k0SewqCIunDwnVwgOXRrFsMOo4IEanwUgzQUsD8MGQDgbw41m90hX?=
+ =?us-ascii?Q?NseCfpR1rmmtvKyn7M1xoEd/15Q9XRb28JrSUQnpPSlVXYVxtB/c0c2wyaxk?=
+ =?us-ascii?Q?FtlBmRye8UL/yia2oGpi1MQHn5TgjNGf4D25dDaf8xae/sLYyZ4HWaX6RGEw?=
+ =?us-ascii?Q?hS1PRT+FU8r1thHd5XeCXWURZIvRAEWYpW8vXztGHZPZ1LklXPilhAupa4GW?=
+ =?us-ascii?Q?jjFLTMsahg=3D=3D?=
+Content-Type: multipart/alternative;
+	boundary="_000_SA3PR02MB999616996BFC76AC00C15988A95DASA3PR02MB9996namp_"
 MIME-Version: 1.0
-X-Exchange-RoutingPolicyChecked: NAyKXvPKONWIsdzDBOT1UdpasoXKi/sEfu6XLvAqeXVIGTaKVhbCCztFOKggToMDJJ8bdVcNlM5h1E/JAkKS7kg+NBZqh6ZPN46yf+oVhhlHSXOYpdTfU/fw+gziGSc6ib1Fa98f0Vwp5oyhnkdoaihNjjApbjJkkkoFGhygV1Epxu1LMPMaL9aS8xLbHn6dQwvPCdp9GtREARk0GE6eTz+OLGCRF1kFc/HL+4+jwr9M+wOjldNWH7d/NfP3yHRQFrPVe7kEx6TxGG6vjov9FTy+KlYht19auBcuu8jPKKRbMfEyH6Lb4VOdTUFU6959B3H1BTCOow1SAZty3pSYcQ==
+X-OriginatorOrg: psu.edu
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: SN7PR11MB7018.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: af745b92-baba-4045-c07e-08de93acb722
-X-MS-Exchange-CrossTenant-originalarrivaltime: 06 Apr 2026 07:18:34.8918
+X-MS-Exchange-CrossTenant-AuthSource: SA3PR02MB9996.namprd02.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 1c1c0f63-5c21-4c4b-7391-08de93e3a486
+X-MS-Exchange-CrossTenant-originalarrivaltime: 06 Apr 2026 13:51:45.9964
  (UTC)
 X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-id: 7cf48d45-3ddb-4389-a9c1-c115526eb52e
 X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: EEBwMjwoGws8PQ2JKMgWhY/RWCR/MF4ITxYGgmEeyuIZAXQqd0uHTjiskRqjnsiEIG0ydjJevKvNnxIzMba/+g==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CY5PR11MB6282
-X-OriginatorOrg: intel.com
+X-MS-Exchange-CrossTenant-userprincipalname: PTaah3j1MZfzfo833hlvxK4FkuOks3G7NN9zepNIjp/M+QPSPoLUut7SMPvmlGA1
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA3PR02MB11046
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from 45-33-107-173.ip.linodeusercontent.com [45.33.107.173] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Mon, 06 Apr 2026 07:18:41 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/66384
+ <yocto@lists.yoctoproject.org>; Mon, 06 Apr 2026 13:51:57 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/66385
 
-Hi all,
+--_000_SA3PR02MB999616996BFC76AC00C15988A95DASA3PR02MB9996namp_
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 
-Intel and WR YP QA is planning for QA execution for YP build yocto-5.0.17.r=
-c1. We are planning to execute the following tests for this cycle:
-
-
-OEQA-manual tests for following module:
-
-OE-Core
-BSP-hw
-
-
-Runtime auto test for following platforms:
-
-MinnowBoard Turbot - 32bit
-Meteor Lake-P
-Alder Lake-S
-Raptor Lake-P
-Beaglebone
+[laugh]         Marchini, Anthony A reacted to your message:
+________________________________
+From: yocto@lists.yoctoproject.org <yocto@lists.yoctoproject.org> on behalf=
+ of Pokybuild User via lists.yoctoproject.org <pokybuild=3Dyoctoproject.org=
+@lists.yoctoproject.org>
+Sent: Monday, February 23, 2026 2:25:28 PM
+To: yocto@lists.yoctoproject.org <yocto@lists.yoctoproject.org>
+Cc: qa-build-notification@lists.yoctoproject.org <qa-build-notification@lis=
+ts.yoctoproject.org>
+Subject: [yocto] QA notification for completed autobuilder build (yocto-5.3=
+.2.rc1)
 
 
-ETA for completion: 9/04/2026.
-
-Best regards,
-Debal Ghosh
-
------Original Message-----
-From: qa-build-notification@lists.yoctoproject.org <qa-build-notification@l=
-ists.yoctoproject.org> On Behalf Of Pokybuild User via lists.yoctoproject.o=
-rg
-Sent: 02 April 2026 22:12
-To: yocto@lists.yoctoproject.org
-Cc: qa-build-notification@lists.yoctoproject.org
-Subject: [qa-build-notification] QA notification for completed autobuilder =
-build (yocto-5.0.17.rc1)
+    A build flagged for QA (yocto-5.3.2.rc1) was completed on the autobuild=
+er and is available at:
 
 
-    A build flagged for QA (yocto-5.0.17.rc1) was completed on the autobuil=
-der and is available at:
+        https://nam10.safelinks.protection.outlook.com/?url=3Dhttps%3A%2F%2=
+Fvalkyrie.yocto.io%2Fpub%2Freleases%2Fyocto-5.3.2.rc1&data=3D05%7C02%7Cawm5=
+463%40psu.edu%7Cbafe3330088441b36a6e08de72e766bc%7C7cf48d453ddb4389a9c1c115=
+526eb52e%7C0%7C0%7C639074535354555532%7CUnknown%7CTWFpbGZsb3d8eyJFbXB0eU1hc=
+GkiOnRydWUsIlYiOiIwLjAuMDAwMCIsIlAiOiJXaW4zMiIsIkFOIjoiTWFpbCIsIldUIjoyfQ%3=
+D%3D%7C0%7C%7C%7C&sdata=3DU6IbBrIkmmN%2BXySfo95PMO42aaRkIakcHD%2BsYvnolTg%3=
+D&reserved=3D0<https://valkyrie.yocto.io/pub/releases/yocto-5.3.2.rc1>
 
 
-        https://valkyrie.yocto.io/pub/releases/yocto-5.0.17.rc1
+    Build URL: https://nam10.safelinks.protection.outlook.com/?url=3Dhttps%=
+3A%2F%2Fautobuilder.yoctoproject.org%2Fvalkyrie%2F%23%2Fbuilders%2F29%2Fbui=
+lds%2F3262&data=3D05%7C02%7Cawm5463%40psu.edu%7Cbafe3330088441b36a6e08de72e=
+766bc%7C7cf48d453ddb4389a9c1c115526eb52e%7C0%7C0%7C639074535354611011%7CUnk=
+nown%7CTWFpbGZsb3d8eyJFbXB0eU1hcGkiOnRydWUsIlYiOiIwLjAuMDAwMCIsIlAiOiJXaW4z=
+MiIsIkFOIjoiTWFpbCIsIldUIjoyfQ%3D%3D%7C0%7C%7C%7C&sdata=3DwYXmSruEvNq7jzu78=
+R%2FSmMzNKsj7ImSnAOB6nIQROds%3D&reserved=3D0<https://autobuilder.yoctoproje=
+ct.org/valkyrie/#/builders/29/builds/3262>
+
+    Build hash information:
+
+    bitbake: 7af7e04f3adc8ba144d9e2e6b37ed4ddb3b59df0
+meta-agl: c1761e898d7fca3d8438e9b010eaf234f94fa407
+meta-arm: 73460c53949658ab6c8b46269c3a69caccd3f745
+meta-aws: 49ee51b051ffa9a0eb3325cb8fea351eaf8cb9d6
+meta-clang: cf20f8bd1366d41094c945597b95dd746e87b871
+meta-intel: 8ca2f37f456db6693e696174ada1f4317e3ebee2
+meta-mingw: 00323de97e397d4f6734ef2191806616989f5e10
+meta-openembedded: d28d0a23615f4d91d125fdcd247a71245087dab3
+meta-qcom: 49bc2113adb0b86d463c311d32d4fb1007fe4845
+meta-virtualization: 8f03a0cc8950ef5d5e4f11d9ae494946d1991e45
+meta-yocto: 691ff0fbeab54eceb26d90140d7a8f672532235b
+oecore: 21314665e198c1abe458d0bad5c4d14d4c3ad856
+yocto-docs: 9c363d270ab45f3443391fb7275817db69d8a5d4
 
 
-    Build URL: https://autobuilder.yoctoproject.org/valkyrie/#/builders/29/=
-builds/3577
 
-    Build hash information:=20
-
-    bitbake: d3b4c352dd33fca90cd31649eda054b884478739
-meta-agl: 6937866399dfbf3f37764522545426fde3f9f97a
-meta-arm: a81c19915b5b9e71ed394032e9a50fd06919e1cd
-meta-aws: 78fc3cf6eb3c8f7501d1ddf05d1787c43526b11b
-meta-clang: 5bce7e26a38a58bb52242494e54ab2af40009574
-meta-intel: 5d153e35b4e752505efeae368f188fac5e31cf33
-meta-mingw: bd9fef71ec005be3c3a6d7f8b99d8116daf70c4f
-meta-openembedded: 06f846a325fde423bb0a6d49d771d8c1e144d7eb
-meta-qcom: ec80a36bce11d8182b4bb2a6fa0359adfeccde0a
-meta-virtualization: 3dd635f613f7299d986a8ab6bc9f584370f8ed1d
-meta-yocto: c7c38663a1cafb1fa8593c0b246811e51d3bbe20
-oecore: 52380df998b3a8fe6a091f8547434a3231320a8e
-poky: 1e8099846661571ede077f533eb1b6c86818ddce
-yocto-docs: aa7226705451e6c1ef964d49963bbed29b267c27
-
-
-   =20
 This is an automated message from the Yocto Project Autobuilder
 Git: git://git.yoctoproject.org/yocto-autobuilder2
 Email: richard.purdie@linuxfoundation.org
 
 
-    =20
 
 
--=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
-Links: You receive all messages sent to this group.
-View/Reply Online (#678): https://lists.yoctoproject.org/g/qa-build-notific=
-ation/message/678
-Mute This Topic: https://lists.yoctoproject.org/mt/118636557/9976127
-Group Owner: qa-build-notification+owner@lists.yoctoproject.org
-Unsubscribe: https://lists.yoctoproject.org/g/qa-build-notification/leave/1=
-4426999/9976127/44033455/xyzzy [debal.ghosh@intel.com]
--=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
+--_000_SA3PR02MB999616996BFC76AC00C15988A95DASA3PR02MB9996namp_
+Content-Type: text/html; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 
+<html>
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
+>
+<meta name=3D"Generator" content=3D"Microsoft Exchange Server">
+<!-- converted from text --><style><!-- .EmailQuote { margin-left: 1pt; pad=
+ding-left: 4pt; border-left: #800000 2px solid; } --></style>
+</head>
+<body>
+<div>
+<table cellspacing=3D"0" cellpadding=3D"0" border=3D"0" style=3D"background=
+:#EFF6FC; width:100%; border-radius:10px; border-collapse:separate; border:=
+1px; border-radius:6px; margin-bottom:12px">
+<tbody style=3D"font-family:-apple-system,Segoe UI,HelveticaNeue-Bold,Helve=
+tica Neue Bold,Helvetica Neue,Helvetica,Arial,sans-serif; font-size:20px">
+<tr>
+<td style=3D"padding:5px 15px">
+<table style=3D"width:100%">
+<tbody style=3D"font-family:-apple-system,Segoe UI,HelveticaNeue-Bold,Helve=
+tica Neue Bold,Helvetica Neue,Helvetica,Arial,sans-serif">
+<tr>
+<td>
+<table style=3D"border-spacing:0">
+<tbody style=3D"font-family:-apple-system,Segoe UI,HelveticaNeue-Bold,Helve=
+tica Neue Bold,Helvetica Neue,Helvetica,Arial,sans-serif">
+<tr>
+<td><img alt=3D"laugh" src=3D"https://outlook-1.cdn.office.net/assets/react=
+ion/laugh.png" style=3D"height:25px; width:25px">
+</td>
+<td><span style=3D"font-weight:bold; padding-left:3px">Marchini, Anthony A<=
+/span> <span>
+reacted to your message:</span> </td>
+</tr>
+</tbody>
+</table>
+</td>
+</tr>
+</tbody>
+</table>
+</td>
+</tr>
+</tbody>
+</table>
+<hr tabindex=3D"-1" style=3D"display:inline-block; width:98%">
+<div id=3D"x_divRplyFwdMsg" dir=3D"ltr"><font face=3D"Calibri, sans-serif" =
+color=3D"#000000" style=3D"font-size:11pt"><b>From:</b> yocto@lists.yoctopr=
+oject.org &lt;yocto@lists.yoctoproject.org&gt; on behalf of Pokybuild User =
+via lists.yoctoproject.org &lt;pokybuild=3Dyoctoproject.org@lists.yoctoproj=
+ect.org&gt;<br>
+<b>Sent:</b> Monday, February 23, 2026 2:25:28 PM<br>
+<b>To:</b> yocto@lists.yoctoproject.org &lt;yocto@lists.yoctoproject.org&gt=
+;<br>
+<b>Cc:</b> qa-build-notification@lists.yoctoproject.org &lt;qa-build-notifi=
+cation@lists.yoctoproject.org&gt;<br>
+<b>Subject:</b> [yocto] QA notification for completed autobuilder build (yo=
+cto-5.3.2.rc1)</font>
+<div>&nbsp;</div>
+</div>
+</div>
+<font size=3D"2"><span style=3D"font-size:11pt;">
+<div class=3D"PlainText"><br>
+&nbsp;&nbsp;&nbsp; A build flagged for QA (yocto-5.3.2.rc1) was completed o=
+n the autobuilder and is available at:<br>
+<br>
+<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a href=3D"https://valkyrie.yoct=
+o.io/pub/releases/yocto-5.3.2.rc1">https://nam10.safelinks.protection.outlo=
+ok.com/?url=3Dhttps%3A%2F%2Fvalkyrie.yocto.io%2Fpub%2Freleases%2Fyocto-5.3.=
+2.rc1&amp;data=3D05%7C02%7Cawm5463%40psu.edu%7Cbafe3330088441b36a6e08de72e7=
+66bc%7C7cf48d453ddb4389a9c1c115526eb52e%7C0%7C0%7C639074535354555532%7CUnkn=
+own%7CTWFpbGZsb3d8eyJFbXB0eU1hcGkiOnRydWUsIlYiOiIwLjAuMDAwMCIsIlAiOiJXaW4zM=
+iIsIkFOIjoiTWFpbCIsIldUIjoyfQ%3D%3D%7C0%7C%7C%7C&amp;sdata=3DU6IbBrIkmmN%2B=
+XySfo95PMO42aaRkIakcHD%2BsYvnolTg%3D&amp;reserved=3D0</a><br>
+<br>
+<br>
+&nbsp;&nbsp;&nbsp; Build URL: <a href=3D"https://autobuilder.yoctoproject.o=
+rg/valkyrie/#/builders/29/builds/3262">
+https://nam10.safelinks.protection.outlook.com/?url=3Dhttps%3A%2F%2Fautobui=
+lder.yoctoproject.org%2Fvalkyrie%2F%23%2Fbuilders%2F29%2Fbuilds%2F3262&amp;=
+data=3D05%7C02%7Cawm5463%40psu.edu%7Cbafe3330088441b36a6e08de72e766bc%7C7cf=
+48d453ddb4389a9c1c115526eb52e%7C0%7C0%7C639074535354611011%7CUnknown%7CTWFp=
+bGZsb3d8eyJFbXB0eU1hcGkiOnRydWUsIlYiOiIwLjAuMDAwMCIsIlAiOiJXaW4zMiIsIkFOIjo=
+iTWFpbCIsIldUIjoyfQ%3D%3D%7C0%7C%7C%7C&amp;sdata=3DwYXmSruEvNq7jzu78R%2FSmM=
+zNKsj7ImSnAOB6nIQROds%3D&amp;reserved=3D0</a><br>
+<br>
+&nbsp;&nbsp;&nbsp; Build hash information: <br>
+<br>
+&nbsp;&nbsp;&nbsp; bitbake: 7af7e04f3adc8ba144d9e2e6b37ed4ddb3b59df0<br>
+meta-agl: c1761e898d7fca3d8438e9b010eaf234f94fa407<br>
+meta-arm: 73460c53949658ab6c8b46269c3a69caccd3f745<br>
+meta-aws: 49ee51b051ffa9a0eb3325cb8fea351eaf8cb9d6<br>
+meta-clang: cf20f8bd1366d41094c945597b95dd746e87b871<br>
+meta-intel: 8ca2f37f456db6693e696174ada1f4317e3ebee2<br>
+meta-mingw: 00323de97e397d4f6734ef2191806616989f5e10<br>
+meta-openembedded: d28d0a23615f4d91d125fdcd247a71245087dab3<br>
+meta-qcom: 49bc2113adb0b86d463c311d32d4fb1007fe4845<br>
+meta-virtualization: 8f03a0cc8950ef5d5e4f11d9ae494946d1991e45<br>
+meta-yocto: 691ff0fbeab54eceb26d90140d7a8f672532235b<br>
+oecore: 21314665e198c1abe458d0bad5c4d14d4c3ad856<br>
+yocto-docs: 9c363d270ab45f3443391fb7275817db69d8a5d4<br>
+<br>
+<br>
+&nbsp;&nbsp;&nbsp; <br>
+This is an automated message from the Yocto Project Autobuilder<br>
+Git: git://git.yoctoproject.org/yocto-autobuilder2<br>
+Email: richard.purdie@linuxfoundation.org<br>
+<br>
+<br>
+&nbsp;&nbsp;&nbsp;&nbsp; <br>
+</div>
+</span></font>
+</body>
+</html>
 
+--_000_SA3PR02MB999616996BFC76AC00C15988A95DASA3PR02MB9996namp_--
 
