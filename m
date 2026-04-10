@@ -1,97 +1,76 @@
-Return-Path: <michael.opdenacker@rootcommit.com>
+Return-Path: <pokybuild@yoctoproject.org>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id AABF1F364B4
-	for <webhook@archiver.kernel.org>; Thu,  9 Apr 2026 19:18:29 +0000 (UTC)
-Received: from smtpout-03.galae.net (smtpout-03.galae.net [185.246.85.4])
- by mx.groups.io with SMTP id smtpd.msgproc01-g2.140351.1775762307160125099
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 3D43EF459F7
+	for <webhook@archiver.kernel.org>; Fri, 10 Apr 2026 15:58:57 +0000 (UTC)
+Received: from a27-23.smtp-out.us-west-2.amazonses.com (a27-23.smtp-out.us-west-2.amazonses.com [54.240.27.23])
+ by mx.groups.io with SMTP id smtpd.msgproc01-g2.159539.1775836734246650719
  for <yocto@lists.yoctoproject.org>;
- Thu, 09 Apr 2026 12:18:28 -0700
+ Fri, 10 Apr 2026 08:58:54 -0700
 Authentication-Results: mx.groups.io;
- dkim=fail reason="dkim: key syntax error: missing public key data" header.i=@rootcommit.com header.s=dkim header.b=HFRh4X+q;
- spf=pass (domain: rootcommit.com, ip: 185.246.85.4, mailfrom: michael.opdenacker@rootcommit.com)
-Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
-	by smtpout-03.galae.net (Postfix) with ESMTPS id CB09A4E42994;
-	Thu,  9 Apr 2026 19:18:24 +0000 (UTC)
-Received: from mail.galae.net (mail.galae.net [212.83.136.155])
-	by smtpout-01.galae.net (Postfix) with ESMTPS id 81725603E4;
-	Thu,  9 Apr 2026 19:18:24 +0000 (UTC)
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id E7075104501B9;
-	Thu,  9 Apr 2026 21:18:22 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=rootcommit.com;
-	s=dkim; t=1775762304;
-	h=from:subject:date:message-id:to:cc:mime-version:content-type:
-	 content-transfer-encoding:content-language:in-reply-to:references;
-	bh=/adb1lIB3fqCzm7t5GRWJ1VR5qBvJOKlOmU3FfUFr+g=;
-	b=HFRh4X+qTmg5Nbs6xMqNDsnirr9erqZTCE2otUvP/wsp9Sj/KVjN0DPmpQHsVnxGwK5C6C
-	0yoM1fJ54v3aoejXmPwB5k7cU71PW9qn2s5cZyxlWrKbdmgafQLqQKvIYeYHHVgkQ+6X3u
-	lC99BmJ6D58WJZ+vkapZDieCcRLYormB1Rgcd9HPQiS475egjEVKYTa/gXazD1u3ThrKKf
-	q177YKzT8Fq64sjEt//ahRjVoe3nafoxniKwFYjgXt/uJ+DaUwLTI8bD4vz501utFnojcq
-	j+f/EXE7cXcizH6/3r3R46c+dKMUD+cjRhlqGXTcn0kXbhFFN/1zJ5lseDpDrQ==
-Message-ID: <05cc6299-d354-4b9b-b0d9-2c9e02ef986f@rootcommit.com>
-Date: Thu, 9 Apr 2026 21:18:21 +0200
-MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Cc: michael.opdenacker@rootcommit.com, yocto@lists.yoctoproject.org,
- Vyacheslav Yurkov <uvv.mail@gmail.com>
-Subject: Re: [yocto] overlayfs-etc on top of dm-verity?
-To: Francesco Valla <francesco@valla.it>
-References: <bfaae86a-5b66-4abf-95ef-0fd345ffcada@rootcommit.com>
- <aab17025-f0f2-4c04-b370-8789624eb571@rootcommit.com>
- <acWttty52EgZmIn5@bywater>
-Content-Language: en-US
-From: Michael Opdenacker <michael.opdenacker@rootcommit.com>
-In-Reply-To: <acWttty52EgZmIn5@bywater>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Last-TLS-Session-Version: TLSv1.3
+ dkim=pass header.i=@yoctoproject.org header.s=j46ser6a2yusdzubpv7m7ewqgesde2ie header.b=J0DJgFgF;
+ dkim=pass header.i=@amazonses.com header.s=hsbnp7p3ensaochzwyq5wwmceodymuwv header.b=l7Y4cpJr;
+ spf=pass (domain: us-west-2.amazonses.com, ip: 54.240.27.23, mailfrom: 0101019d781e1f38-346b1fbf-b6d6-4223-ba68-6571cc4c046c-000000@us-west-2.amazonses.com)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/simple;
+	s=j46ser6a2yusdzubpv7m7ewqgesde2ie; d=yoctoproject.org;
+	t=1775836733; h=To:Cc:Subject:Message-Id:Date:From;
+	bh=0K/WAnYSYcEl9mlyz5w0iTtbwLifamDaTHjMJZgOASU=;
+	b=J0DJgFgFUaxDzpCCLevasJnXb1HqI8dv9rIftgKFkJmSuUgDmN+NrzDonptHdkMS
+	8fwOMOynA3bKocebVtqa4hMmqr7jLEFzbNjmmHnfz9Av1/zBRdKdG6HmxkScVK0kS8Z
+	6HqEIQpn7b7oGtarmzfn0tua/EeCDggjxUZar5n8=
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/simple;
+	s=hsbnp7p3ensaochzwyq5wwmceodymuwv; d=amazonses.com; t=1775836733;
+	h=To:Cc:Subject:Message-Id:Date:From:Feedback-ID;
+	bh=0K/WAnYSYcEl9mlyz5w0iTtbwLifamDaTHjMJZgOASU=;
+	b=l7Y4cpJraVrKeA7Xla8TjV7QMaROZkThU1clHGrOCL382PlVhjM33I9AFr2ohBPY
+	eilVAqoYCNq7FrviY57THEMBRdagTYSXMJSxTaiHiZJbv9LS9D1NSxeop12zbtwmG1b
+	mcB09SN1putAC61UNmObgXx0F0MPi09TOzH4oTf8=
+To: yocto@lists.yoctoproject.org
+Cc: qa-build-notification@lists.yoctoproject.org
+Subject: QA notification for completed autobuilder build (yocto-6.0_M3.rc1)
+Message-ID: <0101019d781e1f38-346b1fbf-b6d6-4223-ba68-6571cc4c046c-000000@us-west-2.amazonses.com>
+Date: Fri, 10 Apr 2026 15:58:53 +0000
+From: Pokybuild User <pokybuild@yoctoproject.org>
+Feedback-ID: ::1.us-west-2.9np3MYPs3fEaOBysGKSlUD4KtcmPijcmS9Az2Hwf7iQ=:AmazonSES
+X-SES-Outgoing: 2026.04.10-54.240.27.23
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from 45-33-107-173.ip.linodeusercontent.com [45.33.107.173] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Thu, 09 Apr 2026 19:18:29 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/66394
+ <yocto@lists.yoctoproject.org>; Fri, 10 Apr 2026 15:58:57 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/66395
 
-Hi Francesco,
 
-On 3/26/26 11:19 PM, Francesco Valla wrote:
->> The code looks right though, I need to understand why this happens.
->>
->> Another weirdness that remains is these volatile mounts for /var/cache/,
->> /var/lib, /var/spool and /srv, which I didn't have with a regular read-only
->> root filesystem.
-> AFAIK, this should be the regular behavior on a read-only root
-> filesystem. The overlayfs mounts are created by services generated by:
->
->    meta/recipes-core/volatile-binds/volatile-binds.bb
->
-> depending on the content of the VOLATILE_BINDS variable. For each couple
-> of upperdir-lowerdir specified there, a service is generated that
-> starts only if upperdir's parent is writable and lowerdir is not.
->
-> E.g.:
->    lowerdir=/srv
->    upperdir=/var/volatile/srv
->
-> In a vanilla openembedded-core system, a tmpfs is mounted on /var/volatile
-> by the fstab (that is, by the fstab systemd generator), so the
-> upperdir's parent directory (which is the same /var/volatile) is writable.
->
-> You can force a copy+bind behavior setting AVOID_OVERLAYFS=1.
+    A build flagged for QA (yocto-6.0_M3.rc1) was completed on the autobuilder and is available at:
 
-I didn't thank you for these great clarifications and tips. It's good to 
-understand the "magic".
-I eventually dropped overlayfs-etc and started implementing specific 
-mount points using VOLATILE_BINDS indeed (with AVOID_OVERLAYFS=1).
 
-It's a very easy to use mechanism thanks to the volatile-binds.bb recipe.
-Thanks again, you made my day!
-Cheers
-Michael.
+        https://valkyrie.yocto.io/pub/releases/yocto-6.0_M3.rc1
 
--- 
-Root Commit
-Embedded Linux Training and Consulting
-https://rootcommit.com
 
+    Build URL: https://autobuilder.yoctoproject.org/valkyrie/#/builders/29/builds/3639
+
+    Build hash information: 
+
+    bitbake: 5d722b5d65e4eef7befe6376983385421e993f86
+meta-agl: f5590359796fc6453a17849904a281095257ee38
+meta-arm: d987a5945802dcbbc06be91a0d34f00431ea840e
+meta-aws: 172c1f12366c50f58c317a4ed58d6de79e7afa1c
+meta-clang: 78c5e12f08198f4f257a9348516d2103cd617c1d
+meta-intel: bf06e8360baf2c84257e82f4153e13e62708568a
+meta-mingw: a4ba674d6a0a17e4c0bc4c11bbb9d0ea9de2b315
+meta-openembedded: d793c367e067c49956d38caf6eb84cb112c9c9b7
+meta-qcom: 5d1eabf99f52bc5ed4c629ba4a28f567ee69e564
+meta-virtualization: 4dddf149832ef19233c13af31987bcd6b1faf4cd
+meta-yocto: 49cbb01d52521bfe557395c9ebfae6b1c162581e
+oecore: 5a60dca0fb81695e26149e45aad9a9eee7c955ec
+yocto-docs: 560bc33c0c2ecd60d68ba06a2edff8c25b9a3f90
+
+
+    
+This is an automated message from the Yocto Project Autobuilder
+Git: git://git.yoctoproject.org/yocto-autobuilder2
+Email: richard.purdie@linuxfoundation.org
+
+
+     
 
