@@ -1,182 +1,177 @@
-Return-Path: <w.egorov@phytec.de>
+Return-Path: <paul@pbarker.dev>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id AD5A2F34C4E
-	for <webhook@archiver.kernel.org>; Mon, 13 Apr 2026 12:25:10 +0000 (UTC)
-Received: from DB3PR0202CU003.outbound.protection.outlook.com (DB3PR0202CU003.outbound.protection.outlook.com [52.101.84.118])
- by mx.groups.io with SMTP id smtpd.msgproc02-g2.271061.1776083104140734207
+	by smtp.lore.kernel.org (Postfix) with ESMTP id C5DAAF34C50
+	for <webhook@archiver.kernel.org>; Mon, 13 Apr 2026 12:41:20 +0000 (UTC)
+Received: from fout-a2-smtp.messagingengine.com (fout-a2-smtp.messagingengine.com [103.168.172.145])
+ by mx.groups.io with SMTP id smtpd.msgproc01-g2.270748.1776084072700742545
  for <yocto@lists.yoctoproject.org>;
- Mon, 13 Apr 2026 05:25:05 -0700
+ Mon, 13 Apr 2026 05:41:12 -0700
 Authentication-Results: mx.groups.io;
- dkim=fail reason="dkim: body hash did not verify" header.i=@phytec.de header.s=selector2 header.b=KeBpJnzg;
- spf=pass (domain: phytec.de, ip: 52.101.84.118, mailfrom: w.egorov@phytec.de)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=jxuz9Ho+vEnrfmKk/S/ul965tVMkWXk21r9HVHixavp9HYKmBbyiWrWGfuthk1798lYDB6dCbJL14dnQvhxmU2Po0uH4YwCT/WTTONuBeH1LOzj6MN53hgKVLABAYBebp66DowAsQ04RTE1hqQ5lSlThcnjsBSawZKO1C0mpT+0SdrPU50eERj60ZyIYwnEaB3yFEbOa0ME/Anb4Q2ykr/FVCXR6cofZLMzHlPL65i+4Xr0grFDspAlUmNr/CMJzZOI2IbQCL9qFeV0CtnAWl1LnE7tNPefxWXiYQgHTkUCD4EzgtSJYMMsBJFwUU6g3wtkcG17vIgX92A8RLusP+w==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=PEnyKrbf7q74JS0Xs/Q0RvVKtoAbT9NeB9leXsRj470=;
- b=snwzXLGoboroHLpnAdtzYgSWWahyBY5cZU8Y95umOKT4lmD/I1p3EftbfaZUBrRO7IizP3NUSFnJe4DBmNVlZsuj53g9ICZmN96v6ae7MtYqE5n/Pdnxk6pysg+Ax4uiBbio0mBIibuqxCbZuolTbUC+FKrtzBvzlnlR5BvV4p0/ZgVNAuojoXROHSC+5Ejsk4CUN/dsiLVw0cCpXRJ5beQFb+hmbWqhjFr0e1egDVTxjgY3t+tdKAkkckbpxpVf4Ir+kLusc+N844Jf2SofhDQadKV0+CpRhjLOQYa2dE0SU2n3jxgRkeOtXkQBK9epgzk6jNutSiRapNcRUgFCgA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=phytec.de; dmarc=pass action=none header.from=phytec.de;
- dkim=pass header.d=phytec.de; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=phytec.de;
- s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=PEnyKrbf7q74JS0Xs/Q0RvVKtoAbT9NeB9leXsRj470=;
- b=KeBpJnzgWgn9fxGBfasN9YjfilW0EUAmCMaDXlTAbG9bsYnedAhZUVPE35Mp65fPrUi9roSUjdMauADRele12RAT6Hj9tf2qAKIC34a+qwj96GM8SpeW1ar0rPaalUNCw7jEPM4Qn7SEgGv7VsdqAlJlFmopC582oxRf2ZcEr+lLbomUNIApATjcJMlHaic/ZWWPmE3yC1xhtoMbgt8FMG6n3sCSjLY2h8hfxPmdUQhSk5ZOSkNfPKGprryxwBvEnMxIBiIQnMdWnxq3Lr9t4s+jrCUslE6hhLGYVTxuy7tU88BvR175/M4+ZPcBJbggDZwrPXnXVPCeSsy/cYIJOg==
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=phytec.de;
-Received: from AS4P195MB1456.EURP195.PROD.OUTLOOK.COM (2603:10a6:20b:4b3::21)
- by AM0P195MB0740.EURP195.PROD.OUTLOOK.COM (2603:10a6:20b:16a::19) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9818.20; Mon, 13 Apr
- 2026 12:24:55 +0000
-Received: from AS4P195MB1456.EURP195.PROD.OUTLOOK.COM
- ([fe80::295f:9a59:b66a:621a]) by AS4P195MB1456.EURP195.PROD.OUTLOOK.COM
- ([fe80::295f:9a59:b66a:621a%6]) with mapi id 15.20.9818.017; Mon, 13 Apr 2026
- 12:24:55 +0000
-Message-ID: <aa0f7c10-5f37-41a5-a1cc-ef1d6a364f19@phytec.de>
-Date: Mon, 13 Apr 2026 15:24:53 +0300
-User-Agent: Mozilla Thunderbird
+ dkim=pass header.i=@pbarker.dev header.s=fm3 header.b=bCkhJsLd;
+ dkim=pass header.i=@messagingengine.com header.s=fm2 header.b=Zca6qORT;
+ spf=pass (domain: pbarker.dev, ip: 103.168.172.145, mailfrom: paul@pbarker.dev)
+Received: from phl-compute-05.internal (phl-compute-05.internal [10.202.2.45])
+	by mailfout.phl.internal (Postfix) with ESMTP id DE5A4EC04B4;
+	Mon, 13 Apr 2026 08:41:11 -0400 (EDT)
+Received: from phl-frontend-04 ([10.202.2.163])
+  by phl-compute-05.internal (MEProxy); Mon, 13 Apr 2026 08:41:11 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=pbarker.dev; h=
+	cc:cc:content-type:content-type:date:date:from:from:in-reply-to
+	:in-reply-to:message-id:mime-version:references:reply-to:subject
+	:subject:to:to; s=fm3; t=1776084071; x=1776170471; bh=A8Hn+f5xfR
+	Ca+upLOrAJePvZ7/fA/1t5C1VvWgP3UEY=; b=bCkhJsLdeDqki4xIApyR1ljK72
+	LNLncyDQeiemkRb1dn3/oUoVdk0fbYTiy8MWy313J8VlfXnV18ew0hz1NMNazIHY
+	ovowbbQP2M6jIx3r4asjm9r2R63OrD512+JglwCJhhcvyATQ/Gh/JiKhaKzbo6Uw
+	cVVTF8z+02lckkWLjWITcFK51npFprxiJradTzDHgKS136xAB2GsREg1rWfRhR+z
+	OTgSRq/mnC8nVTRZQGIH/JRsVNvJ4IGKEpD5Lps8WxmgVeTgveTl0j8MhUj+e1tM
+	m4ziyafw4T5N5szb2SOvhpkWsVHvbWuCyfuBxmnXMfVOoTEMsr7yu4n00ZJw==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+	messagingengine.com; h=cc:cc:content-type:content-type:date:date
+	:feedback-id:feedback-id:from:from:in-reply-to:in-reply-to
+	:message-id:mime-version:references:reply-to:subject:subject:to
+	:to:x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm2; t=
+	1776084071; x=1776170471; bh=A8Hn+f5xfRCa+upLOrAJePvZ7/fA/1t5C1V
+	vWgP3UEY=; b=Zca6qORTwAfapVW2FmNfabjee5VFO+BZ9NP9/RNuJvzL00Wxce7
+	Nk2i/4Ng4GvV/3VP8c4Pd3PMV3HE1ZPfuMONZ4xPjOg6jPPq6V4j8LcFSdRIDWyx
+	SVtL9xdiYFcUljX4SAmrBgGJekOkU8ctRmQklLiGCDYbIX5qjc1FkuREC13AOwck
+	EOB3prejT7YT3gqK2xm5rENgnX1gbXa7oOtFGGrTxo94BFDsIdT3kneICxBmi4mR
+	ysVmqJXRGsmT07C5wjfpKxUiByybacgWxm+Yp3UKY40mkaZlTum1rcRiZ+c2yPVZ
+	ds9bE9sCwREJvyKts38oG9n10EUz1TxV6RQ==
+X-ME-Sender: <xms:Z-TcabU1m5IzsEa_FTS45lwtifZHCAVwYrCzsjUCzOttRfLD5D0rwQ>
+    <xme:Z-Tcaak8Ybq0ZPkqmShq_OFWEaVaZTEhiNaZslSPbqdEg6aq0-G9edjYn5L7lEDL8
+    WAImFSLHXieghppOqnYOGhSHAAgYEz97-tGSZricaXcpQuibZpPvm0>
+X-ME-Received: <xmr:Z-Tcaca3nJ_zkdSo93jSge2eOaXVnqPJ6mgTUk71HtgjbuKZuuDTolTsxzUj30VsOy6LkZfZUF3ZxIbkqbFVvP1cociaZJjhR5NhuPM>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeefhedrtddtgdefkedviecutefuodetggdotefrod
+    ftvfcurfhrohhfihhlvgemucfhrghsthforghilhdpuffrtefokffrpgfnqfghnecuuegr
+    ihhlohhuthemuceftddtnecunecujfgurhepkffuhffvveffjghftggfggesghdtreertd
+    erjeenucfhrhhomheprfgruhhluceurghrkhgvrhcuoehprghulhesphgsrghrkhgvrhdr
+    uggvvheqnecuggftrfgrthhtvghrnhepjedufedvhfehvedtudelvdeljeeiheeiveffle
+    ehffeftdfguddvveejkeehfffhnecuffhomhgrihhnpeihohgtthhophhrohhjvggtthdr
+    ohhrghenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepmhgrihhlfhhrohhmpe
+    hprghulhesphgsrghrkhgvrhdruggvvhdpnhgspghrtghpthhtohepgedpmhhouggvpehs
+    mhhtphhouhhtpdhrtghpthhtohephihotghtoheslhhishhtshdrhihotghtohhprhhojh
+    gvtghtrdhorhhgpdhrtghpthhtohepfidrvghgohhrohhvsehphhihthgvtgdruggvpdhr
+    tghpthhtohepjhgvshhtvghrsehthhgvhihotghtohhjvghsthgvrhdrihhnfhhopdhrtg
+    hpthhtohepshhnvghhrgguhhgrrhefleesghhmrghilhdrtghomh
+X-ME-Proxy: <xmx:Z-TcaVMxfrpDVQa4LfHsYpO5QcLV_n5omUUfpofmc9O8Licfe-9VSg>
+    <xmx:Z-TcaRbI0OcCYuOFBe2QxXAXiBJWZMJMoR_YJsmNBOY52EsIFQ6hGQ>
+    <xmx:Z-TcaT1Dhx55QJVF2ZxQN3wRLsLbMMWtIwE7LSSZf7OjR5FRltknxg>
+    <xmx:Z-TcaXeCJ_CgB-XAaUR6XCWGcIUufVW8LxbcaA1xSiLznV4rRwHYUg>
+    <xmx:Z-TcaUX1tiuz5jZfdVeLtnoMbkVNFQpwIQr8Q9tFbumapEYbdHvY2ZE_>
+Feedback-ID: i51494658:Fastmail
+Received: by mail.messagingengine.com (Postfix) with ESMTPA; Mon,
+ 13 Apr 2026 08:41:10 -0400 (EDT)
+Message-ID: <fa029428b6be98b012452b79889f640b61d4fc7f.camel@pbarker.dev>
 Subject: Re: [yocto] Fetch Issue
-To: Josef Holzmayr <jester@theyoctojester.info>
-CC: yocto@lists.yoctoproject.org, snehadhar39@gmail.com
+From: Paul Barker <paul@pbarker.dev>
+To: yocto@lists.yoctoproject.org, w.egorov@phytec.de, Josef Holzmayr
+	 <jester@theyoctojester.info>
+Cc: snehadhar39@gmail.com
+Date: Mon, 13 Apr 2026 13:41:07 +0100
+In-Reply-To: <aa0f7c10-5f37-41a5-a1cc-ef1d6a364f19@phytec.de>
 References: <6KwS.1775631328520262279.RWyv@lists.yoctoproject.org>
- <CAEt6Nwo_d+6yCCJgrWFuGviSkPXFr82GZ5dtwQDK5=7m2CHmFA@mail.gmail.com>
- <d060ac53-8cda-4014-9158-c68d87a7bad7@phytec.de>
- <CAEt6Nwp5RVA8RuXNq-HqgG8vaZMmOwJuqWgnU1shiaN61tHeOg@mail.gmail.com>
-Content-Language: en-US
-From: Wadim Egorov <w.egorov@phytec.de>
-In-Reply-To: <CAEt6Nwp5RVA8RuXNq-HqgG8vaZMmOwJuqWgnU1shiaN61tHeOg@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
-X-ClientProxiedBy: VI1PR10CA0105.EURPRD10.PROD.OUTLOOK.COM
- (2603:10a6:803:28::34) To AS4P195MB1456.EURP195.PROD.OUTLOOK.COM
- (2603:10a6:20b:4b3::21)
+	 <CAEt6Nwo_d+6yCCJgrWFuGviSkPXFr82GZ5dtwQDK5=7m2CHmFA@mail.gmail.com>
+	 <d060ac53-8cda-4014-9158-c68d87a7bad7@phytec.de>
+	 <CAEt6Nwp5RVA8RuXNq-HqgG8vaZMmOwJuqWgnU1shiaN61tHeOg@mail.gmail.com>
+	 <aa0f7c10-5f37-41a5-a1cc-ef1d6a364f19@phytec.de>
+Autocrypt: addr=paul@pbarker.dev; prefer-encrypt=mutual;
+ keydata=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
+ LUewj8JVy0aJsGTwI4invl
+Content-Type: multipart/signed; micalg="pgp-sha512";
+	protocol="application/pgp-signature"; boundary="=-RLBsPllczg5xH32Za4tK"
+User-Agent: Evolution 3.52.3-0ubuntu1.1 
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: AS4P195MB1456:EE_|AM0P195MB0740:EE_
-X-MS-Office365-Filtering-Correlation-Id: 0368d098-1073-4b3e-4ef5-08de9957abad
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: 
-	BCL:0;ARA:13230040|366016|1800799024|4022899009|376014|22082099003|56012099003|18002099003;
-X-Microsoft-Antispam-Message-Info: 
-	h9mPFpECK46WVtbP4ymixUpIG9R4NBWN0mDuQnhrnstu1ypDxviviB3VAIClkR8q1U6LioRYgdJ8NfzZ4pY3tbjm9M70HwOAY/sZgMmv2ZsdSzVH5cUwjVclYJQ7rBfn9dnrTEc5J+5+Ub/CfgRB2cHWv+NmR43Tel1CcwLdQaI1ehT2NF2CzigTijDS/ZLD6uIKW30vzIR6RADbz6XcjfTsUJbes6WDaI7eYgWEhqdIgs+sdNw0mhXGM8pg/WAicHCJk+94lm1CsQ3+Gs5EDHTWL6EQycLYxWXu5uj2wU3OteeR1K4DisbIXc5+N1lcH0uavKHZHaUxAnTftw4kb2XUTAjqpsJ0fYipIHpvh7GRgcwq6Sjbb7bNwPVA+2nCYLvooghZ0996MS5XvQgvg3tl9xeTrNSx5ZpWhraaZe6r2Z2X+IwTgZ0K7Ixl32vnZWYP3C4PtEpf/i5QftZB7g4+ddaTthK0Tf94JjfW4tzc6s6vfEhSNPVBToyeChu6k3IayHdfh2fdbMw2FTsxZaHvbU8zQoALbltwZNsViwIbQ1gguFLu+1bjk8jF9p0qb+GQ6qYUE+5CjOnKGjJGx917E6/kwoovC1gufHqIWsKqCFjpK8iPrUKiqvVweOIvSB+pFuqBllcASmdWX5YH1t4kW0aCOiIDZMpT+0pm+/uDShl9+UEAActvJubXoL/T
-X-Forefront-Antispam-Report: 
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AS4P195MB1456.EURP195.PROD.OUTLOOK.COM;PTR:;CAT:NONE;SFS:(13230040)(366016)(1800799024)(4022899009)(376014)(22082099003)(56012099003)(18002099003);DIR:OUT;SFP:1102;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: 
-	=?us-ascii?Q?XzYY9muiniY2TA/GbdsHebxn4DTOA7DoCCZf0Gfe0xUPPfyQIw+3FcFWKxRM?=
- =?us-ascii?Q?9pYMOEX7J7PrC3+IEtcKPV3n4HV+fXkSysDoGRKRAJI5SGIBVWJd/U8x5hbl?=
- =?us-ascii?Q?5Cc/Sa0eJae1KRufrOijcny5zGidQTpt5pO6tWsSbjQMC3LMk/TUGFEi5EHk?=
- =?us-ascii?Q?glIfTt9UWeLnGa3FL6wAKqYx0uYGmbCBlzSvQ4WgDcioTcogMTJG5jIzw5Z9?=
- =?us-ascii?Q?gCCIWzHFN3semGdF0KXJ+4U30keO35j3fIfg8h+anma6m5dLwDAzV+p4RGrB?=
- =?us-ascii?Q?v/FyA8bUvKLGJ5PuINRV7V3G8TGD3rI9dPnObLWhWtbrglJsHuxO0eeHxM/q?=
- =?us-ascii?Q?vgmuYqBZ5oZgLB/umekEt95udF42HWuVUxFnEEGgqAnUP8HV0iUQsDIVujer?=
- =?us-ascii?Q?Iu5jNHnanUddbMeybSWKm3UNsqnIevFzW1au9YJGIUT4LpdhJcwXMpA3mCBC?=
- =?us-ascii?Q?rS2no0aCev+TKINrjdrlD5X4cr0Ta+eI66vyugNkdTOy4YrT87JjEPWVWsqm?=
- =?us-ascii?Q?WAK7/yMtgUP3GFwEmMlPmqJvFCvZ7/xy+Hlt81YVDuelFmxCFQkxl4chO5jy?=
- =?us-ascii?Q?n+lM+PxuAecPwYWJJYqi6jhjhKW72RD5ncuAPgMS1ny7lSLmVM924N4C19Da?=
- =?us-ascii?Q?CyiGk4eyiyCm0hBxBPPmeImku9Zzwk6WVKXa/Zbi0sMk9XSvJTPrZ0wC4Wvs?=
- =?us-ascii?Q?nIer0ub6tJFg1x5bpqZ4zFydpoN3hK0MKlzLxQf/vxjWpYSGhlxVB+ELPcM6?=
- =?us-ascii?Q?SicnNeehVJ1D8GZSxBIEww1gA0hJtUOG2MWKOjnpZNWv9X/xZZf0sR6m3e19?=
- =?us-ascii?Q?2X/ki4bdlwGdj9XxDLro176OCHp2Gp8HGC/5UAUWmRl9GuGQpK+lOLJpbgEw?=
- =?us-ascii?Q?/Ojzs8OW56UCEmDXsKubRw3edkytCTWms5QM/vHDR81br/WkaROXnQhvTF8D?=
- =?us-ascii?Q?zpJl/Y/NvsSSiMpoUzvYdT8NcGM4SbMVw6D8TB2WNPb5uGz3/YyGeLT8UdPT?=
- =?us-ascii?Q?GvianAGJJOnWyKz6v8vwiseG3rGqsMY3mKJzzJcoqck8clAvMt9NqZCaEjPB?=
- =?us-ascii?Q?9PyBO1PyyZzkEU7fLvM6ryX+sZWF3RmYRyI3dWra7lrmSAGKcKL2n3AXCk7z?=
- =?us-ascii?Q?uENfy/zIrnFdqR+cmbR29eaPxx1UegPCuXTezleLHr5CAsaMcsqcf6tYYmWN?=
- =?us-ascii?Q?JT4/sLdK+ILPdnYhRNUhDizCrsfbZAMPIt2Wdk3dv0djT2uoG4NpirSV9RuM?=
- =?us-ascii?Q?OfIuBSAprjDOGjJItP0W11SnXbhY+mjx2bcF6EHCpE84AUpXwROcA7hlQ73R?=
- =?us-ascii?Q?U8ngzWBkp7u1clcUbwI6ZIBpPEAEvkkc0hAsN0fZa5y1Pso6YqJ2MV1IcmD7?=
- =?us-ascii?Q?xdDFPvUHTLDmGVAHy6UpZ5zin6w2PevaKp3VsXA3i+UFDbc7N7Lhi9NvuAKT?=
- =?us-ascii?Q?Wh+WXiDkeAlQ3TysP/RuW2oNSaH1QZwla0gb9poePNELopy3QA54noZqI2v9?=
- =?us-ascii?Q?kdiE9MS8T3spewVYSeZS6rq9NV/S2veX51hiCTCMZlnYlEYEDa/kPRLXQuuo?=
- =?us-ascii?Q?3W0FEzO4C7oRrXfjRdt8/ve4dhf1WWqgSXG+xRQ8MVbwNqoMlNfuNno2mXEN?=
- =?us-ascii?Q?ImRSaNzSLBPXGQ+HKdNiQV2uqNd8wWU9j8VMssOXmLXuF3Xn+tpyN1jBag+S?=
- =?us-ascii?Q?XWjPNQ/NBB+Dm55GwQlaiOeChHbrHmByEvKH4T2J450W7/ALTWb9fkaa4cyi?=
- =?us-ascii?Q?nm/DqFjqUg=3D=3D?=
-X-OriginatorOrg: phytec.de
-X-MS-Exchange-CrossTenant-Network-Message-Id: 0368d098-1073-4b3e-4ef5-08de9957abad
-X-MS-Exchange-CrossTenant-AuthSource: AS4P195MB1456.EURP195.PROD.OUTLOOK.COM
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 13 Apr 2026 12:24:55.5988
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: e609157c-80e2-446d-9be3-9c99c2399d29
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: SuR1cWnEcLV+Fenvu2CIUHuRnrgy2xNQoOof93Z2hKoycOqKS17Lmn5tMoCHF1/c6N43Ja8RquFoLl5z9JbN7w==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: AM0P195MB0740
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from 45-33-107-173.ip.linodeusercontent.com [45.33.107.173] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Mon, 13 Apr 2026 12:25:10 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/66409
+ <yocto@lists.yoctoproject.org>; Mon, 13 Apr 2026 12:41:20 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/66410
 
 
+--=-RLBsPllczg5xH32Za4tK
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On 4/13/26 12:33 PM, Josef Holzmayr wrote:
-> Hi @Wadim,
+On Mon, 2026-04-13 at 15:24 +0300, Wadim Egorov via
+lists.yoctoproject.org wrote:
 >=20
-> well, next time we plan to adapt on minutes notice at 3AM to a
-> bandwitdh attack, we will announce it. Big promise!
-
-IMO its important to communicate such things more transparently and not wai=
-ting for the first report.
-Please just take my comment as a suggestion for improvement for future chan=
-ges of a similar nature.
-
+> On 4/13/26 12:33 PM, Josef Holzmayr wrote:
+> > Hi @Wadim,
+> >=20
+> > well, next time we plan to adapt on minutes notice at 3AM to a
+> > bandwitdh attack, we will announce it. Big promise!
 >=20
-> Greetz,
-> Josef
->=20
-> On Mon, Apr 13, 2026 at 10:23=E2=80=AFAM Wadim Egorov <w.egorov@phytec.de=
-> wrote:
->>
->>
->>
->> On 4/13/26 8:11 AM, Josef Holzmayr via lists.yoctoproject.org wrote:
->>> Hi,
->>>
->>> Due to a load of load by bots/scrapers, the git:// protocol endpoints
->>> had to (finally) be deprecated a few days ago. Please move your URLs
->>> to https://git.yoctoproject.org, then things should be fine. Please
->>> let us know if not.
->>
->> Would be nice to announce such changes. But maybe I missed it
->>
->>
->>>
->>> Greetz,
->>> Josef
->>>
->>> On Sun, Apr 12, 2026 at 9:45=E2=80=AFPM sneha Dhar via lists.yoctoproje=
-ct.org
->>> <snehadhar39=3Dgmail.com@lists.yoctoproject.org> wrote:
->>>>
->>>> Hi
->>>>
->>>> Is anyone else experiencing issues accessing git.yoctoproject.org? We =
-are seeing fetch failures for meta-intel, poky, etc.
->>>> Thanks.
->>>>
->>>>
->>>>
->>>>
->>>>
->>>> -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
->>>> Links: You receive all messages sent to this group.
->>>> View/Reply Online (#66404): https://lists.yoctoproject.org/g/yocto/mes=
-sage/66404
->>>> Mute This Topic: https://lists.yoctoproject.org/mt/118793581/3616782
->>>> Group Owner: yocto+owner@lists.yoctoproject.org
->>>> Unsubscribe: https://lists.yoctoproject.org/g/yocto/unsub [w.egorov@ph=
-ytec.de]
->>>> -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
->>>>
->>
+> IMO its important to communicate such things more transparently and not w=
+aiting for the first report.
+> Please just take my comment as a suggestion for improvement for future ch=
+anges of a similar nature.
 
+This was communicated to the yocto-infrastructure list [1]. We probably
+need to Cc a more widely subscribed list in the future if something is
+likely to affect a lot of users. I'll pass that message on.
+
+[1]: https://lists.yoctoproject.org/g/yocto-infrastructure/message/227
+
+Best regards,
+
+--=20
+Paul Barker
+
+
+--=-RLBsPllczg5xH32Za4tK
+Content-Type: application/pgp-signature; name="signature.asc"
+Content-Description: This is a digitally signed message part
+
+-----BEGIN PGP SIGNATURE-----
+
+iIcEABYKAC8WIQSzjPXf5Y1BDWhU2iCrY1Tsnbr0bgUCadzkYxEccGF1bEBwYmFy
+a2VyLmRldgAKCRCrY1Tsnbr0bgQYAP9KNkwxhFciZSIKTpYVEqY5vcGWh4ms1FRQ
+IfW+qDhxwwD/ZTECpyRBQVyMIngZ4uRWLs0G5L8px4+TjBRO5VT4Mwo=
+=59RY
+-----END PGP SIGNATURE-----
+
+--=-RLBsPllczg5xH32Za4tK--
 
