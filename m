@@ -2,115 +2,142 @@ Return-Path: <jester@theyoctojester.info>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 49CF9E93813
-	for <webhook@archiver.kernel.org>; Mon, 13 Apr 2026 05:12:29 +0000 (UTC)
-Received: from mail-dy1-f173.google.com (mail-dy1-f173.google.com [74.125.82.173])
- by mx.groups.io with SMTP id smtpd.msgproc02-g2.265363.1776057141059169588
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 3D33BE93813
+	for <webhook@archiver.kernel.org>; Mon, 13 Apr 2026 05:15:59 +0000 (UTC)
+Received: from mail-dy1-f172.google.com (mail-dy1-f172.google.com [74.125.82.172])
+ by mx.groups.io with SMTP id smtpd.msgproc02-g2.265385.1776057352056045106
  for <yocto@lists.yoctoproject.org>;
- Sun, 12 Apr 2026 22:12:21 -0700
+ Sun, 12 Apr 2026 22:15:52 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@theyoctojester-info.20251104.gappssmtp.com header.s=20251104 header.b=KKIMikzS;
- spf=neutral (domain: theyoctojester.info, ip: 74.125.82.173, mailfrom: jester@theyoctojester.info)
-Received: by mail-dy1-f173.google.com with SMTP id 5a478bee46e88-2c156c4a9efso5435338eec.1
-        for <yocto@lists.yoctoproject.org>; Sun, 12 Apr 2026 22:12:21 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; t=1776057140; cv=none;
+ dkim=pass header.i=@theyoctojester-info.20251104.gappssmtp.com header.s=20251104 header.b=xdLBnVW2;
+ spf=neutral (domain: theyoctojester.info, ip: 74.125.82.172, mailfrom: jester@theyoctojester.info)
+Received: by mail-dy1-f172.google.com with SMTP id 5a478bee46e88-2b4520f6b32so4073767eec.0
+        for <yocto@lists.yoctoproject.org>; Sun, 12 Apr 2026 22:15:52 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1776057351; cv=none;
         d=google.com; s=arc-20240605;
-        b=PauYLjCl+9W0DVg9dISqtVk6yC8CENo7UntYP0qcntdE8ROrtleP15BhKsf50Sy0Iw
-         g7bjkW8VXoPI5MgrO33J39IcQV9ynl3XtA4rWWx0TlWeXpD5ctXAKbNuxAviTQkFL7tF
-         o0FR8XTbrdSMaDY+Pm3RH5qFMFtmjZtihQag442Dg/zWM5xZhsXPkQXUEeVHueM/ivo0
-         OsyQHIFRxfAsglGtuJs2osk27Ajleo/UvPOFp+JTP14cfYkAGbi58hm6feLPxpgjcIm/
-         0CtezkUP3PMwyFBFSq1A7cEY7C3IiKYE3/vWiNQNwEPfgJNWVazHma9RXZXDanXP063h
-         ytWg==
+        b=acrtEoosgrRV/45up/JwyGr8DTFhTvgAq+3l0wvVHdP991VMbo0nBBGd70UGneAwC0
+         eXjyJXZPFshqIfaTuQMMenwK92itOb2Xz/HHIP38cH+8gC3cnWMlf/W6XndUteGJSKwH
+         8BvcgF2Rfij3KJHCFVjucfNWrNiKjW3poxBM1tziMGKIp67sEVUVPUzBrkHVQnPdEVRG
+         6Z7qt6rGCQ3fLhtJ99+VKeHTrZuDyp4LvFwCY3NBCTIP8o2WB4887d+OvbnPG+BVxdVJ
+         X8BaxQRHKKAt4AHMAASJgSlja8dkWVf8DQ3Vv4LxlboJFTjMQC/x9Bex3ueZBn0ChOul
+         iDNw==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
-        h=content-transfer-encoding:to:subject:message-id:date:from
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
          :in-reply-to:references:mime-version:dkim-signature;
-        bh=OR+xtYisNea/9yBrsH92WwRwSosWM9x32hjbDXALorg=;
-        fh=4us44u4JbxUwrz4h8eo+RH/7L4WS+9i1cN4vGo1UGQY=;
-        b=a8tr3OPQduPi5yRB8Io9Luf7P9vWjbFoSVDlPA6GPJj+PJuGz6k8E+3JN9XIe/NXUr
-         2HVpOlMrcK7V3mckA/X5hDJb+7DVYbupfExUWUu1Usdf1bcqClr0srJOmLbHFrlRFcGS
-         WdB5T5Li/D0XyKFpPKIUWRx5VGhczTJ8KgqsaYoeW4mNEWE3MQ45WGo0dSxx5wecnoIs
-         nFEp5c1kNccb1szoP8U6agMikE0vuUkF9kQ5w2/wF2w84tL9qXnkUjdOxMWeyU+FBRMD
-         CA/QVzeudMri4utt+e65Vea6/laShxPZrdMn5A5iXMJf4dOcGQjvpX9iamMPa0xhMVxB
-         rqlA==;
+        bh=eUh5SWojyOBTiHh4jxBQfCZReQZfjQU4yDGOjH6SDKQ=;
+        fh=K3VesToiuUAp1UqeNcWc8kbUNHEL6hbmBlcbvesdiew=;
+        b=fqP4Tqf2+PZaullxB0cqj3ytf5NsB8kfrvrOfuU9k4+8zN0y20n337R54jGC6uUKTR
+         BtnGyXnsrYlcuwWeS9DDBz7m2qkLzGwC9xWcviXHlR3bSZjApF8Mgc7TV/iGUYW67YOj
+         nyfUzo6jBHZf5l1NF3E5xdakLotEb8KDn6gpI/DldPRmHacSm7rRvh0I01iY6mRP9zj5
+         +o0ZMzrVvUJl+pWUgHPitV0GU2Un7x25FzgxjQMAZ9CAjt8pCUX5YVBk+pCVthTRd2nr
+         vBgj9nO8QE6rUCnubYzdIIULk9LUtbQ4tOzZ/GcorAw1jvZm6971WvI2661MtL3RuZbx
+         MpqA==;
         darn=lists.yoctoproject.org
 ARC-Authentication-Results: i=1; mx.google.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=theyoctojester-info.20251104.gappssmtp.com; s=20251104; t=1776057140; x=1776661940; darn=lists.yoctoproject.org;
-        h=content-transfer-encoding:to:subject:message-id:date:from
+        d=theyoctojester-info.20251104.gappssmtp.com; s=20251104; t=1776057351; x=1776662151; darn=lists.yoctoproject.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
          :in-reply-to:references:mime-version:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=OR+xtYisNea/9yBrsH92WwRwSosWM9x32hjbDXALorg=;
-        b=KKIMikzSJrZY6q+cdokcVv5pzqMpqUxvmraYp3bTpK8HO5rHma1YpUP2BZ83Nj8cKd
-         3ZILPqOQJu3Sux+KadFxBCoFhOdbbkPE7bCtWh9fltQafHIl41Vfn4KiVdkcEsDtb3j4
-         t48NrChPLv/bPA/DKenmew1eq0hNtORdjhVyqdI4fSIHolA8FRM/PjQK9BW4uuG20YIZ
-         crxd65kP5u2JWdCtv4b5YNe2aEd3nlEDD6HregOM6rD/jrWtKxQMephJ4zLJXj3dZkXb
-         Uj8PxPpKLkLIjEpNTU3IiwOTROKNnnBCRpUu6BuArAl34L7+f1r4WUCJALzkrYK6JgI0
-         0jsQ==
+        bh=eUh5SWojyOBTiHh4jxBQfCZReQZfjQU4yDGOjH6SDKQ=;
+        b=xdLBnVW2pzsL4UMeBJ5zhx5RdVUOls2Zs3AhCWBRxTNAKFLzxy19C3wcwjEqa2QoRd
+         fIQoUi3HNLtCIMAuZQbm6TtISY+UJ76IO4pBr3k5ktH3S4WsxgMizKHNJyFJnFrboqCN
+         NpynhiyCs4aOwrZF16ffnbedFBF+ttLcPGndyJHyLavxpr9mjbaS0TAS15tCj6oQItet
+         onU+LK8IZnnrqt+mtcKuFBMalUQJdmcZLTVmELrmZw30F0j1gRNAByG6IlQMjrcXF48c
+         G90LgT9oIr6YQ+hupH0hwBGez1FQEJJmsvlekbdp0e+JTCVkqzuGpx0mTOIqvsDCyl+0
+         H+8g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1776057140; x=1776661940;
-        h=content-transfer-encoding:to:subject:message-id:date:from
+        d=1e100.net; s=20251104; t=1776057351; x=1776662151;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
          :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
          :to:cc:subject:date:message-id:reply-to;
-        bh=OR+xtYisNea/9yBrsH92WwRwSosWM9x32hjbDXALorg=;
-        b=ZmvVI9c3rB0LO9e8tpsb5Udmri+stNw/RGdZTg/70XieKTj3P2Uh2akA/N+j09pIVF
-         77hXf2K/QNDjajH7nn8nd67kMEs9Yir/3T7O315Y2UmAFc0moW/7RoIOwduDLVBs5lMc
-         IUr4YCD4Vl00xu0t6FsTyhkCg6jWd0fEQVM8hrJ+doRMaZkd2P/Az6ab4NsCK4qIDfej
-         UFB2MQqYyAKoatm8pHAbkGfyFB3GDLtxUe9XFxSoe3WQbCesbYuTAjkeJPO1sbs+3qx7
-         BSKhieMEba/RV6ysmbkFRGyLCrHDPx5PPeghpMG2HhIQWUUI10Pe1qZ89hBELn/gFhQg
-         aosQ==
-X-Gm-Message-State: AOJu0YxnYc3Mv/f5k5fsmrVqBsIW/H5FwwXoZzh/EW61rDZ5pD9A1VRu
-	p7BzFsmw3yY5ntFitaGySD8lfH8t87AgwHlpr1QJeSWSY5zzoim2o0bT8+IulaiLmfq4yFJWtWa
-	scVYSRADiwE5QjqF5roNVWpUJVmJQ2azGhTBiDovSpes5pMYbuCA1
-X-Gm-Gg: AeBDietEkWQ4qh9bRV5SvQo6dsvIyG42403ClCIb8jIkpKNLkj5bQxCu89ArrzjANCG
-	lR5HFBYQoZrQuXWN+31OmY3CK00JO8PpHLs9oVs4HQpgeU9Ow03Yqvn+ZEZElGRPazC+jAwgyt4
-	8qKGiFYn1mvjS9wTTGHNbZ/1QQK7lZimUtClQB6QI9Jfoyzc13F0NlSl7a6wYSS+JbrjwJBTBUe
-	jqi7lLVfKtbIL40AVjLrpWnCVMJEQ3ryUcHW7hfB4rFs0CQ+TXpqw6HCwBt5Ohjnc2xFRuoNzf3
-	IWKeSskCDNUQaYNZ8ehUjpJpqkbUZaCh3LXRth5LRQ==
-X-Received: by 2002:a05:7301:fa0d:b0:2be:7885:31df with SMTP id
- 5a478bee46e88-2d5890793d5mr6219123eec.17.1776057140377; Sun, 12 Apr 2026
- 22:12:20 -0700 (PDT)
+        bh=eUh5SWojyOBTiHh4jxBQfCZReQZfjQU4yDGOjH6SDKQ=;
+        b=JUccDEdQU9zvOf6AXgKubYlbEh09Y6seNcF1d/LUW+8UPiznsiWrPTlXt65/esdiOn
+         dIUsn4OMfvUHUrMypEQuc14FT9DTqbsHH0SdxHeehSjyJIpnrdyBWEtKDEaN4q6fa85U
+         Bqw2+OH+dUfkJYNe74r+bBqf78sC199FdKQE42xPTQHVMdoFoPsTQMb94pW8YQOtX4qJ
+         qc2xxAdpob0APNHBfqlW8MBO9cqvX6IY+bBAW+sMQvDXuMwTqmjDDH7D/EwBjJI4O7Ec
+         OId2em8XI3mCZJ3JIYXNLiodQpOYJ+tPyIpDWvrXPBb3N0EJPROS6v7bFiQQhWev4Etv
+         tx7w==
+X-Gm-Message-State: AOJu0YxByZVAH/nj30XftNc+lMzNCOvNnwJRZ/D5W4YFmChZ4h/zDhK9
+	4kM/sLuvz5pPxUQ9WwK1awuuVKwPnmUSRhCfvf5tIPFdMPmBFzF4UMjh+9TIGiEAtiSWt5boHls
+	WFBV6NazRPphmQ2yeyO6nyikiRloUQb/nkujwziQwiciYQlMNsHW/
+X-Gm-Gg: AeBDiesBnzd1ngRVFZGxkommuuo5VhnGD3VuGaWUXo1FyDrOmNpjCHIVrT1eET4fmM0
+	e47RMEI7F4UvXSWBsj5EY7ydjYBBp91hut2nHHw+jD53E1rkU6l7/UaYCIuRLV15hHuWoGakv2e
+	w4Sv6HVjU6ZRjvIIInP+5e02zJ0b6rfORR1zwnwPu/l2Q8M901hzpyOhoXHMD4pShHcuJGx0i40
+	6Z1gaNZmImalO6Cn0a2oBYIKCnTKFtSnc4tokhNZssVGMBhFh/YOrBJbh7uvdl4KcOoHYDWk0QG
+	NM4Dq9QbyeQBYmmMkVHQRKXELoArm8brFv6riBWC8w==
+X-Received: by 2002:a05:7300:220d:b0:2c1:6676:5ed6 with SMTP id
+ 5a478bee46e88-2d589669863mr5869340eec.25.1776057351320; Sun, 12 Apr 2026
+ 22:15:51 -0700 (PDT)
 MIME-Version: 1.0
-References: <6KwS.1775631328520262279.RWyv@lists.yoctoproject.org>
-In-Reply-To: <6KwS.1775631328520262279.RWyv@lists.yoctoproject.org>
+References: <6KwS.1775631328520262279.RWyv@lists.yoctoproject.org> <CAM=40tVV57_198qBoOorCtPLcf_WSYY2w9jybvuSixhr665CmA@mail.gmail.com>
+In-Reply-To: <CAM=40tVV57_198qBoOorCtPLcf_WSYY2w9jybvuSixhr665CmA@mail.gmail.com>
 From: Josef Holzmayr <jester@theyoctojester.info>
-Date: Mon, 13 Apr 2026 07:11:54 +0200
-X-Gm-Features: AQROBzAhVPksJxUwBs72Ep2Myhro6JauJLf0ZrGI-aZNdGwx1pbLdgXHXfCfOfo
-Message-ID: <CAEt6Nwo_d+6yCCJgrWFuGviSkPXFr82GZ5dtwQDK5=7m2CHmFA@mail.gmail.com>
+Date: Mon, 13 Apr 2026 07:15:24 +0200
+X-Gm-Features: AQROBzBGkitLKQtEDlaN3L_ILVSYPmoO05kMQw6lqTobKDFefV0l-UlL0CRgmz4
+Message-ID: <CAEt6Nwpn47io0fsrJp-YUjXwoJqesj0qge0AZ+6mOrF7Q4GNGg@mail.gmail.com>
 Subject: Re: [yocto] Fetch Issue
-To: yocto@lists.yoctoproject.org, snehadhar39@gmail.com
+To: yocto@lists.yoctoproject.org, aurelien@hackers.camp
+Cc: helpdesk@yoctoproject.org
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from 45-33-107-173.ip.linodeusercontent.com [45.33.107.173] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Mon, 13 Apr 2026 05:12:29 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/66404
+ <yocto@lists.yoctoproject.org>; Mon, 13 Apr 2026 05:15:59 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/66405
 
-Hi,
+Hi Aurelien,
 
-Due to a load of load by bots/scrapers, the git:// protocol endpoints
-had to (finally) be deprecated a few days ago. Please move your URLs
-to https://git.yoctoproject.org, then things should be fine. Please
-let us know if not.
+If your wiki access request was lost somewhere, then apologies. I've
+added helpdesk on CC to hopefully fix it soon.
 
 Greetz,
 Josef
 
-On Sun, Apr 12, 2026 at 9:45=E2=80=AFPM sneha Dhar via lists.yoctoproject.o=
-rg
-<snehadhar39=3Dgmail.com@lists.yoctoproject.org> wrote:
+On Sun, Apr 12, 2026 at 10:00=E2=80=AFPM aurelien via lists.yoctoproject.or=
+g
+<aurelien=3Dhackers.camp@lists.yoctoproject.org> wrote:
 >
-> Hi
+> Hi,
 >
-> Is anyone else experiencing issues accessing git.yoctoproject.org? We are=
- seeing fetch failures for meta-intel, poky, etc.
-> Thanks.
+> I just can say that I have requested for a wiki access that I never get b=
+ack.
+> So I continue my project on my side ... it seems that Gentoo is not consi=
+dered as a "distro"
+>
+> But I am running a lab on Gentoo full of yocto VMs for HPC and now dev so=
+me stuff for Kernel 7RC7 for yocto arm64 to run a filesystem I am developin=
+g from papers for HPC in Space.
+>
+> Well, a lot of fun and hope that things will soon go better :)
+>
+> "Put the fun back in you hack" --Cynbe Ru Taren .. a filesystem for space=
+ to send you a sign to your paradise island
+>
+> https://github.com/roastercode/yocto-hardened/tree/yocto-hpc
+>
+>
+> Aurelien DESBRIERES
+>
+>
+> Le dim. 12 avr. 2026 =C3=A0 21:45, sneha Dhar via lists.yoctoproject.org =
+<snehadhar39=3Dgmail.com@lists.yoctoproject.org> a =C3=A9crit :
+>>
+>> Hi
+>>
+>> Is anyone else experiencing issues accessing git.yoctoproject.org? We ar=
+e seeing fetch failures for meta-intel, poky, etc.
+>> Thanks.
+>>
+>>
+>>
 >
 > -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
 > Links: You receive all messages sent to this group.
 > You automatically follow any topics you start or reply to.
-> View/Reply Online (#66401): https://lists.yoctoproject.org/g/yocto/messag=
-e/66401
+> View/Reply Online (#66402): https://lists.yoctoproject.org/g/yocto/messag=
+e/66402
 > Mute This Topic: https://lists.yoctoproject.org/mt/118793581/4689568
 > Group Owner: yocto+owner@lists.yoctoproject.org
 > Unsubscribe: https://lists.yoctoproject.org/g/yocto/unsub [jester@theyoct=
