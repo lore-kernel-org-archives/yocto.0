@@ -1,372 +1,391 @@
-Return-Path: <chee.yang.lee@intel.com>
+Return-Path: <kai.kang@windriver.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 4D8ECF8DFFF
-	for <webhook@archiver.kernel.org>; Sat, 18 Apr 2026 05:49:46 +0000 (UTC)
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
- by mx.groups.io with SMTP id smtpd.msgproc01-g2.61720.1776491381888262363
+	by smtp.lore.kernel.org (Postfix) with ESMTP id B5AD1F5A8DA
+	for <webhook@archiver.kernel.org>; Tue, 21 Apr 2026 02:39:14 +0000 (UTC)
+Received: from mx0a-0064b401.pphosted.com (mx0a-0064b401.pphosted.com [205.220.166.238])
+ by mx.groups.io with SMTP id smtpd.msgproc01-g2.4959.1776739144189170104
  for <yocto@lists.yoctoproject.org>;
- Fri, 17 Apr 2026 22:49:42 -0700
+ Mon, 20 Apr 2026 19:39:04 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@intel.com header.s=Intel header.b=PpBXGaIG;
- spf=pass (domain: intel.com, ip: 192.198.163.8, mailfrom: chee.yang.lee@intel.com)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1776491381; x=1808027381;
-  h=from:to:subject:date:message-id:mime-version;
-  bh=LqmhiRRGo8TYltqEccqJKwiUFjDbthSyzC9KjuEaULU=;
-  b=PpBXGaIGPG+hzHrBRDZf2TBFELwL3v3OVm4tbshyLcyKN4GHO0ZnOKth
-   rvwg6t769gFebBoMW/UJ8X0Ds/TGCEEEK/Eqbw4/mDYsaaEo97HhmzFJy
-   9PgjKOGJjLuSGOPNFL+24KiUOjJYJPY6i5lyQ38GeHwgN2OSL3eCvYVGd
-   e/RdwSZCoTUQBSuMSLeXbHhmtfMtty1md5uBvhDju/ZkpDgMsDJnQF+so
-   vebxjH8Hz4Ore542/VMmXxZLd+YcoyASiHyQRSFJEKQY2gBIIxi9lEJlP
-   9uZvrrInrRD+2Spm4msCO6IwcRO6J2RZ1sfjwyqBlvEvHcKPSSlmsLsQW
-   g==;
-X-CSE-ConnectionGUID: szuwl7srTO2C2odFAaH/6Q==
-X-CSE-MsgGUID: VWnSJK4wRVe6O4ADTCs5GA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11762"; a="95062815"
-X-IronPort-AV: E=Sophos;i="6.23,185,1770624000"; 
-   d="scan'208,217";a="95062815"
-Received: from fmviesa009.fm.intel.com ([10.60.135.149])
-  by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 17 Apr 2026 22:49:41 -0700
-X-CSE-ConnectionGUID: gn1LzDknTi+gWuu/9O4DQw==
-X-CSE-MsgGUID: 8jCQl+1jRPO7f7wbvOqhDg==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,185,1770624000"; 
-   d="scan'208,217";a="224704297"
-Received: from fmsmsx903.amr.corp.intel.com ([10.18.126.92])
-  by fmviesa009.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 17 Apr 2026 22:49:41 -0700
-Received: from FMSMSX903.amr.corp.intel.com (10.18.126.92) by
- fmsmsx903.amr.corp.intel.com (10.18.126.92) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.37; Fri, 17 Apr 2026 22:49:40 -0700
-Received: from fmsedg903.ED.cps.intel.com (10.1.192.145) by
- FMSMSX903.amr.corp.intel.com (10.18.126.92) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.37 via Frontend Transport; Fri, 17 Apr 2026 22:49:40 -0700
-Received: from PH0PR06CU001.outbound.protection.outlook.com (40.107.208.64) by
- edgegateway.intel.com (192.55.55.83) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.37; Fri, 17 Apr 2026 22:49:39 -0700
+ dkim=pass header.i=@windriver.com header.s=PPS06212021 header.b=KqeshCjj;
+ spf=permerror, err=parse error for token &{10 18 %{ir}.%{v}.%{d}.spf.has.pphosted.com}: invalid domain name (domain: windriver.com, ip: 205.220.166.238, mailfrom: prvs=85717f1484=kai.kang@windriver.com)
+Received: from pps.filterd (m0250809.ppops.net [127.0.0.1])
+	by mx0a-0064b401.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 63KNxi0v339431
+	for <yocto@lists.yoctoproject.org>; Mon, 20 Apr 2026 19:39:03 -0700
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=windriver.com;
+	 h=content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=PPS06212021;
+	 bh=jeSnZ+sokr3Km1kpim46OP1qt6kChUz5zTECGTKsmzw=; b=KqeshCjjYnw1
+	gB8djxIpYEGqFM7kUbAZIYcCrPK/WppuDXNhodVCULNxPulbpmqU+2vMOr7/q+wt
+	VC6fbp2HFY+1Mh2z39WHVTZB37KcWK8UV11IC6D5mh9Csl2Ky0i7DrikZY5Cnbmo
+	YciZIQK8ljPrPFycwRM5q8+Ht1ZubaYtLXPSDdsbwprrb2iQpsb3ov+u3+0Htkna
+	85rAsnNHmB2egXqL2mDkLqxXH82MY9vFXgzhe3qjESW2019IQEVW+Xr+Yw+rG+Rx
+	Kur1aeV0KaxbRq95VD8oFE77B983hCTrHD6Rd21r3ndg2gZdUleX+6qxTVbknso8
+	H6Bl1cguEw==
+Received: from dm5pr21cu001.outbound.protection.outlook.com (mail-centralusazon11011067.outbound.protection.outlook.com [52.101.62.67])
+	by mx0a-0064b401.pphosted.com (PPS) with ESMTPS id 4dm9fctj4j-1
+	(version=TLSv1.3 cipher=TLS_AES_256_GCM_SHA384 bits=256 verify=NOT)
+	for <yocto@lists.yoctoproject.org>; Mon, 20 Apr 2026 19:39:03 -0700 (PDT)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=iYWfmqC8Ig1FzjmRiaVkxRnhJI1VCK/wn3HzpiCER7pBbqnOlwWWhMLlwsbIpnXtqw0nLIHthxpIp2V2J7AnKcOsxkhigHWZ3zkJ3OPcfufWEEQIZewTsk8wh8qcUv1fxEBJ+1282MZnq8d/Swm2BLiLJC2pfuK6YJhWiPKylyOCNaKzbA3mXkzwdezWmyerkgN1q9Ss5MdXs2WfgmDtUpFmEzFbukNADayaPvaMJRBrANK/Gm6bP5ALs+DIfc4y/YE6M+BoiI2AAuRAANrzZbs5IEUiuNsuVs5r1Pxf7vWjcxBHIZtApqPjP4WW17zZzy+HZOcgslJsYo6M2rzJJQ==
+ b=eq4Lrl/kCsVCZw4alQSI7AkA3gxudoo/P39Jf16I9cUKhxzHZ0SnHJARlYZXG1qmvZj3eiQl51mvqKPk8hF5hbx2CuISRU99DJd6INAZg+7dRk+SabFFNpM31iAMp61ywd2DFZVlcFKg9B66EGP45367GpeAg8h9P7MRvAnGLVkE4n1lcNO5w2CdYjnJefzp4qzc0huTRQSNXmzIHSPv1q5J9zFIfwz5Gv/TqQelBPGY1OzAU5qMHZc5Ubgi0ZvRA5z+eYiDwBqzQrfXVOWI7KHI3Ucp4Byxvf8vR7qLo4fSIwyY20t3Vr+QC+CxPg9acjXWMypEmCEmqN51K57p2A==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=LqmhiRRGo8TYltqEccqJKwiUFjDbthSyzC9KjuEaULU=;
- b=h3a0eBlaE9yc/OWNgpJRQqrvDnGdowhW0gpSNLwzjgXCWhVTzVjbuzuimbybYLXs24oVad3sjCch7dNY3UDXl1O7UJWKxnh4/7hStKJ4nBiASf4BE3GWO/CNdOL6FZsC0C9W/9wpoPGD9QJEbxV7Of9IYCSqErB8e+syBzbXP2Wkxm2r4MCtvy6ao6uAJFKbhekprYlGQN8MyyD4A/75Z1ctXvwvFP1daK53sL4r3dfIWFgmfjfU/jOt4WWcJHbNErvDJZzGpiLgaUfSNxBO1+Mt180A1nNmi6QOn/aW8iJukC68xhQXRPiGnA4kc80Ns7Tq/HJGaEqiLxugHFsNXw==
+ bh=jeSnZ+sokr3Km1kpim46OP1qt6kChUz5zTECGTKsmzw=;
+ b=n8tq25AAufIsrpYFWSTHy//jB3ktBLYQobqzTs7mIgkBAHGzzTxlPpeesVqC3gG/JfkLxMoUIbZ4GY+i/8rlrUttKyEcQNZLeE/+WRe5Qz4kWAycKq4x1PBsw+70dVCoA5AZ4YdJAH6ggultNMWjDm3grUrr1PwGSvaDMeoacZtCmIm4l+gAI26IkZp1+VXUVrK0nKPUmhaqpp6gTI+A/dPUMEyQeEVgjXNAOgW+6TMXLHFFkhYlElvFcpNwFUq2IbWT2njEtnpj9gBEnPq31kVxI80GHspB5wBUYwtWuVoWEQT09rDAmdWu0CMYsWsF7+mhnor0MaM+gUgWRk4BoQ==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Received: from BL4PR11MB8797.namprd11.prod.outlook.com (2603:10b6:208:5a7::8)
- by SA1PR11MB7086.namprd11.prod.outlook.com (2603:10b6:806:2b3::10) with
+ smtp.mailfrom=windriver.com; dmarc=pass action=none
+ header.from=windriver.com; dkim=pass header.d=windriver.com; arc=none
+Received: from SN6PR11MB2589.namprd11.prod.outlook.com (2603:10b6:805:53::12)
+ by PH7PR11MB7513.namprd11.prod.outlook.com (2603:10b6:510:270::20) with
  Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9846.8; Sat, 18 Apr
- 2026 05:49:31 +0000
-Received: from BL4PR11MB8797.namprd11.prod.outlook.com
- ([fe80::fe4:8775:47fa:b7d9]) by BL4PR11MB8797.namprd11.prod.outlook.com
- ([fe80::fe4:8775:47fa:b7d9%6]) with mapi id 15.20.9818.023; Sat, 18 Apr 2026
- 05:49:31 +0000
-From: "Lee, Chee Yang" <chee.yang.lee@intel.com>
-To: "yocto-announce@lists.yoctoproject.org"
-	<yocto-announce@lists.yoctoproject.org>, Yocto-mailing-list
-	<yocto@lists.yoctoproject.org>
-Subject: [ANNOUNCEMENT] Milestone 3 for Yocto Project 6.0 (yocto-6.0_M3)  Now
- Available
-Thread-Topic: [ANNOUNCEMENT] Milestone 3 for Yocto Project 6.0 (yocto-6.0_M3)
-  Now Available
-Thread-Index: AQHczvUqFp8szbrFX0uEHyFklzwxYA==
-Date: Sat, 18 Apr 2026 05:49:31 +0000
-Message-ID: <BL4PR11MB87978703245DEDCFB76D7DF1B9212@BL4PR11MB8797.namprd11.prod.outlook.com>
-Accept-Language: en-SG, en-US
-Content-Language: en-SG
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-msip_labels: 
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: BL4PR11MB8797:EE_|SA1PR11MB7086:EE_
-x-ms-office365-filtering-correlation-id: 86407b5f-10e2-41c3-4660-08de9d0e4320
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;ARA:13230040|10070799003|366016|376014|1800799024|38070700021|56012099003|18002099003|8096899003;
-x-microsoft-antispam-message-info: PS7yFeeki0xtKvQ3Y1ZLGw3aYZRulVd9ssWO+pUQEVrXE4OsOxKA9FyhWoiWqaG2hSxgl8lbT1FYZQ1Pc5PlE4QJlhXJxCtkKL3MioAEcyRo1V9TXXxl+qF3aPIRGN+uD7nJsURIlYvP/RLfsxxDt4qRnbhKlMX8ztwPik9GWs4Iv7qljW0xIi+11jGHC9PQNTSliSZra7xTK9mBcT0DPL4tyKfv+ZCBRfFi0E+d/C1sTIZf/MM66gp19TpBSfAeQU9VgTzgD3J/MhUVNU5kjEr/EvosN3DVUCbKq8Ra1Y95Wh6FCTiDuQmIBWDuBEJOizlbcjG/qAmA0t0Ln6jG0HHSoG5YgShhhZyL9slkTXI0/xUWH3RtSnfUWVPYGm6lwzkVdFTq6CPv2y4n2Yg61SNWZ7iX1dOVbkuCfaTXvCluSbqV30K9BGdGLbhGW1isoyxpm4JmYhR7qnADrJL55F7/NJYjBwfM2zz4P0endcZqMd9hDcH9x5QrRhTCCZWe+1WFsb5mKlq7aOvS6AYeMKokSoIWaxgoHJw7mgniqMzF4D9l4N8V1yn8tqD+JHkQqwzodk6wHyO7G2MMttTl3QC4DPxOhHTN7A3mgSjxV6rTdw3Mlo3IOVo1ToyI6wFDscWikgI3kZ6jGydhjhO7vCVhlRYEbIFAhACSzsiMx05kSQnEW5JSQknePeqvT+wIVC/q90L3LLa0+me6szK+kKCNk+u+5edjGYyr/2RCm8+jZNdDKG4MTX5hD67ztDhL
-x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:BL4PR11MB8797.namprd11.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(10070799003)(366016)(376014)(1800799024)(38070700021)(56012099003)(18002099003)(8096899003);DIR:OUT;SFP:1101;
-x-ms-exchange-antispam-messagedata-chunkcount: 2
-x-ms-exchange-antispam-messagedata-0: =?iso-8859-1?Q?YIiTrS1berl4h5OAe3GG+lCUSanZVFVXayI4X5Sy2J6GqYzDFbcqPgKq6J?=
- =?iso-8859-1?Q?pgGBbRFV60PBr5Qs8TGU3056eiiXcej+iQ3J6aXUBudDPQFSOdN9QnFFW3?=
- =?iso-8859-1?Q?xxvOFeSC9OY2xqRitZNT9VfBQqmOikCuN6UlSPZqRRdpngRtu689dwhs2C?=
- =?iso-8859-1?Q?UhACU0vuLyx5t3GT24rfJgTmTjwrsK5PB8cwsZ4CB9x2If4rpGOB+YKNNt?=
- =?iso-8859-1?Q?KHq12LSs4WqKGv+DEM++71PLr3HNL0A8HLHbI+u28eJLn1UMOrVX8hb2QE?=
- =?iso-8859-1?Q?RR/tEaJpe6mtWO/xjhj05Ls2k4WwVJ565Eun7+j5JptHrb7XOUOwPH+q8X?=
- =?iso-8859-1?Q?7Xda0y+i1NdfvJlb6S+NwqUh3gnopVqymQ4u9BbiqJ3iJodXr/UzHh7lXj?=
- =?iso-8859-1?Q?lfOou3QzondpxL5dwAl/QUc8JRsszjFaoLced5pqilF0FV4VP6M4Tw9nLt?=
- =?iso-8859-1?Q?AQtFQsN347Ikc8AeHOzSI+9NWI9zrXyKsT5Fe0VMoKTibBDi14Df56OMXe?=
- =?iso-8859-1?Q?K5SNKuUoordmOZjs3ap2inWQRzPmwR3RZGe6GWasiR7YEtxQkGlQJaBoU4?=
- =?iso-8859-1?Q?uzxEqFIf0GxIsM4hHxuCjzRD/WOj1vPEZ09+rYRyRbQCabx8Kb9VrSHZTM?=
- =?iso-8859-1?Q?ksHsPamexrKP1VbHB4NN2rsIEE4Bj91ywsbpepV0dg4ivk6BdAowrGuFzJ?=
- =?iso-8859-1?Q?4IYxPtU0gxSJEPatgPbP2jQQwGFy9stUSygbVFFW7c2GrpnO7GxOA7R39J?=
- =?iso-8859-1?Q?4y1SN5S7F+ehMaTi8XE2l3OidSWnI4mV2xx/UJFLGwD7qfIAYoVDFsuxUC?=
- =?iso-8859-1?Q?bvUCLVdlmKxtCjxz0+bDSJQNXDqpwjgfMzDJdU+vmuFlo8XALzc/emeGIN?=
- =?iso-8859-1?Q?DpzyD18V3H9qS0S2G0ntlQqaLWtlwh6wjpwvVM2tjMlYX0514TrqRKP7hq?=
- =?iso-8859-1?Q?1vK5xO6LQepfbfjhaoL939/C+qiYZbdp6fSNJTXD0FOmS5MyU/jyxkhLw3?=
- =?iso-8859-1?Q?hL2k9fmc6taLVURAz90PrJAQaazVpMu+HInDVz0chgY9Uwdd/yBgbN3K7B?=
- =?iso-8859-1?Q?dahOPzprrWep8vjF7z44pVvK3vWDHovN29mn3y6lEwlGrOcZUUcpVB78TI?=
- =?iso-8859-1?Q?V7MCCEIkLKhr7kFglu9Wemn1yKnY3qXqomIRtJ1DBblqlzchCidclbPuMi?=
- =?iso-8859-1?Q?i4mwEiPp4ol1kfjXuDky4i1BCOk9E7X0xtxsEAnKqkgovfGPRri1tis4ZK?=
- =?iso-8859-1?Q?m6+nVQ/1L3zXhZQPJPhHoK0MlOsUSiFwRbHCxt9bfjoV5nG738Q8k0ouXZ?=
- =?iso-8859-1?Q?EKajsQugAru1p/ljh7wnrft2SMPF4u6WYOChJfTKrBCFIfUXZgE2I0uqxw?=
- =?iso-8859-1?Q?v75Iw9cafDqGwmN4DeQO9j2zVYoi8Hw7IJnfWjbyQv9VK9r6bUIIb1Rh59?=
- =?iso-8859-1?Q?Zq3128/50eoUyD6XJKIkm6h/gpqsvH7z379H2dAZbG+nMJWyXpwm8opAVT?=
- =?iso-8859-1?Q?TtEq4p5awanbwucKDNOPiUcQlbpiVv8kh29w2DSHBLcpUpWtvmiRUkUiBO?=
- =?iso-8859-1?Q?ndyjEmkYe7zcs4tL0cCcZMj2Pi6yZ5aGGq/rKACnAsLvFkQom2QBHvYRKe?=
- =?iso-8859-1?Q?PNtTAbCpOaQVr6yqit5o5WM0K1QmfupfDCmPQVH83a+CQUmJeK8IE3VYpV?=
- =?iso-8859-1?Q?JlNUOHO9F+A7X5lzqm0V6WNKA7yBizRcrJots5jIShikbd/rzuNbUbN9uH?=
- =?iso-8859-1?Q?VRsyc9g7G1/1TQm3cWSOA4KBYQbCWnIG0lqkn0tMlYGLEGhLp7AtjRc1Oj?=
- =?iso-8859-1?Q?ltJm+rC9tSbfokWRc7HuKFqS5VLpU7rYyFu2RJVsbC3GuhQtBFE6Xf9YQS?=
- =?iso-8859-1?Q?xd?=
-x-ms-exchange-antispam-messagedata-1: maWvS0xVEyzPjQ==
-Content-Type: multipart/alternative;
-	boundary="_000_BL4PR11MB87978703245DEDCFB76D7DF1B9212BL4PR11MB8797namp_"
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9846.15; Tue, 21 Apr
+ 2026 02:39:00 +0000
+Received: from SN6PR11MB2589.namprd11.prod.outlook.com
+ ([fe80::9fca:dc5d:4230:e12e]) by SN6PR11MB2589.namprd11.prod.outlook.com
+ ([fe80::9fca:dc5d:4230:e12e%5]) with mapi id 15.20.9846.014; Tue, 21 Apr 2026
+ 02:38:58 +0000
+Message-ID: <e388a09c-74f2-4490-a703-5cfc3fc4a4eb@windriver.com>
+Date: Tue, 21 Apr 2026 10:38:50 +0800
+User-Agent: Mozilla Thunderbird
+Subject: Re: [yocto][meta-anaconda][PATCH 1/2] anaconda: fix duplicate
+ RDEPENDS entry and remove orphaned patches
+To: Haitao Liu <haitao.liu@windriver.com>, yocto@lists.yoctoproject.org
+References: <20260415090620.2450794-1-haitao.liu@windriver.com>
+Content-Language: en-US
+From: Kai <kai.kang@windriver.com>
+In-Reply-To: <20260415090620.2450794-1-haitao.liu@windriver.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: TYCP301CA0024.JPNP301.PROD.OUTLOOK.COM
+ (2603:1096:400:381::14) To SN6PR11MB2589.namprd11.prod.outlook.com
+ (2603:10b6:805:53::12)
 MIME-Version: 1.0
-X-Exchange-RoutingPolicyChecked: rZdOFGZPPGLLahakR4Z3frUTvT7gYxS/YsQg/0Y6XU2tRkeKNPGhbo3FaXj22UY9T9oxM2UmQ4r9t/D05emrS9tmLEYOGCNSDVXZ1tf7gDb4dedyUvsfgAynMxOW0SWwR4kuhI+70QbsQpG1w6GAQc1jWnvpFQ7Qx01vB3IqpASEixxYn8NFz5483rIJIGeWPQIm9slJ9/e5MQWZL0V3XzatVqnNJNT0SG17XmKInUtwkPnmmcfJXete54X0xLlzpwQB9x2DP7m+ItzLwTMd9fUWD8Uug0dB70bdCaU1YkEtjJSHKyN13ocpURArH/MdtAHlY7e4vBeLfaagiYBVFg==
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: SN6PR11MB2589:EE_|PH7PR11MB7513:EE_
+X-MS-Office365-Filtering-Correlation-Id: 5fe66f6b-15f4-413a-1b31-08de9f4f23e7
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: 
+	BCL:0;ARA:13230040|366016|376014|42112799006|1800799024|56012099003|18002099003|22082099003;
+X-Microsoft-Antispam-Message-Info: 
+	ZreEG1TC9QX7cbPIfih71KtGMB2WXEJVBQR0h7ouuMfZRZBbVYqC2ssNVloIW39DBe3gEOBtwes9NzMua7gu0HdxdNk0sSEWHhYJFyuK1bazOacEbnD0eWO4bU8NcApVtU/R/LmDfQQHguL0oc0+9w5hWWrHbNtm/Jxb624Ta01xI6i82fa9U/pvjBSMwQYr0NhcgCzCxG1sE4tJNZox4B/vWmxb0X7biSWs9GNKBYE8V4YhmnkpQuLU9CScukV7D9PrmuVjxgclXMJsb59hZEqvwp12I4EuUfV2a0l7vQYk6gN/prPoM+PImUO5Gi1Sb1JvuKrQIFOOCKrDSBCErmvvYB+d05k8VOoZHP2S/E6UY1Q/ES8mYM0vVvda8mvEuG0J3rtAxEBihSYfWCeK/PdS4NURu9wZuU0ilfj0XO/7k/VnC7x6n2AiEscT92wdvbpD+RTyJauVLIQLXWOSmAKzwD/pc717i1lYd3EaKS5T00EJ/nsKHSfiKLFhB/TngP2DBx2yLBjWMuK1IrJI9Yk+BlqvHS0RpI3ZKonrFsFqFGdNRRt3/wiMySX5hYeZrWyCfMhK1Zr+NDf2Q5UGyL783YJ5ahaX8vu0kVAix8rE3i0FFeUqPmJjlsRswUmiB2zJOiAMxnk2zASTlzvfz0hWjCrLoIHqfXwD3HwQWzoFmiFpWcywOugw+e0ve68MP1ojCokkD5tlGbIlE/9B4o/43YUNXo/5t19EUNiK7uo=
+X-Forefront-Antispam-Report: 
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:SN6PR11MB2589.namprd11.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(366016)(376014)(42112799006)(1800799024)(56012099003)(18002099003)(22082099003);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: 
+	=?utf-8?B?ZWYvK2lyWk81TDBoZ0hKNjQ3TlVWWUJEMzNEekpVUXltbDVCa0IyRWRDTGg4?=
+ =?utf-8?B?bEUvZWExbHNySDFqaG9BcUs2dm9BZ1l2ZGdqcEkyTjhiL3FZUjRUamQrUVYx?=
+ =?utf-8?B?a3VSY1k5VUlFdWt6L1d2Mzh1NytZbFJPblA4M25mSFpDU2VwcWl2b2pZZDdP?=
+ =?utf-8?B?U0Q5eXpOOW5RUkYvVkVzVU9SdzdtRkdscnc0QnQyOU5CUlBpK1pxOFNvS2ox?=
+ =?utf-8?B?M0puQzlMdDBPWElMcWpTV1VUZnYwaFVYWEZkdHNNZUUzTVZvZHJBakhSaGFl?=
+ =?utf-8?B?THJscGdkUDJDb2RBa0treFdOREFIa2FXbm5oY0N1ZkZFOWtaWE12VHhtVmVr?=
+ =?utf-8?B?U3FLNDZlWmNMbWxqb3FzQm9MVTF3SDA1VGVUYml4RFl2YVE1NE5WNHI4Z2p2?=
+ =?utf-8?B?VVFwdnRMbDBEeVJUK2Jmb25Vb1ROYWZsbG5VaXF3dGZHTHlCWTFZL0Z1Y2hH?=
+ =?utf-8?B?YVRSb0tkQTBBS2VRQ3diUXhMUVZSNnBkNElTb3Z3ZXRDUkFPMHFMbDBJbGNK?=
+ =?utf-8?B?SjRIVzd5T2NxTmhLUStQQzUwRVJJcmE1UEhRN3pkRUNWMTA2UWdJS2hnUjRV?=
+ =?utf-8?B?NTM2UDVOWkFOMGZ4bExWKzhBMjVjdGU2REN6ajhRL1VvVFUxbThMcHpiSktK?=
+ =?utf-8?B?OTQzUlAvZ3QwbHpoTXpkSnNhcUt4d1Zja2pVRmNRSGdjMUV5RmRKZzA5b2Zn?=
+ =?utf-8?B?UytNcU9wbVQwaFN0emliaXREcUFRelRoRS9ZdVRmNFBOUnpRSUtpTlVzZFBq?=
+ =?utf-8?B?M1dVdkdBRWZ6Y0ZKUnBIOWxPaXRTaFhLYXpGdUtSMys5YVYwTFlEU1BvWHB6?=
+ =?utf-8?B?d3VFd0cwUmxuT1gzcE1YRzNvRmhtZnBqcDgxSk5SODJDQzlFam5aUkpIUFY3?=
+ =?utf-8?B?TWlTRHpWeVBZRWtTS3dJbGtkdGxDME5TSFBMRWorZnVFSHBkV25DM3FMQWhl?=
+ =?utf-8?B?dDhGZTRsRUk1S2VhS01CWWk4ZmVWMnM4VkQ4bWkzclBTbFQ5Mk83ZWViN3U4?=
+ =?utf-8?B?ejIrTWVVcDhnSFUrMjloT2Z5WExaUmdHMXRGTFhHUUZaVUxJbXc1SGc5WUo5?=
+ =?utf-8?B?dndrcjBtNjVSRVEzSG84UFFjYlNpMmJ0MjVQQTFMMHhEOVdERGFhdklsNERk?=
+ =?utf-8?B?MVdhSUtydnNkSXViMGF0dWQ1c3YzdThSQ3JNR3c2SlllVk9iTEFmWW1DaEZn?=
+ =?utf-8?B?dVQ5RUMwUExwRURRNnJySGFmZlVNdzNKWWtwZGpCb1hUS0dJK21QNTAzSytS?=
+ =?utf-8?B?a3NFL0lldVhLWFB4Y1lhSWJlYy9oWEZ3UE9kalZudGlOY1pZUVQvU0YrWUgz?=
+ =?utf-8?B?TmhPSWlteFNkektuWWZmbjFvTWZaaGdiekVFd2hvenpNZWRqTC9kWlVGTk9S?=
+ =?utf-8?B?LzFnTTI3N3gyK1cyT3JqVWxwVVpweTVFWVNDOFJZVEFsdDEvTys1dWtIK090?=
+ =?utf-8?B?WnB5RWpYTjcxc1lZYkZiZmpjWDhMV2xrYjdic0lWaWpMbzM2OG1DdlpCcjQ2?=
+ =?utf-8?B?QmtBUHUxU2JwQ21vbHMxdkdQV2NHU0wxZlo2eUo4cS9VTEprczhlTUx2Kzl1?=
+ =?utf-8?B?VHhMcGZLYjJrdnp3bjVSenVaa1RyZVVmeHF0Z3FUSE1zSmhDci9pNlVPdUJB?=
+ =?utf-8?B?NThUQmVGTkdEVzBLRmJmRjFOQTArU1ZIT3R4R0lWRzB0aGJLK1BsZDlVZU52?=
+ =?utf-8?B?R0VGRXMzS0NUSDE1a0RpT2g2c25DQitxWU1OVVNFbjBQeEcvcGZ4VFhyRlpx?=
+ =?utf-8?B?WXRHYktLbGQ5TVRwdnBnN1lobFdZYkU4cXA4cTliTTNIM0ZQYVBaK2Vid2x6?=
+ =?utf-8?B?dFE5amxVcWxoemY1UWdtbFVPS0pIVEVSOUZmUXRmazdLN0N5eDRiQlBqK0lU?=
+ =?utf-8?B?b1ByR0VoaFRqYWlnU2FqSmhaQWRBY0k3b3J5cHJXYlQ2cndEV014V3VsN1NV?=
+ =?utf-8?B?YnIvQnJuV2plaXA3S1lPY1h6UFBIeHN1ZWU0SURRekd6M3NhWjRNMTVJWlNz?=
+ =?utf-8?B?YjJoeHJ4eEoySUNDNHd0elBsWnNDWjNyNWJTU2UvVHQ5RjE0dTErQUlYNXAx?=
+ =?utf-8?B?c0xNdVc2Uzk1dEdTV2o1VTRJemVzdzlNdmN3S0RMQ2lseUhFYUpwREdhRTR0?=
+ =?utf-8?B?UUs5ckJ6SFV2dUF3L1EwQUZnNFJqTDU3SksrbW1XcmNmOVd6RDN3VG1zZ2dq?=
+ =?utf-8?B?KzlrWSt1MHExbE03bWt6NlIxQzdJTjlHR1k1M2kyWUlFdGJBaGM5S1llTUJP?=
+ =?utf-8?B?bStwVmkzOWNVYTlJYlh0T094S0VRNExDdGNCQ3hnZlRBTEZkUGRyZzJtRkJ6?=
+ =?utf-8?B?RGdMdUtmdDREVW9yT25XUzJMR0JzbjVjZDZ2VnpFdlJxMGVkTFkxZz09?=
+X-Exchange-RoutingPolicyChecked: 
+	NedK6g3sC4YDTqRPrYCXPuvCGz3wNXvAcOjRgppDxK3ieSE0CMkzXIZpuOgoL214gyKM1MOm42HAJIvwKrmI/D3aN27jr5wNye6EI0L2tMuhJJDmfXopu7J96AuliY8X9tv53v+iROwkLRCjKC7eTiyVikkaqsdIqrje/v6k62RNPc3Ms7HmqAM6N1c+v+1iZSAUcvIf3L1m38HbOgJYgk7z1UwImOMTexjBls/LUXryzBkrCrghL23jIchd2CFGxGd1syYDJFd02oczD8O2S+ExsEuJk4zl7gu2Cd5DgnaRaMrVlkXd2FesJK6qbLPd83kNMkHcCKcH8GBsCnLFZA==
+X-OriginatorOrg: windriver.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 5fe66f6b-15f4-413a-1b31-08de9f4f23e7
+X-MS-Exchange-CrossTenant-AuthSource: SN6PR11MB2589.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: BL4PR11MB8797.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 86407b5f-10e2-41c3-4660-08de9d0e4320
-X-MS-Exchange-CrossTenant-originalarrivaltime: 18 Apr 2026 05:49:31.4426
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 21 Apr 2026 02:38:58.8164
  (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: tCp/4/NuAiCiHh6cDw/CdJ/eMNzVios71MCmoJJvIYb5ItlHG7H7kF7GCBfeVPjJRyQpfFXRuniyoRnmDg0oqg==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA1PR11MB7086
-X-OriginatorOrg: intel.com
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 8ddb2873-a1ad-4a18-ae4e-4644631433be
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: LNIc4yxP1T4ISTVo2DlJ9ARDQ10NUDdNX9Uovomsh8C4kzobmfDINgCg5kOe1wB3y6YE+KM1Kfz4H3cYOZ/gOA==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH7PR11MB7513
+X-Proofpoint-ORIG-GUID: 9rb3_DaKF3gcwMnLSKDKRJ7RLyfhY7rZ
+X-Proofpoint-GUID: 9rb3_DaKF3gcwMnLSKDKRJ7RLyfhY7rZ
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwNDIxMDAyNCBTYWx0ZWRfXzvfZ+LzAkGih
+ thKMX1hqHo9u0Rf7SLVNF5ws/anZ3sqUGpbqHo0QFpcHkEhyYkStbX+hzwMOg2+go4/kNfsDBRt
+ MrgmkliFei9/DdqA2CS91Qa5H8H/fZWJ7tMzevjN7CCKDAMcmPVfb2rfhXj2bJrMcsSLDyq2111
+ VdGSqjngAP3XN2MR/z+mS/bnJ1GgU5VAQ+a77u+OAoXZtbe+PigVk1xur/ZBdgGdxj4MKaPoToX
+ yLLtmFR7S7z0nyo95JB6+yuHYvak/eyY+xYIo043AMedkw88p3Pe41KV2vXISqgz2RUhZwVVqYR
+ uiLPw5Te6Zug5J5nnBnGQWtW4tRWIDUf/b/KSXsoQWJae0Hr/Z6GDrJqdsk9CVcoMckQH+0CYfu
+ SIhQoM0hDuio+uE4L9FRJ5khWJFoCt+6A4nu2zkl6hLJih4E1JyIsIA6vMuNQ0iG9a+o2jBYPxh
+ 64b54/OR5QDKK4W7XwA==
+X-Authority-Analysis: v=2.4 cv=WKZPmHsR c=1 sm=1 tr=0 ts=69e6e347 cx=c_pps
+ a=GcdpE1at2Es8HfJfZlkF2Q==:117 a=6eWqkTHjU83fiwn7nKZWdM+Sl24=:19
+ a=z/mQ4Ysz8XfWz/Q5cLBRGdckG28=:19 a=lCpzRmAYbLLaTzLvsPZ7Mbvzbb8=:19
+ a=xqWC_Br6kY4A:10 a=IkcTkHD0fZMA:10 a=A5OVakUREuEA:10
+ a=VkNPw1HP01LnGYTKEx00:22 a=bi6dqmuHe4P4UrxVR6um:22 a=iKiJcTA2PjBS6x5JeXcw:22
+ a=t7CeM3EgAAAA:8 a=WP5zsaevAAAA:8 a=20KFwNOVAAAA:8 a=Xd9ZVzDkG9cXgrNzDosA:9
+ a=QEXdDO2ut3YA:10 a=FdTzh2GWekK77mhwV6Dw:22 a=t8Kx07QrZZTALmIZmm-o:22
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1143,Hydra:6.1.51,FMLib:17.12.100.49
+ definitions=2026-04-20_05,2026-04-20_02,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ clxscore=1011 suspectscore=0 bulkscore=0 impostorscore=0 phishscore=0
+ spamscore=0 adultscore=0 malwarescore=0 priorityscore=1501 lowpriorityscore=0
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.22.0-2604070000 definitions=main-2604210024
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from 45-33-107-173.ip.linodeusercontent.com [45.33.107.173] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Sat, 18 Apr 2026 05:49:46 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/66423
+ <yocto@lists.yoctoproject.org>; Tue, 21 Apr 2026 02:39:14 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/66424
 
---_000_BL4PR11MB87978703245DEDCFB76D7DF1B9212BL4PR11MB8797namp_
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+On 4/15/26 17:06, Haitao Liu wrote:
+> Remove the duplicate `python3-crypt-r` entry in RDEPENDS:${PN} in
+> python3-anaconda_42.27.11.bb. The duplication appears to be a
+> copy-paste error and may be masking a missing dependency.
+>
+> Also remove the following unreferenced patch files from the
+> files/ directory, as they are not listed in SRC_URI:
+>
+>     - 0029-support-user-account-creation.patch
+>     - 0035-set-keyboard-xlayouts-with-us-by-default.patch
+>     - 0043-fix-hang-while-installed-system-reboot.patch
 
-Hi
+Good catch. Thanks.
 
-We are pleased to announce the third milestone release for Yocto Project 6.=
-0 (yocto-6.0_M3) is now available for download.
+Merged.
 
-Download:
+Kai
 
-https://downloads.yoctoproject.org/releases/yocto/milestones/yocto-6.0_M3
+>
+> Signed-off-by: Haitao Liu <haitao.liu@windriver.com>
+> ---
+>   .../0029-support-user-account-creation.patch  | 82 -------------------
+>   ...keyboard-xlayouts-with-us-by-default.patch | 50 -----------
+>   ...x-hang-while-installed-system-reboot.patch | 31 -------
+>   .../anaconda/python3-anaconda_42.27.11.bb     |  1 -
+>   4 files changed, 164 deletions(-)
+>   delete mode 100644 recipes-installer/anaconda/files/0029-support-user-account-creation.patch
+>   delete mode 100644 recipes-installer/anaconda/files/0035-set-keyboard-xlayouts-with-us-by-default.patch
+>   delete mode 100644 recipes-installer/anaconda/files/0043-fix-hang-while-installed-system-reboot.patch
+>
+> diff --git a/recipes-installer/anaconda/files/0029-support-user-account-creation.patch b/recipes-installer/anaconda/files/0029-support-user-account-creation.patch
+> deleted file mode 100644
+> index 937c51e..0000000
+> --- a/recipes-installer/anaconda/files/0029-support-user-account-creation.patch
+> +++ /dev/null
+> @@ -1,82 +0,0 @@
+> -From b93bf80525624fd7038b370f35ace90a3b3bdb1b Mon Sep 17 00:00:00 2001
+> -From: Hongxu Jia <hongxu.jia@windriver.com>
+> -Date: Tue, 24 Jul 2018 15:05:25 +0800
+> -Subject: [PATCH] support user account creation
+> -
+> -- Do not support user accout advanced setting
+> -
+> -- Add main for debugging test
+> -
+> -Upstream-Status: Inappropriate [oe specific]
+> -
+> -Signed-off-by: Hongxu Jia <hongxu.jia@windriver.com>
+> ----
+> - pyanaconda/ui/gui/spokes/user.py |  7 +------
+> - pyanaconda/users.py              | 15 +++++++++++++++
+> - 2 files changed, 16 insertions(+), 6 deletions(-)
+> -
+> -diff --git a/pyanaconda/ui/gui/spokes/user.py b/pyanaconda/ui/gui/spokes/user.py
+> -index 2398810..9d7de2a 100644
+> ---- a/pyanaconda/ui/gui/spokes/user.py
+> -+++ b/pyanaconda/ui/gui/spokes/user.py
+> -@@ -267,6 +267,7 @@ class UserSpoke(FirstbootSpokeMixIn, NormalSpoke, GUISpokeInputCheckHandler):
+> -         self._password_required_checkbox = self.builder.get_object("password_required_checkbox")
+> -         # advanced user configration dialog button
+> -         self._advanced_button = self.builder.get_object("advanced_button")
+> -+        self._advanced_button.set_sensitive(False)
+> -         # password checking status bar & label
+> -         self._password_bar = self.builder.get_object("password_bar")
+> -         self._password_label = self.builder.get_object("password_label")
+> -@@ -500,12 +501,6 @@ class UserSpoke(FirstbootSpokeMixIn, NormalSpoke, GUISpokeInputCheckHandler):
+> -         """Called by Gtk on all username changes."""
+> -         new_username = editable.get_text()
+> -
+> --        # Disable the advanced user dialog button when no username is set
+> --        if editable.get_text():
+> --            self._advanced_button.set_sensitive(True)
+> --        else:
+> --            self._advanced_button.set_sensitive(False)
+> --
+> -         # update the username in checker
+> -         self.checker.username = new_username
+> -
+> -diff --git a/pyanaconda/users.py b/pyanaconda/users.py
+> -index 3db06dd..edf3469 100644
+> ---- a/pyanaconda/users.py
+> -+++ b/pyanaconda/users.py
+> -@@ -28,6 +28,8 @@ from pyanaconda.errors import errorHandler, PasswordCryptError, ERROR_RAISE
+> - from pyanaconda.core.regexes import GROUPLIST_FANCY_PARSE, NAME_VALID, PORTABLE_FS_CHARS, GROUPLIST_SIMPLE_VALID
+> - import crypt
+> - from pyanaconda.core.i18n import _
+> -+from pyanaconda.core import constants
+> -+
+> - import re
+> -
+> - from pyanaconda.anaconda_loggers import get_module_logger
+> -@@ -200,6 +202,7 @@ class Users(object):
+> -                           homedir will be interpreted relative to this. Defaults
+> -                           to util.getSysroot().
+> -         """
+> -+        log.info("kwargs %s" % kwargs)
+> -         root = kwargs.get("root", util.getSysroot())
+> -
+> -         if self._getgrnam(group_name, root):
+> -@@ -431,3 +434,15 @@ class Users(object):
+> -         if not authfile_existed:
+> -             os.chown(authfile, int(uid), int(gid))
+> -             util.execWithRedirect("restorecon", ["-r", sshdir])
+> -+
+> -+# For testing
+> -+if __name__ == "__main__":
+> -+    from pyanaconda import anaconda_logging
+> -+    anaconda_logging.init()
+> -+    anaconda_logging.logger.setupVirtio(constants.VIRTIO_PORT)
+> -+
+> -+    from pyanaconda.anaconda_loggers import get_anaconda_root_logger
+> -+    log = get_anaconda_root_logger()
+> -+
+> -+    users = Users()
+> -+    users.createUser("test", password="123456", shell="/bin/bash", groups=["wheel"])
+> ---
+> -2.7.4
+> -
+> diff --git a/recipes-installer/anaconda/files/0035-set-keyboard-xlayouts-with-us-by-default.patch b/recipes-installer/anaconda/files/0035-set-keyboard-xlayouts-with-us-by-default.patch
+> deleted file mode 100644
+> index 46b9993..0000000
+> --- a/recipes-installer/anaconda/files/0035-set-keyboard-xlayouts-with-us-by-default.patch
+> +++ /dev/null
+> @@ -1,50 +0,0 @@
+> -From 8d69d02b27190c90dc5fd6dcf37420c221ec5660 Mon Sep 17 00:00:00 2001
+> -From: Hongxu Jia <hongxu.jia@windriver.com>
+> -Date: Tue, 24 Jul 2018 17:02:45 +0800
+> -Subject: [PATCH 35/65] set keyboard xlayouts with 'us' by default
+> -
+> -Previously only graphic set keyboard xlayouts with 'us' by default,
+> -and text mode did not have the setting and it caused 100% cpu when
+> -loadkey invoked. The hung of loadkey also caused reboot failed.
+> -
+> -The setting in default ks works on both of graphic and text.
+> -
+> -Revert the following fix:
+> ----------
+> -commit ec53ff6e4a7a06d190925a482371031a2f48509d
+> -Author: Martin Kolman <mkolman@redhat.com>
+> -Date:   Thu Jan 19 18:37:29 2017 +0100
+> -
+> -    Use correct default password quality value
+> ----------
+> -
+> -Upstream-Status: Inappropriate [oe specific]
+> -
+> -Signed-off-by: Hongxu Jia <hongxu.jia@windriver.com>
+> ----
+> - data/interactive-defaults.ks | 12 +-----------
+> - 1 file changed, 1 insertion(+), 11 deletions(-)
+> -
+> -diff --git a/data/interactive-defaults.ks b/data/interactive-defaults.ks
+> -index a906c8c..a2f0555 100644
+> ---- a/data/interactive-defaults.ks
+> -+++ b/data/interactive-defaults.ks
+> -@@ -1,14 +1,4 @@
+> - # Kickstart defaults file for an interative install.
+> - # This is not loaded if a kickstart file is provided on the command line.
+> - firstboot --enable
+> --
+> --%anaconda
+> --# Default password policies
+> --pwpolicy root --notstrict --minlen=6 --minquality=1 --nochanges --notempty
+> --pwpolicy user --notstrict --minlen=6 --minquality=1 --nochanges --emptyok
+> --pwpolicy luks --notstrict --minlen=6 --minquality=1 --nochanges --notempty
+> --# NOTE: This applies only to *fully* interactive installations, partial kickstart
+> --#       installations use defaults specified in pyanaconda/pwpolicy.py.
+> --#       Automated kickstart installs simply ignore the password policy as the policy
+> --#       only applies to the UI, not for passwords specified in kickstart.
+> --%end
+> -+keyboard --xlayouts='us'
+> ---
+> -2.7.4
+> -
+> diff --git a/recipes-installer/anaconda/files/0043-fix-hang-while-installed-system-reboot.patch b/recipes-installer/anaconda/files/0043-fix-hang-while-installed-system-reboot.patch
+> deleted file mode 100644
+> index 64d2c07..0000000
+> --- a/recipes-installer/anaconda/files/0043-fix-hang-while-installed-system-reboot.patch
+> +++ /dev/null
+> @@ -1,31 +0,0 @@
+> -From fabbb3751d64f56a01fca1981d0c0ff45fbd228c Mon Sep 17 00:00:00 2001
+> -From: Hongxu Jia <hongxu.jia@windriver.com>
+> -Date: Wed, 25 Jul 2018 10:29:23 +0800
+> -Subject: [PATCH 43/65] fix hang while installed system reboot
+> -
+> -The lvm2 installed to target system, and it disabled by
+> -default which caused target system reboot hang.
+> -
+> -Enable service lvm2-monitor.service could fix the issue.
+> -
+> -Upstream-Status: Inappropriate [oe specific]
+> -
+> -Signed-off-by: Hongxu Jia <hongxu.jia@windriver.com>
+> ----
+> - data/interactive-defaults.ks | 3 +++
+> - 1 file changed, 3 insertions(+)
+> -
+> -diff --git a/data/interactive-defaults.ks b/data/interactive-defaults.ks
+> -index a2f0555..0deb059 100644
+> ---- a/data/interactive-defaults.ks
+> -+++ b/data/interactive-defaults.ks
+> -@@ -2,3 +2,6 @@
+> - # This is not loaded if a kickstart file is provided on the command line.
+> - firstboot --enable
+> - keyboard --xlayouts='us'
+> -+
+> -+# Fix hang while installed system reboot
+> -+services --enabled lvm2-monitor.service
+> ---
+> -2.7.4
+> -
+> diff --git a/recipes-installer/anaconda/python3-anaconda_42.27.11.bb b/recipes-installer/anaconda/python3-anaconda_42.27.11.bb
+> index aa4f93a..1e6751a 100755
+> --- a/recipes-installer/anaconda/python3-anaconda_42.27.11.bb
+> +++ b/recipes-installer/anaconda/python3-anaconda_42.27.11.bb
+> @@ -158,7 +158,6 @@ RDEPENDS:${PN} = "bash \
+>                     python3-core \
+>                     python3-coverage \
+>                     python3-crypt-r \
+> -                  python3-crypt-r \
+>                     python3-dasbus \
+>                     python3-dbus-next \
+>                     python3-iso639 \
 
-bitbake: 5d722b5d65e4eef7befe6376983385421e993f86
-meta-agl: f5590359796fc6453a17849904a281095257ee38
-meta-arm: d987a5945802dcbbc06be91a0d34f00431ea840e
-meta-aws: 172c1f12366c50f58c317a4ed58d6de79e7afa1c
-meta-clang: 78c5e12f08198f4f257a9348516d2103cd617c1d
-meta-intel: bf06e8360baf2c84257e82f4153e13e62708568a
-meta-mingw: a4ba674d6a0a17e4c0bc4c11bbb9d0ea9de2b315
-meta-openembedded: d793c367e067c49956d38caf6eb84cb112c9c9b7
-meta-qcom: 5d1eabf99f52bc5ed4c629ba4a28f567ee69e564
-meta-virtualization: b59fb87c0e991aa95f62627c3b2a606956ef6377
-meta-yocto: 49cbb01d52521bfe557395c9ebfae6b1c162581e
-oecore: f235ffc43c7783a84e1ac0dce8489fcba8354e12
-yocto-docs: 560bc33c0c2ecd60d68ba06a2edff8c25b9a3f90
 
-Full Test Report:
+-- 
+Kai Kang
+Wind River Linux
 
-https://downloads.yoctoproject.org/releases/yocto/milestones/yocto-6.0_M3/t=
-estreport.txt
-
-Thank you.
-
-Chee Yang
-chee.yang.lee@intel.com
-Yocto Project Build and Release
-
---_000_BL4PR11MB87978703245DEDCFB76D7DF1B9212BL4PR11MB8797namp_
-Content-Type: text/html; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
-
-<html>
-<head>
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Diso-8859-=
-1">
-<style type=3D"text/css" style=3D"display:none;"> P {margin-top:0;margin-bo=
-ttom:0;} </style>
-</head>
-<body dir=3D"ltr">
-<div class=3D"elementToProof" style=3D"font-family: Aptos, Aptos_EmbeddedFo=
-nt, Aptos_MSFontService, Calibri, Helvetica, sans-serif; font-size: 12pt; c=
-olor: rgb(0, 0, 0); --darkreader-inline-color: var(--darkreader-text-000000=
-, #ffffdd);" data-darkreader-inline-color=3D"">
-Hi</div>
-<div class=3D"elementToProof" style=3D"font-family: Aptos, Aptos_EmbeddedFo=
-nt, Aptos_MSFontService, Calibri, Helvetica, sans-serif; font-size: 12pt; c=
-olor: rgb(0, 0, 0); --darkreader-inline-color: var(--darkreader-text-000000=
-, #ffffdd);" data-darkreader-inline-color=3D"">
-<br>
-</div>
-<div class=3D"elementToProof" style=3D"font-family: Aptos, Aptos_EmbeddedFo=
-nt, Aptos_MSFontService, Calibri, Helvetica, sans-serif; font-size: 12pt; c=
-olor: rgb(0, 0, 0); --darkreader-inline-color: var(--darkreader-text-000000=
-, #ffffdd);" data-darkreader-inline-color=3D"">
-We are pleased to announce the third milestone release for Yocto Project 6.=
-0 (yocto-6.0_M3) is now available for download.</div>
-<div class=3D"elementToProof" style=3D"font-family: Aptos, Aptos_EmbeddedFo=
-nt, Aptos_MSFontService, Calibri, Helvetica, sans-serif; font-size: 12pt; c=
-olor: rgb(0, 0, 0); --darkreader-inline-color: var(--darkreader-text-000000=
-, #ffffdd);" data-darkreader-inline-color=3D"">
-<br>
-</div>
-<div class=3D"elementToProof" style=3D"font-family: Aptos, Aptos_EmbeddedFo=
-nt, Aptos_MSFontService, Calibri, Helvetica, sans-serif; font-size: 12pt; c=
-olor: rgb(0, 0, 0); --darkreader-inline-color: var(--darkreader-text-000000=
-, #ffffdd);" data-darkreader-inline-color=3D"">
-Download:</div>
-<div class=3D"elementToProof" style=3D"font-family: Aptos, Aptos_EmbeddedFo=
-nt, Aptos_MSFontService, Calibri, Helvetica, sans-serif; font-size: 12pt; c=
-olor: rgb(0, 0, 0); --darkreader-inline-color: var(--darkreader-text-000000=
-, #ffffdd);" data-darkreader-inline-color=3D"">
-<br>
-</div>
-<div class=3D"elementToProof" style=3D"font-family: Aptos, Aptos_EmbeddedFo=
-nt, Aptos_MSFontService, Calibri, Helvetica, sans-serif; font-size: 12pt; c=
-olor: rgb(0, 0, 0); --darkreader-inline-color: var(--darkreader-text-000000=
-, #ffffdd);" data-darkreader-inline-color=3D"">
-https://downloads.yoctoproject.org/releases/yocto/milestones/yocto-6.0_M3</=
-div>
-<div class=3D"elementToProof" style=3D"font-family: Aptos, Aptos_EmbeddedFo=
-nt, Aptos_MSFontService, Calibri, Helvetica, sans-serif; font-size: 12pt; c=
-olor: rgb(0, 0, 0); --darkreader-inline-color: var(--darkreader-text-000000=
-, #ffffdd);" data-darkreader-inline-color=3D"">
-<br>
-</div>
-<div class=3D"elementToProof" style=3D"font-family: Aptos, Aptos_EmbeddedFo=
-nt, Aptos_MSFontService, Calibri, Helvetica, sans-serif; font-size: 12pt; c=
-olor: rgb(0, 0, 0); --darkreader-inline-color: var(--darkreader-text-000000=
-, #ffffdd);" data-darkreader-inline-color=3D"">
-bitbake: 5d722b5d65e4eef7befe6376983385421e993f86</div>
-<div class=3D"elementToProof" style=3D"font-family: Aptos, Aptos_EmbeddedFo=
-nt, Aptos_MSFontService, Calibri, Helvetica, sans-serif; font-size: 12pt; c=
-olor: rgb(0, 0, 0); --darkreader-inline-color: var(--darkreader-text-000000=
-, #ffffdd);" data-darkreader-inline-color=3D"">
-meta-agl: f5590359796fc6453a17849904a281095257ee38</div>
-<div class=3D"elementToProof" style=3D"font-family: Aptos, Aptos_EmbeddedFo=
-nt, Aptos_MSFontService, Calibri, Helvetica, sans-serif; font-size: 12pt; c=
-olor: rgb(0, 0, 0); --darkreader-inline-color: var(--darkreader-text-000000=
-, #ffffdd);" data-darkreader-inline-color=3D"">
-meta-arm: d987a5945802dcbbc06be91a0d34f00431ea840e</div>
-<div class=3D"elementToProof" style=3D"font-family: Aptos, Aptos_EmbeddedFo=
-nt, Aptos_MSFontService, Calibri, Helvetica, sans-serif; font-size: 12pt; c=
-olor: rgb(0, 0, 0); --darkreader-inline-color: var(--darkreader-text-000000=
-, #ffffdd);" data-darkreader-inline-color=3D"">
-meta-aws: 172c1f12366c50f58c317a4ed58d6de79e7afa1c</div>
-<div class=3D"elementToProof" style=3D"font-family: Aptos, Aptos_EmbeddedFo=
-nt, Aptos_MSFontService, Calibri, Helvetica, sans-serif; font-size: 12pt; c=
-olor: rgb(0, 0, 0); --darkreader-inline-color: var(--darkreader-text-000000=
-, #ffffdd);" data-darkreader-inline-color=3D"">
-meta-clang: 78c5e12f08198f4f257a9348516d2103cd617c1d</div>
-<div class=3D"elementToProof" style=3D"font-family: Aptos, Aptos_EmbeddedFo=
-nt, Aptos_MSFontService, Calibri, Helvetica, sans-serif; font-size: 12pt; c=
-olor: rgb(0, 0, 0); --darkreader-inline-color: var(--darkreader-text-000000=
-, #ffffdd);" data-darkreader-inline-color=3D"">
-meta-intel: bf06e8360baf2c84257e82f4153e13e62708568a</div>
-<div class=3D"elementToProof" style=3D"font-family: Aptos, Aptos_EmbeddedFo=
-nt, Aptos_MSFontService, Calibri, Helvetica, sans-serif; font-size: 12pt; c=
-olor: rgb(0, 0, 0); --darkreader-inline-color: var(--darkreader-text-000000=
-, #ffffdd);" data-darkreader-inline-color=3D"">
-meta-mingw: a4ba674d6a0a17e4c0bc4c11bbb9d0ea9de2b315</div>
-<div class=3D"elementToProof" style=3D"font-family: Aptos, Aptos_EmbeddedFo=
-nt, Aptos_MSFontService, Calibri, Helvetica, sans-serif; font-size: 12pt; c=
-olor: rgb(0, 0, 0); --darkreader-inline-color: var(--darkreader-text-000000=
-, #ffffdd);" data-darkreader-inline-color=3D"">
-meta-openembedded: d793c367e067c49956d38caf6eb84cb112c9c9b7</div>
-<div class=3D"elementToProof" style=3D"font-family: Aptos, Aptos_EmbeddedFo=
-nt, Aptos_MSFontService, Calibri, Helvetica, sans-serif; font-size: 12pt; c=
-olor: rgb(0, 0, 0); --darkreader-inline-color: var(--darkreader-text-000000=
-, #ffffdd);" data-darkreader-inline-color=3D"">
-meta-qcom: 5d1eabf99f52bc5ed4c629ba4a28f567ee69e564</div>
-<div class=3D"elementToProof" style=3D"font-family: Aptos, Aptos_EmbeddedFo=
-nt, Aptos_MSFontService, Calibri, Helvetica, sans-serif; font-size: 12pt; c=
-olor: rgb(0, 0, 0); --darkreader-inline-color: var(--darkreader-text-000000=
-, #ffffdd);" data-darkreader-inline-color=3D"">
-meta-virtualization: b59fb87c0e991aa95f62627c3b2a606956ef6377</div>
-<div class=3D"elementToProof" style=3D"font-family: Aptos, Aptos_EmbeddedFo=
-nt, Aptos_MSFontService, Calibri, Helvetica, sans-serif; font-size: 12pt; c=
-olor: rgb(0, 0, 0); --darkreader-inline-color: var(--darkreader-text-000000=
-, #ffffdd);" data-darkreader-inline-color=3D"">
-meta-yocto: 49cbb01d52521bfe557395c9ebfae6b1c162581e</div>
-<div class=3D"elementToProof" style=3D"font-family: Aptos, Aptos_EmbeddedFo=
-nt, Aptos_MSFontService, Calibri, Helvetica, sans-serif; font-size: 12pt; c=
-olor: rgb(0, 0, 0); --darkreader-inline-color: var(--darkreader-text-000000=
-, #ffffdd);" data-darkreader-inline-color=3D"">
-oecore: f235ffc43c7783a84e1ac0dce8489fcba8354e12</div>
-<div class=3D"elementToProof" style=3D"font-family: Aptos, Aptos_EmbeddedFo=
-nt, Aptos_MSFontService, Calibri, Helvetica, sans-serif; font-size: 12pt; c=
-olor: rgb(0, 0, 0); --darkreader-inline-color: var(--darkreader-text-000000=
-, #ffffdd);" data-darkreader-inline-color=3D"">
-yocto-docs: 560bc33c0c2ecd60d68ba06a2edff8c25b9a3f90</div>
-<div class=3D"elementToProof" style=3D"font-family: Aptos, Aptos_EmbeddedFo=
-nt, Aptos_MSFontService, Calibri, Helvetica, sans-serif; font-size: 12pt; c=
-olor: rgb(0, 0, 0); --darkreader-inline-color: var(--darkreader-text-000000=
-, #ffffdd);" data-darkreader-inline-color=3D"">
-<br>
-</div>
-<div class=3D"elementToProof" style=3D"font-family: Aptos, Aptos_EmbeddedFo=
-nt, Aptos_MSFontService, Calibri, Helvetica, sans-serif; font-size: 12pt; c=
-olor: rgb(0, 0, 0); --darkreader-inline-color: var(--darkreader-text-000000=
-, #ffffdd);" data-darkreader-inline-color=3D"">
-Full Test Report:</div>
-<div class=3D"elementToProof" style=3D"font-family: Aptos, Aptos_EmbeddedFo=
-nt, Aptos_MSFontService, Calibri, Helvetica, sans-serif; font-size: 12pt; c=
-olor: rgb(0, 0, 0); --darkreader-inline-color: var(--darkreader-text-000000=
-, #ffffdd);" data-darkreader-inline-color=3D"">
-<br>
-</div>
-<div class=3D"elementToProof" style=3D"font-family: Aptos, Aptos_EmbeddedFo=
-nt, Aptos_MSFontService, Calibri, Helvetica, sans-serif; font-size: 12pt; c=
-olor: rgb(0, 0, 0); --darkreader-inline-color: var(--darkreader-text-000000=
-, #ffffdd);" data-darkreader-inline-color=3D"">
-https://downloads.yoctoproject.org/releases/yocto/milestones/yocto-6.0_M3/t=
-estreport.txt</div>
-<div class=3D"elementToProof" style=3D"font-family: Aptos, Aptos_EmbeddedFo=
-nt, Aptos_MSFontService, Calibri, Helvetica, sans-serif; font-size: 12pt; c=
-olor: rgb(0, 0, 0); --darkreader-inline-color: var(--darkreader-text-000000=
-, #ffffdd);" data-darkreader-inline-color=3D"">
-<br>
-</div>
-<div class=3D"elementToProof" style=3D"font-family: Aptos, Aptos_EmbeddedFo=
-nt, Aptos_MSFontService, Calibri, Helvetica, sans-serif; font-size: 12pt; c=
-olor: rgb(0, 0, 0); --darkreader-inline-color: var(--darkreader-text-000000=
-, #ffffdd);" data-darkreader-inline-color=3D"">
-Thank you.</div>
-<div class=3D"elementToProof" style=3D"font-family: Aptos, Aptos_EmbeddedFo=
-nt, Aptos_MSFontService, Calibri, Helvetica, sans-serif; font-size: 12pt; c=
-olor: rgb(0, 0, 0); --darkreader-inline-color: var(--darkreader-text-000000=
-, #ffffdd);" data-darkreader-inline-color=3D"">
-<br>
-</div>
-<div class=3D"elementToProof" style=3D"font-family: Aptos, Aptos_EmbeddedFo=
-nt, Aptos_MSFontService, Calibri, Helvetica, sans-serif; font-size: 12pt; c=
-olor: rgb(0, 0, 0); --darkreader-inline-color: var(--darkreader-text-000000=
-, #ffffdd);" data-darkreader-inline-color=3D"">
-Chee Yang</div>
-<div class=3D"elementToProof" style=3D"font-family: Aptos, Aptos_EmbeddedFo=
-nt, Aptos_MSFontService, Calibri, Helvetica, sans-serif; font-size: 12pt; c=
-olor: rgb(0, 0, 0); --darkreader-inline-color: var(--darkreader-text-000000=
-, #ffffdd);" data-darkreader-inline-color=3D"">
-chee.yang.lee@intel.com</div>
-<div class=3D"elementToProof" style=3D"font-family: Aptos, Aptos_EmbeddedFo=
-nt, Aptos_MSFontService, Calibri, Helvetica, sans-serif; font-size: 12pt; c=
-olor: rgb(0, 0, 0); --darkreader-inline-color: var(--darkreader-text-000000=
-, #ffffdd);" data-darkreader-inline-color=3D"">
-Yocto Project Build and Release</div>
-</body>
-</html>
-
---_000_BL4PR11MB87978703245DEDCFB76D7DF1B9212BL4PR11MB8797namp_--
 
