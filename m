@@ -1,147 +1,278 @@
-Return-Path: <floss@jetm.me>
+Return-Path: <ycnakajsph@gmail.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 0E08FFF8855
-	for <webhook@archiver.kernel.org>; Fri, 24 Apr 2026 21:20:59 +0000 (UTC)
-Received: from fhigh-b6-smtp.messagingengine.com (fhigh-b6-smtp.messagingengine.com [202.12.124.157])
- by mx.groups.io with SMTP id smtpd.msgproc01-g2.60.1777065649854282791
+	by smtp.lore.kernel.org (Postfix) with ESMTP id C706DFF8860
+	for <webhook@archiver.kernel.org>; Sat, 25 Apr 2026 17:33:41 +0000 (UTC)
+Received: from mail-pl1-f172.google.com (mail-pl1-f172.google.com [209.85.214.172])
+ by mx.groups.io with SMTP id smtpd.msgproc01-g2.1813.1777138413556566898
  for <yocto@lists.yoctoproject.org>;
- Fri, 24 Apr 2026 14:20:50 -0700
+ Sat, 25 Apr 2026 10:33:33 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@jetm.me header.s=fm1 header.b=smGGIE6q;
- dkim=pass header.i=@messagingengine.com header.s=fm2 header.b=L6C4TFcm;
- spf=pass (domain: jetm.me, ip: 202.12.124.157, mailfrom: floss@jetm.me)
-Received: from phl-compute-07.internal (phl-compute-07.internal [10.202.2.47])
-	by mailfhigh.stl.internal (Postfix) with ESMTP id 2C7D27A0262;
-	Fri, 24 Apr 2026 17:20:49 -0400 (EDT)
-Received: from phl-frontend-03 ([10.202.2.162])
-  by phl-compute-07.internal (MEProxy); Fri, 24 Apr 2026 17:20:49 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=jetm.me; h=cc:cc
-	:content-transfer-encoding:content-type:content-type:date:date
-	:from:from:in-reply-to:message-id:mime-version:reply-to:subject
-	:subject:to:to; s=fm1; t=1777065648; x=1777152048; bh=imbJqJwhKu
-	ByeEjON9RDp/XOh2nMHFTZJuYt2nFQTlM=; b=smGGIE6qO2eglKBo/ncsE46f/+
-	/aVR1qIjkX39Eboj5xFvvJld+AwI/fiy6UipeeIp1g6jMHZqZl2GHShWiIzDNwtA
-	sb9KnfoNoMourgPM5karbA8Rnp3FynH7xA80VzHQ7P1krZNE9NdVS4G/7pxKnEuc
-	L+LzEtiJ6+e68dRrMnc+hcgrjVyrjTo7qIJjUn3y9d1xEU8TbRHoAMlMm2gYOBJY
-	uiQjgiduN44sjGRzmndFFJm9nEq61BVExSJFKmxwXA7t+OvZh7iD/DqUnOZu6FI+
-	aMeP6dTAFGwyXHE+Dz01zKY5r4Ycee9BcFOdlC2zgC76plPKjvn89iUCYG/w==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-	messagingengine.com; h=cc:cc:content-transfer-encoding
-	:content-type:content-type:date:date:feedback-id:feedback-id
-	:from:from:in-reply-to:message-id:mime-version:reply-to:subject
-	:subject:to:to:x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=
-	fm2; t=1777065648; x=1777152048; bh=imbJqJwhKuByeEjON9RDp/XOh2nM
-	HFTZJuYt2nFQTlM=; b=L6C4TFcmLgKqG13AhTXFDv8FY1vXAAQYT73M5QIztkEe
-	ELvrVVYU0mfW9poQvx8jRmhqKwocwK5ldL6DJOM4UpxbFO+LrEDeJSvV+gcZBVGQ
-	iTjP6/oR3WKX63yz0OUa8TuSfEBb0LtlFhpjHKf3XrGHked6/ISzwOwWsRZ+oxmi
-	mRAzag5zPT9gdxSnT4QkoPY+LIlkYSUSGJuNQygPcvlDluB4khc26c6sF8EszzoE
-	FrbFxmeEZlCTz1Vak0V/Uir6RA1Y/RooB0iPxbDaPLsE5lbdv9zQIIVgnDDt1GgU
-	VV5uD7uChxVP6SEGzObSQFGBm1d2gwq/rfh7caI23w==
-X-ME-Sender: <xms:sN7radqfpAtVvBuUMZrs5M3GDC0ebjoYMLZ2CqiLK1m2zDx545FNKA>
-    <xme:sN7radk0iG39e9votkkR_DgcmoZxHjuUc-LgIGUIBV56OzzyvEVu9CM11bPyTbAjY
-    opV-CGu13F3NlwfUD4GWnBtDRscK0DpVkQ4MB319RM6DTmXLlHAB2Y>
-X-ME-Received: <xmr:sN7raRz0S9JJch-dsECoHE3doEj2WemhjoLDyE6MgX_jzA2XonRHsRindHA>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeefhedrtddtgdejuddtlecutefuodetggdotefrod
-    ftvfcurfhrohhfihhlvgemucfhrghsthforghilhdpuffrtefokffrpgfnqfghnecuuegr
-    ihhlohhuthemuceftddtnecuogfuuhhsphgvtghtffhomhgrihhnucdlgeelmdenucfjug
-    hrpeffkffhvfevufggtgfgsehtkehjtddttdejnecuhfhrohhmpeflrghvihgvrhcuvfhi
-    rgcuoehflhhoshhssehjvghtmhdrmhgvqeenucggtffrrghtthgvrhhnpeeljeeivdfhfe
-    eivdevheelvdfhleejtdegvdejudelveevveefudetvdevkedtffenucffohhmrghinhep
-    ghhithhhuhgsrdhiohdpghhithhhuhgsrdgtohhmnecuvehluhhsthgvrhfuihiivgeptd
-    enucfrrghrrghmpehmrghilhhfrhhomhepfhhlohhsshesjhgvthhmrdhmvgdpnhgspghr
-    tghpthhtohepvddpmhhouggvpehsmhhtphhouhhtpdhrtghpthhtohephihotghtoheslh
-    hishhtshdrhihotghtohhprhhojhgvtghtrdhorhhgpdhrtghpthhtohepohhpvghnvghm
-    sggvugguvgguqdgtohhrvgeslhhishhtshdrohhpvghnvghmsggvugguvggurdhorhhg
-X-ME-Proxy: <xmx:sN7raVkDELcWQpNa90UykNKctL3POQ9K59ElJrGWJuqJZswHbn0ceQ>
-    <xmx:sN7raacVdHRfxo_bgRak6WUlhtXxc6y2Emrare1OSvWSakw0v_T1JQ>
-    <xmx:sN7rabo5p1rCX5mIW7GqG9i1m_YaCrdlWhJTrqK9jdDi2za36m35NQ>
-    <xmx:sN7raY64Bo8phjHkbI60aRBUQNdrxiur0MS_9085M7IZmPcO2lnaJg>
-    <xmx:sN7raQqmR65qnf8_iXWlGtUVnNNnitaPqMkLASybsPwB71C0NvPHSHBS>
-Feedback-ID: i9dde48b3:Fastmail
-Received: by mail.messagingengine.com (Postfix) with ESMTPA; Fri,
- 24 Apr 2026 17:20:48 -0400 (EDT)
-Date: Fri, 24 Apr 2026 15:20:47 -0600
-Message-ID: <d196fb98514a14652a8e6a6ed1b5fff0@jetm.me>
-From: Javier Tia <floss@jetm.me>
-To: yocto@lists.yoctoproject.org
-Cc: openembedded-core@lists.openembedded.org
-Subject: ANNOUNCE: shipcheck - CRA compliance auditor for Yocto builds
+ dkim=pass header.i=@gmail.com header.s=20251104 header.b=in6SprPh;
+ spf=pass (domain: gmail.com, ip: 209.85.214.172, mailfrom: ycnakajsph@gmail.com)
+Received: by mail-pl1-f172.google.com with SMTP id d9443c01a7336-2b461310af5so34911675ad.1
+        for <yocto@lists.yoctoproject.org>; Sat, 25 Apr 2026 10:33:33 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1777138412; cv=none;
+        d=google.com; s=arc-20240605;
+        b=QuVJf2TfV9wpUXFhbf/tQ/JSCLgmp2xM0uAchwernV+hHrQ2TY7UHjxs2+LF010QYx
+         pbqZFiARUqO17OI+Bi5A+DxTmNuZ2VYCi+d3Fvy+0WBDfTlF+7cAAJWkVCMfmACxhZhe
+         YCcHCBJR/4+ZXZZ4qTk1oEoaswUNGcYECWVnVDXnWL8DwjTtgaXAsoBy2lfRvU1IJdNf
+         OR9o4Y2DNHVTg0ui+EyYSgtxERS2bXzS9lJ9KVfxr9hu6MsJ4MciePkaR4umwVnVEToV
+         NiNfR56vCFFdT+VaSPxKjm7h60HKnrWqG+88De3TN8cXISvtP0qFSqhjzSv6JPQLNT2l
+         00dQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:dkim-signature;
+        bh=g0OqeHvAzivuKY2/g6yx5LDXR3jhFRBnZM2G697+sKI=;
+        fh=xM/5us8i+koff2A9oZAGdDu5NYDlDMkuELiiBPq5FLs=;
+        b=Z0yL6XKTUZRzhrv39QDdivyaRKPctVgu+ITeDvEWhXW6rxKHg9Po2NYS3AypOVBR+5
+         nH2a5oH6lFL/R6ur9w9R1s7hM9xi0Lf3aAy7D2rhf1j/Feh0DYcpaix41fNEBv9UFeNj
+         /JRJVJR+4U095H1nDDNc7cB6XyV0lHW0IFv+5lPtLEF9pGlH3MXfNoYKMa+9U02nnz5Z
+         xESYTVNyMC9w/CMakYhF0k4DrFatutlsNUiY5lF5/QPVOOuQtlrmDtJW2aW3y//KA77F
+         FTixSLwq/JNQ1aRxGA9Q2ThN7paMMkEqCznYnWGRvG4olOfcdj7CWyA+GJvoSIfLpCV1
+         lmiA==;
+        darn=lists.yoctoproject.org
+ARC-Authentication-Results: i=1; mx.google.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20251104; t=1777138412; x=1777743212; darn=lists.yoctoproject.org;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=g0OqeHvAzivuKY2/g6yx5LDXR3jhFRBnZM2G697+sKI=;
+        b=in6SprPhHNCRrBAzAHYrJiAt9x3kV2vt/Hgq1t2hOd0E9YuhnOKSqQiUY/r1YMZ1Qt
+         ERp6wBGTh/ng1SXT0nNzc0KcTBpAp5RuW6yR/8mIYXF+LxBUH1yEPlOkIpEoLAGsuOEg
+         iVa4Zq3gNkyl9EvuEh42xVjNZXafbeTa1VFal9VAMf5QyYzRJ9v/67h2ePryWBoiMcH2
+         2NWcr1QTIcuEYmeIX1Td4z+McxspES7t2zRMmSVPm5mu3tbeA4mI5n/xHDbmE+HnPv9O
+         REsa5jy6bMA3AFXyHAJ2+WjM//AIa4iB2anU4ZA+HrEn75XrOOlR8FsmXwtEpqouaTmn
+         pPSw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20251104; t=1777138412; x=1777743212;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=g0OqeHvAzivuKY2/g6yx5LDXR3jhFRBnZM2G697+sKI=;
+        b=X9ZyhKRLXh/Z3rB713mP6ZYSTjpWnAEv16alZG+o84Uul9se7E8cBGG0wcPh3RQIhr
+         RKp8XWNZv2cbI16xWDYamSvX/abCIdGjKQXthkBoI+kr83bh97V7EE7alFdnXv8t8GXx
+         B31iIdDhgIymWB6xDk5Iq95up8i01PjjAyDGJQjqaCQCHcMRwjgdP45lL8bhEjGECZag
+         5At3XKsTAZemeQxdIsj8D/nrQzQ6+LeJfAqAbwUzWU1WkrHka+rDr8CFLZmTqybgJSvB
+         ynHlNBo562h1oVCptE2JL44z4PgGh1NMlUKLgMgv315o+EBxtPf0z/ojFNOQgAARBinq
+         /TIQ==
+X-Gm-Message-State: AOJu0YwRaTkvzElnrohIkk5xJl2D4t8Lj7f8F2evNadTg84UpuPGnfBK
+	0SYOnOGHQIOxKs0dSHk3+iPvfIjuXtowx8zoG7w4Qv3HM2q429CM/k2Chrp+qatu0cKmXcnf96A
+	s3qp1CbuWFpFpor4kAchdb4bOwHFrZst2BA==
+X-Gm-Gg: AeBDiesXEXvhiL6Nm0D0oIUUx2yPYY8PhHr3yh8jfecztLp/BOceyXq5lpCHHN+mRdo
+	UmjcGHPTW/S9l/ER6GN2L8VP+GIBJnnETBTF8UsD3hoN8lRPmvdKiRz2ElnLrRAcQH9axmursSH
+	Lyp6p+ZY/dAMsc7cMwDiwThZX+tste8/EB4ew3eHNW4A9xfeG1R8p8sH7xEeUt19Vm7oOIEwH0O
+	ZFytqn+1FvisoBHfQ7sdTy/QHO7IxIWQuzWL+WCv1Wis9GE0fENCNehUzRMnhu9f8IBk92/5yyh
+	UpDOdCRE6TXvtjyC
+X-Received: by 2002:a17:902:d591:b0:2b0:badc:c9cf with SMTP id
+ d9443c01a7336-2b5f9e18812mr271774805ad.13.1777138412314; Sat, 25 Apr 2026
+ 10:33:32 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: 8bit
+References: <0101019dbe9ab5c7-d6cb6dd9-d52a-4c28-8ce2-236bee8e31ae-000000@us-west-2.amazonses.com>
+ <41bc2926a6e99fa9e1f24d4bf7df486a6f489adf.camel@linuxfoundation.org>
+In-Reply-To: <41bc2926a6e99fa9e1f24d4bf7df486a6f489adf.camel@linuxfoundation.org>
+From: Yann CARDAILLAC Pro <yann.cardaillac@gmail.com>
+Date: Sat, 25 Apr 2026 19:33:21 +0200
+X-Gm-Features: AQROBzCYNAFzh1idIA6VA4zfT7_J0wqAcMjw68EUKF95Gq0rD8HH7462Plfb2xY
+Message-ID: <CAC3TgALNd8yFbHO7vqnSwYPggczp1gmMrAgCoXoWbW_i6FVs9w@mail.gmail.com>
+Subject: Re: [yocto] [qa-build-notification] QA notification for completed
+ autobuilder build (yocto-6.0.rc1)
+To: yocto@lists.yoctoproject.org, richard.purdie@linuxfoundation.org
+Cc: qa-build-notification@lists.yoctoproject.org, 
+	"yann.cardaillac@balena.io" <yann.cardaillac@balena.io>
+Content-Type: multipart/alternative; boundary="000000000000c8656606504c4780"
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from 45-33-107-173.ip.linodeusercontent.com [45.33.107.173] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Fri, 24 Apr 2026 21:20:59 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/66440
+ <yocto@lists.yoctoproject.org>; Sat, 25 Apr 2026 17:33:41 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/66441
 
-Hi all,
+--000000000000c8656606504c4780
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-(Cross-posted to yocto@lists.yoctoproject.org and
-openembedded-core@lists.openembedded.org.)
+Hello Richard,
 
-I just published shipcheck, an open-source CLI that reads a Yocto build
-directory and drafts the paperwork required by the EU Cyber Resilience
-Act (Regulation 2024/2847) - the Annex VII technical file, the
-Declaration of Conformity, and an evidence report pivoted by CRA Annex
-item.
+We had the same kind of error, we suspect some issue on crates.io side, did
+you have any news from them?
 
-The short version: CRA is a paperwork regulation, not a
-scanner-selection problem. Yocto already emits most of the technical
-evidence - SPDX SBOMs via create-spdx, CVE scans via cve-check or
-Bootlin's sbom-cve-check, license.manifest files, signing-class config.
-What's missing is a tool that walks those artefacts, maps them onto the
-CRA Annex structure, and renders the drafts a compliance officer can
-review.
+I couldn't find anything about this issue.
 
-shipcheck does that piece, with seven registered checks:
+Shall we change the way we download the crates?
 
-  sbom-generation    SPDX 2.x validation against BSI TR-03183-2
-  cve-tracking       consumes cve-check, vex.bbclass, and
-                     sbom-cve-check JSON (the last is preferred)
-  yocto-cve-check    reads tmp/log/cve/cve-summary.json directly
-  license-audit      per-arch license.manifest walker
-  secure-boot        detects signing class configuration and flags
-                     known test keys
-  image-signing      detects FIT signatures and dm-verity config
-  vuln-reporting     validates the vendor-commitment half of the
-                     dossier from a separate product.yaml manifest
+Regards,
 
-It is deliberately narrow: Apache-2.0 Python, no runtime probes, no
-shell-outs, no network calls at scan time, and no LLM or AI inference
-anywhere in the pipeline - shipcheck is fully deterministic. An
-auditor can read the check code and confirm exactly what each check
-inspects.
+Yann CARDAILLAC,
+---------------------------------------------------------------------------=
+-----------------------------------------
 
-Pilot 0001 (poky Scarthgap, core-image-minimal) is committed at
-pilots/0001-poky-scarthgap-min/REPORT.md with the full kas-container
-bootstrap. A worked example driven from a product-vendor.yaml (every
-field set to the placeholder "VENDOR") is committed at
-audits/0002-blog-demo/ if you want to read the generated Annex VII
-and DoC drafts without running shipcheck locally.
 
-Install:
 
-  uv tool install shipcheck  # or: pipx install shipcheck
-  cd path/to/yocto/build
-  shipcheck init
-  shipcheck check --build-dir . --format evidence --out dossier/
+On Fri, Apr 24, 2026 at 2:11=E2=80=AFPM Richard Purdie via lists.yoctoproje=
+ct.org
+<richard.purdie=3Dlinuxfoundation.org@lists.yoctoproject.org> wrote:
 
-Blog post walks through the Annex structure, what Yocto gives you for
-free, and where the paperwork gap lives:
+> On Fri, 2026-04-24 at 08:28 +0000, Pokybuild User via
+> lists.yoctoproject.org wrote:
+> >
+> >     A build flagged for QA (yocto-6.0.rc1) was completed on the
+> autobuilder and is available at:
+> >
+> >
+> >         https://valkyrie.yocto.io/pub/releases/yocto-6.0.rc1
+> >
+> >
+> >     Build URL:
+> https://autobuilder.yoctoproject.org/valkyrie/#/builders/29/builds/3727
+> >
+> >     Build hash information:
+> >
+> >     bitbake: 33581c84f3a85008239acbd940501a35de48dc91
+> > meta-agl: 335bfb321925d37675d45f0f869c446ded8972ce
+> > meta-arm: 8eb10af8092dc3fff86891339fd024d8583f457f
+> > meta-aws: fefdcc67dc3a86752a98d19c96d64bcb31928002
+> > meta-clang: 78c5e12f08198f4f257a9348516d2103cd617c1d
+> > meta-intel: 511ddb7ea90499b2088248f59bab3e9d6f3c900c
+> > meta-mingw: a4ba674d6a0a17e4c0bc4c11bbb9d0ea9de2b315
+> > meta-openembedded: 76700b6eaf327bb30e2c47b78713e2e409cfab7c
+> > meta-qcom: a9f20e62e569c232dc1aaf8a90a6343e504003ef
+> > meta-virtualization: 2e0704ee9282e4e86c13180334cb7ce118e55dd9
+> > meta-yocto: 904846ae078ee20de073040ebb77c86e19250f56
+> > oecore: 42fa856a00ac16b2a7a83d7ecfa60a5be192b16c
+> > yocto-docs: eb74fdfd9e5e579a65e8872d1a73b51e77b14f63
+>
+> This build did show three issues:
+>
+> a) A bitbake-selftest fetcher failure with 403 errors from crates.io.
+> This is an intermittent network error, probably rate limiting
+> connection requests.
+>
+> b) Some oe-selftest failures from importlib on ubuntu 22.04, where
+> importlib fails with a KeyError, this exits whilst holding a lock
+> causing other failures though deadlock. I manually killed a process to
+> let the rest of the build finish. This is a known issue in older python
+> versions.
+>
+> c) A failure in meta-virtualization from recent changes. There is a
+> patch on the mailing list and this will be fixed before release.
+>
+> I do not believe any of these are release blockers and propose we
+> should proceed with QA.
+>
+> Thanks,
+>
+> Richard
+>
+>
+> -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
+> Links: You receive all messages sent to this group.
+> View/Reply Online (#66439):
+> https://lists.yoctoproject.org/g/yocto/message/66439
+> Mute This Topic: https://lists.yoctoproject.org/mt/118986370/3617030
+> Group Owner: yocto+owner@lists.yoctoproject.org
+> Unsubscribe: https://lists.yoctoproject.org/g/yocto/unsub [
+> ycnakajsph@gmail.com]
+> -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
+>
+>
 
-  https://jetm.github.io/blog/posts/auditing-your-yocto-build-for-cra-compliance/
+--000000000000c8656606504c4780
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Repo:
+<div dir=3D"ltr"><div>Hello Richard,</div><div><br></div><div>We had the sa=
+me kind of error, we suspect some issue on <a href=3D"http://crates.io">cra=
+tes.io</a> side, did you have any news from them?</div><div><br></div><div>=
+I couldn&#39;t find anything about this issue.</div><div><br></div><div>Sha=
+ll we change the way we download the crates?</div><div><br></div><div>Regar=
+ds,</div><div></div><div><br clear=3D"all"></div><div><div dir=3D"ltr" clas=
+s=3D"gmail_signature" data-smartmail=3D"gmail_signature"><div dir=3D"ltr"><=
+div>Yann CARDAILLAC,<br></div>---------------------------------------------=
+-----------------------------------------------------------------------<br>=
+<br></div></div></div><br></div><br><div class=3D"gmail_quote gmail_quote_c=
+ontainer"><div dir=3D"ltr" class=3D"gmail_attr">On Fri, Apr 24, 2026 at 2:1=
+1=E2=80=AFPM Richard Purdie via <a href=3D"http://lists.yoctoproject.org">l=
+ists.yoctoproject.org</a> &lt;richard.purdie=3D<a href=3D"mailto:linuxfound=
+ation.org@lists.yoctoproject.org">linuxfoundation.org@lists.yoctoproject.or=
+g</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote" style=3D"margin=
+:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex"=
+>On Fri, 2026-04-24 at 08:28 +0000, Pokybuild User via <a href=3D"http://li=
+sts.yoctoproject.org" rel=3D"noreferrer" target=3D"_blank">lists.yoctoproje=
+ct.org</a> wrote:<br>
+&gt; <br>
+&gt; =C2=A0=C2=A0=C2=A0 A build flagged for QA (yocto-6.0.rc1) was complete=
+d on the autobuilder and is available at:<br>
+&gt; <br>
+&gt; <br>
+&gt; =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 <a href=3D"https://valkyrie=
+.yocto.io/pub/releases/yocto-6.0.rc1" rel=3D"noreferrer" target=3D"_blank">=
+https://valkyrie.yocto.io/pub/releases/yocto-6.0.rc1</a><br>
+&gt; <br>
+&gt; <br>
+&gt; =C2=A0=C2=A0=C2=A0 Build URL: <a href=3D"https://autobuilder.yoctoproj=
+ect.org/valkyrie/#/builders/29/builds/3727" rel=3D"noreferrer" target=3D"_b=
+lank">https://autobuilder.yoctoproject.org/valkyrie/#/builders/29/builds/37=
+27</a><br>
+&gt; <br>
+&gt; =C2=A0=C2=A0=C2=A0 Build hash information: <br>
+&gt; <br>
+&gt; =C2=A0=C2=A0=C2=A0 bitbake: 33581c84f3a85008239acbd940501a35de48dc91<b=
+r>
+&gt; meta-agl: 335bfb321925d37675d45f0f869c446ded8972ce<br>
+&gt; meta-arm: 8eb10af8092dc3fff86891339fd024d8583f457f<br>
+&gt; meta-aws: fefdcc67dc3a86752a98d19c96d64bcb31928002<br>
+&gt; meta-clang: 78c5e12f08198f4f257a9348516d2103cd617c1d<br>
+&gt; meta-intel: 511ddb7ea90499b2088248f59bab3e9d6f3c900c<br>
+&gt; meta-mingw: a4ba674d6a0a17e4c0bc4c11bbb9d0ea9de2b315<br>
+&gt; meta-openembedded: 76700b6eaf327bb30e2c47b78713e2e409cfab7c<br>
+&gt; meta-qcom: a9f20e62e569c232dc1aaf8a90a6343e504003ef<br>
+&gt; meta-virtualization: 2e0704ee9282e4e86c13180334cb7ce118e55dd9<br>
+&gt; meta-yocto: 904846ae078ee20de073040ebb77c86e19250f56<br>
+&gt; oecore: 42fa856a00ac16b2a7a83d7ecfa60a5be192b16c<br>
+&gt; yocto-docs: eb74fdfd9e5e579a65e8872d1a73b51e77b14f63<br>
+<br>
+This build did show three issues:<br>
+<br>
+a) A bitbake-selftest fetcher failure with 403 errors from <a href=3D"http:=
+//crates.io" rel=3D"noreferrer" target=3D"_blank">crates.io</a>.<br>
+This is an intermittent network error, probably rate limiting<br>
+connection requests.<br>
+<br>
+b) Some oe-selftest failures from importlib on ubuntu 22.04, where<br>
+importlib fails with a KeyError, this exits whilst holding a lock<br>
+causing other failures though deadlock. I manually killed a process to<br>
+let the rest of the build finish. This is a known issue in older python<br>
+versions.<br>
+<br>
+c) A failure in meta-virtualization from recent changes. There is a<br>
+patch on the mailing list and this will be fixed before release.<br>
+<br>
+I do not believe any of these are release blockers and propose we<br>
+should proceed with QA.<br>
+<br>
+Thanks,<br>
+<br>
+Richard<br>
+<br>
+<br>
+-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-<br>
+Links: You receive all messages sent to this group.<br>
+View/Reply Online (#66439): <a href=3D"https://lists.yoctoproject.org/g/yoc=
+to/message/66439" rel=3D"noreferrer" target=3D"_blank">https://lists.yoctop=
+roject.org/g/yocto/message/66439</a><br>
+Mute This Topic: <a href=3D"https://lists.yoctoproject.org/mt/118986370/361=
+7030" rel=3D"noreferrer" target=3D"_blank">https://lists.yoctoproject.org/m=
+t/118986370/3617030</a><br>
+Group Owner: <a href=3D"mailto:yocto%2Bowner@lists.yoctoproject.org" target=
+=3D"_blank">yocto+owner@lists.yoctoproject.org</a><br>
+Unsubscribe: <a href=3D"https://lists.yoctoproject.org/g/yocto/unsub" rel=
+=3D"noreferrer" target=3D"_blank">https://lists.yoctoproject.org/g/yocto/un=
+sub</a> [<a href=3D"mailto:ycnakajsph@gmail.com" target=3D"_blank">ycnakajs=
+ph@gmail.com</a>]<br>
+-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-<br>
+<br>
+</blockquote></div>
 
-  https://github.com/jetm/shipcheck
-
-Feedback very welcome - especially from maintainers on the cve-check,
-create-spdx, and vex side of things who have opinions on how the check
-defaults should evolve. File an issue on GitHub, or reply here.
-
-Best,
-Javier
+--000000000000c8656606504c4780--
 
