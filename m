@@ -1,127 +1,100 @@
-Return-Path: <raj.khem@gmail.com>
+Return-Path: <richard.purdie@linuxfoundation.org>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id B5FA8FF885C
-	for <webhook@archiver.kernel.org>; Sat, 25 Apr 2026 17:47:21 +0000 (UTC)
-Received: from mail-yw1-f173.google.com (mail-yw1-f173.google.com [209.85.128.173])
- by mx.groups.io with SMTP id smtpd.msgproc02-g2.2155.1777139234094083787
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 6D8D4FF885C
+	for <webhook@archiver.kernel.org>; Sat, 25 Apr 2026 18:02:02 +0000 (UTC)
+Received: from mail-wr1-f53.google.com (mail-wr1-f53.google.com [209.85.221.53])
+ by mx.groups.io with SMTP id smtpd.msgproc02-g2.2377.1777140120985079321
  for <yocto@lists.yoctoproject.org>;
- Sat, 25 Apr 2026 10:47:14 -0700
+ Sat, 25 Apr 2026 11:02:01 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20251104 header.b=c97FrkKS;
- spf=pass (domain: gmail.com, ip: 209.85.128.173, mailfrom: raj.khem@gmail.com)
-Received: by mail-yw1-f173.google.com with SMTP id 00721157ae682-79a46260385so98181077b3.3
-        for <yocto@lists.yoctoproject.org>; Sat, 25 Apr 2026 10:47:14 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; t=1777139233; cv=none;
-        d=google.com; s=arc-20240605;
-        b=TYOgp+LJSg8kHSIvv5hOQrGxGyisrqEcHe9FHY3cW9/iFFfsRWyGDHT6cFLtq6wGL4
-         JAaBa4M07mDxqSdPaaXD1NSKkcmp3k8ksytlGpVFU94yAC/QTTqJ82TbAsLLrUmZvEOY
-         kG3rt6x7wjgIulkluek/vwLvUj3Qsx9mZJg3lwH455wzGk8Inab94RmMwvXkDG8yXJbT
-         2qQUw/gxdnVFA85rLYszQtCSZBLGfGaHys3d6SrmPU40ndxCgNQ06zyUm0Bbna5qXc2+
-         FHnov3nG/bjL0ZxllaBfQEahSUBrp9zdhW2foDfer6bnG1JgC3VNsCtV31jQao1mG3nq
-         NnSw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
-        h=to:subject:message-id:date:from:mime-version:dkim-signature;
-        bh=fi4SSB6BD5o+VmeBftjK/o4i502kk6h96LLH42Dl1dg=;
-        fh=GViAHVj9/PjYVLfFfmnJENpzL3kdbck8E2hveDUjVFw=;
-        b=UY4ccLmuCxhz9RhYfDaduYgOx9f8gi+KatcVVv/ZsU620tCVcpd5irUz1PeRCjQIH7
-         sZqTtHPC9CSqX79pdBaEJ/AYlg2zFQOOsQrmAdFN8HWn3nb+I7y5q85wQh+keiBQgjgR
-         t8KEsUYtjLMm4NO6THvgE9Qj90mc5ZMppBdcKh2sgxtn0mrt3ZRMdo6qtY+qiUs+7IVK
-         Aiz9gGd+vC7H5KZKahB2mhn57+grHna+SX/lfTH+GD5Dvh/t4CinI8aVwbozy4vjroGB
-         mKFysOn6UMCyAHHXkZbA39p/Uxv2KzIbCkS0ArE1jxel/uIOqsz1RUZQE6KzhMIf0COA
-         9l0Q==;
-        darn=lists.yoctoproject.org
-ARC-Authentication-Results: i=1; mx.google.com; arc=none
+ dkim=pass header.i=@linuxfoundation.org header.s=google header.b=fru5Lp1T;
+ spf=pass (domain: linuxfoundation.org, ip: 209.85.221.53, mailfrom: richard.purdie@linuxfoundation.org)
+Received: by mail-wr1-f53.google.com with SMTP id ffacd0b85a97d-43d76dd4ee8so8004155f8f.2
+        for <yocto@lists.yoctoproject.org>; Sat, 25 Apr 2026 11:02:00 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20251104; t=1777139233; x=1777744033; darn=lists.yoctoproject.org;
-        h=to:subject:message-id:date:from:mime-version:from:to:cc:subject
+        d=linuxfoundation.org; s=google; t=1777140119; x=1777744919; darn=lists.yoctoproject.org;
+        h=mime-version:user-agent:content-transfer-encoding:references
+         :in-reply-to:date:cc:to:from:subject:message-id:from:to:cc:subject
          :date:message-id:reply-to;
-        bh=fi4SSB6BD5o+VmeBftjK/o4i502kk6h96LLH42Dl1dg=;
-        b=c97FrkKSanWVKlG6Zkrq5cn5imgd1ZOnuuPsEYeXL2zSTULIDNy+aSBu7wWwv6fy+U
-         PBVRUFl0O/zoSIof69Rfq/nRZ3w69aClA48c9fLw4B5XO8ktljFFTCw9I8f5UFXtSeFh
-         DFpwfWmH3KNX5avgVK0ugl1rPPcumBWXaAqtZZac1Bi1Cfez3dMsEQfPNzryBxdWaU8l
-         pz1oyeATkFVjjBu7kU5YtFoWy1B+FLwhBZCrJvBONvzYb4+PJpGwFgQje5SxhT+LQSaL
-         i0jVVwtx7tNLsQcf3YMVZkm4A09QyxpZ47s3v8jSjCq/brx++eDGxCT3cfIHVUf0qIyo
-         y+8Q==
+        bh=RMfswNzhSlKVV5QWgE8VxPMwSnTuR+oKvmRs9yOs7Nk=;
+        b=fru5Lp1TKD0CW3K+YSqoL4WTculb+tYwhtID/0AXAnoeskFe2p1I+ElnLYxYTND/5e
+         aJzhNS6eqCGtVrieBSz0XZ1iAas2QVKh35bVQC03WpyHbvgxBAsNXn9ePDUUcOaoYXLx
+         htHRqcNT44FtlS65WPyeWf7yslC5qIWfItjco=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1777139233; x=1777744033;
-        h=to:subject:message-id:date:from:mime-version:x-gm-gg
+        d=1e100.net; s=20251104; t=1777140119; x=1777744919;
+        h=mime-version:user-agent:content-transfer-encoding:references
+         :in-reply-to:date:cc:to:from:subject:message-id:x-gm-gg
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=fi4SSB6BD5o+VmeBftjK/o4i502kk6h96LLH42Dl1dg=;
-        b=ZtHCqotEdKEOh2YI4sGyQ8uC+hYUXslWTS5x3JYQxMrfL3EHXBLjxQjYjm90yZG67+
-         CfELt3dkspus+8dtw3rrtGd+4ZIYTGmvg7U0Uhgwf6tBw933ZyTJ5VHIq3X75pGF/lSb
-         0Bzjd5qRvnYBygHccW2EmCe9bKlaBJvKicnvE5DqPl/O5OiUoOv/bcSSJ3mugIUOUSZi
-         J20/UYweKnFw47XdZvnF6KIoA+Vg7Oaj11u0xeTA9elh5DqQlbSL14lgd1Haf1H0eKuY
-         o22yP2kywnSfSh3mXAKtXMXsmBL6dTapwgyt02tWIhOcSy5SGMsuzFMrF59hRKQONQ9L
-         ht0g==
-X-Forwarded-Encrypted: i=1; AFNElJ+V0qh0f5nkNSU4vVuNcV9iQ853iunkod9uOBub74x2K7rG6BxCKb2HEVFZ+2KYPYwh3CB88w==@lists.yoctoproject.org
-X-Gm-Message-State: AOJu0YzraEi4HzsmZwwe5xSWlGzcdoqfJ1LAkj9MwhWqcvc+wqPD1yUC
-	OVbKlN7pxi1dPT8sDE8u1SiRYfFaUzg3lcC17ksDgoyuwkqCLNcP3xs76Uh2B2KV7+QE4VskJJ7
-	DEXtVDIM7Wy8mNGTQp7In3fdyq0zal9A=
-X-Gm-Gg: AeBDievSj+1ZwcbA0PTXw3FbE6lIp3peNWYeyPqHE9ICmCuAj3y8BrZekrAeAHKhVAM
-	a4akvuAwMM24fwWJHvP5L97+2ccg3Y5CB7V5UdpVb3OPvc7tSEIs664wN/9+S3em25le2jA1UFN
-	UCh2Dwr8Kvd2rC8W2g6UBxWDEDZBdQJp7WwCKkRfB3kRI2pOICdFt2W9/UQVUeoltiTsgF/tntq
-	a6VpC0NxVkjdkpIw/8c7RP3plQ74/N70VYl2ket4o0DUilwhRqpEOonxAccSD/UPRBGB+NiSIMz
-	IoL5XBcWcn+MusE73ICgKd7tNuvsLEbqJIkPr/0QqgRkpvRpKThgaRgWBHkZt/kPDHjZJRNcz/W
-	KYrP3oo0PLdVAternCWy/9rv1Is6ydrHyscxZb5Qe4dKG5hrJt25MY7lsxhcbhmjITLw7tF3zKe
-	+R4xkBhA6NWcGI+Kc=
-X-Received: by 2002:a05:690e:1b60:b0:650:12eb:16db with SMTP id
- 956f58d0204a3-65310a790a8mr23274404d50.50.1777139233168; Sat, 25 Apr 2026
- 10:47:13 -0700 (PDT)
+        bh=RMfswNzhSlKVV5QWgE8VxPMwSnTuR+oKvmRs9yOs7Nk=;
+        b=sNwRfYZFgrFbM8lN0TiJdN+ffHYAnH0NxJhKbL9rgKRdlv2rjZerrH6UtXPpFzjvMQ
+         8NSwIwzjSSGfDqPDgMQC/Uo3m5joqEnmHV1QQcIDzrP01n0EBoz7GYX8c5A7oVK32NCg
+         o17GKA0i+Oe7v20SEJG9NboRnoHxubjtRnDr+MdbReinyzFQh1bWr61q+i93jxiw911m
+         CNbHY+VFjel0uRyz2p/TYCeuZVa8KmUfDNK4aG2MEUzVw+EnHVcehRt4ymtCsRpmye0r
+         RpnlzSfB4jJiekTO3swySIQezgZnHAVRvC0Qf83r3gKQpZwzFN66xOS3KcJX7M5jAIZB
+         BXgg==
+X-Forwarded-Encrypted: i=1; AFNElJ9xb/7z6Sz7RN6Hioq8vQ1yliGFS7eefdYb+rUTKD95QpVy+5rSw2bQqpDAY2g4Q1BDpCuiKQ==@lists.yoctoproject.org
+X-Gm-Message-State: AOJu0YxRVEanIcGwt8XMbL/3YE2f/U28holXwp3DlvSLcpfIsccVMsKh
+	Isj+XOwVJah93wWQl5kfK7xFKjqnncrKRhAREHMB3MgmYveGJ41WWs4Qh/ZuSTIhJdE=
+X-Gm-Gg: AeBDiet/tOsdt5ow2qZ4xxCagqu2vzgTcCtcrRjlAS9Yc8d0bZKihjEkDPnQkzJX4XI
+	vqrgkqmDLP1rE7EXF4TESQVHR6ORfcwUI6/0y3v3asnI0wTZO3IQqjscWpnIAJadNnYhpQT97zH
+	VLjhAaVnXB7K6JNn0ELL9aPOd3zA4uVZxoGCjR0KDxeKTmzDI/ZRecLhCyCntvdycUCz050JNk3
+	T39Z9bNFDyChvYEU/1VNjzHXEuAGhleS4obbf1JTmeo77Mm4uf2EqYXzE47s7Zl4Ej/APaGFM3w
+	9dd2a1MiN98Kcv8dXXiuNUstDjh+7EztdeEF5um+godNqK7tZ9HMCq+RvTp8xcgzxwwF+6ViREl
+	i4djugNHwIgyAOOHtgxkiHORCT9xYJMtqnwCz34KOkKehozaeVdvIZoWS2SHf7wd6axcVlXGiO9
+	plOAj6r7aqS7uGcHbKpDlDLK1yoIl6IHzK0R90fLfCEu6HsPdEkLP2USNmKiaFvyC/YRf6RbM/S
+	BbXzNKrrKMzBmy+d5HjqJCDdPA=
+X-Received: by 2002:a05:6000:4283:b0:439:c18f:5aaf with SMTP id ffacd0b85a97d-43fe3e13dddmr56992970f8f.34.1777140119230;
+        Sat, 25 Apr 2026 11:01:59 -0700 (PDT)
+Received: from ?IPv6:2001:8b0:aba:5f3c:fc2e:49a9:508d:b834? ([2001:8b0:aba:5f3c:fc2e:49a9:508d:b834])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-43fe4e3a166sm67254107f8f.19.2026.04.25.11.01.58
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sat, 25 Apr 2026 11:01:58 -0700 (PDT)
+Message-ID: <53c2c6f263b874cbf8382fa7d5993aac51835cbd.camel@linuxfoundation.org>
+Subject: Re: [yocto] [qa-build-notification] QA notification for completed
+ autobuilder build (yocto-6.0.rc1)
+From: Richard Purdie <richard.purdie@linuxfoundation.org>
+To: Yann CARDAILLAC Pro <yann.cardaillac@gmail.com>, 
+	yocto@lists.yoctoproject.org
+Cc: qa-build-notification@lists.yoctoproject.org,
+ "yann.cardaillac@balena.io"	 <yann.cardaillac@balena.io>
+Date: Sat, 25 Apr 2026 19:01:57 +0100
+In-Reply-To: <CAC3TgALNd8yFbHO7vqnSwYPggczp1gmMrAgCoXoWbW_i6FVs9w@mail.gmail.com>
+References: 
+	<0101019dbe9ab5c7-d6cb6dd9-d52a-4c28-8ce2-236bee8e31ae-000000@us-west-2.amazonses.com>
+	 <41bc2926a6e99fa9e1f24d4bf7df486a6f489adf.camel@linuxfoundation.org>
+	 <CAC3TgALNd8yFbHO7vqnSwYPggczp1gmMrAgCoXoWbW_i6FVs9w@mail.gmail.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.56.2-9 
 MIME-Version: 1.0
-From: Khem Raj <raj.khem@gmail.com>
-Date: Sat, 25 Apr 2026 10:46:46 -0700
-X-Gm-Features: AQROBzALZRJt5_B-FQyfWLs4On42Ep8YyH_EcqsX_HUPWcZPSGA4UXgnvRxLg9s
-Message-ID: <CAMKF1so=iKQvzr8Hr=6ZxxBcgMU_nocduK3YNTOksqg-qLgQuw@mail.gmail.com>
-Subject: meta-openembedded 'wrynose' release
-To: openembeded-devel <Openembedded-devel@lists.openembedded.org>, 
-	Yocto-mailing-list <yocto@lists.yoctoproject.org>, 
-	Patches and discussions about the oe-core layer <openembedded-core@lists.openembedded.org>
-Content-Type: multipart/alternative; boundary="000000000000b5a3bb06504c78ef"
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from 45-33-107-173.ip.linodeusercontent.com [45.33.107.173] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Sat, 25 Apr 2026 17:47:21 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/66442
+ <yocto@lists.yoctoproject.org>; Sat, 25 Apr 2026 18:02:02 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/66443
 
---000000000000b5a3bb06504c78ef
-Content-Type: text/plain; charset="UTF-8"
+On Sat, 2026-04-25 at 19:33 +0200, Yann CARDAILLAC Pro wrote:
+> We had the same kind of error, we suspect some issue on crates.io
+> side, did you have any news from them?
+>=20
+> I couldn't find anything about this issue.
+>=20
+> Shall we change the way we download the crates?
 
-Hello All,
+https://github.com/rust-lang/simpleinfra/pull/988/changes/85fe8c9cbf4b5fec0=
+6c5b3a936c63497fdb877af#diff-abcb0d6ee61cc76b8ecffa3cf0b751e15ee9563eb39abb=
+526815c2638168ad04R41
 
-'wrynose' ( yocto 6.0 LTS )  branch for meta-openembedded layers has been
-created.
+Basically upstream implemented rate limiting. Whether they got the
+numbers right when they did that I'm not sure as it is easy to hit
+those limits given there are lots of small crates in most builds.
 
-Anuj Mittal has kindly agreed to maintain the wrynose stable branch.
+We've not thought about mitigation yet, in theory PREMIRRORS should
+help once you have the crates somewhere...
 
-I would like to see the mbedtls 4.x in there but it still needs some work.
-At this point, it is not part of the branch but we will see if it makes the
-cut.
+Cheers,
 
-Please send any patches you would like to see in wrynose release with
-appropriate subject prefix '[wrynose]' so help maintainers.
-
-Report any issues and with patches to fix them would be even better  :)
-
-Thank you
--Khem
-
---000000000000b5a3bb06504c78ef
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr">Hello All,<div><br></div><div>&#39;wrynose&#39; ( yocto 6.=
-0 LTS )=C2=A0 branch for meta-openembedded layers has been created.</div><d=
-iv><br></div><div>Anuj Mittal has kindly agreed to maintain the wrynose sta=
-ble branch.</div><div><br></div><div>I would like to see the mbedtls 4.x in=
- there but it still needs some work. At this point, it is not part of the b=
-ranch but we will see if it makes the cut.</div><div><br></div><div>Please =
-send any patches you=C2=A0would like to see in wrynose release with</div><d=
-iv>appropriate subject prefix &#39;[wrynose]&#39; so help maintainers.</div=
-><div><br></div><div>Report any issues and with patches to fix them would b=
-e even better=C2=A0 :)</div><div><br></div><div>Thank you</div><div>-Khem</=
-div><div><br></div></div>
-
---000000000000b5a3bb06504c78ef--
+Richard
 
