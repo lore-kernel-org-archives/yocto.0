@@ -1,82 +1,115 @@
-Return-Path: <michael.opdenacker@rootcommit.com>
+Return-Path: <f.cervigni@neoncomputing.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 10FBDFF885A
-	for <webhook@archiver.kernel.org>; Mon,  4 May 2026 13:55:39 +0000 (UTC)
-Received: from smtpout-03.galae.net (smtpout-03.galae.net [185.246.85.4])
- by mx.groups.io with SMTP id smtpd.msgproc01-g2.15322.1777902934681232960
- for <yocto@lists.yoctoproject.org>;
- Mon, 04 May 2026 06:55:36 -0700
-Authentication-Results: mx.groups.io;
- dkim=fail reason="dkim: key syntax error: missing public key data" header.i=@rootcommit.com header.s=dkim header.b=XDqhI0qw;
- spf=pass (domain: rootcommit.com, ip: 185.246.85.4, mailfrom: michael.opdenacker@rootcommit.com)
-Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
-	by smtpout-03.galae.net (Postfix) with ESMTPS id 73AF14E42BB8
-	for <yocto@lists.yoctoproject.org>; Mon,  4 May 2026 13:55:32 +0000 (UTC)
-Received: from mail.galae.net (mail.galae.net [212.83.136.155])
-	by smtpout-01.galae.net (Postfix) with ESMTPS id 49F025FD5F;
-	Mon,  4 May 2026 13:55:32 +0000 (UTC)
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 0764711AD0B59;
-	Mon,  4 May 2026 15:55:30 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=rootcommit.com;
-	s=dkim; t=1777902932;
-	h=from:subject:date:message-id:to:cc:mime-version:content-type:
-	 content-transfer-encoding:content-language:in-reply-to:references;
-	bh=oXH97V8/I+d9DkmCzoSiFSb4wImEq7DQVFzk5W7b8w4=;
-	b=XDqhI0qw99IjS9AiWv3qkul3/dh1dnTWX8Qqeb2rrKJeMWpgBMzDDUI+wjD3e3GbpGIACK
-	0Skaly8rtebAtvoRZdhIfLv3Ic4khnUdU04oNU67/F8bvdAsEBcFthSP7jdgP1S6ulypxZ
-	pwfrDuBznFCwCWXQpL7tW7FRMOA5s9ww1OdX36FxsBqmCC8bwKfcChGj28vNVsbS6YkX4U
-	8MwB7JeWUzi1517lvWrHcXq0fEdKw792XizWwfhHVJkKgpaVZJEPJv/jHaWlnKPgptnK7D
-	0/WGCOh7MDNIcBvauEZGKbVKWdxkzEe7weDabnfc8RZbYHcwO7HbbBc+XQloJA==
-Message-ID: <ee871781-e439-45f2-9567-dbb8c9374075@rootcommit.com>
-Date: Mon, 4 May 2026 15:55:30 +0200
-MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Cc: yocto@lists.yoctoproject.org
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 3B8F6FF885A
+	for <webhook@archiver.kernel.org>; Mon,  4 May 2026 14:05:09 +0000 (UTC)
 Subject: Re: [yocto] Simple solution to create a non-root partition image?
-To: Cleiton Bueno <cleiton.bueno@b2open.com>
-References: <9e2ba2a4-9aee-4676-b623-c811a0a7292a@rootcommit.com>
- <fe2c7d25-c2dd-47ca-a08b-e0115c3648b4@cherry.de>
- <cfb57d23-982a-4dd8-bc24-ff36904ec2ba@rootcommit.com>
- <CAA-i2Lw6FS=b6UkJjq42RHR-aHtvqqeULxL0e3UxMNuVhZCx2g@mail.gmail.com>
-Content-Language: en-US
-From: Michael Opdenacker <michael.opdenacker@rootcommit.com>
-In-Reply-To: <CAA-i2Lw6FS=b6UkJjq42RHR-aHtvqqeULxL0e3UxMNuVhZCx2g@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Last-TLS-Session-Version: TLSv1.3
+To: "Michael Opdenacker" <michael.opdenacker@rootcommit.com>, yocto@lists.yoctoproject.org
+From: "Francesco Cervigni" <f.cervigni@neoncomputing.com>
+X-Originating-Location: =?UTF-8?B?QmVsbGV5LCBSaMO0bmUtQWxwZXMsIEZS?= (109.23.119.167)
+X-Originating-Platform: Linux Firefox 150
+User-Agent: GROUPS.IO Web Poster
+MIME-Version: 1.0
+Date: Mon, 04 May 2026 07:05:08 -0700
+References: <9e2ba2a4-9aee-4676-b623-c811a0a7292a@rootcommit.com> <684BE1E8-500C-4169-B5AF-C72E064F28E8@siliconbladeconsultants.com> <627ed8e4-0cf9-453a-8b8e-f54e9de564aa@rootcommit.com>
+In-Reply-To: <627ed8e4-0cf9-453a-8b8e-f54e9de564aa@rootcommit.com>
+Message-ID: <1413912.1777903508617953529@lists.yoctoproject.org>
+Content-Type: multipart/alternative; boundary="4K9IcBL1g7PDEIHxrNKX"
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from 45-33-107-173.ip.linodeusercontent.com [45.33.107.173] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Mon, 04 May 2026 13:55:39 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/66474
+ <yocto@lists.yoctoproject.org>; Mon, 04 May 2026 14:05:09 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/66475
 
-Hi Cleiton
+--4K9IcBL1g7PDEIHxrNKX
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
 
-On 5/4/26 3:39 PM, Cleiton Bueno wrote:
-> Wouldn't enabling the TEZI_DATA_ENABLED variable and using this extra 
-> partition work?
->
-> https://git.toradex.com/meta-toradex-bsp-common.git/tree/classes/image_type_tezi.bbclass?h=scarthgap-7.x.y#n37
->
-> I already needed to create a class for a client with 2 additional 
-> partitions and I made a copy of image_type_tezi.bbclass and customized 
-> it for my client.
->
-> And create an .ext4 file and put it in this partition?
+Hi Michael,
 
-Absolutely! That's exactly what I intend to do.
-I've also tweaked image_type_tezi.bbclass to fit my project needs (a 
-boot partition, two rootfilesystems and two extra partitions).
-Thanks for contributing to this discussion!
-Cheers
-Michael.
+Would a non-yocto process, so non-wic, approach might still be relevant as =
+generic inspiration ?
+There is a part of the script of Photonicat2 router image creation (Rockchi=
+p rk3568, Debian, not my code) that I have looked at often.
 
--- 
+In a pretty readable and straightforward sequence of lines it assembles the=
+ disk with the use of sfdisk + manual adiddtions via dd . (that whole small=
+ repo is very explicit and simple in what it does, good read imho)
+https://github.com/photonicat/rockchip_rk3568_linux_mainline/blob/master/bu=
+ild-image-custom-rootfs-full.sh#L57
 
-Root Commit
-Embedded Linux Training and Consulting
-https://rootcommit.com
+What caught my eyes, also, is that in that case sfdisk is used declarativel=
+y, where the partition description is kept separatedly at https://github.co=
+m/photonicat/rockchip_rk3568_linux_mainline/blob/master/scripts/photonicat-=
+disk-parts-full.sfdisk allowing for easier extension, as the .wic ones.
 
+Furthermore:=C2=A0In regards to 'moving the files' from folder to the parti=
+tion, that code uses explicit 'mount' steps. Although via ' guestfish ' fro=
+m red-hat one could make it with more idiomatic one-liners (it mounts inter=
+nally via libguestfs, also can explore images interactively, very nice exam=
+ples are available. Warning: I have used guestfish only for non-roofs parti=
+tions, where file rights are simpler.)
+
+I agree that the wic approach is probably the more Yocto-aligned one for th=
+e final solution, as it is the tool of choice, adding these examples more a=
+s references for CLI image manipulation/debugging.
+
+Have a great day,
+
+Francesco Cervigni
+Neoncomputing
+Embedded IIoT - Chambery, France
+f.cervigni@neoncomputing.com
+
+--4K9IcBL1g7PDEIHxrNKX
+Content-Type: text/html; charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div>Hi Michael,</div>
+<div>&nbsp;</div>
+<div>Would a non-yocto process, so non-wic, approach might still be relevan=
+t as generic inspiration ?</div>
+<div>There is a part of the script of Photonicat2 router image creation (Ro=
+ckchip rk3568, Debian, not my code) that I have looked at often.</div>
+<div>&nbsp;</div>
+<div>In a pretty readable and straightforward sequence of lines it assemble=
+s the disk with the use of sfdisk + manual adiddtions via dd . (that whole =
+small repo is very explicit and simple in what it does, good read imho)&nbs=
+p;</div>
+<div>&nbsp;
+<div><a href=3D"https://github.com/photonicat/rockchip_rk3568_linux_mainlin=
+e/blob/master/build-image-custom-rootfs-full.sh#L57" target=3D"_blank" rel=
+=3D"noopener">https://github.com/photonicat/rockchip_rk3568_linux_mainline/=
+blob/master/build-image-custom-rootfs-full.sh#L57</a></div>
+</div>
+<div>&nbsp;</div>
+<div>What caught my eyes, also, is that in that case <em>sfdisk</em> is use=
+d declaratively, where the partition description is kept separatedly at <a =
+href=3D"https://github.com/photonicat/rockchip_rk3568_linux_mainline/blob/m=
+aster/scripts/photonicat-disk-parts-full.sfdisk" target=3D"_blank" rel=3D"n=
+oopener">https://github.com/photonicat/rockchip_rk3568_linux_mainline/blob/=
+master/scripts/photonicat-disk-parts-full.sfdisk</a> allowing for easier ex=
+tension, as the .wic ones.</div>
+<div>&nbsp;</div>
+<div>Furthermore:&nbsp;In regards to 'moving the files' from folder to the =
+partition, that code uses explicit 'mount' steps. Although via '<em>guestfi=
+sh</em>' from red-hat one could make it with more idiomatic one-liners (it =
+mounts internally via libguestfs, also can explore images interactively, ve=
+ry nice examples are available. Warning: I have used guestfish only for non=
+-roofs partitions, where file rights are simpler.)&nbsp;</div>
+<div>&nbsp;</div>
+<div>I agree that the wic approach is probably the more Yocto-aligned one f=
+or the final solution, as it is the tool of choice, adding these examples m=
+ore as references for CLI image manipulation/debugging.&nbsp;</div>
+<div>&nbsp;</div>
+<div>Have a great day,&nbsp;</div>
+<div>&nbsp;</div>
+<div>Francesco Cervigni</div>
+<div>Neoncomputing</div>
+<div>Embedded IIoT - Chambery, France</div>
+<div>f.cervigni@neoncomputing.com</div>
+<div>&nbsp;</div>
+
+--4K9IcBL1g7PDEIHxrNKX--
 
