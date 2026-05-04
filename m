@@ -1,252 +1,218 @@
-Return-Path: <michael.opdenacker@rootcommit.com>
+Return-Path: <cleiton.bueno@b2open.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id CF4EDCD3436
-	for <webhook@archiver.kernel.org>; Mon,  4 May 2026 13:27:38 +0000 (UTC)
-Received: from smtpout-03.galae.net (smtpout-03.galae.net [185.246.85.4])
- by mx.groups.io with SMTP id smtpd.msgproc02-g2.14595.1777901255481419884
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 90115CD3430
+	for <webhook@archiver.kernel.org>; Mon,  4 May 2026 13:39:49 +0000 (UTC)
+Received: from mail-oi1-f173.google.com (mail-oi1-f173.google.com [209.85.167.173])
+ by mx.groups.io with SMTP id smtpd.msgproc02-g2.14851.1777901978040711837
  for <yocto@lists.yoctoproject.org>;
- Mon, 04 May 2026 06:27:36 -0700
+ Mon, 04 May 2026 06:39:38 -0700
 Authentication-Results: mx.groups.io;
- dkim=fail reason="dkim: key syntax error: missing public key data" header.i=@rootcommit.com header.s=dkim header.b=vTWvrV2O;
- spf=pass (domain: rootcommit.com, ip: 185.246.85.4, mailfrom: michael.opdenacker@rootcommit.com)
-Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
-	by smtpout-03.galae.net (Postfix) with ESMTPS id 2D03B4E42BB4
-	for <yocto@lists.yoctoproject.org>; Mon,  4 May 2026 13:27:33 +0000 (UTC)
-Received: from mail.galae.net (mail.galae.net [212.83.136.155])
-	by smtpout-01.galae.net (Postfix) with ESMTPS id 0278B5FD5F;
-	Mon,  4 May 2026 13:27:33 +0000 (UTC)
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 9A28A11AD0316;
-	Mon,  4 May 2026 15:27:31 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=rootcommit.com;
-	s=dkim; t=1777901252;
-	h=from:subject:date:message-id:to:cc:mime-version:content-type:
-	 content-language:in-reply-to:references;
-	bh=14nHi7IAhCzmuXJN93QRfrpN+Ua0krDONazanfCJgMQ=;
-	b=vTWvrV2OF3n/g0uKtFJixPk/0hBMIZUMNNe9G25RB3YRyjuX3lei13o6ow/1nDHfrXcCAX
-	YuqpBT6iG1gTDMKW+ShaIkR6oiDfeqTLX9jfZy3OJhhRrnaYXEqVDVOt6fcw6xZT2hYWy0
-	Xsfl3jVeN5XLTZdnqUYsCza6tABT3zZeU9tYZliQl7nbukACb9mffrLLWxW12Cdu3fa4xv
-	6qwaFLqeBWtYKFqiVI520u4lkRsLRakxFFsW7afNxVL5wSFLnMQIWhPJ75GcUG/FRO4jgq
-	caCj0CO3P3k/rwsYEF5CgD/UfbW37TCkgalUBiXs9jpy6HDcu+9o8uQXokaXnQ==
-Content-Type: multipart/alternative;
- boundary="------------Nql7mUw8KSn44Ottvu3Cbcte"
-Message-ID: <627ed8e4-0cf9-453a-8b8e-f54e9de564aa@rootcommit.com>
-Date: Mon, 4 May 2026 15:27:31 +0200
+ dkim=pass header.i=@b2open-com.20251104.gappssmtp.com header.s=20251104 header.b=0hN3jrhR;
+ spf=pass (domain: b2open.com, ip: 209.85.167.173, mailfrom: cleiton.bueno@b2open.com)
+Received: by mail-oi1-f173.google.com with SMTP id 5614622812f47-463a0e14abfso2038339b6e.2
+        for <yocto@lists.yoctoproject.org>; Mon, 04 May 2026 06:39:37 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1777901977; cv=none;
+        d=google.com; s=arc-20240605;
+        b=LdVuMg90jDcHPd67SmxRLe9RrOgmbp5G3pzDCRwKOfaJBcDpe8C+5xuOBvEgPWxN/i
+         /02qnvI4zrg38xwJYJMtMzd7I/R+DawOQVq5Rbqi/dOV2vvngFoJdQLd36fAstQhINxA
+         AsCDyqgRWT36qtMM/KudwGkc4qSbrKgHJwUrZi6i2cpEZyvz3Ot/eDJicoAfaWAQOiXQ
+         R9y7yzQRCZtuhPy/G3RkBbIdNsWncrGLKthRNDyivolNe1BP0brLjriJSB8uMmQCtLc/
+         8mssYAoqdoJxz0JyMHMklVPC5WmVMSX0uWx/2R8gNewjLsW3Jf9EmMtRghQg8fS+2228
+         4NLA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
+        h=to:subject:message-id:date:from:in-reply-to:references:mime-version
+         :dkim-signature;
+        bh=UAZODRMX8J6mklBFpaux0jfiCCXE+QSlJ2euHNfzyd4=;
+        fh=5iiDD7PKLnuToHDdu6NcllAjArDk7rDtEqLmuedhjEY=;
+        b=F2D8yxVwa8Jr88vScbWvQ7mefGZICNYGien6HXT7VxY4zgohjzXttnxVsAp1niTTNm
+         8h0FszKWkmrjA87dxe1KC4Pxop42pKgOTZYHiCHo7EGVyV92ETmiJIjVMZRtli92d/w2
+         2fAU3qczOcpffTJ9BfJZAhO4T9bU5EqEt14XFkMTjoV+GV/ix460/BGlXXQitCrDyQ6M
+         yeB9wXV54bvawKJF6IBPyKBijqTDZY2OFFZoCb9LhGYqXypmeYjiZlOo6QmF4usMpxYW
+         KxTfY+Cnvag6/j3JjbZ/sHzcu+DALFEjLGOMzIzeKhUjo2fwF5fnrPpET5eTclsrmakI
+         yMPw==;
+        darn=lists.yoctoproject.org
+ARC-Authentication-Results: i=1; mx.google.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=b2open-com.20251104.gappssmtp.com; s=20251104; t=1777901977; x=1778506777; darn=lists.yoctoproject.org;
+        h=to:subject:message-id:date:from:in-reply-to:references:mime-version
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=UAZODRMX8J6mklBFpaux0jfiCCXE+QSlJ2euHNfzyd4=;
+        b=0hN3jrhR3pAkKZM97hgEx7Le6On2hTxCCc7OJcq9Qr+qRpJNdLCX99I14Kzs0cvj8+
+         EzQMHUyz/E1Z4wi49m7dgNKku+tJpwZs9r249FD1889NSqGesRw4OT9bU1nND2NqzVav
+         5r3EaE88KwcYQRLnsA6m1rUw3FKIh4p8rNAl1O0WxAHktll/5EkKZM6aFmlcBR8BUSCr
+         QM2FnEgaagtQ2gStkJe48XfTHq5n0QohqPZHdvdUO0Yors1rOqv9V6ljNHcpNisWPuRz
+         MKo7eEQ/YNeIhanGqGi/9wK7i6q8YbhFzknGkiwvqEsXhd6wpFNp3NBluUVe4Zf2qv6S
+         0LAA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20251104; t=1777901977; x=1778506777;
+        h=to:subject:message-id:date:from:in-reply-to:references:mime-version
+         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=UAZODRMX8J6mklBFpaux0jfiCCXE+QSlJ2euHNfzyd4=;
+        b=nCSE3NXreEAiRxfwBKH7k+817tBez0yGJpYj8a+MeyZd0GxKIJgh3Fl9TH2yjZOKwp
+         DAfrEVOYzGIGNZwaiKqYtz3ctzxiAj5/iIMKJ3AATlaGCXJpyd1kjS1wd1srpqvGqrDX
+         5IN/0MTdUVw5M3sMQTp8S7H7Lrk6d7Ope8bAap9niEC4h8LKGPDMPHpsc1Gg5cDJlSRL
+         C2IigeS1hknw7UG6I7NUWPJkzg+a4hXbvLnsNd0CUvtVuqtkTAOlT1P9lXWaiDcL2GYg
+         IAoRRWuqeqJEdQZ/5G2KcRyH4DrNl6alw7ROnqQr6Qpfui1/NAIb/QCQXpbBAyae6rTi
+         5tTA==
+X-Gm-Message-State: AOJu0Yz11823NBzRkJOCLDVmmi3oRdW3yj6uybyoLwwfsZc1x/rWh1H9
+	oluUvoevAu08Qn5LyEQQzi3eZM+OUTc/6xrgr3/u3aQmk0J7l/rGrqp8ziCgDTNSMBp7lV+fqY7
+	uVpR3uSpA+r/wCxpuM5/sHPjDHBW8KXAekAoV0VaLcTJjJ0n2s9zXbEU3AQ==
+X-Gm-Gg: AeBDieuQ0YirIOO1DN/6gJ09NyENd2iv5cxuottDyQVg4CqXuhzf8CofUSo3/zAoprP
+	AJBPcKb13kVFEBGuLnnJwT41ybcPUBc9Euk7PFhgGX8Z74P5JfhRhtTEB2OVeVS0C4cG9jPkrKe
+	XCrmrMlJ90ShXHSXkb/xeoeH7PHn5fEREvkA3rBr1e9qvIdbvlhUDilqR7k048aHeY5gMKQQnDA
+	dV9trvnPSRInK2J9IeqDO8zhnDp6QpmPcT8WmZvZZSMF9za+ahpHvny2kffWnR0+VDNWl1tAwMh
+	Ie5iybFkL3pDtBKmew6AK07tk5zhy25f2T8WJndo8bkKmyFQ193zkIFsIlW7wA6Hi+B0d1YJ27T
+	+t2O9nHtEeiIht0t4uuUrW8Xx1+vBTRLfhZlxNMuEcViWniKPGxQ5T3e8kxCo4JUOhKLb
+X-Received: by 2002:a05:6808:1983:b0:460:f435:2a70 with SMTP id
+ 5614622812f47-47c8933833bmr5663998b6e.47.1777901976848; Mon, 04 May 2026
+ 06:39:36 -0700 (PDT)
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Cc: michael.opdenacker@rootcommit.com, yocto@lists.yoctoproject.org
-Subject: Re: [yocto] Simple solution to create a non-root partition image?
-To: Iain Menzies-Runciman <iain@siliconbladeconsultants.com>
 References: <9e2ba2a4-9aee-4676-b623-c811a0a7292a@rootcommit.com>
- <684BE1E8-500C-4169-B5AF-C72E064F28E8@siliconbladeconsultants.com>
-Content-Language: en-US
-From: Michael Opdenacker <michael.opdenacker@rootcommit.com>
-In-Reply-To: <684BE1E8-500C-4169-B5AF-C72E064F28E8@siliconbladeconsultants.com>
-X-Last-TLS-Session-Version: TLSv1.3
+ <fe2c7d25-c2dd-47ca-a08b-e0115c3648b4@cherry.de> <cfb57d23-982a-4dd8-bc24-ff36904ec2ba@rootcommit.com>
+In-Reply-To: <cfb57d23-982a-4dd8-bc24-ff36904ec2ba@rootcommit.com>
+From: Cleiton Bueno <cleiton.bueno@b2open.com>
+Date: Mon, 4 May 2026 10:39:00 -0300
+X-Gm-Features: AVHnY4KUN3giY9PZ-heWjHqZQrc42k-ACvjIzMYGfv40y26owz6VMY8P-RNmdmw
+Message-ID: <CAA-i2Lw6FS=b6UkJjq42RHR-aHtvqqeULxL0e3UxMNuVhZCx2g@mail.gmail.com>
+Subject: Re: [yocto] Simple solution to create a non-root partition image?
+To: yocto@lists.yoctoproject.org, michael.opdenacker@rootcommit.com
+Content-Type: multipart/alternative; boundary="000000000000c6977d0650fe0fff"
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from 45-33-107-173.ip.linodeusercontent.com [45.33.107.173] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Mon, 04 May 2026 13:27:38 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/66472
+ <yocto@lists.yoctoproject.org>; Mon, 04 May 2026 13:39:49 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/66473
 
-This is a multi-part message in MIME format.
---------------Nql7mUw8KSn44Ottvu3Cbcte
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+--000000000000c6977d0650fe0fff
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Hi Ming
+Wouldn't enabling the TEZI_DATA_ENABLED variable and using this extra
+partition work?
 
-On 5/4/26 3:14 PM, Iain Menzies-Runciman wrote:
-> Hi Michael,
+https://git.toradex.com/meta-toradex-bsp-common.git/tree/classes/image_type=
+_tezi.bbclass?h=3Dscarthgap-7.x.y#n37
+
+I already needed to create a class for a client with 2 additional
+partitions and I made a copy of image_type_tezi.bbclass and customized it
+for my client.
+
+And create an .ext4 file and put it in this partition?
+
+Em seg., 4 de mai. de 2026 =C3=A0s 10:08, Michael Opdenacker via
+lists.yoctoproject.org <michael.opdenacker=3D
+rootcommit.com@lists.yoctoproject.org> escreveu:
+
+> Hi Quentin,
 >
-> If it is any use I have just created an article based on this concept, 
-> as I have had to do similar for one of my clients:
+> Thanks a lot for the tip!
 >
-> Populating a Partition 
-> <https://www.siliconbladeconsultants.com/articles/20260502-populate-partitions/>
-> siliconbladeconsultants.com 
-> <https://www.siliconbladeconsultants.com/articles/20260502-populate-partitions/>
-> 	favicon.ico 
-> <https://www.siliconbladeconsultants.com/articles/20260502-populate-partitions/> 
+> On 5/4/26 10:47 AM, Quentin Schulz wrote:
+> > Do you need to generate an image for that partition or can you simply
+> > have what will be part of that partition be generated along with the
+> > "root partition" image?
+> >
+> > As far as I remember, wic can split files/directories into a separate
+> > partition from the rootfs, so that would be an option that doesn't
+> > require hacking things around.
+> Interesting! Unfortunately, I'm not using Wic but Toradex Easy Installer
+> on this project. Therefore I do need to generate a partition image
+> beforehand.
+> Thanks anyway! I good to know for another time.
+> Cheers
+> Michael.--
+>
+> Root Commit
+> Embedded Linux Training and Consulting
+> https://rootcommit.com
 >
 >
-> <https://www.siliconbladeconsultants.com/articles/20260502-populate-partitions/>
+> -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
+> Links: You receive all messages sent to this group.
+> View/Reply Online (#66470):
+> https://lists.yoctoproject.org/g/yocto/message/66470
+> Mute This Topic: https://lists.yoctoproject.org/mt/119133286/10388955
+> Group Owner: yocto+owner@lists.yoctoproject.org
+> Unsubscribe: https://lists.yoctoproject.org/g/yocto/unsub [
+> cleiton.bueno@b2open.com]
+> -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
 >
-> In essence, I create an ext4 image in my recipe and then you can do 
-> whatever you need with it (such as for me - write it to my wic file)
+>
 
-What a nice coincidence... You just wrote that article!
-This sounds like a very simple and elegant solution for my needs. I 
-Actually just have a few files and scripts to drop in this filesystem.
+--=20
+Cleiton Bueno
+B2Open Systems
 
-Thanks a lot!
-Cheers
-Michael.
+--000000000000c6977d0650fe0fff
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
--- 
-Root Commit
-Embedded Linux Training and Consulting
-https://rootcommit.com
+<div dir=3D"ltr"><div dir=3D"ltr">Wouldn&#39;t enabling the TEZI_DATA_ENABL=
+ED variable and using this extra partition work?<br><br><a href=3D"https://=
+git.toradex.com/meta-toradex-bsp-common.git/tree/classes/image_type_tezi.bb=
+class?h=3Dscarthgap-7.x.y#n37">https://git.toradex.com/meta-toradex-bsp-com=
+mon.git/tree/classes/image_type_tezi.bbclass?h=3Dscarthgap-7.x.y#n37</a><br=
+><br>I already needed to create a class for a client with 2 additional part=
+itions and I made a copy of image_type_tezi.bbclass and customized it for m=
+y client.<br><br>And create an .ext4 file and put it in this partition?</di=
+v><br><div class=3D"gmail_quote gmail_quote_container"><div dir=3D"ltr" cla=
+ss=3D"gmail_attr">Em seg., 4 de mai. de 2026 =C3=A0s 10:08, Michael Opdenac=
+ker via <a href=3D"http://lists.yoctoproject.org">lists.yoctoproject.org</a=
+> &lt;michael.opdenacker=3D<a href=3D"mailto:rootcommit.com@lists.yoctoproj=
+ect.org">rootcommit.com@lists.yoctoproject.org</a>&gt; escreveu:<br></div><=
+blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-l=
+eft:1px solid rgb(204,204,204);padding-left:1ex">Hi Quentin,<br>
+<br>
+Thanks a lot for the tip!<br>
+<br>
+On 5/4/26 10:47 AM, Quentin Schulz wrote:<br>
+&gt; Do you need to generate an image for that partition or can you simply =
+<br>
+&gt; have what will be part of that partition be generated along with the <=
+br>
+&gt; &quot;root partition&quot; image?<br>
+&gt;<br>
+&gt; As far as I remember, wic can split files/directories into a separate =
+<br>
+&gt; partition from the rootfs, so that would be an option that doesn&#39;t=
+ <br>
+&gt; require hacking things around.<br>
+Interesting! Unfortunately, I&#39;m not using Wic but Toradex Easy Installe=
+r <br>
+on this project. Therefore I do need to generate a partition image <br>
+beforehand.<br>
+Thanks anyway! I good to know for another time.<br>
+Cheers<br>
+Michael.--<br>
+<br>
+Root Commit<br>
+Embedded Linux Training and Consulting<br>
+<a href=3D"https://rootcommit.com" rel=3D"noreferrer" target=3D"_blank">htt=
+ps://rootcommit.com</a><br>
+<br>
+<br>
+-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-<br>
+Links: You receive all messages sent to this group.<br>
+View/Reply Online (#66470): <a href=3D"https://lists.yoctoproject.org/g/yoc=
+to/message/66470" rel=3D"noreferrer" target=3D"_blank">https://lists.yoctop=
+roject.org/g/yocto/message/66470</a><br>
+Mute This Topic: <a href=3D"https://lists.yoctoproject.org/mt/119133286/103=
+88955" rel=3D"noreferrer" target=3D"_blank">https://lists.yoctoproject.org/=
+mt/119133286/10388955</a><br>
+Group Owner: <a href=3D"mailto:yocto%2Bowner@lists.yoctoproject.org" target=
+=3D"_blank">yocto+owner@lists.yoctoproject.org</a><br>
+Unsubscribe: <a href=3D"https://lists.yoctoproject.org/g/yocto/unsub" rel=
+=3D"noreferrer" target=3D"_blank">https://lists.yoctoproject.org/g/yocto/un=
+sub</a> [<a href=3D"mailto:cleiton.bueno@b2open.com" target=3D"_blank">clei=
+ton.bueno@b2open.com</a>]<br>
+-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-<br>
+<br>
+</blockquote></div><div><br clear=3D"all"></div><div><br></div><span class=
+=3D"gmail_signature_prefix">-- </span><br><div dir=3D"ltr" class=3D"gmail_s=
+ignature"><div>Cleiton Bueno</div><div>B2Open Systems</div></div></div>
 
---------------Nql7mUw8KSn44Ottvu3Cbcte
-Content-Type: multipart/related;
- boundary="------------JdT0I20VEtkjuMpSM4wZJ1jD"
-
---------------JdT0I20VEtkjuMpSM4wZJ1jD
-Content-Type: text/html; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-
-<!DOCTYPE html>
-<html>
-  <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-  </head>
-  <body>
-    <p>Hi Ming</p>
-    <div class="moz-cite-prefix">On 5/4/26 3:14 PM, Iain
-      Menzies-Runciman wrote:<br>
-    </div>
-    <blockquote type="cite"
-cite="mid:684BE1E8-500C-4169-B5AF-C72E064F28E8@siliconbladeconsultants.com">
-      <meta http-equiv="content-type" content="text/html; charset=UTF-8">
-      Hi Michael,
-      <div><br>
-      </div>
-      <div>If it is any use I have just created an article based on this
-        concept, as I have had to do similar for one of my clients:</div>
-      <div><br>
-      </div>
-      <div>
-        <div style="display: block;">
-          <div
-style="-webkit-user-select: all; -webkit-user-drag: element; display: inline-block;"
-            class="apple-rich-link" draggable="true" role="link"
-data-url="https://www.siliconbladeconsultants.com/articles/20260502-populate-partitions/"><a
-style="border-radius:10px;font-family:-apple-system, Helvetica, Arial, sans-serif;display:block;-webkit-user-select:none;width:300px;user-select:none;-webkit-user-modify:read-only;user-modify:read-only;overflow:hidden;text-decoration:none;"
-              class="lp-rich-link" rel="nofollow"
-href="https://www.siliconbladeconsultants.com/articles/20260502-populate-partitions/"
-              dir="ltr" role="button" draggable="false" width="300"
-              moz-do-not-send="true">
-              <table
-style="table-layout:fixed;border-collapse:collapse;width:300px;background-color:#E5E6E9;font-family:-apple-system, Helvetica, Arial, sans-serif;"
-                class="lp-rich-link-emailBaseTable" cellpadding="0"
-                cellspacing="0" border="0" width="300">
-                <tbody>
-                  <tr>
-                    <td vertical-align="center">
-                      <table bgcolor="#E5E6E9" cellpadding="0"
-                        cellspacing="0" width="300"
-style="font-family:-apple-system, Helvetica, Arial, sans-serif;table-layout:fixed;background-color:rgba(229, 230, 233, 1);"
-                        class="lp-rich-link-captionBar">
-                        <tbody>
-                          <tr>
-                            <td style="padding:8px 0px 8px 0px;"
-class="lp-rich-link-captionBar-textStackItem">
-                              <div
-style="max-width:100%;margin:0px 16px 0px 16px;overflow:hidden;"
-class="lp-rich-link-captionBar-textStack">
-                                <div
-style="word-wrap:break-word;font-weight:500;font-size:12px;overflow:hidden;text-overflow:ellipsis;text-align:left;"
-class="lp-rich-link-captionBar-textStack-topCaption-leading"><a
-                                    rel="nofollow"
-href="https://www.siliconbladeconsultants.com/articles/20260502-populate-partitions/"
-                                    style="text-decoration: none"
-                                    draggable="false"
-                                    moz-do-not-send="true"><font
-                                      color="#272727"
-style="color: rgba(0, 0, 0, 0.847059);">Populating a Partition</font></a></div>
-                                <div
-style="word-wrap:break-word;font-weight:400;font-size:11px;overflow:hidden;text-overflow:ellipsis;text-align:left;"
-class="lp-rich-link-captionBar-textStack-bottomCaption-leading"><a
-                                    rel="nofollow"
-href="https://www.siliconbladeconsultants.com/articles/20260502-populate-partitions/"
-                                    style="text-decoration: none"
-                                    draggable="false"
-                                    moz-do-not-send="true"><font
-                                      color="#808080"
-style="color: rgba(0, 0, 0, 0.498039);">siliconbladeconsultants.com</font></a></div>
-                              </div>
-                            </td>
-                            <td style="padding:6px 12px 6px 0px;"
-class="lp-rich-link-captionBar-rightIconItem" width="36"><a
-                                rel="nofollow"
-href="https://www.siliconbladeconsultants.com/articles/20260502-populate-partitions/"
-                                draggable="false" moz-do-not-send="true"><img
-style="pointer-events:none !important;display:inline-block;width:36px;height:36px;border-radius:3px;"
-                                  width="36" height="36"
-                                  draggable="false"
-class="lp-rich-link-captionBar-rightIcon" alt="favicon.ico"
-src="cid:part1.YVPrNMWS.Ske3g7kH@rootcommit.com"></a></td>
-                          </tr>
-                        </tbody>
-                      </table>
-                    </td>
-                  </tr>
-                </tbody>
-              </table>
-            </a></div>
-        </div>
-        <br id="lineBreakAtBeginningOfMessage">
-        <div>In essence, I create an ext4 image in my recipe and then
-          you can do whatever you need with it (such as for me - write
-          it to my wic file)</div>
-      </div>
-    </blockquote>
-    <p>What a nice coincidence... You just wrote that article!<br>
-      This sounds like a very simple and elegant solution for my needs.
-      I Actually just have a few files and scripts to drop in this
-      filesystem.</p>
-    <p>Thanks a lot!<br>
-      Cheers<br>
-      Michael.</p>
-    <pre class="moz-signature" cols="72">-- 
-Root Commit
-Embedded Linux Training and Consulting
-<a class="moz-txt-link-freetext" href="https://rootcommit.com">https://rootcommit.com</a></pre>
-  </body>
-</html>
---------------JdT0I20VEtkjuMpSM4wZJ1jD
-Content-Type: image/x-icon; name="favicon.ico"
-Content-Disposition: inline; filename="favicon.ico"
-Content-Id: <part1.YVPrNMWS.Ske3g7kH@rootcommit.com>
-Content-Transfer-Encoding: base64
-
-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
-
---------------JdT0I20VEtkjuMpSM4wZJ1jD--
-
---------------Nql7mUw8KSn44Ottvu3Cbcte--
+--000000000000c6977d0650fe0fff--
 
