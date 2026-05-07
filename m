@@ -1,122 +1,116 @@
-Return-Path: <richard.purdie@linuxfoundation.org>
+Return-Path: <alex.kanavin@gmail.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 88869CD3442
-	for <webhook@archiver.kernel.org>; Thu,  7 May 2026 13:20:32 +0000 (UTC)
-Received: from mail-wm1-f54.google.com (mail-wm1-f54.google.com [209.85.128.54])
- by mx.groups.io with SMTP id smtpd.msgproc02-g2.11716.1778160027753956297
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 7C4ABCD343F
+	for <webhook@archiver.kernel.org>; Thu,  7 May 2026 13:51:42 +0000 (UTC)
+Received: from mail-qv1-f47.google.com (mail-qv1-f47.google.com [209.85.219.47])
+ by mx.groups.io with SMTP id smtpd.msgproc01-g2.12519.1778161900339889921
  for <yocto@lists.yoctoproject.org>;
- Thu, 07 May 2026 06:20:28 -0700
+ Thu, 07 May 2026 06:51:40 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@linuxfoundation.org header.s=google header.b=PmVSWjS0;
- spf=pass (domain: linuxfoundation.org, ip: 209.85.128.54, mailfrom: richard.purdie@linuxfoundation.org)
-Received: by mail-wm1-f54.google.com with SMTP id 5b1f17b1804b1-488b0e1b870so12539935e9.2
-        for <yocto@lists.yoctoproject.org>; Thu, 07 May 2026 06:20:27 -0700 (PDT)
+ dkim=pass header.i=@gmail.com header.s=20251104 header.b=YOg79LDF;
+ spf=pass (domain: gmail.com, ip: 209.85.219.47, mailfrom: alex.kanavin@gmail.com)
+Received: by mail-qv1-f47.google.com with SMTP id 6a1803df08f44-8acae26e564so8319506d6.2
+        for <yocto@lists.yoctoproject.org>; Thu, 07 May 2026 06:51:40 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1778161899; cv=none;
+        d=google.com; s=arc-20240605;
+        b=OqLiZBLm7oF4SP7fhS84obgxlZdjviy2jcnGAFx0E1cnsWtf1Kns2Da0xG+GENUDyj
+         2HWx0r5j5KzsC/jwU8Cq7+DrglFLzMSony0708Yo1+Y5ro2Rq0o7OoRXtddq1RfIlo6T
+         adpkJGMaGXe1G/K+ycwDzKXiVQHgSxYJZuKrsgG1rqd3JbWHg39AUFmkSuYsTFOGe7P0
+         Mgi4FhnTa8MGh8eSK/Ut77bsFrHGyHiEJmaR8EWQ2EXPTPQ/DvHFTk17r13Qjn4urEns
+         RnOr38lnKNc5ywP9zqGnDiKvumwRFhZnWrGSANm7ElX5GD4KV885GQKripwABGowPYyj
+         zHKg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:dkim-signature;
+        bh=+CP347dfiUMUCFfWnO+TGJ9xRxuSBN/N2f1GHGl9PkI=;
+        fh=9nHztJ+ZqQYw41lr9uz1Nm9ZOWrbXexP/25ev604vV8=;
+        b=P0aBAPTYMR6Q1aHwz3LdHCUj5lTxg34WypBLQpn6dXR90X8u57kWGdpY5FJ4GtGvYN
+         5uii1/gemUV+CEMfSyoqAQAHZavtz9E/wBX+m/ZioF779wUvojuvCtgdUX3GWt+6eJOn
+         tQEs6XWSpl8QHjPOyXJFiotslyDcm25d+RDTtpk8sIFUAqXTdSJtF/uZpeJxXO1Jey8j
+         J05YI0+bgTb/FjwnjvaNVg4Iw+fC2bth+qM88iDWoNB0/Klq3+mCwNyw6MF/JRgGOcax
+         hFem3y8fTCf/HSEt6VzFFUW7v+Z7zO69otr21zf1uZgC9By2IhFvYG1DLpV9WvJUsygk
+         uXlQ==;
+        darn=lists.yoctoproject.org
+ARC-Authentication-Results: i=1; mx.google.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linuxfoundation.org; s=google; t=1778160026; x=1778764826; darn=lists.yoctoproject.org;
-        h=mime-version:user-agent:content-transfer-encoding:references
-         :in-reply-to:date:cc:to:from:subject:message-id:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=LJsLOmp0qYaii3yyI5rIKD6zXTNR4+QVpujVBDeHxS4=;
-        b=PmVSWjS0BnaSqmMsemNbkiYCL1E/9qTMVKq8tpCgTIkXygS0u/Tuc/szyJ3WO+M/QA
-         rtz43bAhgaDLHByNtFfvROg+mKzig7Y3Oc2yj1ufCCaU1WFvbHRrUmS/fLZTHUGSpGdH
-         8YjoTCQ3rEDYAVcovFEto5Zt9knK0qn/W36/8=
+        d=gmail.com; s=20251104; t=1778161899; x=1778766699; darn=lists.yoctoproject.org;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=+CP347dfiUMUCFfWnO+TGJ9xRxuSBN/N2f1GHGl9PkI=;
+        b=YOg79LDFkXg729wpfX0RGI7lwuGCbM5i5hZNCphDGgptIFxBnRNKxZcFMN1W4PHj9x
+         1qV11I1MHrNl1FpYDUqA8wGU1DRgyWd1YFiO2DxdmP4BvCnR4Fk17Ba+6s6DFV2WeowT
+         I+nBryOVFO2Edix+52gIF5G8TYZHm/bi8QrE2pOZU6MjG+WoD5eJRrHhpLMLqY2aY3zE
+         mj9bLzt4lLmE/wih7I3ThWhv2Uyc/RIJ/tcpdhd2XFEYlMlNUrDKQJsVr9bKb9dJUO4S
+         s0vPvUD4P6g+UQUDAYmOgHpgxoKpBsdJ+N3FbzqfakgisM9aN+djeO77+rdIb0jWlhfB
+         DyUQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1778160026; x=1778764826;
-        h=mime-version:user-agent:content-transfer-encoding:references
-         :in-reply-to:date:cc:to:from:subject:message-id:x-gm-gg
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=LJsLOmp0qYaii3yyI5rIKD6zXTNR4+QVpujVBDeHxS4=;
-        b=E9SWRy+C9dcElZ4MMwrKQ6DCotHhxkIrh6acYCLljONCgi5nw5vl/EcaeI2/8pdqqk
-         t/0W0Qkjpf3mUawkO2Uuy/hT1qlcYyG/HGcYFgUTHuJ3QzUV6PDg/NzKGHhtKCfvynd4
-         BIlBtLSKIkoJXoIpZvja0lr9/CcEjOEVcH5tsisoNkVJejQRXXN7QHmXFNOQ83A8Mr4f
-         WMmzJ0ZXg1/meX7YinasS8pSeS6695yA/SRmQ5b82LXO6D6KV2k5Quyo2kfB9dfpp8FH
-         NlPw0dToEG8rrFb+6Qrt2uPkAJlA47Qflsu3UCdzdBjU0o1LympmSthSPkNzwxzH7+TZ
-         u3Jg==
-X-Forwarded-Encrypted: i=1; AFNElJ/ph0T2+lsW5v+I9aK/O0dmPdOycsEgVoaPpTocM1L/gGDvwunCEwgw5i40pEFVO5gmVUle7w==@lists.yoctoproject.org
-X-Gm-Message-State: AOJu0Yyg++9o3ZQVyU0KslmZQOXw9qEG+4mnvCJKuukqJUkMSAlIISls
-	oGFcm8EcctvXzqNlabJcOScknf+h5Um1zXzQ3chBQBBn2IB8uTIzVG2v+qK9TtIzHrg=
-X-Gm-Gg: AeBDieu8X7P/e/q2FtPVQnRgqgtpQ2gAXehuMQI/pS2V3xnPt5wzJq5oc6sQ8uaylVL
-	aXeM37gt3vlRfJ59umSiLnmzqCt0KJqwIF8z/vKo5pYjEPwnTLQNOnk8RnO5lRxjsaLRUwuW2pM
-	0vzbe+GKVekseKs4Rf72gLkiXS41umG9qAqZZhNwZfkVNBcjKTI2yl6TlDpzo4FTMerPQftJJJe
-	cstVgGDN9iEc+FRljB5XUmQw8DBTl8gCQqd5SYcMs1VKukPzfGVcpBkZdAABeRHtshuEZI7tdPx
-	N08Bb7kbE7PJTyoisgFITTOXDgZrxkN01DjOT6iJZDM8joZ5LGVPE6HUbYtMp4HtGR95gIdNiZ6
-	An2pziTkEnWaGdD1ynTXTOjuQAfbkOxWbU8L9vGyDLcy2F4ZnCdgd2idJBPE8uuD+f6t4Pvoi+G
-	hX9nFAqFboT/h+2/AlLtilTU1WE7qVSr4ZQaS6e845dzvtcdi471WsrPhMnIE5M0fmFSDUm4o7J
-	7V50T12v0rNGNwI2eQvbImUvUU=
-X-Received: by 2002:a05:600c:a307:b0:485:4eaf:eb53 with SMTP id 5b1f17b1804b1-48e51f4111fmr101720835e9.19.1778160025796;
-        Thu, 07 May 2026 06:20:25 -0700 (PDT)
-Received: from ?IPv6:2001:8b0:aba:5f3c:44fa:5dbd:b82d:7b00? ([2001:8b0:aba:5f3c:44fa:5dbd:b82d:7b00])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-48e5313b023sm64535155e9.5.2026.05.07.06.20.24
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 07 May 2026 06:20:24 -0700 (PDT)
-Message-ID: <224b7cb95cda25816f49ce2b036a0c9cca437e1e.camel@linuxfoundation.org>
+        d=1e100.net; s=20251104; t=1778161899; x=1778766699;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=+CP347dfiUMUCFfWnO+TGJ9xRxuSBN/N2f1GHGl9PkI=;
+        b=VUmZ9WRooWxPnz+x39JksDWgQwgM8XyJ4Wfbnn9nbTIqyuaAGB4tl0ZfQwTdMiNK/9
+         EqgzUiTroQUNz9bCY8hy7nGMB6BYvveact2CD9Fg4exz8UUXT2++JXlmc7SC1j8W2OYM
+         Y2yho9Wny72nJbO9r/zT7G4lqIOL0XCrKdqa968a6//hRocnzwpWGrRSvXJPedsbv8I5
+         QXqQbvGtX2Y/E9ZuQYs9caWJX9N7NkQQoCULlPHc8FBM0w93riaCmb4EJV23QL40EHQ0
+         ICwui/a0fnCHkcMqWlwPvpHzLE8q2BnfQhA8cxewGtrZ3WxtPwuPDnWJKwOQlkCfEudx
+         WyDQ==
+X-Forwarded-Encrypted: i=1; AFNElJ8cMIyUXgiOuRQ6RAzqdSn+24ZwdwTx9Lawewe3i/q3+DU6nPO9sbL1e/LxF0QGHLog0Ftl7w==@lists.yoctoproject.org
+X-Gm-Message-State: AOJu0Yy7SDQ3dSuwNLrOnnLa9IQQeQdu752PuKPsas+125EXujSxn4ZS
+	7rMNnH/aHg/F9ZJ+yo7l5PWb9dNLXK3s9FeWTHDrlP8XZol0vXhnICvJRbXvJh2OOfjci4euanQ
+	3DDPqv8pp+rpLxp4nKW9qQWFluHzWGXg=
+X-Gm-Gg: AeBDietqO7B/KYRj60m0kYXSBJr4hB7bL8PuVSJi6+CSGY3szZzVDyT8Wuu1GIwgIun
+	1ZLxHSpHIsVi4SRzZE+TksJmOXiMVqlz5r3YDJEK5C5agE6YqOfyBRDRml54OiO8HSq9vkjuKDH
+	j8DP7V0+xtBfCig3MbH7omE+GqYSuRgXcaBvgg2yr4t8JpCRQ1hbZp9/7hgysU+AH8Jye+a27c8
+	9rfopwCZSqY88OWxnwMKK/rpktrAxl0jJNoZiWiuvtjD4lTG8fES/kbCGUCDBFKhlRLYnbW12g1
+	Mp+D7EqS3C1Zr8YuhAXXW17XjjNpeQ1XUjpXBgMuLxqQ0eTftWm+
+X-Received: by 2002:a05:6214:29eb:b0:8be:3da0:bba9 with SMTP id
+ 6a1803df08f44-8be3db001bdmr24417276d6.14.1778161899142; Thu, 07 May 2026
+ 06:51:39 -0700 (PDT)
+MIME-Version: 1.0
+References: <CANNYZj-hrSdEoX5XRmM1MYhXMVkqpa0CBHHbMqVhjM034bKTDg@mail.gmail.com>
+ <6100A74F-B06F-49D5-9895-DB7D5B563773@arm.com> <CANNYZj9YxLpwDe4pTiT5-WMYUG=6AdV1u=dQHCZt45Pk9QF=xQ@mail.gmail.com>
+ <224b7cb95cda25816f49ce2b036a0c9cca437e1e.camel@linuxfoundation.org>
+In-Reply-To: <224b7cb95cda25816f49ce2b036a0c9cca437e1e.camel@linuxfoundation.org>
+From: Alexander Kanavin <alex.kanavin@gmail.com>
+Date: Thu, 7 May 2026 15:51:26 +0200
+X-Gm-Features: AVHnY4IJMzV0_BucWHXHb7cTmkkm_vJZakW29BkigavH_k1-8wdPJU789NqsxP4
+Message-ID: <CANNYZj_wSR8fYqcXs7v5KrSYNC6xmkPZrvsU_3Gy92g6-WFWrg@mail.gmail.com>
 Subject: Re: [Openembedded-architecture] [bitbake-devel] proposal: build
  pipelines in bitbake-setup
-From: Richard Purdie <richard.purdie@linuxfoundation.org>
-To: alex.kanavin@gmail.com, Ross Burton <Ross.Burton@arm.com>
-Cc: openembedded-architecture
-	 <openembedded-architecture@lists.openembedded.org>, bitbake-devel
-	 <bitbake-devel@lists.openembedded.org>, Yocto-mailing-list
-	 <yocto@lists.yoctoproject.org>, Zhangfei Gao <zhangfei.gao@linaro.org>
-Date: Thu, 07 May 2026 14:20:24 +0100
-In-Reply-To: <CANNYZj9YxLpwDe4pTiT5-WMYUG=6AdV1u=dQHCZt45Pk9QF=xQ@mail.gmail.com>
-References: 
-	<CANNYZj-hrSdEoX5XRmM1MYhXMVkqpa0CBHHbMqVhjM034bKTDg@mail.gmail.com>
-	 <6100A74F-B06F-49D5-9895-DB7D5B563773@arm.com>
-	 <CANNYZj9YxLpwDe4pTiT5-WMYUG=6AdV1u=dQHCZt45Pk9QF=xQ@mail.gmail.com>
+To: Richard Purdie <richard.purdie@linuxfoundation.org>
+Cc: Ross Burton <Ross.Burton@arm.com>, 
+	openembedded-architecture <openembedded-architecture@lists.openembedded.org>, 
+	bitbake-devel <bitbake-devel@lists.openembedded.org>, 
+	Yocto-mailing-list <yocto@lists.yoctoproject.org>
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.56.2-9 
-MIME-Version: 1.0
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from 45-33-107-173.ip.linodeusercontent.com [45.33.107.173] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Thu, 07 May 2026 13:20:32 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/66494
+ <yocto@lists.yoctoproject.org>; Thu, 07 May 2026 13:51:42 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/66495
 
-On Thu, 2026-05-07 at 15:13 +0200, Alexander Kanavin via lists.openembedded=
-.org wrote:
-> On Thu, 7 May 2026 at 14:37, Ross Burton <Ross.Burton@arm.com> wrote:
->=20
-> > To be honest I think I disagree with you here.=C2=A0 There=E2=80=99s al=
-ready a
-> > load of =E2=80=9Cbuild pipeline=E2=80=9D tools from sh scripts to Makef=
-iles to the
-> > multitude of=C2=A0 task runners written in every language under the run
-> > (invoke, rake, etc).
-> >=20
-> > Does the world need another one?
->=20
-> The idea is that bitbake-setup should help users do something useful
-> with a build they set up, by providing a standard UI. You'd type
-> $ bitbake-setup run
-> and it will give you a selection of what's possible, and then proceed
-> to do it. It's the equivalent of 'kas build', just more flexible :)
+On Thu, 7 May 2026 at 15:20, Richard Purdie
+<richard.purdie@linuxfoundation.org> wrote:
+> The trouble is there are multiple things a user may want to do and
+> which one is a hard choice to make. If you have some narrow layer with
+> a specific image and application, that is easy. If you have a general
+> layer like meta-virtualization, it is unclear which target(s) a given
+> user may want. nodistro/poky face the same challenge, the thing the
+> user might want "depends".
 
-The trouble is there are multiple things a user may want to do and
-which one is a hard choice to make. If you have some narrow layer with
-a specific image and application, that is easy. If you have a general
-layer like meta-virtualization, it is unclear which target(s) a given
-user may want. nodistro/poky face the same challenge, the thing the
-user might want "depends".
+For such general layers two things come to mind:
 
-> If someone has written their pipeline with make or a shell script,
-> then bitbake-setup can simply run that (e.g. a pipeline containing a
-> single step), but I think there's also value in having 'native'
-> support for multi-step pipelines. They're simple (e.g. executable
-> commands are static strings that can't be parametrized), and if that's
-> not flexible enough, there's indeed plenty of industrial-grade tools.
+1. An example/demo/starting point for one or a handful of most common
+use cases. E.g. poky/nodistro would showcase two or three most common
+core- images.
 
-I believe if we implement and do something, we need to do it well and
-it does need to have a specific target/focus and use. If this
-functionality is too hard or inappropriate to use for too many of the
-application areas, you have to question whether we should be doing it
-at all...
+2. Running tests for locally made changes, before submitting a patch.
+For oe-core/poky that's perhaps unrealistic, but I can imagine
+something domain-specific like meta-virtualization could define steps
+for this: $ bitbake-setup run test
 
-Cheers,
-
-Richard
-
+Alex
 
