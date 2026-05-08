@@ -1,308 +1,237 @@
-Return-Path: <tim.orling@konsulko.com>
+Return-Path: <atsharma623@gmail.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 89FD8CD37AD
-	for <webhook@archiver.kernel.org>; Fri,  8 May 2026 01:26:23 +0000 (UTC)
-Received: from mail-pj1-f44.google.com (mail-pj1-f44.google.com [209.85.216.44])
- by mx.groups.io with SMTP id smtpd.msgproc02-g2.4125.1778203578421780022
+	by smtp.lore.kernel.org (Postfix) with ESMTP id C7B0BCD3436
+	for <webhook@archiver.kernel.org>; Fri,  8 May 2026 07:15:01 +0000 (UTC)
+Received: from mail-vk1-f180.google.com (mail-vk1-f180.google.com [209.85.221.180])
+ by mx.groups.io with SMTP id smtpd.msgproc02-g2.8282.1778224496652547558
  for <yocto@lists.yoctoproject.org>;
- Thu, 07 May 2026 18:26:18 -0700
+ Fri, 08 May 2026 00:14:56 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@konsulko.com header.s=google header.b=nZMMec+l;
- spf=pass (domain: konsulko.com, ip: 209.85.216.44, mailfrom: tim.orling@konsulko.com)
-Received: by mail-pj1-f44.google.com with SMTP id 98e67ed59e1d1-3664df32e91so29418a91.3
-        for <yocto@lists.yoctoproject.org>; Thu, 07 May 2026 18:26:18 -0700 (PDT)
+ dkim=pass header.i=@gmail.com header.s=20251104 header.b=TXhUjJlG;
+ spf=pass (domain: gmail.com, ip: 209.85.221.180, mailfrom: atsharma623@gmail.com)
+Received: by mail-vk1-f180.google.com with SMTP id 71dfb90a1353d-56a9c5cb48bso670085e0c.0
+        for <yocto@lists.yoctoproject.org>; Fri, 08 May 2026 00:14:56 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1778224495; cv=none;
+        d=google.com; s=arc-20240605;
+        b=bRQmvpqk8mwhRAVwKN4A8xthYvQSCGvqFyQMq5omUH5x7NGig2xqXdhKoVCVLplE53
+         O0CbX4xOnpOlyTm9fFfti4Kpxjijoc+XquL670OjPytFz6WMKfWuZkblvvrzVwET85R8
+         TRmpmrsiZmZqin18oqnLE/EizgwpoNSTlC75VtdHBaFRzq5UoLCyV5v3NYrZvkC2TdMl
+         sLdHc+b8fNRWQNz+bbpt0zBx1PoP1GCfsKDdFaNbXDqCRIzrhsrlqIdglBc3nrA/ecZL
+         gzy0B/apI57jfE/XFOxDkICu0iXbWpvF0nZbULsjdOm8OpUEQdtaJ+Etjhlq9zRbYkzD
+         Ny7A==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
+        h=to:subject:message-id:date:from:in-reply-to:references:mime-version
+         :dkim-signature;
+        bh=RGVW2GpMcHLJFfkUKiuz3hFIwAD7d79ff73SJk9GMeQ=;
+        fh=PLyN++XzDGwzlDf7FoHCFmkg1XhSjD5SaSbPq4CKzTg=;
+        b=Sn0lOOnuOobixtKMluYObuU2cZEDxdYfwDlmfyPCjZLX/0NppLHPhZwTZpdnKAb/J1
+         MFngvmfXTLVBx3VrnVn73NCUoZlidmEgt/0wDPzm06HXZCaSnl6UXQAebjxX/Y1ehpOA
+         Xi8NgAajauKBYchJjwipdE/6cB5/EHXa/0BP03YjOyv53HnxMwHd7Qm1T0pRt/bdDN2b
+         tblDtLVz+meyeQuKVATELypzXXC6ToZ1TLQyh4kOOeGIdh1dnXWPTgeoo9MAnNTKCNFt
+         X+kbNOI7N2Up2O0ElcEF8Xl1CHIVzHO85DJDFOVHKpaxV+XpMKcgkE8UcLmGX/grK/rb
+         Jdkg==;
+        darn=lists.yoctoproject.org
+ARC-Authentication-Results: i=1; mx.google.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=konsulko.com; s=google; t=1778203578; x=1778808378; darn=lists.yoctoproject.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:to:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=8zoUlgS46/uIUQJfoLuWdhmaV6qcAEnnd0l06KjPCjQ=;
-        b=nZMMec+liQ/gzbOI6zcvhyAsk0xu1MHXU8R5KY/PDYT/qhlqnyJwG0rvsdokBa4XCj
-         NgLu2KWLESHDaCL/QNlCd8QVdwhv7ioFMYJ5ydrfWfPBjqZruk7q5bIa+S2+VahOrEc8
-         ebvii1EsDayfadb0h2zkD50GpLE1I+YyuIUeo=
+        d=gmail.com; s=20251104; t=1778224495; x=1778829295; darn=lists.yoctoproject.org;
+        h=to:subject:message-id:date:from:in-reply-to:references:mime-version
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=RGVW2GpMcHLJFfkUKiuz3hFIwAD7d79ff73SJk9GMeQ=;
+        b=TXhUjJlG5pd8Xeyx0YnmaYcfqTNYGlkeW6BTE9CJpgeW7NFEEKDjQnqRDCn00cxW5F
+         eRd3w0R0AVAa6aD5R+FhTU2noxE3GguwIvDjPak4h1uXlrYHcubjgJf/is1JL6SNUTCD
+         5vxfD8pSpVx+42WGKg1L5SJj+veINPrRKC/6OIBXYuLUk9tVTn8c1IlSEBuxgcCbzusr
+         uOERmvDJ3SunuFLFgFgeAN6BIWoLs2LjyDsgqfUiopeDNK+gYhaQTjD22OBzsLNnBiMb
+         xj3bK3kNqVWXYaxIVYdtQwEDpviWwj9IyyIXXqRsbwqDyVbmUc9+10K1B25Iuy6ZY6c+
+         TCYw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1778203578; x=1778808378;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:to:from:x-gm-gg:x-gm-message-state:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=8zoUlgS46/uIUQJfoLuWdhmaV6qcAEnnd0l06KjPCjQ=;
-        b=QmrUwxj7xED9btXnQYKRh7IEL5ij14kfrlCtP5rJ3t0/vTqbDsmfcpm/APXeNQl3tx
-         FTmEpxCXqWYskHTcl67hWsADS2QgGeU513jdDjPdKwJJMWf1G90zJXiS5314B+Wc7I6J
-         NaDtvu5HdH57In9A2/YS6DhPNpWWCywh1qRi6JhHAdNE2MjQo4uI96lDohVGSUnaKwtC
-         LxRbLWfeV5vGJqgjCJXgUO5vlI8IPwscdNHl4HCpKNjy1+NQCZlck2r3+qMC8Vswltu7
-         KbtdqjmuwQuU4T/Bu8neSzJt+qH2G4FCCHe4UZHlBquseBMlwgsEO9ASFzY8PJ4Oe2I3
-         tpaQ==
-X-Forwarded-Encrypted: i=1; AFNElJ9/csLOBMVw0fuKEjuIWgQTlDHiZvKalngY15PRuVKekbX6/j6O8H5BDPPSvCYQNDYh7FRgJA==@lists.yoctoproject.org
-X-Gm-Message-State: AOJu0YwytQ3ML9XUGkZEraNb16gexp+U9I5AdmgEe+c2Drg4IUvo/cZX
-	sxXJ9r1MApevPesV4mp4t7vxtDjpZKa028O4DHkAgQNO7ZAkdQX4GqT0LbG2th30s67BirEo22a
-	n8XZ4
-X-Gm-Gg: Acq92OGPkdFKaOvmktuSxlUhi2QoenCQaw/o8PS8U9JppEn2nxeSKdsIvFCqRkU7Y45
-	oiD0aK0zV1mFFS026CRww6FlckzemLRr3Jo9VBiWol2kaGqrYank/Gov6J9qQ/nm9ooMoOzVSAO
-	KMPcP0crMBl0ZOStTyfZj1tBO6mbhaYgbQHqIUPeul97IRoCZ91rdtn4rq1hH7YiSyouOQ/S4vI
-	SX2kpOe0aCxOfjHyOTIKccJkxDucLYUQX0yN8qOVoo5Sk+MUF5n/sA/ZeBN3qHEd0Ef60oDF53X
-	SKJsEszAmhshXXG89MCSKYlDODTJEZZf4AUGeYXD5kw/bFtvyf+LQ+RbTNpT53UXqDv6UHpAY/U
-	r650ox16WYigCqDHXqBKORjZDDVl3WE0JKiLzQsuu1de0/6jWVI3FZQ7WdgeJRMYUotRsIvxMgu
-	BRgF4cbIMdjjlzeeoVbuoesYR/RT/7fkmidxhfkC44wioK2y0nbPxWC520I/l8PT4=
-X-Received: by 2002:a17:903:144f:b0:2b9:9086:daac with SMTP id d9443c01a7336-2ba788287acmr107220135ad.0.1778203577642;
-        Thu, 07 May 2026 18:26:17 -0700 (PDT)
-Received: from localhost (c-98-232-159-17.hsd1.or.comcast.net. [98.232.159.17])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-2baf1d269fcsm1472655ad.15.2026.05.07.18.26.17
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 07 May 2026 18:26:17 -0700 (PDT)
-From: tim.orling@konsulko.com
-To: o=yocto-patches@lists.yoctoproject.org,
-	yocto@lists.yoctoproject.org
-Subject: [yocto-autobuilder-helper][PATCH 10/11] scripts: add container registry push, auth, tagging, runtime selection
-Date: Thu,  7 May 2026 18:25:39 -0700
-Message-ID: <94817f61d81b462e073e28f48cc71152f666eaeb.1778202125.git.tim.orling@konsulko.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <cover.1778202125.git.tim.orling@konsulko.com>
-References: <cover.1778202125.git.tim.orling@konsulko.com>
+        d=1e100.net; s=20251104; t=1778224495; x=1778829295;
+        h=to:subject:message-id:date:from:in-reply-to:references:mime-version
+         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=RGVW2GpMcHLJFfkUKiuz3hFIwAD7d79ff73SJk9GMeQ=;
+        b=DN7T/8HpIzRlsmUmOZ1BGYzFDoO3rC1oGNIZ7slV4kaIkAd4+0EC4WIU7sBacJWEqk
+         atXlhTaNNlgUuU5QX32K12o6wIZ8wz1d4I1vCN8LOzYj2rOiIra1nbPkcyk28O3aemW0
+         xpkD15O3iONNe1d2syw59DGzsv4FHX5hhGtEfTDpc4fHUGLU6k+NsFQmW6nnojpc6Fzs
+         KioUS+ODxcIdKALCjzPlwzeGjIJtJ9FwmGlvqNrhtvtySlGFmNgi+uA/9zDykV7vcDyS
+         DfdTASvlgiBLkTrWwo5icIs8pfUCBfavAtfbiCn4Tc2KLi7N90SjdiC0cDqlWj3TKspR
+         5jxA==
+X-Gm-Message-State: AOJu0YyH2hX/ZYWM2gogtxloQGCRcj0JuxFzlMsdVyVggtvweD+4XMW5
+	pTjEh9P7JnP1xZDOJvp5vkhWJCMvqec7B9EkyPxmGT28lwZwFR0a9UJr0FiOfHwHE0pb7XeUTde
+	cN/0v3haxiLhfnh9Z2Xd8hu0kqdRz7RkfK31nGK2F9A==
+X-Gm-Gg: Acq92OFHU0NQeUj+1GwyKq3pm7HX0AD7Te8PS93Ll+gVx5i/jvPfG17E8XaiJNV4KJL
+	Eevx9K/efe8sWdw1cnZLrzxkPld2AsLncHhTxpQTENs6zxoIRr1t+DO7b4NWZ1si8eeJX9Yu7Vd
+	qu7gD0PAFJlEUOCe/cuN5LhBTlQbRJM905+ehJjdYXrlk0n05bGVfWTNbVhKuCgWnnmHQ8xFJhv
+	juI3F44HlaWGEsOhgXB+Zrq/F3f6fE3FpiEGUOGtDoXqfRDsSRjWxWm2BmDxpPWTl0fmn2/jPyE
+	JImjnII7lezQQiXpKdH6e+DbXJhx4buNHFEg0Ftgvw==
+X-Received: by 2002:a05:6122:4b18:b0:575:360e:600a with SMTP id
+ 71dfb90a1353d-575595a9b23mr6444764e0c.8.1778224495372; Fri, 08 May 2026
+ 00:14:55 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+References: <cover.1778202125.git.tim.orling@konsulko.com> <601c281165450b2be14de46bb9601e82229ca5f6.1778202125.git.tim.orling@konsulko.com>
+In-Reply-To: <601c281165450b2be14de46bb9601e82229ca5f6.1778202125.git.tim.orling@konsulko.com>
+From: Atiksh Sharma <atsharma623@gmail.com>
+Date: Fri, 8 May 2026 12:44:42 +0530
+X-Gm-Features: AVHnY4K7umkLlkDLFJfmGcpT8TDLP4LSelyJItrjHv0AshdIPuxAxDUQCFqU_3Q
+Message-ID: <CABiSP2VTDWSyNC-E6_WGmSRdxJDoT6Yq2GSUrsAk3JbYb4E4OA@mail.gmail.com>
+Subject: Re: [yocto] [yocto-autobuilder-helper][PATCH 11/11] config.json:
+ containers-library: add mosquitto and valkey demos
+To: yocto@lists.yoctoproject.org, tim.orling@konsulko.com
+Content-Type: multipart/alternative; boundary="00000000000060af410651492765"
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from 45-33-107-173.ip.linodeusercontent.com [45.33.107.173] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Fri, 08 May 2026 01:26:23 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/66511
+ <yocto@lists.yoctoproject.org>; Fri, 08 May 2026 07:15:01 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/66513
 
-From: Tim Orling <tim.orling@konsulko.com>
+--00000000000060af410651492765
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Add the push-containers infrastructure that drives the
-post-build steps for the 'containers-' jobs. After each build
-step the runtime container store is harvested and pushed to
-one or more registries with derived per-step tags.
+CAN YOU JUST STOP SPAMMING?
 
-  * config.json: add CONTAINER_REGISTRIES, CONTAINER_AUTH_CONFIG,
-    CONTAINER_RUNTIME, CONTAINER_TAG_CMDS and
-    CONTAINER_VERSION_RECIPE configuration knobs. Tag
-    app-container-python with python3 PV via
-    CONTAINER_VERSION_RECIPE.
-  * scripts/run-config: drive push-containers as a post-step
-    action. Tags are generated from recipe and distro metadata
-    (yocto- tag uses major.minor on snapshots and full PV on
-    releases) with CONTAINER_VERSION_RECIPE allowing a step to
-    source PV from a different recipe than the image itself.
-  * Registry auth is staged via .../config.json or podman
-    .../auth.json using CONTAINER_AUTH_CONFIG, replacing an
-    interactive login that could hang. CONTAINER_RUNTIME picks
-    between vdkr (Docker-compatible) and vpdmn (Podman) runtimes.
-  * Robustness: skip gracefully when no registries are configured,
-    fix the OCI directory path, handle memres already running,
-    and avoid hanging when memres has not yet come up.
+On Fri, May 8, 2026 at 6:56=E2=80=AFAM Tim Orling via lists.yoctoproject.or=
+g
+<tim.orling=3Dkonsulko.com@lists.yoctoproject.org> wrote:
 
-AI-Generated: Claude Cowork Opus 4.7
-Signed-off-by: Tim Orling <tim.orling@konsulko.com>
----
- config.json        |  17 +++++-
- scripts/run-config | 128 +++++++++++++++++++++++++++++++++++++++++++++
- 2 files changed, 143 insertions(+), 2 deletions(-)
+> From: Tim Orling <tim.orling@konsulko.com>
+>
+> Extend containers-library with two additional demo images sourced
+> from meta-yocto-containers-demo:
+>
+>   * app-container-mosquitto: the Eclipse Mosquitto MQTT broker.
+>   * app-container-valkey: Valkey (Redis-compatible) key/value datastore.
+>
+> Signed-off-by: Tim Orling <tim.orling@konsulko.com>
+> ---
+>  config.json | 12 ++++++++++++
+>  1 file changed, 12 insertions(+)
+>
+> diff --git a/config.json b/config.json
+> index 7cdf91a..a9a2e9c 100644
+> --- a/config.json
+> +++ b/config.json
+> @@ -1950,6 +1950,18 @@
+>                  "BBTARGETS" : "app-container-python",
+>                  "CONTAINER_IMAGES" : {"app-container-python": "python"},
+>                  "CONTAINER_VERSION_RECIPE" : "python3"
+> +            },
+> +            "step2" : {
+> +                "shortname" : "Build 'mosquitto' container",
+> +                "BBTARGETS" : "app-container-mosquitto",
+> +                "CONTAINER_IMAGES" : {"app-container-mosquitto":
+> "mosquitto"},
+> +                "CONTAINER_VERSION_RECIPE" : "mosquitto"
+> +            },
+> +            "step3" : {
+> +                "shortname" : "Build 'valkey' container",
+> +                "BBTARGETS" : "app-container-valkey",
+> +                "CONTAINER_IMAGES" : {"app-container-valkey": "valkey"},
+> +                "CONTAINER_VERSION_RECIPE" : "valkey"
+>              }
+>          },
+>          "vcontainer-tests": {
+> --
+> 2.43.0
+>
+>
+> -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
+> Links: You receive all messages sent to this group.
+> View/Reply Online (#66512):
+> https://lists.yoctoproject.org/g/yocto/message/66512
+> Mute This Topic: https://lists.yoctoproject.org/mt/119207998/8395439
+> Group Owner: yocto+owner@lists.yoctoproject.org
+> Unsubscribe: https://lists.yoctoproject.org/g/yocto/unsub [
+> atsharma623@gmail.com]
+> -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
+>
+>
 
-diff --git a/config.json b/config.json
-index dda5b12..7cdf91a 100644
---- a/config.json
-+++ b/config.json
-@@ -1,4 +1,4 @@
--{
-+			{
-     "BASE_HOMEDIR" : "/home/pokybuild",
-     "BASE_SHAREDDIR" : "/srv/autobuilder/autobuilder.yocto.io",
-     "BASE_PUBLISHDIR" : "/srv/autobuilder/downloads.yoctoproject.org",
-@@ -40,6 +40,10 @@
-         "SDKEXTRAS" : ["SSTATE_MIRRORS += '\\", "file://.* http://sstate.yoctoproject.org/all/PATH;downloadfilename=PATH'", "BB_HASHSERVE = 'auto'", "BB_HASHSERVE_UPSTREAM = '${AUTOBUILDER_HASHSERV}'"],
-         "BUILDINFO" : false,
-         "BUILDHISTORY" : false,
-+        "CONTAINER_RUNTIME" : "vdkr",
-+        "CONTAINER_REGISTRIES" : [],
-+        "CONTAINER_TAGS" : ["latest"],
-+        "CONTAINER_TAG_CMDS" : [],
-         "BUILDINFOVARS" : ["INHERIT += 'image-buildinfo'", "IMAGE_BUILDINFO_VARS:append = ' IMAGE_BASENAME IMAGE_NAME'"],
-         "WRITECONFIG" : true,
-         "SENDERRORS" : true,
-@@ -1908,6 +1912,7 @@
-             "step1" : {
-                 "shortname" : "Build 'base' container",
-                 "BBTARGETS" : "container-base",
-+                "CONTAINER_IMAGES" : {"container-base": "base"},
-                 "extravars" : [
-                     "DISTRO_FEATURES:append = ' virtualization vcontainer'"
-                 ]
-@@ -1915,6 +1920,7 @@
-             "step2" : {
-                 "shortname" : "Build 'curl' container",
-                 "BBTARGETS" : "app-container-curl",
-+                "CONTAINER_IMAGES" : {"app-container-curl": "curl"},
-                 "extravars" : [
-                     "DISTRO_FEATURES:append = ' virtualization vcontainer'"
-                 ]
-@@ -1934,9 +1940,16 @@
-             "extravars" : [
-                 "DISTRO_FEATURES:append = ' virtualization vcontainer'"
-             ],
-+             "CONTAINER_TAG_CMDS" : [
-+                 "_PV_MAJOR=$(echo $_PV | cut -d. -f1)",
-+                 "_PV_MAJOR_MINOR=$(echo $_PV | cut -d. -f1,2)",
-+                 "_EXTRA_TAGS=\"$_PV_MAJOR $_PV_MAJOR_MINOR\""
-+             ],
-             "step1" : {
-                 "shortname" : "Build 'python' container",
--                "BBTARGETS" : "app-container-python"
-+                "BBTARGETS" : "app-container-python",
-+                "CONTAINER_IMAGES" : {"app-container-python": "python"},
-+                "CONTAINER_VERSION_RECIPE" : "python3"
-             }
-         },
-         "vcontainer-tests": {
-diff --git a/scripts/run-config b/scripts/run-config
-index 0f5a26a..48e0b85 100755
---- a/scripts/run-config
-+++ b/scripts/run-config
-@@ -198,6 +198,7 @@ utils.mkdir(args.builddir)
- 
- revision = "unknown"
- report = utils.ErrorReport(ourconfig, args.target, args.builddir, properties['branch_oecore'], revision)
-+push_containers = properties.get("push_containers", False)
- errordir = utils.errorreportdir(args.builddir)
- utils.mkdir(errordir)
- 
-@@ -321,6 +322,133 @@ def handle_stepnum(stepnum):
-             hp.printheader("Step %s/%s: Running bitbake %s" % (stepnum, maxsteps, sanitytargets))
-             bitbakecmd(args.builddir, "bitbake %s -k" % (sanitytargets), report, stepnum, args.stepname)
- 
-+    # Push container images to registries when push_containers is enabled
-+    container_images = utils.getconfigdict("CONTAINER_IMAGES", ourconfig, args.target, stepnum)
-+    if container_images and push_containers:
-+        if jcfg:
-+            addstepentry("push-containers", "Push containers", shortdesc, desc, str(container_images), str(stepnum))
-+        elif args.stepname == "push-containers":
-+            runtime = utils.getconfigvar("CONTAINER_RUNTIME", ourconfig, args.target, stepnum) or "vdkr"
-+            registries = utils.getconfiglist("CONTAINER_REGISTRIES", ourconfig, args.target, stepnum)
-+            if not registries:
-+                hp.printheader("Step %s/%s: push-containers skipped — CONTAINER_REGISTRIES is empty, no containers pushed" % (stepnum, maxsteps))
-+            else:
-+                static_tags = utils.getconfiglist("CONTAINER_TAGS", ourconfig, args.target, stepnum)
-+                auth_config = utils.getconfigvar("CONTAINER_AUTH_CONFIG", ourconfig, args.target, stepnum)
-+                if not auth_config:
-+                    if runtime == "vpdmn":
-+                        auth_config = "${HOME}/.config/containers/auth.json"
-+                    else:
-+                        auth_config = "${HOME}/.docker/config.json"
-+                hp.printheader("Step %s/%s: Pushing container images %s" % (stepnum, maxsteps, list(container_images.keys())))
-+                script = [
-+                    "set -e",
-+                    "test -w /dev/kvm || { echo 'ERROR: /dev/kvm is not writable, cannot push containers'; exit 1; }",
-+                    # Always bring up a fresh memres VM in the foreground.
-+                    #
-+                    # 'memres status' only checks that the QEMU PID in daemon.pid
-+                    # is alive (see daemon_is_running()/daemon_status() in
-+                    # meta-virtualization's vrunner.sh); it returns 0 as soon as
-+                    # QEMU forks, so a hung/partially-booted VM from a previous
-+                    # run — or a VM in mid-boot — is reported as healthy. The
-+                    # subsequent 'login'/'vimport'/'push' commands then hang on
-+                    # the unresponsive daemon socket.
-+                    #
-+                    # 'memres restart' is synchronous: it does stop+start and
-+                    # runs a PING/PONG readiness probe against the daemon socket
-+                    # (120s timeout), exiting non-zero if the VM never answers.
-+                    # Running it in the foreground gives us a trustworthy ready
-+                    # signal via its exit code, so we can drop the status-poll
-+                    # loop entirely.
-+                    #
-+                    # Install an EXIT trap first so we always tear the daemon
-+                    # down, even if bitbake -e / vimport / push fails mid-step
-+                    # under 'set -e'. The trap is armed before the restart so
-+                    # a restart failure also triggers cleanup.
-+                    #
-+                    # Registry auth is staged into the guest at VM boot via
-+                    # the global '--config' flag — vrunner.sh's setup_auth_share()
-+                    # copies $AUTH_CONFIG onto a read-only 9p share, and
-+                    # vdkr-init.sh / vpdmn-init.sh's install_auth_config()
-+                    # installs it at /root/.docker/config.json (vdkr) or
-+                    # /run/containers/0/auth.json (vpdmn) inside the guest.
-+                    # Subsequent 'push' calls use those creds directly, so no
-+                    # explicit 'login' step is needed. Calling 'login' would
-+                    # actually hang under the autobuilder (no PTY): when the
-+                    # memres daemon is running, vcontainer-common.sh dispatches
-+                    # login via '--daemon-interactive' and blocks reading the
-+                    # password from stdin (see login case in vcontainer-common.sh).
-+                    "trap '%s-$(arch) memres stop 2>/dev/null || true' EXIT" % runtime,
-+                    "%s-$(arch) --config %s memres restart </dev/null" % (runtime, auth_config),
-+                ]
-+                tag_cmds = utils.getconfiglist("CONTAINER_TAG_CMDS", ourconfig, args.target, stepnum)
-+                version_recipe = utils.getconfigvar("CONTAINER_VERSION_RECIPE", ourconfig, args.target, stepnum)
-+                for recipe, image in container_images.items():
-+                    # Extract version metadata from the recipe and distro via
-+                    # bitbake -e. Steps that need additional derived tags (e.g.
-+                    # major, major.minor) populate _EXTRA_TAGS via
-+                    # CONTAINER_TAG_CMDS in their step config.
-+                    #
-+                    # PV is sanitized with 'sed s/+.*//' to drop Yocto's
-+                    # '+git<sha>' suffix on AUTOREV/dev recipes — Docker
-+                    # reference format does not allow '+' in tags, and the
-+                    # base PV is what consumers expect.
-+                    #
-+                    # DISTRO_VERSION needs context-sensitive handling. Poky's
-+                    # DISTRO_VERSION resolves to '${PV}+snapshot-${METADATA_REVISION}'
-+                    # off a tag and just '${PV}' on a release tag. The '+' in
-+                    # the snapshot form is illegal in a Docker tag, but more
-+                    # importantly the patch level on a snapshot build (e.g.
-+                    # '6.0.99' between 6.0 and 6.1) is a moving target that
-+                    # doesn't correspond to any real release — only the
-+                    # major.minor line is meaningful. So:
-+                    #   - snapshot build (DISTRO_VERSION contains '+') → tag
-+                    #     with major.minor only, e.g. 'yocto-6.0'.
-+                    #   - release-tag build (no '+') → tag with the full
-+                    #     version, e.g. 'yocto-5.0.5' from the yocto-5.0.5 tag.
-+                    script += [
-+                        "_BBENV=$(bitbake -e %s 2>/dev/null) || true" % recipe,
-+                        "_PV=$(echo \"$_BBENV\" | awk -F'\"' '/^PV=/{ print $2; exit }' | sed 's/+.*//')",
-+                        "_DISTRO_CODENAME=$(echo \"$_BBENV\" | awk -F'\"' '/^DISTRO_CODENAME=/{ print $2; exit }')",
-+                        "_DISTRO_VERSION_RAW=$(echo \"$_BBENV\" | awk -F'\"' '/^DISTRO_VERSION=/{ print $2; exit }')",
-+                        "case \"$_DISTRO_VERSION_RAW\" in",
-+                        "    *+*) _DISTRO_VERSION=$(echo \"${_DISTRO_VERSION_RAW%%+*}\" | cut -d. -f1,2) ;;",
-+                        "    *)   _DISTRO_VERSION=\"$_DISTRO_VERSION_RAW\" ;;",
-+                        "esac",
-+                        "_DEPLOY_DIR_IMAGE=$(echo \"$_BBENV\" | awk -F'\"' '/^DEPLOY_DIR_IMAGE=/{ print $2; exit }')",
-+                        "_EXTRA_TAGS=\"\"",
-+                    ]
-+                    if version_recipe:
-+                        # When the image recipe's PV is a wrapper-style
-+                        # placeholder (e.g. app-container-python_1.0.0.bb,
-+                        # whose 1.0.0 is meaningless to a downstream user),
-+                        # CONTAINER_VERSION_RECIPE points at the recipe whose
-+                        # PV is actually meaningful for the resulting tag —
-+                        # typically the language runtime or app being packaged
-+                        # (e.g. python3 -> 3.14.x). Override _PV from that
-+                        # recipe; image-recipe state still drives
-+                        # DEPLOY_DIR_IMAGE and DISTRO_* since those are
-+                        # environment-wide.
-+                        script += [
-+                            "_VBBENV=$(bitbake -e %s 2>/dev/null) || true" % version_recipe,
-+                            "_PV=$(echo \"$_VBBENV\" | awk -F'\"' '/^PV=/{ print $2; exit }' | sed 's/+.*//')",
-+                        ]
-+                    script += tag_cmds
-+                    script.append(
-+                        "_TAGS=\"%s $_PV $_DISTRO_CODENAME yocto-$_DISTRO_VERSION $_EXTRA_TAGS\"" % " ".join(static_tags)
-+                    )
-+                    for registry in registries:
-+                        # No per-registry 'login': credentials were staged into
-+                        # the guest by '--config' on 'memres restart' above.
-+                        script += [
-+                            "for _tag in $_TAGS; do",
-+                            "    %s-$(arch) vimport ${_DEPLOY_DIR_IMAGE}/%s-latest-oci %s/%s:${_tag}" % (runtime, recipe, registry, image),
-+                            "    %s-$(arch) push %s/%s:${_tag}" % (runtime, registry, image),
-+                            "done",
-+                        ]
-+                # Tear-down is handled by the EXIT trap installed above.
-+                bitbakecmd(args.builddir, "\n".join(script), report, stepnum, args.stepname)
-+
-     # Run any extra commands specified
-     cmds = utils.getconfiglist("EXTRACMDS", ourconfig, args.target, stepnum)
-     if jcfg:
--- 
-2.43.0
+--00000000000060af410651492765
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
+<div dir=3D"ltr">CAN YOU JUST STOP SPAMMING?</div><br><div class=3D"gmail_q=
+uote gmail_quote_container"><div dir=3D"ltr" class=3D"gmail_attr">On Fri, M=
+ay 8, 2026 at 6:56=E2=80=AFAM Tim Orling via <a href=3D"http://lists.yoctop=
+roject.org">lists.yoctoproject.org</a> &lt;tim.orling=3D<a href=3D"mailto:k=
+onsulko.com@lists.yoctoproject.org">konsulko.com@lists.yoctoproject.org</a>=
+&gt; wrote:<br></div><blockquote class=3D"gmail_quote" style=3D"margin:0px =
+0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex">From=
+: Tim Orling &lt;<a href=3D"mailto:tim.orling@konsulko.com" target=3D"_blan=
+k">tim.orling@konsulko.com</a>&gt;<br>
+<br>
+Extend containers-library with two additional demo images sourced<br>
+from meta-yocto-containers-demo:<br>
+<br>
+=C2=A0 * app-container-mosquitto: the Eclipse Mosquitto MQTT broker.<br>
+=C2=A0 * app-container-valkey: Valkey (Redis-compatible) key/value datastor=
+e.<br>
+<br>
+Signed-off-by: Tim Orling &lt;<a href=3D"mailto:tim.orling@konsulko.com" ta=
+rget=3D"_blank">tim.orling@konsulko.com</a>&gt;<br>
+---<br>
+=C2=A0config.json | 12 ++++++++++++<br>
+=C2=A01 file changed, 12 insertions(+)<br>
+<br>
+diff --git a/config.json b/config.json<br>
+index 7cdf91a..a9a2e9c 100644<br>
+--- a/config.json<br>
++++ b/config.json<br>
+@@ -1950,6 +1950,18 @@<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0&quot;BBTARGE=
+TS&quot; : &quot;app-container-python&quot;,<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0&quot;CONTAIN=
+ER_IMAGES&quot; : {&quot;app-container-python&quot;: &quot;python&quot;},<b=
+r>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0&quot;CONTAIN=
+ER_VERSION_RECIPE&quot; : &quot;python3&quot;<br>
++=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 },<br>
++=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 &quot;step2&quot; : {<br>
++=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 &quot;shortname&qu=
+ot; : &quot;Build &#39;mosquitto&#39; container&quot;,<br>
++=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 &quot;BBTARGETS&qu=
+ot; : &quot;app-container-mosquitto&quot;,<br>
++=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 &quot;CONTAINER_IM=
+AGES&quot; : {&quot;app-container-mosquitto&quot;: &quot;mosquitto&quot;},<=
+br>
++=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 &quot;CONTAINER_VE=
+RSION_RECIPE&quot; : &quot;mosquitto&quot;<br>
++=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 },<br>
++=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 &quot;step3&quot; : {<br>
++=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 &quot;shortname&qu=
+ot; : &quot;Build &#39;valkey&#39; container&quot;,<br>
++=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 &quot;BBTARGETS&qu=
+ot; : &quot;app-container-valkey&quot;,<br>
++=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 &quot;CONTAINER_IM=
+AGES&quot; : {&quot;app-container-valkey&quot;: &quot;valkey&quot;},<br>
++=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 &quot;CONTAINER_VE=
+RSION_RECIPE&quot; : &quot;valkey&quot;<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0}<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0},<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0&quot;vcontainer-tests&quot;: {<br>
+-- <br>
+2.43.0<br>
+<br>
+<br>
+-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-<br>
+Links: You receive all messages sent to this group.<br>
+View/Reply Online (#66512): <a href=3D"https://lists.yoctoproject.org/g/yoc=
+to/message/66512" rel=3D"noreferrer" target=3D"_blank">https://lists.yoctop=
+roject.org/g/yocto/message/66512</a><br>
+Mute This Topic: <a href=3D"https://lists.yoctoproject.org/mt/119207998/839=
+5439" rel=3D"noreferrer" target=3D"_blank">https://lists.yoctoproject.org/m=
+t/119207998/8395439</a><br>
+Group Owner: <a href=3D"mailto:yocto%2Bowner@lists.yoctoproject.org" target=
+=3D"_blank">yocto+owner@lists.yoctoproject.org</a><br>
+Unsubscribe: <a href=3D"https://lists.yoctoproject.org/g/yocto/unsub" rel=
+=3D"noreferrer" target=3D"_blank">https://lists.yoctoproject.org/g/yocto/un=
+sub</a> [<a href=3D"mailto:atsharma623@gmail.com" target=3D"_blank">atsharm=
+a623@gmail.com</a>]<br>
+-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-<br>
+<br>
+</blockquote></div>
+
+--00000000000060af410651492765--
 
