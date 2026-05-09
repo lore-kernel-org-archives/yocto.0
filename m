@@ -1,152 +1,125 @@
-Return-Path: <quentin.schulz@cherry.de>
+Return-Path: <floss@jetm.me>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 1DC65CD3445
-	for <webhook@archiver.kernel.org>; Fri,  8 May 2026 15:20:10 +0000 (UTC)
-Received: from DUZPR83CU001.outbound.protection.outlook.com (DUZPR83CU001.outbound.protection.outlook.com [52.101.66.60])
- by mx.groups.io with SMTP id smtpd.msgproc02-g2.787.1778253603078374257
+	by smtp.lore.kernel.org (Postfix) with ESMTP id B8B6FCD3445
+	for <webhook@archiver.kernel.org>; Sat,  9 May 2026 01:35:08 +0000 (UTC)
+Received: from fout-b1-smtp.messagingengine.com (fout-b1-smtp.messagingengine.com [202.12.124.144])
+ by mx.groups.io with SMTP id smtpd.msgproc02-g2.4224.1778290500288229870
  for <yocto@lists.yoctoproject.org>;
- Fri, 08 May 2026 08:20:03 -0700
+ Fri, 08 May 2026 18:35:00 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@cherry.de header.s=selector1 header.b=NP+VhEUK;
- spf=pass (domain: cherry.de, ip: 52.101.66.60, mailfrom: quentin.schulz@cherry.de)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=FlkpSoS1ZrNv59SVwRBrXAWujYmygdwEQXiVVgTZU4CqzKBMBvPf7H6+7HKcjRNMkwqDuTZXF6YPHfFqSU1nGh+zCoH2k8pfcbseagZlIoBM4SWv/+TJSXgihu5CWxFOlvaHAU+HhztfQxW/cPrd0+U2tRCH4kzps8SnGzZrLfH5U/9F2zUutK2Z7MMjPJWSdy9Tyk8++1UfVA/yvAcx1M/JypVoyB7Q0yZOBRR0B9JDlx6VrlhMXfeLaW5XABcCzim/itg9JvWg0YN8oC+1BHQNFs4jdvtkVv4MZWPT199AErWfe7D1bH2ld54bOBve/wpwALYx54NH91muqXLeAA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=mBXPle9OhEx/FRhdmwFPoUFFd7K4jaK9+5gzHcJZG5w=;
- b=aGVmtFAcne2cBoer+CINfekExUOwZQYeQbgHc5SeYONCRBe6AVr8ITg75JsbkLtK1akftOJ3B+7JCc25rOhOAqdH2oTIlwMgDdq2c0YtQcnOc6RLLZzi8fG5HX5rjO06XAoDIOG48N31IEhr6JisRykHS0i7aX1ZR8Uz7l40xpLB0pGyTX33Vetiocis+nDuESz47tVY3tobTFce81/bSyQWmx8qgy8hH4iGxy74m4+UXAsO+GI9j6/ls9NTsGrzRZpFLxc9xswmiXucci9g/RbVHo535JM1HSrp/S5O0GuN30Avy1vZkazCdQM/gocb2jBC5jcLE2clSBd2mdtfLw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=cherry.de; dmarc=pass action=none header.from=cherry.de;
- dkim=pass header.d=cherry.de; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cherry.de;
- s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=mBXPle9OhEx/FRhdmwFPoUFFd7K4jaK9+5gzHcJZG5w=;
- b=NP+VhEUKIBvU6qr3ki+905z20K70aRvvjj3kLeLbxD2ZBm4pCbC0UviR/9FB1yjceuATX01Uv7pAIwU+VS0aXX9YdyTMAJ/0nJZdPVQyTd6d6FkhwcCjlv3drbTCriZIreXN7ZD6Gj9bcjlANUbKb4Xga7fimZWarh3CpN4JdPg=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=cherry.de;
-Received: from DBBPR04MB7737.eurprd04.prod.outlook.com (2603:10a6:10:1e5::22)
- by DUYPR04MB12643.eurprd04.prod.outlook.com (2603:10a6:10:65d::21) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9891.19; Fri, 8 May
- 2026 15:19:58 +0000
-Received: from DBBPR04MB7737.eurprd04.prod.outlook.com
- ([fe80::5960:fb4b:9313:2b00]) by DBBPR04MB7737.eurprd04.prod.outlook.com
- ([fe80::5960:fb4b:9313:2b00%3]) with mapi id 15.20.9891.019; Fri, 8 May 2026
- 15:19:58 +0000
-Message-ID: <9752b7f4-0682-4f35-943a-73c819463e26@cherry.de>
-Date: Fri, 8 May 2026 17:19:56 +0200
-User-Agent: Mozilla Thunderbird
-Subject: Re: [yocto] Sprinkled examples of layers that use ":append" without a
- leading space
-To: yocto@lists.yoctoproject.org, rpjday@crashcourse.ca
-References: <6498b6d3-0aae-5d73-d6d2-2561a20d582c@crashcourse.ca>
-Content-Language: en-US
-From: Quentin Schulz <quentin.schulz@cherry.de>
-In-Reply-To: <6498b6d3-0aae-5d73-d6d2-2561a20d582c@crashcourse.ca>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-X-ClientProxiedBy: WA0P291CA0022.POLP291.PROD.OUTLOOK.COM
- (2603:10a6:1d0:1::22) To DBBPR04MB7737.eurprd04.prod.outlook.com
- (2603:10a6:10:1e5::22)
+ dkim=pass header.i=@jetm.me header.s=fm2 header.b=qumHoEN8;
+ dkim=pass header.i=@messagingengine.com header.s=fm3 header.b=p98yX8sg;
+ spf=pass (domain: jetm.me, ip: 202.12.124.144, mailfrom: floss@jetm.me)
+Received: from phl-compute-02.internal (phl-compute-02.internal [10.202.2.42])
+	by mailfout.stl.internal (Postfix) with ESMTP id 40D641D000BD;
+	Fri,  8 May 2026 21:34:59 -0400 (EDT)
+Received: from phl-imap-07 ([10.202.2.97])
+  by phl-compute-02.internal (MEProxy); Fri, 08 May 2026 21:34:59 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=jetm.me; h=cc:cc
+	:content-transfer-encoding:content-type:content-type:date:date
+	:from:from:in-reply-to:in-reply-to:message-id:mime-version
+	:references:reply-to:subject:subject:to:to; s=fm2; t=1778290499;
+	 x=1778376899; bh=Ge6SsSQIsg6QRt0Xtfq02BlPOzhaEhafHBHTeONn33M=; b=
+	qumHoEN8xjdT0Njc0AR6wzuUjwZSSP8rdXMz65a71pNe65F8v4Kv19j1Q52sK2e6
+	JgGt6ajEJFtfiQRVovKSWjFE8z8ZCMIRUC+ZapgcI/wtQIOCROa6RnMbEDOFXz86
+	pnOOt5b884zJ9qmeMVxQut9tjz0bkbHaPsdDU+uD15/1IYeUA9hJRaDlqUpsSsXk
+	3mLLHnnfYDT3UQBn1ceTSS22YOG8z2X06Uz1lrc6oeXKU1hDWpSei0Tu8+xFHwAR
+	q5RdsMrbyi6oCvKKX0gTWktVY8OxLiaXXSBc3iX3BkdXDnPY6EBpeTu2ihmxdwNu
+	Zx4IqwMdJCAcSfel7douOg==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+	messagingengine.com; h=cc:cc:content-transfer-encoding
+	:content-type:content-type:date:date:feedback-id:feedback-id
+	:from:from:in-reply-to:in-reply-to:message-id:mime-version
+	:references:reply-to:subject:subject:to:to:x-me-proxy
+	:x-me-sender:x-me-sender:x-sasl-enc; s=fm3; t=1778290499; x=
+	1778376899; bh=Ge6SsSQIsg6QRt0Xtfq02BlPOzhaEhafHBHTeONn33M=; b=p
+	98yX8sgQbO7O+OyvVVKnJ8bHxDZiZiySC+s5NMjlKlPjxrgVgAsfN7ziIcq4fpeL
+	+Pvv876vxe3E4d9RXXO+wewJIEtMgyRYQ7xvgJB3+byFKRoXm+orvJ0DWCZm8EMG
+	QRJlpAxDq8luEg7SDh7HyFD4DdpTbykr6oX5WMpzuZf5dA5d6VuB+P8klmkDJyEb
+	hEF09igugQKuGxy3d6BUAupHf1MdfHfly8+tLl0CkaJYeJXOeKiLMD/UJ5OX/ge0
+	Pe0AzH8sbw1PA6gSep6pXs4FLmSLrX8gJ5X9bm72PFeGBfQnP82jG4lfmCBSIQpR
+	MBckPmkAhyS1PDIkj4ceA==
+X-ME-Sender: <xms:Qo_-afXGyGNXsMj6mTUjRhrLt-2GjqlR-laIhxOfZ0HqgGeNEyLsSw>
+    <xme:Qo_-aSaop5qDYXI9t0LMVRqjCPYIA3nmV0tB42f7nRp547AndVR5X0KZRJItUoPTZ
+    ebl_jclK-mlsRV3LPOpX0-BeexTPDio_yMNE_tX3kJKgbUbpja4ZbE>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeefhedrtddtgdduudduleefucetufdoteggodetrf
+    dotffvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfurfetoffkrfgpnffqhgenuceu
+    rghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmnegopf
+    hokfffucdluddtmdenucfjughrpefotggggffhvfffufevjghfsehtkedttdertdejnecu
+    hfhrohhmpeflrghvihgvrhcuvfhirgcuoehflhhoshhssehjvghtmhdrmhgvqeenucggtf
+    frrghtthgvrhhnpeegfeduffefgeejvdehgedtffdutedvveehvdekvdetleekjedvheev
+    vdelgffgteenucffohhmrghinhepghhithhhuhgsrdgtohhmnecuvehluhhsthgvrhfuih
+    iivgeptdenucfrrghrrghmpehmrghilhhfrhhomhepfhhlohhsshesjhgvthhmrdhmvgdp
+    nhgspghrtghpthhtohepgedpmhhouggvpehsmhhtphhouhhtpdhrtghpthhtohepohhlih
+    hvihgvrhdrsggvnhhjrghmihhnsegsohhothhlihhnrdgtohhmpdhrtghpthhtohepfhhl
+    ohhsshesjhgvthhmrdhmvgdprhgtphhtthhopehophgvnhgvmhgsvgguuggvugdqtghorh
+    gvsehlihhsthhsrdhophgvnhgvmhgsvgguuggvugdrohhrghdprhgtphhtthhopeihohgt
+    thhosehlihhsthhsrdihohgtthhophhrohhjvggtthdrohhrgh
+X-ME-Proxy: <xmx:Qo_-acfb7B7We5Badl3OEAAjrCvE5pb8w-sh6ePnl2L1f_MB4ZmipA>
+    <xmx:Qo_-aZqrWHSXY-G48NK5XWY4tjC-5rNJgZCCPtL51F761_-lH3pChA>
+    <xmx:Qo_-aRCA0Hk11iqTU-FVVfy2U_dgu4JWy_uC1tu8V_4dITM22S24LQ>
+    <xmx:Qo_-aWbNwTrRSSECknhJzVwYvSzgFtv17j71xhryn6LZoo4ABpfWmg>
+    <xmx:Q4_-aZectn-CF_X5vQaCGiZyLsqUFYq1hV6KJpDet0AMiVUj53cL-cXo>
+Feedback-ID: i9dde48b3:Fastmail
+Received: by mailuser.phl.internal (Postfix, from userid 501)
+	id 65A761EA006C; Fri,  8 May 2026 21:34:58 -0400 (EDT)
+X-Mailer: MessagingEngine.com Webmail Interface
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DBBPR04MB7737:EE_|DUYPR04MB12643:EE_
-X-MS-Office365-Filtering-Correlation-Id: cf8b9c9b-b4dc-4aa9-91cc-08dead154402
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: 
-	BCL:0;ARA:13230040|1800799024|366016|376014|56012099003|4133799003|22082099003|18002099003;
-X-Microsoft-Antispam-Message-Info: 
-	N5+83Wy7Eaay3svm9TCcY7LlAr5hBV6LKgCxBmr51c0RLguUnaY1Aq2rJ4KZ41UWJD5A/a2sDOLvSOaMk0f1yIFkUkjCm0Z56mFTy2PIgkrinEA4ERThQo+cI7atfBR3g3bUvk5cF0fpmChPWbSqAjESKRRittN1vZ0ALrydHWfYzvfGBLTBHd+Fg06CNRGBuL21xaeUkpimYyfqpL3720BsRYr7FNKldRaMtpBgqblaXhrNOft0/KEciyBjyAEyrUmvopp4/wYswpMytkqaJS7vUTLL8tGZtQW2lnuMEZPxPpYWTdlN1mDBZLCWgrOCwoouY3XBE7k11wUxRwreRhlSzrYdQpexfr3tpUx/lMpvU2G465+4+4KDDRNK3pFhm+VoIIho0DjzoZ2gdPT9XZ11IiwtOXH3TaSdWrUu0/yb+tvvago/8ToLY5TLkVFfuKodum+CaD1X2E2mnmgG7HppIlYurd1blkc+9ojo6ulZRhKUg1H1Ix739xCMQZyxiwqAg6fof9l476kp8Hc37pH0psF5L+mOxZnSG/k9USLKGxVWW5GkcWhlFBcp2bEAwLuP7jzA1gZXvMXVDn4YpN7hf0bSPYRylTXUDpAFoxfWuH8ou2ffBWBHdDCnsKiwF4ZRxDn0hfE6fAX1ocXy9g==
-X-Forefront-Antispam-Report: 
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DBBPR04MB7737.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(1800799024)(366016)(376014)(56012099003)(4133799003)(22082099003)(18002099003);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: 
-	=?utf-8?B?WWdscnhSVWYzQTV4djdMOEgxcFRUVU55OVZKMGUrUGwvNVRSc0liZWs1Mkhl?=
- =?utf-8?B?Y3JxTElaU1dkL0ZEQUR6ZExMNXR0ZlVOY0ZTYmxFYzkzZFB6djlxSVM3NVZ3?=
- =?utf-8?B?RXBORWFOMXJodFFTbGpmWlczU2cxVng1TU5GczIrK3l2VlN3a2V2WCtnQkp3?=
- =?utf-8?B?dUVDdUtvYWxaQWMzMm9LWC90Ky8yYnV1WjZDT2toMnMvT21WQjdwK3dhVkdi?=
- =?utf-8?B?Q3VyWElqQ2h4ZlBFcXFBZ2d2ekVpVTFaZFdMdG12ZE5DQUZxRlFycUtLYXJk?=
- =?utf-8?B?TzBkeS9obXVQZnlSOEdrU0FJUFZJOW12azBPWDlJR0xkNGZyTTY3dkNIK1E0?=
- =?utf-8?B?UjFLb0t1d0YzaExTM1l0ZU9MZERFZXcwREZROUdvRkRxUnRsWVdJdkpBTlps?=
- =?utf-8?B?ZitBZTJpODcwWjcyNnBzZWpyTXAwa040cDNYY3QzcDl0STdlZENQMndsUCs3?=
- =?utf-8?B?QS9lbjFSbFRnSlc1bjVnN1VvZVRHNllmQ0NXSE9FVVBnc2k4anZUT0JSdkpZ?=
- =?utf-8?B?c0p3Qmw0bHNaeFk3S25VcUNzT2MwbUhLNms5OUl2ZVVqYUt2d2ZWNEoxaUYz?=
- =?utf-8?B?RW1ERld6bk1FY3lwby9MZ2J2RXJ5TElZTE90SUtqbGU5eDVva1JPUVRCVDlu?=
- =?utf-8?B?amdyK3RobDV1RVBIZnBZMWtDNzVScjRDUjhyc2JTUThNRU9WWmsyV0V2SmR5?=
- =?utf-8?B?NU5meVFHb1NzakM4UWQwWXFpSnNobmMyZmdGYkRBTEZSNXkwR3VJUzV2VkQ1?=
- =?utf-8?B?YW90OFdwaEUyRjZkakltcGRxZEFVTFJFTDlySm53UUtGVU1Td0l5UzNZMm9D?=
- =?utf-8?B?d204QXZPcW9DOWJYNEttRENLQXo4QXdsMDE3cUNhTXRSNFlrV0t0dWdiRHYr?=
- =?utf-8?B?c3QwZTRXOVo4T1RqOGQ1OWZUKzN6cUZSTVFqZERnRmk4bkhBS1pydllqMHdp?=
- =?utf-8?B?UG00YlY3K3RMZmNnYXFLODFoMGFUbzB6dkVqNFRhV2VvYVB2VEFpUWpuMyt2?=
- =?utf-8?B?cFNSayswUW90aSs1aVU3TXFEV2JsTGFoYi8vZGZqbSs1bkQvSCtJT21FSzhV?=
- =?utf-8?B?M2pFNW1nQlJ0OTZTMVhjTGZjbE0xanZnajUzTE1BTmFudkdIV0ZPcFE0eExM?=
- =?utf-8?B?d3NMeHFhQzg5ZmZQNHFvYTl0aFZIemxland2anhyb0k3ckRJL3JBZkdnaUhj?=
- =?utf-8?B?UWdxZWJZclhUYlFiN0dHb1NyQUFOaUJDM1hGeXhWLzR1VWp5NU92YkdsaW9U?=
- =?utf-8?B?K0NLRTNvSTFtdnRlQjFhZ0xUL0N6QStNNkduUmhXN0p0cHN2QzdiZVgvYWlD?=
- =?utf-8?B?K2dIR1VWd2ZGL3d5dzRRd0pkR3dPNDAxeFNyWFNoNjlMOGxSOGJ4eG5ISmYx?=
- =?utf-8?B?ejFTTnEwV2h2OHJhckJ1ZVdEUFdkTnZ1SlFha2hMcmlYMkZCVFM5RzQzRzJV?=
- =?utf-8?B?Y212RXVBditNaUIxaHl6RmpEZEtrN1pYSjhWTWRIR3BoWStIMWZCOTU4SlUw?=
- =?utf-8?B?SmgzNDBScEYyWWk4S01oaHRiL1l2ZUp5U1BRbTVWZjhJb0gvUXdqekVpSnlw?=
- =?utf-8?B?YldOTU5nNExMbXp0Nkxld1NMWEtFbUgzQStkTVN6UU9ITVR1cmpKVFBSTXhj?=
- =?utf-8?B?M281ditJblpBUDZTQjBrTnAyR2NrcVJpVVplWHhGUzhBWVh3Uk9WY1NpUmZX?=
- =?utf-8?B?N0c3REphVm5peVpjbHNIaDNiKzdFbGx1MEhhdlhqUGl1NmhKSndtZlNFMmtE?=
- =?utf-8?B?eFRHTURHd0U5eDVMcXB2ajJleW1udmtUeHVzYmFhNzVFOSs2anNJUDR5U2pJ?=
- =?utf-8?B?aHFrMU5FL29wd3AyRWUwYjhsdFVGcXJSNit1dXB3cWlpSFdtVnJMVk9HdmlX?=
- =?utf-8?B?WE43SGQ3ckJ6Z3hacFQyQkxzRWl5UmplT2N5NzBzcFprRDF0NUhDaDU1R3pI?=
- =?utf-8?B?ZDQ5aXM4TUliamxaOXB4SkNMdG9qMzQrODNDWE42WXdEQ2pwTVVJSElWYUox?=
- =?utf-8?B?b2lsaXM5ejJXZHJyQk9GTUhmT0NQS0tWWG1lUUp1cmFLV05JUnRTYzJCOVN6?=
- =?utf-8?B?WHdCL2xVa1E4MGZQNG5OeHJNZTNkK3VzZjJwQnR0UG14bDBHV3pzRTJaYUNY?=
- =?utf-8?B?eWFuaVlObWIvY202SGMzV2lQY3o5Um9vdHF3UXVYaGM0RXhuY09Nc2RvTWpK?=
- =?utf-8?B?cTFoSmRWZ0hIcmhyTmR2U2J0bWJPYUs5VjJnYlZzWWlacCtvU2pzS2NLWG1r?=
- =?utf-8?B?QjI0bStOSHFuWUR1YURYWXN4OVI4ZDhZVmRXRkNiMTN3MTFSUmUxQzM0V29i?=
- =?utf-8?B?d05UWnd5Y2hSZTQvbENSbU00cEVGYzJtMnQwcVJRVk5jaVBueWxiQT09?=
-X-OriginatorOrg: cherry.de
-X-MS-Exchange-CrossTenant-Network-Message-Id: cf8b9c9b-b4dc-4aa9-91cc-08dead154402
-X-MS-Exchange-CrossTenant-AuthSource: DBBPR04MB7737.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 08 May 2026 15:19:58.2064
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 5e0e1b52-21b5-4e7b-83bb-514ec460677e
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: U3U+tWyeeOvhAKPbyB8qaharhw8+fYj/9NAWUbjvksq+43hxwZjDB1ttr3aeK0kpXINkrc4e3yWTuXpfn56n5yIyU7J2b0RWc9vju/TeD4s=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DUYPR04MB12643
+Content-Transfer-Encoding: 8bit
+From: Javier Tia <floss@jetm.me>
+To: Olivier Benjamin <olivier.benjamin@bootlin.com>
+Date: Fri, 08 May 2026 19:30:03 -0600
+Subject: Re: ANNOUNCE: shipcheck - CRA compliance auditor for Yocto builds
+Cc: yocto@lists.yoctoproject.org, openembedded-core@lists.openembedded.org
+In-Reply-To: <21f76971-7cb6-4bef-9ac2-cd06f0098043@bootlin.com>
+References: <d196fb98514a14652a8e6a6ed1b5fff0@jetm.me> <21f76971-7cb6-4bef-9ac2-cd06f0098043@bootlin.com>
+Message-Id: <20260509013458.65A761EA006C@mailuser.phl.internal>
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from 45-33-107-173.ip.linodeusercontent.com [45.33.107.173] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Fri, 08 May 2026 15:20:10 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/66516
+ <yocto@lists.yoctoproject.org>; Sat, 09 May 2026 01:35:08 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/66517
 
-Hi Robert,
+Hi Olivier,
 
-On 5/8/26 3:24 PM, Robert P. J. Day via lists.yoctoproject.org wrote:
-> 
->    Recently, I noticed the occasional example in some layers where
-> there *appears* to be a missing leading space when using the ":append"
-> operator.
-> 
->    As a single example in the meta-virualization layer:
-> 
-> https://git.yoctoproject.org/meta-virtualization/tree/recipes-core/kata-containers
-> 
->    kata-agent_git.bb:RDEPENDS:${PN}-dev:append = "bash"
->    kata-proxy_git.bb:RDEPENDS:${PN}-dev:append = "bash"
->    kata-runtime_git.bb:RDEPENDS:${PN}-dev:append = "bash"
->    kata-shim_git.bb:RDEPENDS:${PN}-dev:append = "bash"
-> 
-> Just thought I'd point it out so layer maintainers might do a quick
-> check on their layers.
-> 
+On 4/27/26 08:27 AM, Olivier Benjamin wrote:
+> I would certainly be interested in being able to validate SPDX 3.0
+> output.
 
-The meta-virtualization mailing list is not yocto@lists.yoctoproject.org 
-so your mail here may not reach them. Please send those trivial patches, 
-it costs less time to write and send the patches than telling the 
-maintainers to have a look and do the work themselves.
+That shipped in v0.0.6. The short version: Yocto Scarthgap scores
+20/50 on the new check because create-spdx-3.0 doesn't emit supplier
+or per-Package checksums in any form -- field or Relationship. The
+format detection, CreationInfo, and rootElement checks all pass; it's
+the 30 per-Package points that are zero.
 
-Cheers,
-Quentin
+Full details, the scoring breakdown, and a drafted 2-patch series for
+openembedded-core to fix the emission gap are in the GitHub issue:
+
+  https://github.com/jetm/shipcheck/issues/3
+
+If you have a Scarthgap or walnascar build with create-spdx-3.0
+enabled, I'd be curious what score you see:
+
+  pip install shipcheck==0.0.6
+  shipcheck check --build-dir <your-build-dir>
+
+The sbom-generation row is the one to watch. Any feedback on the BSI
+v2.1.0 -> SPDX 3.0 field mapping (committed at
+audits/0003-spdx3-mapping/mapping.md, marked draft pending review)
+would also be welcome -- you have more context on how the SPDX
+community expects BSI's requirements to map to 3.0 constructs.
+
+> Not super relevant, but I would dispute the "paperwork regulation"
+> bit, and one can only gloss over the "scanner-selection" issue if
+> one assumes that problem already solved.
+
+Fair pushback. I was shortcutting. The paperwork framing was meant to
+highlight the documentation gap, not to minimize the vulnerability-
+management side of things.
+
+-- 
+Javier Tia
 
