@@ -2,188 +2,155 @@ Return-Path: <tim.orling@konsulko.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id A1F54CD4840
-	for <webhook@archiver.kernel.org>; Mon, 11 May 2026 17:52:33 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id EED07CD484C
+	for <webhook@archiver.kernel.org>; Mon, 11 May 2026 18:04:43 +0000 (UTC)
 Received: from mail-yw1-f180.google.com (mail-yw1-f180.google.com [209.85.128.180])
- by mx.groups.io with SMTP id smtpd.msgproc01-g2.56610.1778521947924739519
+ by mx.groups.io with SMTP id smtpd.msgproc02-g2.57091.1778522679091926470
  for <yocto@lists.yoctoproject.org>;
- Mon, 11 May 2026 10:52:28 -0700
+ Mon, 11 May 2026 11:04:39 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@konsulko.com header.s=google header.b=D+FYy52/;
+ dkim=pass header.i=@konsulko.com header.s=google header.b=T6YGlZlu;
  spf=pass (domain: konsulko.com, ip: 209.85.128.180, mailfrom: tim.orling@konsulko.com)
-Received: by mail-yw1-f180.google.com with SMTP id 00721157ae682-7bf0b47d2f1so42185757b3.3
-        for <yocto@lists.yoctoproject.org>; Mon, 11 May 2026 10:52:27 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; t=1778521947; cv=none;
+Received: by mail-yw1-f180.google.com with SMTP id 00721157ae682-7bd8c55c885so46030217b3.2
+        for <yocto@lists.yoctoproject.org>; Mon, 11 May 2026 11:04:38 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1778522678; cv=none;
         d=google.com; s=arc-20240605;
-        b=BDZSFffGemyT1R3hpRgGmMsNxrO4uHxtpZP29ic3zdgVlZ2YPjv49AjzX5g9swp0h2
-         0ghecDXDyctSzNycY98/tzk2eXNhQ2Utww6dCsldh+9ffrnoGAENSJFHkJSUTFiCebu2
-         Z8GtNoO0SMxpz24NkEJCIRfXR9QXOIZo7eanjdnKJzKNIk58r737B/JmvcNNfe7GIoWX
-         uf5+vxnDEXF1uiXKYjfHLczVCpe4Fl751JlKv+nHsBrOpM52rPmV8vI/7G5PzlE3BfMf
-         +IXYljuxTRRhOYTSLx/W8jvyqSyAZudXbdHyqVnteDdaWjB2w0apu5ffODJJCiWMC2Ow
-         B8KQ==
+        b=ZDFvSlw/pVPABGi651d3UyCFHNeJBTsw6KiagI/yzzoZLQdDU5BLic0tKpkWV1K982
+         0fr6mjlF1tLJ5n57wzoGKAIN4KP0aENUVTTPfkwEezdiVe/2tI4ZccHl0muQ6KaETLeU
+         7bVbeX7pIyFLJiFYSSQVHHPb1ITrq2XohV5Yj+L6mKAbaHN7KefpbKQnVJvFarXyxWki
+         /YZ/MnPZpp7ELpml48yyUrsshKQVlE0Dz7aRraADuvk2V0NGajRthlD40qxvrDHbh0W8
+         Pf8Fkyjv/eAHa1gLzpjZJwQwN/EK+wXK2IwFmfOtvDbwgo6RWDZYDpAH5yYirEmk2sBd
+         jK7Q==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
         h=cc:to:subject:message-id:date:from:in-reply-to:references
          :mime-version:dkim-signature;
-        bh=bx33Bj7f66nT3WPaweKwHiBbOasYna7kwQR+CuW9sb0=;
-        fh=JSg2Q3wGm8WD6u461qMkRJvPE85UrrRamECf/Xa9URA=;
-        b=EV26jxpx7fPXXVVaJ6HM2ZtO5BTA+HO+yY/M4vWCMwYwW68jbARSWEO7kJuAXgcK4C
-         TwWUxj46DMQB9ZhK5vgeDKnurlDN3rgL1AjjaSQs+TXM/5RfYhmQYMSQjaHZ5xY3Gx9m
-         QBu3Mx+bKm5zHT79vPVVH4M7nUxOgRtXyC4Ui43kZ0v0VhqSGoMKXCTrfwl+0rh6z4X8
-         j5h5W6S5NWpo2+7nRkmdHEzCPiCZj/kipUe1G/Pbq6FeTStshezaQ4bO6+peDF4YLpUl
-         3wX/57P3W6N0yAGavRdCGqO3RbGKlSJWqjalCi15UDisSDK4d1Iqy/Pem/M9NkMwVKAr
-         J2Ew==;
+        bh=Bfx9x45a/8R68Ks/X/Zie5C0DY1Hfq0xgvZ+l+1he2Y=;
+        fh=1oaNvqdltrtwYZ6OCo7gmpmG9q78d6aGRZ2/NNqx/rQ=;
+        b=isqgpCDgbSFgOYHKkIjq+3HLjI1rM/XCLrfkNRGJhTJWQVcXMb1pIg0YXYzD+xhQTd
+         PJ7QsPhRzOz12EzdHF0zhwSc9Oznsh/ZRSX2muas+UkmYkXsFi4gvkFinGtksdrKs9oJ
+         AVv5UEB5v8E4eX42MdYXK1etjnYSrCR8gErXgUyN4FIcCfhgASfVBhHYQY3GYt7kFBKF
+         ciS0bekIfCAad1FM3eL+JDnjMoWE/9kOAEmRoHo1LDKxi0SJwDETx28zFSLvptmWq6Ua
+         /k2ZD8zH31ALGkzqOPSwSZmHsAxotmHFzUif+omMtdeIaRtU2/IBbW0EwMiYEtmIHc3i
+         iEHA==;
         darn=lists.yoctoproject.org
 ARC-Authentication-Results: i=1; mx.google.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=konsulko.com; s=google; t=1778521947; x=1779126747; darn=lists.yoctoproject.org;
+        d=konsulko.com; s=google; t=1778522678; x=1779127478; darn=lists.yoctoproject.org;
         h=cc:to:subject:message-id:date:from:in-reply-to:references
          :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=bx33Bj7f66nT3WPaweKwHiBbOasYna7kwQR+CuW9sb0=;
-        b=D+FYy52/3rWoFXnBbnPgBvz0pSyXPAcihIMXcsoE2+18++MW9llxU/540s7oyly5YH
-         UU8vSokSYlDV7/ZsbaCUUrqJqaE2RaHdJ7Qf6HlTQceWWbwZ/jgtOPVBhQJIXxGLo1Ed
-         mkDccpFDi7aAQ4XVHmo4w3VeEXaHn17SUJZzQ=
+        bh=Bfx9x45a/8R68Ks/X/Zie5C0DY1Hfq0xgvZ+l+1he2Y=;
+        b=T6YGlZluyxAPnyIEyDaXOA0u6OsIxPL4NdmN3MnrYBv86a5vPH1PGf4lSaMvUP93GZ
+         sKEkIz8uks5PY7THjO4wED8HHJvsEEsAjm/9F2BkPGIK48MLL7g1qiv8PHgNdBoJ06xl
+         TscdK8k8BipQ8pewdQW08QFHdAg2NgS3t3WV8=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1778521947; x=1779126747;
+        d=1e100.net; s=20251104; t=1778522678; x=1779127478;
         h=cc:to:subject:message-id:date:from:in-reply-to:references
          :mime-version:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=bx33Bj7f66nT3WPaweKwHiBbOasYna7kwQR+CuW9sb0=;
-        b=DPgerhKvSUCY6EUnfXIcYMqU++t3ZhTEpOlI3YhqbEEEZrkYac2/EOVWzzfYEnT7WN
-         58b66HwF4FjwYZGbuk9jiExxDox5o8DTjcEFwCOLPOt+WpsFtnlUabt0eUYijGSmT+n7
-         b792rQCM7Sgn++4/JFzFDIOtlD6MTyNoNaHRQgq+9Zo13TbmjC889XqQXMqGjf2i5a4X
-         9NT4kGF3YoFGnaQfvCK3qxiG9vYAZ3sRasNh83vI1XqWp13JS3Pga1QZyd+ZVg56NLfI
-         pqNZGfHLnoscKU+FGm5OEjx0yuH2JZe5SxlBVEptp3k0mUxKVk/sk3ieJw+ZUw/SGWj3
-         QYPA==
-X-Forwarded-Encrypted: i=1; AFNElJ+yof8nNkzy68/EFW85s2aMnfaYOU+nsdJJQC4VZGxF0/2RgBqD+QHYAaHURbCEfYY0AeA6Yg==@lists.yoctoproject.org
-X-Gm-Message-State: AOJu0YwUyDfWA96/oH/HLKggcnPnyxlc9w4TfUaR+bvcSE2MZFMuFNsq
-	J7BesXQbzmvFmC2EhIsV/3bVNU+zeiGdK8KzcbgNiSECQr+EtxlTUsPgWKqHYrvlAZxyorBBx8i
-	t/OiilWZfAJWuyDVKjp+zbv4sqZUOk8vqdtGd0K0mOcSA0SIrNLWMN60=
-X-Gm-Gg: Acq92OH9ieXb+hSJuH6jpaVEtxvqsR27MQKu/nxUj9Mn+hZQPNYIw8qSlYmFhZ6F3om
-	bWZxjzAwqQ4j9ZV/0FTcR/X0XJ2vTFPG0OfcQXtuIAnJQifnkt5012TRmfNLxBRsbHySRwbrDKD
-	tF0ZNYwcHaLrj768DrTLSbz0s/jjKy0cYDSajymWhdho0VHZp6HgcfU7df5imn8cuTQGkvvpPz1
-	iMnSqGTick0z3oKSAC+HbSK0/lYrpvFLYPJv2phMQFPVK23m4Wt875FT3VsFMwU6qWn0uG/yHoX
-	leRUk6A=
-X-Received: by 2002:a05:690c:c4f1:b0:7bd:7b2e:f079 with SMTP id
- 00721157ae682-7bfba3893c3mr147034737b3.44.1778521947017; Mon, 11 May 2026
- 10:52:27 -0700 (PDT)
+        bh=Bfx9x45a/8R68Ks/X/Zie5C0DY1Hfq0xgvZ+l+1he2Y=;
+        b=RLUNOX+lzKqbkSD3gbQhvfwFZrNqbqw/Fwsboj5DUnQ6rZtyM/mTzTd5eEZ/a9RwDl
+         Hr8DETlHgizEapGcr9nuemgrKFV6G+LuTgE4o+X4P3VnRR7Z09ltXMkta66WEaH3RrHc
+         8v3+Pgd5asjjjmLFJgjDpT8qbGtIVC6KFnzqVz6bczzWTb+jwTMZzqM0WpXr3xU6EYxq
+         4JGZRYHxHpUHby2Epu+Jvr8rSa/uH8jHudbhE/wIbVpKGJn6HCcx/FFvKGgGXUMlWDcf
+         79R3E26N/rcFHhfy3M2lp740NZimX1WHrGuOQEQnDSC7p50KHCCnPppwcPTKtihamwBP
+         JRzw==
+X-Forwarded-Encrypted: i=1; AFNElJ9JN/7GFGTkN1qVGjwG5NecodAutjkNBOiJyNulVG1nmgWTJtmgEeUbAVpMYxkpGqyX/yen3Q==@lists.yoctoproject.org
+X-Gm-Message-State: AOJu0YyAYqj33+QCnDKc3uGcMX2wiOj/Yqz+E85hyzn86poS9u3+AqGr
+	yJxV3M2pj3pHEccvifRxCZuGiOvuyRQcMW7RNjMrzjgnFCjsO+EDrY8hsr4QvL4rp8qMsJgHNxn
+	m3xlC24aqAGbDFJoYonqh5kNjirnxttRFbj0JroKRUA==
+X-Gm-Gg: Acq92OHQYbWmTjTSYwWqGqozVADPXKNJLJV6LC8dUMyjdyvw11ili91baUkBdcoWOvV
+	nrG5/RBJ/1de8+iK/E/CDkHdSCYxtl/mXvHlHgcz6YZ2AHE/U5ySay5g+KlYKcQIYYx8b5DUyCy
+	30ZD35snyUcd269d8dnT2eGPXwhHnNCHn5NeQaMgvaf0nPKo1v5b5pc47rktXMxoE/jwuVXqXnT
+	pjmX+MjeIt6uee8aPX1DQPY1V7s7UyOJ1Vbu4nwCpIpiNLeKFs8VfKX9Dfg71QirhVoYnjJcdU8
+	7nHjQOSkg4gcv3a8vQ==
+X-Received: by 2002:a05:690c:c504:b0:7bd:8cb2:4fa1 with SMTP id
+ 00721157ae682-7bdf5d98fd6mr266200597b3.5.1778522678129; Mon, 11 May 2026
+ 11:04:38 -0700 (PDT)
 MIME-Version: 1.0
-References: <cover.1778202125.git.tim.orling@konsulko.com> <fedb9a114f294f1d1dc80d1df086a41e3419b490.1778202125.git.tim.orling@konsulko.com>
- <5a9794c0ec3ebf9340f7b8d062db48822a5821f2.camel@pbarker.dev>
-In-Reply-To: <5a9794c0ec3ebf9340f7b8d062db48822a5821f2.camel@pbarker.dev>
+References: <cover.1778202125.git.tim.orling@konsulko.com> <601c281165450b2be14de46bb9601e82229ca5f6.1778202125.git.tim.orling@konsulko.com>
+ <a12dbd29263557679eeeb5dbaabeac9266fcabe3.camel@pbarker.dev>
+In-Reply-To: <a12dbd29263557679eeeb5dbaabeac9266fcabe3.camel@pbarker.dev>
 From: Tim Orling <tim.orling@konsulko.com>
-Date: Mon, 11 May 2026 10:52:16 -0700
-X-Gm-Features: AVHnY4Ly-HsKTcYokduQiINzzYJ41upFFLWCrEBXVUY170AI678X8ToJOas27LE
-Message-ID: <CAOyo-87A4t+VFHg3iwOf7pk0W7et4YZJ-=1O8CqM72xc7iTNBg@mail.gmail.com>
-Subject: Re: [yocto-autobuilder-helper][PATCH 09/11] config.json: add
- vcontainer-tests, vdkr-tests, vpdmn-tests jobs
+Date: Mon, 11 May 2026 11:04:27 -0700
+X-Gm-Features: AVHnY4K6-uQec08AqptTH1Xq0J6Egex30Ej2y3F78GJVzvqvgFsLzUnQbwWGyFA
+Message-ID: <CAOyo-87Me5QSVG7=+sF4TXASvxNb8U0V4VVibVi1x-o_E=PGmQ@mail.gmail.com>
+Subject: Re: [yocto-autobuilder-helper][PATCH 11/11] config.json:
+ containers-library: add mosquitto and valkey demos
 To: Paul Barker <paul@pbarker.dev>
 Cc: yocto-patches@lists.yoctoproject.org, yocto@lists.yoctoproject.org
-Content-Type: multipart/alternative; boundary="000000000000e0af1006518e687b"
+Content-Type: multipart/alternative; boundary="0000000000007484fa06518e949b"
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from 45-33-107-173.ip.linodeusercontent.com [45.33.107.173] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Mon, 11 May 2026 17:52:33 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/66527
+ <yocto@lists.yoctoproject.org>; Mon, 11 May 2026 18:04:43 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/66528
 
---000000000000e0af1006518e687b
+--0000000000007484fa06518e949b
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-On Mon, May 11, 2026 at 1:57=E2=80=AFAM Paul Barker <paul@pbarker.dev> wrot=
+On Mon, May 11, 2026 at 2:00=E2=80=AFAM Paul Barker <paul@pbarker.dev> wrot=
 e:
 
 > On Thu, 2026-05-07 at 18:25 -0700, tim.orling@konsulko.com wrote:
 > > From: Tim Orling <tim.orling@konsulko.com>
 > >
-> > Add three pytest job overrides that run the meta-virtualization test
-> > suites against the vcontainer standalone SDK published by the
-> > vcontainer-tarball builder.
->
-> I think this would be better as one job with three steps.
->
->
-I considered that. No strong arguments either way.
-
-
+> > Extend containers-library with two additional demo images sourced
+> > from meta-yocto-containers-demo:
 > >
-> > Each job runs the new scripts/run-vcontainer-tests helper via
-> > EXTRACMDS (we need BUILDDIR variable so EXTRAPLAINCMDS is not
-> > sufficient) with both NOBUILDTOOLS and NOVCONTAINER set, so the
-> > workers don't spend time setting up either tarball: the test runner
-> > gets the published SDK installer through VCONTAINER_SDK and manages
-> > its own pytest venv.
+> >   * app-container-mosquitto: the Eclipse Mosquitto MQTT broker.
+> >   * app-container-valkey: Valkey (Redis-compatible) key/value datastore=
+.
 > >
-> > vcontainer-tests covers the broader bbclass/tooling tests (and so
-> > brings in meta-openembedded layers it transitively exercises);
-> > vdkr-tests and vpdmn-tests cover their respective CLI harnesses.
-> >
-> > AI-Generated: Claude Cowork Opus 4.7
 > > Signed-off-by: Tim Orling <tim.orling@konsulko.com>
 > > ---
-> >  config.json                  | 42 +++++++++++++++++++++++++++++++++++-
-> >  scripts/run-vcontainer-tests |  7 +++---
-> >  2 files changed, 44 insertions(+), 5 deletions(-)
+> >  config.json | 12 ++++++++++++
+> >  1 file changed, 12 insertions(+)
 > >
 > > diff --git a/config.json b/config.json
-> > index 86c1ffb..dda5b12 100644
+> > index 7cdf91a..a9a2e9c 100644
 > > --- a/config.json
 > > +++ b/config.json
-> > @@ -1891,7 +1891,7 @@
-> >              },
-> >              "step2" : {
-> >                  "shortname" : "Publish vcontainer SDK for test reuse",
-> > -                "EXTRAPLAINCMDS" : [
-> > +                "EXTRACMDS" : [
+> > @@ -1950,6 +1950,18 @@
+> >                  "BBTARGETS" : "app-container-python",
+> >                  "CONTAINER_IMAGES" : {"app-container-python": "python"=
+},
+> >                  "CONTAINER_VERSION_RECIPE" : "python3"
+> > +            },
+> > +            "step2" : {
+> > +                "shortname" : "Build 'mosquitto' container",
+> > +                "BBTARGETS" : "app-container-mosquitto",
+> > +                "CONTAINER_IMAGES" : {"app-container-mosquitto":
+> "mosquitto"},
+> > +                "CONTAINER_VERSION_RECIPE" : "mosquitto"
+> > +            },
+> > +            "step3" : {
+> > +                "shortname" : "Build 'valkey' container",
+> > +                "BBTARGETS" : "app-container-valkey",
+> > +                "CONTAINER_IMAGES" : {"app-container-valkey": "valkey"=
+},
+> > +                "CONTAINER_VERSION_RECIPE" : "valkey"
 >
-> This fixup should be squashed into the earlier patch in this series that
-> added this line.
+> This makes me wonder: can we build multiple app container images with
+> one bitbake command? If so, can we combine these into one step?
 >
->
-Agreed. Oversight. I'll fix it in V2.
 
+The getconfigdict() that was added to scripts/utils.py might make the JSON
+definition of CONTAINER_IMAGES awkward as more containers are added, but it
+"should" work.
 
-> [snip]
->
-> > diff --git a/scripts/run-vcontainer-tests b/scripts/run-vcontainer-test=
-s
-> > index cbb5544..1394c7c 100755
-> > --- a/scripts/run-vcontainer-tests
-> > +++ b/scripts/run-vcontainer-tests
-> > @@ -3,7 +3,7 @@
-> >  # SPDX-License-Identifier: GPL-2.0-only
-> >  #
-> >  # Run meta-virtualization pytest test suites against the vcontainer
-> > -# standalone SDK (vdkr/vpdmn) that was built by the previous bitbake
-> > +# standalone SDK (vdkr/vpdmn) that was built in a previous bitbake
-> >  # step.
-> >  #
-> >  # Arguments:
-> > @@ -21,9 +21,8 @@
-> >  #
-> >  # The script is intentionally conservative: any pytest tests that
-> cannot run
-> >  # in the CI environment (those marked "slow", "network", "boot") are
-> skipped
-> > -# are skipped so that the autobuilder step completes without needing
-> network
-> > -# access. Those can be re-enabled by exporting META_VIRT_PYTEST_MARKER=
-S
-> > -# before invocation.
-> > +# so that the autobuilder step completes without needing network
-> access. Those
-> > +# can be re-enabled by exporting META_VIRT_PYTEST_MARKERS before
-> invocation.
-> >  #
-> >  # It is assumed that /dev/kvm is writable by the CI user running the
-> tests,
-> >  # since the performance is significantly faster with 'memres'.
->
-> As above, these fixups need squashing into the patch that added
-> run-vcontainer-tests.
->
->
-Agreed. Oversight. I'll fix it in V2.
+I had considered using a list of recipe names and building them in one
+step, rather than a long 'bitbake <recipe 1> <recipe 2> ... <recipe N>'
+command. This first attempt was kept simple.
 
+This would also impact pushing containers, as pushing is currently appended
+as a step after 'build targets' when the push_containers boolean is true.
+Container tooling needs to push one container at a time, which will become
+more complicated with signing and attaching SLSA attestations. This might
+be another use case for a list of container recipes that can be iterated
+through.
+
+I'm open to another design if folks have better ideas for how the AB works.
 
 
 > Best regards,
@@ -193,13 +160,13 @@ Agreed. Oversight. I'll fix it in V2.
 >
 >
 
---000000000000e0af1006518e687b
+--0000000000007484fa06518e949b
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
 <div dir=3D"ltr"><div dir=3D"ltr"><br></div><br><div class=3D"gmail_quote g=
 mail_quote_container"><div dir=3D"ltr" class=3D"gmail_attr">On Mon, May 11,=
- 2026 at 1:57=E2=80=AFAM Paul Barker &lt;<a href=3D"mailto:paul@pbarker.dev=
+ 2026 at 2:00=E2=80=AFAM Paul Barker &lt;<a href=3D"mailto:paul@pbarker.dev=
 ">paul@pbarker.dev</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote=
 " style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);=
 padding-left:1ex">On Thu, 2026-05-07 at 18:25 -0700, <a href=3D"mailto:tim.=
@@ -208,107 +175,73 @@ r>
 &gt; From: Tim Orling &lt;<a href=3D"mailto:tim.orling@konsulko.com" target=
 =3D"_blank">tim.orling@konsulko.com</a>&gt;<br>
 &gt; <br>
-&gt; Add three pytest job overrides that run the meta-virtualization test<b=
-r>
-&gt; suites against the vcontainer standalone SDK published by the<br>
-&gt; vcontainer-tarball builder.<br>
-<br>
-I think this would be better as one job with three steps.<br>
-<br></blockquote><div><br></div><div>I considered that. No strong arguments=
- either way.</div><div>=C2=A0</div><blockquote class=3D"gmail_quote" style=
-=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding=
--left:1ex">
+&gt; Extend containers-library with two additional demo images sourced<br>
+&gt; from meta-yocto-containers-demo:<br>
 &gt; <br>
-&gt; Each job runs the new scripts/run-vcontainer-tests helper via<br>
-&gt; EXTRACMDS (we need BUILDDIR variable so EXTRAPLAINCMDS is not<br>
-&gt; sufficient) with both NOBUILDTOOLS and NOVCONTAINER set, so the<br>
-&gt; workers don&#39;t spend time setting up either tarball: the test runne=
-r<br>
-&gt; gets the published SDK installer through VCONTAINER_SDK and manages<br=
->
-&gt; its own pytest venv.<br>
+&gt;=C2=A0 =C2=A0* app-container-mosquitto: the Eclipse Mosquitto MQTT brok=
+er.<br>
+&gt;=C2=A0 =C2=A0* app-container-valkey: Valkey (Redis-compatible) key/valu=
+e datastore.<br>
 &gt; <br>
-&gt; vcontainer-tests covers the broader bbclass/tooling tests (and so<br>
-&gt; brings in meta-openembedded layers it transitively exercises);<br>
-&gt; vdkr-tests and vpdmn-tests cover their respective CLI harnesses.<br>
-&gt; <br>
-&gt; AI-Generated: Claude Cowork Opus 4.7<br>
 &gt; Signed-off-by: Tim Orling &lt;<a href=3D"mailto:tim.orling@konsulko.co=
 m" target=3D"_blank">tim.orling@konsulko.com</a>&gt;<br>
 &gt; ---<br>
-&gt;=C2=A0 config.json=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
-=A0 =C2=A0 | 42 +++++++++++++++++++++++++++++++++++-<br>
-&gt;=C2=A0 scripts/run-vcontainer-tests |=C2=A0 7 +++---<br>
-&gt;=C2=A0 2 files changed, 44 insertions(+), 5 deletions(-)<br>
+&gt;=C2=A0 config.json | 12 ++++++++++++<br>
+&gt;=C2=A0 1 file changed, 12 insertions(+)<br>
 &gt; <br>
 &gt; diff --git a/config.json b/config.json<br>
-&gt; index 86c1ffb..dda5b12 100644<br>
+&gt; index 7cdf91a..a9a2e9c 100644<br>
 &gt; --- a/config.json<br>
 &gt; +++ b/config.json<br>
-&gt; @@ -1891,7 +1891,7 @@<br>
-&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 },<br>
-&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 &quot;step2&quot; : {<=
-br>
-&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 &quot;sh=
-ortname&quot; : &quot;Publish vcontainer SDK for test reuse&quot;,<br>
-&gt; -=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 &quot;EXTRAPL=
-AINCMDS&quot; : [<br>
-&gt; +=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 &quot;EXTRACM=
-DS&quot; : [<br>
+&gt; @@ -1950,6 +1950,18 @@<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 &quot;BB=
+TARGETS&quot; : &quot;app-container-python&quot;,<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 &quot;CO=
+NTAINER_IMAGES&quot; : {&quot;app-container-python&quot;: &quot;python&quot=
+;},<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 &quot;CO=
+NTAINER_VERSION_RECIPE&quot; : &quot;python3&quot;<br>
+&gt; +=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 },<br>
+&gt; +=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 &quot;step2&quot; : {<br>
+&gt; +=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 &quot;shortna=
+me&quot; : &quot;Build &#39;mosquitto&#39; container&quot;,<br>
+&gt; +=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 &quot;BBTARGE=
+TS&quot; : &quot;app-container-mosquitto&quot;,<br>
+&gt; +=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 &quot;CONTAIN=
+ER_IMAGES&quot; : {&quot;app-container-mosquitto&quot;: &quot;mosquitto&quo=
+t;},<br>
+&gt; +=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 &quot;CONTAIN=
+ER_VERSION_RECIPE&quot; : &quot;mosquitto&quot;<br>
+&gt; +=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 },<br>
+&gt; +=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 &quot;step3&quot; : {<br>
+&gt; +=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 &quot;shortna=
+me&quot; : &quot;Build &#39;valkey&#39; container&quot;,<br>
+&gt; +=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 &quot;BBTARGE=
+TS&quot; : &quot;app-container-valkey&quot;,<br>
+&gt; +=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 &quot;CONTAIN=
+ER_IMAGES&quot; : {&quot;app-container-valkey&quot;: &quot;valkey&quot;},<b=
+r>
+&gt; +=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 &quot;CONTAIN=
+ER_VERSION_RECIPE&quot; : &quot;valkey&quot;<br>
 <br>
-This fixup should be squashed into the earlier patch in this series that<br=
->
-added this line.<br>
-<br></blockquote><div><br></div><div>Agreed. Oversight. I&#39;ll fix it in =
-V2.</div><div>=C2=A0</div><blockquote class=3D"gmail_quote" style=3D"margin=
-:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex"=
->
-[snip]<br>
+This makes me wonder: can we build multiple app container images with<br>
+one bitbake command? If so, can we combine these into one step?<br></blockq=
+uote><div><br>The getconfigdict() that was added to scripts/utils.py might =
+make the JSON definition of CONTAINER_IMAGES awkward as more containers are=
+ added, but it &quot;should&quot; work.<br><br>I had considered using a lis=
+t of recipe names and building them in one step, rather than a long &#39;bi=
+tbake &lt;recipe 1&gt; &lt;recipe 2&gt; ... &lt;recipe N&gt;&#39; command. =
+This first attempt was kept simple.<br><br>This would also impact pushing c=
+ontainers, as pushing is currently appended as a step after &#39;build targ=
+ets&#39; when the push_containers boolean is true. Container tooling needs =
+to push one container at a time, which will become more complicated with si=
+gning and attaching SLSA attestations.=C2=A0This might be another use=C2=A0=
+case for a list of container recipes that can be iterated through.</div><di=
+v><br>I&#39;m open to another design if folks have better ideas for how the=
+ AB works.</div><div><br></div><blockquote class=3D"gmail_quote" style=3D"m=
+argin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left=
+:1ex">
 <br>
-&gt; diff --git a/scripts/run-vcontainer-tests b/scripts/run-vcontainer-tes=
-ts<br>
-&gt; index cbb5544..1394c7c 100755<br>
-&gt; --- a/scripts/run-vcontainer-tests<br>
-&gt; +++ b/scripts/run-vcontainer-tests<br>
-&gt; @@ -3,7 +3,7 @@<br>
-&gt;=C2=A0 # SPDX-License-Identifier: GPL-2.0-only<br>
-&gt;=C2=A0 #<br>
-&gt;=C2=A0 # Run meta-virtualization pytest test suites against the vcontai=
-ner<br>
-&gt; -# standalone SDK (vdkr/vpdmn) that was built by the previous bitbake<=
-br>
-&gt; +# standalone SDK (vdkr/vpdmn) that was built in a previous bitbake<br=
->
-&gt;=C2=A0 # step.<br>
-&gt;=C2=A0 #<br>
-&gt;=C2=A0 # Arguments:<br>
-&gt; @@ -21,9 +21,8 @@<br>
-&gt;=C2=A0 #<br>
-&gt;=C2=A0 # The script is intentionally conservative: any pytest tests tha=
-t cannot run<br>
-&gt;=C2=A0 # in the CI environment (those marked &quot;slow&quot;, &quot;ne=
-twork&quot;, &quot;boot&quot;) are skipped<br>
-&gt; -# are skipped so that the autobuilder step completes without needing =
-network<br>
-&gt; -# access. Those can be re-enabled by exporting META_VIRT_PYTEST_MARKE=
-RS<br>
-&gt; -# before invocation.<br>
-&gt; +# so that the autobuilder step completes without needing network acce=
-ss. Those<br>
-&gt; +# can be re-enabled by exporting META_VIRT_PYTEST_MARKERS before invo=
-cation.<br>
-&gt;=C2=A0 #<br>
-&gt;=C2=A0 # It is assumed that /dev/kvm is writable by the CI user running=
- the tests,<br>
-&gt;=C2=A0 # since the performance is significantly faster with &#39;memres=
-&#39;.<br>
-<br>
-As above, these fixups need squashing into the patch that added<br>
-run-vcontainer-tests.<br>
-<br></blockquote><div><br></div><div>Agreed. Oversight. I&#39;ll fix it in =
-V2.</div><br class=3D"gmail-Apple-interchange-newline"><div>=C2=A0</div><bl=
-ockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-lef=
-t:1px solid rgb(204,204,204);padding-left:1ex">
 Best regards,<br>
 <br>
 -- <br>
@@ -316,5 +249,5 @@ Paul Barker<br>
 <br>
 </blockquote></div></div>
 
---000000000000e0af1006518e687b--
+--0000000000007484fa06518e949b--
 
