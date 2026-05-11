@@ -1,291 +1,101 @@
-Return-Path: <tim.orling@konsulko.com>
+Return-Path: <bruce.ashfield@gmail.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 11882CD484C
-	for <webhook@archiver.kernel.org>; Mon, 11 May 2026 18:25:04 +0000 (UTC)
-Received: from mail-yw1-f181.google.com (mail-yw1-f181.google.com [209.85.128.181])
- by mx.groups.io with SMTP id smtpd.msgproc02-g2.57552.1778523899024498520
+	by smtp.lore.kernel.org (Postfix) with ESMTP id B8C96CD484E
+	for <webhook@archiver.kernel.org>; Mon, 11 May 2026 20:07:24 +0000 (UTC)
+Received: from mail-qk1-f172.google.com (mail-qk1-f172.google.com [209.85.222.172])
+ by mx.groups.io with SMTP id smtpd.msgproc01-g2.59565.1778530036624594606
  for <yocto@lists.yoctoproject.org>;
- Mon, 11 May 2026 11:24:59 -0700
+ Mon, 11 May 2026 13:07:16 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@konsulko.com header.s=google header.b=SR8IF6tH;
- spf=pass (domain: konsulko.com, ip: 209.85.128.181, mailfrom: tim.orling@konsulko.com)
-Received: by mail-yw1-f181.google.com with SMTP id 00721157ae682-7bf1433b80cso31236567b3.1
-        for <yocto@lists.yoctoproject.org>; Mon, 11 May 2026 11:24:58 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; t=1778523898; cv=none;
-        d=google.com; s=arc-20240605;
-        b=TmKEqql5wIPZpOQ1tygqTH9gcxJ//JP5QfxXOiqngwuUk/uCglq8a6/Y9nBZOb81Wm
-         SGTD81yOliVLen7A2WNHmYllhfxwF3S59sNoovgAjvRh2ceOs70FBqBUTE3s0kidpqr0
-         LGX0uni6VOBku9sSE5YCAiQXbOdCcxBopFxILLQ1fn9iPZTg+xQ7NK609p5icZMRjlWa
-         4z7fkQZPQ+kl/hfnV2DGGhgXPAeUOELRpWolF6dLFPQqMNoqaM9N8b+f7RD4pxuEni7F
-         D7qm1a897FuxOuRFiwfCfovbwwmdljIRp1QXBf0qYYntLR30Oof5hbglDQJIkys25fJ7
-         EddA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:dkim-signature;
-        bh=989r4CHrevto8BPvIFuOYD5OGQgCREsUGzjsGNDVS9I=;
-        fh=67bgA9Id6GFl1N4TrdlIEQ/JUQP2bn+IH0V8Jt0ZOTw=;
-        b=I1QPaHilMagzYFU+F+4mT1br3PgP4rYbS/Nl5emjLgxsFwxBgDgszvRO7oPtP1NznG
-         yjUtY1CeD63jPqJu/ChTTCYuvoVpcIbhkZ11r5wLNWBHLgSozFPhDeiBn87jlydma1p1
-         n4BNgmA64yK6bsLTJnRUuqxrryWmdiYCnlGQidH0ZcvGhXX4dDzyfxQ5z0wz84clq3Yb
-         d0WyIzXz5JcjkJmYnT0l65AuVCpBOXzs+jU7YmKwqG56RfF/osGTChMHAMlXT7Ukrhsl
-         SR7mo8+s+fXvmRWaq43L8XambfCk65h5ZD6eTglBqewpWt2EAJCE6uTwm7AbJTpCsxxp
-         Gygw==;
-        darn=lists.yoctoproject.org
-ARC-Authentication-Results: i=1; mx.google.com; arc=none
+ dkim=pass header.i=@gmail.com header.s=20251104 header.b=YGj9zcBY;
+ spf=pass (domain: gmail.com, ip: 209.85.222.172, mailfrom: bruce.ashfield@gmail.com)
+Received: by mail-qk1-f172.google.com with SMTP id af79cd13be357-90cd409a795so18320985a.1
+        for <yocto@lists.yoctoproject.org>; Mon, 11 May 2026 13:07:16 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=konsulko.com; s=google; t=1778523898; x=1779128698; darn=lists.yoctoproject.org;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=989r4CHrevto8BPvIFuOYD5OGQgCREsUGzjsGNDVS9I=;
-        b=SR8IF6tH3HaGFVjdixwImZlUBHl4eTZNL7EscdfkqLqrrEGBvXYid/klNmmkCY+N6g
-         ArpvDAegC0utcNDV3bmbPydb8SS15SONJRHhFHxDmUnrdkt/0hWrmWMhmWinlzkhiiAu
-         NEDKj1bvxKmviTIEPr6qE9T0NHwHG6BiOgCK0=
+        d=gmail.com; s=20251104; t=1778530036; x=1779134836; darn=lists.yoctoproject.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=OTBQ4hzRpYE1eOQnj0ZlHhbGLQjr4QrLN/qtQFCTUFE=;
+        b=YGj9zcBYNtSfXKgWH1fDb9HwvQYW91jtQUaTMV8jEGTRh5BdARQCZY2ckEEnn/Vt/U
+         ollPOc92d34awJKEaobqZSz5mxxbDVKlMAgCGMyrboO1bIwjqU6mjTo7nzr0j4DVJCFT
+         uziRryeWEfrp9DOlEXEXDuISqflzRvO3yshvQTGpMMQsVivi4dZQTHdCuvGyU2Ve0uPu
+         amK4aBFKNOXSwy6Ku4aaq0ZoRVCvdTs/oHnwtuWaIYipmprUu2i5jYwuZ2hZbIUQ7+2Q
+         74yonudCkwmuCih6Gpzhpi0AiaJ/6bDxAoKCMynZh2kTdAHaZIaWK91xRUDZxIMYkjOb
+         uFPw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1778523898; x=1779128698;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=989r4CHrevto8BPvIFuOYD5OGQgCREsUGzjsGNDVS9I=;
-        b=XUDZdVNf7oE0MEvLeDVUIJGZlw+xADjwaUiUu3nhM0TarLFxUgzCtEGzaYFaKl2hYe
-         FVPEyIsEokAKrLeK1tzkH+IER8vbDDazZGDlifgPctY/vY55VTUQ42xxw/d9K/arOyf+
-         +PRw/p575d6SJMPQ09dOBhegVGZduN0NkpKlEKWeU576h8AIysgCjy/crq8jaL3KyzpT
-         k3WhFMOntr7f2zUX2ZYCqKGGqnutFlevPRocyVrc8OM0DF+WRJAuE6JJhgY9toPot2Hm
-         UQ4gdzeOa6B1ehKZ+mplCxmKbEdtHJQjp8t2rftrha5/ahGHyfqibnwtT7A/Aym2XKG2
-         HJNQ==
-X-Forwarded-Encrypted: i=1; AFNElJ/tFDI6iN0jPCipq/UiH4shXhJGRiisTGDW2feBT8PNLA3zDbUoaqp1vv9ytJ/cUmzJHrGUSQ==@lists.yoctoproject.org
-X-Gm-Message-State: AOJu0YzFapFokrSxMNN5acFQ/HWLjBDIgr7xa+ihuABRrofDnDHtHnng
-	0HW0L1fX9tZhl7Vt66W20oXjdyf6gAYyZImCOCVykPGvc8a7Gacmg3AtX9mupVuyCUmxkk9pgEO
-	Hu0l7H2h4I5ggrs7JX/rz/RnTfYR0kj808ZhkF8WNmTCyjHKdhP+z++c=
-X-Gm-Gg: Acq92OH7VxFnmvERQ6wdafgiifLEAQGYammy/EiQVfOl2OmTDOoFSQUbr7FsJQH91BJ
-	FjM1jY2aHz2UlldZpiu3SahFGxCfLqDNVYswMu2Ni+VPAsu4iz+lncb16JCXrEhDShhPgna0k3g
-	Cc2btWeC2iipAeaVDXzf05Scl+NzU6W9QeAuJb+5PJfx2c7NdLV5bFZioP8A5furO0vVi3s14vj
-	UjfyL2DlU4suYJydbZeqDoxIqHzJs109gftAhR77F3lADBAyraHUnXITpkaVIted9coKiaNQRb5
-	7obUp+c=
-X-Received: by 2002:a05:690c:d90:b0:7b8:bc4e:a4c with SMTP id
- 00721157ae682-7c104da880emr101627887b3.27.1778523897902; Mon, 11 May 2026
- 11:24:57 -0700 (PDT)
+        d=1e100.net; s=20251104; t=1778530036; x=1779134836;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-gg:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=OTBQ4hzRpYE1eOQnj0ZlHhbGLQjr4QrLN/qtQFCTUFE=;
+        b=KES+svkFi5UiCaDXaU3ai7RBwJBdqQhL6jADJv9fySa/GzO4IJvIdbjKvO2JHQUg1a
+         nu+/pIXTHSupLLAO2PyBjti8fztgt1dxHNysHSAUVBGnrZQxedcWC172Iu+kmDPhL0Gq
+         4i8MzDTbrvoW1/wsb1I3rxk578+lsBzpf97w2Uodjp4es6CaNB/TJkCu8cBXFW42R3+h
+         IWpP9RFYu5+ydmOLomiNXyrbYLD0gXnbw4DCATM6Idb4Umy22YRl5/97vd+03SPeQi5U
+         BEGfZg4jHjPbMIUxNNrM7GBA54KYpAQk/HYI6yWep1fbryTdL59cC6+QZ05UGzb/MKa+
+         t4Eg==
+X-Gm-Message-State: AOJu0YzMziLbeTBsTzkgxdTvAAOleXJISu4Jotmj2CrRvjUWwEuluf4j
+	yglMewx2Y7lWUD1g7bbkNULNGqtyTTGUDCLHlvNzztByHNHLg5vhMGNM
+X-Gm-Gg: Acq92OEHd7x17hyUIGIdUKB4rexzs75bYMZn/BbBl+mTw8TK9b3EflUtYN0XfEGoSKh
+	vs10nO6FY79duDWXg9aKWF2GHGHGou+phEl+9LfSLluTREN1Yt3giEO4xlcgrWj6z96qULvos54
+	vYdWXhjg3jds9xSJ/AYXuDkkZsNGTo+9HMkbMUkTkHU6l2vXKodAp7UMOtdSokASlYYDrEaWkjc
+	AQ016qhmVN/GlG2alkwPQYy0bo7K/XypkYtPvBt8e7QIJk+AseOK+NbBz5+cF6bZhCg/1J9O7q0
+	CHwMSpMOatBXEKuzyF9GOv0JafqV/aB9dnoC/nv0p3b7K3dMMG2Od61gaV3OEClX8it2SJYcIRQ
+	LIRHKfjmcvEFmgOIOuqnoTQWyEnfzIQMPPybOCKPMh6clD8HOD2z7n0Nz5m82rVp6PmV6UVW7uD
+	cCQAyy5VMzx35pEhChipjpKssqTRCf1NPWavTHLv/UnMW4kKuVT9IqxLVIrvS1opa+JGYdkwD7H
+	A1eljv17PZZt3Tr+gvWcCZWi8EBpIMdJNwXrNc/skZ0hfI=
+X-Received: by 2002:a05:620a:5794:b0:8f9:9fe9:bc79 with SMTP id af79cd13be357-90cb3d9167amr138183885a.0.1778530035598;
+        Mon, 11 May 2026 13:07:15 -0700 (PDT)
+Received: from gmail.com (pool-174-112-62-108.cpe.net.cable.rogers.com. [174.112.62.108])
+        by smtp.gmail.com with ESMTPSA id af79cd13be357-907b966f5f1sm1155057785a.8.2026.05.11.13.07.14
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 11 May 2026 13:07:15 -0700 (PDT)
+Date: Mon, 11 May 2026 16:07:13 -0400
+From: Bruce Ashfield <bruce.ashfield@gmail.com>
+To: Fang Wu <fangwu@qti.qualcomm.com>
+Cc: "yocto@lists.yoctoproject.org" <yocto@lists.yoctoproject.org>
+Subject: Re: [PATCH 0/2] genericarm64: enable QCS615 boot critical configs
+ for SystemReady
+Message-ID: <agI28eONjuopeqCU@gmail.com>
+References: <PH8PR02MB11449F3D24F262F954397B357FE3D2@PH8PR02MB11449.namprd02.prod.outlook.com>
 MIME-Version: 1.0
-References: <cover.1778202125.git.tim.orling@konsulko.com> <601c281165450b2be14de46bb9601e82229ca5f6.1778202125.git.tim.orling@konsulko.com>
- <a12dbd29263557679eeeb5dbaabeac9266fcabe3.camel@pbarker.dev> <CAOyo-87Me5QSVG7=+sF4TXASvxNb8U0V4VVibVi1x-o_E=PGmQ@mail.gmail.com>
-In-Reply-To: <CAOyo-87Me5QSVG7=+sF4TXASvxNb8U0V4VVibVi1x-o_E=PGmQ@mail.gmail.com>
-From: Tim Orling <tim.orling@konsulko.com>
-Date: Mon, 11 May 2026 11:24:46 -0700
-X-Gm-Features: AVHnY4IWknNIfwZdr3z-yk1H90veEdSHx30RyJsH1F1P-dR3ziR2TXHKIYUqFe0
-Message-ID: <CAOyo-872MQ5CdFtLyhr7DVMyL_JpGWgmOV-SLQ-jy7nN++meeg@mail.gmail.com>
-Subject: Re: [yocto-autobuilder-helper][PATCH 11/11] config.json:
- containers-library: add mosquitto and valkey demos
-To: Paul Barker <paul@pbarker.dev>
-Cc: yocto-patches@lists.yoctoproject.org, yocto@lists.yoctoproject.org
-Content-Type: multipart/alternative; boundary="00000000000028d4f306518edde5"
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <PH8PR02MB11449F3D24F262F954397B357FE3D2@PH8PR02MB11449.namprd02.prod.outlook.com>
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from 45-33-107-173.ip.linodeusercontent.com [45.33.107.173] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Mon, 11 May 2026 18:25:04 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/66529
+ <yocto@lists.yoctoproject.org>; Mon, 11 May 2026 20:07:24 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/66530
 
---00000000000028d4f306518edde5
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+In message: [PATCH 0/2] genericarm64: enable QCS615 boot critical configs for SystemReady
+on 08/05/2026 Fang Wu wrote:
 
-On Mon, May 11, 2026 at 11:04=E2=80=AFAM Tim Orling <tim.orling@konsulko.co=
-m> wrote:
+> Hi Bruce,
+> 
+> This patch series enables the boot critical kernel configs for
+> Qualcomm QCS615 (Talos) platform to support SystemReady compliance.
+> These configs are required for generic Linux distribution ISO images
+> to boot on QCS615-based hardware.
 
->
->
-> On Mon, May 11, 2026 at 2:00=E2=80=AFAM Paul Barker <paul@pbarker.dev> wr=
-ote:
->
->> On Thu, 2026-05-07 at 18:25 -0700, tim.orling@konsulko.com wrote:
->> > From: Tim Orling <tim.orling@konsulko.com>
->> >
->> > Extend containers-library with two additional demo images sourced
->> > from meta-yocto-containers-demo:
->> >
->> >   * app-container-mosquitto: the Eclipse Mosquitto MQTT broker.
->> >   * app-container-valkey: Valkey (Redis-compatible) key/value datastor=
-e.
->> >
->> > Signed-off-by: Tim Orling <tim.orling@konsulko.com>
->> > ---
->> >  config.json | 12 ++++++++++++
->> >  1 file changed, 12 insertions(+)
->> >
->> > diff --git a/config.json b/config.json
->> > index 7cdf91a..a9a2e9c 100644
->> > --- a/config.json
->> > +++ b/config.json
->> > @@ -1950,6 +1950,18 @@
->> >                  "BBTARGETS" : "app-container-python",
->> >                  "CONTAINER_IMAGES" : {"app-container-python":
->> "python"},
->> >                  "CONTAINER_VERSION_RECIPE" : "python3"
->> > +            },
->> > +            "step2" : {
->> > +                "shortname" : "Build 'mosquitto' container",
->> > +                "BBTARGETS" : "app-container-mosquitto",
->> > +                "CONTAINER_IMAGES" : {"app-container-mosquitto":
->> "mosquitto"},
->> > +                "CONTAINER_VERSION_RECIPE" : "mosquitto"
->> > +            },
->> > +            "step3" : {
->> > +                "shortname" : "Build 'valkey' container",
->> > +                "BBTARGETS" : "app-container-valkey",
->> > +                "CONTAINER_IMAGES" : {"app-container-valkey":
->> "valkey"},
->> > +                "CONTAINER_VERSION_RECIPE" : "valkey"
->>
->> This makes me wonder: can we build multiple app container images with
->> one bitbake command? If so, can we combine these into one step?
->>
->
-> The getconfigdict() that was added to scripts/utils.py might make the JSO=
-N
-> definition of CONTAINER_IMAGES awkward as more containers are added, but =
-it
-> "should" work.
->
-> I had considered using a list of recipe names and building them in one
-> step, rather than a long 'bitbake <recipe 1> <recipe 2> ... <recipe N>'
-> command. This first attempt was kept simple.
->
-> This would also impact pushing containers, as pushing is currently
-> appended as a step after 'build targets' when the push_containers boolean
-> is true. Container tooling needs to push one container at a time, which
-> will become more complicated with signing and attaching SLSA
-> attestations. This might be another use case for a list of container
-> recipes that can be iterated through.
->
-> I'm open to another design if folks have better ideas for how the AB work=
-s.
->
->
-Capturing some additional thoughts I had on IRC:
-do we have any existing examples where a step iterates over a list in the
-AB?
-11:10 AM
-I guess all the container recipes could be in BBTARGETS... but that list
-could get quite long as more container recipes are added...
-11:13 AM
-maybe follow the ptest-packagelists.inc pattern
-11:15 AM
-which then begs for BBCLASSEXTEND =3D "${@' '.join(['mcextend:'+x for x in
-d.getVar('PTESTS').split()])}" ;)
+merged (it is a bit easier to deal with the patches as non-attachments).
+
+Bruce
+
+> 
+> Fang Wu (2):
+>   genericarm64-pinctrl.cfg: enable CONFIG_PINCTRL_QCS615
+>   genericarm64.cfg: enable CONFIG_INTERCONNECT_QCOM_QCS615
+> 
+>  bsp/genericarm64/genericarm64-pinctrl.cfg | 2 ++
+>  bsp/genericarm64/genericarm64.cfg | 2 ++
+>  2 files changed, 4 insertions(+)
+> 
+> Thanks,
+> Fang
 
 
->
->> Best regards,
->>
->> --
->> Paul Barker
->>
->>
 
---00000000000028d4f306518edde5
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr"><div dir=3D"ltr"><br></div><br><div class=3D"gmail_quote g=
-mail_quote_container"><div dir=3D"ltr" class=3D"gmail_attr">On Mon, May 11,=
- 2026 at 11:04=E2=80=AFAM Tim Orling &lt;<a href=3D"mailto:tim.orling@konsu=
-lko.com">tim.orling@konsulko.com</a>&gt; wrote:<br></div><blockquote class=
-=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rg=
-b(204,204,204);padding-left:1ex"><div dir=3D"ltr"><div dir=3D"ltr"><br></di=
-v><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">On M=
-on, May 11, 2026 at 2:00=E2=80=AFAM Paul Barker &lt;<a href=3D"mailto:paul@=
-pbarker.dev" target=3D"_blank">paul@pbarker.dev</a>&gt; wrote:<br></div><bl=
-ockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-lef=
-t:1px solid rgb(204,204,204);padding-left:1ex">On Thu, 2026-05-07 at 18:25 =
--0700, <a href=3D"mailto:tim.orling@konsulko.com" target=3D"_blank">tim.orl=
-ing@konsulko.com</a> wrote:<br>
-&gt; From: Tim Orling &lt;<a href=3D"mailto:tim.orling@konsulko.com" target=
-=3D"_blank">tim.orling@konsulko.com</a>&gt;<br>
-&gt; <br>
-&gt; Extend containers-library with two additional demo images sourced<br>
-&gt; from meta-yocto-containers-demo:<br>
-&gt; <br>
-&gt;=C2=A0 =C2=A0* app-container-mosquitto: the Eclipse Mosquitto MQTT brok=
-er.<br>
-&gt;=C2=A0 =C2=A0* app-container-valkey: Valkey (Redis-compatible) key/valu=
-e datastore.<br>
-&gt; <br>
-&gt; Signed-off-by: Tim Orling &lt;<a href=3D"mailto:tim.orling@konsulko.co=
-m" target=3D"_blank">tim.orling@konsulko.com</a>&gt;<br>
-&gt; ---<br>
-&gt;=C2=A0 config.json | 12 ++++++++++++<br>
-&gt;=C2=A0 1 file changed, 12 insertions(+)<br>
-&gt; <br>
-&gt; diff --git a/config.json b/config.json<br>
-&gt; index 7cdf91a..a9a2e9c 100644<br>
-&gt; --- a/config.json<br>
-&gt; +++ b/config.json<br>
-&gt; @@ -1950,6 +1950,18 @@<br>
-&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 &quot;BB=
-TARGETS&quot; : &quot;app-container-python&quot;,<br>
-&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 &quot;CO=
-NTAINER_IMAGES&quot; : {&quot;app-container-python&quot;: &quot;python&quot=
-;},<br>
-&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 &quot;CO=
-NTAINER_VERSION_RECIPE&quot; : &quot;python3&quot;<br>
-&gt; +=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 },<br>
-&gt; +=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 &quot;step2&quot; : {<br>
-&gt; +=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 &quot;shortna=
-me&quot; : &quot;Build &#39;mosquitto&#39; container&quot;,<br>
-&gt; +=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 &quot;BBTARGE=
-TS&quot; : &quot;app-container-mosquitto&quot;,<br>
-&gt; +=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 &quot;CONTAIN=
-ER_IMAGES&quot; : {&quot;app-container-mosquitto&quot;: &quot;mosquitto&quo=
-t;},<br>
-&gt; +=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 &quot;CONTAIN=
-ER_VERSION_RECIPE&quot; : &quot;mosquitto&quot;<br>
-&gt; +=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 },<br>
-&gt; +=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 &quot;step3&quot; : {<br>
-&gt; +=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 &quot;shortna=
-me&quot; : &quot;Build &#39;valkey&#39; container&quot;,<br>
-&gt; +=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 &quot;BBTARGE=
-TS&quot; : &quot;app-container-valkey&quot;,<br>
-&gt; +=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 &quot;CONTAIN=
-ER_IMAGES&quot; : {&quot;app-container-valkey&quot;: &quot;valkey&quot;},<b=
-r>
-&gt; +=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 &quot;CONTAIN=
-ER_VERSION_RECIPE&quot; : &quot;valkey&quot;<br>
-<br>
-This makes me wonder: can we build multiple app container images with<br>
-one bitbake command? If so, can we combine these into one step?<br></blockq=
-uote><div><br>The getconfigdict() that was added to scripts/utils.py might =
-make the JSON definition of CONTAINER_IMAGES awkward as more containers are=
- added, but it &quot;should&quot; work.<br><br>I had considered using a lis=
-t of recipe names and building them in one step, rather than a long &#39;bi=
-tbake &lt;recipe 1&gt; &lt;recipe 2&gt; ... &lt;recipe N&gt;&#39; command. =
-This first attempt was kept simple.<br><br>This would also impact pushing c=
-ontainers, as pushing is currently appended as a step after &#39;build targ=
-ets&#39; when the push_containers boolean is true. Container tooling needs =
-to push one container at a time, which will become more complicated with si=
-gning and attaching SLSA attestations.=C2=A0This might be another use=C2=A0=
-case for a list of container recipes that can be iterated through.</div><di=
-v><br>I&#39;m open to another design if folks have better ideas for how the=
- AB works.</div><div><br></div></div></div></blockquote><div><br></div><div=
->Capturing some additional thoughts I had on IRC:</div><div>do we have any =
-existing examples where a step iterates over a list in the AB?<br>11:10 AM =
-<br>I guess all the container recipes could be in BBTARGETS... but that lis=
-t could get quite long as more container recipes are added...<br>11:13 AM <=
-br>maybe follow the ptest-packagelists.inc pattern<br>11:15 AM <br>which th=
-en begs for BBCLASSEXTEND =3D &quot;${@&#39; &#39;.join([&#39;mcextend:&#39=
-;+x for x in d.getVar(&#39;PTESTS&#39;).split()])}&quot; ;)</div><div>=C2=
-=A0</div><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8e=
-x;border-left:1px solid rgb(204,204,204);padding-left:1ex"><div dir=3D"ltr"=
-><div class=3D"gmail_quote"><div></div><blockquote class=3D"gmail_quote" st=
-yle=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padd=
-ing-left:1ex">
-<br>
-Best regards,<br>
-<br>
--- <br>
-Paul Barker<br>
-<br>
-</blockquote></div></div>
-</blockquote></div></div>
-
---00000000000028d4f306518edde5--
 
