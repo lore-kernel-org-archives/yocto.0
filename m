@@ -1,118 +1,204 @@
-Return-Path: <Anders.Montonen@iki.fi>
+Return-Path: <tim.orling@konsulko.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 899A4CD3427
-	for <webhook@archiver.kernel.org>; Mon, 11 May 2026 09:48:19 +0000 (UTC)
-Received: from mail.kapsi.fi (mail.kapsi.fi [91.232.154.24])
- by mx.groups.io with SMTP id smtpd.msgproc01-g2.46363.1778492895156592067
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 88016CD37BE
+	for <webhook@archiver.kernel.org>; Mon, 11 May 2026 17:36:43 +0000 (UTC)
+Received: from mail-yw1-f180.google.com (mail-yw1-f180.google.com [209.85.128.180])
+ by mx.groups.io with SMTP id smtpd.msgproc02-g2.56499.1778520995624186508
  for <yocto@lists.yoctoproject.org>;
- Mon, 11 May 2026 02:48:16 -0700
+ Mon, 11 May 2026 10:36:35 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@kapsi.fi header.s=20161220 header.b=eoaDEVEF;
- spf=pass (domain: kapsi.fi, ip: 91.232.154.24, mailfrom: antime@kapsi.fi)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=kapsi.fi;
-	s=20161220; h=To:Date:Message-Id:Subject:Mime-Version:
-	Content-Transfer-Encoding:Content-Type:From:Sender:Reply-To:Cc:Content-ID:
-	Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
-	:Resent-Message-ID:In-Reply-To:References:List-Id:List-Help:List-Unsubscribe:
-	List-Subscribe:List-Post:List-Owner:List-Archive;
-	bh=CH9u0jBjPCRDw0hCVeFRCJqX6q2mwwcPBGTyF0fn2Sg=; b=eoaDEVEFXXwpJ+nwFC+uLvGjy+
-	s87MRcarjV6hKX+N3wNrIHVrJNmMh8irV5fpk4aXTDmkZj5Mo7MhP0HqKqLIBCiEb5tEX/nzyHbuw
-	1HB+OLbXULy6IpRAIM94l/iWamlaGtaH4Xg36x1c3H6Wx0QvgPWuA1b65x8jaurHbQInYkdf4JlVW
-	0P7MFlwxlpe6Dk93J87mlmJgI7vvtzP2yI45tp4dsBZ//SXFePy2/CR00krKBa/yILxirIyl98K45
-	1Z6OF3hp/bHKZFt9P+rSiqVxlCzRDhoD45uu9reLOYwtnSCUsKv+TF7odZ/H+a1SB4AooHZgp9q0P
-	IQXOaFLg==;
-Received: from 62-78-237-218.bb.dnainternet.fi ([62.78.237.218] helo=smtpclient.apple)
-	by mail.kapsi.fi with esmtpsa (Exim 4.96)
-	(envelope-from <Anders.Montonen@iki.fi>)
-		id 1wMNFE-007u31-1w
-	for yocto@lists.yoctoproject.org;
-	Mon, 11 May 2026 12:48:12 +0300
-From: Anders Montonen <Anders.Montonen@iki.fi>
-Content-Type: text/plain;
-	charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-Mime-Version: 1.0 (Mac OS X Mail 16.0 \(3864.500.181\))
-Subject: Problems adding initramfs when using FIT image
-Message-Id: <ED150875-0486-4D10-ABDC-6E3EB2A39F1A@iki.fi>
-Date: Mon, 11 May 2026 12:48:02 +0300
-To: yocto@lists.yoctoproject.org
-X-Mailer: Apple Mail (2.3864.500.181)
-X-Rspam-Score: -3.1 (---)
-X-Rspam-Report: Action: no action
- Symbol: RCVD_TLS_ALL(0.00)
- Symbol: FROM_HAS_DN(0.00)
- Symbol: FROM_EQ_ENVFROM(0.00)
- Symbol: BAYES_HAM(-2.99)
- Symbol: LOCAL_OUTBOUND(0.00)
- Symbol: TO_DN_NONE(0.00)
- Symbol: TO_MATCH_ENVRCPT_ALL(0.00)
- Symbol: MIME_GOOD(-0.10)
- Symbol: ALIAS_RESOLVED(0.00)
- Symbol: MID_RHS_MATCH_FROM(0.00)
- Symbol: NEURAL_HAM(0.00)
- Symbol: APPLE_MAILER_COMMON(0.00)
- Symbol: FUZZY_RATELIMITED(0.00)
- Symbol: RCVD_VIA_SMTP_AUTH(0.00)
- Symbol: ARC_NA(0.00)
- Symbol: ASN(0.00)
- Symbol: RCVD_COUNT_ONE(0.00)
- Symbol: MIME_TRACE(0.00)
- Symbol: RCPT_COUNT_ONE(0.00)
- Message-ID: ED150875-0486-4D10-ABDC-6E3EB2A39F1A@iki.fi
+ dkim=pass header.i=@konsulko.com header.s=google header.b=HAXkosXZ;
+ spf=pass (domain: konsulko.com, ip: 209.85.128.180, mailfrom: tim.orling@konsulko.com)
+Received: by mail-yw1-f180.google.com with SMTP id 00721157ae682-7bd6f65c781so40983037b3.1
+        for <yocto@lists.yoctoproject.org>; Mon, 11 May 2026 10:36:35 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1778520995; cv=none;
+        d=google.com; s=arc-20240605;
+        b=CFh0aMz+yMxiKsMd58VrwfUU0xXOel32hKAbcMguHVP/qAZyvqZbixoN80SonAZ41i
+         KreLiCRrr7eZcLGDL8TsPW2ytiMlhd1QF78aDlu9jNXv4l3grev0oPXFOwSH3lSImLTJ
+         /b9+tQFm/hBZtKV2JQh7jyDvoIvyMfn7XuwUM4s/GDCpJWLzkBotzPyUGylgROh0yhDk
+         lqZMDttj8xuuQKLxNzSaW6jGvodf9fLm3eJLuVAs3V2qlXXfVIzdBSdMM4L1R41WUEUp
+         YbRrTqLzZWU5USQRgcRUi4DqxEEwQ2uRyiIPZcvGfCQiCak2s5CaNRMdJ2ojJft3egSI
+         8u9A==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:dkim-signature;
+        bh=p+aXM3wUy2VlufaonbLEjbWnU2PAkqFPpNj7/qxHjtA=;
+        fh=SIlDMVvqnvQWDwigPOzAu3J27S0gxLUXZACVDhHQ6fk=;
+        b=W00RQfg+5oyKLf+XsWR7mH6sznKy0guVK5oHS3pJJX76VNuQOaBgdZiWaHrPdqfgZe
+         7lOgooH8bYGknu2Y2ksqfctkfXNbAfDxGeCSgl7VVU2RQG/k6rNDIaX6yJ5HloESYISJ
+         KKKr/7smTvejDquvIoatH2RwmSzfYsYNxajGx0J6CG3KJwmi2gWYSCD/5wafBhOWTlBG
+         HAiBzjwNVpYxvBiz9w4VPHhiaAb36ob//tbwvonIvo0ietDA3GR5aNMlKHlzv2Zuuqpk
+         ZkYpcE1a5F24IfIku5tvcx9bmsv9r/L9pL34hmgvk2p3fVtKmpSzhQPOXdYchCVmmzol
+         uYfw==;
+        darn=lists.yoctoproject.org
+ARC-Authentication-Results: i=1; mx.google.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=konsulko.com; s=google; t=1778520995; x=1779125795; darn=lists.yoctoproject.org;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=p+aXM3wUy2VlufaonbLEjbWnU2PAkqFPpNj7/qxHjtA=;
+        b=HAXkosXZ1joUpa55013Tzq3Sc3F3Q716coPGRCAj7D3my1Tru6e6EMibVuusy+X0xi
+         2KIbbYoZ8UGJzQtmBNOi7BngJiZ8xtlyUX52mfQXocsMBhYBEj43H8uE8nLmva3F+hnl
+         xjUiNbrtLlgfg4hfCf0mdjqwMoxOBM9/wh2cE=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20251104; t=1778520995; x=1779125795;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=p+aXM3wUy2VlufaonbLEjbWnU2PAkqFPpNj7/qxHjtA=;
+        b=QRbjKtgak4cbyRNiK7rVB3u5+fD8KggGs7FZ0uURzHBjSv/DlxNOOovHkmXOv2dbV6
+         cwzcumdGUawifjeIPx+XPCUxSFYPUIJoV12mjHGjQeL/C9F9mkYn4bZP0990umiQ4cmI
+         TNHWXQfqwMOyrtl7Z7j9GBNwGWWBPTk0CGVnDH8sDhqNr104ijSuNef/Tx5CLPwDrv72
+         rwP+1QPL+FQStBNn+U6dxT8HhIUsCszu5id/U/428lTiqtgbXcLR9OSPisKj66WFLQQe
+         h0ZPnr4JhBvMtGoD9qV073550irhWB8Maj2ZprhPHVE1z93GYgoypPtPlrMat6KAeCPK
+         JR6Q==
+X-Forwarded-Encrypted: i=1; AFNElJ8aooNNSdaBo9uNkm2dOLRh/Tf+oByg3fmfubawi1Tpp9KSxsa/Lf3hFJkCUsG4B22DsZZAFw==@lists.yoctoproject.org
+X-Gm-Message-State: AOJu0YyVQme5L/R9sB76dHjdsR8qqX3GWJiMD3yLPyNuM8VZrIZe4zZa
+	UpVp14e+A6i6ASlYIzmjY1pDNpoA4GN0np2g/FDb0rHRe3Kz+T4VueYrET1sBHNnqjsZa13/PdI
+	M1qfRLI1WLbmD9MNzHWI9hFMRVC80BkYs13qC63Mkeg==
+X-Gm-Gg: Acq92OHcyO1Ipf7uglAh5WtqzoU6SsQ+aukTl71ekUm4iIeoi5ffJnBHhlHSipRKVVT
+	e1PCVj3NOmucibGl9HNMX4nGzEZrP54BkdTNZyvy4apnk1yo+MedYn9CGPVSgeJDx3CJBCfu9FM
+	Z2WuXERm1vpfxoMFY8JLOmqy22rW7Escu3xCpU20oIH+XPwq5HhV5QZkg+NMP5RGrP3lY2o0Nl4
+	sG5M+n8jRUEEU+8KZHCLDp3VkjgupN+EpEM/bVHTBZROSPRx0P7EP5RhLK80CGdb9M+vAzV1LXD
+	WESGCYtx6vAK7OiLKA==
+X-Received: by 2002:a05:690c:3:b0:7b2:bf20:cdc9 with SMTP id
+ 00721157ae682-7c50e421dd6mr5143977b3.7.1778520994535; Mon, 11 May 2026
+ 10:36:34 -0700 (PDT)
+MIME-Version: 1.0
+References: <cover.1778202125.git.tim.orling@konsulko.com> <1c444ecb2272a384e77a786f7ca32767f791ce34.1778202125.git.tim.orling@konsulko.com>
+ <dcfc99d7b81e1083ef3607adde6055f4a81d3534.camel@pbarker.dev>
+In-Reply-To: <dcfc99d7b81e1083ef3607adde6055f4a81d3534.camel@pbarker.dev>
+From: Tim Orling <tim.orling@konsulko.com>
+Date: Mon, 11 May 2026 10:36:23 -0700
+X-Gm-Features: AVHnY4Ixdb0_j5INGt40jZ_HnpQa79pnh908KOL3MQ7O_LUYruEmTam9ijDt3OU
+Message-ID: <CAOyo-86bcAxxBy8bDi+dJmqnxUqbGaYhr-OXuAob0pvk9N-T4Q@mail.gmail.com>
+Subject: Re: [yocto-autobuilder-helper][PATCH 07/11] config.json: add
+ 'containers-' build jobs
+To: Paul Barker <paul@pbarker.dev>
+Cc: yocto-patches@lists.yoctoproject.org, yocto@lists.yoctoproject.org
+Content-Type: multipart/alternative; boundary="0000000000001aeacc06518e30d5"
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from 45-33-107-173.ip.linodeusercontent.com [45.33.107.173] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Mon, 11 May 2026 09:48:19 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/66524
+ <yocto@lists.yoctoproject.org>; Mon, 11 May 2026 17:36:43 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/66525
 
-Hi,
+--0000000000001aeacc06518e30d5
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-I=E2=80=99m trying to add an initrd to our build and I=E2=80=99m running =
-into some weird issues. We are using Scarthgap with our own BSP and =
-application layers, but the issues are at least partially reproducible =
-with just Poky.
+On Mon, May 11, 2026 at 1:52=E2=80=AFAM Paul Barker <paul@pbarker.dev> wrot=
+e:
 
-In my local.conf I have
-INITRAMFS_IMAGE =3D =E2=80=9Ccore-image-minimal-initramfs=E2=80=9D
+> On Thu, 2026-05-07 at 18:25 -0700, tim.orling@konsulko.com wrote:
+> > From: Tim Orling <tim.orling@konsulko.com>
+> >
+> > Add 'containers-' build jobs that build container images on top
+> > of the vcontainer-tarball SDK:
+> >
+> >   * containers-meta-virt: the original app-container-* images that
+> >     ship in meta-virtualization itself (e.g. app-container-curl).
+> >   * containers-library: a layer for additional images modelled
+> >     after docker.io/library/*, sourced from meta-yocto-containers-demo
+>
+> I think we should combine these into one build job.
+>
 
-Depending on the value of INITRAMFS_IMAGE_BUNDLE I get different =
-results, neither of which seems correct, or what I expected.
+For now, that is impractical unless we use a branch of meta-virt that I can
+control (because the container recipes are in flux). Or I would have to
+continue running builds with a custom yocto-autobuilder-helper and a custom
+meta-virt branch which defeats the purpose of pushing the containers to the
+official registry.yocto.io and quay.io/yocto.
 
-With INITRAMFS_IMAGE_BUNDLE =3D =E2=80=9C1=E2=80=9D, the /boot directory =
-of the rootfs contains a dangling =E2=80=9CfitImage=E2=80=9D symlink, =
-but the actual image is missing.
-With INITRAMFS_IMAGE_BUNDLE =3D =E2=80=9C0=E2=80=9D, the /boot directory =
-of the rootfs contains both the symlink and the image it is pointing at, =
-but the image does not contain the initramfs image. If I look in the =
-image deploy directory, a FIT image containing the initramfs has been =
-created, but it does not get pulled into the image.
+Let me put it another way: the container recipes in meta-virt are a simpler
+demonstration. The container recipes in meta-yocto-containers-demo are
+heading towards being fully signed/attested and hardened. So to me it made
+sense to keep the jobs separate.
 
-To reproduce with Poky, clone and checkout the =E2=80=9CScarthgap=E2=80=9D=
- branch, add the following to the local.conf and then build =
-core-image-minimal:
-MACHINE =3D =E2=80=9Cgenericarm64"
-INITRAMFS_IMAGE =3D =E2=80=9Ccore-image-minimal-initramfs=E2=80=9D
-KERNEL_CLASSES +=3D =E2=80=9Ckernel-fitimage=E2=80=9D
-KERNEL_IMAGETYPE:genericarm64 =3D =E2=80=9CfitImage=E2=80=9D
-INITRAMFS_IMAGE_BUNDLE =3D =E2=80=9C0=E2=80=9D
 
-The boot directory of the rootfs will contain a =
-=E2=80=9CfitImage-6.6.123-yocto-standard=E2=80=9D FIT image, but when =
-inspected with uboot-dumpimage -l, it contains only the kernel and =
-configuration. The image deploy directory will also contain a =
-=E2=80=9CfitImage-core-image-minimal-initramfs-genericarm64=E2=80=936.6.12=
-3+git0=E2=80=A6=E2=80=A6=E2=80=9D image that contains both the kernel =
-and the initramfs.
+>
+> What's the plan for meta-yocto-containers-demo? Should we host that on
+> git.yoctoproject.org, or will the contents eventually be merged into
+> meta-virtualization?
+>
 
-If you try to build Poky with INITRAMFS_IMAGE_BUNDLE =3D =E2=80=9C1=E2=80=9D=
- this will fail in do_image_wic because the file =
-=E2=80=9CfitImage-initramfs-genericarm64.bin=E2=80=9D can=E2=80=99t be =
-found in the image deploy directory, which may be related.
+I haven't discussed this with Bruce, but I think it makes sense to have the
+official list in meta-virtualization, when they are ready. The other main
+reason for the meta-yocto-container-demo layer is for things like the
+slsa-provenance.bbclass before submitting that to oe-core.
 
-Is there something simple I=E2=80=99m missing here?
 
-Regards,
-Anders=
+> Best regards,
+>
+> --
+> Paul Barker
+>
+>
+
+--0000000000001aeacc06518e30d5
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr"><div dir=3D"ltr"><br></div><br><div class=3D"gmail_quote g=
+mail_quote_container"><div dir=3D"ltr" class=3D"gmail_attr">On Mon, May 11,=
+ 2026 at 1:52=E2=80=AFAM Paul Barker &lt;<a href=3D"mailto:paul@pbarker.dev=
+">paul@pbarker.dev</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote=
+" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);=
+padding-left:1ex">On Thu, 2026-05-07 at 18:25 -0700, <a href=3D"mailto:tim.=
+orling@konsulko.com" target=3D"_blank">tim.orling@konsulko.com</a> wrote:<b=
+r>
+&gt; From: Tim Orling &lt;<a href=3D"mailto:tim.orling@konsulko.com" target=
+=3D"_blank">tim.orling@konsulko.com</a>&gt;<br>
+&gt; <br>
+&gt; Add &#39;containers-&#39; build jobs that build container images on to=
+p<br>
+&gt; of the vcontainer-tarball SDK:<br>
+&gt; <br>
+&gt;=C2=A0 =C2=A0* containers-meta-virt: the original app-container-* image=
+s that<br>
+&gt;=C2=A0 =C2=A0 =C2=A0ship in meta-virtualization itself (e.g. app-contai=
+ner-curl).<br>
+&gt;=C2=A0 =C2=A0* containers-library: a layer for additional images modell=
+ed<br>
+&gt;=C2=A0 =C2=A0 =C2=A0after <a href=3D"http://docker.io/library/*" rel=3D=
+"noreferrer" target=3D"_blank">docker.io/library/*</a>, sourced from meta-y=
+octo-containers-demo<br>
+<br>
+I think we should combine these into one build job.<br></blockquote><div><b=
+r></div><div>For now, that is impractical unless we use a branch of meta-vi=
+rt that I can control (because the container recipes are in flux). Or I wou=
+ld have to continue running builds with a custom yocto-autobuilder-helper a=
+nd a custom meta-virt branch which defeats the purpose of pushing the conta=
+iners to the official <a href=3D"http://registry.yocto.io">registry.yocto.i=
+o</a> and <a href=3D"http://quay.io/yocto">quay.io/yocto</a>.</div><div><br=
+></div><div>Let me put it another way: the container recipes in meta-virt a=
+re a simpler demonstration. The container recipes in meta-yocto-containers-=
+demo are heading towards being fully signed/attested and hardened. So to me=
+ it made sense to keep the jobs separate.</div><div>=C2=A0</div><blockquote=
+ class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px so=
+lid rgb(204,204,204);padding-left:1ex">
+<br>
+What&#39;s the plan for meta-yocto-containers-demo? Should we host that on<=
+br>
+<a href=3D"http://git.yoctoproject.org" rel=3D"noreferrer" target=3D"_blank=
+">git.yoctoproject.org</a>, or will the contents eventually be merged into<=
+br>
+meta-virtualization?<br></blockquote><div><br></div><div>I haven&#39;t disc=
+ussed this with Bruce, but I think it makes sense to have the official list=
+ in meta-virtualization, when they are ready. The other main reason for the=
+ meta-yocto-container-demo layer is for things like the slsa-provenance.bbc=
+lass before submitting that to oe-core.</div><div><br></div><blockquote cla=
+ss=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid =
+rgb(204,204,204);padding-left:1ex">
+<br>
+Best regards,<br>
+<br>
+-- <br>
+Paul Barker<br>
+<br>
+</blockquote></div></div>
+
+--0000000000001aeacc06518e30d5--
 
