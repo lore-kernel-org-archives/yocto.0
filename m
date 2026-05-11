@@ -2,176 +2,203 @@ Return-Path: <tim.orling@konsulko.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id EED07CD484C
-	for <webhook@archiver.kernel.org>; Mon, 11 May 2026 18:04:43 +0000 (UTC)
-Received: from mail-yw1-f180.google.com (mail-yw1-f180.google.com [209.85.128.180])
- by mx.groups.io with SMTP id smtpd.msgproc02-g2.57091.1778522679091926470
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 11882CD484C
+	for <webhook@archiver.kernel.org>; Mon, 11 May 2026 18:25:04 +0000 (UTC)
+Received: from mail-yw1-f181.google.com (mail-yw1-f181.google.com [209.85.128.181])
+ by mx.groups.io with SMTP id smtpd.msgproc02-g2.57552.1778523899024498520
  for <yocto@lists.yoctoproject.org>;
- Mon, 11 May 2026 11:04:39 -0700
+ Mon, 11 May 2026 11:24:59 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@konsulko.com header.s=google header.b=T6YGlZlu;
- spf=pass (domain: konsulko.com, ip: 209.85.128.180, mailfrom: tim.orling@konsulko.com)
-Received: by mail-yw1-f180.google.com with SMTP id 00721157ae682-7bd8c55c885so46030217b3.2
-        for <yocto@lists.yoctoproject.org>; Mon, 11 May 2026 11:04:38 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; t=1778522678; cv=none;
+ dkim=pass header.i=@konsulko.com header.s=google header.b=SR8IF6tH;
+ spf=pass (domain: konsulko.com, ip: 209.85.128.181, mailfrom: tim.orling@konsulko.com)
+Received: by mail-yw1-f181.google.com with SMTP id 00721157ae682-7bf1433b80cso31236567b3.1
+        for <yocto@lists.yoctoproject.org>; Mon, 11 May 2026 11:24:58 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1778523898; cv=none;
         d=google.com; s=arc-20240605;
-        b=ZDFvSlw/pVPABGi651d3UyCFHNeJBTsw6KiagI/yzzoZLQdDU5BLic0tKpkWV1K982
-         0fr6mjlF1tLJ5n57wzoGKAIN4KP0aENUVTTPfkwEezdiVe/2tI4ZccHl0muQ6KaETLeU
-         7bVbeX7pIyFLJiFYSSQVHHPb1ITrq2XohV5Yj+L6mKAbaHN7KefpbKQnVJvFarXyxWki
-         /YZ/MnPZpp7ELpml48yyUrsshKQVlE0Dz7aRraADuvk2V0NGajRthlD40qxvrDHbh0W8
-         Pf8Fkyjv/eAHa1gLzpjZJwQwN/EK+wXK2IwFmfOtvDbwgo6RWDZYDpAH5yYirEmk2sBd
-         jK7Q==
+        b=TmKEqql5wIPZpOQ1tygqTH9gcxJ//JP5QfxXOiqngwuUk/uCglq8a6/Y9nBZOb81Wm
+         SGTD81yOliVLen7A2WNHmYllhfxwF3S59sNoovgAjvRh2ceOs70FBqBUTE3s0kidpqr0
+         LGX0uni6VOBku9sSE5YCAiQXbOdCcxBopFxILLQ1fn9iPZTg+xQ7NK609p5icZMRjlWa
+         4z7fkQZPQ+kl/hfnV2DGGhgXPAeUOELRpWolF6dLFPQqMNoqaM9N8b+f7RD4pxuEni7F
+         D7qm1a897FuxOuRFiwfCfovbwwmdljIRp1QXBf0qYYntLR30Oof5hbglDQJIkys25fJ7
+         EddA==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
         h=cc:to:subject:message-id:date:from:in-reply-to:references
          :mime-version:dkim-signature;
-        bh=Bfx9x45a/8R68Ks/X/Zie5C0DY1Hfq0xgvZ+l+1he2Y=;
-        fh=1oaNvqdltrtwYZ6OCo7gmpmG9q78d6aGRZ2/NNqx/rQ=;
-        b=isqgpCDgbSFgOYHKkIjq+3HLjI1rM/XCLrfkNRGJhTJWQVcXMb1pIg0YXYzD+xhQTd
-         PJ7QsPhRzOz12EzdHF0zhwSc9Oznsh/ZRSX2muas+UkmYkXsFi4gvkFinGtksdrKs9oJ
-         AVv5UEB5v8E4eX42MdYXK1etjnYSrCR8gErXgUyN4FIcCfhgASfVBhHYQY3GYt7kFBKF
-         ciS0bekIfCAad1FM3eL+JDnjMoWE/9kOAEmRoHo1LDKxi0SJwDETx28zFSLvptmWq6Ua
-         /k2ZD8zH31ALGkzqOPSwSZmHsAxotmHFzUif+omMtdeIaRtU2/IBbW0EwMiYEtmIHc3i
-         iEHA==;
+        bh=989r4CHrevto8BPvIFuOYD5OGQgCREsUGzjsGNDVS9I=;
+        fh=67bgA9Id6GFl1N4TrdlIEQ/JUQP2bn+IH0V8Jt0ZOTw=;
+        b=I1QPaHilMagzYFU+F+4mT1br3PgP4rYbS/Nl5emjLgxsFwxBgDgszvRO7oPtP1NznG
+         yjUtY1CeD63jPqJu/ChTTCYuvoVpcIbhkZ11r5wLNWBHLgSozFPhDeiBn87jlydma1p1
+         n4BNgmA64yK6bsLTJnRUuqxrryWmdiYCnlGQidH0ZcvGhXX4dDzyfxQ5z0wz84clq3Yb
+         d0WyIzXz5JcjkJmYnT0l65AuVCpBOXzs+jU7YmKwqG56RfF/osGTChMHAMlXT7Ukrhsl
+         SR7mo8+s+fXvmRWaq43L8XambfCk65h5ZD6eTglBqewpWt2EAJCE6uTwm7AbJTpCsxxp
+         Gygw==;
         darn=lists.yoctoproject.org
 ARC-Authentication-Results: i=1; mx.google.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=konsulko.com; s=google; t=1778522678; x=1779127478; darn=lists.yoctoproject.org;
+        d=konsulko.com; s=google; t=1778523898; x=1779128698; darn=lists.yoctoproject.org;
         h=cc:to:subject:message-id:date:from:in-reply-to:references
          :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=Bfx9x45a/8R68Ks/X/Zie5C0DY1Hfq0xgvZ+l+1he2Y=;
-        b=T6YGlZluyxAPnyIEyDaXOA0u6OsIxPL4NdmN3MnrYBv86a5vPH1PGf4lSaMvUP93GZ
-         sKEkIz8uks5PY7THjO4wED8HHJvsEEsAjm/9F2BkPGIK48MLL7g1qiv8PHgNdBoJ06xl
-         TscdK8k8BipQ8pewdQW08QFHdAg2NgS3t3WV8=
+        bh=989r4CHrevto8BPvIFuOYD5OGQgCREsUGzjsGNDVS9I=;
+        b=SR8IF6tH3HaGFVjdixwImZlUBHl4eTZNL7EscdfkqLqrrEGBvXYid/klNmmkCY+N6g
+         ArpvDAegC0utcNDV3bmbPydb8SS15SONJRHhFHxDmUnrdkt/0hWrmWMhmWinlzkhiiAu
+         NEDKj1bvxKmviTIEPr6qE9T0NHwHG6BiOgCK0=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1778522678; x=1779127478;
+        d=1e100.net; s=20251104; t=1778523898; x=1779128698;
         h=cc:to:subject:message-id:date:from:in-reply-to:references
          :mime-version:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=Bfx9x45a/8R68Ks/X/Zie5C0DY1Hfq0xgvZ+l+1he2Y=;
-        b=RLUNOX+lzKqbkSD3gbQhvfwFZrNqbqw/Fwsboj5DUnQ6rZtyM/mTzTd5eEZ/a9RwDl
-         Hr8DETlHgizEapGcr9nuemgrKFV6G+LuTgE4o+X4P3VnRR7Z09ltXMkta66WEaH3RrHc
-         8v3+Pgd5asjjjmLFJgjDpT8qbGtIVC6KFnzqVz6bczzWTb+jwTMZzqM0WpXr3xU6EYxq
-         4JGZRYHxHpUHby2Epu+Jvr8rSa/uH8jHudbhE/wIbVpKGJn6HCcx/FFvKGgGXUMlWDcf
-         79R3E26N/rcFHhfy3M2lp740NZimX1WHrGuOQEQnDSC7p50KHCCnPppwcPTKtihamwBP
-         JRzw==
-X-Forwarded-Encrypted: i=1; AFNElJ9JN/7GFGTkN1qVGjwG5NecodAutjkNBOiJyNulVG1nmgWTJtmgEeUbAVpMYxkpGqyX/yen3Q==@lists.yoctoproject.org
-X-Gm-Message-State: AOJu0YyAYqj33+QCnDKc3uGcMX2wiOj/Yqz+E85hyzn86poS9u3+AqGr
-	yJxV3M2pj3pHEccvifRxCZuGiOvuyRQcMW7RNjMrzjgnFCjsO+EDrY8hsr4QvL4rp8qMsJgHNxn
-	m3xlC24aqAGbDFJoYonqh5kNjirnxttRFbj0JroKRUA==
-X-Gm-Gg: Acq92OHQYbWmTjTSYwWqGqozVADPXKNJLJV6LC8dUMyjdyvw11ili91baUkBdcoWOvV
-	nrG5/RBJ/1de8+iK/E/CDkHdSCYxtl/mXvHlHgcz6YZ2AHE/U5ySay5g+KlYKcQIYYx8b5DUyCy
-	30ZD35snyUcd269d8dnT2eGPXwhHnNCHn5NeQaMgvaf0nPKo1v5b5pc47rktXMxoE/jwuVXqXnT
-	pjmX+MjeIt6uee8aPX1DQPY1V7s7UyOJ1Vbu4nwCpIpiNLeKFs8VfKX9Dfg71QirhVoYnjJcdU8
-	7nHjQOSkg4gcv3a8vQ==
-X-Received: by 2002:a05:690c:c504:b0:7bd:8cb2:4fa1 with SMTP id
- 00721157ae682-7bdf5d98fd6mr266200597b3.5.1778522678129; Mon, 11 May 2026
- 11:04:38 -0700 (PDT)
+        bh=989r4CHrevto8BPvIFuOYD5OGQgCREsUGzjsGNDVS9I=;
+        b=XUDZdVNf7oE0MEvLeDVUIJGZlw+xADjwaUiUu3nhM0TarLFxUgzCtEGzaYFaKl2hYe
+         FVPEyIsEokAKrLeK1tzkH+IER8vbDDazZGDlifgPctY/vY55VTUQ42xxw/d9K/arOyf+
+         +PRw/p575d6SJMPQ09dOBhegVGZduN0NkpKlEKWeU576h8AIysgCjy/crq8jaL3KyzpT
+         k3WhFMOntr7f2zUX2ZYCqKGGqnutFlevPRocyVrc8OM0DF+WRJAuE6JJhgY9toPot2Hm
+         UQ4gdzeOa6B1ehKZ+mplCxmKbEdtHJQjp8t2rftrha5/ahGHyfqibnwtT7A/Aym2XKG2
+         HJNQ==
+X-Forwarded-Encrypted: i=1; AFNElJ/tFDI6iN0jPCipq/UiH4shXhJGRiisTGDW2feBT8PNLA3zDbUoaqp1vv9ytJ/cUmzJHrGUSQ==@lists.yoctoproject.org
+X-Gm-Message-State: AOJu0YzFapFokrSxMNN5acFQ/HWLjBDIgr7xa+ihuABRrofDnDHtHnng
+	0HW0L1fX9tZhl7Vt66W20oXjdyf6gAYyZImCOCVykPGvc8a7Gacmg3AtX9mupVuyCUmxkk9pgEO
+	Hu0l7H2h4I5ggrs7JX/rz/RnTfYR0kj808ZhkF8WNmTCyjHKdhP+z++c=
+X-Gm-Gg: Acq92OH7VxFnmvERQ6wdafgiifLEAQGYammy/EiQVfOl2OmTDOoFSQUbr7FsJQH91BJ
+	FjM1jY2aHz2UlldZpiu3SahFGxCfLqDNVYswMu2Ni+VPAsu4iz+lncb16JCXrEhDShhPgna0k3g
+	Cc2btWeC2iipAeaVDXzf05Scl+NzU6W9QeAuJb+5PJfx2c7NdLV5bFZioP8A5furO0vVi3s14vj
+	UjfyL2DlU4suYJydbZeqDoxIqHzJs109gftAhR77F3lADBAyraHUnXITpkaVIted9coKiaNQRb5
+	7obUp+c=
+X-Received: by 2002:a05:690c:d90:b0:7b8:bc4e:a4c with SMTP id
+ 00721157ae682-7c104da880emr101627887b3.27.1778523897902; Mon, 11 May 2026
+ 11:24:57 -0700 (PDT)
 MIME-Version: 1.0
 References: <cover.1778202125.git.tim.orling@konsulko.com> <601c281165450b2be14de46bb9601e82229ca5f6.1778202125.git.tim.orling@konsulko.com>
- <a12dbd29263557679eeeb5dbaabeac9266fcabe3.camel@pbarker.dev>
-In-Reply-To: <a12dbd29263557679eeeb5dbaabeac9266fcabe3.camel@pbarker.dev>
+ <a12dbd29263557679eeeb5dbaabeac9266fcabe3.camel@pbarker.dev> <CAOyo-87Me5QSVG7=+sF4TXASvxNb8U0V4VVibVi1x-o_E=PGmQ@mail.gmail.com>
+In-Reply-To: <CAOyo-87Me5QSVG7=+sF4TXASvxNb8U0V4VVibVi1x-o_E=PGmQ@mail.gmail.com>
 From: Tim Orling <tim.orling@konsulko.com>
-Date: Mon, 11 May 2026 11:04:27 -0700
-X-Gm-Features: AVHnY4K6-uQec08AqptTH1Xq0J6Egex30Ej2y3F78GJVzvqvgFsLzUnQbwWGyFA
-Message-ID: <CAOyo-87Me5QSVG7=+sF4TXASvxNb8U0V4VVibVi1x-o_E=PGmQ@mail.gmail.com>
+Date: Mon, 11 May 2026 11:24:46 -0700
+X-Gm-Features: AVHnY4IWknNIfwZdr3z-yk1H90veEdSHx30RyJsH1F1P-dR3ziR2TXHKIYUqFe0
+Message-ID: <CAOyo-872MQ5CdFtLyhr7DVMyL_JpGWgmOV-SLQ-jy7nN++meeg@mail.gmail.com>
 Subject: Re: [yocto-autobuilder-helper][PATCH 11/11] config.json:
  containers-library: add mosquitto and valkey demos
 To: Paul Barker <paul@pbarker.dev>
 Cc: yocto-patches@lists.yoctoproject.org, yocto@lists.yoctoproject.org
-Content-Type: multipart/alternative; boundary="0000000000007484fa06518e949b"
+Content-Type: multipart/alternative; boundary="00000000000028d4f306518edde5"
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from 45-33-107-173.ip.linodeusercontent.com [45.33.107.173] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Mon, 11 May 2026 18:04:43 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/66528
+ <yocto@lists.yoctoproject.org>; Mon, 11 May 2026 18:25:04 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/66529
 
---0000000000007484fa06518e949b
+--00000000000028d4f306518edde5
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-On Mon, May 11, 2026 at 2:00=E2=80=AFAM Paul Barker <paul@pbarker.dev> wrot=
-e:
+On Mon, May 11, 2026 at 11:04=E2=80=AFAM Tim Orling <tim.orling@konsulko.co=
+m> wrote:
 
-> On Thu, 2026-05-07 at 18:25 -0700, tim.orling@konsulko.com wrote:
-> > From: Tim Orling <tim.orling@konsulko.com>
-> >
-> > Extend containers-library with two additional demo images sourced
-> > from meta-yocto-containers-demo:
-> >
-> >   * app-container-mosquitto: the Eclipse Mosquitto MQTT broker.
-> >   * app-container-valkey: Valkey (Redis-compatible) key/value datastore=
-.
-> >
-> > Signed-off-by: Tim Orling <tim.orling@konsulko.com>
-> > ---
-> >  config.json | 12 ++++++++++++
-> >  1 file changed, 12 insertions(+)
-> >
-> > diff --git a/config.json b/config.json
-> > index 7cdf91a..a9a2e9c 100644
-> > --- a/config.json
-> > +++ b/config.json
-> > @@ -1950,6 +1950,18 @@
-> >                  "BBTARGETS" : "app-container-python",
-> >                  "CONTAINER_IMAGES" : {"app-container-python": "python"=
-},
-> >                  "CONTAINER_VERSION_RECIPE" : "python3"
-> > +            },
-> > +            "step2" : {
-> > +                "shortname" : "Build 'mosquitto' container",
-> > +                "BBTARGETS" : "app-container-mosquitto",
-> > +                "CONTAINER_IMAGES" : {"app-container-mosquitto":
-> "mosquitto"},
-> > +                "CONTAINER_VERSION_RECIPE" : "mosquitto"
-> > +            },
-> > +            "step3" : {
-> > +                "shortname" : "Build 'valkey' container",
-> > +                "BBTARGETS" : "app-container-valkey",
-> > +                "CONTAINER_IMAGES" : {"app-container-valkey": "valkey"=
-},
-> > +                "CONTAINER_VERSION_RECIPE" : "valkey"
->
-> This makes me wonder: can we build multiple app container images with
-> one bitbake command? If so, can we combine these into one step?
->
-
-The getconfigdict() that was added to scripts/utils.py might make the JSON
-definition of CONTAINER_IMAGES awkward as more containers are added, but it
-"should" work.
-
-I had considered using a list of recipe names and building them in one
-step, rather than a long 'bitbake <recipe 1> <recipe 2> ... <recipe N>'
-command. This first attempt was kept simple.
-
-This would also impact pushing containers, as pushing is currently appended
-as a step after 'build targets' when the push_containers boolean is true.
-Container tooling needs to push one container at a time, which will become
-more complicated with signing and attaching SLSA attestations. This might
-be another use case for a list of container recipes that can be iterated
-through.
-
-I'm open to another design if folks have better ideas for how the AB works.
-
-
-> Best regards,
->
-> --
-> Paul Barker
 >
 >
+> On Mon, May 11, 2026 at 2:00=E2=80=AFAM Paul Barker <paul@pbarker.dev> wr=
+ote:
+>
+>> On Thu, 2026-05-07 at 18:25 -0700, tim.orling@konsulko.com wrote:
+>> > From: Tim Orling <tim.orling@konsulko.com>
+>> >
+>> > Extend containers-library with two additional demo images sourced
+>> > from meta-yocto-containers-demo:
+>> >
+>> >   * app-container-mosquitto: the Eclipse Mosquitto MQTT broker.
+>> >   * app-container-valkey: Valkey (Redis-compatible) key/value datastor=
+e.
+>> >
+>> > Signed-off-by: Tim Orling <tim.orling@konsulko.com>
+>> > ---
+>> >  config.json | 12 ++++++++++++
+>> >  1 file changed, 12 insertions(+)
+>> >
+>> > diff --git a/config.json b/config.json
+>> > index 7cdf91a..a9a2e9c 100644
+>> > --- a/config.json
+>> > +++ b/config.json
+>> > @@ -1950,6 +1950,18 @@
+>> >                  "BBTARGETS" : "app-container-python",
+>> >                  "CONTAINER_IMAGES" : {"app-container-python":
+>> "python"},
+>> >                  "CONTAINER_VERSION_RECIPE" : "python3"
+>> > +            },
+>> > +            "step2" : {
+>> > +                "shortname" : "Build 'mosquitto' container",
+>> > +                "BBTARGETS" : "app-container-mosquitto",
+>> > +                "CONTAINER_IMAGES" : {"app-container-mosquitto":
+>> "mosquitto"},
+>> > +                "CONTAINER_VERSION_RECIPE" : "mosquitto"
+>> > +            },
+>> > +            "step3" : {
+>> > +                "shortname" : "Build 'valkey' container",
+>> > +                "BBTARGETS" : "app-container-valkey",
+>> > +                "CONTAINER_IMAGES" : {"app-container-valkey":
+>> "valkey"},
+>> > +                "CONTAINER_VERSION_RECIPE" : "valkey"
+>>
+>> This makes me wonder: can we build multiple app container images with
+>> one bitbake command? If so, can we combine these into one step?
+>>
+>
+> The getconfigdict() that was added to scripts/utils.py might make the JSO=
+N
+> definition of CONTAINER_IMAGES awkward as more containers are added, but =
+it
+> "should" work.
+>
+> I had considered using a list of recipe names and building them in one
+> step, rather than a long 'bitbake <recipe 1> <recipe 2> ... <recipe N>'
+> command. This first attempt was kept simple.
+>
+> This would also impact pushing containers, as pushing is currently
+> appended as a step after 'build targets' when the push_containers boolean
+> is true. Container tooling needs to push one container at a time, which
+> will become more complicated with signing and attaching SLSA
+> attestations. This might be another use case for a list of container
+> recipes that can be iterated through.
+>
+> I'm open to another design if folks have better ideas for how the AB work=
+s.
+>
+>
+Capturing some additional thoughts I had on IRC:
+do we have any existing examples where a step iterates over a list in the
+AB?
+11:10 AM
+I guess all the container recipes could be in BBTARGETS... but that list
+could get quite long as more container recipes are added...
+11:13 AM
+maybe follow the ptest-packagelists.inc pattern
+11:15 AM
+which then begs for BBCLASSEXTEND =3D "${@' '.join(['mcextend:'+x for x in
+d.getVar('PTESTS').split()])}" ;)
 
---0000000000007484fa06518e949b
+
+>
+>> Best regards,
+>>
+>> --
+>> Paul Barker
+>>
+>>
+
+--00000000000028d4f306518edde5
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
 <div dir=3D"ltr"><div dir=3D"ltr"><br></div><br><div class=3D"gmail_quote g=
 mail_quote_container"><div dir=3D"ltr" class=3D"gmail_attr">On Mon, May 11,=
- 2026 at 2:00=E2=80=AFAM Paul Barker &lt;<a href=3D"mailto:paul@pbarker.dev=
-">paul@pbarker.dev</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote=
-" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);=
-padding-left:1ex">On Thu, 2026-05-07 at 18:25 -0700, <a href=3D"mailto:tim.=
-orling@konsulko.com" target=3D"_blank">tim.orling@konsulko.com</a> wrote:<b=
-r>
+ 2026 at 11:04=E2=80=AFAM Tim Orling &lt;<a href=3D"mailto:tim.orling@konsu=
+lko.com">tim.orling@konsulko.com</a>&gt; wrote:<br></div><blockquote class=
+=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rg=
+b(204,204,204);padding-left:1ex"><div dir=3D"ltr"><div dir=3D"ltr"><br></di=
+v><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">On M=
+on, May 11, 2026 at 2:00=E2=80=AFAM Paul Barker &lt;<a href=3D"mailto:paul@=
+pbarker.dev" target=3D"_blank">paul@pbarker.dev</a>&gt; wrote:<br></div><bl=
+ockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-lef=
+t:1px solid rgb(204,204,204);padding-left:1ex">On Thu, 2026-05-07 at 18:25 =
+-0700, <a href=3D"mailto:tim.orling@konsulko.com" target=3D"_blank">tim.orl=
+ing@konsulko.com</a> wrote:<br>
 &gt; From: Tim Orling &lt;<a href=3D"mailto:tim.orling@konsulko.com" target=
 =3D"_blank">tim.orling@konsulko.com</a>&gt;<br>
 &gt; <br>
@@ -238,9 +265,19 @@ to push one container at a time, which will become more complicated with si=
 gning and attaching SLSA attestations.=C2=A0This might be another use=C2=A0=
 case for a list of container recipes that can be iterated through.</div><di=
 v><br>I&#39;m open to another design if folks have better ideas for how the=
- AB works.</div><div><br></div><blockquote class=3D"gmail_quote" style=3D"m=
-argin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left=
-:1ex">
+ AB works.</div><div><br></div></div></div></blockquote><div><br></div><div=
+>Capturing some additional thoughts I had on IRC:</div><div>do we have any =
+existing examples where a step iterates over a list in the AB?<br>11:10 AM =
+<br>I guess all the container recipes could be in BBTARGETS... but that lis=
+t could get quite long as more container recipes are added...<br>11:13 AM <=
+br>maybe follow the ptest-packagelists.inc pattern<br>11:15 AM <br>which th=
+en begs for BBCLASSEXTEND =3D &quot;${@&#39; &#39;.join([&#39;mcextend:&#39=
+;+x for x in d.getVar(&#39;PTESTS&#39;).split()])}&quot; ;)</div><div>=C2=
+=A0</div><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8e=
+x;border-left:1px solid rgb(204,204,204);padding-left:1ex"><div dir=3D"ltr"=
+><div class=3D"gmail_quote"><div></div><blockquote class=3D"gmail_quote" st=
+yle=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padd=
+ing-left:1ex">
 <br>
 Best regards,<br>
 <br>
@@ -248,6 +285,7 @@ Best regards,<br>
 Paul Barker<br>
 <br>
 </blockquote></div></div>
+</blockquote></div></div>
 
---0000000000007484fa06518e949b--
+--00000000000028d4f306518edde5--
 
