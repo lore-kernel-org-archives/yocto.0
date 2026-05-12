@@ -1,124 +1,113 @@
-Return-Path: <flix.yocto@benfm.de>
+Return-Path: <richard.purdie@linuxfoundation.org>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 691F5CD4855
-	for <webhook@archiver.kernel.org>; Tue, 12 May 2026 10:03:17 +0000 (UTC)
-Received: from mail.benfm.de (mail.benfm.de [85.215.152.190])
- by mx.groups.io with SMTP id smtpd.msgproc01-g2.71757.1778580189480846930
+	by smtp.lore.kernel.org (Postfix) with ESMTP id D7E56CD4F21
+	for <webhook@archiver.kernel.org>; Tue, 12 May 2026 12:13:17 +0000 (UTC)
+Received: from mail-wr1-f53.google.com (mail-wr1-f53.google.com [209.85.221.53])
+ by mx.groups.io with SMTP id smtpd.msgproc01-g2.73733.1778587988277558382
  for <yocto@lists.yoctoproject.org>;
- Tue, 12 May 2026 03:03:10 -0700
+ Tue, 12 May 2026 05:13:08 -0700
 Authentication-Results: mx.groups.io;
- dkim=fail reason="dkim: body hash did not verify" header.i=@benfm.de header.s=2024 header.b=wsRe5oFF;
- spf=pass (domain: benfm.de, ip: 85.215.152.190, mailfrom: flix.yocto@benfm.de)
-Message-ID: <923a7f55-2a3c-435d-b18d-220cfcfd4ade@benfm.de>
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=benfm.de; s=2024;
-	t=1778580186;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=8cW/W7b1DFCdQXoO6Y8AY8pyONZJYIEw6r64Te19Xvc=;
-	b=wsRe5oFFfNSDAP0yP8f+x6zjRMpuB6LB48fByxIOCyQbeIFT8IMvZcVLcr+11X0g62k9EN
-	0xy49wVDGa15in/Od4n2CsmXuBeo6SgrYa0tu30C88pABG807tuPGy6fLQmlUKtIWVFLcQ
-	QJ7ZGYKswjQOw8QCDy3Xz8Mncb9YS2VKzli4w5YpAAgOHYF4TY9owmUm/p3QA0jrXr3EHf
-	sw+6ii7qBa4H6BVM17fkJm9exWeE5BxDLeQlaDpL8P+yl+wiFkrfGvCSl7fyld1R/Kw1g8
-	dfcS+pto44kh7EdCs52j4/I2hPiGFf0Ui4tOME3E5iGAZLdhY79zgbKaYDsWVg==
-Authentication-Results: ORIGINATING;
-	auth=pass smtp.auth=flix@benfm.de smtp.mailfrom=flix.yocto@benfm.de
-Date: Tue, 12 May 2026 12:03:05 +0200
-MIME-Version: 1.0
-Subject: Re: [yocto] Problems adding initramfs when using FIT image
-To: yocto@lists.yoctoproject.org, Anders.Montonen@iki.fi
-References: <ED150875-0486-4D10-ABDC-6E3EB2A39F1A@iki.fi>
-Content-Language: en-US
-From: Felix Mellmann <flix.yocto@benfm.de>
-In-Reply-To: <ED150875-0486-4D10-ABDC-6E3EB2A39F1A@iki.fi>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+ dkim=pass header.i=@linuxfoundation.org header.s=google header.b=N0pQAOTm;
+ spf=pass (domain: linuxfoundation.org, ip: 209.85.221.53, mailfrom: richard.purdie@linuxfoundation.org)
+Received: by mail-wr1-f53.google.com with SMTP id ffacd0b85a97d-43d76dd4ee8so5021439f8f.2
+        for <yocto@lists.yoctoproject.org>; Tue, 12 May 2026 05:13:07 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linuxfoundation.org; s=google; t=1778587986; x=1779192786; darn=lists.yoctoproject.org;
+        h=mime-version:user-agent:content-transfer-encoding:references
+         :in-reply-to:date:to:from:subject:message-id:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=ahjqqcjR0yTtzM/fH44/Ud75a1LKdKN5axPHMXNMxmk=;
+        b=N0pQAOTmD0TFKdd58o+ugzoeAkEO4DHWuA6W9NV96xrnBgiDN+TBnAssh/JnaE3uNC
+         A7U5ENWSyUplJdGRYwBReFmEEo0x25UWHFsV+BOrsyLMyAb6QUydnHCDaYzYWa9+oeTd
+         3qxWX+Q7o9G94yMgqL44I+j6rUWmnz2CGkQN0=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20251104; t=1778587986; x=1779192786;
+        h=mime-version:user-agent:content-transfer-encoding:references
+         :in-reply-to:date:to:from:subject:message-id:x-gm-gg
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=ahjqqcjR0yTtzM/fH44/Ud75a1LKdKN5axPHMXNMxmk=;
+        b=Gm0jbJK0kuhu920oXXfx4H5yVjYwXbtL04gVKRYRGlUhkou6+ZfRANdaPENcOx8DfC
+         n60CcNFGYzTjrKeNCDhYgZYprm0ju43G0Om4iUin8LGZXUaJnpaYZdKDlu1nxIjLmLEV
+         PsIuEcCyJ16Pq/L82eqANTWQ7ZOjpPp0grwnhywQB0gESdYiQRML6lfSlCUGlqKk95wX
+         OrBpvxM+djPOLx60JBbUzhNUzXD4KG3GRoBddv9p5WQdJfav0w45egZiddinySvQ6mMs
+         gaE6hgO6lh0crFCxTBmWmVuhCy+2x4iOa8YUENIpIhsQTvc44Yt26JF1BKKuuJbwLFYP
+         7wQg==
+X-Gm-Message-State: AOJu0YwZ97a10t5E1JPxWAgxmWoqrbjydt/URNgdbtx4ZD1A1gq0Sx2L
+	ikQq8RRm8db81mYDHKSc85LlCrW06etVZ0i+6ALMimD2nIL4reuEKQQ9Ke2Rg8hfJJpLMGbfhCI
+	ipsJI
+X-Gm-Gg: Acq92OEer/yese/vmkLgDSFNxVcXI2nMEp5UEsx/IOV/oiQVOnLRORJlUPraBDZX4Rw
+	6XHUWR2nY6knBMErdP3tWQSjM4KHQGxr26y/eipiUqe3qwYySRvZvCCv7JNzFkbiRs1p95nfUBM
+	IjD/tvEU2J1bz3zCu+zJc/LFRzqkooRPO/T0pUcWGAkIsgC3gWABy6/ZG4BGZKb/jkxPFRxciMX
+	DcgTOQ0T6B5zhr/5X7GGx5OiKnmziDiemCRrYMWQqT7HlZv1/9M85nWWRIFnf72hPoTwQJmQPLQ
+	CBCrDdm6+YyLwgvr4NSUqwAjUgHbycJ2PGGipCWvdX8+Ta5xQNY50DzGwfRehF7u1/gLzzoq4jr
+	NlsivoCWG2NKooJ9NgveVBIKAnlX3A2MrjTzYfO25POeYVoPqnXMQFwdhzhsROMFaShx7dCHCyg
+	jNzdX9f38pGVDfiJzxUvkLNACZzq/60TkCx/EOlcw/0VZ/a522W4alMjyq/jePkkDFC3RmWf//P
+	IndtSt2lqQS+LlP
+X-Received: by 2002:a05:600c:8b83:b0:485:40db:d40c with SMTP id 5b1f17b1804b1-48e706acfb7mr210623345e9.3.1778587985585;
+        Tue, 12 May 2026 05:13:05 -0700 (PDT)
+Received: from ?IPv6:2001:8b0:aba:5f3c:44a5:ca0b:d27c:9664? ([2001:8b0:aba:5f3c:44a5:ca0b:d27c:9664])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-48e9067811dsm75018175e9.9.2026.05.12.05.13.04
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 12 May 2026 05:13:05 -0700 (PDT)
+Message-ID: <c087189f913cfd64e1d835c4f96815a42c51eab2.camel@linuxfoundation.org>
+Subject: Re: [yocto] Looking for Yocto-supported Reference Design
+From: Richard Purdie <richard.purdie@linuxfoundation.org>
+To: yocto@lists.yoctoproject.org, dave@synergy.org
+Date: Tue, 12 May 2026 13:13:04 +0100
+In-Reply-To: <001001dce188$4a8cde20$dfa69a60$@synergy.org>
+References: <001001dce188$4a8cde20$dfa69a60$@synergy.org>
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.56.2-9 
+MIME-Version: 1.0
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from 45-33-107-173.ip.linodeusercontent.com [45.33.107.173] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Tue, 12 May 2026 10:03:17 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/66533
+ <yocto@lists.yoctoproject.org>; Tue, 12 May 2026 12:13:17 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/66534
 
-Hi Anders,
+Hi David,
 
-unfortunately I can't answer why the fitImage with the bundled initramfs=20
-is not copied over to /boot but I want to tell, that=20
-"INITRAMFS_IMAGE_BUNDLE" has a bit misleading name. Actually enabling=20
-this option will generate=C2=A0 the initramfs first and then hand it over=
- to=20
-the compile task which then incorporates the initramfs into the kernel=20
-image itself. This is not what you want. You want a separate kernel=20
-image, device-tree and initramfs which then gets bundled to a fitImage.
+On Mon, 2026-05-11 at 13:53 -0700, dave via lists.yoctoproject.org wrote:
+> 	My name is David Richards and I am blind. I am new to Yocto. I would
+> like to build a portable talking e-book reader. The goal is to support
+> DAISY, Audible, Kindle, and epub books. In addition, I would like to be a=
+ble
+> to stream MP3 content. To that end, I am looking for a reference design t=
+o
+> base the project on. It does not require/use a display or touchpad. The u=
+ser
+> interface will utilize buttons and speech output. The design should have
+> existing Yocto support, if possible.
+> 	Does anyone have any pointers for a reference design I could start
+> with?
 
-I think you should trace down which recipe installs the fitImage to=20
-/boot and then maybe you just need to adjust a variable or two to make=20
-the fitImage which bundles the initramfs to install to /boot instead of=20
-that which doesn't.
+There are many boards with OE/Yocto Project support. You can=C2=A0get an
+idea of them all from the layer index's list of machines which is
+showing 22 pages of them!=20
 
-Best regards,
-Felix
+https://layers.openembedded.org/layerindex/branch/master/machines/?q=3D&bro=
+wse=3D1
+
+Some have better support than others, we've had the Beagle devices like
+the BeaglePlay and earlier devices like the BeagleBone and BeagleBoard
+supported as one of our test platforms for a long time.=C2=A0That has basic
+support in meta-yocto with beaglebone-yocto and a full BSP from TI as
+well. There are others like the various RaspberryPis and may more,
+including more experimental ones with RISC-V processors.
+
+It sounds like the audio output might be important to you and however
+you plan to interface the buttons to the system so that may be
+something to factor in. You might need USB? That might narrow down your
+choice. I'd probably try and find a board which holds interest to you
+as well.
+
+Cheers,
+
+Richard
 
 
-On 5/11/26 11:48, Anders Montonen wrote:
-> Hi,
->
-> I=E2=80=99m trying to add an initrd to our build and I=E2=80=99m runnin=
-g into some weird issues. We are using Scarthgap with our own BSP and app=
-lication layers, but the issues are at least partially reproducible with =
-just Poky.
->
-> In my local.conf I have
-> INITRAMFS_IMAGE =3D =E2=80=9Ccore-image-minimal-initramfs=E2=80=9D
->
-> Depending on the value of INITRAMFS_IMAGE_BUNDLE I get different result=
-s, neither of which seems correct, or what I expected.
->
-> With INITRAMFS_IMAGE_BUNDLE =3D =E2=80=9C1=E2=80=9D, the /boot director=
-y of the rootfs contains a dangling =E2=80=9CfitImage=E2=80=9D symlink, b=
-ut the actual image is missing.
-> With INITRAMFS_IMAGE_BUNDLE =3D =E2=80=9C0=E2=80=9D, the /boot director=
-y of the rootfs contains both the symlink and the image it is pointing at=
-, but the image does not contain the initramfs image. If I look in the im=
-age deploy directory, a FIT image containing the initramfs has been creat=
-ed, but it does not get pulled into the image.
->
-> To reproduce with Poky, clone and checkout the =E2=80=9CScarthgap=E2=80=
-=9D branch, add the following to the local.conf and then build core-image=
--minimal:
-> MACHINE =3D =E2=80=9Cgenericarm64"
-> INITRAMFS_IMAGE =3D =E2=80=9Ccore-image-minimal-initramfs=E2=80=9D
-> KERNEL_CLASSES +=3D =E2=80=9Ckernel-fitimage=E2=80=9D
-> KERNEL_IMAGETYPE:genericarm64 =3D =E2=80=9CfitImage=E2=80=9D
-> INITRAMFS_IMAGE_BUNDLE =3D =E2=80=9C0=E2=80=9D
->
-> The boot directory of the rootfs will contain a =E2=80=9CfitImage-6.6.1=
-23-yocto-standard=E2=80=9D FIT image, but when inspected with uboot-dumpi=
-mage -l, it contains only the kernel and configuration. The image deploy =
-directory will also contain a =E2=80=9CfitImage-core-image-minimal-initra=
-mfs-genericarm64=E2=80=936.6.123+git0=E2=80=A6=E2=80=A6=E2=80=9D image th=
-at contains both the kernel and the initramfs.
->
-> If you try to build Poky with INITRAMFS_IMAGE_BUNDLE =3D =E2=80=9C1=E2=80=
-=9D this will fail in do_image_wic because the file =E2=80=9CfitImage-ini=
-tramfs-genericarm64.bin=E2=80=9D can=E2=80=99t be found in the image depl=
-oy directory, which may be related.
->
-> Is there something simple I=E2=80=99m missing here?
->
-> Regards,
-> Anders
->
-> -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
-> Links: You receive all messages sent to this group.
-> View/Reply Online (#66524): https://lists.yoctoproject.org/g/yocto/mess=
-age/66524
-> Mute This Topic: https://lists.yoctoproject.org/mt/119253465/8090339
-> Group Owner: yocto+owner@lists.yoctoproject.org
-> Unsubscribe: https://lists.yoctoproject.org/g/yocto/unsub [flix.yocto@b=
-enfm.de]
-> -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
->
+
 
