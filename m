@@ -1,325 +1,182 @@
-Return-Path: <jdowd@slashdevslashnull.org>
+Return-Path: <ext-antti.garding@kempower.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id CDB81CD4851
-	for <webhook@archiver.kernel.org>; Tue, 12 May 2026 15:17:13 +0000 (UTC)
-Received: from mail-ed1-f42.google.com (mail-ed1-f42.google.com [209.85.208.42])
- by mx.groups.io with SMTP id smtpd.msgproc01-g2.77982.1778599025241169605
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 95AF3CD4F24
+	for <webhook@archiver.kernel.org>; Tue, 12 May 2026 16:05:44 +0000 (UTC)
+Received: from DU2PR03CU002.outbound.protection.outlook.com (DU2PR03CU002.outbound.protection.outlook.com [52.101.65.74])
+ by mx.groups.io with SMTP id smtpd.msgproc01-g2.79124.1778601933758908384
  for <yocto@lists.yoctoproject.org>;
- Tue, 12 May 2026 08:17:05 -0700
+ Tue, 12 May 2026 09:05:35 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@slashdevslashnull-org.20251104.gappssmtp.com header.s=20251104 header.b=Q1Aw1/Y5;
- spf=softfail (domain: slashdevslashnull.org, ip: 209.85.208.42, mailfrom: jdowd@slashdevslashnull.org)
-Received: by mail-ed1-f42.google.com with SMTP id 4fb4d7f45d1cf-67b32c695efso10685546a12.1
-        for <yocto@lists.yoctoproject.org>; Tue, 12 May 2026 08:17:04 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; t=1778599023; cv=none;
-        d=google.com; s=arc-20240605;
-        b=AFNYux6ty6A0fOkXU3nENejuVOGtBuxtiEc6hONOQ6+0ERcy2dO07/E8LiQcjX1Zqq
-         e2/DPRIyxE+yuf8o86hk1RDyHiJN3CPTm6AFEDW35GtVL+iYY7O3wfFKZXbl6Qw2QEQv
-         q5oxE/cXzhDPRPx/xL2gbBbF3Vx6jz8P2vOS6BjahX4GEX3AtqBhoDyJH/umOyHqyntH
-         Kw0PPM7CYZJ6D/v5z1c7ofZdSkFsFTA5udcIge9GG+EOw3c1/BvLq23jJ3sOOCNuBFpU
-         k7gbaV2ce2cgAvzq8WaqSpWTPra4PElRQw9GIKD7nNlq4dOYczFo4OjbgZWPuS0EWI62
-         cyXQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:dkim-signature;
-        bh=g5DCA8TC+C4UgVNfzS8Mnf+ueKeGCiqxRY/ilfnnaJQ=;
-        fh=abqSRSZKw5B01H7XtmEITy2C8cvnDBlnNje9Q6+jEp8=;
-        b=ZIwfxgCYAvJ4D5p5gQzY/n+0lN6hdh4L8uSKn+07+obwiANYbMd1aF+TMBDCyiK/Eg
-         8dlA3GW2//4mk9bUUQOznwBUSuwSftsrcniAJbTDdzmwbqKVSCBP1alAJ4TLl1LEy2+j
-         VbMi/6YieTxsNGk6MP8JJPYLigq6ghlpTp52SGD+UgwvlWfjWphFRn6WxUYOM8xw6B7y
-         wCqYHhNhenv8+hW5ms/lWKiGkXXZgWxcQYe9p5+/T0L4blEud1Bt0d2jns1c8cnMphwZ
-         35cgtV9L4IF1FVT0rw15gkHm3mF4Gx2dxO7qyZg3ReSQMjuuaM8Pn4fv/x+MMW9aHgTC
-         b8Cg==;
-        darn=lists.yoctoproject.org
-ARC-Authentication-Results: i=1; mx.google.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=slashdevslashnull-org.20251104.gappssmtp.com; s=20251104; t=1778599023; x=1779203823; darn=lists.yoctoproject.org;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=g5DCA8TC+C4UgVNfzS8Mnf+ueKeGCiqxRY/ilfnnaJQ=;
-        b=Q1Aw1/Y5lsJrYToBP0A+hWXoHqIWBPCaie7pQkT2d9ifSYEyVDuMGH5ZKKUI4e+CsU
-         aTPoXWOcJXTpTc8fLrRlq9Wne1RBMVQYnQUfrbzT73jvb/+s7K7gs4dLqLrJwIuQROMl
-         iFocc33C1qHin2WPVlQa51QjtoK0bV/Ne7SySTYoMb5boBk+SOX7XRxqt+68Tm7nUbjh
-         c6gAU8RFoky1SZGPc+gH1MIna6U5BVTWu1FMlCbP+P3wHlhLErKIiTc/tzU8x3yLki5y
-         w3aVWcKqA/tzOQz5ayUDGKc1qqUKjme8tNfNwI7oBGN9yA9qpittTcWkikJ0PpMOCWEM
-         8blw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1778599023; x=1779203823;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=g5DCA8TC+C4UgVNfzS8Mnf+ueKeGCiqxRY/ilfnnaJQ=;
-        b=Dlshy6Hy37i9+USZC3fUitBT8gj7Mzt1MFP6GkeTH0zypIn4SukxqRhJqwKl7VS62S
-         J4xvCrMj6M0JekpZb99Ij2UpAFU0dTj5IAwZY33X++vH6UM8kbvAQxc3Yg1atfprmqkI
-         zngWf1xSadECtrEwCUJN9XdtYGtvTCyOA9oGCCqWRxE8xUt+n6aC6D5EuBiTliTzvD5E
-         3mVPTd1QdhrdXKpi+wXvH/cvDwPmzj6P49m/6fJVF03oGMVJlbHfOpTKTdsZF7Q1eaD5
-         2cFCupSvdHvsVyZPSP3OGge8PH0P7v+nYNCpD+dqivud56S7IS8+LWau7bYudLnNICcd
-         u5oA==
-X-Gm-Message-State: AOJu0YxuWXFUguqd3vmOVHoRIysCNnxrJxdc/iXbsR+5ONd0GsfAjZ4r
-	isFUotQSnd8RgBhlWVdVPeTA8yM2IGR14gQUNK7YTQqFr0VPAPqSl88m9hXLtPXZjDcB0MpJ3vT
-	5BvcMeBSm9P4EratCxpY4B/u2nmte2m7whSTzuJQZ9Q==
-X-Gm-Gg: Acq92OEd4n4LNu0dHo0xlXvEc3HUcU3JYN1l6IxlbQ/rL7uimbL68VLmWo7mf9h/kHy
-	ljM192su6tl1Zuae9heAz1nPcIua80rjHxr24h/58i1k513nuRydUto1j5JwtqwrdNoDxZePIPU
-	tNG4W4iMkN0/7bJthHE3x+YFfaPpD7dN3DY6snJpzAT9egaLkfGwzOuM1+fdYH9+7TARc1rGjRm
-	rV4JzZHvsG+oT0qFyCqBD+ILoMd9aanUnCj43Ce5vdq5dEm3KBQ7/lQ64oeXWCw21LH5zzwsTpC
-	Z1jPx9dic+KRk29jfQo=
-X-Received: by 2002:aa7:d78a:0:b0:67d:bc9c:4e93 with SMTP id
- 4fb4d7f45d1cf-680b2c0b1e1mr1714298a12.7.1778599023380; Tue, 12 May 2026
- 08:17:03 -0700 (PDT)
+ dkim=pass header.i=@kempower.com header.s=selector1 header.b=qx6pM+jx;
+ spf=pass (domain: kempower.com, ip: 52.101.65.74, mailfrom: ext-antti.garding@kempower.com)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=rz/qMYUkjlWUlTX8RVk45+Ku7Dfg6DGYJCDQBKwTKQqF1/HawbJWO3OBg10DD7EOT92DZ+1Z2WTG1/cGxHcLEbWek74mqfqw4X32u5N45vrCz1Z+BXYMZDT5bI8NB4tAyfQJbO8Dvu9cxSdxf8Njx6YVj9dXfz3gCgssgYbi/SjMbFOu4CYgwGoKtj/PBR/HfyD0EDKlEE3S38mOC7ZL691UFsC3OIIQ2qbOXWHhpANLbGxupLetwacbS6DduYutiKRw3w9D0qcVMFfIl4opM/H2zgGcF9owXFlmKqlshkQpR5lLfJQVPlZj+ox3w6wj44jJRTSheMtPC55pFRg2fA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=la/Mdm/2acsBMJCM/rnnVaaoHiRAc3vst/TjQFA3bEA=;
+ b=fkyN42VsO76eZZwV0v4A1lDwmtqSArJjxu78ASyKYaNGutrWQnimtcjz9EPKwHbpV+KM7mbj5fEdJ3mR4/6GIwXr1xlkqPOP2UA7GxX3GU4OGS+4Lzz4vqZ94dYzYewD1R3B731Vo7JbWuJwsAv+EATQ5acti12IOMb9BX/w6Sxk2yStFAvNF8Jfwn+5PlRQiXTK0TwgahU3ZfOUqI/DCvgQgqHK8TzXFzZpr/95ljIeMxrvVv7VwQlPLA9wYqnnn/0ZMP9pT5/YIgzagrQxw44G7DyK6fBu7Xp2UzceOVr+ApbVt6rPtF55z58CRIaqtazgWNUX9qOepc/4FFgywQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=kempower.com; dmarc=pass action=none header.from=kempower.com;
+ dkim=pass header.d=kempower.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kempower.com;
+ s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=la/Mdm/2acsBMJCM/rnnVaaoHiRAc3vst/TjQFA3bEA=;
+ b=qx6pM+jxGZF0DU1oD+uOwR5NCA09RE0vhZpbbyvaqPNp8kKpbZVZCpvXNecp7L5jPteZNUjCT6o2x6DmdDC53neodxV/eNGbyQCiS1Oz889+htD/hMcHeuyqrz2pxGgepKpvneJIm4JaHh4ovVVUxuhd0NpHQz7xCV2PV0qVjEFoFQgoqglhNN+DtvzdVm9pzg9+KzLP7DLxZuMoSJ8oc/el/N+li0rXF+hi+7iebJPomiYzztj79IsHUoxb8cf3F5T2gxd2tA1X8btWdr1oUB/Xg4t4WjkF9mklpiV8CfFPWMX6UUz0rvZKcZqyjS1j9aimmgzSs0KlqleXawGFRA==
+Received: from AS8PR08MB7251.eurprd08.prod.outlook.com (2603:10a6:20b:342::22)
+ by DB9PR08MB6667.eurprd08.prod.outlook.com (2603:10a6:10:2af::8) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9891.23; Tue, 12 May
+ 2026 16:05:29 +0000
+Received: from AS8PR08MB7251.eurprd08.prod.outlook.com
+ ([fe80::c97e:4beb:f22:aa8d]) by AS8PR08MB7251.eurprd08.prod.outlook.com
+ ([fe80::c97e:4beb:f22:aa8d%5]) with mapi id 15.20.9913.009; Tue, 12 May 2026
+ 16:05:29 +0000
+From: =?iso-8859-1?Q?EXT-Antti_G=E4rding?= <ext-antti.garding@kempower.com>
+To: "yocto@lists.yoctoproject.org" <yocto@lists.yoctoproject.org>
+Subject: Re: [yocto] Modifying SRC_URI before it is parsed by the fetcher
+Thread-Topic: [yocto] Modifying SRC_URI before it is parsed by the fetcher
+Thread-Index: AQHc4hww6A85r090PEm7Pqr9xvkthLYKfb+AgAANdWQ=
+Date: Tue, 12 May 2026 16:05:29 +0000
+Message-ID: 
+ <AS8PR08MB7251242FD5DCEDE2DFA4374FD5392@AS8PR08MB7251.eurprd08.prod.outlook.com>
+References: 
+ <AS8PR08MB72519491BFB65260C510C104D5392@AS8PR08MB7251.eurprd08.prod.outlook.com>
+ <CANNYZj9d4aGunvF3tQPF9frgNGrxqcntb7AQO+XsBTDBsOejTg@mail.gmail.com>
+In-Reply-To: 
+ <CANNYZj9d4aGunvF3tQPF9frgNGrxqcntb7AQO+XsBTDBsOejTg@mail.gmail.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+msip_labels: 
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=kempower.com;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: AS8PR08MB7251:EE_|DB9PR08MB6667:EE_
+x-ms-office365-filtering-correlation-id: f6856f3c-f0b1-4a08-01bf-08deb04049dd
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: 
+ BCL:0;ARA:13230040|376014|1800799024|366016|38070700021|11063799003|56012099003|22082099003|18002099003|8096899003;
+x-microsoft-antispam-message-info: 
+ R9dlekqeiNBt73NEDur8/oSVMbMjBVy0VvP4Ng824tfSD6JX/Ad1qQ5DQ3ZsmztsM9YhzpM0MtTxZG2dvXdOLFqS+q1jhVkRo7LgQXnNpBFkxiav/Z+/TEgOWTPKZQ7M+scAc6xj2npbgvDINP/n1P0yGBSgXmsrBq2zzLx/KdA69SboyaZtd8ogYCFxQfYY3uuf4jdOmFYJui0yFnjRwIZwmnv1aVLMBYnhZ2wH3hASbTy4FqoLuNwJToamPYo2cCgKAQg9KI9CGSKAjgDnkeK25rrd01Efn4VZo9znAbBBnGhs7QoUNfMaNQfJdIITOXSVGQ3BpSZiwOwGVyaD9VD2LV0FHd/z7xyPNmb0PY0A/J4nj7gZnartlRShyAwqrdcUX6roOdMNC016gwHm5JpEFziTuTzMwcFBvtj6PsI7/2OBzeYHQeZAUyhlna93bX+t6g83bZvUxdszCXzcTGC7ofumJDtRV0XCBC2qcn9izZyw7Dvav/x+hcqJz3pghA9h7An70O+aGlDaphVl/smN1kC8dl15dpm5U9yKe3RMdgOLbWl9gJEPEKAecwyzfPqrjcDQV1h5dxv+h6QpFoHq+7wrWbnIuMsx5T6DFXyXsBCeizWWbSxRFZdfAxgVLf7UZ+M4kgCvCflYP2HkCD/9n97aArEeY5lD5rfCdDrR6WFkNVYvNif4ZS9E8IotkUAldRSzteOE/rG7et8DGeSPSSn42zVmlo9UJ5064nXVZy/zT27XGYllbgTY0dIN
+x-forefront-antispam-report: 
+ CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AS8PR08MB7251.eurprd08.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(376014)(1800799024)(366016)(38070700021)(11063799003)(56012099003)(22082099003)(18002099003)(8096899003);DIR:OUT;SFP:1102;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: 
+ =?iso-8859-1?Q?IZpxkiL1tGfcekuAtO6+iH2of1bTMdXDlLEh9oXMtY7bS5cjPhDTMYj4X0?=
+ =?iso-8859-1?Q?qxqw1duJZnLFKlbncn9xxJKloif3Q8wXeyuB0sc+iF+nSt+UXVjjwRRaYx?=
+ =?iso-8859-1?Q?UcFj9LoivdZUYoDwFmZPXtzJR9GfTk7WngYwD3DKTRfUHNUWTF+aCA85+0?=
+ =?iso-8859-1?Q?cbYKo3Oy6XCx70k3IBE7+m7A9fk43KaFYXJkXYTxms/ZRLZvcrUHoiUbvE?=
+ =?iso-8859-1?Q?ICCdmjNUFsy94M6WdR4g0KNAY2sTqp3tFZn1N/lqZqmvCNqORqsqN1SO5K?=
+ =?iso-8859-1?Q?ECK2VRKrknsLKu6FgKsguli1BPuvaxpp9yRiKfQngeECgks25Ef3sr58xR?=
+ =?iso-8859-1?Q?q0YO6q0L1ucqusswLsl+Z2d6JmoLW7HklDoveDsjT5SfXG/JxmKDkLwp6S?=
+ =?iso-8859-1?Q?kqvWv4vEiFjANHbq2am6ELqW2dcNgb9WQhIL5Vgjymh30ppNRMRRolvFq/?=
+ =?iso-8859-1?Q?9C5WPAg6Q7ZL5ZsJThPjq0wb4CtMTisRXrIuBI2GmZKwpsVskYcUXR1tfm?=
+ =?iso-8859-1?Q?HrxxDXLSuTgJKx9qYAjyFy6lY1RlAyE7oTUNyDfC+rDd4eAKNT0bcU1kyj?=
+ =?iso-8859-1?Q?dVnKqk+jJsznBz3yIciZm3akwu6yXRNdCsCvYPoOdTgpWHcaXTvN0MAz2M?=
+ =?iso-8859-1?Q?aB2MNRbTadIj4VBKjMQv6diGgcfh3Llqhx3VNJ19YzK3+4dVZpRlcKATqo?=
+ =?iso-8859-1?Q?rzPafaEbkNckvkMDRDkyEL4dqIWJWZUkuNnFqmQVmO7UjdtOwyc3kgDPaX?=
+ =?iso-8859-1?Q?WRb7KZjlNbhB1DDoNp20Ur5l5M+PiULd+h/5GjzsadeFbULKq0fU3+z2x5?=
+ =?iso-8859-1?Q?r52XFdsppP9WNts9b4PruS1XGvmncpyK3k+VpzT9jRGg043GaUEGGMunM6?=
+ =?iso-8859-1?Q?YIopSIl4we3BwXci7EsSq/MICb2ocgizUQ2Pbai6M+OcpWxOrn1wEJMWjK?=
+ =?iso-8859-1?Q?7UNI1QHnhz2GPAgpweGVKocOZb8akv1bF0R5Abgk0QN2iji0XSs2zSAWuP?=
+ =?iso-8859-1?Q?YBEQufjgl3AWfHGonhi1Glb61056AShXRUE+hGtKkcpwfqoc9wbjnvEvZc?=
+ =?iso-8859-1?Q?JQVemY++OyCVzuTj8edlgOhS6NeOvvri9EGECrbv5HfyabIkUvgy6eknlK?=
+ =?iso-8859-1?Q?nWu4puAKZm+S7mJZ1PCpwZsseEtadxK9LHNkpbokUge8GQi5twKVnDz3ux?=
+ =?iso-8859-1?Q?g+Sftf71qvj5w13JXBZjP7rMVZgdQhc3tGpMCz9wM3dZXWnIuo9h8ol/Qs?=
+ =?iso-8859-1?Q?pecLIaw8TmvmQxHPbFyDBHH9ce5RvtMl3W9rYjC7yCYyscWE4KqYjV/6yE?=
+ =?iso-8859-1?Q?VhqQxotTHZ5HtH1Mv/1y8pc26rXsHsKmA/HvtL4uvwAIHhZXolYKPtsX2f?=
+ =?iso-8859-1?Q?sBtZNvi6Z3gD4fyh7/i40n4Dvau9cdnTFXBv4jjzz7Mwy1EFa3RJElu45g?=
+ =?iso-8859-1?Q?hxNSjJFcWJ/kZHmAfigkLnEFi1HqBLqTpNC4rrCcQpSTDAZY8Wn8ychPMt?=
+ =?iso-8859-1?Q?YQi2LQ4IoXTf4rN7K89uKklrZxDLt8EFQr3Exp3GiLzuTZYNEa6Pvvnk2o?=
+ =?iso-8859-1?Q?DbLh9Kpp1M8X+zCh69VuTmnjzKsQzYW951HYvWJNzSQGcHv+8VOzpLpo5c?=
+ =?iso-8859-1?Q?pQa+C2NKsk3Pm5DhtaqqN5G46ZYXNDqoD/hXZme1gDscg/rS5ScAs4njxe?=
+ =?iso-8859-1?Q?oBZaGPBzeRaHJW7l9965wdQydgFjl9iED1vmNMHhM4/ONPC+CPIhz7iTxX?=
+ =?iso-8859-1?Q?YOMGiKO2038OlUfH9JScmKjNCDVwXwD2nMdsCwlzIPvDeMpDUDoZF2M7/9?=
+ =?iso-8859-1?Q?51vtfBXYyFBNJja9oEhGujldcWlhubI=3D?=
+Content-Type: multipart/alternative;
+	boundary="_000_AS8PR08MB7251242FD5DCEDE2DFA4374FD5392AS8PR08MB7251eurp_"
 MIME-Version: 1.0
-References: <001001dce188$4a8cde20$dfa69a60$@synergy.org> <c087189f913cfd64e1d835c4f96815a42c51eab2.camel@linuxfoundation.org>
- <CAHPfuSkiXX8qWuanH+sBOxXdPiDPM4-PLyf=JJ0tsUCUy95ixA@mail.gmail.com> <002501dce217$ad461a10$07d24e30$@synergy.org>
-In-Reply-To: <002501dce217$ad461a10$07d24e30$@synergy.org>
-From: John Dowd <jdowd@slashdevslashnull.org>
-Date: Tue, 12 May 2026 11:16:51 -0400
-X-Gm-Features: AVHnY4LUT8QslppxvlYILprs-Pl0eLJVBCbhaa1l3SogR532AhTeyMa670gxQy4
-Message-ID: <CAHPfuSnxbLrYycHX6f48vMTQhvd7r=qQvgk1F+uLAzMkKkTZog@mail.gmail.com>
-Subject: Re: [yocto] Looking for Yocto-supported Reference Design
-To: dave@synergy.org
-Cc: yocto@lists.yoctoproject.org, richard.purdie@linuxfoundation.org
-Content-Type: multipart/alternative; boundary="000000000000fca9b00651a05aa4"
+X-OriginatorOrg: kempower.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: AS8PR08MB7251.eurprd08.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: f6856f3c-f0b1-4a08-01bf-08deb04049dd
+X-MS-Exchange-CrossTenant-originalarrivaltime: 12 May 2026 16:05:29.6437
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 08631c2f-66d7-4254-afbd-4f0e104d509d
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: h8roudQpu2dmky1IP39gz/b1j88nc4uHx27RZyKKhDbfN00HHM4wOW1NLqN+8yDfTDoGkAmw9/l79vMFyo8UVo8pPXmEYXKRkOaFALo+5PA=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DB9PR08MB6667
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from 45-33-107-173.ip.linodeusercontent.com [45.33.107.173] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Tue, 12 May 2026 15:17:13 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/66540
+ <yocto@lists.yoctoproject.org>; Tue, 12 May 2026 16:05:44 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/66541
 
---000000000000fca9b00651a05aa4
-Content-Type: text/plain; charset="UTF-8"
+--_000_AS8PR08MB7251242FD5DCEDE2DFA4374FD5392AS8PR08MB7251eurp_
+Content-Type: text/plain; charset="iso-8859-1"
 Content-Transfer-Encoding: quoted-printable
 
-Dave,
+> Please explain the problem first, before presenting the various
+solution attempts. What do you need to modify in SRC_URI and why?
+Maybe there's a completely different approach to the actual issue.
 
-I couldn't get a Yocto (scarthgap) to work with the platform completely out
-of the box. I had to create a series of my own patches and I still haven't
-gotten the bluetooth to work. However I do have it booting, and all the
-usual support services are working. The wifi works as well. I need the
-bluetooth since I of course, need an audio output and I want to use a
-bluetooth headset.
-
-Again, stay in touch and I'm glad to share my work. I'm not looking to make
-money here, just have a device that people can use and find helpful and
-enjoy life as it should be. With Books!
-
-Cheers!!
-
-On Tue, May 12, 2026 at 10:00=E2=80=AFAM <dave@synergy.org> wrote:
-
-> Raj, Richard, John,
->
->                Thank you for the excellent suggestions! John, It=E2=80=99=
-s good to
-> know that you are working on a similar project. I will run these ideas do=
-wn.
->
->                David
->
->
->
-> *From:* yocto@lists.yoctoproject.org <yocto@lists.yoctoproject.org> *On
-> Behalf Of *John
-> *Sent:* Tuesday, May 12, 2026 6:12 AM
-> *To:* yocto@lists.yoctoproject.org; richard.purdie@linuxfoundation.org
-> *Subject:* Re: [yocto] Looking for Yocto-supported Reference Design
->
->
->
-> David,
->
->
->
-> I've started on exactly the same kind of project for my own purposes. I'v=
-e
-> been using a Raspberry Pi 0 2W for my development. I needed the wifi and =
-BT
-> connectivity so I started with it. Please feel free to get in touch if yo=
-u
-> have any questions.
->
->
->
-> Cheers!!
->
->
->
-> On Tue, May 12, 2026 at 8:13=E2=80=AFAM Richard Purdie via lists.yoctopro=
-ject.org
-> <richard.purdie=3Dlinuxfoundation.org@lists.yoctoproject.org> wrote:
->
-> Hi David,
->
-> On Mon, 2026-05-11 at 13:53 -0700, dave via lists.yoctoproject.org wrote:
-> >       My name is David Richards and I am blind. I am new to Yocto. I
-> would
-> > like to build a portable talking e-book reader. The goal is to support
-> > DAISY, Audible, Kindle, and epub books. In addition, I would like to be
-> able
-> > to stream MP3 content. To that end, I am looking for a reference design
-> to
-> > base the project on. It does not require/use a display or touchpad. The
-> user
-> > interface will utilize buttons and speech output. The design should hav=
-e
-> > existing Yocto support, if possible.
-> >       Does anyone have any pointers for a reference design I could star=
-t
-> > with?
->
-> There are many boards with OE/Yocto Project support. You can get an
-> idea of them all from the layer index's list of machines which is
-> showing 22 pages of them!
->
->
-> https://layers.openembedded.org/layerindex/branch/master/machines/?q=3D&b=
-rowse=3D1
->
-> Some have better support than others, we've had the Beagle devices like
-> the BeaglePlay and earlier devices like the BeagleBone and BeagleBoard
-> supported as one of our test platforms for a long time. That has basic
-> support in meta-yocto with beaglebone-yocto and a full BSP from TI as
-> well. There are others like the various RaspberryPis and may more,
-> including more experimental ones with RISC-V processors.
->
-> It sounds like the audio output might be important to you and however
-> you plan to interface the buttons to the system so that may be
-> something to factor in. You might need USB? That might narrow down your
-> choice. I'd probably try and find a board which holds interest to you
-> as well.
->
-> Cheers,
->
-> Richard
->
->
->
->
->
->
->
->
-> --
->
-> "To err is human, to forgive is not company policy."
->
->
->
-> John Dowd
->
-> Contract - Software Developer
->
-> Cell: (613)316-7884
->
+I want to add a tag parameter to one of the URIs under certain conditions s=
+o that bitbake can check that the commit matching the rev parameter has tha=
+t tag. The tag check is already there in bitbake.
 
 
---=20
-"To err is human, to forgive is not company policy."
+BR,
+Antti G=E4rding
 
-John Dowd
-Contract - Software Developer
-Cell: (613)316-7884
-
---000000000000fca9b00651a05aa4
-Content-Type: text/html; charset="UTF-8"
+--_000_AS8PR08MB7251242FD5DCEDE2DFA4374FD5392AS8PR08MB7251eurp_
+Content-Type: text/html; charset="iso-8859-1"
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr">Dave,<div><br></div><div>I couldn&#39;t get a Yocto (scart=
-hgap) to work with the platform completely out of the box. I had to create =
-a series of my own patches and I still haven&#39;t gotten the bluetooth to =
-work. However I do have it booting, and all the usual support services are =
-working. The wifi works as well. I need the bluetooth since I of course, ne=
-ed an audio output and I want to use a bluetooth headset.</div><div><br></d=
-iv><div>Again, stay in touch and I&#39;m glad to share my work. I&#39;m not=
- looking to make money here, just have a device that people can use and fin=
-d helpful and enjoy life as it should be. With Books!</div><div><br></div><=
-div>Cheers!!</div></div><br><div class=3D"gmail_quote gmail_quote_container=
-"><div dir=3D"ltr" class=3D"gmail_attr">On Tue, May 12, 2026 at 10:00=E2=80=
-=AFAM &lt;<a href=3D"mailto:dave@synergy.org">dave@synergy.org</a>&gt; wrot=
-e:<br></div><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0=
-.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex"><div class=3D=
-"msg6388240954964019269"><div lang=3D"EN-US" style=3D"overflow-wrap: break-=
-word;"><div class=3D"m_6388240954964019269WordSection1"><p class=3D"MsoNorm=
-al"><span style=3D"font-size:11pt">Raj, Richard, John,<u></u><u></u></span>=
-</p><p class=3D"MsoNormal"><span style=3D"font-size:11pt">=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 Thank=
- you for the excellent suggestions! John, It=E2=80=99s good to know that yo=
-u are working on a similar project. I will run these ideas down.<u></u><u><=
-/u></span></p><p class=3D"MsoNormal"><span style=3D"font-size:11pt">=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0 David<u></u><u></u></span></p><p class=3D"MsoNormal"><span style=3D"fon=
-t-size:11pt"><u></u>=C2=A0<u></u></span></p><div style=3D"border-width:1pt =
-medium medium;border-style:solid none none;border-color:rgb(225,225,225) cu=
-rrentcolor currentcolor;padding:3pt 0in 0in"><p class=3D"MsoNormal"><b><spa=
-n style=3D"font-size:11pt;font-family:Calibri,sans-serif">From:</span></b><=
-span style=3D"font-size:11pt;font-family:Calibri,sans-serif"> <a href=3D"ma=
-ilto:yocto@lists.yoctoproject.org" target=3D"_blank">yocto@lists.yoctoproje=
-ct.org</a> &lt;<a href=3D"mailto:yocto@lists.yoctoproject.org" target=3D"_b=
-lank">yocto@lists.yoctoproject.org</a>&gt; <b>On Behalf Of </b>John<br><b>S=
-ent:</b> Tuesday, May 12, 2026 6:12 AM<br><b>To:</b> <a href=3D"mailto:yoct=
-o@lists.yoctoproject.org" target=3D"_blank">yocto@lists.yoctoproject.org</a=
->; <a href=3D"mailto:richard.purdie@linuxfoundation.org" target=3D"_blank">=
-richard.purdie@linuxfoundation.org</a><br><b>Subject:</b> Re: [yocto] Looki=
-ng for Yocto-supported Reference Design<u></u><u></u></span></p></div><p cl=
-ass=3D"MsoNormal"><u></u>=C2=A0<u></u></p><div><p class=3D"MsoNormal">David=
-,<u></u><u></u></p><div><p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p></di=
-v><div><p class=3D"MsoNormal">I&#39;ve started on exactly the same kind of =
-project for my own purposes. I&#39;ve been using a Raspberry Pi 0 2W for my=
- development. I needed the wifi and BT connectivity so I started with it.=
-=C2=A0Please feel free to get in touch if you have any questions.<u></u><u>=
-</u></p></div><div><p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p></div><di=
-v><p class=3D"MsoNormal">Cheers!!<u></u><u></u></p></div></div><p class=3D"=
-MsoNormal"><u></u>=C2=A0<u></u></p><div><div><p class=3D"MsoNormal">On Tue,=
- May 12, 2026 at 8:13<span style=3D"font-family:Arial,sans-serif">=E2=80=AF=
-</span>AM Richard Purdie via <a href=3D"http://lists.yoctoproject.org" targ=
-et=3D"_blank">lists.yoctoproject.org</a> &lt;richard.purdie=3D<a href=3D"ma=
-ilto:linuxfoundation.org@lists.yoctoproject.org" target=3D"_blank">linuxfou=
-ndation.org@lists.yoctoproject.org</a>&gt; wrote:<u></u><u></u></p></div><b=
-lockquote style=3D"border-width:medium medium medium 1pt;border-style:none =
-none none solid;border-color:currentcolor currentcolor currentcolor rgb(204=
-,204,204);padding:0in 0in 0in 6pt;margin-left:4.8pt;margin-right:0in"><p cl=
-ass=3D"MsoNormal" style=3D"margin-bottom:12pt">Hi David,<br><br>On Mon, 202=
-6-05-11 at 13:53 -0700, dave via <a href=3D"http://lists.yoctoproject.org" =
-target=3D"_blank">lists.yoctoproject.org</a> wrote:<br>&gt;=C2=A0 =C2=A0 =
-=C2=A0 =C2=A0My name is David Richards and I am blind. I am new to Yocto. I=
- would<br>&gt; like to build a portable talking e-book reader. The goal is =
-to support<br>&gt; DAISY, Audible, Kindle, and epub books. In addition, I w=
-ould like to be able<br>&gt; to stream MP3 content. To that end, I am looki=
-ng for a reference design to<br>&gt; base the project on. It does not requi=
-re/use a display or touchpad. The user<br>&gt; interface will utilize butto=
-ns and speech output. The design should have<br>&gt; existing Yocto support=
-, if possible.<br>&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0Does anyone have any point=
-ers for a reference design I could start<br>&gt; with?<br><br>There are man=
-y boards with OE/Yocto Project support. You can=C2=A0get an<br>idea of them=
- all from the layer index&#39;s list of machines which is<br>showing 22 pag=
-es of them! <br><br><a href=3D"https://layers.openembedded.org/layerindex/b=
-ranch/master/machines/?q=3D&amp;browse=3D1" target=3D"_blank">https://layer=
-s.openembedded.org/layerindex/branch/master/machines/?q=3D&amp;browse=3D1</=
-a><br><br>Some have better support than others, we&#39;ve had the Beagle de=
-vices like<br>the BeaglePlay and earlier devices like the BeagleBone and Be=
-agleBoard<br>supported as one of our test platforms for a long time.=C2=A0T=
-hat has basic<br>support in meta-yocto with beaglebone-yocto and a full BSP=
- from TI as<br>well. There are others like the various RaspberryPis and may=
- more,<br>including more experimental ones with RISC-V processors.<br><br>I=
-t sounds like the audio output might be important to you and however<br>you=
- plan to interface the buttons to the system so that may be<br>something to=
- factor in. You might need USB? That might narrow down your<br>choice. I&#3=
-9;d probably try and find a board which holds interest to you<br>as well.<b=
-r><br>Cheers,<br><br>Richard<br><br><br><br><br><br><u></u><u></u></p></blo=
-ckquote></div><div><p class=3D"MsoNormal"><br clear=3D"all"><u></u><u></u><=
-/p></div><div><p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p></div><p class=
-=3D"MsoNormal"><span class=3D"m_6388240954964019269gmailsignatureprefix">--=
- </span><u></u><u></u></p><div><div><p class=3D"MsoNormal">&quot;To err is =
-human, to forgive is not company policy.&quot;<u></u><u></u></p><div><p cla=
-ss=3D"MsoNormal"><u></u>=C2=A0<u></u></p></div><div><p class=3D"MsoNormal">=
-John Dowd<u></u><u></u></p></div><div><p class=3D"MsoNormal">Contract - Sof=
-tware Developer<u></u><u></u></p></div><div><p class=3D"MsoNormal">Cell: (6=
-13)316-7884<u></u><u></u></p></div></div></div></div></div></div></blockquo=
-te></div><div><br clear=3D"all"></div><div><br></div><span class=3D"gmail_s=
-ignature_prefix">-- </span><br><div dir=3D"ltr" class=3D"gmail_signature"><=
-div dir=3D"ltr">&quot;To err is human, to forgive is not company policy.&qu=
-ot;<div><br></div><div>John Dowd</div><div>Contract - Software Developer</d=
-iv><div>Cell: (613)316-7884</div></div></div>
+<html>
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Diso-8859-=
+1">
+<style type=3D"text/css" style=3D"display:none;"> P {margin-top:0;margin-bo=
+ttom:0;} </style>
+</head>
+<body dir=3D"ltr">
+<div class=3D"elementToProof" style=3D"font-family: Aptos, Aptos_EmbeddedFo=
+nt, Aptos_MSFontService, Calibri, Helvetica, sans-serif; font-size: 11pt; c=
+olor: rgb(0, 0, 0);">
+&gt; Please explain the problem first, before presenting the various<br>
+solution attempts. What do you need to modify in SRC_URI and why?<br>
+Maybe there's a completely different approach to the actual issue.<br>
+<br>
+I want to add a tag parameter to one of the URIs under certain conditions s=
+o that bitbake can check that the commit matching the rev parameter has tha=
+t tag. The tag check is already there in bitbake.</div>
+<div class=3D"elementToProof" style=3D"font-family: Aptos, Aptos_EmbeddedFo=
+nt, Aptos_MSFontService, Calibri, Helvetica, sans-serif; font-size: 11pt; c=
+olor: rgb(0, 0, 0);">
+<br>
+</div>
+<div class=3D"elementToProof" style=3D"font-family: Aptos, Aptos_EmbeddedFo=
+nt, Aptos_MSFontService, Calibri, Helvetica, sans-serif; font-size: 11pt; c=
+olor: rgb(0, 0, 0);">
+<br>
+</div>
+<div class=3D"elementToProof" style=3D"font-family: Aptos, Aptos_EmbeddedFo=
+nt, Aptos_MSFontService, Calibri, Helvetica, sans-serif; font-size: 11pt; c=
+olor: rgb(0, 0, 0);">
+BR,</div>
+<div class=3D"elementToProof" style=3D"font-family: Aptos, Aptos_EmbeddedFo=
+nt, Aptos_MSFontService, Calibri, Helvetica, sans-serif; font-size: 11pt; c=
+olor: rgb(0, 0, 0);">
+Antti G=E4rding</div>
+</body>
+</html>
 
---000000000000fca9b00651a05aa4--
+--_000_AS8PR08MB7251242FD5DCEDE2DFA4374FD5392AS8PR08MB7251eurp_--
 
