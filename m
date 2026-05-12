@@ -1,193 +1,124 @@
-Return-Path: <raj.khem@gmail.com>
+Return-Path: <flix.yocto@benfm.de>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 5F73BCD37AC
-	for <webhook@archiver.kernel.org>; Tue, 12 May 2026 04:31:22 +0000 (UTC)
-Received: from mail-yx1-f41.google.com (mail-yx1-f41.google.com [74.125.224.41])
- by mx.groups.io with SMTP id smtpd.msgproc02-g2.68510.1778560272284023160
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 691F5CD4855
+	for <webhook@archiver.kernel.org>; Tue, 12 May 2026 10:03:17 +0000 (UTC)
+Received: from mail.benfm.de (mail.benfm.de [85.215.152.190])
+ by mx.groups.io with SMTP id smtpd.msgproc01-g2.71757.1778580189480846930
  for <yocto@lists.yoctoproject.org>;
- Mon, 11 May 2026 21:31:12 -0700
+ Tue, 12 May 2026 03:03:10 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20251104 header.b=ZNIvpE0B;
- spf=pass (domain: gmail.com, ip: 74.125.224.41, mailfrom: raj.khem@gmail.com)
-Received: by mail-yx1-f41.google.com with SMTP id 956f58d0204a3-651c5d525f6so5589001d50.3
-        for <yocto@lists.yoctoproject.org>; Mon, 11 May 2026 21:31:12 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; t=1778560271; cv=none;
-        d=google.com; s=arc-20240605;
-        b=fodzEWgPqoHWMQao5oVWF90JPQbgd+y27t/PvgBuoPOATx+pukizaCIiR3pRpYkndZ
-         LbeHgAcEe41Ws8zQDlSEdXhP1xptaQil0Q8GPbThsRIZj5na9YEfLwl2Tde0gcdEU93P
-         ciiRJNIt6/GGjsEeZwrDltacYJY6JKGQvhskhARsgHQVjQbxkCbtKBddGFc1zTC5I63F
-         raUEfQeZfYbCAl7Jm6iYoKuyjLFMi9rhbqmeOVRK3lLV4ekgpRytPW/+IOEpRnWxIzJ+
-         omS9G+/3+CI6TVp8ojj83Gt5LP9qQHm+lN8lEUfoe5e7wQTJ/wYKL2EOWp1X4qZF++xX
-         +NiQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
-        h=to:subject:message-id:date:from:in-reply-to:references:mime-version
-         :dkim-signature;
-        bh=QqjLbZHi26JvCd47RxPd+VqKoXBW/YdjtVbP4jA/hj4=;
-        fh=63QwqQsw6yHLmSplS9ljfc6/5y4bxe59ebNlOLIGDws=;
-        b=ZdnzKMN2+PvWXP/5PhW43//O8ANayh+mgtHZtfLQB5aZ2gJ9+SCTKC9Ma6WGaomxJW
-         Z2US/ozGp32WKd8BhKrYHlkkO3zyj3SqNmKHl2SBqBL7dWCBAwDOc9haWibyJA7L/Mdo
-         6V/XbWy+Xg4YrLv6AypwUTZaKdX6UCB/AI37nDV84agL796pniglfG0XSW9vz3fRe1BI
-         WQCUwrPMjiYm6JAEIGjROMm0AWd+jZ/lI4ibEit8+zB34MVLuwUEiuRmE7m3jXHtkNp2
-         T66jOSqAUHZ2noWNOWj+ZgxX93nMaK6662XB431yDzFpwDyJAbzcYeC5sh+jrddw8bjB
-         D/sQ==;
-        darn=lists.yoctoproject.org
-ARC-Authentication-Results: i=1; mx.google.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20251104; t=1778560271; x=1779165071; darn=lists.yoctoproject.org;
-        h=to:subject:message-id:date:from:in-reply-to:references:mime-version
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=QqjLbZHi26JvCd47RxPd+VqKoXBW/YdjtVbP4jA/hj4=;
-        b=ZNIvpE0B5amadT0yj0nMSR7GJ3O9YHh8mUywX5fUbJCS7PBjYq7sjPi9zK2RTZLsY4
-         JUBGZe8QCWg6wNcvV6jsgqgxvO/vwAiLuYfPCsJQSDqtc+R5uUpCenfLh/cx0y4qvYFq
-         b57qKUZiXysKNFKryPRql808qZhLmvx6uDhb11n2anj1OBd7bTzU0Au97fn9hdT8xTF+
-         MO6HNyB33TImiIhTcZKYEbqnCosoWFC/25ugLKjxMK2Ejlhi2JQPmf1C14fBvorVlttk
-         8U5gC5OFNyBTcMpOXKCGs8mFZRzk9l0jBEmu+8iQCvuuq4VTkXSaNZNJytL7T3IkONAr
-         7YJg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1778560271; x=1779165071;
-        h=to:subject:message-id:date:from:in-reply-to:references:mime-version
-         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=QqjLbZHi26JvCd47RxPd+VqKoXBW/YdjtVbP4jA/hj4=;
-        b=KbuSzw/VzFM5Z7M535ZBpyY5tRE+f4U/r9HCoFJG5yq1+cgIFMMPRw4wApLTypu4vL
-         7WxymjtHV1jYWhObOXYajLAf+N3neKaSTReqxUETlvO3EugsSnEebSSx3o1bMjl7N+/Y
-         3A/QbYLw5NBtSPlD5VdLp5an7RuXBzt+38HI/k/onFvwmB8dcw94vcWIBR1nxN7Y9Pqw
-         xW5wbxvYxbLpGmEocTpmXJPWtxZol+XP5DxspOMLHi6L0XF9Zw9V/MmAFBEU46yCETmq
-         XqakqgNcI5CQtjuU9pqW4lac/g0Etk0WvgEPS4eiYU2xo743X3fE4mWPwa2pbMZ/JfIQ
-         fhHw==
-X-Gm-Message-State: AOJu0YxlLx9vGsXRZqxaxlyQqbx7LHPb1eCzv+WuruILpqzwZptJhlEE
-	LxM1RxqqWxodxUvnzID+F7jvfi46bAj1yySmE1Hy0OLwoZDBLXOPuk3EWSmM0UPQ8tQv5YPjKe3
-	q2yHLH4dGSZq+GFpTspQmwWPV7vsCOi1lbPGGmLYzHw==
-X-Gm-Gg: Acq92OFPJFRtVD1afW1oEbD86bCJoapRyVFs1GEYcUZmL1erKz8kg9DytDKx4gNT+cS
-	Mh+LYXxsFwLXdKutyGLnicMXSpxKRI6WaoM4tmQEB02LXFif7Htda7cO/dMq00CI5QErIP6ebK/
-	pbjvQjG+3FRT18JwBo7lYbQbAT9G2ieDVklfv7uvwKe80yQsAHsMj7DKpkbU9oDFgZkibWsn6mu
-	WpJWmOzHLAPWDVSlf8K/dVE63Ii5E/GoMmy9McW6DrOloJ8+5bkqtiUxhSjYEtiJ5RIBd/lnSfh
-	OiYBHyIA/QCFPSxXqgKK1BSZ4vV5pRsIW/7F9L2KxGEDX0BsjAmHNxuvLzjV6cV84O5O9rNaFhb
-	v3AM7Sp1KnlVbBjVfNNZ7uBbyl/gd4O+CI4AgmbrbJBsNN1rJA9DgK2FPPkCMA+E8yt8l3zH4yG
-	qdQBQn
-X-Received: by 2002:a53:df07:0:b0:65c:7576:a4e2 with SMTP id
- 956f58d0204a3-65c79e22a81mr21439445d50.54.1778560270955; Mon, 11 May 2026
- 21:31:10 -0700 (PDT)
+ dkim=fail reason="dkim: body hash did not verify" header.i=@benfm.de header.s=2024 header.b=wsRe5oFF;
+ spf=pass (domain: benfm.de, ip: 85.215.152.190, mailfrom: flix.yocto@benfm.de)
+Message-ID: <923a7f55-2a3c-435d-b18d-220cfcfd4ade@benfm.de>
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=benfm.de; s=2024;
+	t=1778580186;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=8cW/W7b1DFCdQXoO6Y8AY8pyONZJYIEw6r64Te19Xvc=;
+	b=wsRe5oFFfNSDAP0yP8f+x6zjRMpuB6LB48fByxIOCyQbeIFT8IMvZcVLcr+11X0g62k9EN
+	0xy49wVDGa15in/Od4n2CsmXuBeo6SgrYa0tu30C88pABG807tuPGy6fLQmlUKtIWVFLcQ
+	QJ7ZGYKswjQOw8QCDy3Xz8Mncb9YS2VKzli4w5YpAAgOHYF4TY9owmUm/p3QA0jrXr3EHf
+	sw+6ii7qBa4H6BVM17fkJm9exWeE5BxDLeQlaDpL8P+yl+wiFkrfGvCSl7fyld1R/Kw1g8
+	dfcS+pto44kh7EdCs52j4/I2hPiGFf0Ui4tOME3E5iGAZLdhY79zgbKaYDsWVg==
+Authentication-Results: ORIGINATING;
+	auth=pass smtp.auth=flix@benfm.de smtp.mailfrom=flix.yocto@benfm.de
+Date: Tue, 12 May 2026 12:03:05 +0200
 MIME-Version: 1.0
-References: <001001dce188$4a8cde20$dfa69a60$@synergy.org>
-In-Reply-To: <001001dce188$4a8cde20$dfa69a60$@synergy.org>
-From: Khem Raj <raj.khem@gmail.com>
-Date: Mon, 11 May 2026 21:30:44 -0700
-X-Gm-Features: AVHnY4KVA7z5fdGkAxPUMpyHyzmo5Yy7vAwMEuamzBjMwKmsy3qwvtCW29ICEqo
-Message-ID: <CAMKF1soaN2_vrmso5kDhJHzbrqpeX=VoDUX__K2v+=9HxGYd2w@mail.gmail.com>
-Subject: Re: [yocto] Looking for Yocto-supported Reference Design
-To: yocto@lists.yoctoproject.org, dave@synergy.org
-Content-Type: multipart/alternative; boundary="000000000000297a9c065197552c"
+Subject: Re: [yocto] Problems adding initramfs when using FIT image
+To: yocto@lists.yoctoproject.org, Anders.Montonen@iki.fi
+References: <ED150875-0486-4D10-ABDC-6E3EB2A39F1A@iki.fi>
+Content-Language: en-US
+From: Felix Mellmann <flix.yocto@benfm.de>
+In-Reply-To: <ED150875-0486-4D10-ABDC-6E3EB2A39F1A@iki.fi>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: quoted-printable
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from 45-33-107-173.ip.linodeusercontent.com [45.33.107.173] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Tue, 12 May 2026 04:31:22 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/66532
+ <yocto@lists.yoctoproject.org>; Tue, 12 May 2026 10:03:17 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/66533
 
---000000000000297a9c065197552c
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Hi Anders,
 
-Hi David
+unfortunately I can't answer why the fitImage with the bundled initramfs=20
+is not copied over to /boot but I want to tell, that=20
+"INITRAMFS_IMAGE_BUNDLE" has a bit misleading name. Actually enabling=20
+this option will generate=C2=A0 the initramfs first and then hand it over=
+ to=20
+the compile task which then incorporates the initramfs into the kernel=20
+image itself. This is not what you want. You want a separate kernel=20
+image, device-tree and initramfs which then gets bundled to a fitImage.
 
-Sometime ago, there was a kobo reader layer for yocto
+I think you should trace down which recipe installs the fitImage to=20
+/boot and then maybe you just need to adjust a variable or two to make=20
+the fitImage which bundles the initramfs to install to /boot instead of=20
+that which doesn't.
 
-https://github.com/kevinior/meta-kobo-clara-hd
+Best regards,
+Felix
 
-It might be outdated now, but it might be a useful reference.
 
-On Mon, May 11, 2026 at 1:54=E2=80=AFPM dave via lists.yoctoproject.org <da=
-ve=3D
-synergy.org@lists.yoctoproject.org> wrote:
-
-> Hello,
->         My name is David Richards and I am blind. I am new to Yocto. I
-> would
-> like to build a portable talking e-book reader. The goal is to support
-> DAISY, Audible, Kindle, and epub books. In addition, I would like to be
-> able
-> to stream MP3 content. To that end, I am looking for a reference design t=
-o
-> base the project on. It does not require/use a display or touchpad. The
-> user
-> interface will utilize buttons and speech output. The design should have
-> existing Yocto support, if possible.
->         Does anyone have any pointers for a reference design I could star=
-t
-> with?
->         Many thanks,
->         David
+On 5/11/26 11:48, Anders Montonen wrote:
+> Hi,
 >
+> I=E2=80=99m trying to add an initrd to our build and I=E2=80=99m runnin=
+g into some weird issues. We are using Scarthgap with our own BSP and app=
+lication layers, but the issues are at least partially reproducible with =
+just Poky.
 >
+> In my local.conf I have
+> INITRAMFS_IMAGE =3D =E2=80=9Ccore-image-minimal-initramfs=E2=80=9D
+>
+> Depending on the value of INITRAMFS_IMAGE_BUNDLE I get different result=
+s, neither of which seems correct, or what I expected.
+>
+> With INITRAMFS_IMAGE_BUNDLE =3D =E2=80=9C1=E2=80=9D, the /boot director=
+y of the rootfs contains a dangling =E2=80=9CfitImage=E2=80=9D symlink, b=
+ut the actual image is missing.
+> With INITRAMFS_IMAGE_BUNDLE =3D =E2=80=9C0=E2=80=9D, the /boot director=
+y of the rootfs contains both the symlink and the image it is pointing at=
+, but the image does not contain the initramfs image. If I look in the im=
+age deploy directory, a FIT image containing the initramfs has been creat=
+ed, but it does not get pulled into the image.
+>
+> To reproduce with Poky, clone and checkout the =E2=80=9CScarthgap=E2=80=
+=9D branch, add the following to the local.conf and then build core-image=
+-minimal:
+> MACHINE =3D =E2=80=9Cgenericarm64"
+> INITRAMFS_IMAGE =3D =E2=80=9Ccore-image-minimal-initramfs=E2=80=9D
+> KERNEL_CLASSES +=3D =E2=80=9Ckernel-fitimage=E2=80=9D
+> KERNEL_IMAGETYPE:genericarm64 =3D =E2=80=9CfitImage=E2=80=9D
+> INITRAMFS_IMAGE_BUNDLE =3D =E2=80=9C0=E2=80=9D
+>
+> The boot directory of the rootfs will contain a =E2=80=9CfitImage-6.6.1=
+23-yocto-standard=E2=80=9D FIT image, but when inspected with uboot-dumpi=
+mage -l, it contains only the kernel and configuration. The image deploy =
+directory will also contain a =E2=80=9CfitImage-core-image-minimal-initra=
+mfs-genericarm64=E2=80=936.6.123+git0=E2=80=A6=E2=80=A6=E2=80=9D image th=
+at contains both the kernel and the initramfs.
+>
+> If you try to build Poky with INITRAMFS_IMAGE_BUNDLE =3D =E2=80=9C1=E2=80=
+=9D this will fail in do_image_wic because the file =E2=80=9CfitImage-ini=
+tramfs-genericarm64.bin=E2=80=9D can=E2=80=99t be found in the image depl=
+oy directory, which may be related.
+>
+> Is there something simple I=E2=80=99m missing here?
+>
+> Regards,
+> Anders
 >
 > -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
 > Links: You receive all messages sent to this group.
-> You automatically follow any topics you start or reply to.
-> View/Reply Online (#66531):
-> https://lists.yoctoproject.org/g/yocto/message/66531
-> Mute This Topic: https://lists.yoctoproject.org/mt/119264506/1997914
+> View/Reply Online (#66524): https://lists.yoctoproject.org/g/yocto/mess=
+age/66524
+> Mute This Topic: https://lists.yoctoproject.org/mt/119253465/8090339
 > Group Owner: yocto+owner@lists.yoctoproject.org
-> Unsubscribe: https://lists.yoctoproject.org/g/yocto/unsub [
-> raj.khem@gmail.com]
+> Unsubscribe: https://lists.yoctoproject.org/g/yocto/unsub [flix.yocto@b=
+enfm.de]
 > -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
 >
->
-
---000000000000297a9c065197552c
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr">Hi David<div><br></div><div>Sometime ago, there was a kobo=
- reader layer for yocto</div><div><br></div><div><a href=3D"https://github.=
-com/kevinior/meta-kobo-clara-hd">https://github.com/kevinior/meta-kobo-clar=
-a-hd</a></div><div><br></div><div>It might be outdated now, but it might be=
- a useful reference.=C2=A0</div></div><br><div class=3D"gmail_quote gmail_q=
-uote_container"><div dir=3D"ltr" class=3D"gmail_attr">On Mon, May 11, 2026 =
-at 1:54=E2=80=AFPM dave via <a href=3D"http://lists.yoctoproject.org">lists=
-.yoctoproject.org</a> &lt;dave=3D<a href=3D"mailto:synergy.org@lists.yoctop=
-roject.org">synergy.org@lists.yoctoproject.org</a>&gt; wrote:<br></div><blo=
-ckquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left=
-:1px solid rgb(204,204,204);padding-left:1ex">Hello,<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 My name is David Richards and I am blind. I am =
-new to Yocto. I would<br>
-like to build a portable talking e-book reader. The goal is to support<br>
-DAISY, Audible, Kindle, and epub books. In addition, I would like to be abl=
-e<br>
-to stream MP3 content. To that end, I am looking for a reference design to<=
-br>
-base the project on. It does not require/use a display or touchpad. The use=
-r<br>
-interface will utilize buttons and speech output. The design should have<br=
->
-existing Yocto support, if possible.<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 Does anyone have any pointers for a reference d=
-esign I could start<br>
-with?<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 Many thanks,<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 David<br>
-<br>
-<br>
-<br>
--=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-<br>
-Links: You receive all messages sent to this group.<br>
-You automatically follow any topics you start or reply to.<br>
-View/Reply Online (#66531): <a href=3D"https://lists.yoctoproject.org/g/yoc=
-to/message/66531" rel=3D"noreferrer" target=3D"_blank">https://lists.yoctop=
-roject.org/g/yocto/message/66531</a><br>
-Mute This Topic: <a href=3D"https://lists.yoctoproject.org/mt/119264506/199=
-7914" rel=3D"noreferrer" target=3D"_blank">https://lists.yoctoproject.org/m=
-t/119264506/1997914</a><br>
-Group Owner: <a href=3D"mailto:yocto%2Bowner@lists.yoctoproject.org" target=
-=3D"_blank">yocto+owner@lists.yoctoproject.org</a><br>
-Unsubscribe: <a href=3D"https://lists.yoctoproject.org/g/yocto/unsub" rel=
-=3D"noreferrer" target=3D"_blank">https://lists.yoctoproject.org/g/yocto/un=
-sub</a> [<a href=3D"mailto:raj.khem@gmail.com" target=3D"_blank">raj.khem@g=
-mail.com</a>]<br>
--=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-<br>
-<br>
-</blockquote></div>
-
---000000000000297a9c065197552c--
 
