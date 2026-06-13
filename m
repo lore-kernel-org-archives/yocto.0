@@ -1,106 +1,102 @@
-Return-Path: <alex.kanavin@gmail.com>
+Return-Path: <ayoub.zaki@googlemail.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 2E6E7CD98C5
-	for <webhook@archiver.kernel.org>; Sat, 13 Jun 2026 12:05:23 +0000 (UTC)
-Received: from mail-qv1-f54.google.com (mail-qv1-f54.google.com [209.85.219.54])
- by mx.groups.io with SMTP id smtpd.msgproc01-g2.89721.1781352315493316497
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 8316BCD8CA8
+	for <webhook@archiver.kernel.org>; Sat, 13 Jun 2026 13:20:23 +0000 (UTC)
+Received: from mail-ed1-f50.google.com (mail-ed1-f50.google.com [209.85.208.50])
+ by mx.groups.io with SMTP id smtpd.msgproc02-g2.90892.1781356814124048972
  for <yocto@lists.yoctoproject.org>;
- Sat, 13 Jun 2026 05:05:15 -0700
+ Sat, 13 Jun 2026 06:20:14 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20251104 header.b=HkCVAauX;
- spf=pass (domain: gmail.com, ip: 209.85.219.54, mailfrom: alex.kanavin@gmail.com)
-Received: by mail-qv1-f54.google.com with SMTP id 6a1803df08f44-8ccdf8d4ac5so22238216d6.1
-        for <yocto@lists.yoctoproject.org>; Sat, 13 Jun 2026 05:05:15 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; t=1781352314; cv=none;
+ dkim=pass header.i=@googlemail.com header.s=20251104 header.b=f9pXLxfs;
+ spf=pass (domain: googlemail.com, ip: 209.85.208.50, mailfrom: ayoub.zaki@googlemail.com)
+Received: by mail-ed1-f50.google.com with SMTP id 4fb4d7f45d1cf-691c5776f95so3624980a12.3
+        for <yocto@lists.yoctoproject.org>; Sat, 13 Jun 2026 06:20:13 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1781356812; cv=none;
         d=google.com; s=arc-20240605;
-        b=ITjf275y+3Bz9X+/oNyPUcOm58Ett2EKrp+V7g4pvMFn51mM19j/3z+n5SRoZxruVr
-         PJXPJNTbjdbj0LeQiOoz95U+hRL/c9xxsCpb0toycQvdPS1m7/NXNmb1T1qAn+XeG5QT
-         QGg/PJwcbozEzJMvj3ooT+qF3wEF0ff9Xanm0KwuhdYIZDOl97FVjK5c2ja2MODNy0SC
-         GfyorUx7Uk6EV7Gzillsu8OBWM3Dggbc1Tx2Or0jbUQMpg+3xRTyjRwwV1JbH1/waB8V
-         AB5cCEMUWfaZf5gk/BCwRSbLDw5E9aGFjAEqVcV9aOKwo7H/6waOLwC2yT8xNiHEhH9M
-         6gHQ==
+        b=FX69PW5oXk9sPAYoZS2aru0/MZhNX62YTLDzqm4fQvQnzJzk8MxciWs03+Zxq3PYif
+         VyDtdzng9KBozohbqWVkx/LMbwPluL5kJYXgs4v3so+swAn7+yvXoc9r/lsMx/4mBSXj
+         UZFMW6h7bV9x7FuNRM4mh6Ch0ICuw7O/BNrj2PVShXdv02nmqwGO2rKCCBxNDJr057Pu
+         VuLbFQQdijVd8O7tgJVJYAHLVRbgYVXfcA5RTTvVaEnXQuH62x0k8eK/lu4+TvfsvOpe
+         aM+naWRFDY1/jyZPjv8Z09afb5B4NL18l0CS3gmuwEFLeRJV4T+WMrk0LWLkyVc5Dh+R
+         qJRQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
-        h=to:subject:message-id:date:from:in-reply-to:references:mime-version
-         :dkim-signature;
-        bh=F/AWqqUMxVJQ/Xiv3yrPeafYeOsXeLwfswVKxwYSsBs=;
-        fh=LQoVKqdWuINPJOwL9L0DpzK653EJ5TSw+Y0C0FVQPks=;
-        b=BBo8orq4JZ2zP0k5qFlBcUyZNvMo0pZ3AsoljITLQSnf7VOz1KIDXNxd2lt5b/rQHT
-         1oWgj4QazYjV4F0WWjh/eQJKLSSUClaMmryyEE9eqbZQf0eDXSpahxbY+S2rr+/Ftjm5
-         NdzFUV2w6/S3FFePeiYL2YlCihYiyefPtkOkXJX4z4ezY5rKasM83loV8/vgSj0txomW
-         a6Sn6G9ZDMFVbwH1GndamI0y9QO7ZsR4NcHfB3+zkFjJXfVmG/TnW+dz3NbTDukmy/GE
-         a3M15Z6nD0uq7MX4BnsZ68HjMhzyoUDYAOgyq114IVfuCC4RP9xY9C6incu1xrXPtDI7
-         Vbxg==;
+        h=to:subject:message-id:date:from:mime-version:dkim-signature;
+        bh=JOJnfxXYyyipXXWE+RZfKm628mqtuCZDVuAJN3cO80g=;
+        fh=ry0dO8Mo1Om+pdHnWp/dYQ/nIeO+4vmyy9x3nU2mUWU=;
+        b=PAnDDHtxNbFDClve9PVKXGDcj+YmOhKEn/rGhgVGQ8L2sOpTcChfyvBX5UlZGJsQru
+         mDR/QzayMKV7Ukih6IfEvC+4VDSa972iZePQpZXI0kQO9gWdu1KjyAH8YAqW6koIqAbI
+         ma9OVJ3qPsuIAo5JGROBD1piAFD3EXZBRNtLhLfDTtH0Ob/zi8RP5mQh3ZWmRngoK9iU
+         gof43n/qin6lmm7UTkTcOb6zi1fX8Lkuil7tWTo4yFfSd5slPLVCZwqCdaWBM8eHs0zA
+         jviB6NaGORn5/dzt4qL7M/dAbgZzUqVv7x2bw7IaOvoJqCX36l31OiSuQOH4V4YKNsfL
+         Nvsw==;
         darn=lists.yoctoproject.org
 ARC-Authentication-Results: i=1; mx.google.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20251104; t=1781352314; x=1781957114; darn=lists.yoctoproject.org;
-        h=to:subject:message-id:date:from:in-reply-to:references:mime-version
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=F/AWqqUMxVJQ/Xiv3yrPeafYeOsXeLwfswVKxwYSsBs=;
-        b=HkCVAauXmq6X8Q2prIRUzt/uzmIpqb5Ps+seaDxTAwWJEx3V+IthgmsSP7kqD+GEsE
-         SM7s42qkeOWdBIlXYSuet8kCw+MppZvnVePwN/8hT3bDVrjcb9/wkPMtw3rteKou0TSj
-         tSUentxE++wG/FqtxTtyXyLQ4uTlaoB7PaQzv7IakHgfrUSArkXW1JoP1hn0e2v9y9Tm
-         Exw6+PVqsHZwln2QM7Tw/UtTrL3OnEFeZjEQ2+QCu0KZsOH/+rMzb+pylaVgbnFPRVqh
-         mAn4HiPP0dbfy/FPGmD94UnkK4W2+ANHDPsOj1ucuSCn+NY4v5wzobVil4s27kBtJMB9
-         pGpw==
+        d=googlemail.com; s=20251104; t=1781356812; x=1781961612; darn=lists.yoctoproject.org;
+        h=to:subject:message-id:date:from:mime-version:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=JOJnfxXYyyipXXWE+RZfKm628mqtuCZDVuAJN3cO80g=;
+        b=f9pXLxfshPfmqc5ie57WllzDip6lWe1Z97TijUpspeT/9jKCBMweU4Mt4e/Nk+cgHn
+         ZuvAX6tW8acQsUSukhzqMMTjkfMFSkVXhHSeJ9OZSwUZDjx7rU5yfmz0KNkD5IJ2Wb4U
+         qKyGJQT71pH8mH0/iykA+C2Xr7JKu0ktU3xzSS+iauoQGeDWH7ZNWoECOPVbMmLAfYA2
+         jVRKTbdnN9gsGZwTcmyxneotkDbvPoBVx3QLU2Eg65rq+eEwOlzzNnqyG+WflrMcsBKH
+         m/pGG5kEsRG/Q51SHxN7ACDVko0dKqQmiwEmMlaaRyLVvVi+xzOahMH9SfP9fhPY1eZB
+         N2Ug==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1781352314; x=1781957114;
-        h=to:subject:message-id:date:from:in-reply-to:references:mime-version
-         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=F/AWqqUMxVJQ/Xiv3yrPeafYeOsXeLwfswVKxwYSsBs=;
-        b=rlAalpyndQmShhoofiten8Xty5TQkh19T4RmigiWISe24ZYPgMmf5cWLC+qCCBttbz
-         xCqeyI7yde67YdxRIU4nU5PBJ+znsX859RofDAA0zA/pW1ohZW3jbfu/4Ap/WtZB0Vsc
-         qpU2uOFEEpTaqgQgk9qVjQRaNzodNIuywZvwW8PafaJheEkblHpYjs3ofAfjESNlVUQ3
-         HWAeB24IvoT0Q5GM5EI2GWc2wLk35yrvIgboc9+VZcH0pU+UuuySJxmGSvUz0+RhQbkI
-         uGf0HmWMkKHFVxEi5aIIo5MjOU2VJOcJwumNU7vxi7UKscfVxhzFYUoDLH8uMuhnc02Q
-         9AQg==
-X-Gm-Message-State: AOJu0YzvhlC3kK5TV8URG04VfWFD/77aRj5M6r4j3d9nkA6ImstTkXS9
-	lHMCno5YBC+hfch8675fapg8aNdNPqAN2BPOaDcOjUhmtRr/1wwtlLX+691ahEA2bGnfsxlE6ep
-	zfP1vpsjbEmR/w1YzIUyuq1eGQOwbI+XzLg==
-X-Gm-Gg: Acq92OETxbeE+/280fnElZFQy+Pzlh2KuNfGQLcCGqW6dlvwgM+eNvbm4UYk9ooCrcp
-	ClYtHV1iLpUvLZE+pKv6D/snh0zPxdPyroGWdkB88he+GKNYIIPsZjD1+vrDGYIYnED0OOmoEMM
-	j4hymLiNg25erTyspL5oIvs2zN8dF2AIvjc5VRG4KjHKGPE2fb37CF/s9dqsNotS4k6tHDzrFQx
-	0Yr0YMm1IKljDYCeubIUxvzoO7LJLr/WG2XExpVRFrQ4T61UiPHKVfTZnCLzUpbENCiYH7x/G41
-	lDeueyTjq9Q4ztQd0vGdQc78urutsbYzLoSi5E0wtg==
-X-Received: by 2002:a05:6214:3bc8:b0:8cc:e965:a562 with SMTP id
- 6a1803df08f44-8d32d85622cmr130748556d6.25.1781352314379; Sat, 13 Jun 2026
- 05:05:14 -0700 (PDT)
+        d=1e100.net; s=20251104; t=1781356812; x=1781961612;
+        h=to:subject:message-id:date:from:mime-version:x-gm-gg
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=JOJnfxXYyyipXXWE+RZfKm628mqtuCZDVuAJN3cO80g=;
+        b=pS1a6LGwXjAHBUw2OOrcwhy/JfoKi2fkEsS02ptx4hjJ5+lnukEPElFyZcP6My2mee
+         g98gSCn47mqjrvE19n+53RTe9diCQku/su4gTNu5eD/ID/PIGhl6XR88GyndsR58kDUv
+         kYxdUupznunIj0cwP4AeOXnnFzbMMe7pOL7LvxTN5twQbDs3bpiNLcWunZV3i2cITdAn
+         /e/ayWqcCHTTtZmQxulXARX7IVNTxjokaIrv7G1qBg2q3DVAoyoSNQ1rTeQzsLJ8fT4v
+         yuLwTDKNz5627dsOdGQHtWo5XHvA78scsst1hTnALCa1GmrELxHQ8/WtFLzd3SoHIsDR
+         7AYg==
+X-Gm-Message-State: AOJu0YxYBj2dZXSnWxe+cTgaLtjjxS0oHZ4CRv4dFEfQEkmnq/vdux0A
+	OF8s7b5EUIKJBFCAeQs2BrjViCmbKYnvd5cGi4maSP5FDowdiwdvkLTjR8NCddR/15FC2Dap4aJ
+	Hte4T2Iy5xHRPf6fLvryzzPB3bBIzflfirg==
+X-Gm-Gg: Acq92OF3NNNeXsV4qpB7ZSlH4epzs7CYjAmwSPwjLOAmUqDCnXqw9uMe6LpqkIzu7uS
+	ne6ZMnO5+YkiYskKs1Jr/QCLDzoGN0zjPnPGkcmJPeI0yq4eJkXpD0Quaq5hJ0Qs+8btm0xmZQZ
+	N91d0WLvGh5g+CImXhp7GR8w1aFiq5LrOcHrdkvC+1tXvZ/u2PzrS3riyekSUAHTsuTHuCuuYJ8
+	76md5bAHIQ8yZguz5asxgbjUYa72+BBF7QOwPPoZYcD4QRSb7sPIqP3pV/b8iTXpYLukPQ6f7fX
+	xpA01H+izhG5QdnjR7qWWiIGk85nJDQOCdpumJXZ
+X-Received: by 2002:a17:907:72d2:b0:bd5:27b7:adaf with SMTP id
+ a640c23a62f3a-bfe2a814450mr283363566b.33.1781356811928; Sat, 13 Jun 2026
+ 06:20:11 -0700 (PDT)
 MIME-Version: 1.0
-References: <jddA.1781283483361370115.0k4O@lists.yoctoproject.org>
-In-Reply-To: <jddA.1781283483361370115.0k4O@lists.yoctoproject.org>
-From: Alexander Kanavin <alex.kanavin@gmail.com>
-Date: Sat, 13 Jun 2026 14:05:03 +0200
-X-Gm-Features: AVVi8CdA7uStV8ZqAjFl0zrJtSNZvYWV0MsfSye1TerUgtpdSGW4LkGmrTvLHh8
-Message-ID: <CANNYZj_R_gHGezXigG37-+Ak+5i=WVgyJrGeWsdXd+mfWBNigA@mail.gmail.com>
-Subject: Re: [yocto] Yocto Lens - Static Analysis and Style Review Tool for
- Yocto Metadata
-To: yocto@lists.yoctoproject.org, diwateprashant44@gmail.com
-Content-Type: text/plain; charset="UTF-8"
+From: Ayoub Zaki <ayoub.zaki@googlemail.com>
+Date: Sat, 13 Jun 2026 15:20:01 +0200
+X-Gm-Features: AVVi8CclkbbitcXuVWh6B18sNQIcta_N8PqS1SavpVHUVECor_5czbHQ4zHj-cg
+Message-ID: <CA+-BmJYpWEugmjb8UvjRMOmHxyMBzkjCTBq6ASpen84FmKyrBg@mail.gmail.com>
+Subject: Re: Yocto Lens - Static Analysis and Style Review Tool for Yocto Metadata
+To: Yocto-mailing-list <yocto@lists.yoctoproject.org>, 
+	Prashant Divate <diwateprashant44@gmail.com>
+Content-Type: multipart/alternative; boundary="000000000000fe4924065422736a"
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from 45-33-107-173.ip.linodeusercontent.com [45.33.107.173] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Sat, 13 Jun 2026 12:05:23 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/66596
+ <yocto@lists.yoctoproject.org>; Sat, 13 Jun 2026 13:20:23 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/66597
 
-On Fri, 12 Jun 2026 at 18:58, diwateprashant44 via
-lists.yoctoproject.org
-<diwateprashant44=gmail.com@lists.yoctoproject.org> wrote:
-> I would appreciate feedback from the community, especially regarding:
->
-> false positives
-> missing checks
-> Yocto best practices
-> CI integration ideas
+--000000000000fe4924065422736a
+Content-Type: text/plain; charset="UTF-8"
 
-Hello Prashant,
+Interesting project but out of curiosity what would you consider the main
+differentiator versus existing solutions such as oelint-adv and meta-sca?
+I'm trying to understand where Yocto Lens provides additional value beyond
+what those tools already offer?
 
-I was wondering if you could use the tool with
-oe-core/meta-yocto/meta-openenmbedded layers, and demonstrate what the
-tool says about them? Are there lots of false positives? Maybe it
-discovers real issues that could be addressed?
+--000000000000fe4924065422736a
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Alex
+<div dir=3D"auto">Interesting project but out of curiosity what would you c=
+onsider the main differentiator versus existing solutions such as oelint-ad=
+v and meta-sca? I&#39;m trying to understand where Yocto Lens provides addi=
+tional value beyond what those tools already offer?</div>
+
+--000000000000fe4924065422736a--
 
