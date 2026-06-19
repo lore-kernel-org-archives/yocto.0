@@ -1,1352 +1,224 @@
-Return-Path: <chee.yang.lee@intel.com>
+Return-Path: <debal.ghosh@intel.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 01A61CD98ED
-	for <webhook@archiver.kernel.org>; Thu, 18 Jun 2026 09:55:48 +0000 (UTC)
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.12])
- by mx.groups.io with SMTP id smtpd.msgproc01-g2.15932.1781776537780885024
+	by smtp.lore.kernel.org (Postfix) with ESMTP id CC4C2CD4F26
+	for <webhook@archiver.kernel.org>; Fri, 19 Jun 2026 13:55:24 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
+ by mx.groups.io with SMTP id smtpd.msgproc01-g2.42930.1781877322363420194
  for <yocto@lists.yoctoproject.org>;
- Thu, 18 Jun 2026 02:55:38 -0700
+ Fri, 19 Jun 2026 06:55:22 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@intel.com header.s=Intel header.b=kRet6/Ud;
- spf=pass (domain: intel.com, ip: 198.175.65.12, mailfrom: chee.yang.lee@intel.com)
+ dkim=pass header.i=@intel.com header.s=Intel header.b=VeyEhaYP;
+ spf=pass (domain: intel.com, ip: 192.198.163.7, mailfrom: debal.ghosh@intel.com)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
   d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1781776538; x=1813312538;
-  h=from:to:subject:date:message-id:mime-version;
-  bh=Zftxf5OkYrB23f8DOYKMyT0xKVRdK/DgoTFEOcrzWvg=;
-  b=kRet6/Udh0D4sEExfVm8njPG1BwddnpotvOuycHCM8rEC0Elu/s9OaN6
-   JxiQa3RoGiF8eauulUkLd8El3uUSrhIStIhqoCpWd5ERODzv7F0V2lEon
-   ds3ZjSE03Rf9mWLobC//3wZWvQIsw3Idd/MRpwkxxFWrSAUOWIcmTHvIr
-   aYFeSJaArE4iTA4Ac0bguRsXTIDUKK9O87LuIi7mcaW/DdIY9CQLJAZpy
-   u/G8OL2OjIbuSUduUZXgLhCMZ8I1Nt0PfR+lFCjnGW3sJXcAbDPlaQ4uc
-   JbM8HRPCUMAZGUQneqVd/tPSviKHcqTTFW5sB5BHaLYjKYuivSOylFQX7
-   g==;
-X-CSE-ConnectionGUID: PsuL3bFtTfC5WxBbkF7dwg==
-X-CSE-MsgGUID: sEKrfX95QMCbLkH1bma0Ag==
-X-IronPort-AV: E=McAfee;i="6800,10657,11820"; a="94106354"
-X-IronPort-AV: E=Sophos;i="6.24,211,1774335600"; 
-   d="scan'208,217";a="94106354"
-Received: from orviesa009.jf.intel.com ([10.64.159.149])
-  by orvoesa104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 18 Jun 2026 02:55:37 -0700
-X-CSE-ConnectionGUID: CQkt5SYiQL2TNbwT5oDRcw==
-X-CSE-MsgGUID: 69Igs/cNTJmsHDlCuG4v4A==
+  t=1781877322; x=1813413322;
+  h=from:to:subject:date:message-id:references:in-reply-to:
+   content-transfer-encoding:mime-version;
+  bh=lcDtwchBimpUg4YxzN/ykXKjXVdaZYo8JXYjXeNfHxM=;
+  b=VeyEhaYPdx+olxHs2RzzeeER4uK8K8tsTu/UD4/O4aOI/LwNwTzm2xmG
+   50F2qOLAqyIGEX3GoOm0lZ6LxN/t/Gmc13Tonrs5S4emRFLFlB/4wneJc
+   kNb68Ejgz2TP68c0d82O/w4IxuFPIE0Vip+8MGqpI2VJ9SYm2PvMhMXaZ
+   u7dni4oTzb0QZqL8Ozg1dvz4TrExsD1Zm4F/MmDLMxg1Qpdp9mJaiEpYH
+   BxUkvj6/KW8MtbCHHkBb81QzjJEiqGYq4hyum+lWA+CvQeLTcJBWVT5oC
+   6RlkyRGKq2Ff82JdUkCVgRGBpJ5LBHPx3q2SAGXHo6521Au40BWwA7Ga0
+   A==;
+X-CSE-ConnectionGUID: UVl2MeRzSseNOVa3W0FzpA==
+X-CSE-MsgGUID: hBdOopChQWWAX3QZgL4wpA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11821"; a="108269367"
+X-IronPort-AV: E=Sophos;i="6.24,213,1774335600"; 
+   d="scan'208";a="108269367"
+Received: from fmviesa004.fm.intel.com ([10.60.135.144])
+  by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 19 Jun 2026 06:55:22 -0700
+X-CSE-ConnectionGUID: KJ1NwZZNQNW+krkI4/Fb0Q==
+X-CSE-MsgGUID: dg+BzgynRsybwNQcnihPUQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.24,211,1774335600"; 
-   d="scan'208,217";a="248404866"
-Received: from fmsmsx903.amr.corp.intel.com ([10.18.126.92])
-  by orviesa009.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 18 Jun 2026 02:55:37 -0700
-Received: from FMSMSX901.amr.corp.intel.com (10.18.126.90) by
- fmsmsx903.amr.corp.intel.com (10.18.126.92) with Microsoft SMTP Server
+X-IronPort-AV: E=Sophos;i="6.24,213,1774335600"; 
+   d="scan'208";a="250554936"
+Received: from orsmsx901.amr.corp.intel.com ([10.22.229.23])
+  by fmviesa004.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 19 Jun 2026 06:55:21 -0700
+Received: from ORSMSX902.amr.corp.intel.com (10.22.229.24) by
+ ORSMSX901.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.37; Thu, 18 Jun 2026 02:55:36 -0700
-Received: from fmsedg901.ED.cps.intel.com (10.1.192.143) by
- FMSMSX901.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
+ 15.2.2562.37; Fri, 19 Jun 2026 06:55:21 -0700
+Received: from ORSEDG903.ED.cps.intel.com (10.7.248.13) by
+ ORSMSX902.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.37 via Frontend Transport; Thu, 18 Jun 2026 02:55:36 -0700
-Received: from DM5PR21CU001.outbound.protection.outlook.com (52.101.62.13) by
- edgegateway.intel.com (192.55.55.81) with Microsoft SMTP Server
+ 15.2.2562.37 via Frontend Transport; Fri, 19 Jun 2026 06:55:21 -0700
+Received: from BL0PR03CU003.outbound.protection.outlook.com (52.101.53.15) by
+ edgegateway.intel.com (134.134.137.113) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.37; Thu, 18 Jun 2026 02:55:35 -0700
+ 15.2.2562.37; Fri, 19 Jun 2026 06:55:21 -0700
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=ukNLlKvo8IDjZppvl1MtLA3XlvZ180Iou4XN7rWOPS84mP9m67wjkIxLm8TwFEyL7isQjm0wZKTaZxZ4fjA7ziJ8Jcx5K4IGZo6Dv5Yl7biCaWujhDBnU81kXsaBYGE2OoelAhe5eXLwhuXd1TQcDwT8C3xW9NtWYfrQCIEtqwd/x7xh5JRo/rh4DvJKtPRr+IDKSWJ0ERy2J2r+Mjb3kEoioDB9WnojnjxOro0n7w+Rmts1NyDZu5SIkXp17oxmwE03dV9LEmUtl3RXcLI4xGjXQOS6GDw3PPJCCtiDyCQZhES4mqoKouM79rUoNwZQRjjkCcUeqdv6UCenKgwwCg==
+ b=h1QBxnL62fby33sOCkNfZVzLfCVkyLPkuH/+jfTD/UPsF/bB1oGvR0kFD8FfTmoe4P9WPfXNn0Yl+2wJ5FLbu2pyEh5tLJNppqkDvMWkgJYTgKdtYpxItLasj1FkL9Hr/HI5LNCs2JuPwKWop65HVA5fsMLa9kNMAHYi/2FB4c5v56Yzwb9D5kymrZcSKv18wgCVlXIwpqqkDsBiuI65RCrs676LXxkigfvdP1kPNkuZTjgmk4IsctZGgdT7wLvMvUApnIaapKiQhOPmIuxQE4RP2hfeD2knBGU0ZXlSyPFSv0l3CMgLwKOYH3AbfCr6LHmtlX3KbS9bLkTRmB/Nvg==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=Zftxf5OkYrB23f8DOYKMyT0xKVRdK/DgoTFEOcrzWvg=;
- b=WYGtVn8qMy9BdOVWqgOYQ05YNRg5mht5eY/T3EBUcjdWitMOF8TYMtq/GCzi8ItFgvEZjhQgQwaESuIq+gmmZXwzUmdNdUSO2tieQ3FXTaFp1cCRUo0LPZ0ST1mSnObvrWybKZwXcK79b2N2v+ewv0vgiePTMFRsKJ8ghdkfZA+6mxw9Ibm3LjdnOHOFOBxFI1PnBQWg316r5AtyWcZTaK/2xxL16DG9Z4h84Oa/91XnNytXN6Kc6MfSoqR81wIafM5h9JoeQKrxcyE9ncMk1WwSj7xUYXbBGOgyGqf4buoWe0SSl2xH9riJyzv7GwD2v5IGmQ93ty/6LXzVmjTd4w==
+ bh=lcDtwchBimpUg4YxzN/ykXKjXVdaZYo8JXYjXeNfHxM=;
+ b=xZY/kkCzI6G7sqpJd/YUCYjtNIis2pe6RzgVh59z2uH5OjSL6bhIsUdD8gXcMQVHITEUuAjJjB/TS0CatXvIqGe1B8RvXtdfCfIadaMTxtPspPyPpbFJ0BW9ADtexbCiO8XoVFu4h4exbMPM5qGlEE3MgLtda9ZhtQ96UL6Dhj5eh4ea3U1jAG2Hyt9o4VVH8BgO9THNrqmFWpKIYFDKvMgyLnHU2tQFV0RpGsF3OYR5ycEpwpnckxQ3yA8CaJMul1o22pNWK6YcEydlMIMaSPUJnW+jvBx3g795n9QwxxQw+sWZIWo4td4APKKDgewo/zaH0KK+SsQ8368EjiGRXw==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
-Received: from BL4PR11MB8797.namprd11.prod.outlook.com (2603:10b6:208:5a7::8)
- by SAWPR11MB9709.namprd11.prod.outlook.com (2603:10b6:806:4ca::15) with
+Received: from PH8PR11MB7022.namprd11.prod.outlook.com (2603:10b6:510:222::15)
+ by PH7PR11MB7662.namprd11.prod.outlook.com (2603:10b6:510:27d::19) with
  Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.113.18; Thu, 18 Jun
- 2026 09:55:29 +0000
-Received: from BL4PR11MB8797.namprd11.prod.outlook.com
- ([fe80::fe4:8775:47fa:b7d9]) by BL4PR11MB8797.namprd11.prod.outlook.com
- ([fe80::fe4:8775:47fa:b7d9%6]) with mapi id 15.21.0113.015; Thu, 18 Jun 2026
- 09:55:29 +0000
-From: "Lee, Chee Yang" <chee.yang.lee@intel.com>
-To: Yocto-mailing-list <yocto@lists.yoctoproject.org>,
-	"yocto-announce@lists.yoctoproject.org"
-	<yocto-announce@lists.yoctoproject.org>
-Subject: [ANNOUNCEMENT] Yocto Project 6.0.1 (wrynose-6.0.1) is Released
-Thread-Topic: [ANNOUNCEMENT] Yocto Project 6.0.1 (wrynose-6.0.1) is Released
-Thread-Index: AQHc/wThwwa3tThTI0m9kODzefz6zA==
-Date: Thu, 18 Jun 2026 09:55:29 +0000
-Message-ID: <BL4PR11MB8797068C9CD4D9088EDB4B5FB9E32@BL4PR11MB8797.namprd11.prod.outlook.com>
-Accept-Language: en-SG, en-US
-Content-Language: en-SG
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.113.18; Fri, 19 Jun
+ 2026 13:55:17 +0000
+Received: from PH8PR11MB7022.namprd11.prod.outlook.com
+ ([fe80::e550:3c98:b65a:2e04]) by PH8PR11MB7022.namprd11.prod.outlook.com
+ ([fe80::e550:3c98:b65a:2e04%3]) with mapi id 15.21.0113.015; Fri, 19 Jun 2026
+ 13:55:17 +0000
+From: "Ghosh, Debal" <debal.ghosh@intel.com>
+To: "qa-build-notification@lists.yoctoproject.org"
+	<qa-build-notification@lists.yoctoproject.org>, Yocto-mailing-list
+	<yocto@lists.yoctoproject.org>, openembedded-core
+	<openembedded-core@lists.openembedded.org>, Pokybuild User
+	<pokybuild@yoctoproject.org>
+Subject: RE: [qa-build-notification] QA notification for completed autobuilder
+ build (yocto-6.1_M1.rc1)
+Thread-Topic: [qa-build-notification] QA notification for completed
+ autobuilder build (yocto-6.1_M1.rc1)
+Thread-Index: AQHc+kxx9I11spArqkmIaiWQ+oiT17Y/PvkggAayh+A=
+Date: Fri, 19 Jun 2026 13:55:17 +0000
+Message-ID: <PH8PR11MB702205497B9E526CB0969F8DF4E22@PH8PR11MB7022.namprd11.prod.outlook.com>
+References: <0101019eb3c283d7-332c2687-00f5-49b4-84f6-7ea02f2b99eb-000000@us-west-2.amazonses.com>
+ <0978cb5c5c2086ed0d5ffdcf8f4465b581769d00.camel@linuxfoundation.org>
+ <18B931698ABB7E61.312216@lists.yoctoproject.org>
+In-Reply-To: <18B931698ABB7E61.312216@lists.yoctoproject.org>
+Accept-Language: en-US
+Content-Language: en-US
 X-MS-Has-Attach: 
 X-MS-TNEF-Correlator: 
-msip_labels: 
 authentication-results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=intel.com;
 x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: BL4PR11MB8797:EE_|SAWPR11MB9709:EE_
-x-ms-office365-filtering-correlation-id: 1b0ea658-d398-4427-7669-08decd1fba9c
+x-ms-traffictypediagnostic: PH8PR11MB7022:EE_|PH7PR11MB7662:EE_
+x-ms-office365-filtering-correlation-id: c88c3186-7325-4c6c-0c64-08dece0a6525
 x-ms-exchange-senderadcheck: 1
 x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;ARA:13230040|23010399003|1800799024|10070799003|366016|376014|8096899003|38070700021|3023799007|18002099003|56012099006|11063799006|6133799003;
-x-microsoft-antispam-message-info: Ol4tbJA6jgApgkeq4PbB3yz61GCK10pPww+ow6q10ixveIFGmnEv/9Lz4FppvojqvqSOpW9V89db2rKLUioF58J6Tmh/KdxB0t3f4FavrEh0rxiTIZeZ+50Rgi3zraeEwyRSKXqVD3MWPoLABVp3g31ZAbhXLtJzpCHY0tnbww/H9HOTIgqcQrM3SmzxgYGqgEjNWdSfIggVV0HctZl+kkVp8nGV8O9wthSHsjoZiZGZIU2sZ8ULcVTGfzXuHGLGxxCrNwfztUJngbYW3H3xQ0sk0UNhUdaZgNJsg5ZUrgZLd/GKIRyMEYghhFlhoCFe6e4RcW4rg1VEmoxLD72l4bdrFBW4FSUzsO/LoNT9pDSzatChXZJ1e8z6b9tUDQ4V8gfI6ClxTT0IUDMVpoXJg5L9fT35xUrgDp+nJAS1bh3GNCPCTsAjnWRaeuO9rhOaZ0Cpr7iA2u7k6j+VxK071RhzlBDn3VfLMZ/fSaelU23YXoFgiQCY9bqsZAae7i+vDIXZOEPN9ws9q0ydzg6S7dNngZZqWt1AK/Y4wYGlCEJtY8lWH+/zxudnNsWWjZ9/Moe0DDl3a8Udc66iaGVoxgHpfYUG186AHQihJbGsL7/TsvOaBLcOjYghkk6uFjoqUMRqcRH2N8O0zX/8iUuHWoyYif/NESCizo0TQsLp3usRa5U7jFdx728AK32LaQXEYcRUlsgkOgdYA3sTJPkmug==
-x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:BL4PR11MB8797.namprd11.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(23010399003)(1800799024)(10070799003)(366016)(376014)(8096899003)(38070700021)(3023799007)(18002099003)(56012099006)(11063799006)(6133799003);DIR:OUT;SFP:1101;
-x-ms-exchange-antispam-messagedata-chunkcount: 2
-x-ms-exchange-antispam-messagedata-0: =?iso-8859-1?Q?viZOBMiPFQkib/eZsJbZr2nLjPe623t7qQBnd40qL2DFGhS4bDLKvcNQKE?=
- =?iso-8859-1?Q?I7IlvhMZuBKxzdBLnQWXnbXRHKywYmKmnJjZsDvGktgY8lo/ucSpacaqOP?=
- =?iso-8859-1?Q?AwbpaagARdfbgI1I4cXmJI/L6WGyaxKtqaJ0peGIVuVjuV4u2AqMN3OQFe?=
- =?iso-8859-1?Q?HhNAjQhNo+bJ6+aQVaEUgeBz9baxxSjol2srrrI5eTPMNQEoG5cIvOr6OP?=
- =?iso-8859-1?Q?vlfQDI+BI2HpOFrLmK2jZnwcBaSKIB8yNYoceCHxyTgiYWY6somy8vhwpT?=
- =?iso-8859-1?Q?a546PNyUGq3tzooyFkKSYBzQI+vxCmZXxTeG0DuZhk3kohQKtqT6b6fcnO?=
- =?iso-8859-1?Q?vpGydVlUOusfG5xNVQsnSUE0LokwaTXbdZ77NEFOf2IQOo+xmblDZNB35J?=
- =?iso-8859-1?Q?2XhW6tPs9f+ODrfDXQFocOWgJX19iU/7mnbsp3ZuVKQcSfdNI79NKHr+Ro?=
- =?iso-8859-1?Q?w8eKz6SCSp4SdY9juK16rXHEj2p6INx5PfNwR47RIkFBt8j4C+CUAssfI9?=
- =?iso-8859-1?Q?lpEn5S13VHi2qy7iS77gPBcv6/ocZa0PogwZ0Dd3TSdmaiRMkUJftZx2D6?=
- =?iso-8859-1?Q?70RQwIPAOzmcxNLqcBkz7MqM3Ze7u6Gl8kPuwUGyTJ25BapJHr1wALNfKN?=
- =?iso-8859-1?Q?yR94+2zFuTLG492ZimT3PwGhJxxrv33OulYcraN4ItrnSBRDMcXMOO60Ph?=
- =?iso-8859-1?Q?1PHT7prsGMHXEWHAQICxhEPUX8+Wng7+5JgP8b5QRxfNu0SUwe5HLcj7hK?=
- =?iso-8859-1?Q?rKr3Z/ML3lgXSr/+hagcrCMCpR2VO23zGz9XUVsTx9Higrl2B7K5uJZsuq?=
- =?iso-8859-1?Q?PwLmbCebTegVmN/SylytG+Z6kIuaN+lohZ7XwOkdXFLZnwE/0KXOCpaEZ2?=
- =?iso-8859-1?Q?VNQ8O1dQf2X/L6xGd2V96ffO3MWW4cV3QDP1IyOzh28S9vtNhovoaJGAHD?=
- =?iso-8859-1?Q?ZoMGwbFsMpDd+gm9PSnj+8B9hjRQrGxHGooHKK4sd3jyDzqmnrMAZRNHFT?=
- =?iso-8859-1?Q?bXUEfCrdEWvWpa1cwB9IdWcB6r0cZhmrddiJEALJsR82hw6sj39nwvMcgz?=
- =?iso-8859-1?Q?LTy+oi89fIGNOmW7UIG23FYMxtK4z0qOkiZrL/QZeAjRapbuLnYNE8j+mn?=
- =?iso-8859-1?Q?gYjZfmlmsC3ZBMXYEhThTbxiAsdJAwOOp0G8mYCIFGoYJzb4giy9t0ZtLk?=
- =?iso-8859-1?Q?kGzN0AEukZ2Fj8Y3MYgPwQMm1bS2iB3rak8j+zZDim07kfOfbKkfdJ5BFW?=
- =?iso-8859-1?Q?p/FcRwQBCNXP/jrgE5ZeATXkek+/A5bbWTm6X7de/K/8p2ZrWXmpskGRt6?=
- =?iso-8859-1?Q?iPW634KRGteEteBdl3iOOkwiWtiJkVHoNUXUSMzifLRSgeiP9XgoXAOJkV?=
- =?iso-8859-1?Q?8uvBxNP1OrGIICKZ9uMHn5LkN3rp9vT7E4sShA5HIJ1ps0FUHukOCHHkHc?=
- =?iso-8859-1?Q?PFsipdklqTZ+cG/EHRy8QOWAH/P4710LxzvW4fWg1q11LU2qDk2c3Zqkiw?=
- =?iso-8859-1?Q?xVTAtnPQ0aFktEX2aPxGM2tDqGKHxxXths16UzOp4ctz1gMu3g5ggENigA?=
- =?iso-8859-1?Q?MbTViuNONA3bayldJcJAfMivHWBTyLW2jvYdZLVeRKxSeHb41VC8UhFwt8?=
- =?iso-8859-1?Q?ws4Jeml6JG/7pQtgkPVTHlDbC+9c7G+ekHli+KsD83822zNfCYcK8BMg8c?=
- =?iso-8859-1?Q?inzETfW+QQ15d7cmtOf0oQH1KO7TBCbhCpnznXk4+RW3gbdzd83Gsy0cvG?=
- =?iso-8859-1?Q?Q8D4X/orPVEHIbqOhhgGH9RTbo+JP97yjl1JHXNwpmJba0VcORA4Cgh5Xy?=
- =?iso-8859-1?Q?PlXqqXb5V7YMQgSAmO+ESvjNLtfA77PkrLmN5d9wjhDPffremoT0QtXPK0?=
- =?iso-8859-1?Q?Zf?=
-x-ms-exchange-antispam-messagedata-1: WO6/NYmMA5GjmA==
-Content-Type: multipart/alternative;
-	boundary="_000_BL4PR11MB8797068C9CD4D9088EDB4B5FB9E32BL4PR11MB8797namp_"
+x-microsoft-antispam: BCL:0;ARA:13230040|23010399003|366016|1800799024|4022899009|376014|38070700021|22082099003|18002099003|56012099006|11063799006|6133799003|4143699003;
+x-microsoft-antispam-message-info: ILkscPGQhaU5q9F7LlVjKlbs/4AYA4mKWYQCjNqBoi3RAKmP1PABrrsxwpRw9AZkjCczKTYf3QChkYJVSOVrB2QptPQg44PnDRFVVZtcljg3qAKuubMxKYR+UPqX4oXdDVsw5gQuJnjEWJmi0IOs+rJrX5yZ/iT9+IBBevOa31okgVXcM0y4xh7fhmYvL0HKKHJYJMAmXreSdRnisItFSzYXZVzg74zNu3eIXW6L3Lm1hMP2bLzyNTIIBhvRaGm9/MWkHjO4Mz4GyzXO4tdrtl6dHkm/iVXhqh/2xm8g/MZM7G3xicRtutty1umianwIWj0/0cgxBCDZMIzMT5n6HN21n/lVTKqFKhARIPtCH2hpqqk6Q9FY78iShPUVThrBIVl30QOWJlZF+3aUildJUBQFkQGUfYUI2Kjp22ZUL0XjWiGcNwD4rjLOFxJ6+x9TvcOielXxan+8FyFjPu+TpwhnWmK4dXJXjxZA4eVJvYPS4tPpQ1VxFOTmBt3h+XSZDiPF+MQPsapekDNRP4LVvKTCKvHJC9ITtyLHwT3XOUSH0Y7dQHKgrYtCAqiiP2gz1ZqKRVb0xZ73cUaGcfSOe6TsSFdTt1z4//RrWtuEknuwiEslpOVKZDoezDGxcLGdf20j/2a7tbAO1+fZ7YNDBjr+TDj8paLJ+oYzj3ZAzz4=
+x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PH8PR11MB7022.namprd11.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(23010399003)(366016)(1800799024)(4022899009)(376014)(38070700021)(22082099003)(18002099003)(56012099006)(11063799006)(6133799003)(4143699003);DIR:OUT;SFP:1101;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: =?utf-8?B?ckVtalkyYWlRakJ2a254VHF0UkhVUGRJUXlBQzluWVkzWWY4eGpDR3RYMldH?=
+ =?utf-8?B?M3YyOVZXWXFSQ1ZKbkpOMUVjNGF0bnNHVUdHSEFCbDc5VVVudnFvS0lERlg5?=
+ =?utf-8?B?MlRqMkp0elpPYWRxcitDSC9pemtYWk85dUpoWG9iTmlyakJlcGY4aUlNY2g4?=
+ =?utf-8?B?UlJTTi8xUUVxaWg1WTdEeEtOZS9LdHhiWWlGdkkxUzZtYU4xc01Hd3dkTWk1?=
+ =?utf-8?B?dnR0QmwxVkIxTER2YU8yZkVkVmRyU0ZrMnNPQ1o4bkVKYndNbVhkQUZJTEEx?=
+ =?utf-8?B?YzNRYUc4NS95MUR6SmcxUCtYaW50TjdTK1g2b3NQdEQxRk5WK3lLUEI0Zk1h?=
+ =?utf-8?B?aGQ4SlZ5Q1pkdzNHWTJpZW4vRndOWkVLWThzL1lZMnFJV2t3K1M5NGJyd0Ji?=
+ =?utf-8?B?K1l6endUZHNaMkR4eXZ3VWE3cmxjUmo2SEE2KzAvTDc5UG9HU2k0VWpxbTFW?=
+ =?utf-8?B?YWdHRThxVEFLVnh2MW5POHFyQkVQVVlzcFhZYjFhdml2ZDBNVmQ4YzBKZVBR?=
+ =?utf-8?B?WjU5NFY5TmVnc2xhMWFBQkptV0hYRzRaY0Npc3NCUVU5Q3A5RU02N2twQnY0?=
+ =?utf-8?B?WnZvT2dPUDBCWDlYRHhYcmFiaUxZRjF4LzNnUmE5NHY0cjJvODFIYVk3TzA2?=
+ =?utf-8?B?M3R4c3FxWTN2QlRTVW0rbytDVk1PZHJuTTVKQUpoMTVUTjhzNmdMakhuYTAr?=
+ =?utf-8?B?QWlLdUZjaUowNVhNbnlleFBqMHV3emk0MUwvZG1aQTY1N3FsTCs3YWlIQVJ4?=
+ =?utf-8?B?cUJJeUEzcXBQTnBRQ3Z3UHFQZTFkQ01wcHJPcjUvRHU2R0NxQnRNYTRVWm9U?=
+ =?utf-8?B?MlFDZ0xMRHFnY1JTZzZtaVBKQkx2V3R4VGFpdE1URkN6anVwZnRSbWdEWUgv?=
+ =?utf-8?B?dlphQXhrUlVhbm96UHo4Y3FBY2VYMWJYTlhINkZVU3ZhMmFYMWNpbm1lWVIr?=
+ =?utf-8?B?U3lEODRIVVQ4Y1ZGSWJyNFJvOEd4N2UvYzA3c0NxRzFxbXBaTG9PT05tY0lO?=
+ =?utf-8?B?d3h5VGhoY3JwVUFoSGFmWXV2b3VVWjlJVUtOR0NLdFpuckhzd3dkeW45WEh3?=
+ =?utf-8?B?cTN4UGl4ZEs2NDZaWnpLc3VwajdOalBkTzk5U2dyUXptdWorb0kvVWhLSndh?=
+ =?utf-8?B?QWFpdEVXeTY5RnBmWkZRWHVISmhjS2kwazh2Um5Ea1BlbGxDOHYvV0J2Y0ZG?=
+ =?utf-8?B?QXpicUVZYWFsZ090WFk1Q1JmdFJzeWdJa3FGcnREZi9ndFNhcDB4d0FpQVRq?=
+ =?utf-8?B?b0p0WXY4MHV2Ti9qejU2ZzZWMWFIa0MwYTVrYmF1Qkp0Z1pQR0c0M3pEckdo?=
+ =?utf-8?B?VkdsbnFHVk9OWmhINGE1a3BOYTBZdjlIMFZ3QkIzZmp5T1hMbHdLVUlpU084?=
+ =?utf-8?B?bjNMZ1hOcFgvS1JHNjVLd3VxZTZ1bDhtZWJwT2ZtK1FxUmFjNndkQ0NPdFNX?=
+ =?utf-8?B?QUc1TWNPaTNvZm5ZVnNVVmpQcnhWVXJONG10OTlhdHpwS0tBVWJpcVNZLzdM?=
+ =?utf-8?B?WlpGQ1QvVUVrTkJDTWp2b1BvWWpZditEaExPNWRGQkN4aTJhMGNCRTQ3T1pq?=
+ =?utf-8?B?akowUWlpczh1am0zZ2hMbmtLbVhQTUtTNEtaK3RKbU5YK1VpVVBTdWU0K1dM?=
+ =?utf-8?B?MThET245clpWSmhkRS9zelg5TjF1TFBQL3p6N1NrTUFVazg3QkpHWHVmWk9L?=
+ =?utf-8?B?WGVGNCttaytGdEpzUkRialIxQkllN1pEd09BcXhhOWJuNnhBSUNDakU4RERI?=
+ =?utf-8?B?NUZjc0lyUGIxWEp0eW9pZUY4V0JwU2pZZnFhdzdXRENYZ0xvMkc3L1cxNWo1?=
+ =?utf-8?B?dUNVQ0NNL1VsTzBqZmdCODlwVm5MeXY2VGNrVGZVcXZrdkVTMmZ1K0dTaUxG?=
+ =?utf-8?B?MkhsOGkzVFFFMGM4TXYwRVpYTWZnWCt3S3VxemtOQTEyRTBTYzNPa3hyd1BE?=
+ =?utf-8?B?Ly9KVEJRNmtnNmJRT2Y4ZEw0MFpqZVo2eGZqMW96eXU0ejYzN29JWnBVdnJK?=
+ =?utf-8?B?N0FQMnJjTWxqVjZGYTc1SVVZc0VoV3ZmTk5yVHhZSEdmVERyalh4d3ZWZUVm?=
+ =?utf-8?B?S3Q1M3cwbjQ1OENiSk9zTnpjZUsvVVNWYmpaZGFMeDVBZVYvS1hyWHNpZTBv?=
+ =?utf-8?B?Ykk4REdQaEZmblUxNXdOZjU1UjgwL1dXNFh0enpmRkFhRElVQ09HZkZmSitw?=
+ =?utf-8?B?aTVnbVpmRXJGQnZ0YTBvQXlZbXN2MVFBS3ludWpxOWYzWk9lbDZIM2JTZGUz?=
+ =?utf-8?B?T1B5WVNFQTdNWHJjMzN0bkxiaTFNRHJCRmE0Q0RoR2hCekN5UVpYS3RGSmNU?=
+ =?utf-8?B?cyswUXlickk3RzZlbEswK3FPd3UyVHRsMm1mSjE0OTg5NE5UZUVTQT09?=
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 MIME-Version: 1.0
-X-Exchange-RoutingPolicyChecked: ClkzzeqHbBuGXfdVZEVriVWeGVUCVTmnABKG03OyU4jbWtf+E1l1pnDlvoHETshkAE8dJjHQR8Sv+msWhAmskUSSYX0oUac9qrau0fpiiSlU66+zl9z9yZ/dYGO2cv5TCKlTLx//lRKX3HqxOlQiOOesF7FpMjXsVpoDd7eLMCa1kOpfXhhg8pTjqXyx5TvP6IKzbKjhoAiVv6Xocy3RbDDlhQMHpIrFmgeiaQoMfL4bC13vsmW0BfEnZOcfim8LdBdUSwicQWuw5LQGH+4E4f5zxKUeQh4U25lhvZDkJJn5HJ1bNxWXlJL0C2+Xo8Ujqq30O1hJvopYblPH4ZQa8g==
+X-Exchange-RoutingPolicyChecked: UQQeUaqvHOkfeLJBDN0jy20JuTm2JYWqRh0Fl6Avz9/fhhazo4GSBmRWisi3liBGpU8/pqlhcEaquRzBIUcr+FWDAvMw0MPDyr7BfGBaTCbu0SR+f1nxpYgpsGNU3XWW4kxMJg/+GKt/JGB3q27JRu1TMUBYPs54o1GCDpzOzmIQ1rYBHgEpnpuo+Cuf6J8MTDIeWgMBt/FU5pcPqWB/4tJdBi8tfUQtkQAsyLw32Rgm5TfrUXow7YwwG58ir+O2u+TILhgaQ7LM+AAJAP+K9R1EueHvntbv2kHpKpyLdS9vLR6PXs2rJkJNnl/OISK2tj3SKjs5xsZnKC8kjQXcXg==
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: BL4PR11MB8797.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 1b0ea658-d398-4427-7669-08decd1fba9c
-X-MS-Exchange-CrossTenant-originalarrivaltime: 18 Jun 2026 09:55:29.1446
+X-MS-Exchange-CrossTenant-AuthSource: PH8PR11MB7022.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: c88c3186-7325-4c6c-0c64-08dece0a6525
+X-MS-Exchange-CrossTenant-originalarrivaltime: 19 Jun 2026 13:55:17.4689
  (UTC)
 X-MS-Exchange-CrossTenant-fromentityheader: Hosted
 X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: cyGv/KHdRW7zyVJehfEKSaAbqB8rZ+z7avdyxqlOP2bz1xC59+9N51nwHxv7vUpttObO3h648quB+1EvYzMotA==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SAWPR11MB9709
+X-MS-Exchange-CrossTenant-userprincipalname: oBMiRR1rNvm8Y0XK/2xFTpAmgFD4G3KrljAjWIaww26w/8sPdi2sSKrPAcN+tD0ZSOxauoDFApsEnRr9A10wzg==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH7PR11MB7662
 X-OriginatorOrg: intel.com
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from 45-33-107-173.ip.linodeusercontent.com [45.33.107.173] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Thu, 18 Jun 2026 09:55:47 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/66605
+ <yocto@lists.yoctoproject.org>; Fri, 19 Jun 2026 13:55:24 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/66606
 
---_000_BL4PR11MB8797068C9CD4D9088EDB4B5FB9E32BL4PR11MB8797namp_
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
-
-Hi
-
-We are pleased to announce the Yocto Project 6.0.1 Release is now available=
- for download.
-
-https://downloads.yoctoproject.org/releases/yocto/yocto-6.0.1/
-https://mirrors.edge.kernel.org/yocto/yocto/yocto-6.0.1/
-
-A gpg signed version of these release notes is available at:
-
-https://downloads.yoctoproject.org/releases/yocto/yocto-6.0.1/RELEASENOTES
-
-Full Test Report:
-
-https://downloads.yoctoproject.org/releases/yocto/yocto-6.0.1/testreport.tx=
-t
-
-
-Thank you for everyone's contributions to this release.
-
-Chee Yang
-chee.yang.lee@intel.com
-Yocto Project Build and Release
-
-
---------------------------
-yocto-6.0.1 Release Notes
---------------------------
-
-
---------------------------
- Repositories/Downloads
---------------------------
-
-Repository Name: yocto-docs
-Repository Location: https://git.yoctoproject.org/yocto-docs
-Branch: wrynose
-Tag: yocto-6.0.1
-Git Revision: 7ac955621b36a221126cd40f12c41fa98c213a24
-Release Artefact: yocto-docs-7ac955621b36a221126cd40f12c41fa98c213a24
-sha: 32e25828d25662db5e92829ae6a471291e27d950b5c273458fae211a776e4131
-Download Locations:
-https://downloads.yoctoproject.org/releases/yocto/yocto-6.0.1/yocto-docs-7a=
-c955621b36a221126cd40f12c41fa98c213a24.tar.bz2
-https://mirrors.edge.kernel.org/yocto/yocto/yocto-6.0.1/yocto-docs-7ac95562=
-1b36a221126cd40f12c41fa98c213a24.tar.bz2
-
-Repository Name: openembedded-core
-Repository Location: https://git.openembedded.org/openembedded-core
-Branch: wrynose
-Tag: yocto-6.0.1
-Git Revision: 06dd66e6220e5ce4ed4b9af4d8231ae5f0a8ce80
-Release Artefact: oecore-06dd66e6220e5ce4ed4b9af4d8231ae5f0a8ce80
-sha: 26de701c73d43ab8904bc57b162385901f9a1114807b3e28b665437d4ba23624
-Download Locations:
-https://downloads.yoctoproject.org/releases/yocto/yocto-6.0.1/oecore-06dd66=
-e6220e5ce4ed4b9af4d8231ae5f0a8ce80.tar.bz2
-https://mirrors.edge.kernel.org/yocto/yocto/yocto-6.0.1/oecore-06dd66e6220e=
-5ce4ed4b9af4d8231ae5f0a8ce80.tar.bz2
-
-Repository Name: meta-yocto
-Repository Location: https://git.yoctoproject.org/meta-yocto
-Branch: wrynose
-Tag: yocto-6.0.1
-Git Revision: 8251bdad5fda780a000fb41e6eda82eadf0fa39e
-Release Artefact: meta-yocto-8251bdad5fda780a000fb41e6eda82eadf0fa39e
-sha: ac9125ddd150febba0da9ae4fb7e222dde1d6e8f2ad3aaae1c0c2a4c1f738f36
-Download Locations:
-https://downloads.yoctoproject.org/releases/yocto/yocto-6.0.1/meta-yocto-82=
-51bdad5fda780a000fb41e6eda82eadf0fa39e.tar.bz2
-https://mirrors.edge.kernel.org/yocto/yocto/yocto-6.0.1/meta-yocto-8251bdad=
-5fda780a000fb41e6eda82eadf0fa39e.tar.bz2
-
-Repository Name: meta-mingw
-Repository Location: https://git.yoctoproject.org/meta-mingw
-Branch: wrynose
-Tag: yocto-6.0.1
-Git Revision: a4ba674d6a0a17e4c0bc4c11bbb9d0ea9de2b315
-Release Artefact: meta-mingw-a4ba674d6a0a17e4c0bc4c11bbb9d0ea9de2b315
-sha: cea731150cd3caedd90ca6a82bf050a00c3705cea166d24a6077d07b1b7b2404
-Download Locations:
-https://downloads.yoctoproject.org/releases/yocto/yocto-6.0.1/meta-mingw-a4=
-ba674d6a0a17e4c0bc4c11bbb9d0ea9de2b315.tar.bz2
-https://mirrors.edge.kernel.org/yocto/yocto/yocto-6.0.1/meta-mingw-a4ba674d=
-6a0a17e4c0bc4c11bbb9d0ea9de2b315.tar.bz2
-
-Repository Name: bitbake
-Repository Location: https://git.openembedded.org/bitbake
-Branch: 2.18
-Tag: yocto-6.0.1
-Git Revision: 22021758e66737bcf68dfd2b74adc6a0cb1d42d9
-Release Artefact: bitbake-22021758e66737bcf68dfd2b74adc6a0cb1d42d9
-sha: ce9c213f9b8c5fb677b0a64ac883386a4d578fdb66881dcc9f1cd8bc4e79e7f6
-Download Locations:
-https://downloads.yoctoproject.org/releases/yocto/yocto-6.0.1/bitbake-22021=
-758e66737bcf68dfd2b74adc6a0cb1d42d9.tar.bz2
-https://mirrors.edge.kernel.org/yocto/yocto/yocto-6.0.1/bitbake-22021758e66=
-737bcf68dfd2b74adc6a0cb1d42d9.tar.bz2
-
-
----------------
- Contributors
----------------
-
-Thanks to the following people who contributed to this release:
-
-Alexander Kanavin
-Andrew Geissler
-Ankur Tyagi
-Antonin Godard
-Benjamin Robin (Schneider Electric)
-Chen Qi
-Daniel McGregor
-Dawid Bijak
-Dmitry Sakhonchik
-Himanshu Jadon
-Ivan Nestlerode
-Jinwang Li
-Johan Anderholm
-Jo=C3=A3o Marcos Costa
-Lee Chee Yang
-Leonardo Costa
-Li Wang
-Minwoo Choi
-Moritz Haase
-Paul Barker
-Peter Marko
-Peter Tatrai
-Quan Sun
-Quentin Schulz
-Richard Purdie
-Robert P. J. Day
-Ross Burton
-Sam Kent
-Thomas Perrot
-Vijay Anusuri
-Wang Mingyu
-Yoann Congal
-
----------------
- Known Issues
----------------
-N/A
-
-
----------------
-Security Fixes
----------------
-
-avahi: Fix CVE-2026-34933
-base-files: Ignore CVE-2018-6557
-bind: Ignore CVE-2017-3139
-busybox: fix CVE-2024-58251 CVE-2026-29004
-cargo: Ignore CVE-2023-40030
-cve-extra-exclusions: Ignore CVE-2019-2708
-ffmpeg: Ignore CVE-2022-2566 CVE-2025-9951 CVE-2025-59729 CVE-2025-59730
-git: Ignore CVE-2024-32002 CVE-2024-50349 CVE-2024-52006 CVE-2025-48385 CVE=
--2025-48386
-glibc: Fix CVE-2026-4046
-gnutls: Ignore CVE-2026-1584
-harfbuzz: Ignore CVE-2024-56732
-inetutils: Fix CVE-2026-32772
-libarchive: Ignore CVE-2026-4426 CVE-2026-5745
-libsoup: Fix CVE-2026-2708 CVE-2026-5119
-libsoup: Ignore CVE-2026-2369 CVE-2026-2436
-libssh2: Fix CVE-2026-7598
-libva: Ignore CVE-2023-39929
-ovmf: Ignore CVE-2024-38796 CVE-2024-38797 CVE-2024-38798 CVE-2024-38805 CV=
-E-2025-2295 CVE-2025-2296 CVE-2025-3770
-p11-kit: Ignore CVE-2026-2100
-python3-requests: Ignore CVE-2024-35195 CVE-2024-47081
-python3-setuptools: Ignore CVE-2024-6345
-rsync: Ignore CVE-2024-12084
-ruby: Ignore CVE-2025-0306
-sed: Fix CVE-2026-5958
-sudo: Fix CVE-2026-35535
-tiff: Fix CVE-2026-4775
-
-
----------------
-Fixes
----------------
-
-bitbake
------------
-README: Add "2.18" subject-prefix to git-send-email suggestion
-b4-config: add send-prefixes for 2.18/wrynose
-fetch/git: Fix leaking of temporary directory
-fetch/git: Improve temporary directory handling
-fetch/wget: in upstream version checks, match versioned directories exactly
-fetch2/crate: use CDN endpoint for version checking if possible
-fetch2/crate: use CDN for fetching crates
-
-oecore
------------
-README: Add wrynose subject-prefix to git-send-email suggestion
-apr-util: Add CVE_PRODUCT to support product name
-apr: Add CVE_PRODUCT to support product name
-b4-config: add send-prefixes for wrynose
-bluez5: add patches to fix 8.56 cli & gatt issues
-build-appliance-image: Update to wrynose head revisions
-build-appliance-image: fix branches for wrynose revisions
-cargo: set CVE_PRODUCT
-ccache: upgrade to 4.13.3
-classes/base: add explicit bzip2-native dependency for unpacking .bz2
-coreutils: set CVE_PRODUCT
-default-distrovars.inc: add missing spaces in append overrides
-devtool: Disable gpg signing when setting up source tree repos
-dhcpcd: upgrade to 10.3.1
-efivar: Backport patch to fix -march issue for ppc64le
-features-check.bbclass: add reference to required TUNE_FEATURES
-glibc: Fix recipe bug that disabled stack protector
-glibc: stable 2.43 branch updates
-groff: upgrade to 1.24.1
-gsettings-desktop-schemas: upgrade to 50.1
-gtk4: upgrade to 4.22.2
-gtk+3: upgrade to 3.24.52
-hwdata: upgrade to 0.406
-mirrors: remove inactive sources.openembedded.org URLs
-oe-pkgdata-util: fix empty runtime-rprovides directory handling
-oe-pkgdata-util: fix runtime-rprovides handling in lookup_pkg error path
-package.py: fix kernel module file pre-filter and document strip asymmetry
-perf: add PACKAGECONFIG for llvm
-pseudo: Upgrade to 1.9.7
-python3-requests: Increase chardet upper limit
-python3-sbom-cve-check: Update to version 1.3.1
-qemu: fix iotlb_to_section() for different AddressSpace
-rust: fix codegen test failure on big-endian targets
-sbom-cve-check-update-cvelist-native: Update source revision
-sbom-cve-check-update-nvd-native: Update source revision
-sbom-cve-check: set PV from upstream tags and ensure version checks are cor=
-rect
-scripts/makefile-getvar: quote MAKEFILE variable
-sed: upgrade to 4.10
-shadow-native: Change upstream status of disable_syslog.patch
-shadow: set CVE_PRODUCT
-sudo: set CVE_PRODUCT
-tzdata/tzcode-native: upgrade to2026b
-utils: Handle unexpanded variables in DISTRO_FEATURES
-wireless-regdb: upgrade to 2026.03.18
-
-
-meta-yocto
------------
-poky.conf: Bump version for 6.0.1 release
-
-yocto-docs
------------
-"Transitioning ..." doc: Various pedantic cleanups
-Quick Build guide: Various pedantic cleanups
-What I Wish I'd KNown: Various pedantic cleanups
-YP Quick Build: delete extraneous periods in list
-YP Quick Build: use "set up" as a verb
-conf.py: add a :yocto_bug: role
-contributor-guide: fix type "maintainance" to "maintenance"
-dev-manual: "--runonly" should be "--runall"
-docs-wide: drop documentation for cve-check and variables
-index.rst: update "Software Overview" to "Technical Overview"
-migration-guide: add release notes for 4.0.35 5.3.4
-migration-guide: migration-6.0: fix typos in cve-check removal
-migration-guides/migration-6.0.rst: add migration notes on cve-check remova=
-l
-migration-guides/migration-6.0.rst: document the CVE_PRODUCT behavior chang=
-e
-migration-guides/migration-6.0.rst: mention python3-roman-numerals-py renam=
-e
-migration-guides/release-notes-6.0.rst: add contributors, CVE fixes, downlo=
-ads, known issue, license, recipe version changes
-migration-guides: fix https:// prefix missing in anonymous reference
-migration-guides: migration-6.0: fix grammar and missing word
-migration-guides: migration-6.0: reword meta-poky templates removal
-migration-guides: release-notes-6.0: fix typo in documentation changes
-overview-manual/concepts.rst: fix do_prepare_recipe_sysroot task descriptio=
-n
-overview-manual: fix "checkout" versus "check out"
-ref-manual/system-requirements.rst: add CentOS 10 as a supported distro
-ref-manual/variables.rst: document the SBOM_CVE_CHECK_SHOW_WARNINGS variabl=
-e
-ref-manual/variables: IMAGE_TYPES: add new wicenv type
-ref-manual/variables: document the 'dynamic layer' concept
-ref-manual: classes: add missing "task" after create_recipe_sbom
-ref-manual: classes: fix https:// prefix missing in anonymous reference
-ref-manual: fix "include to" grammar for UKI_DEVICETREE
-ref-manual: fragments: fix style inconsistencies
-ref-manual: replace "naive" with "simple"
-ref-manual: variables: add hyphen to "space separated" and "auto generated"
-security-manual/vulnerabilities.rst: refresh the document after cve-check r=
-emoval
-security-manual/vulnerabilities.rst: require Upstream-Status, not recommend
-tools/build-docs-container: add CentOS 10 support
-tools/build-docs-container: add missing leap 16.0 in help message
-yp-intro.rst: add link to "buildbot"
-yp-intro.rst: delete really old references
-
-
---_000_BL4PR11MB8797068C9CD4D9088EDB4B5FB9E32BL4PR11MB8797namp_
-Content-Type: text/html; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
-
-<html>
-<head>
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Diso-8859-=
-1">
-<style type=3D"text/css" style=3D"display:none;"> P {margin-top:0;margin-bo=
-ttom:0;} </style>
-</head>
-<body dir=3D"ltr">
-<div style=3D"font-family: &quot;Courier New&quot;, monospace; font-size: 1=
-2pt; color: rgb(0, 0, 0);">
-Hi</div>
-<div class=3D"elementToProof" style=3D"font-family: &quot;Courier New&quot;=
-, monospace; font-size: 12pt; color: rgb(0, 0, 0);">
-<br>
-</div>
-<div class=3D"elementToProof" style=3D"font-family: &quot;Courier New&quot;=
-, monospace; font-size: 12pt; color: rgb(0, 0, 0);">
-We are pleased to announce the Yocto Project 6.0.1 Release is now available=
- for download.</div>
-<div class=3D"elementToProof" style=3D"font-family: &quot;Courier New&quot;=
-, monospace; font-size: 12pt; color: rgb(0, 0, 0);">
-<br>
-</div>
-<div class=3D"elementToProof" style=3D"font-family: &quot;Courier New&quot;=
-, monospace; font-size: 12pt; color: rgb(0, 0, 0);">
-https://downloads.yoctoproject.org/releases/yocto/yocto-6.0.1/&nbsp;</div>
-<div class=3D"elementToProof" style=3D"font-family: &quot;Courier New&quot;=
-, monospace; font-size: 12pt; color: rgb(0, 0, 0);">
-https://mirrors.edge.kernel.org/yocto/yocto/yocto-6.0.1/&nbsp;</div>
-<div class=3D"elementToProof" style=3D"font-family: &quot;Courier New&quot;=
-, monospace; font-size: 12pt; color: rgb(0, 0, 0);">
-<br>
-</div>
-<div class=3D"elementToProof" style=3D"font-family: &quot;Courier New&quot;=
-, monospace; font-size: 12pt; color: rgb(0, 0, 0);">
-A gpg signed version of these release notes is available at:</div>
-<div class=3D"elementToProof" style=3D"font-family: &quot;Courier New&quot;=
-, monospace; font-size: 12pt; color: rgb(0, 0, 0);">
-<br>
-</div>
-<div class=3D"elementToProof" style=3D"font-family: &quot;Courier New&quot;=
-, monospace; font-size: 12pt; color: rgb(0, 0, 0);">
-https://downloads.yoctoproject.org/releases/yocto/yocto-6.0.1/RELEASENOTES&=
-nbsp;</div>
-<div class=3D"elementToProof" style=3D"font-family: &quot;Courier New&quot;=
-, monospace; font-size: 12pt; color: rgb(0, 0, 0);">
-<br>
-</div>
-<div class=3D"elementToProof" style=3D"font-family: &quot;Courier New&quot;=
-, monospace; font-size: 12pt; color: rgb(0, 0, 0);">
-Full Test Report:</div>
-<div class=3D"elementToProof" style=3D"font-family: &quot;Courier New&quot;=
-, monospace; font-size: 12pt; color: rgb(0, 0, 0);">
-<br>
-</div>
-<div class=3D"elementToProof" style=3D"font-family: &quot;Courier New&quot;=
-, monospace; font-size: 12pt; color: rgb(0, 0, 0);">
-https://downloads.yoctoproject.org/releases/yocto/yocto-6.0.1/testreport.tx=
-t&nbsp;</div>
-<div class=3D"elementToProof" style=3D"font-family: &quot;Courier New&quot;=
-, monospace; font-size: 12pt; color: rgb(0, 0, 0);">
-<br>
-</div>
-<div class=3D"elementToProof" style=3D"font-family: &quot;Courier New&quot;=
-, monospace; font-size: 12pt; color: rgb(0, 0, 0);">
-<br>
-</div>
-<div class=3D"elementToProof" style=3D"font-family: &quot;Courier New&quot;=
-, monospace; font-size: 12pt; color: rgb(0, 0, 0);">
-Thank you for everyone's contributions to this release.</div>
-<div class=3D"elementToProof" style=3D"font-family: &quot;Courier New&quot;=
-, monospace; font-size: 12pt; color: rgb(0, 0, 0);">
-<br>
-</div>
-<div class=3D"elementToProof" style=3D"font-family: &quot;Courier New&quot;=
-, monospace; font-size: 12pt; color: rgb(0, 0, 0);">
-Chee Yang</div>
-<div class=3D"elementToProof" style=3D"font-family: &quot;Courier New&quot;=
-, monospace; font-size: 12pt; color: rgb(0, 0, 0);">
-chee.yang.lee@intel.com</div>
-<div style=3D"font-family: &quot;Courier New&quot;, monospace; font-size: 1=
-2pt; color: rgb(0, 0, 0);">
-Yocto Project Build and Release</div>
-<div style=3D"font-family: &quot;Courier New&quot;, monospace; font-size: 1=
-2pt; color: rgb(0, 0, 0);">
-<br>
-</div>
-<div style=3D"font-family: &quot;Courier New&quot;, monospace; font-size: 1=
-2pt; color: rgb(0, 0, 0);">
-<br>
-</div>
-<div class=3D"elementToProof" style=3D"font-family: &quot;Courier New&quot;=
-, monospace; font-size: 12pt; color: rgb(0, 0, 0);">
---------------------------</div>
-<div class=3D"elementToProof" style=3D"font-family: &quot;Courier New&quot;=
-, monospace; font-size: 12pt; color: rgb(0, 0, 0);">
-yocto-6.0.1 Release Notes</div>
-<div class=3D"elementToProof" style=3D"font-family: &quot;Courier New&quot;=
-, monospace; font-size: 12pt; color: rgb(0, 0, 0);">
---------------------------</div>
-<div class=3D"elementToProof" style=3D"font-family: &quot;Courier New&quot;=
-, monospace; font-size: 12pt; color: rgb(0, 0, 0);">
-<br>
-</div>
-<div class=3D"elementToProof" style=3D"font-family: &quot;Courier New&quot;=
-, monospace; font-size: 12pt; color: rgb(0, 0, 0);">
-<br>
-</div>
-<div class=3D"elementToProof" style=3D"font-family: &quot;Courier New&quot;=
-, monospace; font-size: 12pt; color: rgb(0, 0, 0);">
---------------------------</div>
-<div class=3D"elementToProof" style=3D"font-family: &quot;Courier New&quot;=
-, monospace; font-size: 12pt; color: rgb(0, 0, 0);">
-&nbsp;Repositories/Downloads</div>
-<div class=3D"elementToProof" style=3D"font-family: &quot;Courier New&quot;=
-, monospace; font-size: 12pt; color: rgb(0, 0, 0);">
---------------------------</div>
-<div class=3D"elementToProof" style=3D"font-family: &quot;Courier New&quot;=
-, monospace; font-size: 12pt; color: rgb(0, 0, 0);">
-<br>
-</div>
-<div class=3D"elementToProof" style=3D"font-family: &quot;Courier New&quot;=
-, monospace; font-size: 12pt; color: rgb(0, 0, 0);">
-Repository Name: yocto-docs</div>
-<div class=3D"elementToProof" style=3D"font-family: &quot;Courier New&quot;=
-, monospace; font-size: 12pt; color: rgb(0, 0, 0);">
-Repository Location: https://git.yoctoproject.org/yocto-docs</div>
-<div class=3D"elementToProof" style=3D"font-family: &quot;Courier New&quot;=
-, monospace; font-size: 12pt; color: rgb(0, 0, 0);">
-Branch: wrynose</div>
-<div class=3D"elementToProof" style=3D"font-family: &quot;Courier New&quot;=
-, monospace; font-size: 12pt; color: rgb(0, 0, 0);">
-Tag: yocto-6.0.1</div>
-<div class=3D"elementToProof" style=3D"font-family: &quot;Courier New&quot;=
-, monospace; font-size: 12pt; color: rgb(0, 0, 0);">
-Git Revision: 7ac955621b36a221126cd40f12c41fa98c213a24</div>
-<div class=3D"elementToProof" style=3D"font-family: &quot;Courier New&quot;=
-, monospace; font-size: 12pt; color: rgb(0, 0, 0);">
-Release Artefact: yocto-docs-7ac955621b36a221126cd40f12c41fa98c213a24</div>
-<div class=3D"elementToProof" style=3D"font-family: &quot;Courier New&quot;=
-, monospace; font-size: 12pt; color: rgb(0, 0, 0);">
-sha: 32e25828d25662db5e92829ae6a471291e27d950b5c273458fae211a776e4131</div>
-<div class=3D"elementToProof" style=3D"font-family: &quot;Courier New&quot;=
-, monospace; font-size: 12pt; color: rgb(0, 0, 0);">
-Download Locations:</div>
-<div class=3D"elementToProof" style=3D"font-family: &quot;Courier New&quot;=
-, monospace; font-size: 12pt; color: rgb(0, 0, 0);">
-https://downloads.yoctoproject.org/releases/yocto/yocto-6.0.1/yocto-docs-7a=
-c955621b36a221126cd40f12c41fa98c213a24.tar.bz2</div>
-<div class=3D"elementToProof" style=3D"font-family: &quot;Courier New&quot;=
-, monospace; font-size: 12pt; color: rgb(0, 0, 0);">
-https://mirrors.edge.kernel.org/yocto/yocto/yocto-6.0.1/yocto-docs-7ac95562=
-1b36a221126cd40f12c41fa98c213a24.tar.bz2</div>
-<div class=3D"elementToProof" style=3D"font-family: &quot;Courier New&quot;=
-, monospace; font-size: 12pt; color: rgb(0, 0, 0);">
-<br>
-</div>
-<div class=3D"elementToProof" style=3D"font-family: &quot;Courier New&quot;=
-, monospace; font-size: 12pt; color: rgb(0, 0, 0);">
-Repository Name: openembedded-core</div>
-<div class=3D"elementToProof" style=3D"font-family: &quot;Courier New&quot;=
-, monospace; font-size: 12pt; color: rgb(0, 0, 0);">
-Repository Location: https://git.openembedded.org/openembedded-core</div>
-<div class=3D"elementToProof" style=3D"font-family: &quot;Courier New&quot;=
-, monospace; font-size: 12pt; color: rgb(0, 0, 0);">
-Branch: wrynose</div>
-<div class=3D"elementToProof" style=3D"font-family: &quot;Courier New&quot;=
-, monospace; font-size: 12pt; color: rgb(0, 0, 0);">
-Tag: yocto-6.0.1</div>
-<div class=3D"elementToProof" style=3D"font-family: &quot;Courier New&quot;=
-, monospace; font-size: 12pt; color: rgb(0, 0, 0);">
-Git Revision: 06dd66e6220e5ce4ed4b9af4d8231ae5f0a8ce80</div>
-<div class=3D"elementToProof" style=3D"font-family: &quot;Courier New&quot;=
-, monospace; font-size: 12pt; color: rgb(0, 0, 0);">
-Release Artefact: oecore-06dd66e6220e5ce4ed4b9af4d8231ae5f0a8ce80</div>
-<div class=3D"elementToProof" style=3D"font-family: &quot;Courier New&quot;=
-, monospace; font-size: 12pt; color: rgb(0, 0, 0);">
-sha: 26de701c73d43ab8904bc57b162385901f9a1114807b3e28b665437d4ba23624</div>
-<div class=3D"elementToProof" style=3D"font-family: &quot;Courier New&quot;=
-, monospace; font-size: 12pt; color: rgb(0, 0, 0);">
-Download Locations:</div>
-<div class=3D"elementToProof" style=3D"font-family: &quot;Courier New&quot;=
-, monospace; font-size: 12pt; color: rgb(0, 0, 0);">
-https://downloads.yoctoproject.org/releases/yocto/yocto-6.0.1/oecore-06dd66=
-e6220e5ce4ed4b9af4d8231ae5f0a8ce80.tar.bz2</div>
-<div class=3D"elementToProof" style=3D"font-family: &quot;Courier New&quot;=
-, monospace; font-size: 12pt; color: rgb(0, 0, 0);">
-https://mirrors.edge.kernel.org/yocto/yocto/yocto-6.0.1/oecore-06dd66e6220e=
-5ce4ed4b9af4d8231ae5f0a8ce80.tar.bz2</div>
-<div class=3D"elementToProof" style=3D"font-family: &quot;Courier New&quot;=
-, monospace; font-size: 12pt; color: rgb(0, 0, 0);">
-<br>
-</div>
-<div class=3D"elementToProof" style=3D"font-family: &quot;Courier New&quot;=
-, monospace; font-size: 12pt; color: rgb(0, 0, 0);">
-Repository Name: meta-yocto</div>
-<div class=3D"elementToProof" style=3D"font-family: &quot;Courier New&quot;=
-, monospace; font-size: 12pt; color: rgb(0, 0, 0);">
-Repository Location: https://git.yoctoproject.org/meta-yocto</div>
-<div class=3D"elementToProof" style=3D"font-family: &quot;Courier New&quot;=
-, monospace; font-size: 12pt; color: rgb(0, 0, 0);">
-Branch: wrynose</div>
-<div class=3D"elementToProof" style=3D"font-family: &quot;Courier New&quot;=
-, monospace; font-size: 12pt; color: rgb(0, 0, 0);">
-Tag: yocto-6.0.1</div>
-<div class=3D"elementToProof" style=3D"font-family: &quot;Courier New&quot;=
-, monospace; font-size: 12pt; color: rgb(0, 0, 0);">
-Git Revision: 8251bdad5fda780a000fb41e6eda82eadf0fa39e</div>
-<div class=3D"elementToProof" style=3D"font-family: &quot;Courier New&quot;=
-, monospace; font-size: 12pt; color: rgb(0, 0, 0);">
-Release Artefact: meta-yocto-8251bdad5fda780a000fb41e6eda82eadf0fa39e</div>
-<div class=3D"elementToProof" style=3D"font-family: &quot;Courier New&quot;=
-, monospace; font-size: 12pt; color: rgb(0, 0, 0);">
-sha: ac9125ddd150febba0da9ae4fb7e222dde1d6e8f2ad3aaae1c0c2a4c1f738f36</div>
-<div class=3D"elementToProof" style=3D"font-family: &quot;Courier New&quot;=
-, monospace; font-size: 12pt; color: rgb(0, 0, 0);">
-Download Locations:</div>
-<div class=3D"elementToProof" style=3D"font-family: &quot;Courier New&quot;=
-, monospace; font-size: 12pt; color: rgb(0, 0, 0);">
-https://downloads.yoctoproject.org/releases/yocto/yocto-6.0.1/meta-yocto-82=
-51bdad5fda780a000fb41e6eda82eadf0fa39e.tar.bz2</div>
-<div class=3D"elementToProof" style=3D"font-family: &quot;Courier New&quot;=
-, monospace; font-size: 12pt; color: rgb(0, 0, 0);">
-https://mirrors.edge.kernel.org/yocto/yocto/yocto-6.0.1/meta-yocto-8251bdad=
-5fda780a000fb41e6eda82eadf0fa39e.tar.bz2</div>
-<div class=3D"elementToProof" style=3D"font-family: &quot;Courier New&quot;=
-, monospace; font-size: 12pt; color: rgb(0, 0, 0);">
-<br>
-</div>
-<div class=3D"elementToProof" style=3D"font-family: &quot;Courier New&quot;=
-, monospace; font-size: 12pt; color: rgb(0, 0, 0);">
-Repository Name: meta-mingw</div>
-<div class=3D"elementToProof" style=3D"font-family: &quot;Courier New&quot;=
-, monospace; font-size: 12pt; color: rgb(0, 0, 0);">
-Repository Location: https://git.yoctoproject.org/meta-mingw</div>
-<div class=3D"elementToProof" style=3D"font-family: &quot;Courier New&quot;=
-, monospace; font-size: 12pt; color: rgb(0, 0, 0);">
-Branch: wrynose</div>
-<div class=3D"elementToProof" style=3D"font-family: &quot;Courier New&quot;=
-, monospace; font-size: 12pt; color: rgb(0, 0, 0);">
-Tag: yocto-6.0.1</div>
-<div class=3D"elementToProof" style=3D"font-family: &quot;Courier New&quot;=
-, monospace; font-size: 12pt; color: rgb(0, 0, 0);">
-Git Revision: a4ba674d6a0a17e4c0bc4c11bbb9d0ea9de2b315</div>
-<div class=3D"elementToProof" style=3D"font-family: &quot;Courier New&quot;=
-, monospace; font-size: 12pt; color: rgb(0, 0, 0);">
-Release Artefact: meta-mingw-a4ba674d6a0a17e4c0bc4c11bbb9d0ea9de2b315</div>
-<div class=3D"elementToProof" style=3D"font-family: &quot;Courier New&quot;=
-, monospace; font-size: 12pt; color: rgb(0, 0, 0);">
-sha: cea731150cd3caedd90ca6a82bf050a00c3705cea166d24a6077d07b1b7b2404</div>
-<div class=3D"elementToProof" style=3D"font-family: &quot;Courier New&quot;=
-, monospace; font-size: 12pt; color: rgb(0, 0, 0);">
-Download Locations:</div>
-<div class=3D"elementToProof" style=3D"font-family: &quot;Courier New&quot;=
-, monospace; font-size: 12pt; color: rgb(0, 0, 0);">
-https://downloads.yoctoproject.org/releases/yocto/yocto-6.0.1/meta-mingw-a4=
-ba674d6a0a17e4c0bc4c11bbb9d0ea9de2b315.tar.bz2</div>
-<div class=3D"elementToProof" style=3D"font-family: &quot;Courier New&quot;=
-, monospace; font-size: 12pt; color: rgb(0, 0, 0);">
-https://mirrors.edge.kernel.org/yocto/yocto/yocto-6.0.1/meta-mingw-a4ba674d=
-6a0a17e4c0bc4c11bbb9d0ea9de2b315.tar.bz2</div>
-<div class=3D"elementToProof" style=3D"font-family: &quot;Courier New&quot;=
-, monospace; font-size: 12pt; color: rgb(0, 0, 0);">
-<br>
-</div>
-<div class=3D"elementToProof" style=3D"font-family: &quot;Courier New&quot;=
-, monospace; font-size: 12pt; color: rgb(0, 0, 0);">
-Repository Name: bitbake</div>
-<div class=3D"elementToProof" style=3D"font-family: &quot;Courier New&quot;=
-, monospace; font-size: 12pt; color: rgb(0, 0, 0);">
-Repository Location: https://git.openembedded.org/bitbake</div>
-<div class=3D"elementToProof" style=3D"font-family: &quot;Courier New&quot;=
-, monospace; font-size: 12pt; color: rgb(0, 0, 0);">
-Branch: 2.18</div>
-<div class=3D"elementToProof" style=3D"font-family: &quot;Courier New&quot;=
-, monospace; font-size: 12pt; color: rgb(0, 0, 0);">
-Tag: yocto-6.0.1</div>
-<div class=3D"elementToProof" style=3D"font-family: &quot;Courier New&quot;=
-, monospace; font-size: 12pt; color: rgb(0, 0, 0);">
-Git Revision: 22021758e66737bcf68dfd2b74adc6a0cb1d42d9</div>
-<div class=3D"elementToProof" style=3D"font-family: &quot;Courier New&quot;=
-, monospace; font-size: 12pt; color: rgb(0, 0, 0);">
-Release Artefact: bitbake-22021758e66737bcf68dfd2b74adc6a0cb1d42d9</div>
-<div class=3D"elementToProof" style=3D"font-family: &quot;Courier New&quot;=
-, monospace; font-size: 12pt; color: rgb(0, 0, 0);">
-sha: ce9c213f9b8c5fb677b0a64ac883386a4d578fdb66881dcc9f1cd8bc4e79e7f6</div>
-<div class=3D"elementToProof" style=3D"font-family: &quot;Courier New&quot;=
-, monospace; font-size: 12pt; color: rgb(0, 0, 0);">
-Download Locations:</div>
-<div class=3D"elementToProof" style=3D"font-family: &quot;Courier New&quot;=
-, monospace; font-size: 12pt; color: rgb(0, 0, 0);">
-https://downloads.yoctoproject.org/releases/yocto/yocto-6.0.1/bitbake-22021=
-758e66737bcf68dfd2b74adc6a0cb1d42d9.tar.bz2</div>
-<div class=3D"elementToProof" style=3D"font-family: &quot;Courier New&quot;=
-, monospace; font-size: 12pt; color: rgb(0, 0, 0);">
-https://mirrors.edge.kernel.org/yocto/yocto/yocto-6.0.1/bitbake-22021758e66=
-737bcf68dfd2b74adc6a0cb1d42d9.tar.bz2</div>
-<div class=3D"elementToProof" style=3D"font-family: &quot;Courier New&quot;=
-, monospace; font-size: 12pt; color: rgb(0, 0, 0);">
-<br>
-</div>
-<div class=3D"elementToProof" style=3D"font-family: &quot;Courier New&quot;=
-, monospace; font-size: 12pt; color: rgb(0, 0, 0);">
-<br>
-</div>
-<div class=3D"elementToProof" style=3D"font-family: &quot;Courier New&quot;=
-, monospace; font-size: 12pt; color: rgb(0, 0, 0);">
----------------</div>
-<div class=3D"elementToProof" style=3D"font-family: &quot;Courier New&quot;=
-, monospace; font-size: 12pt; color: rgb(0, 0, 0);">
-&nbsp;Contributors</div>
-<div class=3D"elementToProof" style=3D"font-family: &quot;Courier New&quot;=
-, monospace; font-size: 12pt; color: rgb(0, 0, 0);">
----------------</div>
-<div class=3D"elementToProof" style=3D"font-family: &quot;Courier New&quot;=
-, monospace; font-size: 12pt; color: rgb(0, 0, 0);">
-<br>
-</div>
-<div class=3D"elementToProof" style=3D"font-family: &quot;Courier New&quot;=
-, monospace; font-size: 12pt; color: rgb(0, 0, 0);">
-Thanks to the following people who contributed to this release:</div>
-<div class=3D"elementToProof" style=3D"font-family: &quot;Courier New&quot;=
-, monospace; font-size: 12pt; color: rgb(0, 0, 0);">
-<br>
-</div>
-<div class=3D"elementToProof" style=3D"font-family: &quot;Courier New&quot;=
-, monospace; font-size: 12pt; color: rgb(0, 0, 0);">
-Alexander Kanavin</div>
-<div class=3D"elementToProof" style=3D"font-family: &quot;Courier New&quot;=
-, monospace; font-size: 12pt; color: rgb(0, 0, 0);">
-Andrew Geissler</div>
-<div class=3D"elementToProof" style=3D"font-family: &quot;Courier New&quot;=
-, monospace; font-size: 12pt; color: rgb(0, 0, 0);">
-Ankur Tyagi</div>
-<div class=3D"elementToProof" style=3D"font-family: &quot;Courier New&quot;=
-, monospace; font-size: 12pt; color: rgb(0, 0, 0);">
-Antonin Godard</div>
-<div class=3D"elementToProof" style=3D"font-family: &quot;Courier New&quot;=
-, monospace; font-size: 12pt; color: rgb(0, 0, 0);">
-Benjamin Robin (Schneider Electric)</div>
-<div class=3D"elementToProof" style=3D"font-family: &quot;Courier New&quot;=
-, monospace; font-size: 12pt; color: rgb(0, 0, 0);">
-Chen Qi</div>
-<div class=3D"elementToProof" style=3D"font-family: &quot;Courier New&quot;=
-, monospace; font-size: 12pt; color: rgb(0, 0, 0);">
-Daniel McGregor</div>
-<div class=3D"elementToProof" style=3D"font-family: &quot;Courier New&quot;=
-, monospace; font-size: 12pt; color: rgb(0, 0, 0);">
-Dawid Bijak</div>
-<div class=3D"elementToProof" style=3D"font-family: &quot;Courier New&quot;=
-, monospace; font-size: 12pt; color: rgb(0, 0, 0);">
-Dmitry Sakhonchik</div>
-<div class=3D"elementToProof" style=3D"font-family: &quot;Courier New&quot;=
-, monospace; font-size: 12pt; color: rgb(0, 0, 0);">
-Himanshu Jadon</div>
-<div class=3D"elementToProof" style=3D"font-family: &quot;Courier New&quot;=
-, monospace; font-size: 12pt; color: rgb(0, 0, 0);">
-Ivan Nestlerode</div>
-<div class=3D"elementToProof" style=3D"font-family: &quot;Courier New&quot;=
-, monospace; font-size: 12pt; color: rgb(0, 0, 0);">
-Jinwang Li</div>
-<div class=3D"elementToProof" style=3D"font-family: &quot;Courier New&quot;=
-, monospace; font-size: 12pt; color: rgb(0, 0, 0);">
-Johan Anderholm</div>
-<div class=3D"elementToProof" style=3D"font-family: &quot;Courier New&quot;=
-, monospace; font-size: 12pt; color: rgb(0, 0, 0);">
-Jo=C3=A3o Marcos Costa</div>
-<div class=3D"elementToProof" style=3D"font-family: &quot;Courier New&quot;=
-, monospace; font-size: 12pt; color: rgb(0, 0, 0);">
-Lee Chee Yang</div>
-<div class=3D"elementToProof" style=3D"font-family: &quot;Courier New&quot;=
-, monospace; font-size: 12pt; color: rgb(0, 0, 0);">
-Leonardo Costa</div>
-<div class=3D"elementToProof" style=3D"font-family: &quot;Courier New&quot;=
-, monospace; font-size: 12pt; color: rgb(0, 0, 0);">
-Li Wang</div>
-<div class=3D"elementToProof" style=3D"font-family: &quot;Courier New&quot;=
-, monospace; font-size: 12pt; color: rgb(0, 0, 0);">
-Minwoo Choi</div>
-<div class=3D"elementToProof" style=3D"font-family: &quot;Courier New&quot;=
-, monospace; font-size: 12pt; color: rgb(0, 0, 0);">
-Moritz Haase</div>
-<div class=3D"elementToProof" style=3D"font-family: &quot;Courier New&quot;=
-, monospace; font-size: 12pt; color: rgb(0, 0, 0);">
-Paul Barker</div>
-<div class=3D"elementToProof" style=3D"font-family: &quot;Courier New&quot;=
-, monospace; font-size: 12pt; color: rgb(0, 0, 0);">
-Peter Marko</div>
-<div class=3D"elementToProof" style=3D"font-family: &quot;Courier New&quot;=
-, monospace; font-size: 12pt; color: rgb(0, 0, 0);">
-Peter Tatrai</div>
-<div class=3D"elementToProof" style=3D"font-family: &quot;Courier New&quot;=
-, monospace; font-size: 12pt; color: rgb(0, 0, 0);">
-Quan Sun</div>
-<div class=3D"elementToProof" style=3D"font-family: &quot;Courier New&quot;=
-, monospace; font-size: 12pt; color: rgb(0, 0, 0);">
-Quentin Schulz</div>
-<div class=3D"elementToProof" style=3D"font-family: &quot;Courier New&quot;=
-, monospace; font-size: 12pt; color: rgb(0, 0, 0);">
-Richard Purdie</div>
-<div class=3D"elementToProof" style=3D"font-family: &quot;Courier New&quot;=
-, monospace; font-size: 12pt; color: rgb(0, 0, 0);">
-Robert P. J. Day</div>
-<div class=3D"elementToProof" style=3D"font-family: &quot;Courier New&quot;=
-, monospace; font-size: 12pt; color: rgb(0, 0, 0);">
-Ross Burton</div>
-<div class=3D"elementToProof" style=3D"font-family: &quot;Courier New&quot;=
-, monospace; font-size: 12pt; color: rgb(0, 0, 0);">
-Sam Kent</div>
-<div class=3D"elementToProof" style=3D"font-family: &quot;Courier New&quot;=
-, monospace; font-size: 12pt; color: rgb(0, 0, 0);">
-Thomas Perrot</div>
-<div class=3D"elementToProof" style=3D"font-family: &quot;Courier New&quot;=
-, monospace; font-size: 12pt; color: rgb(0, 0, 0);">
-Vijay Anusuri</div>
-<div class=3D"elementToProof" style=3D"font-family: &quot;Courier New&quot;=
-, monospace; font-size: 12pt; color: rgb(0, 0, 0);">
-Wang Mingyu</div>
-<div class=3D"elementToProof" style=3D"font-family: &quot;Courier New&quot;=
-, monospace; font-size: 12pt; color: rgb(0, 0, 0);">
-Yoann Congal</div>
-<div class=3D"elementToProof" style=3D"font-family: &quot;Courier New&quot;=
-, monospace; font-size: 12pt; color: rgb(0, 0, 0);">
-<br>
-</div>
-<div class=3D"elementToProof" style=3D"font-family: &quot;Courier New&quot;=
-, monospace; font-size: 12pt; color: rgb(0, 0, 0);">
----------------</div>
-<div class=3D"elementToProof" style=3D"font-family: &quot;Courier New&quot;=
-, monospace; font-size: 12pt; color: rgb(0, 0, 0);">
-&nbsp;Known Issues</div>
-<div class=3D"elementToProof" style=3D"font-family: &quot;Courier New&quot;=
-, monospace; font-size: 12pt; color: rgb(0, 0, 0);">
----------------</div>
-<div class=3D"elementToProof" style=3D"font-family: &quot;Courier New&quot;=
-, monospace; font-size: 12pt; color: rgb(0, 0, 0);">
-N/A</div>
-<div class=3D"elementToProof" style=3D"font-family: &quot;Courier New&quot;=
-, monospace; font-size: 12pt; color: rgb(0, 0, 0);">
-<br>
-</div>
-<div class=3D"elementToProof" style=3D"font-family: &quot;Courier New&quot;=
-, monospace; font-size: 12pt; color: rgb(0, 0, 0);">
-<br>
-</div>
-<div class=3D"elementToProof" style=3D"font-family: &quot;Courier New&quot;=
-, monospace; font-size: 12pt; color: rgb(0, 0, 0);">
----------------</div>
-<div class=3D"elementToProof" style=3D"font-family: &quot;Courier New&quot;=
-, monospace; font-size: 12pt; color: rgb(0, 0, 0);">
-Security Fixes</div>
-<div class=3D"elementToProof" style=3D"font-family: &quot;Courier New&quot;=
-, monospace; font-size: 12pt; color: rgb(0, 0, 0);">
----------------</div>
-<div class=3D"elementToProof" style=3D"font-family: &quot;Courier New&quot;=
-, monospace; font-size: 12pt; color: rgb(0, 0, 0);">
-<br>
-</div>
-<div class=3D"elementToProof" style=3D"font-family: &quot;Courier New&quot;=
-, monospace; font-size: 12pt; color: rgb(0, 0, 0);">
-avahi: Fix CVE-2026-34933</div>
-<div class=3D"elementToProof" style=3D"font-family: &quot;Courier New&quot;=
-, monospace; font-size: 12pt; color: rgb(0, 0, 0);">
-base-files: Ignore CVE-2018-6557</div>
-<div class=3D"elementToProof" style=3D"font-family: &quot;Courier New&quot;=
-, monospace; font-size: 12pt; color: rgb(0, 0, 0);">
-bind: Ignore CVE-2017-3139</div>
-<div class=3D"elementToProof" style=3D"font-family: &quot;Courier New&quot;=
-, monospace; font-size: 12pt; color: rgb(0, 0, 0);">
-busybox: fix CVE-2024-58251 CVE-2026-29004</div>
-<div class=3D"elementToProof" style=3D"font-family: &quot;Courier New&quot;=
-, monospace; font-size: 12pt; color: rgb(0, 0, 0);">
-cargo: Ignore CVE-2023-40030</div>
-<div class=3D"elementToProof" style=3D"font-family: &quot;Courier New&quot;=
-, monospace; font-size: 12pt; color: rgb(0, 0, 0);">
-cve-extra-exclusions: Ignore CVE-2019-2708</div>
-<div class=3D"elementToProof" style=3D"font-family: &quot;Courier New&quot;=
-, monospace; font-size: 12pt; color: rgb(0, 0, 0);">
-ffmpeg: Ignore CVE-2022-2566 CVE-2025-9951 CVE-2025-59729 CVE-2025-59730</d=
-iv>
-<div class=3D"elementToProof" style=3D"font-family: &quot;Courier New&quot;=
-, monospace; font-size: 12pt; color: rgb(0, 0, 0);">
-git: Ignore CVE-2024-32002 CVE-2024-50349 CVE-2024-52006 CVE-2025-48385 CVE=
--2025-48386</div>
-<div class=3D"elementToProof" style=3D"font-family: &quot;Courier New&quot;=
-, monospace; font-size: 12pt; color: rgb(0, 0, 0);">
-glibc: Fix CVE-2026-4046</div>
-<div class=3D"elementToProof" style=3D"font-family: &quot;Courier New&quot;=
-, monospace; font-size: 12pt; color: rgb(0, 0, 0);">
-gnutls: Ignore CVE-2026-1584</div>
-<div class=3D"elementToProof" style=3D"font-family: &quot;Courier New&quot;=
-, monospace; font-size: 12pt; color: rgb(0, 0, 0);">
-harfbuzz: Ignore CVE-2024-56732</div>
-<div class=3D"elementToProof" style=3D"font-family: &quot;Courier New&quot;=
-, monospace; font-size: 12pt; color: rgb(0, 0, 0);">
-inetutils: Fix CVE-2026-32772</div>
-<div class=3D"elementToProof" style=3D"font-family: &quot;Courier New&quot;=
-, monospace; font-size: 12pt; color: rgb(0, 0, 0);">
-libarchive: Ignore CVE-2026-4426 CVE-2026-5745</div>
-<div class=3D"elementToProof" style=3D"font-family: &quot;Courier New&quot;=
-, monospace; font-size: 12pt; color: rgb(0, 0, 0);">
-libsoup: Fix CVE-2026-2708 CVE-2026-5119</div>
-<div class=3D"elementToProof" style=3D"font-family: &quot;Courier New&quot;=
-, monospace; font-size: 12pt; color: rgb(0, 0, 0);">
-libsoup: Ignore CVE-2026-2369 CVE-2026-2436</div>
-<div class=3D"elementToProof" style=3D"font-family: &quot;Courier New&quot;=
-, monospace; font-size: 12pt; color: rgb(0, 0, 0);">
-libssh2: Fix CVE-2026-7598</div>
-<div class=3D"elementToProof" style=3D"font-family: &quot;Courier New&quot;=
-, monospace; font-size: 12pt; color: rgb(0, 0, 0);">
-libva: Ignore CVE-2023-39929</div>
-<div class=3D"elementToProof" style=3D"font-family: &quot;Courier New&quot;=
-, monospace; font-size: 12pt; color: rgb(0, 0, 0);">
-ovmf: Ignore CVE-2024-38796 CVE-2024-38797 CVE-2024-38798 CVE-2024-38805 CV=
-E-2025-2295 CVE-2025-2296 CVE-2025-3770</div>
-<div class=3D"elementToProof" style=3D"font-family: &quot;Courier New&quot;=
-, monospace; font-size: 12pt; color: rgb(0, 0, 0);">
-p11-kit: Ignore CVE-2026-2100</div>
-<div class=3D"elementToProof" style=3D"font-family: &quot;Courier New&quot;=
-, monospace; font-size: 12pt; color: rgb(0, 0, 0);">
-python3-requests: Ignore CVE-2024-35195 CVE-2024-47081</div>
-<div class=3D"elementToProof" style=3D"font-family: &quot;Courier New&quot;=
-, monospace; font-size: 12pt; color: rgb(0, 0, 0);">
-python3-setuptools: Ignore CVE-2024-6345</div>
-<div class=3D"elementToProof" style=3D"font-family: &quot;Courier New&quot;=
-, monospace; font-size: 12pt; color: rgb(0, 0, 0);">
-rsync: Ignore CVE-2024-12084</div>
-<div class=3D"elementToProof" style=3D"font-family: &quot;Courier New&quot;=
-, monospace; font-size: 12pt; color: rgb(0, 0, 0);">
-ruby: Ignore CVE-2025-0306</div>
-<div class=3D"elementToProof" style=3D"font-family: &quot;Courier New&quot;=
-, monospace; font-size: 12pt; color: rgb(0, 0, 0);">
-sed: Fix CVE-2026-5958</div>
-<div class=3D"elementToProof" style=3D"font-family: &quot;Courier New&quot;=
-, monospace; font-size: 12pt; color: rgb(0, 0, 0);">
-sudo: Fix CVE-2026-35535</div>
-<div class=3D"elementToProof" style=3D"font-family: &quot;Courier New&quot;=
-, monospace; font-size: 12pt; color: rgb(0, 0, 0);">
-tiff: Fix CVE-2026-4775</div>
-<div class=3D"elementToProof" style=3D"font-family: &quot;Courier New&quot;=
-, monospace; font-size: 12pt; color: rgb(0, 0, 0);">
-<br>
-</div>
-<div class=3D"elementToProof" style=3D"font-family: &quot;Courier New&quot;=
-, monospace; font-size: 12pt; color: rgb(0, 0, 0);">
-<br>
-</div>
-<div class=3D"elementToProof" style=3D"font-family: &quot;Courier New&quot;=
-, monospace; font-size: 12pt; color: rgb(0, 0, 0);">
----------------</div>
-<div class=3D"elementToProof" style=3D"font-family: &quot;Courier New&quot;=
-, monospace; font-size: 12pt; color: rgb(0, 0, 0);">
-Fixes</div>
-<div class=3D"elementToProof" style=3D"font-family: &quot;Courier New&quot;=
-, monospace; font-size: 12pt; color: rgb(0, 0, 0);">
----------------</div>
-<div class=3D"elementToProof" style=3D"font-family: &quot;Courier New&quot;=
-, monospace; font-size: 12pt; color: rgb(0, 0, 0);">
-<br>
-</div>
-<div class=3D"elementToProof" style=3D"font-family: &quot;Courier New&quot;=
-, monospace; font-size: 12pt; color: rgb(0, 0, 0);">
-bitbake</div>
-<div class=3D"elementToProof" style=3D"font-family: &quot;Courier New&quot;=
-, monospace; font-size: 12pt; color: rgb(0, 0, 0);">
------------</div>
-<div class=3D"elementToProof" style=3D"font-family: &quot;Courier New&quot;=
-, monospace; font-size: 12pt; color: rgb(0, 0, 0);">
-README: Add &quot;2.18&quot; subject-prefix to git-send-email suggestion</d=
-iv>
-<div class=3D"elementToProof" style=3D"font-family: &quot;Courier New&quot;=
-, monospace; font-size: 12pt; color: rgb(0, 0, 0);">
-b4-config: add send-prefixes for 2.18/wrynose</div>
-<div class=3D"elementToProof" style=3D"font-family: &quot;Courier New&quot;=
-, monospace; font-size: 12pt; color: rgb(0, 0, 0);">
-fetch/git: Fix leaking of temporary directory</div>
-<div class=3D"elementToProof" style=3D"font-family: &quot;Courier New&quot;=
-, monospace; font-size: 12pt; color: rgb(0, 0, 0);">
-fetch/git: Improve temporary directory handling</div>
-<div class=3D"elementToProof" style=3D"font-family: &quot;Courier New&quot;=
-, monospace; font-size: 12pt; color: rgb(0, 0, 0);">
-fetch/wget: in upstream version checks, match versioned directories exactly=
-</div>
-<div class=3D"elementToProof" style=3D"font-family: &quot;Courier New&quot;=
-, monospace; font-size: 12pt; color: rgb(0, 0, 0);">
-fetch2/crate: use CDN endpoint for version checking if possible</div>
-<div class=3D"elementToProof" style=3D"font-family: &quot;Courier New&quot;=
-, monospace; font-size: 12pt; color: rgb(0, 0, 0);">
-fetch2/crate: use CDN for fetching crates</div>
-<div class=3D"elementToProof" style=3D"font-family: &quot;Courier New&quot;=
-, monospace; font-size: 12pt; color: rgb(0, 0, 0);">
-<br>
-</div>
-<div class=3D"elementToProof" style=3D"font-family: &quot;Courier New&quot;=
-, monospace; font-size: 12pt; color: rgb(0, 0, 0);">
-oecore</div>
-<div class=3D"elementToProof" style=3D"font-family: &quot;Courier New&quot;=
-, monospace; font-size: 12pt; color: rgb(0, 0, 0);">
------------</div>
-<div class=3D"elementToProof" style=3D"font-family: &quot;Courier New&quot;=
-, monospace; font-size: 12pt; color: rgb(0, 0, 0);">
-README: Add wrynose subject-prefix to git-send-email suggestion</div>
-<div class=3D"elementToProof" style=3D"font-family: &quot;Courier New&quot;=
-, monospace; font-size: 12pt; color: rgb(0, 0, 0);">
-apr-util: Add CVE_PRODUCT to support product name</div>
-<div class=3D"elementToProof" style=3D"font-family: &quot;Courier New&quot;=
-, monospace; font-size: 12pt; color: rgb(0, 0, 0);">
-apr: Add CVE_PRODUCT to support product name</div>
-<div class=3D"elementToProof" style=3D"font-family: &quot;Courier New&quot;=
-, monospace; font-size: 12pt; color: rgb(0, 0, 0);">
-b4-config: add send-prefixes for wrynose</div>
-<div class=3D"elementToProof" style=3D"font-family: &quot;Courier New&quot;=
-, monospace; font-size: 12pt; color: rgb(0, 0, 0);">
-bluez5: add patches to fix 8.56 cli &amp; gatt issues</div>
-<div class=3D"elementToProof" style=3D"font-family: &quot;Courier New&quot;=
-, monospace; font-size: 12pt; color: rgb(0, 0, 0);">
-build-appliance-image: Update to wrynose head revisions</div>
-<div class=3D"elementToProof" style=3D"font-family: &quot;Courier New&quot;=
-, monospace; font-size: 12pt; color: rgb(0, 0, 0);">
-build-appliance-image: fix branches for wrynose revisions</div>
-<div class=3D"elementToProof" style=3D"font-family: &quot;Courier New&quot;=
-, monospace; font-size: 12pt; color: rgb(0, 0, 0);">
-cargo: set CVE_PRODUCT</div>
-<div class=3D"elementToProof" style=3D"font-family: &quot;Courier New&quot;=
-, monospace; font-size: 12pt; color: rgb(0, 0, 0);">
-ccache: upgrade to 4.13.3</div>
-<div class=3D"elementToProof" style=3D"font-family: &quot;Courier New&quot;=
-, monospace; font-size: 12pt; color: rgb(0, 0, 0);">
-classes/base: add explicit bzip2-native dependency for unpacking .bz2</div>
-<div class=3D"elementToProof" style=3D"font-family: &quot;Courier New&quot;=
-, monospace; font-size: 12pt; color: rgb(0, 0, 0);">
-coreutils: set CVE_PRODUCT</div>
-<div class=3D"elementToProof" style=3D"font-family: &quot;Courier New&quot;=
-, monospace; font-size: 12pt; color: rgb(0, 0, 0);">
-default-distrovars.inc: add missing spaces in append overrides</div>
-<div class=3D"elementToProof" style=3D"font-family: &quot;Courier New&quot;=
-, monospace; font-size: 12pt; color: rgb(0, 0, 0);">
-devtool: Disable gpg signing when setting up source tree repos</div>
-<div class=3D"elementToProof" style=3D"font-family: &quot;Courier New&quot;=
-, monospace; font-size: 12pt; color: rgb(0, 0, 0);">
-dhcpcd: upgrade to 10.3.1</div>
-<div class=3D"elementToProof" style=3D"font-family: &quot;Courier New&quot;=
-, monospace; font-size: 12pt; color: rgb(0, 0, 0);">
-efivar: Backport patch to fix -march issue for ppc64le</div>
-<div class=3D"elementToProof" style=3D"font-family: &quot;Courier New&quot;=
-, monospace; font-size: 12pt; color: rgb(0, 0, 0);">
-features-check.bbclass: add reference to required TUNE_FEATURES</div>
-<div class=3D"elementToProof" style=3D"font-family: &quot;Courier New&quot;=
-, monospace; font-size: 12pt; color: rgb(0, 0, 0);">
-glibc: Fix recipe bug that disabled stack protector</div>
-<div class=3D"elementToProof" style=3D"font-family: &quot;Courier New&quot;=
-, monospace; font-size: 12pt; color: rgb(0, 0, 0);">
-glibc: stable 2.43 branch updates</div>
-<div class=3D"elementToProof" style=3D"font-family: &quot;Courier New&quot;=
-, monospace; font-size: 12pt; color: rgb(0, 0, 0);">
-groff: upgrade to 1.24.1</div>
-<div class=3D"elementToProof" style=3D"font-family: &quot;Courier New&quot;=
-, monospace; font-size: 12pt; color: rgb(0, 0, 0);">
-gsettings-desktop-schemas: upgrade to 50.1</div>
-<div class=3D"elementToProof" style=3D"font-family: &quot;Courier New&quot;=
-, monospace; font-size: 12pt; color: rgb(0, 0, 0);">
-gtk4: upgrade to 4.22.2</div>
-<div class=3D"elementToProof" style=3D"font-family: &quot;Courier New&quot;=
-, monospace; font-size: 12pt; color: rgb(0, 0, 0);">
-gtk+3: upgrade to 3.24.52</div>
-<div class=3D"elementToProof" style=3D"font-family: &quot;Courier New&quot;=
-, monospace; font-size: 12pt; color: rgb(0, 0, 0);">
-hwdata: upgrade to 0.406</div>
-<div class=3D"elementToProof" style=3D"font-family: &quot;Courier New&quot;=
-, monospace; font-size: 12pt; color: rgb(0, 0, 0);">
-mirrors: remove inactive sources.openembedded.org URLs</div>
-<div class=3D"elementToProof" style=3D"font-family: &quot;Courier New&quot;=
-, monospace; font-size: 12pt; color: rgb(0, 0, 0);">
-oe-pkgdata-util: fix empty runtime-rprovides directory handling</div>
-<div class=3D"elementToProof" style=3D"font-family: &quot;Courier New&quot;=
-, monospace; font-size: 12pt; color: rgb(0, 0, 0);">
-oe-pkgdata-util: fix runtime-rprovides handling in lookup_pkg error path</d=
-iv>
-<div class=3D"elementToProof" style=3D"font-family: &quot;Courier New&quot;=
-, monospace; font-size: 12pt; color: rgb(0, 0, 0);">
-package.py: fix kernel module file pre-filter and document strip asymmetry<=
-/div>
-<div class=3D"elementToProof" style=3D"font-family: &quot;Courier New&quot;=
-, monospace; font-size: 12pt; color: rgb(0, 0, 0);">
-perf: add PACKAGECONFIG for llvm</div>
-<div class=3D"elementToProof" style=3D"font-family: &quot;Courier New&quot;=
-, monospace; font-size: 12pt; color: rgb(0, 0, 0);">
-pseudo: Upgrade to 1.9.7</div>
-<div class=3D"elementToProof" style=3D"font-family: &quot;Courier New&quot;=
-, monospace; font-size: 12pt; color: rgb(0, 0, 0);">
-python3-requests: Increase chardet upper limit</div>
-<div class=3D"elementToProof" style=3D"font-family: &quot;Courier New&quot;=
-, monospace; font-size: 12pt; color: rgb(0, 0, 0);">
-python3-sbom-cve-check: Update to version 1.3.1</div>
-<div class=3D"elementToProof" style=3D"font-family: &quot;Courier New&quot;=
-, monospace; font-size: 12pt; color: rgb(0, 0, 0);">
-qemu: fix iotlb_to_section() for different AddressSpace</div>
-<div class=3D"elementToProof" style=3D"font-family: &quot;Courier New&quot;=
-, monospace; font-size: 12pt; color: rgb(0, 0, 0);">
-rust: fix codegen test failure on big-endian targets</div>
-<div class=3D"elementToProof" style=3D"font-family: &quot;Courier New&quot;=
-, monospace; font-size: 12pt; color: rgb(0, 0, 0);">
-sbom-cve-check-update-cvelist-native: Update source revision</div>
-<div class=3D"elementToProof" style=3D"font-family: &quot;Courier New&quot;=
-, monospace; font-size: 12pt; color: rgb(0, 0, 0);">
-sbom-cve-check-update-nvd-native: Update source revision</div>
-<div class=3D"elementToProof" style=3D"font-family: &quot;Courier New&quot;=
-, monospace; font-size: 12pt; color: rgb(0, 0, 0);">
-sbom-cve-check: set PV from upstream tags and ensure version checks are cor=
-rect</div>
-<div class=3D"elementToProof" style=3D"font-family: &quot;Courier New&quot;=
-, monospace; font-size: 12pt; color: rgb(0, 0, 0);">
-scripts/makefile-getvar: quote MAKEFILE variable</div>
-<div class=3D"elementToProof" style=3D"font-family: &quot;Courier New&quot;=
-, monospace; font-size: 12pt; color: rgb(0, 0, 0);">
-sed: upgrade to 4.10</div>
-<div class=3D"elementToProof" style=3D"font-family: &quot;Courier New&quot;=
-, monospace; font-size: 12pt; color: rgb(0, 0, 0);">
-shadow-native: Change upstream status of disable_syslog.patch</div>
-<div class=3D"elementToProof" style=3D"font-family: &quot;Courier New&quot;=
-, monospace; font-size: 12pt; color: rgb(0, 0, 0);">
-shadow: set CVE_PRODUCT</div>
-<div class=3D"elementToProof" style=3D"font-family: &quot;Courier New&quot;=
-, monospace; font-size: 12pt; color: rgb(0, 0, 0);">
-sudo: set CVE_PRODUCT</div>
-<div class=3D"elementToProof" style=3D"font-family: &quot;Courier New&quot;=
-, monospace; font-size: 12pt; color: rgb(0, 0, 0);">
-tzdata/tzcode-native: upgrade to2026b</div>
-<div class=3D"elementToProof" style=3D"font-family: &quot;Courier New&quot;=
-, monospace; font-size: 12pt; color: rgb(0, 0, 0);">
-utils: Handle unexpanded variables in DISTRO_FEATURES</div>
-<div class=3D"elementToProof" style=3D"font-family: &quot;Courier New&quot;=
-, monospace; font-size: 12pt; color: rgb(0, 0, 0);">
-wireless-regdb: upgrade to 2026.03.18</div>
-<div class=3D"elementToProof" style=3D"font-family: &quot;Courier New&quot;=
-, monospace; font-size: 12pt; color: rgb(0, 0, 0);">
-<br>
-</div>
-<div class=3D"elementToProof" style=3D"font-family: &quot;Courier New&quot;=
-, monospace; font-size: 12pt; color: rgb(0, 0, 0);">
-<br>
-</div>
-<div class=3D"elementToProof" style=3D"font-family: &quot;Courier New&quot;=
-, monospace; font-size: 12pt; color: rgb(0, 0, 0);">
-meta-yocto</div>
-<div class=3D"elementToProof" style=3D"font-family: &quot;Courier New&quot;=
-, monospace; font-size: 12pt; color: rgb(0, 0, 0);">
------------</div>
-<div class=3D"elementToProof" style=3D"font-family: &quot;Courier New&quot;=
-, monospace; font-size: 12pt; color: rgb(0, 0, 0);">
-poky.conf: Bump version for 6.0.1 release</div>
-<div class=3D"elementToProof" style=3D"font-family: &quot;Courier New&quot;=
-, monospace; font-size: 12pt; color: rgb(0, 0, 0);">
-<br>
-</div>
-<div class=3D"elementToProof" style=3D"font-family: &quot;Courier New&quot;=
-, monospace; font-size: 12pt; color: rgb(0, 0, 0);">
-yocto-docs</div>
-<div class=3D"elementToProof" style=3D"font-family: &quot;Courier New&quot;=
-, monospace; font-size: 12pt; color: rgb(0, 0, 0);">
------------</div>
-<div class=3D"elementToProof" style=3D"font-family: &quot;Courier New&quot;=
-, monospace; font-size: 12pt; color: rgb(0, 0, 0);">
-&quot;Transitioning ...&quot; doc: Various pedantic cleanups</div>
-<div class=3D"elementToProof" style=3D"font-family: &quot;Courier New&quot;=
-, monospace; font-size: 12pt; color: rgb(0, 0, 0);">
-Quick Build guide: Various pedantic cleanups</div>
-<div class=3D"elementToProof" style=3D"font-family: &quot;Courier New&quot;=
-, monospace; font-size: 12pt; color: rgb(0, 0, 0);">
-What I Wish I'd KNown: Various pedantic cleanups</div>
-<div class=3D"elementToProof" style=3D"font-family: &quot;Courier New&quot;=
-, monospace; font-size: 12pt; color: rgb(0, 0, 0);">
-YP Quick Build: delete extraneous periods in list</div>
-<div class=3D"elementToProof" style=3D"font-family: &quot;Courier New&quot;=
-, monospace; font-size: 12pt; color: rgb(0, 0, 0);">
-YP Quick Build: use &quot;set up&quot; as a verb</div>
-<div class=3D"elementToProof" style=3D"font-family: &quot;Courier New&quot;=
-, monospace; font-size: 12pt; color: rgb(0, 0, 0);">
-conf.py: add a :yocto_bug: role</div>
-<div class=3D"elementToProof" style=3D"font-family: &quot;Courier New&quot;=
-, monospace; font-size: 12pt; color: rgb(0, 0, 0);">
-contributor-guide: fix type &quot;maintainance&quot; to &quot;maintenance&q=
-uot;</div>
-<div class=3D"elementToProof" style=3D"font-family: &quot;Courier New&quot;=
-, monospace; font-size: 12pt; color: rgb(0, 0, 0);">
-dev-manual: &quot;--runonly&quot; should be &quot;--runall&quot;</div>
-<div class=3D"elementToProof" style=3D"font-family: &quot;Courier New&quot;=
-, monospace; font-size: 12pt; color: rgb(0, 0, 0);">
-docs-wide: drop documentation for cve-check and variables</div>
-<div class=3D"elementToProof" style=3D"font-family: &quot;Courier New&quot;=
-, monospace; font-size: 12pt; color: rgb(0, 0, 0);">
-index.rst: update &quot;Software Overview&quot; to &quot;Technical Overview=
-&quot;</div>
-<div class=3D"elementToProof" style=3D"font-family: &quot;Courier New&quot;=
-, monospace; font-size: 12pt; color: rgb(0, 0, 0);">
-migration-guide: add release notes for 4.0.35 5.3.4</div>
-<div class=3D"elementToProof" style=3D"font-family: &quot;Courier New&quot;=
-, monospace; font-size: 12pt; color: rgb(0, 0, 0);">
-migration-guide: migration-6.0: fix typos in cve-check removal</div>
-<div class=3D"elementToProof" style=3D"font-family: &quot;Courier New&quot;=
-, monospace; font-size: 12pt; color: rgb(0, 0, 0);">
-migration-guides/migration-6.0.rst: add migration notes on cve-check remova=
-l</div>
-<div class=3D"elementToProof" style=3D"font-family: &quot;Courier New&quot;=
-, monospace; font-size: 12pt; color: rgb(0, 0, 0);">
-migration-guides/migration-6.0.rst: document the CVE_PRODUCT behavior chang=
-e</div>
-<div class=3D"elementToProof" style=3D"font-family: &quot;Courier New&quot;=
-, monospace; font-size: 12pt; color: rgb(0, 0, 0);">
-migration-guides/migration-6.0.rst: mention python3-roman-numerals-py renam=
-e</div>
-<div class=3D"elementToProof" style=3D"font-family: &quot;Courier New&quot;=
-, monospace; font-size: 12pt; color: rgb(0, 0, 0);">
-migration-guides/release-notes-6.0.rst: add contributors, CVE fixes, downlo=
-ads, known issue, license, recipe version changes</div>
-<div class=3D"elementToProof" style=3D"font-family: &quot;Courier New&quot;=
-, monospace; font-size: 12pt; color: rgb(0, 0, 0);">
-migration-guides: fix https:// prefix missing in anonymous reference</div>
-<div class=3D"elementToProof" style=3D"font-family: &quot;Courier New&quot;=
-, monospace; font-size: 12pt; color: rgb(0, 0, 0);">
-migration-guides: migration-6.0: fix grammar and missing word</div>
-<div class=3D"elementToProof" style=3D"font-family: &quot;Courier New&quot;=
-, monospace; font-size: 12pt; color: rgb(0, 0, 0);">
-migration-guides: migration-6.0: reword meta-poky templates removal</div>
-<div class=3D"elementToProof" style=3D"font-family: &quot;Courier New&quot;=
-, monospace; font-size: 12pt; color: rgb(0, 0, 0);">
-migration-guides: release-notes-6.0: fix typo in documentation changes</div=
->
-<div class=3D"elementToProof" style=3D"font-family: &quot;Courier New&quot;=
-, monospace; font-size: 12pt; color: rgb(0, 0, 0);">
-overview-manual/concepts.rst: fix do_prepare_recipe_sysroot task descriptio=
-n</div>
-<div class=3D"elementToProof" style=3D"font-family: &quot;Courier New&quot;=
-, monospace; font-size: 12pt; color: rgb(0, 0, 0);">
-overview-manual: fix &quot;checkout&quot; versus &quot;check out&quot;</div=
->
-<div class=3D"elementToProof" style=3D"font-family: &quot;Courier New&quot;=
-, monospace; font-size: 12pt; color: rgb(0, 0, 0);">
-ref-manual/system-requirements.rst: add CentOS 10 as a supported distro</di=
-v>
-<div class=3D"elementToProof" style=3D"font-family: &quot;Courier New&quot;=
-, monospace; font-size: 12pt; color: rgb(0, 0, 0);">
-ref-manual/variables.rst: document the SBOM_CVE_CHECK_SHOW_WARNINGS variabl=
-e</div>
-<div class=3D"elementToProof" style=3D"font-family: &quot;Courier New&quot;=
-, monospace; font-size: 12pt; color: rgb(0, 0, 0);">
-ref-manual/variables: IMAGE_TYPES: add new wicenv type</div>
-<div class=3D"elementToProof" style=3D"font-family: &quot;Courier New&quot;=
-, monospace; font-size: 12pt; color: rgb(0, 0, 0);">
-ref-manual/variables: document the 'dynamic layer' concept</div>
-<div class=3D"elementToProof" style=3D"font-family: &quot;Courier New&quot;=
-, monospace; font-size: 12pt; color: rgb(0, 0, 0);">
-ref-manual: classes: add missing &quot;task&quot; after create_recipe_sbom<=
-/div>
-<div class=3D"elementToProof" style=3D"font-family: &quot;Courier New&quot;=
-, monospace; font-size: 12pt; color: rgb(0, 0, 0);">
-ref-manual: classes: fix https:// prefix missing in anonymous reference</di=
-v>
-<div class=3D"elementToProof" style=3D"font-family: &quot;Courier New&quot;=
-, monospace; font-size: 12pt; color: rgb(0, 0, 0);">
-ref-manual: fix &quot;include to&quot; grammar for UKI_DEVICETREE</div>
-<div class=3D"elementToProof" style=3D"font-family: &quot;Courier New&quot;=
-, monospace; font-size: 12pt; color: rgb(0, 0, 0);">
-ref-manual: fragments: fix style inconsistencies</div>
-<div class=3D"elementToProof" style=3D"font-family: &quot;Courier New&quot;=
-, monospace; font-size: 12pt; color: rgb(0, 0, 0);">
-ref-manual: replace &quot;naive&quot; with &quot;simple&quot;</div>
-<div class=3D"elementToProof" style=3D"font-family: &quot;Courier New&quot;=
-, monospace; font-size: 12pt; color: rgb(0, 0, 0);">
-ref-manual: variables: add hyphen to &quot;space separated&quot; and &quot;=
-auto generated&quot;</div>
-<div class=3D"elementToProof" style=3D"font-family: &quot;Courier New&quot;=
-, monospace; font-size: 12pt; color: rgb(0, 0, 0);">
-security-manual/vulnerabilities.rst: refresh the document after cve-check r=
-emoval</div>
-<div class=3D"elementToProof" style=3D"font-family: &quot;Courier New&quot;=
-, monospace; font-size: 12pt; color: rgb(0, 0, 0);">
-security-manual/vulnerabilities.rst: require Upstream-Status, not recommend=
-</div>
-<div class=3D"elementToProof" style=3D"font-family: &quot;Courier New&quot;=
-, monospace; font-size: 12pt; color: rgb(0, 0, 0);">
-tools/build-docs-container: add CentOS 10 support</div>
-<div class=3D"elementToProof" style=3D"font-family: &quot;Courier New&quot;=
-, monospace; font-size: 12pt; color: rgb(0, 0, 0);">
-tools/build-docs-container: add missing leap 16.0 in help message</div>
-<div class=3D"elementToProof" style=3D"font-family: &quot;Courier New&quot;=
-, monospace; font-size: 12pt; color: rgb(0, 0, 0);">
-yp-intro.rst: add link to &quot;buildbot&quot;</div>
-<div style=3D"font-family: &quot;Courier New&quot;, monospace; font-size: 1=
-2pt; color: rgb(0, 0, 0);">
-yp-intro.rst: delete really old references</div>
-<div style=3D"font-family: &quot;Courier New&quot;, monospace; font-size: 1=
-2pt; color: rgb(0, 0, 0);">
-<br>
-</div>
-</body>
-</html>
-
---_000_BL4PR11MB8797068C9CD4D9088EDB4B5FB9E32BL4PR11MB8797namp_--
+SGkgQWxsLA0KDQpRQSBmb3IgeW9jdG8tNi4xX00xLnJjMSBpcyBjb21wbGV0ZWQuIFRoaXMgaXMg
+dGhlIGZ1bGwgcmVwb3J0IGZvciB0aGlzIHJlbGVhc2U6IA0KaHR0cHM6Ly9naXQueW9jdG9wcm9q
+ZWN0Lm9yZy95b2N0by10ZXN0cmVzdWx0cy1jb250cmliL3RyZWUvP2g9aW50ZWwteW9jdG8tdGVz
+dHJlc3VsdHMNCg0KPT09PT09PSBTdW1tYXJ5ID09PT09PT09DQpObyBoaWdoIG1pbGVzdG9uZSBk
+ZWZlY3RzLg0KDQpObyBuZXcgaXNzdWUgZm91bmQuDQoNClRoYW5rcywNCkRlYmFsIEdob3NoDQoN
+Ci0tLS0tT3JpZ2luYWwgTWVzc2FnZS0tLS0tDQpGcm9tOiBxYS1idWlsZC1ub3RpZmljYXRpb25A
+bGlzdHMueW9jdG9wcm9qZWN0Lm9yZyA8cWEtYnVpbGQtbm90aWZpY2F0aW9uQGxpc3RzLnlvY3Rv
+cHJvamVjdC5vcmc+IE9uIEJlaGFsZiBPZiBHaG9zaCwgRGViYWwgdmlhIGxpc3RzLnlvY3RvcHJv
+amVjdC5vcmcNClNlbnQ6IDE1IEp1bmUgMjAyNiAxMzoxNA0KVG86IHFhLWJ1aWxkLW5vdGlmaWNh
+dGlvbkBsaXN0cy55b2N0b3Byb2plY3Qub3JnOyBZb2N0by1tYWlsaW5nLWxpc3QgPHlvY3RvQGxp
+c3RzLnlvY3RvcHJvamVjdC5vcmc+OyBvcGVuZW1iZWRkZWQtY29yZSA8b3BlbmVtYmVkZGVkLWNv
+cmVAbGlzdHMub3BlbmVtYmVkZGVkLm9yZz47IFBva3lidWlsZCBVc2VyIDxwb2t5YnVpbGRAeW9j
+dG9wcm9qZWN0Lm9yZz4NClN1YmplY3Q6IFJlOiBbcWEtYnVpbGQtbm90aWZpY2F0aW9uXSBRQSBu
+b3RpZmljYXRpb24gZm9yIGNvbXBsZXRlZCBhdXRvYnVpbGRlciBidWlsZCAoeW9jdG8tNi4xX00x
+LnJjMSkNCg0KSGkgYWxsLA0KDQpJbnRlbCBhbmQgV1IgWVAgUUEgaXMgcGxhbm5pbmcgZm9yIFFB
+IGV4ZWN1dGlvbiBmb3IgWVAgYnVpbGQgeW9jdG8tNi4xX00xLnJjMS4gV2UgYXJlIHBsYW5uaW5n
+IHRvIGV4ZWN1dGUgdGhlIGZvbGxvd2luZyB0ZXN0cyBmb3IgdGhpcyBjeWNsZToNCg0KT0VRQS1t
+YW51YWwgdGVzdHMgZm9yIGZvbGxvd2luZyBtb2R1bGU6DQoNCk9FLUNvcmUNCkJTUC1odw0KDQoN
+ClJ1bnRpbWUgYXV0byB0ZXN0IGZvciBmb2xsb3dpbmcgcGxhdGZvcm1zOg0KDQpBbGRlciBMYWtl
+DQpQYW50aGVyIExha2UNCkFycm93IGxha2UNCkJhcnRsZXR0IGxha2UtUw0KQW1zdG9uIGxha2UN
+ClR3aW4gbGFrZQ0KQmVhZ2xlYm9uZQ0KQmVhZ2xlUGxheQ0KDQoNCkVUQSBmb3IgY29tcGxldGlv
+bjogMTgvMDYvMjAyNi4NCg0KDQpCZXN0IHJlZ2FyZHMsDQpEZWJhbCBHaG9zaA0KDQotLS0tLU9y
+aWdpbmFsIE1lc3NhZ2UtLS0tLQ0KRnJvbTogcWEtYnVpbGQtbm90aWZpY2F0aW9uQGxpc3RzLnlv
+Y3RvcHJvamVjdC5vcmcgPHFhLWJ1aWxkLW5vdGlmaWNhdGlvbkBsaXN0cy55b2N0b3Byb2plY3Qu
+b3JnPiBPbiBCZWhhbGYgT2YgUmljaGFyZCBQdXJkaWUgdmlhIGxpc3RzLnlvY3RvcHJvamVjdC5v
+cmcNClNlbnQ6IDEyIEp1bmUgMjAyNiAxNDo0OA0KVG86IHFhLWJ1aWxkLW5vdGlmaWNhdGlvbkBs
+aXN0cy55b2N0b3Byb2plY3Qub3JnOyB5b2N0b0BsaXN0cy55b2N0b3Byb2plY3Qub3JnDQpTdWJq
+ZWN0OiBSZTogW3FhLWJ1aWxkLW5vdGlmaWNhdGlvbl0gUUEgbm90aWZpY2F0aW9uIGZvciBjb21w
+bGV0ZWQgYXV0b2J1aWxkZXIgYnVpbGQgKHlvY3RvLTYuMV9NMS5yYzEpDQoNCk9uIFdlZCwgMjAy
+Ni0wNi0xMCBhdCAyMjo1OCArMDAwMCwgUG9reWJ1aWxkIFVzZXIgdmlhIGxpc3RzLnlvY3RvcHJv
+amVjdC5vcmcgd3JvdGU6DQo+IA0KPiDCoMKgwqAgQSBidWlsZCBmbGFnZ2VkIGZvciBRQSAoeW9j
+dG8tNi4xX00xLnJjMSkgd2FzIGNvbXBsZXRlZCBvbiB0aGUgYXV0b2J1aWxkZXIgYW5kIGlzIGF2
+YWlsYWJsZSBhdDoNCj4gDQo+IA0KPiDCoMKgwqDCoMKgwqDCoCBodHRwczovL3ZhbGt5cmllLnlv
+Y3RvLmlvL3B1Yi9yZWxlYXNlcy95b2N0by02LjFfTTEucmMxDQo+IA0KPiANCj4gwqDCoMKgIEJ1
+aWxkIFVSTDogDQo+IGh0dHBzOi8vYXV0b2J1aWxkZXIueW9jdG9wcm9qZWN0Lm9yZy92YWxreXJp
+ZS8jL2J1aWxkZXJzLzI5L2J1aWxkcy8zOTYNCj4gMQ0KPiANCj4gwqDCoMKgIEJ1aWxkIGhhc2gg
+aW5mb3JtYXRpb246IA0KPiANCj4gwqDCoMKgIGJpdGJha2U6IGM2ODdkNDJiODFiMTdlN2EyMzk5
+MDk5Y2FiMGYxYTZhYWZjZjY1MjANCj4gbWV0YS1hZ2w6IDNjNTViNDViZjkyMGJlYzkzOTM4YWYw
+MmYyNDUyY2Q2OThkM2JhY2MNCj4gbWV0YS1hcm06IDAyZDM2MWI0MzU5ZmRlOWI2NjQ2MTI5OTgw
+ZjE0ODRmN2FhNWIwOWUNCj4gbWV0YS1hd3M6IDVlN2NjOTVmN2Q1NWEwYmEwYWU2YTdlNmU0M2U2
+MzIzODExYTE0MGENCj4gbWV0YS1jbGFuZzogNGIxOGY1MzFhOGQxMDQ3ZjQ5ZGQzMDk3ZGRkMDBi
+ZTg3MGMwZWQxZQ0KPiBtZXRhLWludGVsOiA1NWUwZmYyNzhmNzA0MGRmZjVlNDUzYzUwOTM1Nzgy
+MGU4Y2U0YzliDQo+IG1ldGEtbWluZ3c6IGE0YmE2NzRkNmEwYTE3ZTRjMGJjNGMxMWJiYjlkMGVh
+OWRlMmIzMTUNCj4gbWV0YS1vcGVuZW1iZWRkZWQ6IDUzY2JjYWJhM2YwOWNiNTBiNzJiOTFjMmIz
+M2JkYmQ0NzlkYTVmMTkNCj4gbWV0YS1xY29tOiBiYzJkZjU4ZGE1OTlkMGVjMGE2ODI2NzM2ZDJh
+N2EyZTE4NjNjYTVjDQo+IG1ldGEtdmlydHVhbGl6YXRpb246IDAyMmY0MzU2ZDRhOWIzODlmNTE0
+NzJkNDBhOTMzMGFhNTlmNmJiOWENCj4gbWV0YS15b2N0bzogNTljNDEyNDVhZDIzMWY1MzIwZGVm
+Y2IyNzU0NzdlM2QyNWEyMjAzZQ0KPiBvZWNvcmU6IGI1YzI0ZTE0OTFkY2I5YWIwZjc4MmRmNmJl
+NjU4MmZiZDIxNTE3MjQNCj4geW9jdG8tZG9jczogYmU0MjRiZjUyY2QzYWM5YzgzYTQ2MTdkMGIw
+NmFmZThjZGUwNTViZQ0KDQpUaGVyZSB3YXMgb25lIGZhaWx1cmUgaW4gdGhpcyBidWlsZCwgYSBr
+bm93biBpbnRlcm1pdHRlbnQgcWVtdWFybTY0IGhhbmcuIFdlIGNhbiBwcm9jZWVkIHdpdGggUUEs
+IHRoYW5rcyENCg0KQ2hlZXJzLA0KDQpSaWNoYXJkDQoNCg0KDQoNCg0KDQoNCi09LT0tPS09LT0t
+PS09LT0tPS09LT0tDQpMaW5rczogWW91IHJlY2VpdmUgYWxsIG1lc3NhZ2VzIHNlbnQgdG8gdGhp
+cyBncm91cC4NClZpZXcvUmVwbHkgT25saW5lICgjNzE5KTogaHR0cHM6Ly9saXN0cy55b2N0b3By
+b2plY3Qub3JnL2cvcWEtYnVpbGQtbm90aWZpY2F0aW9uL21lc3NhZ2UvNzE5DQpNdXRlIFRoaXMg
+VG9waWM6IGh0dHBzOi8vbGlzdHMueW9jdG9wcm9qZWN0Lm9yZy9tdC8xMTk3NDg4NzAvOTk3NjEy
+Nw0KR3JvdXAgT3duZXI6IHFhLWJ1aWxkLW5vdGlmaWNhdGlvbitvd25lckBsaXN0cy55b2N0b3By
+b2plY3Qub3JnDQpVbnN1YnNjcmliZTogaHR0cHM6Ly9saXN0cy55b2N0b3Byb2plY3Qub3JnL2cv
+cWEtYnVpbGQtbm90aWZpY2F0aW9uL2xlYXZlLzE0NDI2OTk5Lzk5NzYxMjcvNDQwMzM0NTUveHl6
+enkgW2RlYmFsLmdob3NoQGludGVsLmNvbV0NCi09LT0tPS09LT0tPS09LT0tPS09LT0tDQoNCg0K
 
