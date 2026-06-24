@@ -1,58 +1,76 @@
-Return-Path: <denis@denix.org>
+Return-Path: <pokybuild@yoctoproject.org>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 7E1F8CDB481
-	for <webhook@archiver.kernel.org>; Wed, 24 Jun 2026 13:38:27 +0000 (UTC)
-Received: from mailout4.zoneedit.com (mailout4.zoneedit.com [64.68.198.64])
- by mx.groups.io with SMTP id smtpd.msgproc02-g2.7356.1782308305356080081
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 15E33CDB479
+	for <webhook@archiver.kernel.org>; Wed, 24 Jun 2026 17:02:21 +0000 (UTC)
+Received: from a27-33.smtp-out.us-west-2.amazonses.com (a27-33.smtp-out.us-west-2.amazonses.com [54.240.27.33])
+ by mx.groups.io with SMTP id smtpd.msgproc02-g2.12523.1782320535815340365
  for <yocto@lists.yoctoproject.org>;
- Wed, 24 Jun 2026 06:38:26 -0700
+ Wed, 24 Jun 2026 10:02:15 -0700
 Authentication-Results: mx.groups.io;
- dkim=none (message not signed); spf=pass (domain: denix.org, ip: 64.68.198.64, mailfrom: denis@denix.org)
-Received: from localhost (localhost [127.0.0.1])
-	by mailout4.zoneedit.com (Postfix) with ESMTP id 7D06940CE2;
-	Wed, 24 Jun 2026 13:38:24 +0000 (UTC)
-Received: from mailout4.zoneedit.com ([127.0.0.1])
-	by localhost (zmo14-pco.easydns.vpn [127.0.0.1]) (amavisd-new, port 10024)
-	with ESMTP id Eq_zXEh9xxdx; Wed, 24 Jun 2026 13:38:24 +0000 (UTC)
-Received: from mail.denix.org (pool-100-15-87-159.washdc.fios.verizon.net [100.15.87.159])
-	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
-	(No client certificate requested)
-	by mailout4.zoneedit.com (Postfix) with ESMTPSA id 42C4640CE1;
-	Wed, 24 Jun 2026 13:38:21 +0000 (UTC)
-Received: by mail.denix.org (Postfix, from userid 1000)
-	id 6563D17E278; Wed, 24 Jun 2026 09:38:20 -0400 (EDT)
-Date: Wed, 24 Jun 2026 09:38:20 -0400
-From: Denys Dmytriyenko <denis@denix.org>
-To: "openembedded-devel@lists.openembedded.org" <openembedded-devel@lists.openembedded.org>,
-	openembedded-core <openembedded-core@lists.openembedded.org>,
-	Yocto Project <yocto@lists.yoctoproject.org>,
-	openembedded-members@lists.openembedded.org
-Subject: OpenEmbedded Happy Hour June 24 9pm/2100 UTC
-Message-ID: <20260624133820.GB10186@denix.org>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-User-Agent: Mutt/1.5.20 (2009-06-14)
+ dkim=pass header.i=@yoctoproject.org header.s=lvjh2tk576v2ro5mi6k4dt3mc6wpqbky header.b=XeFpskbH;
+ dkim=pass header.i=@amazonses.com header.s=hsbnp7p3ensaochzwyq5wwmceodymuwv header.b=fGNlifd+;
+ spf=pass (domain: us-west-2.amazonses.com, ip: 54.240.27.33, mailfrom: 0101019efa95152e-9cba1b64-0ddf-41fb-90cf-0a6759e35a91-000000@us-west-2.amazonses.com)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/simple;
+	s=lvjh2tk576v2ro5mi6k4dt3mc6wpqbky; d=yoctoproject.org;
+	t=1782320534; h=To:Cc:Subject:Message-Id:Date:From;
+	bh=SPVbkZAp2QVraDt4WvE+LaZk0EksPjbib9MtVeVPwwk=;
+	b=XeFpskbHqjfO6ZphuJL9AiVEkAF5qUllF453if+EL3mHY8XpfypRIFYa0J5u4PNa
+	oDD4lUQtnOUqe6+SSuAyZUygwB2PHsmu8CogjWNR0V3NXkB6Zaos73IvLIFvyqmL0MO
+	qlzzDjJjPz+yjzAg6yssbN28Zy3cyF+0J5QKwdrA=
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/simple;
+	s=hsbnp7p3ensaochzwyq5wwmceodymuwv; d=amazonses.com; t=1782320534;
+	h=To:Cc:Subject:Message-Id:Date:From:Feedback-ID;
+	bh=SPVbkZAp2QVraDt4WvE+LaZk0EksPjbib9MtVeVPwwk=;
+	b=fGNlifd+gtXeLSshx0t50GFY4VTNRi9KzrhvfgCQu4GxthtuxgWzq2aB7bD67jyD
+	NRQWrMJq3B/kTRY6UsfvnWz23Cx6cPLkix2acM6C+NNt5ndyZvHPV5WugtUZU0kKBd7
+	14GbRBlyI/11agIfB5RoFEPOd4NUYa6HFXS9tZ28=
+To: yocto@lists.yoctoproject.org
+Cc: qa-build-notification@lists.yoctoproject.org
+Subject: QA notification for completed autobuilder build (yocto-6.0.2.rc1)
+Message-ID: <0101019efa95152e-9cba1b64-0ddf-41fb-90cf-0a6759e35a91-000000@us-west-2.amazonses.com>
+Date: Wed, 24 Jun 2026 17:02:14 +0000
+From: Pokybuild User <pokybuild@yoctoproject.org>
+Feedback-ID: ::1.us-west-2.9np3MYPs3fEaOBysGKSlUD4KtcmPijcmS9Az2Hwf7iQ=:AmazonSES
+X-SES-Outgoing: 2026.06.24-54.240.27.33
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from 45-33-107-173.ip.linodeusercontent.com [45.33.107.173] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Wed, 24 Jun 2026 13:38:27 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/66609
+ <yocto@lists.yoctoproject.org>; Wed, 24 Jun 2026 17:02:21 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/66610
 
-All,
 
-You are invited to join our monthly OpenEmbedded Happy Hour today, 
-Wednesday June 24 at 2100/9pm UTC (5pm ET/2pm PT). This is a later 
-timeslot for the APAC (Asia-Pacific) region. Please use the last link 
-below for easy timezone conversions.
+    A build flagged for QA (yocto-6.0.2.rc1) was completed on the autobuilder and is available at:
 
-https://www.openembedded.org/wiki/Calendar
-https://www.openembedded.org/wiki/Happy_Hours
-https://www.timeanddate.com/worldclock/fixedtime.html?msg=OpenEmbedded+Happy+Hour+June+24&iso=20260624T21
 
-Best regards,
-Denys Dmytriyenko
-OpenEmbedded Board of Directors
+        https://valkyrie.yocto.io/pub/releases/yocto-6.0.2.rc1
+
+
+    Build URL: https://autobuilder.yoctoproject.org/valkyrie/#/builders/29/builds/4076
+
+    Build hash information: 
+
+    bitbake: acfe02fa38b5da9e6a36c6cedcf91d4fcbefbfbd
+meta-agl: 3c55b45bf920bec93938af02f2452cd698d3bacc
+meta-arm: 01c33e494636781e0787ccafa46cc0102dd68869
+meta-aws: 5e7cc95f7d55a0ba0ae6a7e6e43e6323811a140a
+meta-clang: 78c5e12f08198f4f257a9348516d2103cd617c1d
+meta-intel: efa8a9b22ffaeecfdd113673074496d377ca290c
+meta-mingw: e2aac06ec74e46d08b7e68f61043047c761ae9f9
+meta-openembedded: 100027977216601000cbefc42c2ff6cf667e7b5e
+meta-qcom: 61c71e0c6d6ae13c325d60fb6003e3bc5ecf85eb
+meta-virtualization: 781735b97ae5013cacabbecd38e6da6b510cf3fb
+meta-yocto: 24c24cef5d1523fefe43a3e3d34667b37ae551f3
+oecore: 5d1aa5c806c061a2994f4decb59016610f093213
+yocto-docs: 2c59a23fc39d92831cb55a0e5f713d20f94730d4
+
+
+    
+This is an automated message from the Yocto Project Autobuilder
+Git: git://git.yoctoproject.org/yocto-autobuilder2
+Email: richard.purdie@linuxfoundation.org
+
+
+     
 
