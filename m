@@ -1,158 +1,463 @@
-Return-Path: <peter.marko@siemens.com>
+Return-Path: <paul@pbarker.dev>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 3DFE8C43458
-	for <webhook@archiver.kernel.org>; Tue, 30 Jun 2026 06:42:30 +0000 (UTC)
-Received: from PA4PR04CU001.outbound.protection.outlook.com (PA4PR04CU001.outbound.protection.outlook.com [40.107.162.70])
- by mx.groups.io with SMTP id smtpd.msgproc02-g2.15587.1782801743436972537
+	by smtp.lore.kernel.org (Postfix) with ESMTP id CF8ECC43602
+	for <webhook@archiver.kernel.org>; Tue, 30 Jun 2026 14:52:13 +0000 (UTC)
+Received: from fout-a3-smtp.messagingengine.com (fout-a3-smtp.messagingengine.com [103.168.172.146])
+ by mx.groups.io with SMTP id smtpd.msgproc02-g2.23331.1782831126776983518
  for <yocto@lists.yoctoproject.org>;
- Mon, 29 Jun 2026 23:42:23 -0700
+ Tue, 30 Jun 2026 07:52:07 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@siemens.com header.s=selector2 header.b=iY01Fdqp;
- spf=pass (domain: siemens.com, ip: 40.107.162.70, mailfrom: peter.marko@siemens.com)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=VuyZ/VXxVoujUdQf+MFm5KKpRXvPWciTmYTF5IqSdQdB3bQaAXsdD8p+oZY2T4I7DRFWnsTvYdVBS16eryK42HTsUw/HT+XOae/RlaIOmaR0HO6NaG74OphaqMZQCrbZ46/7KbhJWoTH7YFZ/vvMFvyghJIv59BQatK36/JoYzuFtVc7he2iboeq4oTensZnEaey0RqtpmwX8W1wYCniKNnrIAKRnkeATSD+gvv+bzbbSNCZU+de02LZZhxaKtLmuJDk3zcpseYw9nzdLOUP/rxR8KbN5uwC2j3N+MoHZbmqw2qjnzybusxLFfXcSW5EYmVzpbs32zJ2/RUwH+QOWg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=AnzDiv5grW002NB/3Lur1nMXFC2k4N7XO0zoafZlbAA=;
- b=p5opcxxHtuE7WCS9zl7KFXLFH4KF4M/r9Ppz/ghVZgZhZZCY1mpJcYSrRjsq/dRREjRiI4lAljEtf+b1eOsO3yD/DafAFmdGg4tb6Id1Z+XZs7xPM4pEr8Z1JBuoXDrmcN/eMC9nm1eW4Ny2ffCN7xwjes1TkLpVg9CWxWXRztqTNujZQwAhWDi0Lu5GDUbJpZBHs/Ok9+bCaOzlH29bJ3bU5BvRgSe2snWxl0NZ+A1BdLdQNPN1Z8vwtodb3F1y5P8tRycaJg70/QKDn8qVDT1ZvGlT/ujCkrie2lB1As7PVumZ62A1lKIPxNAhudQ2CHWW8tpXuXfLLVf/bsygtg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=siemens.com; dmarc=pass action=none header.from=siemens.com;
- dkim=pass header.d=siemens.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=siemens.com;
- s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=AnzDiv5grW002NB/3Lur1nMXFC2k4N7XO0zoafZlbAA=;
- b=iY01FdqpSTQzQkgA9Xjh1JjR8eGTmapy0MpWP9N4L6jBmELVFU2untZYJEbYcp4dtVcJ4BYQ+7F5noOYEFmnnseKPwR3otWWanTxAtde1nxhKEP2pK/B4lIKQL9GWX9d7q9BVkmgNGVLobRXwDLWPyipTeH0WNfUWq4kYQx1IzHne8NY/VH7/TZNJV1SM2SHtfDSypkEVrWDVh8DVDrvdOeO4fgGtVR2iRqdPctyKZ/t59vHb2h+s5wgxgKI6babkXXAvnP0+8vlLk5783dlkO2G6I0PA2rCEC3kcaCE2VBqWjl5pTVnkLXqmj/A9T1xBDwTtP/Rzo0SQjYulyeM1w==
-Received: from AS8PR10MB5073.EURPRD10.PROD.OUTLOOK.COM (2603:10a6:20b:420::16)
- by PR3PR10MB3756.EURPRD10.PROD.OUTLOOK.COM (2603:10a6:102:4a::13) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.181.8; Tue, 30 Jun
- 2026 06:42:19 +0000
-Received: from AS8PR10MB5073.EURPRD10.PROD.OUTLOOK.COM
- ([fe80::a905:57e5:8858:d008]) by AS8PR10MB5073.EURPRD10.PROD.OUTLOOK.COM
- ([fe80::a905:57e5:8858:d008%4]) with mapi id 15.21.0181.008; Tue, 30 Jun 2026
- 06:42:19 +0000
-From: "Marko, Peter" <Peter.Marko@siemens.com>
-To: "yocto@lists.yoctoproject.org" <yocto@lists.yoctoproject.org>,
-	"joerg.sommer@navimatix.de" <joerg.sommer@navimatix.de>
-Subject: RE: [yocto] Add redirect git.y.o/git/... -> /...
-Thread-Topic: [yocto] Add redirect git.y.o/git/... -> /...
-Thread-Index: AQHdCFoJ5+vwNIyIMU+dmpCv0eMrQLZWpLYw
-Date: Tue, 30 Jun 2026 06:42:19 +0000
-Message-ID: 
- <AS8PR10MB507327F59E051A8A15B76FD5FDF72@AS8PR10MB5073.EURPRD10.PROD.OUTLOOK.COM>
-References: <akNglndfCzY7BdSw@navimatix.de>
-In-Reply-To: <akNglndfCzY7BdSw@navimatix.de>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-msip_labels: 
- MSIP_Label_9d258917-277f-42cd-a3cd-14c4e9ee58bc_ActionId=d0854448-91ba-4500-9e0c-e1dc6aff001b;MSIP_Label_9d258917-277f-42cd-a3cd-14c4e9ee58bc_ContentBits=0;MSIP_Label_9d258917-277f-42cd-a3cd-14c4e9ee58bc_Enabled=true;MSIP_Label_9d258917-277f-42cd-a3cd-14c4e9ee58bc_Method=Standard;MSIP_Label_9d258917-277f-42cd-a3cd-14c4e9ee58bc_Name=restricted;MSIP_Label_9d258917-277f-42cd-a3cd-14c4e9ee58bc_SetDate=2026-06-30T06:35:57Z;MSIP_Label_9d258917-277f-42cd-a3cd-14c4e9ee58bc_SiteId=38ae3bcd-9579-4fd4-adda-b42e1495d55a;MSIP_Label_9d258917-277f-42cd-a3cd-14c4e9ee58bc_Tag=10,
- 3, 0, 1;
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=siemens.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: AS8PR10MB5073:EE_|PR3PR10MB3756:EE_
-x-ms-office365-filtering-correlation-id: dfbbe49f-b036-4475-f275-08ded672bb8e
-x-ms-exchange-atpmessageproperties: SA
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: 
- BCL:0;ARA:13230040|376014|23010399003|1800799024|366016|13003099007|55112099003|22082099003|18002099003|38070700021|5023799004|11063799006|56012099006;
-x-microsoft-antispam-message-info: 
- V51odEzwYXh/9IkH7rIVqCUBuemQCXaBOVdyLSFJr9OWWDqJXC70dFNNIv5pIK+Mrcfr1nMhMVu/cumtMGrJAibLNWCXtlGIzqF/VoKgkwgggAZjgqpKtND74J/kHL5mTkIXaVTcOs+NYjhsib2lggMVnD7JqQ7nUzg9adN35hkvuUpGby7DHkmQwYVM1PmWEywwC9efXk4OBM54QZ3pHVXzuS6T/oXZkMrJgJRzIWjR83RjxBA5RWFUaK3lphImUHpEm1PZDSrcRU8wPyxl+rmoyqUMYclNfYp8gy5032fcP21oHVeEM7Xi4eUvuWdIfC+0j2JCNZWPkZfWW7muG15wIqgF8LBKjUgr5DK8ZuQ2xO/MAn1YLxXqCoiZmPBMtHzmjo6kJglEUY5sxkVMKJCmQHAuJLPPcaWr2oyFUlp5rLDSpEh/BvPb1PaeKwQMHawIt8PPUGJOyoZiGbmqhedvSf7BYtZy5mv8NF1qFYTjlEG6P6ZeEE24puNiot374ISsXXOiPoLMDmP6W5rKAC7ajFENvStUhw9Z4fyV7mwEqaj7Us5zKtabdjJuTxg4zATsdk4M9NJJ5P0Mym555jMd9JHKOl9UtpTxe3gtWkPWDJvO0Kmi0u6wmqru0xAaKDj1XnltQotkbrH4DRiu9V3Jn4va+sGqbJeKS4z6R9g=
-x-forefront-antispam-report: 
- CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AS8PR10MB5073.EURPRD10.PROD.OUTLOOK.COM;PTR:;CAT:NONE;SFS:(13230040)(376014)(23010399003)(1800799024)(366016)(13003099007)(55112099003)(22082099003)(18002099003)(38070700021)(5023799004)(11063799006)(56012099006);DIR:OUT;SFP:1101;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: 
- =?iso-8859-1?Q?dyfKP25VWyPMM89ATHzxWsSVbGrWrfamhL0NDmf04tF5V4lpn54jlUqcgw?=
- =?iso-8859-1?Q?kBvTrKVJcZPbq6XMK5UR9YOLmcdW8q0G8M/yubclJam6ohV05bxM3V5Wd6?=
- =?iso-8859-1?Q?2Ga2OkIrs9kS8/6p0wcjH6MdH4U+fLACi2FPIeSYP3DKh0nlrmaVu1zEz+?=
- =?iso-8859-1?Q?Mi8v0mYmtsJ6wORo9H8rvWanP4GfiT03qXYkC2xM88L1u1cP56R29gCRQ4?=
- =?iso-8859-1?Q?gDFpofnohrU2oAGAP8nODbVf+VwWL1AC0YgiE/2QHBFHYo/r6VYXyN+HuG?=
- =?iso-8859-1?Q?4Pu1wAIJMJYPMyPLsBzFrk6Rs6DZ2ivh3pxc4ykqW1/3WNoP3EW1IZ03C/?=
- =?iso-8859-1?Q?vv2B7JEyHuwkCpeAHAIt+4HfC6MvHfVv8bE5OzbDS+6LT2vTJM2A4fiZPJ?=
- =?iso-8859-1?Q?Iay/d0NuqV4hXsI9utfS8YKCyKoKPf9rIff4f8uD8DF39nHPtA4+FEWanS?=
- =?iso-8859-1?Q?suCzamNQ0yxnbPXxnJ62VjLQwhVWLiaO2296bVe76kl6ggANWJaWRwQJqb?=
- =?iso-8859-1?Q?eF6TJljFOU0SshvRzww6ACUE/nJAalSYSUEbWbgIReoJrwPmqbKfBvA4x8?=
- =?iso-8859-1?Q?VcUDK9YOOfBt8g7AYt4XgXG3mk1mOytE3wdaZbLDkUy66CIieWj3Hbvxs3?=
- =?iso-8859-1?Q?KJnp/R6ttiNZuWeFMumrnt1VjgqCG4ajoOnfpPEXAMrgHNoFRiwuF8ULea?=
- =?iso-8859-1?Q?oA0LcJAZFcPitRTW3JPzbA9KkrI3zodtiMWjWReR3wiPOWPBBklZGe2Yu6?=
- =?iso-8859-1?Q?LZxbhF1XP7T0GrZkohHc6esxkh5i7pkVEI7oClCx31TTrRW0JYFbCenaxJ?=
- =?iso-8859-1?Q?/I6tj4JbCiWGYMAP+3oLZB03CsUHEJQgFUQwpfDEPD1cw3R/770sbDPH8x?=
- =?iso-8859-1?Q?Z4GWHSRXCB+4NqRPAEAt+VVBxz8I4XacNXevKZRBBapvaMKtKS8VeSs51h?=
- =?iso-8859-1?Q?OKw72ZGtpau8lzQNLNZgT0u2/CEO5fvgmSaZQcFXEmZQKbYb03poGcx8PR?=
- =?iso-8859-1?Q?NNWAwZ4PXV4H4xvJ3WxyY76v+A4sGjI16NAHoDdwjGsm/CeXj7ys09wF7U?=
- =?iso-8859-1?Q?tFTZNCJ8sBubmSl8nQKgzEWi79aG9hZml7FdEHo314YBLNo5HB/i6xecYE?=
- =?iso-8859-1?Q?M5pi0qgUoGhD+ZZyc4PzBPdGM78sRkVeqS2orjb0QQOd42yoZ3sU7RpdRA?=
- =?iso-8859-1?Q?oV1fjLzSW7reVsyyLP7NkLc687Q90M1PjzKmcPzlOc6HWU4aRsI7TdSUQJ?=
- =?iso-8859-1?Q?ImtTgM2YC5tjLpgsTzRMZoz+OU7l/CRKMcvfUzt0+sgaK3SLwgKOPlSxYp?=
- =?iso-8859-1?Q?2cVFNT6oL83wae3kBb4p8X+LLyIw0ET+sTXaNBV8SBnRXNmIjXpkgnyFyo?=
- =?iso-8859-1?Q?nS5BU7bWoA0hvH/RJsu5X4PP85fjaUZrMeWPgBdMUh64HLu1vtOs5g7QQV?=
- =?iso-8859-1?Q?N5WZP5dg+nyN5PNBgUjfB7ZtJX8pMqb8oxURFQiBUfje+6DLPnWQVbCiKy?=
- =?iso-8859-1?Q?9Kmw2XfwqoT966sPayZJwv5xot8+346dUhZ7RuJUphAtC7KCY8K2qYndbI?=
- =?iso-8859-1?Q?2UqdxXSumgQgpfmksOhYptpMePmELN/qv3PFqk761OyEW0L3iCGH6gVT9F?=
- =?iso-8859-1?Q?alxNnG7uwUJunl2jeNM3ikA93iyyAqjMwN7Z0nqnM9v6go/83UXYOq/Q17?=
- =?iso-8859-1?Q?L/TyRJU94uhrKco739aZ9rqpHEbnFDNezkH+U+lmtcmi97T5/aAB3tI+Ai?=
- =?iso-8859-1?Q?EHv8ujpoDBHno6klJtNQ/pw33Ps0b0TP/Himo4naQMjx4RoWtwSYwhnsiD?=
- =?iso-8859-1?Q?h56R0Ps1Hg=3D=3D?=
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+ dkim=pass header.i=@pbarker.dev header.s=fm3 header.b=BoR3pDGU;
+ dkim=pass header.i=@messagingengine.com header.s=fm1 header.b=RbHLTqWc;
+ spf=pass (domain: pbarker.dev, ip: 103.168.172.146, mailfrom: paul@pbarker.dev)
+Received: from phl-compute-11.internal (phl-compute-11.internal [10.202.2.51])
+	by mailfout.phl.internal (Postfix) with ESMTP id B92D8EC00D8;
+	Tue, 30 Jun 2026 10:52:05 -0400 (EDT)
+Received: from phl-imap-10 ([10.202.2.85])
+  by phl-compute-11.internal (MEProxy); Tue, 30 Jun 2026 10:52:05 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=pbarker.dev; h=
+	cc:content-type:content-type:date:date:from:from:in-reply-to
+	:message-id:mime-version:reply-to:subject:subject:to:to; s=fm3;
+	 t=1782831125; x=1782917525; bh=KIje7XZE2J1r8/WKTBv10rt4ebybtlRz
+	iDE4hCEmMvk=; b=BoR3pDGUlAvh7tU+3sfMTYTlpB658PbH1Tl7nmjupzYulfS2
+	Htn2ge6RBHV+Asa84DecjPQKEKybksSmtJXkV32GrvHkI0RmMjpUbgpLpIkXJlKm
+	CLLqJmpv/+JETJ34AylyqGS4Xv3Q+y5q58NHbTLNGaWAd2ECktxQzd+TjCAeO4Ea
+	2h9advoAw8Edt94O9GAcCTunIO/u2O8ofkU9SHiYWN+fiuF35ICJDCp7ggen/ECn
+	viB3C8V1ty7LotZGynJJW+pmBzMyk/ffsN2QIlxUFpq5y0xiJeVwNpJCSFdlOf/Q
+	hjBkcssPxAMxCoF7APIDoqyXMxacCggZ3Eza1g==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+	messagingengine.com; h=cc:content-type:content-type:date:date
+	:feedback-id:feedback-id:from:from:in-reply-to:message-id
+	:mime-version:reply-to:subject:subject:to:to:x-me-proxy
+	:x-me-sender:x-me-sender:x-sasl-enc; s=fm1; t=1782831125; x=
+	1782917525; bh=KIje7XZE2J1r8/WKTBv10rt4ebybtlRziDE4hCEmMvk=; b=R
+	bHLTqWctlY0KV/ko/NPx1oiVUVLcz1AdnVn8HyTSgZHFgZNrTTLvq7bdI+IJWXr8
+	j0Ksxc0GxXs8SeCyJji0FzRj8gpBNH2f7YtexwiKoCME94jH3XWRRrauxo6NMEQW
+	7d/ClpQ/29r5KgxPtIUN76TOYr+XQQLaQzbRQftI6XFGYElnEEhsRSHne9TX3F9f
+	yHwCvCeklTYBxO/txrq7UGgF9NjKUF1zku7/2E7MRU4Jwfsz7L1m7Q+l2uONpTgp
+	CLgGTCPfdZo6nQCm0U/fejJg1MQoFED1vGV7aNDHd8NElCu2svmdi5BbWM9KjT/O
+	5oQ+9LUyRnRPmaoKP2bJw==
+X-ME-Sender: <xms:FdhDaiKHCL2GayHxZBfY5p_WdkwzQZWSoCCAnDRppfe381rcV_Lnzg>
+    <xme:FdhDak_p8BAf8lXhqlLyFOfVQsPRiBiRDfl4IoWugYVio_J0gZqYwovuJrXnDm4X1
+    UaPMzm043jQqwToEBQ_KGuH1YPHyGx5-1H0B5ED7uF7GI8pWifp-nAi>
+X-ME-Proxy-Cause: dmFkZTF3yPLGuKzTsKPtNUBRYbspg90w2Y8h0Z/M1MduSzJMse696He1d908TSyLTnnts5
+    +9QDQaB4AA5r36xO2xAMNdWUr26WEbf7qaIVJ5hBomXaKTMu/dHnfy2hTfQvKql1kivRUA
+    5atSKZaXh8mfkxKXS8mCPxIBvQEm3WMh2CoY3G/c+1QVlA7Ojojyv97alH1NTZ/iuHRcWY
+    oKvBX3ux5IeznoSn8Y0dwX1cwswq8puV2h/QPPkQxHF1pwnAakxN5G1VUa32BdZsbfxofE
+    FS61KFyH0F3c0ZZvGRx7XAN2oNaQ3tTjv+BlN+gVwlTpU+kNfGSW1IqDQKewhP55j+qcY3
+    KvgXtrBCbphXpMUfKWzMVA1us0FnU0gf/qOUryWVfheEAEPB2ZsejDoyPBDq7fQqbhuho6
+    9SdL3WRgI1+nmLg6vKwGYi8WoPlsGIzi6BFwVqE8LvcEmQUi7zQi1odrjxCy7lG9Yp1v/Y
+    dFEIceNhokvV0Y4NEJ/GBOoSX9zfldcuhxg2u/nsWWP72rA+ktbLz4yIoedgm8tA7h+tMM
+    xGPkUc17yNZeCAfNvIEpYlvt3eU5evpeDopbahqHJXptNxlciDrn59svfcYYRK5LsFkTzS
+    hKbUA3Ijt/zi0F6XNKgrsWNxicAuD3ToIKSG8pUc1ZA3uW/yx9exqgIpng7Q
+X-ME-Proxy: <xmx:FdhDar3anNlTHIyK5k2Se2nHLCGwOPpbKrARslGyV5qWhudtEg8SSw>
+    <xmx:FdhDag_Xtzsd_8vLdHqpZ8uitzxCv551cdXO-Jv-xabGSlOaI0_khQ>
+    <xmx:FdhDakOeZH8CSx56GoSPcmgjrDwHi88Ez3MAN91zE4GSgY-BHCD3vA>
+    <xmx:FdhDase-bCl5ME2Hkd8hVWLcg6UaQ22Y4XPK3PZle4Nu9-snfwGq4Q>
+    <xmx:FdhDarhemtE4zBHyYkBDXjMVgJG92pEBsBmUEcj52g-ynefhrOno8b-h>
+Feedback-ID: i51494658:Fastmail
+Received: by mailuser.phl.internal (Postfix, from userid 501)
+	id 47C08216008A; Tue, 30 Jun 2026 10:52:05 -0400 (EDT)
+X-Mailer: MessagingEngine.com Webmail Interface
 MIME-Version: 1.0
-X-OriginatorOrg: siemens.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: AS8PR10MB5073.EURPRD10.PROD.OUTLOOK.COM
-X-MS-Exchange-CrossTenant-Network-Message-Id: dfbbe49f-b036-4475-f275-08ded672bb8e
-X-MS-Exchange-CrossTenant-originalarrivaltime: 30 Jun 2026 06:42:19.4282
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 38ae3bcd-9579-4fd4-adda-b42e1495d55a
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: 3IOLNomgi81sIWnhRe/sOy6yhBD9jEM14t/Wp3GxcfpsGp+UaKmTzpcfJF4RcjiOcFp1d7diJ101ksoHkqIDfQ==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PR3PR10MB3756
+Date: Tue, 30 Jun 2026 15:51:44 +0100
+From: "Paul Barker" <paul@pbarker.dev>
+To: yocto@lists.yoctoproject.org, openembedded-core@lists.openembedded.org,
+ yocto-status@lists.yoctoproject.org
+Message-Id: <150c6e1c-6cb3-4844-a926-671c59390873@app.fastmail.com>
+Subject: Yocto Project Status 30 June 2026 (WW27)
+Content-Type: multipart/alternative;
+ boundary=c2c890e24ed0cb67ee7f7704658acf30e45d3ad2
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from 45-33-107-173.ip.linodeusercontent.com [45.33.107.173] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Tue, 30 Jun 2026 06:42:30 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/66618
+ <yocto@lists.yoctoproject.org>; Tue, 30 Jun 2026 14:52:13 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/66619
 
-You could possibly locally use git feature insteadOf to overcome this.
+--c2c890e24ed0cb67ee7f7704658acf30e45d3ad2
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
 
-Something like (untested):
-git config --global url."https://git.yoctoproject.org/".insteadOf "https://=
-git.yoctoproject.org/git/"
+Hi All,
 
-Peter
+Current Dev Position: YP 6.1 M2
+Next Deadline: YP 6.1 M2: w/c 2026-07-20
 
-> -----Original Message-----
-> From: yocto@lists.yoctoproject.org <yocto@lists.yoctoproject.org> On Beha=
-lf Of
-> J=F6rg Sommer via lists.yoctoproject.org
-> Sent: Tuesday, June 30, 2026 8:31 AM
-> To: yocto@lists.yoctoproject.org
-> Subject: [yocto] Add redirect git.y.o/git/... -> /...
->=20
-> Hi,
->=20
-> would it be possible to set up a permanent redirect from
-> https://git.yoctoproject.org/git/(.*) to https://git.yoctoproject.org/$1?=
- We
-> have some older releases that can no longer be built because the /git/
-> repositories can no longer be found. It would be great if such a redirect
-> could be set up.
->=20
->=20
-> Best regards, J=F6rg
->=20
-> --
-> Navimatix GmbH           T: 03641 - 327 99 0
-> Tatzendpromenade 2       F: 03641 - 526 306
-> 07745 Jena               www.navimatix.de
->=20
-> Gesch=E4ftsf=FChrer: Steffen Sp=E4the, Jan Rommeley
-> Registergericht: Amtsgericht Jena, HRB 501480
+Next Team Meetings:
+ =E2=80=A2 Bug Triage meeting - Thursday 2nd July 7:30am PDT (_https://z=
+oom.us/j/454367603?pwd=3DZGxoa2ZXL3FkM3Y0bFd5aVpHVVZ6dz09_)
+ =E2=80=A2 Weekly Project Engineering Sync  - Tuesday 30th June 8am PDT =
+(_https://zoom.us/j/990892712?pwd=3DcHU1MjhoM2x6ck81bkcrYjRrcmJsUT09__)_=
+ <https://zoom.us/j/990892712>
+ =E2=80=A2 Yocto Project Patch Review - Thursday 2nd July 10am GMT and M=
+onday 6th July 9am PDT (_https://zoom.us/j/97762397148?pwd=3D1xk0iC9hp9S=
+jEonaTaONwTb6iWry4Eb.1_)
+
+Project data dashboard: _https://dashboard.yoctoproject.org/_=20
+
+Key Status/Updates:
+ =E2=80=A2 YP 6.1 M1 was released
+ =E2=80=A2 YP 6.0.2 is in QA
+ =E2=80=A2 The number of open CVEs on scarthgap has been reduced with st=
+able kernel updates merging. We have identified a few linux-yocto CVEs w=
+hich need triaging due to missing version information in the CVE databas=
+es, see the email sent to the list: _https://lists.yoctoproject.org/g/yo=
+cto/topic/120036383_
+ =E2=80=A2 Systemd v260+ will require a host Linux kernel of 5.10 or lat=
+er due to systemd utils run during the build process. This presents issu=
+es with RHEL 8 era distros which have older kernel versions. We have pat=
+ches in progress but if you=E2=80=99re using these distros, assistance w=
+ill be needed to keep them supported. See _https://lists.openembedded.or=
+g/g/openembedded-architecture/topic/119870359_
+ =E2=80=A2 We continue to see high load on our infrastructure due to bot=
+s and AI scraping. This has primarily caused timeouts and errors accessi=
+ng _git.openembedded.org_ & _git.yoctoproject.org_. We have mitigations =
+in place for now. Traditional git:// protocol continues to be disabled.
+ =E2=80=A2 We=E2=80=99re working through the backlog of patches, the ban=
+dwidth for changes needing in depth review/feedback continues to be a ch=
+allenge.
+ =E2=80=A2 Intermittent build failures continue to be problematic:
+   =E2=80=A2 several qemu =E2=80=98hang=E2=80=99 type issues
+   =E2=80=A2 sometimes yocto-check-layer is showing checksum mismatch is=
+sues
+   =E2=80=A2 siggen reset issues (=E2=80=9CResourceWarning: unclosed tra=
+nsport=E2=80=9D)
+   =E2=80=A2 groff build race issues
+   =E2=80=A2 intermittent ptest failures in many recipes
+ =E2=80=A2 We would like to know what people are planning to work on for=
+ Yocto Project 6.1 and beyond. We have a roadmap document in Google Docs=
+: _https://docs.google.com/document/d/12xgAzSjDj5zVlo4eQIbiv1s3QMjtBTCvB=
+FY3_T7OPto_
+
+Want to contribute? We would appreciate help with the following areas:
+ =E2=80=A2 We have several open issues for pseudo and limited maintainer=
+ time to work on them. Help from someone familiar with systems programmi=
+ng in C would be greatly appreciated. _https://bugzilla.yoctoproject.org=
+/buglist.cgi?list_id=3D661406&priority=3DHigh&priority=3DMedium%2B&produ=
+ct=3DPseudo&query_format=3Dadvanced&resolution=3D---_
+ =E2=80=A2 There are a large number of intermittent failures on our auto=
+builder, any help with investigating, reproducing or solving these issue=
+s would be welcome! _https://valkyrie.yocto.io/pub/non-release/abint/_
+ =E2=80=A2 Many recipes in openembedded-core would benefit from a new re=
+cipe maintainer. Please look at _https://git.openembedded.org/openembedd=
+ed-core/tree/meta/conf/distro/include/maintainers.inc_ and see if you ca=
+n adopt any of the unassigned recipes.
+ =E2=80=A2 For more ways to contribute, see _https://docs.google.com/doc=
+ument/d/18oxKWxLorfF813h82mK6yKTIHeBp_-9owFuCWbzgjOk/edit?usp=3Dsharing_
+
+New to the project?
+ =E2=80=A2 We have a list of issues we think are good places to start co=
+ntributing: _https://bugzilla.yoctoproject.org/buglist.cgi?quicksearch=3D=
+NEWCOMER_
+
+Tracking Metrics:
+ =E2=80=A2 WDD 2647 (last week 2620) (_https://wiki.yoctoproject.org/cha=
+rts/combo.html_)
+ =E2=80=A2 OE-Core/Poky Patch Metrics
+   =E2=80=A2 Total patches found: 1036 (last week 1054)
+   =E2=80=A2 Patches in the Pending State: 145 (14%) [last week 145 (14%=
+)]
+   =E2=80=A2 _https://valkyrie.yocto.io/pub/non-release/patchmetrics/_
+
+Upcoming development releases:
+ =E2=80=A2 6.1 M2:
+   =E2=80=A2 Build Date: w/c 2026-07-20
+   =E2=80=A2 Release Date: w/c 2026-08-03
+ =E2=80=A2 6.1 M3:
+   =E2=80=A2 Build Date: w/c 2026-08-31
+   =E2=80=A2 Release Date: w/c 2026-09-14
+ =E2=80=A2 6.1.0:
+   =E2=80=A2 Build Date (M4): w/c 2026-10-12
+   =E2=80=A2 Release Date: w/c 2026-11-02
+
+Upcoming dot releases:
+ =E2=80=A2 YP 5.0.19
+   =E2=80=A2 Build Date w/c 2026-06-30
+   =E2=80=A2 Release Date w/c 2026-07-13
+ =E2=80=A2 YP 6.0.3
+   =E2=80=A2 Build Date w/c 2026-08-10
+   =E2=80=A2 Release Date w/c 2026-08-24
+ =E2=80=A2 For future release dates, see _https://wiki.yoctoproject.org/=
+wiki/Release_calendar_
+
+The Yocto Project=E2=80=99s technical governance is through its Technica=
+l Steering Committee, more information is available at:
+_https://wiki.yoctoproject.org/wiki/TSC_
+
+The Status reports are now stored on the wiki at: _https://wiki.yoctopro=
+ject.org/wiki/Weekly_Status_
+
+[If anyone has suggestions for other information you=E2=80=99d like to s=
+ee on this weekly status update, let us know!]
+
+Best regards,
+
+Paul Barker
+
+--c2c890e24ed0cb67ee7f7704658acf30e45d3ad2
+Content-Type: text/html; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+
+<!DOCTYPE html><html><head><title></title></head><body><div>Hi All,</div=
+><div><br></div><div><span class=3D"color" style=3D"color:rgb(0, 0, 0);"=
+>Current Dev Position: YP 6.1 M2</span></div><div><span class=3D"color" =
+style=3D"color:rgb(0, 0, 0);"><span class=3D"highlight" style=3D"backgro=
+und-color:transparent;"></span>Next Deadline: YP 6.1 M2: w/c 2026-07-20<=
+/span></div><div><br></div><div><span class=3D"color" style=3D"color:rgb=
+(0, 0, 0);"><span class=3D"highlight" style=3D"background-color:transpar=
+ent;"></span>Next Team Meetings:</span></div><ul><li><div><span class=3D=
+"color" style=3D"color:rgb(0, 0, 0);"><span class=3D"highlight" style=3D=
+"background-color:transparent;"></span>Bug Triage meeting - Thursday 2nd=
+ July 7:30am PDT (</span><a href=3D"https://zoom.us/j/454367603?pwd=3DZG=
+xoa2ZXL3FkM3Y0bFd5aVpHVVZ6dz09"><span class=3D"color" style=3D"color:rgb=
+(17, 85, 204);"><span class=3D"highlight" style=3D"background-color:tran=
+sparent;"></span><u>https://zoom.us/j/454367603?pwd=3DZGxoa2ZXL3FkM3Y0bF=
+d5aVpHVVZ6dz09</u></span></a><span class=3D"color" style=3D"color:rgb(0,=
+ 0, 0);"><span class=3D"highlight" style=3D"background-color:transparent=
+;"></span>)</span></div></li><li><div><span class=3D"color" style=3D"col=
+or:rgb(0, 0, 0);"><span class=3D"highlight" style=3D"background-color:tr=
+ansparent;"></span>Weekly Project Engineering Sync&nbsp; - Tuesday 30th =
+June 8am PDT (</span><a href=3D"https://zoom.us/j/990892712?pwd=3DcHU1Mj=
+hoM2x6ck81bkcrYjRrcmJsUT09"><span class=3D"color" style=3D"color:rgb(17,=
+ 85, 204);"><span class=3D"highlight" style=3D"background-color:transpar=
+ent;"></span><u>https://zoom.us/j/990892712?pwd=3DcHU1MjhoM2x6ck81bkcrYj=
+RrcmJsUT09</u></span></a><a href=3D"https://zoom.us/j/990892712"><span c=
+lass=3D"color" style=3D"color:rgb(17, 85, 204);"><span class=3D"highligh=
+t" style=3D"background-color:transparent;"></span><u>)</u></span></a></d=
+iv></li><li><div><span class=3D"color" style=3D"color:rgb(0, 0, 0);"><sp=
+an class=3D"highlight" style=3D"background-color:transparent;"></span>Yo=
+cto Project Patch Review - Thursday 2nd July 10am GMT and Monday 6th Jul=
+y 9am PDT (</span><a href=3D"https://zoom.us/j/97762397148?pwd=3D1xk0iC9=
+hp9SjEonaTaONwTb6iWry4Eb.1"><span class=3D"color" style=3D"color:rgb(17,=
+ 85, 204);"><span class=3D"highlight" style=3D"background-color:transpar=
+ent;"></span><u>https://zoom.us/j/97762397148?pwd=3D1xk0iC9hp9SjEonaTaON=
+wTb6iWry4Eb.1</u></span></a><span class=3D"color" style=3D"color:rgb(0, =
+0, 0);"><span class=3D"highlight" style=3D"background-color:transparent;=
+"></span>)</span></div></li></ul><div><br></div><div><span class=3D"colo=
+r" style=3D"color:rgb(0, 0, 0);"><span class=3D"highlight" style=3D"back=
+ground-color:transparent;"></span>Project data dashboard: </span><a href=
+=3D"https://dashboard.yoctoproject.org/"><span class=3D"color" style=3D"=
+color:rgb(17, 85, 204);"><span class=3D"highlight" style=3D"background-c=
+olor:transparent;"></span><u>https://dashboard.yoctoproject.org/</u></sp=
+an></a><span class=3D"color" style=3D"color:rgb(0, 0, 0);"><span class=3D=
+"highlight" style=3D"background-color:transparent;"></span>&nbsp;</span>=
+</div><div><br></div><div><span class=3D"color" style=3D"color:rgb(0, 0,=
+ 0);"><span class=3D"highlight" style=3D"background-color:transparent;">=
+</span>Key Status/Updates:</span></div><ul><li><div><span class=3D"color=
+" style=3D"color:rgb(0, 0, 0);"><span class=3D"highlight" style=3D"backg=
+round-color:transparent;"></span>YP 6.1 M1 was released</span></div></li=
+><li><div><span class=3D"color" style=3D"color:rgb(0, 0, 0);"><span clas=
+s=3D"highlight" style=3D"background-color:transparent;"></span>YP 6.0.2 =
+is in QA</span></div></li><li><div><span class=3D"color" style=3D"color:=
+rgb(0, 0, 0);"><span class=3D"highlight" style=3D"background-color:trans=
+parent;"></span>The number of open CVEs on scarthgap has been reduced wi=
+th stable kernel updates merging. We have identified a few linux-yocto C=
+VEs which need triaging due to missing version information in the CVE da=
+tabases, see the email sent to the list: </span><a href=3D"https://lists=
+.yoctoproject.org/g/yocto/topic/120036383"><span class=3D"color" style=3D=
+"color:rgb(17, 85, 204);"><span class=3D"highlight" style=3D"background-=
+color:transparent;"></span><u>https://lists.yoctoproject.org/g/yocto/top=
+ic/120036383</u></span></a></div></li><li><div><span class=3D"color" sty=
+le=3D"color:rgb(0, 0, 0);"><span class=3D"highlight" style=3D"background=
+-color:transparent;"></span>Systemd v260+ will require a host Linux kern=
+el of 5.10 or later due to systemd utils run during the build process. T=
+his presents issues with RHEL 8 era distros which have older kernel vers=
+ions. We have patches in progress but if you=E2=80=99re using these dist=
+ros, assistance will be needed to keep them supported. See </span><a hre=
+f=3D"https://lists.openembedded.org/g/openembedded-architecture/topic/11=
+9870359"><span class=3D"color" style=3D"color:rgb(17, 85, 204);"><span c=
+lass=3D"highlight" style=3D"background-color:transparent;"></span><u>htt=
+ps://lists.openembedded.org/g/openembedded-architecture/topic/119870359<=
+/u></span></a></div></li><li><div><span class=3D"color" style=3D"color:r=
+gb(0, 0, 0);"><span class=3D"highlight" style=3D"background-color:transp=
+arent;"></span>We continue to see high load on our infrastructure due to=
+ bots and AI scraping. This has primarily caused timeouts and errors acc=
+essing </span><a href=3D"http://git.openembedded.org/"><span class=3D"co=
+lor" style=3D"color:rgb(17, 85, 204);"><span class=3D"highlight" style=3D=
+"background-color:transparent;"></span><u>git.openembedded.org</u></span=
+></a><span class=3D"color" style=3D"color:rgb(0, 0, 0);"><span class=3D"=
+highlight" style=3D"background-color:transparent;"></span> &amp; </span>=
+<a href=3D"http://git.yoctoproject.org/"><span class=3D"color" style=3D"=
+color:rgb(17, 85, 204);"><span class=3D"highlight" style=3D"background-c=
+olor:transparent;"></span><u>git.yoctoproject.org</u></span></a><span cl=
+ass=3D"color" style=3D"color:rgb(0, 0, 0);"><span class=3D"highlight" st=
+yle=3D"background-color:transparent;"></span>. We have mitigations in pl=
+ace for now. Traditional git:// protocol continues to be disabled.</span=
+></div></li><li><div><span class=3D"color" style=3D"color:rgb(0, 0, 0);"=
+><span class=3D"highlight" style=3D"background-color:transparent;"></spa=
+n>We=E2=80=99re working through the backlog of patches, the bandwidth fo=
+r changes needing in depth review/feedback continues to be a challenge.<=
+/span></div></li><li><div><span class=3D"color" style=3D"color:rgb(0, 0,=
+ 0);"><span class=3D"highlight" style=3D"background-color:transparent;">=
+</span>Intermittent build failures continue to be problematic:</span></d=
+iv></li><ul><li><div><span class=3D"color" style=3D"color:rgb(0, 0, 0);"=
+><span class=3D"highlight" style=3D"background-color:transparent;"></spa=
+n>several qemu =E2=80=98hang=E2=80=99 type issues</span></div></li><li><=
+div><span class=3D"color" style=3D"color:rgb(0, 0, 0);"><span class=3D"h=
+ighlight" style=3D"background-color:transparent;"></span>sometimes yocto=
+-check-layer is showing checksum mismatch issues</span></div></li><li><d=
+iv><span class=3D"color" style=3D"color:rgb(0, 0, 0);"><span class=3D"hi=
+ghlight" style=3D"background-color:transparent;"></span>siggen reset iss=
+ues (=E2=80=9CResourceWarning: unclosed transport=E2=80=9D)</span></div>=
+</li><li><div><span class=3D"color" style=3D"color:rgb(0, 0, 0);"><span =
+class=3D"highlight" style=3D"background-color:transparent;"></span>groff=
+ build race issues</span></div></li><li><div><span class=3D"color" style=
+=3D"color:rgb(0, 0, 0);"><span class=3D"highlight" style=3D"background-c=
+olor:transparent;"></span>intermittent ptest failures in many recipes</s=
+pan></div></li></ul><li><div><span class=3D"color" style=3D"color:rgb(0,=
+ 0, 0);"><span class=3D"highlight" style=3D"background-color:transparent=
+;"></span>We would like to know what people are planning to work on for =
+Yocto Project 6.1 and beyond. We have a roadmap document in Google Docs:=
+ </span><a href=3D"https://docs.google.com/document/d/12xgAzSjDj5zVlo4eQ=
+Ibiv1s3QMjtBTCvBFY3_T7OPto"><span class=3D"color" style=3D"color:rgb(17,=
+ 85, 204);"><span class=3D"highlight" style=3D"background-color:transpar=
+ent;"></span><u>https://docs.google.com/document/d/12xgAzSjDj5zVlo4eQIbi=
+v1s3QMjtBTCvBFY3_T7OPto</u></span></a></div></li></ul><div><br></div><di=
+v><span class=3D"color" style=3D"color:rgb(0, 0, 0);"><span class=3D"hig=
+hlight" style=3D"background-color:transparent;"></span>Want to contribut=
+e? We would appreciate help with the following areas:</span></div><ul><l=
+i><div><span class=3D"color" style=3D"color:rgb(0, 0, 0);"><span class=3D=
+"highlight" style=3D"background-color:transparent;"></span>We have sever=
+al open issues for pseudo and limited maintainer time to work on them. H=
+elp from someone familiar with systems programming in C would be greatly=
+ appreciated. </span><a href=3D"https://bugzilla.yoctoproject.org/buglis=
+t.cgi?list_id=3D661406&amp;priority=3DHigh&amp;priority=3DMedium%2B&amp;=
+product=3DPseudo&amp;query_format=3Dadvanced&amp;resolution=3D---"><span=
+ class=3D"color" style=3D"color:rgb(17, 85, 204);"><span class=3D"highli=
+ght" style=3D"background-color:transparent;"></span><u>https://bugzilla.=
+yoctoproject.org/buglist.cgi?list_id=3D661406&amp;priority=3DHigh&amp;pr=
+iority=3DMedium%2B&amp;product=3DPseudo&amp;query_format=3Dadvanced&amp;=
+resolution=3D---</u></span></a></div></li><li><div><span class=3D"color"=
+ style=3D"color:rgb(0, 0, 0);"><span class=3D"highlight" style=3D"backgr=
+ound-color:transparent;"></span>There are a large number of intermittent=
+ failures on our autobuilder, any help with investigating, reproducing o=
+r solving these issues would be welcome! </span><a href=3D"https://valky=
+rie.yocto.io/pub/non-release/abint/"><span class=3D"color" style=3D"colo=
+r:rgb(17, 85, 204);"><span class=3D"highlight" style=3D"background-color=
+:transparent;"></span><u>https://valkyrie.yocto.io/pub/non-release/abint=
+/</u></span></a></div></li><li><div><span class=3D"color" style=3D"color=
+:rgb(0, 0, 0);"><span class=3D"highlight" style=3D"background-color:tran=
+sparent;"></span>Many recipes in openembedded-core would benefit from a =
+new recipe maintainer. Please look at </span><a href=3D"https://git.open=
+embedded.org/openembedded-core/tree/meta/conf/distro/include/maintainers=
+.inc"><span class=3D"color" style=3D"color:rgb(17, 85, 204);"><span clas=
+s=3D"highlight" style=3D"background-color:transparent;"></span><u>https:=
+//git.openembedded.org/openembedded-core/tree/meta/conf/distro/include/m=
+aintainers.inc</u></span></a><span class=3D"color" style=3D"color:rgb(0,=
+ 0, 0);"><span class=3D"highlight" style=3D"background-color:transparent=
+;"></span> and see if you can adopt any of the unassigned recipes.</span=
+></div></li><li><div><span class=3D"color" style=3D"color:rgb(0, 0, 0);"=
+><span class=3D"highlight" style=3D"background-color:transparent;"></spa=
+n>For more ways to contribute, see </span><a href=3D"https://docs.google=
+.com/document/d/18oxKWxLorfF813h82mK6yKTIHeBp_-9owFuCWbzgjOk/edit?usp=3D=
+sharing"><span class=3D"color" style=3D"color:rgb(17, 85, 204);"><span c=
+lass=3D"highlight" style=3D"background-color:transparent;"></span><u>htt=
+ps://docs.google.com/document/d/18oxKWxLorfF813h82mK6yKTIHeBp_-9owFuCWbz=
+gjOk/edit?usp=3Dsharing</u></span></a></div></li></ul><div><br></div><di=
+v><span class=3D"color" style=3D"color:rgb(0, 0, 0);"><span class=3D"hig=
+hlight" style=3D"background-color:transparent;"></span>New to the projec=
+t?</span></div><ul><li><div><span class=3D"color" style=3D"color:rgb(0, =
+0, 0);"><span class=3D"highlight" style=3D"background-color:transparent;=
+"></span>We have a list of issues we think are good places to start cont=
+ributing: </span><a href=3D"https://bugzilla.yoctoproject.org/buglist.cg=
+i?quicksearch=3DNEWCOMER"><span class=3D"color" style=3D"color:rgb(17, 8=
+5, 204);"><span class=3D"highlight" style=3D"background-color:transparen=
+t;"></span><u>https://bugzilla.yoctoproject.org/buglist.cgi?quicksearch=3D=
+NEWCOMER</u></span></a></div></li></ul><div><br></div><div><span class=3D=
+"color" style=3D"color:rgb(0, 0, 0);"><span class=3D"highlight" style=3D=
+"background-color:transparent;"></span>Tracking Metrics:</span></div><ul=
+><li><div><span class=3D"color" style=3D"color:rgb(0, 0, 0);"><span clas=
+s=3D"highlight" style=3D"background-color:transparent;"></span>WDD 2647 =
+(last week 2620) </span><span class=3D"color" style=3D"color:rgb(0, 0, 0=
+);"><span class=3D"highlight" style=3D"background-color:transparent;"></=
+span>(</span><a href=3D"https://wiki.yoctoproject.org/charts/combo.html"=
+><span class=3D"color" style=3D"color:rgb(17, 85, 204);"><span class=3D"=
+highlight" style=3D"background-color:transparent;"></span><u>https://wik=
+i.yoctoproject.org/charts/combo.html</u></span></a><span class=3D"color"=
+ style=3D"color:rgb(0, 0, 0);"><span class=3D"highlight" style=3D"backgr=
+ound-color:transparent;"></span>)</span></div></li><li><div><span class=3D=
+"color" style=3D"color:rgb(0, 0, 0);"><span class=3D"highlight" style=3D=
+"background-color:transparent;"></span>OE-Core/Poky Patch Metrics</span>=
+</div></li><ul><li><div><span class=3D"color" style=3D"color:rgb(0, 0, 0=
+);"><span class=3D"highlight" style=3D"background-color:transparent;"></=
+span>Total patches found: 1036 (last week 1054)</span></div></li><li><di=
+v><span class=3D"color" style=3D"color:rgb(0, 0, 0);"><span class=3D"hig=
+hlight" style=3D"background-color:transparent;"></span>Patches in the Pe=
+nding State: 145 (14%) [last week 145 (14%)]</span></div></li><li><div><=
+a href=3D"https://valkyrie.yocto.io/pub/non-release/patchmetrics/"><span=
+ class=3D"color" style=3D"color:rgb(17, 85, 204);"><span class=3D"highli=
+ght" style=3D"background-color:transparent;"></span><u>https://valkyrie.=
+yocto.io/pub/non-release/patchmetrics/</u></span></a></div></li></ul></u=
+l><div><br></div><div><span class=3D"color" style=3D"color:rgb(0, 0, 0);=
+"><span class=3D"highlight" style=3D"background-color:transparent;"></sp=
+an>Upcoming development releases:</span></div><ul><li><div><span class=3D=
+"color" style=3D"color:rgb(0, 0, 0);"><span class=3D"highlight" style=3D=
+"background-color:transparent;"></span>6.1 M2:</span></div></li><ul><li>=
+<div><span class=3D"color" style=3D"color:rgb(0, 0, 0);"><span class=3D"=
+highlight" style=3D"background-color:transparent;"></span>Build Date: w/=
+c 2026-07-20</span></div></li><li><div><span class=3D"color" style=3D"co=
+lor:rgb(0, 0, 0);"><span class=3D"highlight" style=3D"background-color:t=
+ransparent;"></span>Release Date: w/c 2026-08-03</span></div></li></ul><=
+li><div><span class=3D"color" style=3D"color:rgb(0, 0, 0);"><span class=3D=
+"highlight" style=3D"background-color:transparent;"></span>6.1 M3:</span=
+></div></li><ul><li><div><span class=3D"color" style=3D"color:rgb(0, 0, =
+0);"><span class=3D"highlight" style=3D"background-color:transparent;"><=
+/span>Build Date: w/c 2026-08-31</span></div></li><li><div><span class=3D=
+"color" style=3D"color:rgb(0, 0, 0);"><span class=3D"highlight" style=3D=
+"background-color:transparent;"></span>Release Date: w/c 2026-09-14</spa=
+n></div></li></ul><li><div><span class=3D"color" style=3D"color:rgb(0, 0=
+, 0);"><span class=3D"highlight" style=3D"background-color:transparent;"=
+></span>6.1.0:</span></div></li><ul><li><div><span class=3D"color" style=
+=3D"color:rgb(0, 0, 0);"><span class=3D"highlight" style=3D"background-c=
+olor:transparent;"></span>Build Date (M4): w/c 2026-10-12</span></div></=
+li><li><div><span class=3D"color" style=3D"color:rgb(0, 0, 0);"><span cl=
+ass=3D"highlight" style=3D"background-color:transparent;"></span>Release=
+ Date: w/c 2026-11-02</span></div></li></ul></ul><div><br></div><div><sp=
+an class=3D"color" style=3D"color:rgb(0, 0, 0);"><span class=3D"highligh=
+t" style=3D"background-color:transparent;"></span>Upcoming dot releases:=
+</span></div><ul><li><div><span class=3D"color" style=3D"color:rgb(34, 3=
+4, 34);"><span class=3D"highlight" style=3D"background-color:rgb(255, 25=
+5, 255);"></span>YP 5.0.19</span></div></li><ul><li><div><span class=3D"=
+color" style=3D"color:rgb(34, 34, 34);"><span class=3D"highlight" style=3D=
+"background-color:rgb(255, 255, 255);"></span>Build Date w/c 2026-06-30<=
+/span></div></li><li><div><span class=3D"color" style=3D"color:rgb(34, 3=
+4, 34);"><span class=3D"highlight" style=3D"background-color:rgb(255, 25=
+5, 255);"></span>Release Date w/c 2026-07-13</span></div></li></ul><li><=
+div><span class=3D"color" style=3D"color:rgb(34, 34, 34);"><span class=3D=
+"highlight" style=3D"background-color:rgb(255, 255, 255);"></span>YP 6.0=
+.3</span></div></li><ul><li><div><span class=3D"color" style=3D"color:rg=
+b(34, 34, 34);"><span class=3D"highlight" style=3D"background-color:rgb(=
+255, 255, 255);"></span>Build Date w/c 2026-08-10</span></div></li><li><=
+div><span class=3D"color" style=3D"color:rgb(34, 34, 34);"><span class=3D=
+"highlight" style=3D"background-color:rgb(255, 255, 255);"></span>Releas=
+e Date w/c 2026-08-24</span></div></li></ul><li><div><span class=3D"colo=
+r" style=3D"color:rgb(0, 0, 0);"><span class=3D"highlight" style=3D"back=
+ground-color:transparent;"></span>For future release dates, see </span><=
+a href=3D"https://wiki.yoctoproject.org/wiki/Release_calendar"><span cla=
+ss=3D"color" style=3D"color:rgb(17, 85, 204);"><span class=3D"highlight"=
+ style=3D"background-color:transparent;"></span><u>https://wiki.yoctopro=
+ject.org/wiki/Release_calendar</u></span></a></div></li></ul><div><br></=
+div><div><span class=3D"color" style=3D"color:rgb(0, 0, 0);"><span class=
+=3D"highlight" style=3D"background-color:transparent;"></span>The Yocto =
+Project=E2=80=99s technical governance is through its Technical Steering=
+ Committee, more information is available at:</span></div><div><a href=3D=
+"https://wiki.yoctoproject.org/wiki/TSC"><span class=3D"color" style=3D"=
+color:rgb(17, 85, 204);"><span class=3D"highlight" style=3D"background-c=
+olor:transparent;"></span><u>https://wiki.yoctoproject.org/wiki/TSC</u><=
+/span></a></div><div><br></div><div><span class=3D"color" style=3D"color=
+:rgb(0, 0, 0);"><span class=3D"highlight" style=3D"background-color:tran=
+sparent;"></span>The Status reports are now stored on the wiki at: </spa=
+n><a href=3D"https://wiki.yoctoproject.org/wiki/Weekly_Status"><span cla=
+ss=3D"color" style=3D"color:rgb(17, 85, 204);"><span class=3D"highlight"=
+ style=3D"background-color:transparent;"></span><u>https://wiki.yoctopro=
+ject.org/wiki/Weekly_Status</u></span></a></div><div><br></div><div><spa=
+n class=3D"color" style=3D"color:rgb(0, 0, 0);"><span class=3D"highlight=
+" style=3D"background-color:transparent;"></span>[If anyone has suggesti=
+ons for other information you=E2=80=99d like to see on this weekly statu=
+s update, let us know!]</span></div><div><br></div><div>Best regards,</d=
+iv><div><br></div><div id=3D"sig133588112"><div class=3D"signature">Paul=
+ Barker</div></div><div><br></div></body></html>
+--c2c890e24ed0cb67ee7f7704658acf30e45d3ad2--
 
