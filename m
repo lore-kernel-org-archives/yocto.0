@@ -1,248 +1,78 @@
-Return-Path: <duane@duaneellis.com>
+Return-Path: <clopez@igalia.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id DA4A2C43458
-	for <webhook@archiver.kernel.org>; Fri, 10 Jul 2026 14:04:40 +0000 (UTC)
-Received: from PH7PR06CU001.outbound.protection.outlook.com (PH7PR06CU001.outbound.protection.outlook.com [52.101.201.98])
- by mx.groups.io with SMTP id smtpd.msgproc02-g2.13401.1783692277361474693
+	by smtp.lore.kernel.org (Postfix) with ESMTP id C2782C43458
+	for <webhook@archiver.kernel.org>; Fri, 10 Jul 2026 15:16:42 +0000 (UTC)
+Received: from fanzine2.igalia.com (fanzine2.igalia.com [213.97.179.56])
+ by mx.groups.io with SMTP id smtpd.msgproc01-g2.176.1783696594691645785
  for <yocto@lists.yoctoproject.org>;
- Fri, 10 Jul 2026 07:04:37 -0700
+ Fri, 10 Jul 2026 08:16:35 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@NETORGFT4046020.onmicrosoft.com header.s=selector2-NETORGFT4046020-onmicrosoft-com header.b=ZuwQ210G;
- spf=pass (domain: duaneellis.com, ip: 52.101.201.98, mailfrom: duane@duaneellis.com)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=MbJ5O271uRGBKrVhtejnKtidG+Ecrn63PvM+3S1mSnDjKjNGedcjzcDGhL99HsYsKkYjiu+FNKCdYqTTFKi58tqqOxJDZbOjuPr//VP8ir5m8RVOZDLkLyg6Mq/Qi1dBSNelxy9nZwlwbLi+wKhIjSSPp10g0RTDlHlEnS7TyEeWDR/PSQ5Er3JM+JRwlmyGzSR+ON+sUOomIJuLYutlLgEgo/Qx6GRfQOCX+Kldel08wzCs8PiM9OEJHhTA9eeqv75etdFk4JlTfeNLRHZ2jQj7PCBRJ2pRs7qc5/Fk7fUVNqbCPaiO6LDul/VJ49u0sGdygmnX+roXiCkvlTUjOQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001; h=From:Date:Subject:Message-ID:MIME-Version;
- bh=wIaSa3+CU1UGLkW0ny+tvZ+YIhkBC69CvvSXXK8b7q4=;
- b=EqHwPx4OOYBifD9gmxULy+sm7TdTEM1D3zRETP2q6O9IvvtNkLpkGninvOhV/L6BZPl2XCXVzf9RubNfIV3oI4rdZhyrsDhQzZslJ8ktP0OKIlroxpkWjok43dB1S/gMNMeodNgvf5hM33s9GFPUjtRIYB6iTdHl2shdFMTOJ1xv9BNqbF/zjmgRbPfbgRdfRASg9jbJ/8ir88sT5aVybRvz55RnrPG6oLh4oSyjjMGTkKh/Tz3mG4bLFHjH/Iopayox3vcSlQVn4JGjp1RBskWb2bDKCiJAkjXW1L9f3i9UC8cVsvWX3g6wulqeQ2UDkDXkZp/ULOvRlMC5Fxl2xQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=duaneellis.com; dmarc=pass action=none
- header.from=duaneellis.com; dkim=pass header.d=duaneellis.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=NETORGFT4046020.onmicrosoft.com;
- s=selector2-NETORGFT4046020-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=wIaSa3+CU1UGLkW0ny+tvZ+YIhkBC69CvvSXXK8b7q4=;
- b=ZuwQ210G4faSwBH9oFmpJuasHUpFTxVRRVhEh7bCcBhe53e5FHOu2jOoSKisfXRCqGZYfUaoSa6hw/lZ+xu260cgQCGQkYBaqIiUAQqgV/IKD85SbxCGpv9sOzvzFim+Y0jg8zFgdx/V8ORyJgbg+kAEce+oPrqaRr5IroMvvvM=
-Received: from PH0PR05MB8478.namprd05.prod.outlook.com (2603:10b6:510:cd::7)
- by PH0PR05MB9774.namprd05.prod.outlook.com (2603:10b6:510:28a::22) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.181.9; Fri, 10 Jul
- 2026 14:04:33 +0000
-Received: from PH0PR05MB8478.namprd05.prod.outlook.com
- ([fe80::9469:4361:1861:3d5d]) by PH0PR05MB8478.namprd05.prod.outlook.com
- ([fe80::9469:4361:1861:3d5d%3]) with mapi id 15.21.0181.016; Fri, 10 Jul 2026
- 14:04:33 +0000
-From: Duane Ellis <duane@duaneellis.com>
-To: "yocto@lists.yoctoproject.org" <yocto@lists.yoctoproject.org>,
-	"clopez@igalia.com" <clopez@igalia.com>, "joerg.sommer@navimatix.de"
-	<joerg.sommer@navimatix.de>
+ dkim=pass header.i=@igalia.com header.s=20170329 header.b=NFovYxi6;
+ spf=pass (domain: igalia.com, ip: 213.97.179.56, mailfrom: clopez@igalia.com)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com;
+	s=20170329; h=Content-Transfer-Encoding:Content-Type:In-Reply-To:From:
+	References:To:Subject:MIME-Version:Date:Message-ID:Sender:Reply-To:Cc:
+	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+	Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
+	List-Subscribe:List-Post:List-Owner:List-Archive;
+	bh=uxFXCB2PVLlAV69G7OpTv+OqJIo8skufBNfBqDNIVGQ=; b=NFovYxi6+YiCCk4NYUKnzC9Hf5
+	qkInNbdfox/wxfRA+zQMeRrgFiC7v90W1Gg43026KuQT9H8Uhcue3ICTyyi3PCPNeZ2YdkOi+an4i
+	hT1Fzl4+FBhci1OXloIeVF9ehVe9CYBQvFhkMGsEjZFgLShFIsybjXHYkypFialDgODOehhpOA3BR
+	Ik/rGd9kGaZrhc5UBjiDf3Jq5184B2/MThed7awxoBtXQs1XKbK/I6IaHYcqVLzySK1Mqtl+pXvVu
+	zHKKbujU3XSzxuJE9z0H80tTdW/F/Id/mgMG7Eeq8XG+fW3mBhaf/oQMZY63KaLFfrRcU+7xPDcMt
+	80t4edng==;
+Received: from 102.90.219.87.dynamic.jazztel.es ([87.219.90.102] helo=[192.168.1.38])
+	by fanzine2.igalia.com with esmtpsa 
+	(Cipher TLS1.3:ECDHE_X25519__RSA_PSS_RSAE_SHA256__AES_128_GCM:128) (Exim)
+	id 1wiCxq-00CjWX-Pv; Fri, 10 Jul 2026 17:16:30 +0200
+Message-ID: <7f24e4a4-1c56-49f7-8bfa-5ea337725060@igalia.com>
+Date: Fri, 10 Jul 2026 17:16:28 +0200
+MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
 Subject: Re: [yocto] Add redirect git.y.o/git/... -> /...
-Thread-Topic: [yocto] Add redirect git.y.o/git/... -> /...
-Thread-Index: AQHdCFoAavcKpiZ8mUCmIjWgJmXOo7ZmiQMAgABPFNE=
-Date: Fri, 10 Jul 2026 14:04:33 +0000
-Message-ID: 
- <PH0PR05MB8478EEE8764B1AB6B1D96DEBCAFD2@PH0PR05MB8478.namprd05.prod.outlook.com>
+To: Duane Ellis <duane@duaneellis.com>,
+ "yocto@lists.yoctoproject.org" <yocto@lists.yoctoproject.org>,
+ "joerg.sommer@navimatix.de" <joerg.sommer@navimatix.de>
 References: <akNglndfCzY7BdSw@navimatix.de>
  <846ae9fc-1aa8-4c21-878e-e9a8c41c3a44@igalia.com>
-In-Reply-To: <846ae9fc-1aa8-4c21-878e-e9a8c41c3a44@igalia.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-ms-reactions: allow
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=duaneellis.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: PH0PR05MB8478:EE_|PH0PR05MB9774:EE_
-x-ms-office365-filtering-correlation-id: 1f1ca0fe-f396-4619-5075-08dede8c2b35
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: 
- BCL:0;ARA:13230040|376014|23010399003|1800799024|366016|4143699003|22082099003|18002099003|56012099006|8096899003|13003099007|38070700021;
-x-microsoft-antispam-message-info: 
- iHTbTxOqcFmNigKpgwkNhwGkIPaVXm29fTInknYlocBKGWQPgzUOhmlcoYvdELW32NqTkvXvn6GXa9ASOsHx8V5EK+PqvComTmNCkiyRz+sjKyzfrUJxKHeCduRVEvn6fXaKfCZNaLDl9vw2J5sgS9Xv44oy1TG0hoWH+Hrg+O0XN4VfRrb/bxtC800qmdRWfiffowzax0r/gh6j4TDGvJ23cXEl75neXP+Wi1EqIUcUpFxdegTgUsWJZsM0CKj4boJTFu7IJZyE7+BXtDPh8c11VoRgfdFU8/Ge4Ad1LJ47PtpPvqWmhpQMd1XTonzn8N8K2Xn+ItbizFZrda1m6vmWTaoSorpT62AQvYG8rlsNakAtWRQcnKZCJIqi/ASl2OAHRkduejIWaaaYzVAl47DIxuHXzLmolwnFHVrVTAxfbk8lMSXd5iygvJsHJHF/EQ0Mt66Giw1Ij3puY+StivCSsyvuKOt3wdYXArJEN0omApDPxEU6ayB+avrWTxgT+/K9+dCKSiKpzj2ioY6GvxPqdhCbPFNJHik3o8yApI1hRN0HQkNyQELruvl2XiPlVDd2J7va6BdX6SPPUecMsKOw2i9rXwY/+47/Xqfs8XObOEAVJdhfAuMM3lAtuI4Z5uNHNVR0v168syx7w69VjlRqNnMav02vdrWx1Bzw9Po=
-x-forefront-antispam-report: 
- CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PH0PR05MB8478.namprd05.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(376014)(23010399003)(1800799024)(366016)(4143699003)(22082099003)(18002099003)(56012099006)(8096899003)(13003099007)(38070700021);DIR:OUT;SFP:1102;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: 
- =?utf-8?B?RDJMdTRjRkU3cTViS0NGT09ZR0xHR2hJcHN6ZDB3WmtqY3hoWThjdmpRc0Jr?=
- =?utf-8?B?QjJrWFdmZDZpSDJqZFdQNGlEMkhjR3MvamJBZWQvMk1aaVhtM01zdDBCdFlo?=
- =?utf-8?B?bk5jaGY2NHhsZEZrdU40SXBUVE10MzVWSnFKbG9XK1RmOS9zNDBIVVZqOW9Z?=
- =?utf-8?B?UU8yTVBXQ05sc29uU0VHZmMyQnIzbnUzUEtNaFR2VDBjVlFGOEJZb0ZCRGN2?=
- =?utf-8?B?dDZWY1hDaTEvM0tFVlYxMWJWc1BPK2dEbEpON2o4TzYwVU9keUlMb3dYNVN4?=
- =?utf-8?B?UlBBQU1YcmZaeUJzdFY4cDhWMXp1bFdNMGpPcGNrTmFHOE5ub3JscjdmL0Jn?=
- =?utf-8?B?LzNNTWJ3RE15MTgweUg0ekVQb1dDUzZINkRRU2R6VkRoQVpHV3dJdG81c3RO?=
- =?utf-8?B?M2V0Rit4MTg1cE9OZUxHUSs0anE4dGhYU01wREtJbDZtbXBXUHYzbURUQ2VQ?=
- =?utf-8?B?U3dvWnRXc1FEaTdwd2RWN2pic1JnbDR5ZnlrNkhydXFPdEJueVNjdVp1ekdr?=
- =?utf-8?B?TEc1VW5QRk5xR1QxOHRtSlZTWVVZWnkrVWhhaDVuMUtMNG9rNzJMc1c0bzNp?=
- =?utf-8?B?SnRqTmZXbFlRUXIvMWVRU0tuUWUrZTJOTHR3MVFSVXZodzBLVXBQS0FSTXg2?=
- =?utf-8?B?K25lUE1iTnlJaWRMczJvekk3MFplY2ZDMDNPOGE1cEU0aTAwbHN0elhtanhI?=
- =?utf-8?B?czdhSlJna2dKUTJENmxIS1U4bUEwUnRaZGNxVms4QVkrQ2dEMTV0ai9sZFVa?=
- =?utf-8?B?VXF3bWhMMFkzdzh4SktrNHp3VnZNQzZJbk82ZTlVaHZuaG5wTC9HWFRXanZU?=
- =?utf-8?B?TkxDQURvK3lmOE01eXVML2h3VEJTMnU4M2x2MkdNdnJ4MWtJNHlpUy9XUkFF?=
- =?utf-8?B?QXBYaWpCb1IrUFBKOGxJSEJBaUEzUFpRQ2t0Q0UvZW5Tei91ejl4RUNHaWI4?=
- =?utf-8?B?a3BhRnBuVjNTNktZa2J3RkErSGNkalU4TlA2WGZ2em5HcVpyZ2g3d21OYTdL?=
- =?utf-8?B?eFVVUUZyZWJ1VmJoR2hvZ1NacFMwTFpYSThoQnl4UUovTDExdHQvZGJCeGRu?=
- =?utf-8?B?d2ppUlJsY3BuT2kwbUZxalQ3V3hKMDFDN1kwdkxqZUhMcCtDRk50UWJpUDNF?=
- =?utf-8?B?Z0hWMGNRYTBtcDA0S0NNZk15TTA1YkVFbHd2empkajkzR2lGMVlWMFVDQisv?=
- =?utf-8?B?VkVDb1h5MTRRMmo2NXJQTVVleGgyQkk0SitvbEszbTRla254R1lCb3JEcEdw?=
- =?utf-8?B?OTNtUXJYR2RhcmhMNXRCWHAzeE1VYkFJdld5MlZJaUFBVzNhM1Z4WmlZT0My?=
- =?utf-8?B?Q2Ezcys1S210L3R1S3g5bk4rMFZ4RlMxUWYxSXl5RnljK05MMEVIQ1BNV2ZE?=
- =?utf-8?B?SHpZSUpnS1I0cWNLVzRDWnRlUzBIOGRJV3QwSzV0cFpyVlE3d3MzekZIcFlu?=
- =?utf-8?B?NDJMRFpQempjUUcxRGZkeDYzcXhiN0o4RWwvK204RHZQdHFqRGRIWjlTYzBq?=
- =?utf-8?B?Q05CbXJKbkNNeGtXbWF3UDdFNUdveXUycSt1Z2ltNGozSnhjM3E1WjZ4OFpv?=
- =?utf-8?B?dFRaeUVKVzZsWkNPbWFjUVNraDdiNjhxK0RMRlEwaTNYc0cveXUrWnVPdnBT?=
- =?utf-8?B?bHUxMUhNYzZmM2E5TFhDT3gyd3VQZ1hDS2JsY0FNWUFrcC9ScDRnS3V1QUZZ?=
- =?utf-8?B?dUlISkJYQnAxMlZod3h5VFJOeVl2YTEvd0VpZnhWeHpzT29FajRiRmhpcE9E?=
- =?utf-8?B?NDZZVlRNem5SVDcvRGE0YTRhQThZU0x4d2RVeGJoak9mVjNrN3RrdG5GYnNx?=
- =?utf-8?B?dFdQWUo1U1EwSG8xR281SjBWckc2S3MxZWZscHZoRzhUWkJhT05ZZ1UzN3Qr?=
- =?utf-8?B?elJ5MU02WW12cnlxaTczVnlJYXFuY1Zpc2pxaTRqak1QSEVjWlNuYmNzUHZG?=
- =?utf-8?B?L0t0UWtLN2l3a0hvYWp2dER4citzcXltQmdJOTQxb0M3V3pnVk1wYVh2dGJq?=
- =?utf-8?B?a2N4ZzFJVGIxMmZ3YkFtemVOSFI2NjRWdm04TVpaMGk3c0RRbHRKcEk5UGxo?=
- =?utf-8?B?d0p4Y0MzRkxSSjBsV3Z2cXkwbVE3M2xYV21LMkxZN0xDTFhFQ1pDNU1SZkti?=
- =?utf-8?B?YjlkL2FTKzJDbTg3bTZzeUtyZHdCL2xoSytOVFdJb0Fsb0hkdXFxQTE0SHdX?=
- =?utf-8?B?YmVoMG1wYzl3S2xra0p0dHZEUzk5d3kvQ0wxOE5VU3NQWnBGcGUzQmtHSk12?=
- =?utf-8?B?di81VTg5Nk1TYUhFV2d5R0FPZHRKTnBVLzR2SDAxb2hxTlJzZzR0N0pUais1?=
- =?utf-8?B?dW1qNnhvSHZSRG1jaUszREFJUStHZ1JmRlF3K3N0b1NwUHhxZjM1NTA4bjRN?=
- =?utf-8?Q?s65jpMxZQGQ9gPA4=3D?=
-Content-Type: multipart/alternative;
-	boundary="_000_PH0PR05MB8478EEE8764B1AB6B1D96DEBCAFD2PH0PR05MB8478namp_"
-MIME-Version: 1.0
-X-OriginatorOrg: duaneellis.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: PH0PR05MB8478.namprd05.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 1f1ca0fe-f396-4619-5075-08dede8c2b35
-X-MS-Exchange-CrossTenant-originalarrivaltime: 10 Jul 2026 14:04:33.4688
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: eef65c93-5cb4-4eae-919c-def928b6dbea
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: 85G8o6APnEqGQzkGNpY1ZEeMd6VjTwuKzXnBTcb2oh0lairYbq8bY/25DgeqGWTE79PBfcTDa11OTH1PrSeWyQ==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH0PR05MB9774
+ <PH0PR05MB8478EEE8764B1AB6B1D96DEBCAFD2@PH0PR05MB8478.namprd05.prod.outlook.com>
+From: Carlos Alberto Lopez Perez <clopez@igalia.com>
+Content-Language: es, en-GB
+Organization: Igalia S.L.
+In-Reply-To: <PH0PR05MB8478EEE8764B1AB6B1D96DEBCAFD2@PH0PR05MB8478.namprd05.prod.outlook.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from 45-33-107-173.ip.linodeusercontent.com [45.33.107.173] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Fri, 10 Jul 2026 14:04:40 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/66633
+ <yocto@lists.yoctoproject.org>; Fri, 10 Jul 2026 15:16:42 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/66634
 
---_000_PH0PR05MB8478EEE8764B1AB6B1D96DEBCAFD2PH0PR05MB8478namp_
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+On 10/07/2026 16:04, Duane Ellis wrote:
+> I agree with you - it is painful when things break.
+> 
+> Meanwhile you might check out the “git-instead-of” feature of git.
+> Google the term: “git url replacement” or “git insteadOf”
+> 
+> We do this to repoint URLS from an external un-controlled site to an internal company controlled mirror.
+> 
 
-SSBhZ3JlZSB3aXRoIHlvdSAtIGl0IGlzIHBhaW5mdWwgd2hlbiB0aGluZ3MgYnJlYWsuDQoNCk1l
-YW53aGlsZSB5b3UgbWlnaHQgY2hlY2sgb3V0IHRoZSDigJxnaXQtaW5zdGVhZC1vZuKAnSBmZWF0
-dXJlIG9mIGdpdC4NCkdvb2dsZSB0aGUgdGVybTog4oCcZ2l0IHVybCByZXBsYWNlbWVudOKAnSBv
-ciDigJxnaXQgaW5zdGVhZE9m4oCdDQoNCldlIGRvIHRoaXMgdG8gcmVwb2ludCBVUkxTIGZyb20g
-YW4gZXh0ZXJuYWwgdW4tY29udHJvbGxlZCBzaXRlIHRvIGFuIGludGVybmFsIGNvbXBhbnkgY29u
-dHJvbGxlZCBtaXJyb3IuDQoNCg0KDQoNCkZyb206IHlvY3RvQGxpc3RzLnlvY3RvcHJvamVjdC5v
-cmcgPHlvY3RvQGxpc3RzLnlvY3RvcHJvamVjdC5vcmc+IG9uIGJlaGFsZiBvZiBDYXJsb3MgQWxi
-ZXJ0byBMb3BleiBQZXJleiB2aWEgbGlzdHMueW9jdG9wcm9qZWN0Lm9yZyA8Y2xvcGV6PWlnYWxp
-YS5jb21AbGlzdHMueW9jdG9wcm9qZWN0Lm9yZz4NCkRhdGU6IEZyaWRheSwgSnVseSAxMCwgMjAy
-NiBhdCAyOjE34oCvQU0NClRvOiB5b2N0b0BsaXN0cy55b2N0b3Byb2plY3Qub3JnIDx5b2N0b0Bs
-aXN0cy55b2N0b3Byb2plY3Qub3JnPjsgam9lcmcuc29tbWVyQG5hdmltYXRpeC5kZSA8am9lcmcu
-c29tbWVyQG5hdmltYXRpeC5kZT4NClN1YmplY3Q6IFJlOiBbeW9jdG9dIEFkZCByZWRpcmVjdCBn
-aXQueS5vL2dpdC8uLi4gLT4gLy4uLg0KDQpPbiAzMC8wNi8yMDI2IDA4OjMwLCBKw7ZyZyBTb21t
-ZXIgdmlhIGxpc3RzLnlvY3RvcHJvamVjdC5vcmcgd3JvdGU6DQo+IEhpLA0KPg0KPiB3b3VsZCBp
-dCBiZSBwb3NzaWJsZSB0byBzZXQgdXAgYSBwZXJtYW5lbnQgcmVkaXJlY3QgZnJvbQ0KPiBodHRw
-czovL2dpdC55b2N0b3Byb2plY3Qub3JnL2dpdC8oLiopIHRvIGh0dHBzOi8vZ2l0LnlvY3RvcHJv
-amVjdC5vcmcvJDE/IFdlDQo+IGhhdmUgc29tZSBvbGRlciByZWxlYXNlcyB0aGF0IGNhbiBubyBs
-b25nZXIgYmUgYnVpbHQgYmVjYXVzZSB0aGUgL2dpdC8NCj4gcmVwb3NpdG9yaWVzIGNhbiBubyBs
-b25nZXIgYmUgZm91bmQuIEl0IHdvdWxkIGJlIGdyZWF0IGlmIHN1Y2ggYSByZWRpcmVjdA0KPiBj
-b3VsZCBiZSBzZXQgdXAuDQo+DQo+DQo+IEJlc3QgcmVnYXJkcywgSsO2cmcNCj4NCisxDQoNCldl
-IGhhdmUgYmVlbiBhbHNvIGJpdHRlbiBieSB0aGlzIFsxXQ0KDQpJIHVzdWFsbHkgZG9uJ3QgY29t
-cGxhaW4gaW4gcHVibGljLCBidXQgdGhpcyB0aW1lIEkgaGF2ZSB0byB2b2ljZSBteQ0KZnJ1c3Ry
-YXRpb24gYWJvdXQgaG93IGdpdC55b2N0b3Byb2plY3Qub3JnIGlzIGhhbmRsZWQuDQoNCkZpcnN0
-IGl0IHdhcyB0aGUgcmVtb3ZhbCBvZiB0aGUgZ2l0Oi8vIGFjY2VzcywgYW5kIG5vdyB0aGUgcGF0
-aCB0byB0aGUNCnJlcG9zaXRvcmllcyBjaGFuZ2VzICgvJHJlcG8gaW5zdGVhZCBvZiAvZ2l0LyRy
-ZXBvKSB3aXRob3V0IGEgcmVkaXJlY3QNCmluIHBsYWNlLg0KDQpUaGVyZSBhcmUgQ0lzLCBhdXRv
-bWF0ZWQgcHJvY2VzcyBhbmQgcmVwb3MgZXZlcnl3aGVyZSB0aGFuIGRlcGVuZHMgb24NCnRoaXMg
-VVJJcywgcGxlYXNlIHdoZW4gZG9pbmcgY2hhbmdlcyBsaWtlIHRoaXMgdHJ5IHRvIGRvIGFuIGV4
-dHJhIGVmZm9ydA0KdG8ga2VlcCB0aGUgb2xkIFVSSXMgYWxzbyB3b3JraW5nIGlmIHBvc3NpYmxl
-Lg0KDQpUaGFua3MuDQoNCg0KWzFdIGh0dHBzOi8vYnVncy53ZWJraXQub3JnL3Nob3dfYnVnLmNn
-aT9pZD0zMTkwODINCg==
+Thanks for the suggestion.
 
---_000_PH0PR05MB8478EEE8764B1AB6B1D96DEBCAFD2PH0PR05MB8478namp_
-Content-Type: text/html; charset="utf-8"
-Content-Transfer-Encoding: base64
+Unfortunately that won't help for my use case, which is using the "repo"
+tool with a xml manifest on a uncontrolled environment to fetch a set of
+repos containing Yocto layers and then automatically build a SDK.
 
-PGh0bWw+DQo8aGVhZD4NCjxtZXRhIGh0dHAtZXF1aXY9IkNvbnRlbnQtVHlwZSIgY29udGVudD0i
-dGV4dC9odG1sOyBjaGFyc2V0PXV0Zi04Ij4NCjwvaGVhZD4NCjxib2R5Pg0KPGRpdiBzdHlsZT0i
-ZGlyZWN0aW9uOiBsdHI7IGZvbnQtZmFtaWx5OiBBcHRvcywgQXJpYWwsIEhlbHZldGljYSwgc2Fu
-cy1zZXJpZjsgZm9udC1zaXplOiAxMnB0OyBjb2xvcjogcmdiKDAsIDAsIDApOyI+DQpJIGFncmVl
-IHdpdGggeW91IC0gaXQgaXMgcGFpbmZ1bCB3aGVuIHRoaW5ncyBicmVhay48L2Rpdj4NCjxkaXYg
-c3R5bGU9ImRpcmVjdGlvbjogbHRyOyBmb250LWZhbWlseTogQXB0b3MsIEFyaWFsLCBIZWx2ZXRp
-Y2EsIHNhbnMtc2VyaWY7IGZvbnQtc2l6ZTogMTJwdDsgY29sb3I6IHJnYigwLCAwLCAwKTsiPg0K
-PGJyPg0KPC9kaXY+DQo8ZGl2IHN0eWxlPSJkaXJlY3Rpb246IGx0cjsgZm9udC1mYW1pbHk6IEFw
-dG9zLCBBcmlhbCwgSGVsdmV0aWNhLCBzYW5zLXNlcmlmOyBmb250LXNpemU6IDEycHQ7IGNvbG9y
-OiByZ2IoMCwgMCwgMCk7Ij4NCk1lYW53aGlsZSB5b3UgbWlnaHQgY2hlY2sgb3V0IHRoZSDigJxn
-aXQtaW5zdGVhZC1vZuKAnSBmZWF0dXJlIG9mIGdpdC48L2Rpdj4NCjxkaXYgc3R5bGU9ImRpcmVj
-dGlvbjogbHRyOyBmb250LWZhbWlseTogQXB0b3MsIEFyaWFsLCBIZWx2ZXRpY2EsIHNhbnMtc2Vy
-aWY7IGZvbnQtc2l6ZTogMTJwdDsgY29sb3I6IHJnYigwLCAwLCAwKTsiPg0KR29vZ2xlIHRoZSB0
-ZXJtOiDigJxnaXQgdXJsIHJlcGxhY2VtZW504oCdIG9yIOKAnGdpdCBpbnN0ZWFkT2bigJ08L2Rp
-dj4NCjxkaXYgc3R5bGU9ImRpcmVjdGlvbjogbHRyOyBmb250LWZhbWlseTogQXB0b3MsIEFyaWFs
-LCBIZWx2ZXRpY2EsIHNhbnMtc2VyaWY7IGZvbnQtc2l6ZTogMTJwdDsgY29sb3I6IHJnYigwLCAw
-LCAwKTsiPg0KPGJyPg0KPC9kaXY+DQo8ZGl2IHN0eWxlPSJkaXJlY3Rpb246IGx0cjsgZm9udC1m
-YW1pbHk6IEFwdG9zLCBBcmlhbCwgSGVsdmV0aWNhLCBzYW5zLXNlcmlmOyBmb250LXNpemU6IDEy
-cHQ7IGNvbG9yOiByZ2IoMCwgMCwgMCk7Ij4NCldlIGRvIHRoaXMgdG8gcmVwb2ludCBVUkxTIGZy
-b20gYW4gZXh0ZXJuYWwgdW4tY29udHJvbGxlZCBzaXRlIHRvIGFuIGludGVybmFsIGNvbXBhbnkg
-Y29udHJvbGxlZCBtaXJyb3IuPC9kaXY+DQo8ZGl2IHN0eWxlPSJkaXJlY3Rpb246IGx0cjsgZm9u
-dC1mYW1pbHk6IEFwdG9zLCBBcmlhbCwgSGVsdmV0aWNhLCBzYW5zLXNlcmlmOyBmb250LXNpemU6
-IDEycHQ7IGNvbG9yOiByZ2IoMCwgMCwgMCk7Ij4NCjxicj4NCjwvZGl2Pg0KPGRpdiBzdHlsZT0i
-ZGlyZWN0aW9uOiBsdHI7IGZvbnQtZmFtaWx5OiBBcHRvcywgQXJpYWwsIEhlbHZldGljYSwgc2Fu
-cy1zZXJpZjsgZm9udC1zaXplOiAxMnB0OyBjb2xvcjogcmdiKDAsIDAsIDApOyI+DQo8YnI+DQo8
-L2Rpdj4NCjxkaXYgc3R5bGU9ImRpcmVjdGlvbjogbHRyOyBmb250LWZhbWlseTogQXB0b3MsIEFy
-aWFsLCBIZWx2ZXRpY2EsIHNhbnMtc2VyaWY7IGZvbnQtc2l6ZTogMTJwdDsgY29sb3I6IHJnYigw
-LCAwLCAwKTsiPg0KPGJyPg0KPC9kaXY+DQo8ZGl2IHN0eWxlPSJkaXJlY3Rpb246IGx0cjsgZm9u
-dC1mYW1pbHk6IEFwdG9zLCBBcmlhbCwgSGVsdmV0aWNhLCBzYW5zLXNlcmlmOyBmb250LXNpemU6
-IDEycHQ7IGNvbG9yOiByZ2IoMCwgMCwgMCk7Ij4NCjxicj4NCjwvZGl2Pg0KPGRpdiBpZD0ibWFp
-bC1lZGl0b3ItcmVmZXJlbmNlLW1lc3NhZ2UtY29udGFpbmVyIj4NCjxkaXYgY2xhc3M9Im1zLW91
-dGxvb2stbW9iaWxlLXJlZmVyZW5jZS1tZXNzYWdlIHNraXBQcm9vZmluZyI+DQo8bWV0YSBuYW1l
-PSJHZW5lcmF0b3IiIGNvbnRlbnQ9Ik1pY3Jvc29mdCBFeGNoYW5nZSBTZXJ2ZXIiPg0KPC9kaXY+
-DQo8ZGl2IHN0eWxlPSJwYWRkaW5nOiAzcHQgMGluIDBpbjsgYm9yZGVyLXdpZHRoOiAxcHQgbWVk
-aXVtIG1lZGl1bTsgYm9yZGVyLXN0eWxlOiBzb2xpZCBub25lIG5vbmU7IGJvcmRlci1jb2xvcjog
-cmdiKDE4MSwgMTk2LCAyMjMpIGN1cnJlbnRjb2xvciBjdXJyZW50Y29sb3I7Ij4NCjxkaXYgY2xh
-c3M9Im1zLW91dGxvb2stbW9iaWxlLXJlZmVyZW5jZS1tZXNzYWdlIHNraXBQcm9vZmluZyIgc3R5
-bGU9InRleHQtYWxpZ246IGxlZnQ7IGZvbnQtZmFtaWx5OiBBcHRvczsgZm9udC1zaXplOiAxMnB0
-OyBjb2xvcjogYmxhY2s7Ij4NCjxiPkZyb206IDwvYj55b2N0b0BsaXN0cy55b2N0b3Byb2plY3Qu
-b3JnICZsdDt5b2N0b0BsaXN0cy55b2N0b3Byb2plY3Qub3JnJmd0OyBvbiBiZWhhbGYgb2YgQ2Fy
-bG9zIEFsYmVydG8gTG9wZXogUGVyZXogdmlhIGxpc3RzLnlvY3RvcHJvamVjdC5vcmcgJmx0O2Ns
-b3Blej1pZ2FsaWEuY29tQGxpc3RzLnlvY3RvcHJvamVjdC5vcmcmZ3Q7PGJyPg0KPGI+RGF0ZTog
-PC9iPkZyaWRheSwgSnVseSAxMCwgMjAyNiBhdCAyOjE34oCvQU08YnI+DQo8Yj5UbzogPC9iPnlv
-Y3RvQGxpc3RzLnlvY3RvcHJvamVjdC5vcmcgJmx0O3lvY3RvQGxpc3RzLnlvY3RvcHJvamVjdC5v
-cmcmZ3Q7OyBqb2VyZy5zb21tZXJAbmF2aW1hdGl4LmRlICZsdDtqb2VyZy5zb21tZXJAbmF2aW1h
-dGl4LmRlJmd0Ozxicj4NCjxiPlN1YmplY3Q6IDwvYj5SZTogW3lvY3RvXSBBZGQgcmVkaXJlY3Qg
-Z2l0Lnkuby9naXQvLi4uIC0mZ3Q7IC8uLi48YnI+DQo8YnI+DQo8L2Rpdj4NCjwvZGl2Pg0KPGRp
-diBjbGFzcz0iUGxhaW5UZXh0IiBzdHlsZT0iZm9udC1zaXplOiAxMXB0OyI+T24gMzAvMDYvMjAy
-NiAwODozMCwgSsO2cmcgU29tbWVyIHZpYSBsaXN0cy55b2N0b3Byb2plY3Qub3JnIHdyb3RlOjxi
-cj4NCiZndDsgSGksPGJyPg0KJmd0Ozxicj4NCiZndDsgd291bGQgaXQgYmUgcG9zc2libGUgdG8g
-c2V0IHVwIGEgcGVybWFuZW50IHJlZGlyZWN0IGZyb208YnI+DQomZ3Q7IDxhIGhyZWY9Imh0dHBz
-Oi8vZ2l0LnlvY3RvcHJvamVjdC5vcmcvZ2l0LyguKikiIGRhdGEtb3V0bG9vay1pZD0iOTI5OWNi
-ZGYtYzZlMC00ZjUyLWE4ZTYtMzAwNDU4NzNkYWUxIj4NCmh0dHBzOi8vZ2l0LnlvY3RvcHJvamVj
-dC5vcmcvZ2l0LyguKik8L2E+Jm5ic3A7dG8gPGEgaHJlZj0iaHR0cHM6Ly9naXQueW9jdG9wcm9q
-ZWN0Lm9yZy8kMT8iIGRhdGEtb3V0bG9vay1pZD0iNDVlZGVhYmUtZWE0My00NjYwLWEwNzgtYTdm
-ODhkYTY4ODdkIj4NCmh0dHBzOi8vZ2l0LnlvY3RvcHJvamVjdC5vcmcvJDE/PC9hPiZuYnNwO1dl
-PGJyPg0KJmd0OyBoYXZlIHNvbWUgb2xkZXIgcmVsZWFzZXMgdGhhdCBjYW4gbm8gbG9uZ2VyIGJl
-IGJ1aWx0IGJlY2F1c2UgdGhlIC9naXQvPGJyPg0KJmd0OyByZXBvc2l0b3JpZXMgY2FuIG5vIGxv
-bmdlciBiZSBmb3VuZC4gSXQgd291bGQgYmUgZ3JlYXQgaWYgc3VjaCBhIHJlZGlyZWN0PGJyPg0K
-Jmd0OyBjb3VsZCBiZSBzZXQgdXAuPGJyPg0KJmd0Ozxicj4NCiZndDs8YnI+DQomZ3Q7IEJlc3Qg
-cmVnYXJkcywgSsO2cmc8YnI+DQomZ3Q7PGJyPg0KKzE8YnI+DQo8YnI+DQpXZSBoYXZlIGJlZW4g
-YWxzbyBiaXR0ZW4gYnkgdGhpcyBbMV08YnI+DQo8YnI+DQpJIHVzdWFsbHkgZG9uJ3QgY29tcGxh
-aW4gaW4gcHVibGljLCBidXQgdGhpcyB0aW1lIEkgaGF2ZSB0byB2b2ljZSBteTxicj4NCmZydXN0
-cmF0aW9uIGFib3V0IGhvdyBnaXQueW9jdG9wcm9qZWN0Lm9yZyBpcyBoYW5kbGVkLjxicj4NCjxi
-cj4NCkZpcnN0IGl0IHdhcyB0aGUgcmVtb3ZhbCBvZiB0aGUgZ2l0Oi8vIGFjY2VzcywgYW5kIG5v
-dyB0aGUgcGF0aCB0byB0aGU8YnI+DQpyZXBvc2l0b3JpZXMgY2hhbmdlcyAoLyRyZXBvIGluc3Rl
-YWQgb2YgL2dpdC8kcmVwbykgd2l0aG91dCBhIHJlZGlyZWN0PGJyPg0KaW4gcGxhY2UuPGJyPg0K
-PGJyPg0KVGhlcmUgYXJlIENJcywgYXV0b21hdGVkIHByb2Nlc3MgYW5kIHJlcG9zIGV2ZXJ5d2hl
-cmUgdGhhbiBkZXBlbmRzIG9uPGJyPg0KdGhpcyBVUklzLCBwbGVhc2Ugd2hlbiBkb2luZyBjaGFu
-Z2VzIGxpa2UgdGhpcyB0cnkgdG8gZG8gYW4gZXh0cmEgZWZmb3J0PGJyPg0KdG8ga2VlcCB0aGUg
-b2xkIFVSSXMgYWxzbyB3b3JraW5nIGlmIHBvc3NpYmxlLjxicj4NCjxicj4NClRoYW5rcy48YnI+
-DQo8YnI+DQo8YnI+DQpbMV0gPGEgaHJlZj0iaHR0cHM6Ly9idWdzLndlYmtpdC5vcmcvc2hvd19i
-dWcuY2dpP2lkPTMxOTA4MiIgZGF0YS1vdXRsb29rLWlkPSJiMGExZGFhYS1hM2YzLTRjMzQtODFh
-Yi02YjAxMzAzMjQzODQiPg0KaHR0cHM6Ly9idWdzLndlYmtpdC5vcmcvc2hvd19idWcuY2dpP2lk
-PTMxOTA4MjwvYT48YnI+DQo8L2Rpdj4NCjwvZGl2Pg0KPC9ib2R5Pg0KPC9odG1sPg0K
+I already fixed it by updating the xml files to point to the new URIs,
+but things were broken until I noticed the breakage and did the update.
 
---_000_PH0PR05MB8478EEE8764B1AB6B1D96DEBCAFD2PH0PR05MB8478namp_--
+I have worked as sysadmin in the past and is not that hard to add some
+redirections on Apache or Nginx to keep the old URIs working.
+By not doing that, the result is that some third-party CIs broke and
+several users got annoyed. I really hope next time this can be avoided.
+
+Thanks.
+
 
