@@ -1,158 +1,139 @@
-Return-Path: <daniel.turull@ericsson.com>
+Return-Path: <yoann.congal@smile.fr>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id C736CC44529
-	for <webhook@archiver.kernel.org>; Tue, 21 Jul 2026 07:23:39 +0000 (UTC)
-Received: from DUZPR83CU001.outbound.protection.outlook.com (DUZPR83CU001.outbound.protection.outlook.com [52.101.66.49])
- by mx.groups.io with SMTP id smtpd.msgproc02-g2.17334.1784618612066327093
+	by smtp.lore.kernel.org (Postfix) with ESMTP id DD7E6C44529
+	for <webhook@archiver.kernel.org>; Tue, 21 Jul 2026 07:55:29 +0000 (UTC)
+Received: from mail-ed1-f54.google.com (mail-ed1-f54.google.com [209.85.208.54])
+ by mx.groups.io with SMTP id smtpd.msgproc01-g2.17573.1784620526785387699
  for <yocto@lists.yoctoproject.org>;
- Tue, 21 Jul 2026 00:23:32 -0700
+ Tue, 21 Jul 2026 00:55:27 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@ericsson.com header.s=selector2 header.b=VwymJ32+;
- spf=pass (domain: ericsson.com, ip: 52.101.66.49, mailfrom: daniel.turull@ericsson.com)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=Z1UI2/JOEvdUXGMHPwx+2ywqrZHU0dbLuvFWOKKNTj6Bvk5xtjnYYbR3Onwd6xfe5YJ1Jmft97nRsAUog8i/wqa+XazzfGbpCozLY/VLixe3wIrI4CaL38JO8LNVmjcFVYTxrdLcGpjAzVnKUPxZcD8INrrK/BRp8YNZxXsf9mXG1ajyomWdrYpC5XXGf4q4zoO1/JSEeLbmi5dowI+9rYhemrgm47ybbyT+uJXfaUbJ+UtIRM97IjjykcWMqCiKHIwKIHQLVsz0SkGjopX2fi4ghm4hEEe/DZoUL17qU0bqe7EetUw+qtSfO7tkUDtCT1/MucZ5u3tEQrfzJuC8rw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=INd/fBU1a1ALcHjfN/CdjP7KY3bxYNMUT+ZXGg1Vo+8=;
- b=fL5ITEVc46L/2FeHqXP/A64RSfWDEqbHICga21XE7MucuQdu8/hAZ4kEB8Ti1e/usXg6XkkRRNfee9bl46Z4OUe06gV9J08zf2WM32Tb9iPwp+PWvvuO9qT8qjEAyDJBSy4Dlp1gf9jj34Jg4DG5o4vn3kGi7A1GhODWP8nTUh96NW0oibys+4Erm2uicAJpK/YZHoDqPJgZSbAVVztm4CfXA0nBJVPFhnb8A+R0w0FIr5S1+CfkV9fvsCuQc3OaBPswViUDLEtk9EDTcE7hTNRjAWbert5DOsIYDDgTVrA6Oqix5h+TMZ9W+G38uLCDcsy8AG4ofRZCSrpKmsWMtQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=ericsson.com; dmarc=pass action=none header.from=ericsson.com;
- dkim=pass header.d=ericsson.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ericsson.com;
- s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=INd/fBU1a1ALcHjfN/CdjP7KY3bxYNMUT+ZXGg1Vo+8=;
- b=VwymJ32+pDGO+OJ+JnDWgJXVC8pQbrI1Cjr7LOZmj0GjgUvAQT5Mlj77BlJs75pAW0wc/4BQ76P4utpbCLvFZUdulsgck82cKlAXY5XiFOzD7CVWQlyokYbNgryIrnWfzQZeg5wG824iafTAQH09pdNQnmBzqXuoNaLYvJ2ShW6wGhlKTxb03ODdf4ZF6NVGfQi5gVKxTc55Ld+2MvI2RuFBJdPB9sOJ7xLS9Ama5BXtdmMffG/rKxBNZC5fg8DCUee3vnUfg57bQrXXBR7WVXxb8HgqnYUpbXu/ZpsaS5+z0/wwsxm6mdY5rtbhcp35WqLWao4Pd2BdivKHzYgh9w==
-Received: from PA3PR07MB10721.eurprd07.prod.outlook.com (2603:10a6:102:4af::6)
- by AS1PR07MB9594.eurprd07.prod.outlook.com (2603:10a6:20b:472::14) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.245.10; Tue, 21 Jul
- 2026 07:23:27 +0000
-Received: from PA3PR07MB10721.eurprd07.prod.outlook.com
- ([fe80::afd3:17e5:1663:7ce7]) by PA3PR07MB10721.eurprd07.prod.outlook.com
- ([fe80::afd3:17e5:1663:7ce7%6]) with mapi id 15.21.0245.009; Tue, 21 Jul 2026
- 07:23:27 +0000
-From: Daniel Turull <daniel.turull@ericsson.com>
-To: "yocto@lists.yoctoproject.org" <yocto@lists.yoctoproject.org>,
-	"security-discussions@lists.openembedded.org"
-	<security-discussions@lists.openembedded.org>
-Subject: yocto-security-tools: helper scripts for CVE backporting work
-Thread-Topic: yocto-security-tools: helper scripts for CVE backporting work
-Thread-Index: AQHdGOHSPegjwfGC/UauMSGblx4z4A==
-Date: Tue, 21 Jul 2026 07:23:27 +0000
-Message-ID: <2aa6cbc429f279571f460291435abbd6d3dfdd83.camel@ericsson.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-user-agent: Evolution 3.52.3-0ubuntu1.1 
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=ericsson.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: PA3PR07MB10721:EE_|AS1PR07MB9594:EE_
-x-ms-office365-filtering-correlation-id: f046c8ef-7f75-4f69-7557-08dee6f8f52a
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: 
- BCL:0;ARA:13230040|1800799024|366016|23010399003|10070799003|376014|6133799003|56012099006|18002099003|11063799006|5023799004|10067099003|38070700021;
-x-microsoft-antispam-message-info: 
- iY4lojNC4Yx386nZiMYSRKyKhcoofY/S4n3eER2kpDkq8D9C6QlcMm0ipHb9O8GmeIP8Gh6SdgB1V4E9ya+Vih09TukYUzb+ys2TFccpBlvULhQj+S5jQ8IyLzbJkYjqU0WXKeEA/iMhPjzDzxiKeFSE/bcS0MOuXTeXTEJVOduOvGhLG0R/BIbCjFkAhmahVTk8b2bcesGgtt+6iK32lbzFUC5/6jl8KhTTY5YNKcXKyWflPam5vxs9zgrXqOfsO6zM+3uNqSYmL3sj7ZkQva+dNcbHkCz4Wlgnr8jJhqbFQcw6sHDrtHAOFQa+oQKXhxhKmB4nrtiM0ZXzLyWRxU31IqhTNmlEvfALfKO9+anIyUnDQlzA2rucYZy6fur2OppCd8i1ZIvEfRRK+14PbVTbbZuIpUpzCtc8nu4v440RGoDc1Xbo6KVk8PlskDmFrFp4EOwY8GlOJ/iQyNGd5qO/AgO2Ipar9u9hqbEI5m7d1hkqTMwMvFom8oJUVMPTHU3sUa99sKWpJO4vN2ThfcfORq1Tfd4cecBfAzbB9vrvC8alk7XpN2zrtZE0X95pkurQ/eCoJ7Jew3DpQ53/LEPlRLBD9/OjIOSw06a2bHPkgwBmfy5qZf6URnYJoB+QS5wZMbmzre5cRqVABHFzIhVX5mfsKqtLMdms5JwcVKhJiKv1e1DiEb07lsBuOAijnN/TL9nJ82cB/FDOsHxgQRxcjEHaWxYxBDLJGhth/X4=
-x-forefront-antispam-report: 
- CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PA3PR07MB10721.eurprd07.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(1800799024)(366016)(23010399003)(10070799003)(376014)(6133799003)(56012099006)(18002099003)(11063799006)(5023799004)(10067099003)(38070700021);DIR:OUT;SFP:1101;
-x-ms-exchange-antispam-messagedata-chunkcount: 2
-x-ms-exchange-antispam-messagedata-0: 
- =?utf-8?B?RXlkdGNobWRqV2pJOUlwdDQybHBnYmt1aXZQR2Q5UXVIUFV4VTlLN1ZiWFc0?=
- =?utf-8?B?NzlPd3BGc3d0bXFrU0E1WGw4NHpLUGUzbDBWWUN6TjB2RnUraFBSQVcwWll1?=
- =?utf-8?B?eUUxVFRTKzhxY05EWjE1emY1YlVXRm5uMXV2dy8zeXhRWWFzMmdxVkljWHlv?=
- =?utf-8?B?QmFKTC96TG9RRTViY2g5UFUvN1YwWHU2NC9pN2wrR29DZHVxczJldGp6Sjcy?=
- =?utf-8?B?Z3BON05NZzNLOVJoMWdMN0JKc1YxRmVsSWVXdFZpUlFyWVkvWU16SUtncTJX?=
- =?utf-8?B?Z0pLdkIrYjFVRjhEUllnZ2diYTUwUUw2ZHFBZ2ZVUWtxU0FuM2NyWU9wZ00z?=
- =?utf-8?B?ZUZJTXJaUkVCTmUxaGpqRWJrQVdRblFwMFFhSDNJd3huTFl3dVVWNTEvV3dp?=
- =?utf-8?B?NjRVNEJCdkU1eDQvN2JGeEw5N1FXZWJPajhVaExpMG13MXI4Nk5mOU9HbU9n?=
- =?utf-8?B?UVMwcW13THI5Q3JRamNHT05zakx4bFc5dFhGUlFlbiszdWxSOFlaVXZBRnBG?=
- =?utf-8?B?bk9XMzNPNHFScTlOdTl1TE9aWFQwY1NBMFFqQlZDbWJMMWh0eEpaQlRWc0l2?=
- =?utf-8?B?VmhBeHJJMXNxa2VoelBPZ1RHcGE1b21UT1pEb2ZEUGZoUVA3VFVqSmF4Umlu?=
- =?utf-8?B?azVHQUlWWE1CV09MM25YTzhvcTkrbGc5bjhNWkxGVFF1NFhXTENDRWQ2ZHRZ?=
- =?utf-8?B?VGtQbWJ6eHBXcTlXemZwWS9IbEhaMEZCWEZyTi80NVVPMjhKcFNxQ3pMS3FW?=
- =?utf-8?B?ZVBndDVPemN1eWRiWDdXU2FFS29JcDhteGtQTDhQQURnU3RWUCtOL0tpREN0?=
- =?utf-8?B?Zjk4NG0zdXhPNXlQYWlldFNHbHREbStteFJhbXMrVmpnY1ZaM0g4NW9xbkRj?=
- =?utf-8?B?RWNGaG53ZHRtRjZuQkZTR2pWUkVWSG44dTRzTFIzSTRqVmFUWWRxdmdoZHd2?=
- =?utf-8?B?YmFrQWswODR2aGdqNjgwejdsZ2hiNWRXeWd1QUl5ajZqaE5QR1lqOWxLemdw?=
- =?utf-8?B?VDNiakVnMkpPdndoRmczbGxtOCs3Q1FuSk45NzEzbWhBNWlDRjhEY1NXNFRi?=
- =?utf-8?B?dHVsN2gyTzhHNFBSajZ6QWtVMlVlNGl4MjRieERNWlJSajZ2eHNJU0JPS3Fm?=
- =?utf-8?B?YVIxMVJDaVZvSDhYbGhod2EwYS80cjBQcXgxN29zYWs1RWRka0RLcHpwanQx?=
- =?utf-8?B?bU4zRjlDOUN5NjFNUHV2SE9aSm1qeExvRm5rNE5BWGI5cFNUanlnUTB1d1ds?=
- =?utf-8?B?NWdLanhDU1VSNzZnaHZKbHM2R0ZNL3dTaGRwcHJGVTlVVFhMR1Axbk0xOHJL?=
- =?utf-8?B?V00rV1BUclJkVWd5Y0cvOHBvbnMvZmkyMnpEZ2h6VU8rM3VqbGdQVkp2dUlk?=
- =?utf-8?B?UEQ1SkpLUjVSMU00SFFpN2lsWWlmWE01Q1ZSbWd1ZjZmMTBnT3BDeVlvVG52?=
- =?utf-8?B?UkZUakdMcXNwVGxlc0hRWm50NzU2SkwzMDFTcFJ4NnJLeDZsTjdsNHVjckNm?=
- =?utf-8?B?M0pZTTRUTkZnMHNKSkFXdWhPL0svZUhDb1BvN3g5VkJPWE9EQWdST3NKT0VP?=
- =?utf-8?B?ODZuaG9iQU5CZlVFUGVVcUY1Zm1jaGNydUhpT3grOHN2WGcwRFRKYlY0QjF1?=
- =?utf-8?B?SmlUenEzOFI3QW1TYmJreGN5ZEpjVURuYm5pbUgyN0d1Mng5TkZwWDAyMVNO?=
- =?utf-8?B?SThrRU9oTHNZTERBQjJZK1lvbWRadjBMTmFERWhsLzZmUTB4NjVGK0JKMGU0?=
- =?utf-8?B?Z2VsRzFVSlhxOFdhTlJZSHAwamhuUFovMnpDWWJQTGsxRisyQ245cGxhWGt6?=
- =?utf-8?B?aU5JRVEyRFBNZGZkU2hBMmxHd1NSVzZteTZEKy9yeWI3NUt4dFVWM2o0U0xK?=
- =?utf-8?B?Tm8zam5hNDJkbEJCeVRGZ3AvbTVvdkF6OElkbEgyMHF3M2I3R0hlcHNJOGN6?=
- =?utf-8?B?Y1Y5RnVRcm5iekdHL083bTNRbk1QeVhKbVBqcUJrbVFmVDFpSnFJODFEOStK?=
- =?utf-8?B?S1YxMFFPc2ZwODdQd3FjZkIxRHlQZlNDVUxFcFFDNG91NnBGUlNGU2NLNXZq?=
- =?utf-8?B?UGNzY0FQaTVWSXpPVlp0b1hhVVBVMkw1RElzdVdkdS84Z2VYeHIwdmZid3Vn?=
- =?utf-8?B?ZnNCYWpsVStNaEFoZGRPS0J3WEI4WkY5SXVVZ3d2cXYyM1hCT0JPS0t6anhL?=
- =?utf-8?B?WURrM2ZtU2h1WVAxVDRGb1krZHVZSjN1WUFXMWdMaEtBcmY3T0c0dnl2Tmhx?=
- =?utf-8?B?N0N0eXJzQkdzQ3ZFbEUzZmN5UjBEOUp5Y1Fka2dCb3I1eTZtdjFKQld3bWh2?=
- =?utf-8?B?MUxxNm1ZTy9ncTVWT0VoM0gzWG1YbUxmeTNvbDREcDdSYnY4aE1SY2Y2c2l2?=
- =?utf-8?Q?w6dvTqews0HDxnBIgz6Kj1UjpOIcug5KKRwZONU44pZ8t?=
-x-ms-exchange-antispam-messagedata-1: Swh0BK5oArthTBkZNm6hX9L21eWeCFwDoAs=
-Content-Type: text/plain; charset="utf-8"
-Content-ID: <0B3A22A2C8C3AC4FB1186B2B3BCBEE18@eurprd07.prod.outlook.com>
-Content-Transfer-Encoding: base64
-MIME-Version: 1.0
-X-OriginatorOrg: ericsson.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: PA3PR07MB10721.eurprd07.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: f046c8ef-7f75-4f69-7557-08dee6f8f52a
-X-MS-Exchange-CrossTenant-originalarrivaltime: 21 Jul 2026 07:23:27.2301
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 92e84ceb-fbfd-47ab-be52-080c6b87953f
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: YzVeXYEcz5wtPMNa3LZylQ4WXTro4tvfOj3Yq2ETS2xjotJ/40za153DvTX5h71wVYBsTLNEHLLir3muv5QFL4eDapNmhyJ0ib0DTFOq+lE=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: AS1PR07MB9594
+ dkim=pass header.i=@smile.fr header.s=google header.b=ZL1+Qwo+;
+ spf=pass (domain: smile.fr, ip: 209.85.208.54, mailfrom: yoann.congal@smile.fr)
+Received: by mail-ed1-f54.google.com with SMTP id 4fb4d7f45d1cf-698bf053053so12632481a12.3
+        for <yocto@lists.yoctoproject.org>; Tue, 21 Jul 2026 00:55:26 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=smile.fr; s=google; t=1784620525; x=1785225325; darn=lists.yoctoproject.org;
+        h=in-reply-to:references:to:from:subject:message-id:date:content-type
+         :content-transfer-encoding:mime-version:from:to:cc:subject:date
+         :message-id:reply-to:content-type;
+        bh=xGfzl48FezRHCm/ClzmuGKYVSY5Q1wVJM/0Pd3LsBbQ=;
+        b=ZL1+Qwo+aTJ/EuAdCsrokZM0B1fNcD6I+oxsyQmwirIDMJQOEAdvfezGBXq8I/nmRp
+         6teZ9ftJQD/5+z1uxritMmyw4yCqqbntFy7I00819ztHWC4k/M/o44oPGCBtaMrM0AoR
+         a7EBBLD76XZ4aiCGouitjzVJLcx+TYiIQ+jPQ=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20251104; t=1784620525; x=1785225325;
+        h=in-reply-to:references:to:from:subject:message-id:date:content-type
+         :content-transfer-encoding:mime-version:x-gm-gg:x-gm-message-state
+         :from:to:cc:subject:date:message-id:reply-to:content-type;
+        bh=xGfzl48FezRHCm/ClzmuGKYVSY5Q1wVJM/0Pd3LsBbQ=;
+        b=h9E60jJ6GJwSmB6oUKM6FGoDMzj1LrvZ9/FpWV/7ymg5p1Nj010u4oaIngTb0JoQAs
+         zLSCBGGOb5VR7o916HKfQA+pLIvs/9RSRuWNF/++mjxx1yb4yiQs3TKxIfD2NGvZi/nv
+         wC12NJmrW/WiG2cTmJq5VuM6qBENzhixWb3cNOu3HamqStvuD3HWKeRI2G0llGNsEyqo
+         pVMYbkQrkrjXUl47LIW5/DG1K7/AZUXFKM4PHMFRKp0WjYQ2n44AyO9ASgoAUWmdUIiW
+         1AZu8KiJ5oha23qtnoh1uhM/wzR5WwR+7jxFnqtgbcQKmkZ4jhv8dGYphnGv1hDXKYQm
+         /Bmg==
+X-Forwarded-Encrypted: i=1; AHgh+RrYZE0jPEfUfmksu8PqkluTc9cNS5oQxQ24hCZ0wGonIBBzzsJiSxzOWL1RR4O8t+0gwpxYOw==@lists.yoctoproject.org
+X-Gm-Message-State: AOJu0YzmbOy9MDW1kbb965p8XzbBULk6hmvpvXF4qA62XfBAGL7cd/bE
+	gxUy7w1JHvKw2TiIimPG0Vz56hM29vA21ow6Bid/DVWnxteikcGH9FkP6aHqDmPCzjVLag6VP+W
+	AHvfabD8=
+X-Gm-Gg: AR+sD12GO4JYNPit++j2jEa5wjmi78q9QEcgXn4dC1sXeUJGH+7B/nipqSsBCCaA/yJ
+	UsTpToxQvN9w+aYmd5zp5HBvRj7YXlrQc1AHOdBIie7O5l4YjNGjfshaKwUZFz1552U3OjdZWxD
+	xf8wIR/swaq3dwbF8JEfuF/W9ORzDNms7pSARB8ZUbxIgVJBMkI+hNdbqGOM0/WPbl9jUbUO5gZ
+	ag3oFSW+Gw0qX3BpYiQHhGimHMDeNw+KUMqdt4lS9YCQx9iHJ+uxW4/Eypitih79FI4Es+Qjb3V
+	JisCsMMCwHebTOe3zqPYH254GN1kRR3BM8qUQWE5zo8NnnvnFtpibC0N8MdBmmBNufEXwy1C3na
+	EnbymEeqmK41t4nkis7iECNx34n6XvyHehYlbzfyUMJrHxCaOgWJLzgC3jyr97qVJQkXx+GRG4d
+	cKVvIFPn1q4L3ECturoA1wPS07SSbbYLrf0zbqmUS+oEvZ/H+7Ez7lF33UOeIdtDxZvSOze73u
+X-Received: by 2002:a05:6402:a50b:10b0:69e:9755:eceb with SMTP id 4fb4d7f45d1cf-69e9755f166mr2801049a12.18.1784620524852;
+        Tue, 21 Jul 2026 00:55:24 -0700 (PDT)
+Received: from localhost (static-css-ccs-204145.business.bouyguestelecom.com. [176.157.204.145])
+        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-69e6ff017c3sm5418468a12.13.2026.07.21.00.55.24
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 21 Jul 2026 00:55:24 -0700 (PDT)
+Mime-Version: 1.0
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=UTF-8
+Date: Tue, 21 Jul 2026 09:55:24 +0200
+Message-Id: <DK436EQ9V6D7.35H1AH9B4J0U6@smile.fr>
+Subject: Re: [security-discussions] yocto-security-tools: helper scripts for
+ CVE backporting work
+From: "Yoann Congal" <yoann.congal@smile.fr>
+To: <security-discussions@lists.openembedded.org>,
+ "yocto@lists.yoctoproject.org" <yocto@lists.yoctoproject.org>
+X-Mailer: aerc 0.20.0
+References: <2aa6cbc429f279571f460291435abbd6d3dfdd83.camel@ericsson.com>
+In-Reply-To: <2aa6cbc429f279571f460291435abbd6d3dfdd83.camel@ericsson.com>
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from 45-33-107-173.ip.linodeusercontent.com [45.33.107.173] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Tue, 21 Jul 2026 07:23:39 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/66646
+ <yocto@lists.yoctoproject.org>; Tue, 21 Jul 2026 07:55:29 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/66647
 
-SGVsbG8sDQoNCkkgd291bGQgbGlrZSB0byBzaGFyZSBhIHNldCBvZiBzY3JpcHRzIHRoYXQgSSB3
-cm90ZSB0byBlbmFibGUgZmFzdGVyDQphbmQgbW9yZSBzeXN0ZW1hdGljIENWRSBiYWNrcG9ydGlu
-ZyB3b3JrLiANCg0KaHR0cHM6Ly9naXRodWIuY29tL0VyaWNzc29uL3lvY3RvLXNlY3VyaXR5LXRv
-b2xzDQoNCkl0IGNvbnNpc3RzIG9mIDMgcGFydHMuDQoNCiogY3ZlLW1ldGFkYXRhLWV4dHJhY3Rv
-cjogRmluZCBmaXggY29tbWl0cyBmb3IgQ1ZFcyBmcm9tIG11bHRpcGxlDQpwdWJsaWMgc291cmNl
-cyAoRGViaWFuLCBPU1YsIENWRUxpc3QgVjUsIFVidW50dSwgTlZEKS4gRm9yIHRoZSBsaXN0IG9m
-DQpDVkVzIHVzZXMgYXMgaW5wdXQgdGhlIGN2ZSByZXBvcnQgZnJvbSBzYm9tLWN2ZS1jaGVjayBv
-ciBhIGN2ZSBpZC4NCg0KKiBjdmUtY29ycmVjdG9yOiBBdXRvbWF0ZSBiYWNrcG9ydGluZyBDVkUg
-Zml4ZXMgdG8gWW9jdG8gcmVjaXBlcyB1c2luZw0KZGV2dG9vbC4gSXQgbWltaWNzIGhvdyBpdCBp
-cyBkb25lIG1hbnVhbGx5IGFuZCBjcmVhdGVzIGEgcGF0Y2ggcmVhZHkNCmZvciByZXZpZXcuIElm
-IHRoZXJlIGFyZSBwdGVzdCBmb3IgdGhlIHBhY2thZ2UsIGl0IHdpbGwgcnVuIHRoZW0gYmVmb3Jl
-DQphbmQgYWZ0ZXIgdG8gY2hlY2sgZm9yIHJlZ3Jlc3Npb25zLg0KDQoqIGN2ZS1hZ2VudDogaWYg
-dGhlcmUgYXJlIGlzc3VlcyB3aXRoIGN2ZS1jb3JyZWN0b3IsIGxpa2UgYSBtZXJnZQ0KY29uZmxp
-Y3Qgb3IgYnVpbGQgZXJyb3IsIGl0IGNhbiB0cmlnZ2VyIGFuIEFJLWFzc2lzdGVkIHJlc29sdXRp
-b24gYW5kDQp0aGVuIGNvbnRpbnVlIHdpdGggdGhlIGN2ZS1jb3JyZWN0b3IuIEN1cnJlbnRseSB3
-b3JrcyB3aXRoIEtpcm8gYW5kDQpDbGF1ZGUuDQoNClRoZSBsaWNlbnNlIGlzIE1JVC4gUGxlYXNl
-IGZpbGwgZnJlZSB0byB0YWtlIGEgbG9vaywgZ2l2ZSBpdCBhIHRyeSBhbmQNCmlmIHlvdSBmaW5k
-IGFueXRoaW5nIHRoYXQgY291bGQgYmUgaW1wcm92ZWQsIGZvciBleGFtcGxlLCB3aGF0IGNvdWxk
-IGJlDQppbmNsdWRlZCBpbiB0aGUgY29tbWl0IG1lc3NhZ2VzIG9yIG1vcmUgc291cmNlcyBmb3Ig
-Y3ZlIGluZm9ybWF0aW9uLA0KcGxlYXNlIGxldCBtZSBrbm93biBvciBjb250cmlidXRlIGJhY2su
-DQoNCkl0IGlzIGRlc2lnbmVkIGluIGFuIG1vZHVsYXIgd2F5LCBzbyBpdCBpcyBlYXN5IHRvIGV4
-dGVuZC4NCg0KTXkgaWRlYSB0aGUgbW9yZSBwZW9wbGUgaXMgdXNpbmcgaXQsIHRoZSBtb3JlIHBl
-b3BsZSBjYW4gd29yayBmYXN0ZXIgb24NCmJhY2twb3J0aW5nIENWRXMsIHNoYXJlIHRoZSBsb2Fk
-LCBhbmQgdGhlbiBmb2N1c2luZyBvbiBmZWF0dXJlcyBvcg0Kb3RoZXIgbWFpbnRlbmFuY2UuIEFu
-ZCBJIGtub3cgdGhhdCBpbiBhbiBpZGVhbCB3b3JsZCwgd2Ugc2hvdWxkIHVwZ3JhZGUNCnRvIHRo
-ZSBsYXRlc3QgdmVyc2lvbnMsIGJ1dCBkdWUgdG8gc3RhYmlsaXR5IGFuZCB0ZXN0aW5nIGlzIGRp
-ZmZpY3VsdCwNCmV2ZW4gZm9yIHRoZSBsYXRlc3QgeW9jdG8gcmVsZWFzZS4NCg0KSSBoYXZlIHRl
-c3RlZCBpdCB3aXRoIFNjYXJ0aGdhcCwgV3J5bm9zZSBhbmQgbWFzdGVyDQoNCkJlc3QgcmVnYXJk
-cywNCkRhbmllbA0KDQoNCg0K
+On Tue Jul 21, 2026 at 9:23 AM CEST, Daniel Turull via lists.openembedded.o=
+rg wrote:
+> Hello,
+
+Hello Daniel,
+
+> I would like to share a set of scripts that I wrote to enable faster
+> and more systematic CVE backporting work.=20
+>
+> https://github.com/Ericsson/yocto-security-tools
+
+That's interesting. Reviewing stable patches, I think there are similar
+tools used. Thanks for publishing yours :)
+
+>
+> It consists of 3 parts.
+>
+> * cve-metadata-extractor: Find fix commits for CVEs from multiple
+> public sources (Debian, OSV, CVEList V5, Ubuntu, NVD). For the list of
+> CVEs uses as input the cve report from sbom-cve-check or a cve id.
+>
+> * cve-corrector: Automate backporting CVE fixes to Yocto recipes using
+> devtool. It mimics how it is done manually and creates a patch ready
+> for review. If there are ptest for the package, it will run them before
+> and after to check for regressions.
+>
+> * cve-agent: if there are issues with cve-corrector, like a merge
+> conflict or build error, it can trigger an AI-assisted resolution and
+> then continue with the cve-corrector. Currently works with Kiro and
+> Claude.
+
+I observed some "weirdness" when a patch is passed through a LLM. I
+don't if that is the case for your tool but some things to be aware of:
+* The LLM tools tend to rewrite the commit message (changing author,
+  paraphrasing message, ...) and that should be avoided.
+* When then the backport is AI-assisted, it must to be marked as such:
+  https://docs.yoctoproject.org/dev/contributor-guide/submit-changes.html#a=
+cceptance-of-ai-generated-code
+
+I recommend running interdiff between the upstream patches and the
+output of the tool to help the human author spot backporting mistake
+(unnecessary/unexplained changes, paraphrased commit message, ...)
+
+> The license is MIT. Please fill free to take a look, give it a try and
+> if you find anything that could be improved, for example, what could be
+> included in the commit messages or more sources for cve information,
+> please let me known or contribute back.
+>
+> It is designed in an modular way, so it is easy to extend.
+>
+> My idea the more people is using it, the more people can work faster on
+> backporting CVEs, share the load, and then focusing on features or
+> other maintenance. And I know that in an ideal world, we should upgrade
+> to the latest versions, but due to stability and testing is difficult,
+> even for the latest yocto release.
+>
+> I have tested it with Scarthgap, Wrynose and master
+>
+> Best regards,
+> Daniel
+
+Regards,
+--=20
+Yoann Congal
+Smile ECS
+
 
