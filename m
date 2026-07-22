@@ -1,347 +1,762 @@
-Return-Path: <randy.macleod@windriver.com>
+Return-Path: <chee.yang.lee@intel.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 01AF3C44539
-	for <webhook@archiver.kernel.org>; Wed, 22 Jul 2026 14:46:06 +0000 (UTC)
-Received: from mx0b-0064b401.pphosted.com (mx0b-0064b401.pphosted.com [205.220.178.238])
- by mx.groups.io with SMTP id smtpd.msgproc01-g2.1721.1784731562836658594
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 13C86C44539
+	for <webhook@archiver.kernel.org>; Wed, 22 Jul 2026 15:19:47 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
+ by mx.groups.io with SMTP id smtpd.msgproc02-g2.2532.1784733576467334670
  for <yocto@lists.yoctoproject.org>;
- Wed, 22 Jul 2026 07:46:03 -0700
+ Wed, 22 Jul 2026 08:19:37 -0700
 Authentication-Results: mx.groups.io;
- dkim=fail reason="dkim: body hash did not verify" header.i=@windriver.com header.s=PPS06212021 header.b=oXHZHv2O;
- spf=permerror, err=parse error for token &{10 18 %{ir}.%{v}.%{d}.spf.has.pphosted.com}: invalid domain name (domain: windriver.com, ip: 205.220.178.238, mailfrom: prvs=16630aa996=randy.macleod@windriver.com)
-Received: from pps.filterd (m0250811.ppops.net [127.0.0.1])
-	by mx0a-0064b401.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 66MDhun11240730;
-	Wed, 22 Jul 2026 14:46:01 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=windriver.com;
-	 h=cc:content-type:date:from:in-reply-to:message-id:mime-version
-	:references:subject:to; s=PPS06212021; bh=H8OycGMuGzbwQ61f+KvYY/
-	MbAbdFAOF3wHR900iLue0=; b=oXHZHv2ObLZvDiDZSCgSUY8Ng2bIpm2RGwrSHI
-	Sv+/QTg2drrc9kkUQUE1RjVOuoLvntgVBC+rV3d7uH7KTY2cBZGdGye451cPx27r
-	LJ2+Lch/cdAbgHj/cmzsyFDzGqq26vzQQoXbOPMbDCvsiAAWnSPc6w/ICq5VpJaU
-	g7SNIllzx52dAKpLp4W5lEHxegEt+dWkoJvcVmK9B9zEfKiyF3ShfnAV6znUivQ4
-	rFGrLXvfyxHU5vXPjVKQNMc2lDO7AMyR5QsgaRWT3ZvpdzWPiaag9YZtNlBiTm9g
-	UJtZ2Qmuj3pYaoGOIN52GjC4PrxNdlLAp+XDsat710DKxTWA==
-Received: from bl2pr02cu003.outbound.protection.outlook.com (mail-eastusazon11011029.outbound.protection.outlook.com [52.101.52.29])
-	by mx0a-0064b401.pphosted.com (PPS) with ESMTPS id 4fga8x83ea-1
-	(version=TLSv1.3 cipher=TLS_AES_256_GCM_SHA384 bits=256 verify=NOT);
-	Wed, 22 Jul 2026 14:46:00 +0000 (GMT)
+ dkim=pass header.i=@intel.com header.s=Intel header.b=aOo0836o;
+ spf=pass (domain: intel.com, ip: 192.198.163.7, mailfrom: chee.yang.lee@intel.com)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1784733576; x=1816269576;
+  h=from:to:subject:date:message-id:
+   content-transfer-encoding:mime-version;
+  bh=0duii5oP0uKj4wIDhPlNuZR8nSRRdGOOmoYjvh3LekI=;
+  b=aOo0836oP3soT5gR887O+/6h1JbsmdZ0H5BXofnL2qNpfUWTdypk+/iy
+   LxmD/1yvvqLZqsLp8slx2yRhQ9qAorTTb/3R7ku+9/ybQWysWElVjFbl4
+   suhiyaW/H+ovozmyitqaCGXASDP6crS3T7/ETEp+0Wejmkdlnjyfa1mRS
+   j4bDkDHWlvkcuEE+TNkXHJU8+MikfQCnKVfIBmUTLg1CccB1W3L2V4w8E
+   +1R4LDUDFM1SBBPK8qdbIqbWcTFF42FXRa/qSvE/54SZic2OY9iUWugWu
+   jiXjC5O80jHRs/EvvAPBwdE4T14+zG17ZCiM9mpXo5jla8obbJDk1reDJ
+   Q==;
+X-CSE-ConnectionGUID: zAK4iBIYRTKnBtazZvHNOw==
+X-CSE-MsgGUID: XAZMFFRjSoGZ3J/UxKpnEQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11854"; a="110915090"
+X-IronPort-AV: E=Sophos;i="6.25,178,1779174000"; 
+   d="scan'208";a="110915090"
+Received: from orviesa007.jf.intel.com ([10.64.159.147])
+  by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 22 Jul 2026 08:19:36 -0700
+X-CSE-ConnectionGUID: m/wxPyAKSMy5K/0Kk3XQZw==
+X-CSE-MsgGUID: UyVHxQ8+S/yTAVx7m0ISkQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.25,178,1779174000"; 
+   d="scan'208";a="258183658"
+Received: from fmsmsx902.amr.corp.intel.com ([10.18.126.91])
+  by orviesa007.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 22 Jul 2026 08:19:34 -0700
+Received: from FMSMSX903.amr.corp.intel.com (10.18.126.92) by
+ fmsmsx902.amr.corp.intel.com (10.18.126.91) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.43; Wed, 22 Jul 2026 08:19:33 -0700
+Received: from fmsedg903.ED.cps.intel.com (10.1.192.145) by
+ FMSMSX903.amr.corp.intel.com (10.18.126.92) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.43 via Frontend Transport; Wed, 22 Jul 2026 08:19:33 -0700
+Received: from PH7PR06CU001.outbound.protection.outlook.com (52.101.201.21) by
+ edgegateway.intel.com (192.55.55.83) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.43; Wed, 22 Jul 2026 08:19:33 -0700
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=INeMoJVJuUkATLu83Ga5kD5PsietLZOf5nFtBiz2aPuOVdgHgg3v7G58uM+2rDadnMo/Xnt4GhYGuWSh6nj7illge3JXQzUgOHIOvuAkNukzlLENYBoRT98xmsFwERgYoIQS9UNfVp1dUqGZ9zHw+J1JosBMlB4ucFqpADKM79XTN01IQarpi8K8d6mQkWK0MGhyvyt0Ne+SiORv6VCfrRJoLx9qOskbMyNhdwWKk7zH7NNdLiBVOrJBlSbY/c2/2ZIykpyiH8UuotI2E/1oJafpySaU4ToXlI+0lCGI1gLBQgIVfv1tOQdM+h4bA+68UU4ZSVuOC2V0AYUdVo4yRw==
+ b=ZBECas7jgkZg4LxP2rpG3djS3tzRn3U6wPTM3VEScr6LjJfnA77CG8mh1e8uQTs5ThS1GOb5GcXIpIPzhXEih54SsG+hDQjwrXnunI361z3RKSXmm6n2ml4aniehZUoxcddmfA2fngn8DOF6SE0ICmKEDK+U7LD6qxK4182GIGiSwpKp5JegTTXuMOPd3Hu8+oXNbTMJCXFnQqAFY++MMuEe9cqaRNekDKs1mUgByA41hHa4A6I+aAmfK4MgPhvtnxn6ryv2LQeNMfPo3fALvuHOx48UjCKj/+9NJk2LHrf6yGsXck3faUSBHqY6jNz6h4OmMMDBKYxXCjMAteiMoQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=H8OycGMuGzbwQ61f+KvYY/MbAbdFAOF3wHR900iLue0=;
- b=XK671rDGiTjekWR5Do9Qu4LQlk75jJQFMk3aToQe3vPGWEe8DdwgURBFAuvokQfwGYqJhqT0a5KcDfY6FnUJx1wC9DEEotLhzSJHGT6fN02Fcx3zoDUrvQAqrwfPpQGOxXlPIxSZCfF1VSd+Zlrn+A6sTx5ukJ05fW1khmFxVfiz6AoNfqZI+q2NNk2fDQm93o0jjh+mv/k8kpUMAAy5N3zvWuBu3SEHPm6ydMlPTCMSr1Mty2zgnfvdy5sN0MftBBHxmK+aKhJyWZRhDHuRORbCwcD227BYYH8Eh/3geD/tIBw2AessnLVZmK2tkhVkXiXWWvJqhFpLGlWOX2HfGA==
+ bh=TXN+kJES1NYM5axv0whGhQUuBqz1B31niRCJdcrSEaI=;
+ b=PQk7kbjDr4ydKAOBdjHpNfxV1tsrjaYd0hBwgTaYoQ6w3vbOgj5NAKunKQAR0AT/jc/B1sR6irtLADY6QrLMZExqIDNAsnIrHYcTP9+Jv8zKL2fvxcetBYJhd5Eys5bDA9Voj4ccNAO2Wc5P6FoxPa9owgL7l3Hg9KtGXKNa7w4s4xxFONT3Y6szbo1IIPWMlEpJqRPfdLnJ8CEtwSE5KGycyE6xKwkk81yvFr0fzXbHQLM5RtpjwV1SL8oLp2h49usub3iw1W18uqBy1UKEOzummyP2hSMJ8OoigM9X3vI560UgfH2TtbCMBnMwLnjW+BOu3KrdPZYhfRm2iTnDNA==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=windriver.com; dmarc=pass action=none
- header.from=windriver.com; dkim=pass header.d=windriver.com; arc=none
-Received: from CH3PR11MB8496.namprd11.prod.outlook.com (2603:10b6:610:1ba::22)
- by SA1PR11MB6871.namprd11.prod.outlook.com (2603:10b6:806:2b1::12) with
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+Received: from BL4PR11MB8797.namprd11.prod.outlook.com (2603:10b6:208:5a7::8)
+ by CO1PR11MB5057.namprd11.prod.outlook.com (2603:10b6:303:6c::15) with
  Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.245.10; Wed, 22 Jul
- 2026 14:45:57 +0000
-Received: from CH3PR11MB8496.namprd11.prod.outlook.com
- ([fe80::5627:e3a5:cb26:b555]) by CH3PR11MB8496.namprd11.prod.outlook.com
- ([fe80::5627:e3a5:cb26:b555%4]) with mapi id 15.21.0245.009; Wed, 22 Jul 2026
- 14:45:57 +0000
-Content-Type: multipart/alternative;
- boundary="------------TkhJXLZsyErZRrNyCvfKsh2G"
-Message-ID: <2c3d1180-5390-4a4a-af2b-39f1bc78c385@windriver.com>
-Date: Wed, 22 Jul 2026 10:45:52 -0400
-User-Agent: Mozilla Thunderbird
-Subject: Re: [yocto] linux-yocto CVEs in need of triage
-To: yocto@lists.yoctoproject.org, paul@pbarker.dev,
-        "openembedded-core@lists.openembedded.org"
- <openembedded-core@lists.openembedded.org>,
-        linux-yocto@lists.yoctoproject.org,
-        "Navuduri, Venkata" <Venkata.Navuduri@windriver.com>
-References: <4ac849a706feb16688020d5bcc3e74aececd63cf.camel@pbarker.dev>
-Content-Language: en-CA
-From: Randy MacLeod <randy.macleod@windriver.com>
-Cc: Dmitriy Korovkin <dmitriy.korovkin@windriver.com>
-In-Reply-To: <4ac849a706feb16688020d5bcc3e74aececd63cf.camel@pbarker.dev>
-X-ClientProxiedBy: SJ0PR13CA0131.namprd13.prod.outlook.com
- (2603:10b6:a03:2c6::16) To CH3PR11MB8496.namprd11.prod.outlook.com
- (2603:10b6:610:1ba::22)
+ 2026 15:19:30 +0000
+Received: from BL4PR11MB8797.namprd11.prod.outlook.com
+ ([fe80::fe4:8775:47fa:b7d9]) by BL4PR11MB8797.namprd11.prod.outlook.com
+ ([fe80::fe4:8775:47fa:b7d9%6]) with mapi id 15.21.0245.009; Wed, 22 Jul 2026
+ 15:19:30 +0000
+From: "Lee, Chee Yang" <chee.yang.lee@intel.com>
+To: Yocto-mailing-list <yocto@lists.yoctoproject.org>,
+	"yocto-announce@lists.yoctoproject.org"
+	<yocto-announce@lists.yoctoproject.org>
+Subject: [ANNOUNCEMENT] Yocto Project 5.0.19 (scarthgap-5.0.19) is Released
+Thread-Topic: [ANNOUNCEMENT] Yocto Project 5.0.19 (scarthgap-5.0.19) is
+ Released
+Thread-Index: AQHdGeHBtjdyrCBjtEyRaatwuPe6gw==
+Date: Wed, 22 Jul 2026 15:19:30 +0000
+Message-ID: <BL4PR11MB879705E3EC268CA3F48AB957B9C12@BL4PR11MB8797.namprd11.prod.outlook.com>
+Accept-Language: en-SG, en-US
+Content-Language: en-SG
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+msip_labels: 
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: BL4PR11MB8797:EE_|CO1PR11MB5057:EE_
+x-ms-office365-filtering-correlation-id: 61bf015e-eea6-4083-e945-08dee804a083
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;ARA:13230040|23010399003|1800799024|10070799003|376014|366016|56012099006|38070700021|11063799006|10067099003|13003099007|20046099003|18002099003|6133799003|3023799007;
+x-microsoft-antispam-message-info: fxcTkuF3HEbAqibX+MJCRwhxBmkjdWss0yYH42TGmLkXxw+qO4yXmWfYIFuGuWImCj5yTll/DIzIjzAI+H8NnpC4kGXT5gHLPUSWiaVubtqRLeSVUeiflYrpYhC08oDC682gxd8B9NHP0bWykVIQ4ek2COSqKwnY1KzBSDqiT3Gi7nPah8NJysJUYQ5uLRPyKIpKBQbaZx1Deflig2t+Y2iS7j/E4emDm+ATS7iXd++xhufW07xRjhtUvLewWC6kNRpWZB0AEvagW2dGxvTNAxTUj2Ak7MPLBHjgApLZDv1Alnvd67nJVBEOyTM2sirCDYVFvJutPk3JFKDahXMY54oXaV9C7vLnh+vrWWjZOA85XScefTyvNCUsXvkChE/U+L/Wit+Qk5V3jG75aYSKFsUIQ1+qtZCwHXglcFDEnolZxv1tFP7gerpP7ZGPQoBY4NnXuqgIcsLAO1Ty999hsLVfF94ZWXye38mtAdGaIPammvlX78pvi1v3bw5iXC42lhvDMeCBqFUxjMW8gOotF5NBzKTsSUmW8wibxC3GF6wzwn/ylfHR3NkBj1OFFOfBXyVQMAdzzxOiHicyQ6ux+Gd3fVlRBzHb3+FB9lIPpW/jFccTYTnTLQk3D3Qx/9bBeiR3A8F8CiFszo9Ij6EH5bOeGg/KDSGS09yKciOTvH8=
+x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:BL4PR11MB8797.namprd11.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(23010399003)(1800799024)(10070799003)(376014)(366016)(56012099006)(38070700021)(11063799006)(10067099003)(13003099007)(20046099003)(18002099003)(6133799003)(3023799007);DIR:OUT;SFP:1101;
+x-ms-exchange-antispam-messagedata-chunkcount: 2
+x-ms-exchange-antispam-messagedata-0: =?iso-8859-1?Q?uCvUoCt34EdpOHYNJldU66g8qYFDIbNO04F9dpPLt6rBcbUex9tzI7BfSl?=
+ =?iso-8859-1?Q?MYJ900lvvh3N7r2qdInwdzZg9WB0uzHEQOCXqUj5WljEu2jCRqJXMuG5Zc?=
+ =?iso-8859-1?Q?OZAbtp7/QuxJJxaI5cTR+iqjX3Bl93jbj0I298v9+7WdK5SeQJtJipOB+U?=
+ =?iso-8859-1?Q?qpatGy+fKakxT/3GI3pWkoNJRG6LQSIgR1Nynzrux3+HUWdaErZtApn8T3?=
+ =?iso-8859-1?Q?UO7Y6Gw9H49sJp7wcBp+bTE1DX5fXVSRsVfoRvasUonEcz4vXGlRyD4+Ln?=
+ =?iso-8859-1?Q?LoLKjzr30sBOI5EuqZunM2k+Mq+za+mCtom6AWj2ukGCe5gAmUZfzpislG?=
+ =?iso-8859-1?Q?mX2bBV0ui0nwZDZ/XzpUtuPQg2BPpSwf3zOY8T3n3KsaFEB+gqYADWukHn?=
+ =?iso-8859-1?Q?9I4032szEiS1M71hyO040brWZ8gMBQSzG6FgJ/vvZz2NFreo/rHEy2V6DU?=
+ =?iso-8859-1?Q?ncMZIKxXZeErG49eu3ZW9sPB4i4WlNwBtenE409ZLYhPmU3b7DN7coZx2s?=
+ =?iso-8859-1?Q?SPE53uUe4pmy8C3qFRcZO9pucUdBwamidm3KfKzFP6R9+zABWpzWzYNMyV?=
+ =?iso-8859-1?Q?M9As0xCgr/Jw6S5yk+3HnqTBJvVT2UH7IK6QdJiQ5s5+Fc8xDbzrmGBleF?=
+ =?iso-8859-1?Q?j73skNi+yU3Ng1MGV8LaqAHj6SAR/2KVXcpU8ek4t8QiQNPBIxWX08lw+V?=
+ =?iso-8859-1?Q?Gk5vJ1dycDMr5DY6yD61tfaiTvB4iGqYHjLlaUnT8EH2VPnErEGyMpkE45?=
+ =?iso-8859-1?Q?G44J5mxCKrIlzKDEEJHuV3FFzLjcHJy0homfzHR/weybkTiegWOZ7XwJ2A?=
+ =?iso-8859-1?Q?dDTrjSPRtr5P6C0kZAA91Opy69iBO+T//l7w5iocEXtUxSlzlTAPkQ0YyF?=
+ =?iso-8859-1?Q?VAM36QzvQelgn651lZYmbxedU7M1V1NsNOvRknkncLoD3lHDHHE2g6kUHJ?=
+ =?iso-8859-1?Q?36BRT9Pz1QfAJE73BCa5j/FtaRsht69L/N3lTWoFVfrsoFhbDkq/z78fvC?=
+ =?iso-8859-1?Q?SHIgWmTyg8mNcFRXcyjNppEU0Bc4XJcOs5C6oRMxPEW0uZbjilMifdjRIv?=
+ =?iso-8859-1?Q?PKW+5wET5UQfKOLNo76kz8EdkfXh3tAivWq5Y5514aTRP13+vbEnXj8etf?=
+ =?iso-8859-1?Q?vpKvnRxjO4HSI4olyi9+eWEEd+yg6QFp1d2B4eopSEz0AB3A13ejC36XrV?=
+ =?iso-8859-1?Q?3gcdxUboj6EdAKVOpfPdtY2z7tTAd7a8LNwwuAaZ/dfe4P3qABWsZMK5EG?=
+ =?iso-8859-1?Q?2dyyRWSw2JnP1ud0ysw/sCsmJ1bXUGLR2PrRila4PMfY4Cz2WD2cF6ij4N?=
+ =?iso-8859-1?Q?3hndVeriMO6IkAwoW5mb3YKfIeNHn+6GdUMCkmegPPfVModwcxh150S4Ct?=
+ =?iso-8859-1?Q?9fDQZfRujlCgsdRAXxj/pJuJzNRAOUME937WTThkkw0Cv2M7ek16Qd1v0q?=
+ =?iso-8859-1?Q?xeKLT/V+Llou5d+73E9HdVqBFV9XNXk3ntT8aS0fTU5h+TxSpje3l/miZa?=
+ =?iso-8859-1?Q?ijyLidSn/K4Hgj7NV/ryp1T9mIAnzZyRyd2feNacsVhva+glaxo8ZzAprD?=
+ =?iso-8859-1?Q?z5UGzGNsBIni4E5roZDoNNbgq6ZKazN1CpaxGXEzBqkiDorwiGcAw/zoF7?=
+ =?iso-8859-1?Q?9LDaUGSjL9wpvvkANDbAox3oWz6gDS2Mdme7YzT9SEGS7tt9LLL4I/WBmY?=
+ =?iso-8859-1?Q?jlMUYtIbY4Bvf8o1LqWEBGKYDOVFaYzfRGhJqrQs2niEJx1+0DzVKLCAeb?=
+ =?iso-8859-1?Q?vbfFfK0tEUnwcv66QIvtOlRxWwLrn7dKqNeS+IxhrOL8NLALEVicmvoOAQ?=
+ =?iso-8859-1?Q?xdcymZxa+gs4u8aS1SWFWv7lRLeidS/JX+WcqzRBqGSNpqgXTBYKHGT6tM?=
+ =?iso-8859-1?Q?Qd?=
+x-ms-exchange-antispam-messagedata-1: je2QaX3Ue4rQxQ==
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: CH3PR11MB8496:EE_|SA1PR11MB6871:EE_
-X-MS-Office365-Filtering-Correlation-Id: 2f4fb904-a5c7-40e2-04a0-08dee7fff044
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: 
-	BCL:0;ARA:13230040|366016|4022899009|376014|23010399003|1800799024|11063799006|56012099006|10067099003|8096899003|22082099003|18002099003|13003099007;
-X-Microsoft-Antispam-Message-Info: 
-	Rcg2SQ5FZROUbTQ6/cW91jeXHZvcIerdITkCZuiHGNFGypNsiUXMRtRxFxsR3552PnqWmbFDyclIYu41wTT5+J6sSnky7sofdWDTMh8UlJUAl234ZLykl2VwtmqCMtuHWvnxb696tsdAARqUUeTEUvEhOMb3L+qGMn/cS6jSFriqkQuZbZG/iWj1tGpNwcyXdKDsSWoBSsMSDKbKJpuKuOWYEHdfLj4R/FAAsqQ+D49ada2qG/j4ezU13WbRBZZ0MB67SDxF7Hvu0FmlX8k/WO4GtkCZgTfZXtBcZHVm3eaD9N/+5k4OOfST2v4Aly2vvyG+Zmkt9/3aqMPlelRwrzBp5CEYGNB9DBUmaomAHVWMsL9uZn0QYzMqM3vrowd3OPvRh5yJzoF0366Qft8j3mHbA+XEOYZaPSJ0d+/K4uv0skkNoA7NmdZCh8LpTPJi+BDtVlSacWvQRCw+5MaImoxhZtWQx+qZBxYZQ+Fk8qu/v9g2X/ipHVCsi3yJYnJGyqLdE14bLlzZK6941yODqkyJfs59dr/ZbwWvLvjuPZhmF1tJP9IbaO1Of31Hj9AH607QJXXg/2CT1SDLJEgsLYhdzYN+956wBu68MJjLoG3o95xxE4eI+8Z1Luv2Jq+e
-X-Forefront-Antispam-Report: 
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:CH3PR11MB8496.namprd11.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(366016)(4022899009)(376014)(23010399003)(1800799024)(11063799006)(56012099006)(10067099003)(8096899003)(22082099003)(18002099003)(13003099007);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: 
-	=?utf-8?B?c0o3ZDlHenVMeWk3eWVhQ0VDZ0hyakE4aXo4Y3k2MFltcURGNE1uKzdoRHRt?=
- =?utf-8?B?VWNEZVBNZHJYRGZiOWJNcFN1THFla1VwdlRNNFRhY3ZGcHozemliMXZmcGF2?=
- =?utf-8?B?cFdMbVhVRVh1MHR5REkvY0dmWXhvUGtOMUlEWFRBRnpiTmxtV09lOG5iMnI4?=
- =?utf-8?B?dVpVWitiMWpzTTlGNzczZEVReW4xTHpvaVpYMUpaREdaZ2l4TmgxV3ByRENz?=
- =?utf-8?B?T01OWHNlZCtmMVJJOUt0Rit0K25yaW9sRFFxSnYwQmp5ek13UzlXanJzc1RF?=
- =?utf-8?B?Sy9NN1N5dForMUhDb1FmY1NpdVJkUjJQcWdya0VBTmRrSldWY09Gd0ltcW10?=
- =?utf-8?B?K2RpQ1ZsNzEzWHVod0dtVHZOVFRHdnlPQjd3RDhzS2Z1Q2xOeEx1ajBkLzR1?=
- =?utf-8?B?aE01Y1A0RFpyVUh6eW1ITjBkb3BWSGdRMmowMnViWUo3Q2ZPMHZuNjZybmRl?=
- =?utf-8?B?ZTQydzRUdkM5VlJBL0xPMmd6RUV4ZXliWFFVL0JpeDhWU2g0UVdpZUk3aG9z?=
- =?utf-8?B?cHhFcHluNHRWWVNyU3hBOUxXbUFRK2RnVWdUQVBvVnA3TlhQWkhBRU9MWlVs?=
- =?utf-8?B?SGN5VzVUTGdaMXUwMlBiSjRidWlZaXMwRFFnWEhpZHZPS3JyOXhIS0JBaGds?=
- =?utf-8?B?VHdFODJOYlVJeU5CZmswRVFiMDJkQVlITUF0Y3d5R2pZYm9aUDgwZk1KVjh0?=
- =?utf-8?B?NFVrV1Z3Yi9KVnl4bzl4SXJZMkZXeFJZc0lzTUFXSjU4UW1GQ1dEYkpGNlJQ?=
- =?utf-8?B?RVVrOVR4THpIMTltdDZmQWtWU1NUTkVPVEk2UHV6NzJzVDIyekhaNmJQS0x2?=
- =?utf-8?B?MVpwRCsyWHJFQ3N6YW51alkvb09CSFM3eWFCWnlaZHZ6N3ZIQjFlLy9qVFpN?=
- =?utf-8?B?UDd2VlZ5c0psQm5VZ1JlTEQ2VFpOVzFWNVUwWGVIdW1VQ2hMRmtJaTlONmpj?=
- =?utf-8?B?MHhnUWRlbUEzazlhSWgxdkRjSDFxV3JuOWdTSkRwYS9OWmkwUTFqWnFrT3lG?=
- =?utf-8?B?Rlo1cStQdUp4RUVIR3FuYlU4YnpKWTZGenFVRk0vVmpGaVEzWjl2Ui9TZDBN?=
- =?utf-8?B?S01lN3ZDV29ZWVBTei9BWnN4RHd6anlYRWg0aWJHTE8yL0xRcm9LbUFtTzJL?=
- =?utf-8?B?dTFtRjF6YytJRTdpcUpVNVFrQW9HaTRVU0NlQXpvTjRTdjlRWHZxNG5JcDAz?=
- =?utf-8?B?b3BUNmoycWdkTzZHOVZnZWJ2aTRwbGpMbVZ6OHIzRUxTVWdiakJKZGZMYllJ?=
- =?utf-8?B?QUpSdkhyeVdsVDhZaXBwNmdRNysydjdxcUJKOTU3S3VVTFdRaHZpKzBna2Zy?=
- =?utf-8?B?SlhFYlhEaWx0UUprZmZjdHFvMHNTL3NuNiswKysyQVAxQjRsYUgwRk1VUVBa?=
- =?utf-8?B?Ym9sWVNFVFE2VDVYU1FWUktZZVhNSXkrdHROSFNsK0FIQUNJVUErZ3dHUFpW?=
- =?utf-8?B?TXczM0VIVHkxODlxQmp5R3NPN2MyUE9Uc0xMa21iY2RMb0ZuYmo5OWVmeFYy?=
- =?utf-8?B?ZXVUVDA0Mk5yaWVQRnA4MWhFekg2VWV6STZsYzNVNUdscGVCM2tXSUN1NUgx?=
- =?utf-8?B?NHpBV3d0dkpxcUs4bVM5SjM2bHZnZkRORnk4QzI4YzkyZitQcEhacXJycFk1?=
- =?utf-8?B?aVk0MHhEUkhYdVYwNm5CMDRKL1N2YVJYTzRSNGJGTFFIN1hIalp0VGs0bGwx?=
- =?utf-8?B?RktXcndNUUdtWHMxT1BqUG5QUnhqR3g5a2s5RjZBMnJvVEpHYW5La2x3cDFZ?=
- =?utf-8?B?RjNyL1lKRExjZkdMNjFzamJhc1ljR1pnNDcrdGRWWXgzV0toZU9xQ0E3djN0?=
- =?utf-8?B?VFEyV2QrU1FnRk9HUFhOcGw1Tk5wL05Cc0syZU1aakhhOGpBNmhSejhuZElw?=
- =?utf-8?B?ZDlteDhCRHRDMVlDRG9LdEM3Q2FjSXZURTZJTWUzbXN4MUlGcFJrdCsvaFQx?=
- =?utf-8?B?VWlwaEhONy84ZURGSGtLK2cvaVNINHhpWFJzU1pDY251M1hXcENON2M3YXRv?=
- =?utf-8?B?ektHNEFIOWVYNmh2cVo5OCtzTEhnU0R2ejhHbERPd2dIaFA3WlhkbTc5OWd2?=
- =?utf-8?B?Si9XU0Vxd1JLZXBSNlZ2d1BzY29tYUtYK1pnb0VHRzJCM2ViejhYNlNZeXZi?=
- =?utf-8?B?Y3U2VXdqNm9iVlB4Zlc4Y0F0OXY5YmJBUm4wVmgvN05PWUZwTjluZm0vaWdn?=
- =?utf-8?B?ak1ON1VhQWpRdTFzMXVlNUFGdk5mcUNvYkxENkVrL0RFOEFTRUNJSVl6dFIr?=
- =?utf-8?B?dzNGQXlwUHlsT3c2ZGQySU8zV3pheGFCY25kT3dPTVRGRkZ5MVZQN2JWWjg5?=
- =?utf-8?B?WVV2SEJZRHp6b0hGNnpGZk1MbzdnRnJnb1FiWVM4MkdsbkRvNEREZXFMZ3M5?=
- =?utf-8?Q?RtMX0xOolQdvThqk=3D?=
-X-Exchange-RoutingPolicyChecked: 
-	f6M880YUEh3ljZtwPfaXzwwEB+am10dVcHSy5kjRrEhjRjGwVLtKFRyUtFUrfR43560Nu8C3ZGPvr9FAJ//qIFJtjZrrL9RMVkBpBwI2vw5xwm6qvZNyBebvR9sdaHfXkRb2Mdu+DS11CB/4Q+bm+e4xgnoYB+FXdaRkLupFLtpXbEjRQiaqJdXYqOyhNDjtWJEqZrkDWN5zygIQYsJ+G6Pq9qwNbrOtEr3bs/RbbGAUVfNOyc02NMbiCYEOKMSPNjHK7jbDrWQtUk9+XlF2+0hvTR7LbPU1sTiHWwSuZsxw2W4CDQvPCtXZHsbHyhuewrb8tJXLQP6CtGfEdVsvuA==
-X-OriginatorOrg: windriver.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 2f4fb904-a5c7-40e2-04a0-08dee7fff044
-X-MS-Exchange-CrossTenant-AuthSource: CH3PR11MB8496.namprd11.prod.outlook.com
+X-Exchange-RoutingPolicyChecked: K83b2BAY8Qh4Vu18UOnF44I7Jzzgbw1yeH1Y4IB4CL8Ukl5jaQ4T7WFAP5/5EmYf9werSREb15c/+Zh/ZO+8a+92RoO7WxnRSDxzXGikiZCzfnUE3VzsnH+PZSDvbUqiVHD7xOOgsKHzcBuXUffU83BbhGbS5E5qhf2vAL9hBd0BUUbo1h+61plG1LN0Ecdg75vlOuBv3pVVQ3hVRvmbx5XTc8dGn/PAhcAfVJOpwH/0sOsqwu5LWJoa/ZBkBjvaMlSSBZdu2srdi4aRwOtr+rKwvFDyvzi+gLfeYrjeQE1LNfoJ/0z5OksU+3wFyrR7VnG6+oRZpzx1kvnEUx2PMw==
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 22 Jul 2026 14:45:56.9194
+X-MS-Exchange-CrossTenant-AuthSource: BL4PR11MB8797.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 61bf015e-eea6-4083-e945-08dee804a083
+X-MS-Exchange-CrossTenant-originalarrivaltime: 22 Jul 2026 15:19:30.3417
  (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 8ddb2873-a1ad-4a18-ae4e-4644631433be
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: ye3WVFiYFFUGetAJfu5jGAXscGiv5CmSGRl7w1YNsYu23ReARLge8iyzoNZv8rTc1Rzp1Jw41cskiDm1M9MTRoT+u/mPLbGPrz8Vhwd88ko=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA1PR11MB6871
-X-Proofpoint-Reinject: loops=2 maxloops=12
-X-Proofpoint-Spam-Info: AW1haW4tMjYwNzIyMDE0NCBTYWx0ZWRfX5bIIQmDy1wK1
- NWNyehJcQv0UaBqGdPViwoWKFNRWOz5DqgNDWkUMucCBbB9gsAenu9Aj+Fv2epR1lssOVvyi/N2
- 9FT/2f9Tt6+V351bNz8RUjaG9/poP/FYXGfMep35EK5O3GQjPjut
-X-Proofpoint-GUID: dL1yZUm2K91HX3NceVEZwNf4WocMr3bp
-X-Proofpoint-ORIG-GUID: vbXpdaCaxquBr01_uYVAenDbud9QrpRv
-X-Authority-Analysis: v=2.4 cv=XdO5Co55 c=1 sm=1 tr=0 ts=6a60d7a9 cx=c_pps
- a=Z+ESqgFbrcYkgT1kPBc/rQ==:117 a=6eWqkTHjU83fiwn7nKZWdM+Sl24=:19
- a=z/mQ4Ysz8XfWz/Q5cLBRGdckG28=:19 a=lCpzRmAYbLLaTzLvsPZ7Mbvzbb8=:19
- a=xqWC_Br6kY4A:10 a=RAioF0-LDSMA:10 a=VkNPw1HP01LnGYTKEx00:22
- a=bi6dqmuHe4P4UrxVR6um:22 a=klDOsUkWDRETUCZYPvoE:22 a=Q4-j1AaZAAAA:8
- a=iGHA9ds3AAAA:8 a=t7CeM3EgAAAA:8 a=lOA4Tsq15FW4ftcsoVgA:9 a=3ZKOabzyN94A:10
- a=QEXdDO2ut3YA:10 a=Mu_aR4gVCO2T_TqR5QQA:9 a=iFN-tqU-n73PPs_k:21
- a=_W_S_7VecoQA:10 a=lqcHg5cX4UMA:10 a=9H3Qd4_ONW2Ztcrla5EB:22
- a=nM-MV4yxpKKO9kiQg6Ot:22 a=FdTzh2GWekK77mhwV6Dw:22
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwNzIyMDE0NCBTYWx0ZWRfX2BTTJ4hN++7a
- QgicQNCvmJML2wsRI818nJjEJdloQ8R2f861eJNgzNYL0q5K8PFeAMFEmnXPEQYd0HuiGetsUUx
- /RKLjyAVAWWVks6mL7ZiBPwL0K1Oa4DQVli1ayb0fFHWzxGplhs4UTC+3U2owQ8h4S12nyyBJhi
- JHfVhIuwM2mlINa3cGn/tM2P28nXPFFHLvHZe6ZHmtLDjfQ01iz31IbQH/MuRBM5f/IBR6fCFxd
- 6cINe1LSwYz+E/Yj6IoIrcNV8d3RX4TLOhBb8xC/qf5j7/A98uiOUGQgGv14dq5PS5IdExj/vZz
- x8H3X9atJN9427JaICiPkkSM7BC+H6GsNCiqfS+S3D4Fheznr8PR2yWhemQKfv+Rk3Vv61bLU+l
- JYHCb04CUfBuJG6ClDLIbMeMPg1BI6QkjP4ondNCZptihfO22/wQem9z8BShIBaFAny31UFVSsQ
- vdI3zW2775U3sh1tvAw==
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1143,Hydra:6.1.134,FMLib:17.12.100.49
- definitions=2026-07-22_04,2026-07-22_01,2025-10-01_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- priorityscore=1501 spamscore=0 lowpriorityscore=0 suspectscore=0 bulkscore=0
- malwarescore=0 clxscore=1011 phishscore=0 adultscore=0 impostorscore=0
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.22.0-2606150000 definitions=main-2607220144
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: mfuDteSFsuv3S/8A3ddG4VHtgY1tHoj2jUeZOSzEQlyfmYIy4VeyKTGyUBFH/a6OENu8/xDlCEVuYYuJsDoyiw==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CO1PR11MB5057
+X-OriginatorOrg: intel.com
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from 45-33-107-173.ip.linodeusercontent.com [45.33.107.173] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Wed, 22 Jul 2026 14:46:06 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/66654
+ <yocto@lists.yoctoproject.org>; Wed, 22 Jul 2026 15:19:47 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/66655
 
---------------TkhJXLZsyErZRrNyCvfKsh2G
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: quoted-printable
-X-MIME-Autoconverted: from 8bit to quoted-printable by mx0a-0064b401.pphosted.com id 66MDhun11240730
-
-On 2026-06-29 15:33, Paul Barker via lists.yoctoproject.org wrote:
-> Hi all,
->
-> We would appreciate help triaging the following CVEs filed against the
-> Linux Kernel, which therefore affect linux-yocto.
->
-> Each of these is missing an upstream fix version in the CVE data, so
-> they show as unresolved in our CVE metrics. However, they may well be
-> fixed already in the kernel versions that we ship. So we need some help
-> to determine the appropriate upstream fix versions.
->
-> For each CVE, at a minimum we need to know if they are resolved in the
-> mainline kernel, and if so then which release they were resolved in. A
-> pointer to the exact upstream commit resolving the issue would be
-> preferred. This may involve a bit of investigation, so please share the
-> information you find that proves that a CVE is resolved in a particular
-> kernel version.
->
-> Once you've investigated a particular CVE, if it is resolved upstream
-> then please send a patch to update the linux-yocto cve-exclusion.inc
-> file with the appropriate information. See recent commits to this file
-> for examples of what we need, e.g:
->      https://git.openembedded.org/openembedded-core/commit/?id=3Dded28c=
-a69b326e51ac5cf363f06c6f0931a9c1bd
->
-> Once we've got patches merged into the master branch, we can look at
-> backporting to wrynose & scarthgap as appropriate.
->
-> The open linux-yocto CVEs lacking an upstream fix version and not
-> currently tracked in cve-exclusion.inc are:
->
-> - CVE-2019-14899
-> - CVE-2021-3714
-> - CVE-2021-3864
-> - CVE-2022-0400
-> - CVE-2022-1247
-> - CVE-2022-4543
-> - CVE-2023-3397
-> - CVE-2023-3640
-> - CVE-2023-4010
-> - CVE-2023-6238
-> - CVE-2023-6240
-
-Venkata, who goes by Adhitya, has looked into all of these issues.
-
-He's found one CVEs:
- =C2=A0 =C2=A0CVE-2023-3640 - x86 cpu_entry_area KASLR bypass.
-that we can backport via linux-stable.
-
-He has notes on the rest of the CVEs and will reply himself shortly.
-
-../Randy
-
-
->
-> Best regards,
->
->
-> -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
-> Links: You receive all messages sent to this group.
-> View/Reply Online (#66616):https://lists.yoctoproject.org/g/yocto/messa=
-ge/66616
-> Mute This Topic:https://lists.yoctoproject.org/mt/120036383/3616765
-> Group Owner:yocto+owner@lists.yoctoproject.org
-> Unsubscribe:https://lists.yoctoproject.org/g/yocto/unsub [randy.macleod=
-@windriver.com]
-> -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
->
-
---=20
-# Randy MacLeod
-# Wind River Linux
-
---------------TkhJXLZsyErZRrNyCvfKsh2G
-Content-Type: text/html; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-
-<!DOCTYPE html><html><head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-  </head>
-  <head>
-
-    
-  </head>
-  <body>
-    <div class="moz-cite-prefix">On 2026-06-29 15:33, Paul Barker via
-      lists.yoctoproject.org wrote:<br>
-    </div>
-    <blockquote type="cite" cite="mid:4ac849a706feb16688020d5bcc3e74aececd63cf.camel@pbarker.dev">
-      <pre wrap="" class="moz-quote-pre">Hi all,
-
-We would appreciate help triaging the following CVEs filed against the
-Linux Kernel, which therefore affect linux-yocto.
-
-Each of these is missing an upstream fix version in the CVE data, so
-they show as unresolved in our CVE metrics. However, they may well be
-fixed already in the kernel versions that we ship. So we need some help
-to determine the appropriate upstream fix versions.
-
-For each CVE, at a minimum we need to know if they are resolved in the
-mainline kernel, and if so then which release they were resolved in. A
-pointer to the exact upstream commit resolving the issue would be
-preferred. This may involve a bit of investigation, so please share the
-information you find that proves that a CVE is resolved in a particular
-kernel version.
-
-Once you've investigated a particular CVE, if it is resolved upstream
-then please send a patch to update the linux-yocto cve-exclusion.inc
-file with the appropriate information. See recent commits to this file
-for examples of what we need, e.g:
-    <a class="moz-txt-link-freetext" href="https://git.openembedded.org/openembedded-core/commit/?id=ded28ca69b326e51ac5cf363f06c6f0931a9c1bd">https://git.openembedded.org/openembedded-core/commit/?id=ded28ca69b326e51ac5cf363f06c6f0931a9c1bd</a>
-
-Once we've got patches merged into the master branch, we can look at
-backporting to wrynose &amp; scarthgap as appropriate.
-
-The open linux-yocto CVEs lacking an upstream fix version and not
-currently tracked in cve-exclusion.inc are:
-
-- CVE-2019-14899
-- CVE-2021-3714
-- CVE-2021-3864
-- CVE-2022-0400
-- CVE-2022-1247
-- CVE-2022-4543
-- CVE-2023-3397
-- CVE-2023-3640
-- CVE-2023-4010
-- CVE-2023-6238
-- CVE-2023-6240</pre>
-    </blockquote>
-    <p>Venkata, who goes by Adhitya, has looked into all of these
-      issues.</p>
-    <p>He's found one CVEs:&nbsp;<br>
-      &nbsp; &nbsp;CVE-2023-3640 -&nbsp;&nbsp;<span lang="EN-CA" style="font-family:&quot;Aptos&quot;,serif">x86 cpu_entry_area
-        KASLR bypass.<br>
-      </span>that we can backport via linux-stable.&nbsp;</p>
-    <p>He has notes on the rest of the CVEs and will reply himself
-      shortly.<br>
-      <br>
-    </p>
-    <p>../Randy</p>
-    <p><br>
-    </p>
-    <blockquote type="cite" cite="mid:4ac849a706feb16688020d5bcc3e74aececd63cf.camel@pbarker.dev">
-      <pre wrap="" class="moz-quote-pre">
-
-Best regards,
-
-</pre>
-      <br>
-      <fieldset class="moz-mime-attachment-header"></fieldset>
-      <pre wrap="" class="moz-quote-pre">-=-=-=-=-=-=-=-=-=-=-=-
-Links: You receive all messages sent to this group.
-View/Reply Online (#66616): <a class="moz-txt-link-freetext" href="https://lists.yoctoproject.org/g/yocto/message/66616">https://lists.yoctoproject.org/g/yocto/message/66616</a>
-Mute This Topic: <a class="moz-txt-link-freetext" href="https://lists.yoctoproject.org/mt/120036383/3616765">https://lists.yoctoproject.org/mt/120036383/3616765</a>
-Group Owner: <a class="moz-txt-link-abbreviated" href="mailto:yocto+owner@lists.yoctoproject.org">yocto+owner@lists.yoctoproject.org</a>
-Unsubscribe: <a class="moz-txt-link-freetext" href="https://lists.yoctoproject.org/g/yocto/unsub">https://lists.yoctoproject.org/g/yocto/unsub</a> [<a class="moz-txt-link-abbreviated" href="mailto:randy.macleod@windriver.com">randy.macleod@windriver.com</a>]
--=-=-=-=-=-=-=-=-=-=-=-
-
-</pre>
-    </blockquote>
-    <p><br>
-    </p>
-    <pre class="moz-signature" cols="72">-- 
-# Randy MacLeod
-# Wind River Linux</pre>
-  </body>
-</html>
-
---------------TkhJXLZsyErZRrNyCvfKsh2G--
+Hi =0A=
+=0A=
+We are pleased to announce the Yocto Project 5.0.19 Release is now availabl=
+e for download.=0A=
+=0A=
+https://downloads.yoctoproject.org/releases/yocto/yocto-5.0.19/poky-bb98354=
+685781296e3b3737e7762412100f359c2.tar.bz2=0A=
+https://mirrors.edge.kernel.org/yocto/yocto/yocto-5.0.19/poky-bb98354685781=
+296e3b3737e7762412100f359c2.tar.bz2=0A=
+=0A=
+A gpg signed version of these release notes is available at:=0A=
+=0A=
+https://downloads.yoctoproject.org/releases/yocto/yocto-5.0.19/RELEASENOTES=
+=0A=
+=0A=
+Full Test Report:=0A=
+=0A=
+https://downloads.yoctoproject.org/releases/yocto/yocto-5.0.19/testreport.t=
+xt=0A=
+=0A=
+Thank you for everyone's contributions to this release.=0A=
+=0A=
+Chee Yang=0A=
+chee.yang.lee@intel.com=0A=
+Yocto Project Build and Release=0A=
+=0A=
+=0A=
+--------------------------=0A=
+yocto-5.0.19 Release Notes=0A=
+--------------------------=0A=
+=0A=
+=0A=
+--------------------------=0A=
+ Repositories/Downloads=0A=
+--------------------------=0A=
+=0A=
+Repository Name: yocto-docs=0A=
+Repository Location: https://git.yoctoproject.org/yocto-docs=0A=
+Branch: scarthgap=0A=
+Tag: yocto-5.0.19=0A=
+Git Revision: 1b819d324780a699d9307a2d4e68c69b576ab748=0A=
+Release Artefact: yocto-docs-1b819d324780a699d9307a2d4e68c69b576ab748=0A=
+sha: b2c484d8d13b05b133f6f23f44e7757e4b53d93c27c9ea76d1a2e5f759f51af0=0A=
+Download Locations:=0A=
+https://downloads.yoctoproject.org/releases/yocto/yocto-5.0.19/yocto-docs-1=
+b819d324780a699d9307a2d4e68c69b576ab748.tar.bz2=0A=
+https://mirrors.edge.kernel.org/yocto/yocto/yocto-5.0.19/yocto-docs-1b819d3=
+24780a699d9307a2d4e68c69b576ab748.tar.bz2=0A=
+=0A=
+Repository Name: poky=0A=
+Repository Location: https://git.yoctoproject.org/poky=0A=
+Branch: scarthgap=0A=
+Tag: yocto-5.0.19=0A=
+Git Revision: bb98354685781296e3b3737e7762412100f359c2=0A=
+Release Artefact: poky-bb98354685781296e3b3737e7762412100f359c2=0A=
+sha: 37fd9eeff8043e6d7d595421b8ac40d38357d2d4ce3a6d0f86a0f7d884c995c3=0A=
+Download Locations:=0A=
+https://downloads.yoctoproject.org/releases/yocto/yocto-5.0.19/poky-bb98354=
+685781296e3b3737e7762412100f359c2.tar.bz2=0A=
+https://mirrors.edge.kernel.org/yocto/yocto/yocto-5.0.19/poky-bb98354685781=
+296e3b3737e7762412100f359c2.tar.bz2=0A=
+=0A=
+Repository Name: openembedded-core=0A=
+Repository Location: https://git.openembedded.org/openembedded-core=0A=
+Branch: scarthgap=0A=
+Tag: yocto-5.0.19=0A=
+Git Revision: 2814f0962f56c8d1afa4de76d2895ba9b5cb767d=0A=
+Release Artefact: oecore-2814f0962f56c8d1afa4de76d2895ba9b5cb767d=0A=
+sha: 8556e454499fcda4026dc58fb8fc627861720f5c006bd72bf3b455dabd22a0e8=0A=
+Download Locations:=0A=
+https://downloads.yoctoproject.org/releases/yocto/yocto-5.0.19/oecore-2814f=
+0962f56c8d1afa4de76d2895ba9b5cb767d.tar.bz2=0A=
+https://mirrors.edge.kernel.org/yocto/yocto/yocto-5.0.19/oecore-2814f0962f5=
+6c8d1afa4de76d2895ba9b5cb767d.tar.bz2=0A=
+=0A=
+Repository Name: meta-yocto=0A=
+Repository Location: https://git.yoctoproject.org/meta-yocto=0A=
+Branch: scarthgap=0A=
+Tag: yocto-5.0.19=0A=
+Git Revision: 2f749ae477c3b94dce71038f025180d7f612dab0=0A=
+Release Artefact: meta-yocto-2f749ae477c3b94dce71038f025180d7f612dab0=0A=
+sha: 754237ee59a67d31da1f242555c77b75a96d9cdabdf0a4c9cfd98e378643d031=0A=
+Download Locations:=0A=
+https://downloads.yoctoproject.org/releases/yocto/yocto-5.0.19/meta-yocto-2=
+f749ae477c3b94dce71038f025180d7f612dab0.tar.bz2=0A=
+https://mirrors.edge.kernel.org/yocto/yocto/yocto-5.0.19/meta-yocto-2f749ae=
+477c3b94dce71038f025180d7f612dab0.tar.bz2=0A=
+=0A=
+Repository Name: meta-mingw=0A=
+Repository Location: https://git.yoctoproject.org/meta-mingw=0A=
+Branch: scarthgap=0A=
+Tag: yocto-5.0.19=0A=
+Git Revision: bd9fef71ec005be3c3a6d7f8b99d8116daf70c4f=0A=
+Release Artefact: meta-mingw-bd9fef71ec005be3c3a6d7f8b99d8116daf70c4f=0A=
+sha: ab073def6487f237ac125d239b3739bf02415270959546b6b287778664f0ae65=0A=
+Download Locations:=0A=
+https://downloads.yoctoproject.org/releases/yocto/yocto-5.0.19/meta-mingw-b=
+d9fef71ec005be3c3a6d7f8b99d8116daf70c4f.tar.bz2=0A=
+https://mirrors.edge.kernel.org/yocto/yocto/yocto-5.0.19/meta-mingw-bd9fef7=
+1ec005be3c3a6d7f8b99d8116daf70c4f.tar.bz2=0A=
+=0A=
+Repository Name: bitbake=0A=
+Repository Location: https://git.openembedded.org/bitbake=0A=
+Branch: 2.8=0A=
+Tag: yocto-5.0.19=0A=
+Git Revision: 0880963fea4d91a034e4a6e007d23f98658ab986=0A=
+Release Artefact: bitbake-0880963fea4d91a034e4a6e007d23f98658ab986=0A=
+sha: 2bbf83d622fd4ad7ef0110378a9c88b683b2d82a911aba681b561446ec2f486b=0A=
+Download Locations:=0A=
+https://downloads.yoctoproject.org/releases/yocto/yocto-5.0.19/bitbake-0880=
+963fea4d91a034e4a6e007d23f98658ab986.tar.bz2=0A=
+https://mirrors.edge.kernel.org/yocto/yocto/yocto-5.0.19/bitbake-0880963fea=
+4d91a034e4a6e007d23f98658ab986.tar.bz2=0A=
+=0A=
+=0A=
+---------------=0A=
+ Contributors=0A=
+---------------=0A=
+=0A=
+Thanks to the following people who contributed to this release:=0A=
+=0A=
+Adarsh Jagadish Kamini=0A=
+Alexander Kanavin=0A=
+Amaury Couderc=0A=
+Anders Heimer=0A=
+Anil Dongare=0A=
+Ankur Tyagi=0A=
+Antonin Godard=0A=
+Benjamin Robin (Schneider Electric)=0A=
+Bruce Ashfield=0A=
+Changqing Li=0A=
+Deepak Rathore=0A=
+Enrico J=F6rns=0A=
+Gu=F0ni M=E1r Gilbert=0A=
+He Zhe=0A=
+Himanshu Jadon=0A=
+Hitendra Prajapati=0A=
+Hugo SIMELIERE (Schneider Electric)=0A=
+Jonas Munsin=0A=
+Jo=E3o Marcos Costa (Schneider Electric)=0A=
+Lee Chee Yang=0A=
+Marcio Henriques=0A=
+Mark Hatle=0A=
+Marta Rybczynska=0A=
+Martin Jansa=0A=
+Mathieu Dubois-Briand=0A=
+Naman Jain=0A=
+Paul Barker=0A=
+Peter Bergin=0A=
+Peter Marko=0A=
+Prabhudasu Vatala=0A=
+Richard Purdie=0A=
+Robert P. J. Day=0A=
+Ross Burton=0A=
+Shubham Pushpkar=0A=
+Sudhir Dumbhare=0A=
+Theo Gaige (Schneider Electric)=0A=
+Trevor Woerner=0A=
+Vijay Anusuri=0A=
+Yoann Congal=0A=
+Zahir Hussain=0A=
+=0A=
+---------------=0A=
+ Known Issues=0A=
+---------------=0A=
+N/A=0A=
+=0A=
+=0A=
+---------------=0A=
+Security Fixes=0A=
+---------------=0A=
+avahi: Remove a reference to the rejected CVE-2021-36217=0A=
+binutils: Fix CVE-2025-69644=0A=
+busybox: Fix CVE-2026-29004=0A=
+dpkg: Fix CVE-2026-2219=0A=
+go: Fix CVE-2025-58183 CVE-2026-25679 CVE-2026-27140 CVE-2026-27142 CVE-202=
+6-27143 CVE-2026-27144 CVE-2026-27145 CVE-2026-32280 CVE-2026-32283 CVE-202=
+6-32288 CVE-2026-32289 CVE-2026-33811 CVE-2026-39817 CVE-2026-39819 CVE-202=
+6-39820 CVE-2026-39825 CVE-2026-39826 CVE-2026-42499 CVE-2026-42501 CVE-202=
+6-42504 CVE-2026-42507=0A=
+go: Ignore CVE-2026-39836=0A=
+libarchive: Fix CVE-2026-4424=0A=
+libexif: Fix CVE-2026-32775 CVE-2026-40385 CVE-2026-40386=0A=
+libinput: Fix CVE-2026-50292=0A=
+libpng: Fix CVE-2026-33416=0A=
+libsolv: Fix CVE-2026-9150=0A=
+libsoup: Fix CVE-2025-11021 CVE-2026-2369=0A=
+libssh2: Fix CVE-2026-7598=0A=
+libusb1: Fix CVE-2026-23679 CVE-2026-47104=0A=
+libxml-parser-perl: Fix CVE-2006-10003=0A=
+linux-yocto/6.6: Fix CVE-2023-52920 CVE-2024-14027 CVE-2024-27022 CVE-2024-=
+56647 CVE-2025-21739 CVE-2025-22125 CVE-2025-38531 CVE-2025-38584 CVE-2025-=
+38710 CVE-2025-39981 CVE-2025-40219 CVE-2025-68315 CVE-2025-71184 CVE-2025-=
+71239 CVE-2025-71265 CVE-2025-71266 CVE-2025-71267 CVE-2025-71269 CVE-2025-=
+71274 CVE-2025-71286 CVE-2025-71287 CVE-2025-71288 CVE-2025-71291 CVE-2025-=
+71292 CVE-2025-71295 CVE-2025-71297 CVE-2025-71304 CVE-2025-71305 CVE-2026-=
+23004 CVE-2026-23171 CVE-2026-23231 CVE-2026-23242 CVE-2026-23243 CVE-2026-=
+23244 CVE-2026-23245 CVE-2026-23246 CVE-2026-23253 CVE-2026-23255 CVE-2026-=
+23268 CVE-2026-23269 CVE-2026-23270 CVE-2026-23271 CVE-2026-23272 CVE-2026-=
+23273 CVE-2026-23274 CVE-2026-23277 CVE-2026-23279 CVE-2026-23281 CVE-2026-=
+23284 CVE-2026-23285 CVE-2026-23286 CVE-2026-23287 CVE-2026-23289 CVE-2026-=
+23290 CVE-2026-23291 CVE-2026-23292 CVE-2026-23293 CVE-2026-23296 CVE-2026-=
+23298 CVE-2026-23300 CVE-2026-23302 CVE-2026-23303 CVE-2026-23304 CVE-2026-=
+23306 CVE-2026-23307 CVE-2026-23308 CVE-2026-23310 CVE-2026-23312 CVE-2026-=
+23313 CVE-2026-23315 CVE-2026-23317 CVE-2026-23318 CVE-2026-23319 CVE-2026-=
+23321 CVE-2026-23324 CVE-2026-23325 CVE-2026-23330 CVE-2026-23334 CVE-2026-=
+23335 CVE-2026-23336 CVE-2026-23339 CVE-2026-23340 CVE-2026-23343 CVE-2026-=
+23347 CVE-2026-23351 CVE-2026-23352 CVE-2026-23356 CVE-2026-23357 CVE-2026-=
+23359 CVE-2026-23360 CVE-2026-23362 CVE-2026-23364 CVE-2026-23365 CVE-2026-=
+23367 CVE-2026-23368 CVE-2026-23370 CVE-2026-23372 CVE-2026-23374 CVE-2026-=
+23378 CVE-2026-23379 CVE-2026-23381 CVE-2026-23382 CVE-2026-23386 CVE-2026-=
+23387 CVE-2026-23388 CVE-2026-23389 CVE-2026-23391 CVE-2026-23392 CVE-2026-=
+23395 CVE-2026-23396 CVE-2026-23397 CVE-2026-23398 CVE-2026-23399 CVE-2026-=
+23401 CVE-2026-23403 CVE-2026-23404 CVE-2026-23405 CVE-2026-23406 CVE-2026-=
+23407 CVE-2026-23408 CVE-2026-23409 CVE-2026-23410 CVE-2026-23411 CVE-2026-=
+23412 CVE-2026-23413 CVE-2026-23414 CVE-2026-23419 CVE-2026-23420 CVE-2026-=
+23422 CVE-2026-23426 CVE-2026-23427 CVE-2026-23428 CVE-2026-23434 CVE-2026-=
+23438 CVE-2026-23439 CVE-2026-23440 CVE-2026-23441 CVE-2026-23442 CVE-2026-=
+23443 CVE-2026-23444 CVE-2026-23446 CVE-2026-23447 CVE-2026-23448 CVE-2026-=
+23449 CVE-2026-23450 CVE-2026-23452 CVE-2026-23454 CVE-2026-23455 CVE-2026-=
+23456 CVE-2026-23457 CVE-2026-23458 CVE-2026-23460 CVE-2026-23461 CVE-2026-=
+23462 CVE-2026-23463 CVE-2026-23465 CVE-2026-23468 CVE-2026-23474 CVE-2026-=
+23475 CVE-2026-31389 CVE-2026-31391 CVE-2026-31392 CVE-2026-31393 CVE-2026-=
+31396 CVE-2026-31399 CVE-2026-31400 CVE-2026-31402 CVE-2026-31403 CVE-2026-=
+31405 CVE-2026-31407 CVE-2026-31408 CVE-2026-31409 CVE-2026-31411 CVE-2026-=
+31412 CVE-2026-31414 CVE-2026-31415 CVE-2026-31416 CVE-2026-31417 CVE-2026-=
+31418 CVE-2026-31421 CVE-2026-31422 CVE-2026-31423 CVE-2026-31424 CVE-2026-=
+31425 CVE-2026-31426 CVE-2026-31427 CVE-2026-31428 CVE-2026-31429 CVE-2026-=
+31430 CVE-2026-31431 CVE-2026-31433 CVE-2026-31434 CVE-2026-31439 CVE-2026-=
+31440 CVE-2026-31441 CVE-2026-31446 CVE-2026-31447 CVE-2026-31448 CVE-2026-=
+31449 CVE-2026-31450 CVE-2026-31451 CVE-2026-31452 CVE-2026-31453 CVE-2026-=
+31454 CVE-2026-31455 CVE-2026-31458 CVE-2026-31464 CVE-2026-31466 CVE-2026-=
+31467 CVE-2026-31469 CVE-2026-31473 CVE-2026-31474 CVE-2026-31476 CVE-2026-=
+31477 CVE-2026-31478 CVE-2026-31480 CVE-2026-31482 CVE-2026-31483 CVE-2026-=
+31485 CVE-2026-31488 CVE-2026-31489 CVE-2026-31492 CVE-2026-31494 CVE-2026-=
+31495 CVE-2026-31496 CVE-2026-31497 CVE-2026-31498 CVE-2026-31500 CVE-2026-=
+31503 CVE-2026-31504 CVE-2026-31507 CVE-2026-31508 CVE-2026-31509 CVE-2026-=
+31510 CVE-2026-31512 CVE-2026-31515 CVE-2026-31518 CVE-2026-31519 CVE-2026-=
+31520 CVE-2026-31521 CVE-2026-31522 CVE-2026-31523 CVE-2026-31524 CVE-2026-=
+31525 CVE-2026-31528 CVE-2026-31532 CVE-2026-31533 CVE-2026-31540 CVE-2026-=
+31542 CVE-2026-31545 CVE-2026-31546 CVE-2026-31548 CVE-2026-31549 CVE-2026-=
+31550 CVE-2026-31551 CVE-2026-31552 CVE-2026-31555 CVE-2026-31563 CVE-2026-=
+31565 CVE-2026-31566 CVE-2026-31570 CVE-2026-31576 CVE-2026-31577 CVE-2026-=
+31578 CVE-2026-31580 CVE-2026-31581 CVE-2026-31583 CVE-2026-31584 CVE-2026-=
+31585 CVE-2026-31586 CVE-2026-31587 CVE-2026-31588 CVE-2026-31590 CVE-2026-=
+31594 CVE-2026-31595 CVE-2026-31596 CVE-2026-31597 CVE-2026-31598 CVE-2026-=
+31599 CVE-2026-31602 CVE-2026-31603 CVE-2026-31604 CVE-2026-31605 CVE-2026-=
+31607 CVE-2026-31610 CVE-2026-31611 CVE-2026-31612 CVE-2026-31613 CVE-2026-=
+31614 CVE-2026-31615 CVE-2026-31616 CVE-2026-31617 CVE-2026-31618 CVE-2026-=
+31619 CVE-2026-31622 CVE-2026-31623 CVE-2026-31624 CVE-2026-31625 CVE-2026-=
+31626 CVE-2026-31627 CVE-2026-31628 CVE-2026-31629 CVE-2026-31634 CVE-2026-=
+31637 CVE-2026-31638 CVE-2026-31639 CVE-2026-31642 CVE-2026-31646 CVE-2026-=
+31648 CVE-2026-31649 CVE-2026-31651 CVE-2026-31655 CVE-2026-31656 CVE-2026-=
+31657 CVE-2026-31658 CVE-2026-31659 CVE-2026-31660 CVE-2026-31661 CVE-2026-=
+31662 CVE-2026-31664 CVE-2026-31665 CVE-2026-31667 CVE-2026-31668 CVE-2026-=
+31669 CVE-2026-31670 CVE-2026-31671 CVE-2026-31672 CVE-2026-31673 CVE-2026-=
+31674 CVE-2026-31675 CVE-2026-31676 CVE-2026-31678 CVE-2026-31679 CVE-2026-=
+31680 CVE-2026-31681 CVE-2026-31682 CVE-2026-31683 CVE-2026-31684 CVE-2026-=
+31685 CVE-2026-31686 CVE-2026-31689 CVE-2026-31693 CVE-2026-31694 CVE-2026-=
+31695 CVE-2026-31696 CVE-2026-31697 CVE-2026-31698 CVE-2026-31699 CVE-2026-=
+31700 CVE-2026-31701 CVE-2026-31702 CVE-2026-31704 CVE-2026-31705 CVE-2026-=
+31707 CVE-2026-31708 CVE-2026-31709 CVE-2026-31711 CVE-2026-31712 CVE-2026-=
+31714 CVE-2026-31715 CVE-2026-31716 CVE-2026-31718 CVE-2026-31720 CVE-2026-=
+31721 CVE-2026-31726 CVE-2026-31728 CVE-2026-31730 CVE-2026-31737 CVE-2026-=
+31738 CVE-2026-31740 CVE-2026-31741 CVE-2026-31747 CVE-2026-31748 CVE-2026-=
+31749 CVE-2026-31751 CVE-2026-31752 CVE-2026-31754 CVE-2026-31755 CVE-2026-=
+31756 CVE-2026-31758 CVE-2026-31759 CVE-2026-31761 CVE-2026-31762 CVE-2026-=
+31763 CVE-2026-31768 CVE-2026-31770 CVE-2026-31773 CVE-2026-31778 CVE-2026-=
+31779 CVE-2026-31780 CVE-2026-31781 CVE-2026-31786 CVE-2026-31787 CVE-2026-=
+31788 CVE-2026-43007 CVE-2026-43011 CVE-2026-43013 CVE-2026-43014 CVE-2026-=
+43015 CVE-2026-43016 CVE-2026-43017 CVE-2026-43018 CVE-2026-43020 CVE-2026-=
+43023 CVE-2026-43024 CVE-2026-43025 CVE-2026-43026 CVE-2026-43027 CVE-2026-=
+43028 CVE-2026-43030 CVE-2026-43032 CVE-2026-43033 CVE-2026-43035 CVE-2026-=
+43037 CVE-2026-43038 CVE-2026-43040 CVE-2026-43041 CVE-2026-43043 CVE-2026-=
+43044 CVE-2026-43046 CVE-2026-43047 CVE-2026-43050 CVE-2026-43051 CVE-2026-=
+43054 CVE-2026-43056 CVE-2026-43057 CVE-2026-43058 CVE-2026-43060 CVE-2026-=
+43061 CVE-2026-43062 CVE-2026-43064 CVE-2026-43065 CVE-2026-43066 CVE-2026-=
+43067 CVE-2026-43068 CVE-2026-43069 CVE-2026-43071 CVE-2026-43072 CVE-2026-=
+43074 CVE-2026-43075 CVE-2026-43076 CVE-2026-43077 CVE-2026-43078 CVE-2026-=
+43079 CVE-2026-43080 CVE-2026-43081 CVE-2026-43082 CVE-2026-43085 CVE-2026-=
+43086 CVE-2026-43089 CVE-2026-43091 CVE-2026-43092 CVE-2026-43093 CVE-2026-=
+43094 CVE-2026-43098 CVE-2026-43099 CVE-2026-43103 CVE-2026-43104 CVE-2026-=
+43105 CVE-2026-43109 CVE-2026-43110 CVE-2026-43111 CVE-2026-43112 CVE-2026-=
+43113 CVE-2026-43114 CVE-2026-43117 CVE-2026-43120 CVE-2026-43123 CVE-2026-=
+43124 CVE-2026-43128 CVE-2026-43130 CVE-2026-43132 CVE-2026-43133 CVE-2026-=
+43134 CVE-2026-43135 CVE-2026-43136 CVE-2026-43137 CVE-2026-43139 CVE-2026-=
+43140 CVE-2026-43141 CVE-2026-43143 CVE-2026-43145 CVE-2026-43147 CVE-2026-=
+43148 CVE-2026-43149 CVE-2026-43150 CVE-2026-43152 CVE-2026-43156 CVE-2026-=
+43157 CVE-2026-43158 CVE-2026-43159 CVE-2026-43162 CVE-2026-43163 CVE-2026-=
+43167 CVE-2026-43168 CVE-2026-43170 CVE-2026-43171 CVE-2026-43173 CVE-2026-=
+43180=0A=
+linux-yocto/6.6: (cont.) Fix CVE-2026-43182 CVE-2026-43183 CVE-2026-43184 C=
+VE-2026-43186 CVE-2026-43187 CVE-2026-43189 CVE-2026-43190 CVE-2026-43194 C=
+VE-2026-43196 CVE-2026-43200 CVE-2026-43202 CVE-2026-43203 CVE-2026-43205 C=
+VE-2026-43206 CVE-2026-43207 CVE-2026-43209 CVE-2026-43211 CVE-2026-43212 C=
+VE-2026-43214 CVE-2026-43215 CVE-2026-43218 CVE-2026-43221 CVE-2026-43222 C=
+VE-2026-43223 CVE-2026-43225 CVE-2026-43226 CVE-2026-43227 CVE-2026-43230 C=
+VE-2026-43231 CVE-2026-43232 CVE-2026-43233 CVE-2026-43236 CVE-2026-43238 C=
+VE-2026-43239 CVE-2026-43240 CVE-2026-43241 CVE-2026-43242 CVE-2026-43245 C=
+VE-2026-43246 CVE-2026-43251 CVE-2026-43252 CVE-2026-43253 CVE-2026-43255 C=
+VE-2026-43256 CVE-2026-43257 CVE-2026-43261 CVE-2026-43262 CVE-2026-43264 C=
+VE-2026-43265 CVE-2026-43266 CVE-2026-43268 CVE-2026-43269 CVE-2026-43270 C=
+VE-2026-43271 CVE-2026-43273 CVE-2026-43275 CVE-2026-43277 CVE-2026-43278 C=
+VE-2026-43279 CVE-2026-43281 CVE-2026-43283 CVE-2026-43284 CVE-2026-43287 C=
+VE-2026-43288 CVE-2026-43289 CVE-2026-43291 CVE-2026-43295 CVE-2026-43296 C=
+VE-2026-43302 CVE-2026-43304 CVE-2026-43312 CVE-2026-43313 CVE-2026-43314 C=
+VE-2026-43315 CVE-2026-43316 CVE-2026-43324 CVE-2026-43327 CVE-2026-43328 C=
+VE-2026-43329 CVE-2026-43330 CVE-2026-43332 CVE-2026-43333 CVE-2026-43334 C=
+VE-2026-43336 CVE-2026-43339 CVE-2026-43340 CVE-2026-43341 CVE-2026-43342 C=
+VE-2026-43343 CVE-2026-43345 CVE-2026-43350 CVE-2026-43355 CVE-2026-43357 C=
+VE-2026-43359 CVE-2026-43360 CVE-2026-43361 CVE-2026-43362 CVE-2026-43363 C=
+VE-2026-43365 CVE-2026-43366 CVE-2026-43368 CVE-2026-43370 CVE-2026-43371 C=
+VE-2026-43372 CVE-2026-43373 CVE-2026-43376 CVE-2026-43377 CVE-2026-43378 C=
+VE-2026-43379 CVE-2026-43380 CVE-2026-43381 CVE-2026-43382 CVE-2026-43383 C=
+VE-2026-43386 CVE-2026-43387 CVE-2026-43397 CVE-2026-43405 CVE-2026-43406 C=
+VE-2026-43407 CVE-2026-43409 CVE-2026-43411 CVE-2026-43412 CVE-2026-43413 C=
+VE-2026-43415 CVE-2026-43419 CVE-2026-43420 CVE-2026-43424 CVE-2026-43425 C=
+VE-2026-43426 CVE-2026-43427 CVE-2026-43428 CVE-2026-43429 CVE-2026-43430 C=
+VE-2026-43432 CVE-2026-43436 CVE-2026-43437 CVE-2026-43439 CVE-2026-43441 C=
+VE-2026-43445 CVE-2026-43448 CVE-2026-43449 CVE-2026-43450 CVE-2026-43451 C=
+VE-2026-43452 CVE-2026-43453 CVE-2026-43455 CVE-2026-43457 CVE-2026-43458 C=
+VE-2026-43459 CVE-2026-43466 CVE-2026-43468 CVE-2026-43469 CVE-2026-43471 C=
+VE-2026-43472 CVE-2026-43473 CVE-2026-43475 CVE-2026-43476 CVE-2026-43480 C=
+VE-2026-43483 CVE-2026-43484 CVE-2026-43488 CVE-2026-43490 CVE-2026-43491 C=
+VE-2026-43492 CVE-2026-43493 CVE-2026-43494 CVE-2026-43495 CVE-2026-43496 C=
+VE-2026-43497 CVE-2026-43499 CVE-2026-43500 CVE-2026-43501 CVE-2026-43502 C=
+VE-2026-43503 CVE-2026-45834 CVE-2026-45835 CVE-2026-45836 CVE-2026-45838 C=
+VE-2026-45839 CVE-2026-45840 CVE-2026-45841 CVE-2026-45842 CVE-2026-45843 C=
+VE-2026-45844 CVE-2026-45845 CVE-2026-45846 CVE-2026-45847 CVE-2026-45848 C=
+VE-2026-45849 CVE-2026-45851 CVE-2026-45852 CVE-2026-45856 CVE-2026-45857 C=
+VE-2026-45858 CVE-2026-45860 CVE-2026-45862 CVE-2026-45864 CVE-2026-45865 C=
+VE-2026-45866 CVE-2026-45867 CVE-2026-45868 CVE-2026-45869 CVE-2026-45870 C=
+VE-2026-45871 CVE-2026-45872 CVE-2026-45873 CVE-2026-45875 CVE-2026-45878 C=
+VE-2026-45879 CVE-2026-45880 CVE-2026-45881 CVE-2026-45883 CVE-2026-45885 C=
+VE-2026-45886 CVE-2026-45890 CVE-2026-45891 CVE-2026-45895 CVE-2026-45899 C=
+VE-2026-45902 CVE-2026-45904 CVE-2026-45905 CVE-2026-45910 CVE-2026-45911 C=
+VE-2026-45912 CVE-2026-45913 CVE-2026-45914 CVE-2026-45915 CVE-2026-45916 C=
+VE-2026-45919 CVE-2026-45920 CVE-2026-45921 CVE-2026-45923 CVE-2026-45924 C=
+VE-2026-45935 CVE-2026-45936 CVE-2026-45941 CVE-2026-45942 CVE-2026-45946 C=
+VE-2026-45947 CVE-2026-45948 CVE-2026-45954 CVE-2026-45956 CVE-2026-45957 C=
+VE-2026-45958 CVE-2026-45960 CVE-2026-45962 CVE-2026-45964 CVE-2026-45965 C=
+VE-2026-45968 CVE-2026-45969 CVE-2026-45970 CVE-2026-45972 CVE-2026-45974 C=
+VE-2026-45976 CVE-2026-45978 CVE-2026-45981 CVE-2026-45982 CVE-2026-45983 C=
+VE-2026-45984 CVE-2026-45985 CVE-2026-45986 CVE-2026-45987 CVE-2026-45988 C=
+VE-2026-45989 CVE-2026-45991 CVE-2026-45993 CVE-2026-45994 CVE-2026-45996 C=
+VE-2026-45997 CVE-2026-45998 CVE-2026-45999 CVE-2026-46000 CVE-2026-46002 C=
+VE-2026-46003 CVE-2026-46004 CVE-2026-46005 CVE-2026-46006 CVE-2026-46009 C=
+VE-2026-46011 CVE-2026-46012 CVE-2026-46015 CVE-2026-46016 CVE-2026-46018 C=
+VE-2026-46019 CVE-2026-46021 CVE-2026-46022 CVE-2026-46023 CVE-2026-46024 C=
+VE-2026-46026 CVE-2026-46027 CVE-2026-46028 CVE-2026-46031 CVE-2026-46033 C=
+VE-2026-46037 CVE-2026-46038 CVE-2026-46040 CVE-2026-46043 CVE-2026-46046 C=
+VE-2026-46047 CVE-2026-46049 CVE-2026-46050 CVE-2026-46051 CVE-2026-46052 C=
+VE-2026-46053 CVE-2026-46056 CVE-2026-46058 CVE-2026-46062 CVE-2026-46063 C=
+VE-2026-46064 CVE-2026-46065 CVE-2026-46068 CVE-2026-46069 CVE-2026-46070 C=
+VE-2026-46072 CVE-2026-46075 CVE-2026-46077 CVE-2026-46078 CVE-2026-46079 C=
+VE-2026-46080 CVE-2026-46082 CVE-2026-46083 CVE-2026-46084 CVE-2026-46086 C=
+VE-2026-46088 CVE-2026-46089 CVE-2026-46091 CVE-2026-46094 CVE-2026-46098 C=
+VE-2026-46099 CVE-2026-46101 CVE-2026-46102 CVE-2026-46103 CVE-2026-46106 C=
+VE-2026-46107 CVE-2026-46108 CVE-2026-46110 CVE-2026-46111 CVE-2026-46112 C=
+VE-2026-46113 CVE-2026-46114 CVE-2026-46115 CVE-2026-46116 CVE-2026-46119 C=
+VE-2026-46120 CVE-2026-46121 CVE-2026-46122 CVE-2026-46123 CVE-2026-46124 C=
+VE-2026-46125 CVE-2026-46127 CVE-2026-46128 CVE-2026-46129 CVE-2026-46131 C=
+VE-2026-46132 CVE-2026-46133 CVE-2026-46136 CVE-2026-46137 CVE-2026-46138 C=
+VE-2026-46142 CVE-2026-46143 CVE-2026-46144 CVE-2026-46145 CVE-2026-46146 C=
+VE-2026-46149 CVE-2026-46150 CVE-2026-46151 CVE-2026-46152 CVE-2026-46155 C=
+VE-2026-46158 CVE-2026-46159 CVE-2026-46160 CVE-2026-46161 CVE-2026-46163 C=
+VE-2026-46164 CVE-2026-46167 CVE-2026-46168 CVE-2026-46169 CVE-2026-46170 C=
+VE-2026-46172 CVE-2026-46173 CVE-2026-46174 CVE-2026-46176 CVE-2026-46177 C=
+VE-2026-46178 CVE-2026-46179 CVE-2026-46180 CVE-2026-46184 CVE-2026-46185 C=
+VE-2026-46186 CVE-2026-46187 CVE-2026-46189 CVE-2026-46190 CVE-2026-46191 C=
+VE-2026-46193 CVE-2026-46194 CVE-2026-46195 CVE-2026-46196 CVE-2026-46197 C=
+VE-2026-46198 CVE-2026-46199 CVE-2026-46204 CVE-2026-46205 CVE-2026-46206 C=
+VE-2026-46208 CVE-2026-46209 CVE-2026-46212 CVE-2026-46214 CVE-2026-46218 C=
+VE-2026-46219 CVE-2026-46220 CVE-2026-46225 CVE-2026-46226 CVE-2026-46227 C=
+VE-2026-46229 CVE-2026-46230 CVE-2026-46231 CVE-2026-46232 CVE-2026-46233 C=
+VE-2026-46234 CVE-2026-46235 CVE-2026-46236 CVE-2026-46238 CVE-2026-46243 C=
+VE-2026-46244 CVE-2026-46247 CVE-2026-46249 CVE-2026-46250 CVE-2026-46251 C=
+VE-2026-46253 CVE-2026-46255 CVE-2026-46259 CVE-2026-46260 CVE-2026-46261 C=
+VE-2026-46262 CVE-2026-46265 CVE-2026-46266 CVE-2026-46267 CVE-2026-46270 C=
+VE-2026-46273 CVE-2026-46274 CVE-2026-46275 CVE-2026-46276 CVE-2026-46280 C=
+VE-2026-46285 CVE-2026-46286 CVE-2026-46287 CVE-2026-46289 CVE-2026-46291 C=
+VE-2026-46292 CVE-2026-46293 CVE-2026-46294 CVE-2026-46296 CVE-2026-46299 C=
+VE-2026-46300 CVE-2026-46301 CVE-2026-46303 CVE-2026-46304 CVE-2026-46306 C=
+VE-2026-46307 CVE-2026-46312 CVE-2026-46319 CVE-2026-46323 CVE-2026-46328 C=
+VE-2026-46333 CVE-2026-52911 CVE-2026-52912 CVE-2026-52914 CVE-2026-52915 C=
+VE-2026-52916 CVE-2026-52918 CVE-2026-52919 CVE-2026-52920 CVE-2026-52921 C=
+VE-2026-52922 CVE-2026-52923 CVE-2026-52925 CVE-2026-52926 CVE-2026-52931 C=
+VE-2026-52933 CVE-2026-52936 CVE-2026-52941 CVE-2026-53128 CVE-2026-53130 C=
+VE-2026-53279 CVE-2026-53287 CVE-2026-53289 CVE-2026-53291 CVE-2026-53293 C=
+VE-2026-53294 CVE-2026-53295 CVE-2026-53296 CVE-2026-53303 CVE-2026-53304 C=
+VE-2026-53306 CVE-2026-53309 CVE-2026-53314 CVE-2026-53320=0A=
+linux-yocto/6.6: Ignore CVE-2023-53012 CVE-2023-53187 CVE-2024-26949 CVE-20=
+24-26997 CVE-2024-35983 CVE-2024-36002 CVE-2024-36288 CVE-2024-38542 CVE-20=
+24-38595 CVE-2024-40920 CVE-2024-40921 CVE-2024-40986 CVE-2024-42111 CVE-20=
+24-42112 CVE-2024-42150 CVE-2024-43820 CVE-2024-43838 CVE-2024-47711 CVE-20=
+24-49854 CVE-2024-50042 CVE-2024-50097 CVE-2024-50203 CVE-2024-50206 CVE-20=
+24-50238 CVE-2024-50241 CVE-2024-50249 CVE-2024-50281 CVE-2024-53073 CVE-20=
+24-53097 CVE-2024-53115 CVE-2024-53133 CVE-2024-53169 CVE-2024-53201 CVE-20=
+24-54191 CVE-2024-54460 CVE-2024-56542 CVE-2024-56550 CVE-2024-56561 CVE-20=
+24-56782 CVE-2024-57805 CVE-2024-57852 CVE-2024-57879 CVE-2024-57935 CVE-20=
+24-57952 CVE-2024-57990 CVE-2024-58008 CVE-2024-58081 CVE-2025-21752 CVE-20=
+25-21809 CVE-2025-21813 CVE-2025-21902 CVE-2025-22026 CVE-2025-22030 CVE-20=
+25-22032 CVE-2025-22069 CVE-2025-22112 CVE-2025-37760 CVE-2025-37814 CVE-20=
+25-37827 CVE-2025-37845 CVE-2025-37868 CVE-2025-37871 CVE-2025-37878 CVE-20=
+25-37895 CVE-2025-37929 CVE-2025-37962 CVE-2025-37974 CVE-2025-38055 CVE-20=
+25-38098 CVE-2025-38099 CVE-2025-38162 CVE-2025-38169 CVE-2025-38201 CVE-20=
+25-38224 CVE-2025-38234 CVE-2025-38289 CVE-2025-38325 CVE-2025-38372 CVE-20=
+25-38373 CVE-2025-38405 CVE-2025-38421 CVE-2025-38484 CVE-2025-38551 CVE-20=
+25-38567 CVE-2025-38675 CVE-2025-38733 CVE-2025-38736 CVE-2025-39688 CVE-20=
+25-39725 CVE-2025-39775 CVE-2025-39807 CVE-2025-39872 CVE-2025-39930 CVE-20=
+25-39948 CVE-2025-39965 CVE-2025-39999 CVE-2025-40005 CVE-2025-40007 CVE-20=
+25-40082 CVE-2025-40101 CVE-2025-40131 CVE-2025-40199 CVE-2025-40213 CVE-20=
+25-40290 CVE-2025-40327 CVE-2025-40332 CVE-2025-40344 CVE-2025-68195 CVE-20=
+25-68207 CVE-2025-68213 CVE-2025-68215 CVE-2025-68298 CVE-2025-68351 CVE-20=
+25-68357 CVE-2025-68358 CVE-2025-68823 CVE-2025-71070 CVE-2025-71076 CVE-20=
+25-71135 CVE-2025-71145 CVE-2025-71146 CVE-2025-71155 CVE-2025-71204 CVE-20=
+25-71220 CVE-2025-71222 CVE-2025-71223 CVE-2025-71224 CVE-2025-71229 CVE-20=
+25-71232 CVE-2025-71233 CVE-2025-71235 CVE-2025-71236 CVE-2025-71237 CVE-20=
+25-71238 CVE-2025-71268 CVE-2025-71270 CVE-2025-71271 CVE-2025-71290 CVE-20=
+25-71293 CVE-2025-71294 CVE-2025-71296 CVE-2025-71298 CVE-2025-71299 CVE-20=
+25-71300 CVE-2025-71301 CVE-2025-71302=0A=
+linux-yocto/6.6: (cont.) Ignore CVE-2026-23014 CVE-2026-23018 CVE-2026-2307=
+9 CVE-2026-23100 CVE-2026-23111 CVE-2026-23112 CVE-2026-23143 CVE-2026-2314=
+8 CVE-2026-23151 CVE-2026-23166 CVE-2026-23169 CVE-2026-23176 CVE-2026-2317=
+8 CVE-2026-23180 CVE-2026-23182 CVE-2026-23187 CVE-2026-23189 CVE-2026-2319=
+0 CVE-2026-23193 CVE-2026-23198 CVE-2026-23200 CVE-2026-23201 CVE-2026-2320=
+2 CVE-2026-23204 CVE-2026-23205 CVE-2026-23206 CVE-2026-23209 CVE-2026-2321=
+6 CVE-2026-23217 CVE-2026-23220 CVE-2026-23221 CVE-2026-23222 CVE-2026-2322=
+8 CVE-2026-23229 CVE-2026-23230 CVE-2026-23233 CVE-2026-23234 CVE-2026-2323=
+5 CVE-2026-23236 CVE-2026-23237 CVE-2026-23238 CVE-2026-23254 CVE-2026-2325=
+6 CVE-2026-23257 CVE-2026-23258 CVE-2026-23260 CVE-2026-23261 CVE-2026-2326=
+2 CVE-2026-23264 CVE-2026-23266 CVE-2026-23267 CVE-2026-23288 CVE-2026-2334=
+1 CVE-2026-23355 CVE-2026-23376 CVE-2026-23418 CVE-2026-23421 CVE-2026-2342=
+3 CVE-2026-23424 CVE-2026-23425 CVE-2026-23429 CVE-2026-23430 CVE-2026-2343=
+1 CVE-2026-23432 CVE-2026-23433 CVE-2026-23435 CVE-2026-23436 CVE-2026-2343=
+7 CVE-2026-23445 CVE-2026-23451 CVE-2026-23453 CVE-2026-23459 CVE-2026-2346=
+4 CVE-2026-23466 CVE-2026-23467 CVE-2026-23469 CVE-2026-23470 CVE-2026-3139=
+0 CVE-2026-31394 CVE-2026-31395 CVE-2026-31397 CVE-2026-31398 CVE-2026-3140=
+1 CVE-2026-31404 CVE-2026-31406 CVE-2026-31413 CVE-2026-31435 CVE-2026-3143=
+6 CVE-2026-31437 CVE-2026-31438 CVE-2026-31442 CVE-2026-31443 CVE-2026-3144=
+4 CVE-2026-31445 CVE-2026-31456 CVE-2026-31457 CVE-2026-31459 CVE-2026-3146=
+0 CVE-2026-31461 CVE-2026-31463 CVE-2026-31465 CVE-2026-31468 CVE-2026-3147=
+0 CVE-2026-31471 CVE-2026-31472 CVE-2026-31475 CVE-2026-31479 CVE-2026-3148=
+1 CVE-2026-31484 CVE-2026-31490 CVE-2026-31491 CVE-2026-31499 CVE-2026-3150=
+1 CVE-2026-31511 CVE-2026-31513 CVE-2026-31514 CVE-2026-31517 CVE-2026-3152=
+6 CVE-2026-31529 CVE-2026-31535 CVE-2026-31538 CVE-2026-31539 CVE-2026-3154=
+1 CVE-2026-31543 CVE-2026-31544 CVE-2026-31547 CVE-2026-31553 CVE-2026-3155=
+4 CVE-2026-31556 CVE-2026-31558 CVE-2026-31559 CVE-2026-31561 CVE-2026-3156=
+2 CVE-2026-31564 CVE-2026-31567 CVE-2026-31569 CVE-2026-31571 CVE-2026-3157=
+2 CVE-2026-31573 CVE-2026-31574 CVE-2026-31575 CVE-2026-31582 CVE-2026-3158=
+9 CVE-2026-31591 CVE-2026-31593 CVE-2026-31600 CVE-2026-31601 CVE-2026-3160=
+8 CVE-2026-31609 CVE-2026-31620 CVE-2026-31621 CVE-2026-31631 CVE-2026-3163=
+2 CVE-2026-31633 CVE-2026-31635 CVE-2026-31636 CVE-2026-31640 CVE-2026-3164=
+1 CVE-2026-31643 CVE-2026-31644 CVE-2026-31647 CVE-2026-31650 CVE-2026-3165=
+2 CVE-2026-31653 CVE-2026-31654 CVE-2026-31666 CVE-2026-31687 CVE-2026-3169=
+0 CVE-2026-31691 CVE-2026-31703 CVE-2026-31710 CVE-2026-31713 CVE-2026-3171=
+9 CVE-2026-31727 CVE-2026-31731 CVE-2026-31732 CVE-2026-31733 CVE-2026-3173=
+4 CVE-2026-31735 CVE-2026-31736 CVE-2026-31739 CVE-2026-31742 CVE-2026-3174=
+3 CVE-2026-31744 CVE-2026-31745 CVE-2026-31746 CVE-2026-31750 CVE-2026-3175=
+3 CVE-2026-31757 CVE-2026-31760 CVE-2026-31764 CVE-2026-31765 CVE-2026-3176=
+6 CVE-2026-31769 CVE-2026-31772 CVE-2026-31774 CVE-2026-31775 CVE-2026-3177=
+6 CVE-2026-31782 CVE-2026-31783 CVE-2026-31784 CVE-2026-31785 CVE-2026-4300=
+4 CVE-2026-43005 CVE-2026-43006 CVE-2026-43008 CVE-2026-43012 CVE-2026-4302=
+1 CVE-2026-43031 CVE-2026-43034 CVE-2026-43039 CVE-2026-43045 CVE-2026-4305=
+5 CVE-2026-43059 CVE-2026-43063 CVE-2026-43070 CVE-2026-43084 CVE-2026-4308=
+7 CVE-2026-43090 CVE-2026-43095 CVE-2026-43096 CVE-2026-43097 CVE-2026-4310=
+0 CVE-2026-43102 CVE-2026-43106 CVE-2026-43108 CVE-2026-43121 CVE-2026-4312=
+2 CVE-2026-43131 CVE-2026-43138 CVE-2026-43142 CVE-2026-43144 CVE-2026-4314=
+6 CVE-2026-43151 CVE-2026-43154 CVE-2026-43155 CVE-2026-43160 CVE-2026-4316=
+4 CVE-2026-43165 CVE-2026-43166 CVE-2026-43169 CVE-2026-43174 CVE-2026-4317=
+5 CVE-2026-43176 CVE-2026-43177 CVE-2026-43178 CVE-2026-43179 CVE-2026-4318=
+1 CVE-2026-43188 CVE-2026-43191 CVE-2026-43192 CVE-2026-43193 CVE-2026-4319=
+5 CVE-2026-43201 CVE-2026-43208 CVE-2026-43210 CVE-2026-43217 CVE-2026-4322=
+0 CVE-2026-43224 CVE-2026-43228 CVE-2026-43229 CVE-2026-43235 CVE-2026-4323=
+7 CVE-2026-43243 CVE-2026-43247 CVE-2026-43254 CVE-2026-43259 CVE-2026-4326=
+0 CVE-2026-43263 CVE-2026-43267 CVE-2026-43272 CVE-2026-43274 CVE-2026-4327=
+6 CVE-2026-43280 CVE-2026-43282 CVE-2026-43285 CVE-2026-43286 CVE-2026-4329=
+0 CVE-2026-43292 CVE-2026-43293 CVE-2026-43297 CVE-2026-43300 CVE-2026-4330=
+1 CVE-2026-43305 CVE-2026-43306 CVE-2026-43307 CVE-2026-43320 CVE-2026-4332=
+1 CVE-2026-43322 CVE-2026-43323 CVE-2026-43325 CVE-2026-43326 CVE-2026-4333=
+5 CVE-2026-43337 CVE-2026-43346 CVE-2026-43347 CVE-2026-43348 CVE-2026-4334=
+9 CVE-2026-43351 CVE-2026-43354 CVE-2026-43356 CVE-2026-43358 CVE-2026-4336=
+4 CVE-2026-43367 CVE-2026-43369 CVE-2026-43374 CVE-2026-43375 CVE-2026-4338=
+4 CVE-2026-43385 CVE-2026-43388 CVE-2026-43389 CVE-2026-43390 CVE-2026-4339=
+1 CVE-2026-43392 CVE-2026-43393 CVE-2026-43394 CVE-2026-43395 CVE-2026-4339=
+6 CVE-2026-43398 CVE-2026-43399 CVE-2026-43400 CVE-2026-43401 CVE-2026-4340=
+2 CVE-2026-43403 CVE-2026-43404 CVE-2026-43408 CVE-2026-43410 CVE-2026-4341=
+7 CVE-2026-43418 CVE-2026-43422 CVE-2026-43423 CVE-2026-43431 CVE-2026-4343=
+3 CVE-2026-43434 CVE-2026-43435 CVE-2026-43438 CVE-2026-43440 CVE-2026-4344=
+2 CVE-2026-43444 CVE-2026-43446 CVE-2026-43447 CVE-2026-43454 CVE-2026-4346=
+0 CVE-2026-43461 CVE-2026-43462 CVE-2026-43463 CVE-2026-43467 CVE-2026-4347=
+0 CVE-2026-43474 CVE-2026-43477 CVE-2026-43478 CVE-2026-43479 CVE-2026-4348=
+1 CVE-2026-43482 CVE-2026-43485 CVE-2026-43486 CVE-2026-43487 CVE-2026-4348=
+9 CVE-2026-43498=0A=
+lz4: Remove a reference to the rejected CVE-2025-62813=0A=
+nfs-utils: Fix CVE-2025-12801=0A=
+openssh: Fix CVE-2026-35386 CVE-2026-35385 CVE-2026-35387 CVE-2026-35388=0A=
+python3-requests: Fix CVE-2026-25645=0A=
+python3: Fix CVE-2025-13462 CVE-2026-0672 CVE-2026-1502 CVE-2026-3644 CVE-2=
+026-4224 CVE-2026-4519 CVE-2026-4786 CVE-2026-6019 CVE-2026-6100=0A=
+python3: Ignore CVE-2026-3087=0A=
+qemu: Fix CVE-2024-6519=0A=
+qemu: fix CVE-2025-11234=0A=
+rust,libstd-rs: Ignore CVE-2024-3566=0A=
+tiff: fix CVE-2026-4775=0A=
+util-linux: Fix CVE-2026-27456=0A=
+xserver-xorg: Fix CVE-2026-33999 CVE-2026-34000 CVE-2026-34001 CVE-2026-340=
+02 CVE-2026-34003=0A=
+xwayland: Fix CVE-2026-33999 CVE-2026-34000 CVE-2026-34001 CVE-2026-34002 C=
+VE-2026-34003=0A=
+xz: Fix CVE-2026-34743=0A=
+=0A=
+---------------=0A=
+Fixes=0A=
+---------------=0A=
+apr-util: Add CVE_PRODUCT to support product name=0A=
+apr: Add CVE_PRODUCT to support product name=0A=
+bitbake: data: fix issue with varflag exclusion=0A=
+bitbake: fetch2/git: quote shallow extra ref arguments=0A=
+bitbake: fetch2/wget: handle HTTP 308 Permanent Redirect=0A=
+bitbake: fetch2/wget: limit auth on checkstatus redirects=0A=
+bitbake: fetch2: Unpack RPMs with --no-absolute-filenames=0A=
+bitbake: fetch2: validate deb/ipk data member names=0A=
+bitbake: fetch2: validate striplevel parameter=0A=
+bitbake: hashserv/tests: use valid 64-character unihashes=0A=
+bitbake: hashserv: validate unihash values=0A=
+bitbake: tests/fetch: cover checkstatus redirect auth handling=0A=
+bsp-guide: mention bootloader and device tree in BSP intro=0A=
+bsp-guide: update guide to reflect newer beaglebone=0A=
+build-appliance-image: Update to scarthgap head revisions=0A=
+build-manual: update ROOTFS_POSTPROCESS_COMMAND example=0A=
+bzip2: set CVE_PRODUCT=0A=
+cargo: set CVE_PRODUCT=0A=
+classes/base: prefer gnu-prefixed HOSTTOOLS=0A=
+classes/gtk-icon-cache: fix libdir passed to the postrm intercept=0A=
+conf/machine: fix typos in ARM and x86 README files=0A=
+contributor-guide: couple minor typo/grammar fixes=0A=
+contributor-guide: fix type "maintainance" to "maintenance"=0A=
+dev-manual: drop "PREFERRED_VERSION" from x86-base.inc snippet=0A=
+dev-manual: fix broken grammar in "Libraries" section=0A=
+dev-manual: fix grammatical error, missing word "with"=0A=
+dev-manual: fully define SOLIBS-related variables in bitbake.conf=0A=
+dev-manual: remove semicolons for rootfs commands=0A=
+dev-manual: SysVinit is the default init manager for Poky=0A=
+dev-manual: update AUTOREV explanation to match current file=0A=
+devtool: prevent 'devtool modify -n' from corrupting kernel Git repos=0A=
+docs: conf.py: add a :yocto_bug: role=0A=
+docs: conf.py: define new *_path roles=0A=
+docs: conf.py: define new {oecore,bitbake,meta_yocto}_rev roles=0A=
+docs: index.rst: update "Software Overview" to "Technical Overview"=0A=
+docs: "Transitioning ..."  Various pedantic cleanups=0A=
+docs: What I Wish I'd Known: Various pedantic cleanups=0A=
+docs: YP Quick Build: delete extraneous periods in list=0A=
+gawk-native: fix gcc-15/C23 compilation issues=0A=
+gawk: trim native build configuration=0A=
+gawk: use native gawk when building glibc and grub=0A=
+gdb: backport a patch to fix static_assert in recent GCC=0A=
+gnupg: upgrade to 2.4.9=0A=
+go.bbclass: change GOTMPDIR to improve reproducibility=0A=
+go.bbclass: disable workspaces=0A=
+grub/glibc: Bump versions to resolve hashequiv/reproducibility issues=0A=
+kernel-dev: remove references to defunct LTSI project=0A=
+linux-yocto/6.6: address ltp hang=0A=
+linux-yocto/6.6: genericarm64 fix configuration audit warning=0A=
+linux-yocto/6.6: update to v6.6.142=0A=
+lttng-modules: Fix trace_hrtimer_start build failure=0A=
+meta/lib/oe/package.py: fix path to kernel sources in save_debugsources_inf=
+o=0A=
+meta: fix generation of kernel CONFIG_ in SPDX3=0A=
+migration-guide: add release notes for 4.0.35 5.0.18=0A=
+oeqa/core/runner: stub addDuration in OETestResult=0A=
+oeqa/runtime/parselogs: update pci BAR ignore for kernel 6.10=0A=
+oeqa: Drop /git/ from our urls=0A=
+oeqa: runtime: go: Increase test_go_compile/test_go_module timeout=0A=
+openssl: upgrade to 3.5.7=0A=
+overview-manual: add ":term:" for OE Build System=0A=
+overview-manual: fix "checkout" versus "check out"=0A=
+overview-manual: fix typo, "semi-colon" -> "colon"=0A=
+overview-manual: hyphens not allowed in file version=0A=
+overview-manual: inform the reader early of "bitbake-getvar"=0A=
+overview-manual: mention that patch files can be compressed=0A=
+overview-manual: provide a more expansive definition of "layer"=0A=
+overview-manual: remind reader that meta-poky is a distro layer=0A=
+overview-manual: update deploy.bbclass snippet=0A=
+overview-manual: use correct spelling "counterpart"=0A=
+overview-manual: yp-intro.rst: add link to "buildbot"=0A=
+overview-manual: yp-intro.rst: delete really old references=0A=
+perl: link to the system zlib instead of a vendored copy=0A=
+poky.conf: Bump version for 5.0.19 release=0A=
+pseudo: Update to 1.9.8=0A=
+python_setuptools_build_meta: clean the build directory in configure=0A=
+recipe-style-guide.rst: two minor grammatical tweaks=0A=
+recipetool: Recognise https://git. as git urls=0A=
+ref-manual/variables.rst: link *MIRRORS definitions to the BitBake manual=
+=0A=
+ref-manual: add more explanation to glossary variable LICENSE=0A=
+ref-manual: clarify that PACKAGE_EXCLUDE supports DEB packaging=0A=
+ref-manual: clarify use of "PACKAGE_ARCH" in a packagegroup=0A=
+ref-manual: document RM_WORK_EXCLUDE_ITEMS variable=0A=
+scripts/install-buildtools: Update to 5.0.18=0A=
+security-team.rst: update my email address and key=0A=
+security-team: Add section on multi-project embargoes=0A=
+security-team: Tidy and update section on security team operations=0A=
+security-team: Update membership list=0A=
+setuptools3: clean the build directory in configure=0A=
+setuptools3_legacy: ensure ${B} is clean=0A=
+systemd: update musl specific patch to apply=0A=
+tzdata/tzcode-native: upgrade to 2026b=0A=
+wic: filemap: use separate fd for SEEK_HOLE probes=0A=
+=0A=
 
