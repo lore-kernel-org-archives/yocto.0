@@ -1,91 +1,76 @@
-Return-Path: <richard.purdie@linuxfoundation.org>
+Return-Path: <pokybuild@yoctoproject.org>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 7C6D9C531F7
-	for <webhook@archiver.kernel.org>; Thu, 23 Jul 2026 16:06:40 +0000 (UTC)
-Received: from mail-ua1-f45.google.com (mail-ua1-f45.google.com [209.85.222.45])
- by mx.groups.io with SMTP id smtpd.msgproc01-g2.26216.1784820349287368232
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 5A181C531D0
+	for <webhook@archiver.kernel.org>; Thu, 23 Jul 2026 23:41:05 +0000 (UTC)
+Received: from a27-192.smtp-out.us-west-2.amazonses.com (a27-192.smtp-out.us-west-2.amazonses.com [54.240.27.192])
+ by mx.groups.io with SMTP id smtpd.msgproc01-g2.8926.1784850060942217552
  for <yocto@lists.yoctoproject.org>;
- Thu, 23 Jul 2026 08:25:49 -0700
+ Thu, 23 Jul 2026 16:41:01 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@baylibre.com header.s=google header.b=h9UeUzwP;
- spf=pass (domain: baylibre.com, ip: 209.85.222.45, mailfrom: hfranco@baylibre.com)
-Received: by mail-ua1-f45.google.com with SMTP id a1e0cc1a2514c-96723c7151eso188295241.2
-        for <yocto@lists.yoctoproject.org>; Thu, 23 Jul 2026 08:25:49 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre.com; s=google; t=1784820348; x=1785425148; darn=lists.yoctoproject.org;
-        h=content-disposition:content-type:mime-version:message-id:subject:to
-         :from:date:from:to:cc:subject:date:message-id:reply-to:content-type;
-        bh=nucuK254fs4LPTWaJ11Dj/hZTXnKt7smZz6gIUuYQtA=;
-        b=h9UeUzwPa6gq2qf/o/z1XG62urVG4A+i261/gUqc0/k970vvcw2u2CTScq6eC22aX6
-         xF6iBBXEbmWH1ojv4je9OgOq77ELqTbJJivbDobf6oJGIEUcgzx9DwK7wJEGODGdlIUj
-         1nRrrIPqSHsGv/LcgsfTl1UM13TsjJWm7t3pk85qkDrltgVXgxaWQDG380cKx9zgUglH
-         x/ztw8J9heYpaJlyLx8h7lLsNLxLLGwj3xWObO4Eo4jKlKARZTZP6m50eVMA6ozkgjtj
-         CqR+3TUYSG5OV3IXx+xEn45ncjNqFWF7wZlQ/EKBV42CS2gJffuaA0PzMxcYiEHgez6l
-         /yhg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1784820348; x=1785425148;
-        h=content-disposition:content-type:mime-version:message-id:subject:to
-         :from:date:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to:content-type;
-        bh=nucuK254fs4LPTWaJ11Dj/hZTXnKt7smZz6gIUuYQtA=;
-        b=l5i7aTrBJ2vPkKDLM75zGjxMe9Jc4Fff5Ej6BsyMY1vT/24yvPoKj8D993pG8mnUku
-         jzPqTIHMo9zxq50brbVLNKfotExQCDmDdSBDMneOmcAlOzWrhxdhnTKxE65nJfWCiUJx
-         69VXhryUHaB84yGOQ4j3BsSuxqQk/w7bq+zvTqv7T6Z5Ii//DVKvficRT4wXMacM3/wV
-         OL6CT0FTMCfyXwnXzLTTaZoNKi4VXqYLHUKGbiDGsI7Sei/wt44lL846w2ujMt6g9EBg
-         s13NP3AfqamEej8VE5wzNaQcnPZwFhyaMxuE419UBZgTbINDdvE0dYHuP8/4v+4lAZOM
-         KyNg==
-X-Gm-Message-State: AOJu0YyD/rDdxlXUnONvVkxauvhj5FMw+zeH9zPQcrT2j3ww1IaFnn1o
-	TT8ggr/Vo10jaIK0LaROU3GiEKxa5SvgWEihpb1rNJFbdc8YIOa8+Ja1ILH+8C7T5KwGraNMduX
-	xQe0mx0c=
-X-Gm-Gg: AR+sD11nFinH7WcWMURSt+6oq+At8OzigrkpRh4M/T1fyvPrTnuC9pwrnc4xgWINca+
-	VseHbvdaUB0mAJEa5Chm667d2wfgL2mQM4BXwGYeymbLNGmThDtz10ItYjFbDp8AYivE6oKi3B7
-	/y0v2j7KXSgOnsv1vHuAPaHtAyvXKlpTDfyfOYz3vGuNwX56Zhh9JsZLFufduT2t8wqWRBdyiZZ
-	AsgJNCGA1VfNfKjQlL7cDELLPEWZQeo4oXRwUqF/3F0mgm9Cz7WVcJgc4xvG5TOvNV9oijZRdpU
-	MOSFmVDHH9z/zkBDC6cHVO/n3Nr4j/wA5618Eu1cAlVTrW9qKACAVAlnKTj4R3TYPvVPhD8Ltoz
-	TbdZCBpDOtzV7CBpA7Miz6HGbrs0asZ4EUyt8JuU543dn8V9U9Mm7j/ajA/a4efVOaPk14hGrHy
-	FZn9Cx64Gy5wKWaAKZk4FvdoNC3UoLyDrdtj3/BRibUG+5dDg=
-X-Received: by 2002:a05:6102:441d:b0:74a:b5e3:e96f with SMTP id ada2fe7eead31-74d5e0c8eeemr1485608137.7.1784820347984;
-        Thu, 23 Jul 2026 08:25:47 -0700 (PDT)
-Received: from hiagonb ([2804:14c:4c5:9534::a19c])
-        by smtp.gmail.com with ESMTPSA id ada2fe7eead31-74ad34087basm5461996137.8.2026.07.23.08.25.46
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 23 Jul 2026 08:25:47 -0700 (PDT)
-Date: Thu, 23 Jul 2026 12:25:44 -0300
-From: "Hiago De Franco" <hfranco@baylibre.com>
-To: yocto@lists.yoctoproject.org, yocto-security@lists.yoctoproject.org
-Subject: Is it possible to correlate CVEs with packages instead of recipes?
-Message-ID: <amIwAyJHJmT4jWY8@hiagonb>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+ dkim=pass header.i=@yoctoproject.org header.s=lvjh2tk576v2ro5mi6k4dt3mc6wpqbky header.b=S1U+bm7C;
+ dkim=pass header.i=@amazonses.com header.s=hsbnp7p3ensaochzwyq5wwmceodymuwv header.b=MQXDqMRH;
+ spf=pass (domain: us-west-2.amazonses.com, ip: 54.240.27.192, mailfrom: 0101019f915a92a8-79648cca-c930-4256-9147-708fad3e7515-000000@us-west-2.amazonses.com)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/simple;
+	s=lvjh2tk576v2ro5mi6k4dt3mc6wpqbky; d=yoctoproject.org;
+	t=1784850060; h=To:Cc:Subject:Message-Id:Date:From;
+	bh=kP4W+N45VauitZ5dYzFcaohPBuszT+O0t7IG2t6E0+k=;
+	b=S1U+bm7ClbWSCy3xVcVhkWfe7Vt0iydsuQ7VxyqmtoLaO9q3K1AnGSo0nD/hPY97
+	dWFwKPUGF5+0L66rzEyc9wjICYfGQxySYRkYkjc+9WsdP/H8UNKbpD6xvj+WyrBZHqs
+	GoJqjVmGpwx1FOrow24K1Rj7PYYE2P+Cgn3VWXBc=
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/simple;
+	s=hsbnp7p3ensaochzwyq5wwmceodymuwv; d=amazonses.com; t=1784850060;
+	h=To:Cc:Subject:Message-Id:Date:From:Feedback-ID;
+	bh=kP4W+N45VauitZ5dYzFcaohPBuszT+O0t7IG2t6E0+k=;
+	b=MQXDqMRHuzR+R8R7jXNiND8mnmmEALCHCshSaCubaC1WhtlVyAwSTl3UrevS8Pt4
+	FniNKmaYz/S+KYAjEnZO8YGv6I5J8VS43uQQBaIMGJMe5bYero9RiteEzl7VBf2YtFu
+	fxMj4NLF5Wi1ahVEzi2ikXHU2Iy2N2RaPcLTpZAM=
+To: yocto@lists.yoctoproject.org
+Cc: qa-build-notification@lists.yoctoproject.org
+Subject: QA notification for completed autobuilder build (yocto-6.1_M2.rc1)
+Message-ID: <0101019f915a92a8-79648cca-c930-4256-9147-708fad3e7515-000000@us-west-2.amazonses.com>
+Date: Thu, 23 Jul 2026 23:40:59 +0000
+From: Pokybuild User <pokybuild@yoctoproject.org>
+Feedback-ID: ::1.us-west-2.9np3MYPs3fEaOBysGKSlUD4KtcmPijcmS9Az2Hwf7iQ=:AmazonSES
+X-SES-Outgoing: 2026.07.23-54.240.27.192
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from 45-33-107-173.ip.linodeusercontent.com [45.33.107.173] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Thu, 23 Jul 2026 16:06:40 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/66658
+ <yocto@lists.yoctoproject.org>; Thu, 23 Jul 2026 23:41:05 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/66659
 
-Hello all,
 
-I am working with a project with Yocto Wrynose. By checking all the
-RPM packages installed into the OS build with Yocto I would like to
-check which CVEs affects this image and which binary packages are being
-affected.
+    A build flagged for QA (yocto-6.1_M2.rc1) was completed on the autobuilder and is available at:
 
-Yocto here is being used to serve the RPM packages to the image, after a
-'bitbake world'. Since Yocto lists the CVEs per recipe, they all apply
-to all binary packages generated by the same recipe.
 
-Example: 'openssl' produces 'libcrypto', 'libssl', 'openssl-conf', etc.,
-and they all have the same affected CVEs duplicaded by each package in
-my image.
+        https://valkyrie.yocto.io/pub/releases/yocto-6.1_M2.rc1
 
-I was not able to find a good way to deduplicate the CVEs or to check
-which package produced by that recipe is being affected. Has anybody
-faced the same issue before or have any suggestions for this duplication
-problem with all the recipe CVEs?
 
-Best regards,
-Hiago.
+    Build URL: https://autobuilder.yoctoproject.org/valkyrie/#/builders/29/builds/4274
+
+    Build hash information: 
+
+    bitbake: c251833d2062ef92fc7e77ab6456af928ad1d31a
+meta-agl: 3c55b45bf920bec93938af02f2452cd698d3bacc
+meta-arm: 167661762b7d3985751fff066b5e7355325f3ecc
+meta-aws: 64aaf5c905b47bff49060e217ee96bdd8423707f
+meta-clang: 0baedd06e78d26d3b927471cfd91960b7229a178
+meta-intel: 8877caca6b1fe6efe33c756698ce6ecdcaea2238
+meta-mingw: e2aac06ec74e46d08b7e68f61043047c761ae9f9
+meta-openembedded: 2dc51e7171cc94b55ae8cd72cac183bc7293ea35
+meta-qcom: 2eb6cef3b3c25cf80c57e8b76b1b573770465a2b
+meta-virtualization: a4987f0af6f30883e1dcd52cec66311343241d6f
+meta-yocto: e4690557fb0fffcb5e9a86d1c1ebc550bb0da090
+oecore: c0508fbea8d26242e0c761d412d727943f9d6355
+yocto-docs: 358519ca6406a89fee42c45dcaf63a37a374f33c
+
+
+    
+This is an automated message from the Yocto Project Autobuilder
+Git: git://git.yoctoproject.org/yocto-autobuilder2
+Email: richard.purdie@linuxfoundation.org
+
+
+     
 
