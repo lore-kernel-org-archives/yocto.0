@@ -1,76 +1,70 @@
-Return-Path: <hfranco@baylibre.com>
+Return-Path: <richard.purdie@linuxfoundation.org>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 913C8C531D1
-	for <webhook@archiver.kernel.org>; Thu, 23 Jul 2026 15:34:22 +0000 (UTC)
-Received: from mail-pf1-f180.google.com (mail-pf1-f180.google.com [209.85.210.180])
- by mx.groups.io with SMTP id smtpd.msgproc02-g2.26396.1784820860566081439
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 7C6D9C531F7
+	for <webhook@archiver.kernel.org>; Thu, 23 Jul 2026 16:06:40 +0000 (UTC)
+Received: from mail-ua1-f45.google.com (mail-ua1-f45.google.com [209.85.222.45])
+ by mx.groups.io with SMTP id smtpd.msgproc01-g2.26216.1784820349287368232
  for <yocto@lists.yoctoproject.org>;
- Thu, 23 Jul 2026 08:34:20 -0700
+ Thu, 23 Jul 2026 08:25:49 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@baylibre.com header.s=google header.b=Wutmr3Ql;
- spf=pass (domain: baylibre.com, ip: 209.85.210.180, mailfrom: hfranco@baylibre.com)
-Received: by mail-pf1-f180.google.com with SMTP id d2e1a72fcca58-8453427d3f4so788850b3a.3
-        for <yocto@lists.yoctoproject.org>; Thu, 23 Jul 2026 08:34:20 -0700 (PDT)
+ dkim=pass header.i=@baylibre.com header.s=google header.b=h9UeUzwP;
+ spf=pass (domain: baylibre.com, ip: 209.85.222.45, mailfrom: hfranco@baylibre.com)
+Received: by mail-ua1-f45.google.com with SMTP id a1e0cc1a2514c-96723c7151eso188295241.2
+        for <yocto@lists.yoctoproject.org>; Thu, 23 Jul 2026 08:25:49 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre.com; s=google; t=1784820860; x=1785425660; darn=lists.yoctoproject.org;
-        h=content-disposition:content-description:content-type:mime-version
-         :message-id:subject:cc:to:from:date:from:to:cc:subject:date
-         :message-id:reply-to:content-type;
-        bh=zD6Xv8GoMsK0XouhmUXCvcpsY79t+5prZmn72B9JBAo=;
-        b=Wutmr3Ql7QQcpPbDT6RZlRZHqwHwTHM209JRx6TDi7untS1FrfWrrkWS6nOuZIY5re
-         hs2xopbfOg2RzhFezQhupeOy7J2A/AcdywjjAwUlRU8CZM8k+dXvILo6aqxxIGBbqRqG
-         PBbchQ0mEYMxetd+XtfzK//46HzdVX2EfFpLpTH56hXrS5flDUObfqvEdctDmJRZBKXp
-         ZCfekqSYJRslo/I8eEIpvvY+g3ue/PXF3BuZK61UO6iKCyNOK3sKs5vSdkFh365XPIVE
-         XPl4Ja2r0UXiHapNv49O+hgUI7us0RNOYFLu0pIi+Pii161Whl2+NaYVBF31fV7MgRJu
-         Tssw==
+        d=baylibre.com; s=google; t=1784820348; x=1785425148; darn=lists.yoctoproject.org;
+        h=content-disposition:content-type:mime-version:message-id:subject:to
+         :from:date:from:to:cc:subject:date:message-id:reply-to:content-type;
+        bh=nucuK254fs4LPTWaJ11Dj/hZTXnKt7smZz6gIUuYQtA=;
+        b=h9UeUzwPa6gq2qf/o/z1XG62urVG4A+i261/gUqc0/k970vvcw2u2CTScq6eC22aX6
+         xF6iBBXEbmWH1ojv4je9OgOq77ELqTbJJivbDobf6oJGIEUcgzx9DwK7wJEGODGdlIUj
+         1nRrrIPqSHsGv/LcgsfTl1UM13TsjJWm7t3pk85qkDrltgVXgxaWQDG380cKx9zgUglH
+         x/ztw8J9heYpaJlyLx8h7lLsNLxLLGwj3xWObO4Eo4jKlKARZTZP6m50eVMA6ozkgjtj
+         CqR+3TUYSG5OV3IXx+xEn45ncjNqFWF7wZlQ/EKBV42CS2gJffuaA0PzMxcYiEHgez6l
+         /yhg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1784820860; x=1785425660;
-        h=content-disposition:content-description:content-type:mime-version
-         :message-id:subject:cc:to:from:date:x-gm-gg:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to:content-type;
-        bh=zD6Xv8GoMsK0XouhmUXCvcpsY79t+5prZmn72B9JBAo=;
-        b=Hm9uaI4fAJ8dnTTUzp0tNgV/7j61shJ+aueImUJMERd+OBYfx3UwY/HKmSeeXdVxuI
-         h7/cv38f3GdvGIrd3oZZsuzf2xjIM6/Ayjgs09B0RttodK2HwTu0vR2FYkIPo0r8qKX1
-         kmAP7BBWIwF/19xLUYqccKC44ozD3mOa9zvQPgGmi/aIfHRIY2CDa3b+HM2C/1ZVOFRh
-         kYG/4ZlA6kfzGMZIpRtLlkZMGEnvtX6tw97MOfI2RlQovuWEckZGSsHQEcgrvncNzwM8
-         QMKtHJJyTwkHkk4YoJSsTTmI5UVNPnsSlpIz5GXbuZUNhXyleaMm29zNZWbtA8Cl/T2h
-         +XWQ==
-X-Gm-Message-State: AOJu0YzoiSwc+TFOtzTslFE2JPdJCz2YJ4T8cd9U33fUCUZzUX6KRM+5
-	3xwcMpbqt+kwN1mLFhvUAXUQTYxXxcAo9fgu4q502MZ66pCRgOBePYH4JMnpKjPFNdLzPOO0zbS
-	EN10DHu4=
-X-Gm-Gg: AR+sD13EINYtRbd33goplsh87dyxKUbglOrB2LN2HqOHLjzN6++vllEd+ByZavICRNO
-	chc+yXiMb2qJoftGJkmB6VDeJG8RTmF/qJ2UHdFyDf0Qq7Iz1+wlhordopCiXKrZVqlmET7CHaC
-	ll0z2uPKnNZyCPCdRkR/b2HYxmOTU4W1MGVKyCbmUBXNxmk6bsrZQfSKtMso9YsGrNFXyaN/p+W
-	26lx2FSuhMdSIpzHBLXf1CYXGBN7YhAbaedeULXGIjteJNOvKT6OAMMiy42fCvn/dAcyYj1Ld30
-	vcr2fDwcG2V2sqLsxm/C+TYDsFucJsj3GApjUHeEi5oogyDU2YPm45i6tGEygxI2H4LSKliaqKz
-	7nFFQfrjri01Jbfy/SHnbhlxdjE5EsH2M3zRminxzQVtmckavh32Qs2OvDREijkIYtwcDv6Lv5w
-	9hk9cbCR49Xfdz/9fZNZKvOvZWG0480c3EIBnR
-X-Received: by 2002:a05:6a00:17a9:b0:848:2f7a:2e51 with SMTP id d2e1a72fcca58-84e2bb71daemr4335453b3a.64.1784820859938;
-        Thu, 23 Jul 2026 08:34:19 -0700 (PDT)
+        d=1e100.net; s=20251104; t=1784820348; x=1785425148;
+        h=content-disposition:content-type:mime-version:message-id:subject:to
+         :from:date:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to:content-type;
+        bh=nucuK254fs4LPTWaJ11Dj/hZTXnKt7smZz6gIUuYQtA=;
+        b=l5i7aTrBJ2vPkKDLM75zGjxMe9Jc4Fff5Ej6BsyMY1vT/24yvPoKj8D993pG8mnUku
+         jzPqTIHMo9zxq50brbVLNKfotExQCDmDdSBDMneOmcAlOzWrhxdhnTKxE65nJfWCiUJx
+         69VXhryUHaB84yGOQ4j3BsSuxqQk/w7bq+zvTqv7T6Z5Ii//DVKvficRT4wXMacM3/wV
+         OL6CT0FTMCfyXwnXzLTTaZoNKi4VXqYLHUKGbiDGsI7Sei/wt44lL846w2ujMt6g9EBg
+         s13NP3AfqamEej8VE5wzNaQcnPZwFhyaMxuE419UBZgTbINDdvE0dYHuP8/4v+4lAZOM
+         KyNg==
+X-Gm-Message-State: AOJu0YyD/rDdxlXUnONvVkxauvhj5FMw+zeH9zPQcrT2j3ww1IaFnn1o
+	TT8ggr/Vo10jaIK0LaROU3GiEKxa5SvgWEihpb1rNJFbdc8YIOa8+Ja1ILH+8C7T5KwGraNMduX
+	xQe0mx0c=
+X-Gm-Gg: AR+sD11nFinH7WcWMURSt+6oq+At8OzigrkpRh4M/T1fyvPrTnuC9pwrnc4xgWINca+
+	VseHbvdaUB0mAJEa5Chm667d2wfgL2mQM4BXwGYeymbLNGmThDtz10ItYjFbDp8AYivE6oKi3B7
+	/y0v2j7KXSgOnsv1vHuAPaHtAyvXKlpTDfyfOYz3vGuNwX56Zhh9JsZLFufduT2t8wqWRBdyiZZ
+	AsgJNCGA1VfNfKjQlL7cDELLPEWZQeo4oXRwUqF/3F0mgm9Cz7WVcJgc4xvG5TOvNV9oijZRdpU
+	MOSFmVDHH9z/zkBDC6cHVO/n3Nr4j/wA5618Eu1cAlVTrW9qKACAVAlnKTj4R3TYPvVPhD8Ltoz
+	TbdZCBpDOtzV7CBpA7Miz6HGbrs0asZ4EUyt8JuU543dn8V9U9Mm7j/ajA/a4efVOaPk14hGrHy
+	FZn9Cx64Gy5wKWaAKZk4FvdoNC3UoLyDrdtj3/BRibUG+5dDg=
+X-Received: by 2002:a05:6102:441d:b0:74a:b5e3:e96f with SMTP id ada2fe7eead31-74d5e0c8eeemr1485608137.7.1784820347984;
+        Thu, 23 Jul 2026 08:25:47 -0700 (PDT)
 Received: from hiagonb ([2804:14c:4c5:9534::a19c])
-        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-84e17600a72sm3327354b3a.58.2026.07.23.08.34.18
+        by smtp.gmail.com with ESMTPSA id ada2fe7eead31-74ad34087basm5461996137.8.2026.07.23.08.25.46
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 23 Jul 2026 08:34:19 -0700 (PDT)
-Date: Thu, 23 Jul 2026 12:34:16 -0300
-From: Hiago De Franco <hfranco@baylibre.com>
-To: yocto@lists.yoctoproject.org
-Cc: yocto-security@lists.yoctoproject.org
-Subject: [RESEND] Is it possible to correlate CVEs with packages instead of
- recipes?
-Message-ID: <amIz_rS3DGL_SDVY@hiagonb>
+        Thu, 23 Jul 2026 08:25:47 -0700 (PDT)
+Date: Thu, 23 Jul 2026 12:25:44 -0300
+From: "Hiago De Franco" <hfranco@baylibre.com>
+To: yocto@lists.yoctoproject.org, yocto-security@lists.yoctoproject.org
+Subject: Is it possible to correlate CVEs with packages instead of recipes?
+Message-ID: <amIwAyJHJmT4jWY8@hiagonb>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
-Content-Description: 
 Content-Disposition: inline
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from 45-33-107-173.ip.linodeusercontent.com [45.33.107.173] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Thu, 23 Jul 2026 15:34:22 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/66657
-
-[Resending since I was not subscribed to the lists, sorry]
+ <yocto@lists.yoctoproject.org>; Thu, 23 Jul 2026 16:06:40 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/66658
 
 Hello all,
 
