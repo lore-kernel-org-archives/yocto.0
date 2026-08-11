@@ -1,185 +1,231 @@
-Return-Path: <chee.yang.lee@intel.com>
+Return-Path: <scott.murray@konsulko.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id E6406C5AC67
-	for <webhook@archiver.kernel.org>; Tue, 11 Aug 2026 03:45:15 +0000 (UTC)
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
- by mx.groups.io with SMTP id smtpd.msgproc02-g2.46795.1786419907766435640
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 30130C5CFCF
+	for <webhook@archiver.kernel.org>; Tue, 11 Aug 2026 13:40:58 +0000 (UTC)
+Received: from mail-ej1-f43.google.com (mail-ej1-f43.google.com [209.85.218.43])
+ by mx.groups.io with SMTP id smtpd.msgproc02-g2.54282.1786455649076896094
  for <yocto@lists.yoctoproject.org>;
- Mon, 10 Aug 2026 20:45:08 -0700
+ Tue, 11 Aug 2026 06:40:49 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@intel.com header.s=Intel header.b=Z+lqHRgk;
- spf=pass (domain: intel.com, ip: 198.175.65.9, mailfrom: chee.yang.lee@intel.com)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1786419908; x=1817955908;
-  h=from:to:subject:date:message-id:
-   content-transfer-encoding:mime-version;
-  bh=Ndt3yJBx6NsAqLO0eiysTYIzhw2v8CJA/iGCwxWdyzs=;
-  b=Z+lqHRgkLuSF4Xf3cUhwlO9HXsQATUAvTJKqqBGky9jTx7TF0Ikc0zs8
-   ear3ILhOW+N57NfA+Bid+K0TUxgHSCq/v6TYWuynbeebDz/GOyRlrQFIS
-   aVCV4IeNbUArZtxM2YYX8uHO7ZCu5Oticst4PIikLIeHvl0nsLG+5k7x3
-   6DbOYEbvr4sHBe4ZOfOPo7hmMTKwK9M79sLT2SsZje6A43hkkuLJZP5R7
-   ER4QAHjA24Hcs1wAG5UHYyl+67y58st7wx/icqiVKYFtLSUNDv0jcJt4X
-   uo0E6EL4UeFX+zJ0XOrSvJzSOLEFESwxfn9/+zsEpU2rwpuA3VUsepTRl
-   Q==;
-X-CSE-ConnectionGUID: nN7S2ff3SYWv6st3PtkwRQ==
-X-CSE-MsgGUID: Br3L7mT4RJyHCXQx2y7mMA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11871"; a="109731744"
-X-IronPort-AV: E=Sophos;i="6.25,217,1779174000"; 
-   d="scan'208";a="109731744"
-Received: from orviesa007.jf.intel.com ([10.64.159.147])
-  by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 10 Aug 2026 20:45:07 -0700
-X-CSE-ConnectionGUID: UuZ9Reb9RyaprhmiXhH2lA==
-X-CSE-MsgGUID: f7hcnY0ZSDC2pGkXjH88iQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.25,217,1779174000"; 
-   d="scan'208";a="263269818"
-Received: from fmsmsx903.amr.corp.intel.com ([10.18.126.92])
-  by orviesa007.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 10 Aug 2026 20:45:07 -0700
-Received: from FMSMSX903.amr.corp.intel.com (10.18.126.92) by
- fmsmsx903.amr.corp.intel.com (10.18.126.92) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.45; Mon, 10 Aug 2026 20:45:06 -0700
-Received: from fmsedg902.ED.cps.intel.com (10.1.192.144) by
- FMSMSX903.amr.corp.intel.com (10.18.126.92) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.45 via Frontend Transport; Mon, 10 Aug 2026 20:45:06 -0700
-Received: from CH1PR05CU001.outbound.protection.outlook.com (52.101.193.35) by
- edgegateway.intel.com (192.55.55.82) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.45; Mon, 10 Aug 2026 20:45:06 -0700
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=ydsZ5o5Mya1e99j+YjA6kzp+/cBLmkUerbKlzGmHDVDB5Qirma0tDRYFBIMxhhoxEOHFLAieXa0d2kseZ/cjCnHU1k/ZVnMm5jv2JiQXeVnNPTrelhWskIAAINMD2sgGIBybOZRJDbhYKQ+BHCj3ADeq00EYWqZFcs+AVg0tJMetw/7Pv8Ql4grPhoByrz+n1lbTJZLjhKTQevjqISMvQrgeVt5r/xh5LcCchcZ87gUoxGHlHISOQC0+D3kcfaP0Wuiuti0Kx+eWHPtvOYY5LhuM53lTSwAcm4EkUGjjyO0lm7elROSxztiQT1d6mraW4yZQ9UHb/Kt9nVwxfRT/Yg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=Ndt3yJBx6NsAqLO0eiysTYIzhw2v8CJA/iGCwxWdyzs=;
- b=kSAarhjja6p7KrtEpnRO70v7baMGAzwtAyW7pXN7F8AWKDcIXzbXarQXZpuIN9HTTb9cMFQrk6Xolx49Il929qW7OaY53oWOCUKnp2jJJ/BX7wjmgPozeLNFG6X7BTBTrlEYiWoRyweOpxBDZvo2D2dkkMHh+lBOT0Ri+DkUNSVhoJ+E5u26xG82PSzvw7DMSr2sagO6u6U90hbRR9ecP96AAdmAZldsGC1eHrIJ6xtG4EZUGeb2Y01jkanE7DU5u0O5gjjPcTE5MNAn+8+gRCKQtFflXSTu3Cog8NlLXtxIyt/b0aGlBDbUxgLyuCVl5F+ZjYxvKeWdwBALzqn/rw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Received: from BL4PR11MB8797.namprd11.prod.outlook.com (2603:10b6:208:5a7::8)
- by DS3PR11MB9621.namprd11.prod.outlook.com (2603:10b6:8:38f::6) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.292.25; Tue, 11 Aug
- 2026 03:45:05 +0000
-Received: from BL4PR11MB8797.namprd11.prod.outlook.com
- ([fe80::fe4:8775:47fa:b7d9]) by BL4PR11MB8797.namprd11.prod.outlook.com
- ([fe80::fe4:8775:47fa:b7d9%6]) with mapi id 15.21.0315.008; Tue, 11 Aug 2026
- 03:45:05 +0000
-From: "Lee, Chee Yang" <chee.yang.lee@intel.com>
-To: Yocto-mailing-list <yocto@lists.yoctoproject.org>,
-	"yocto-announce@lists.yoctoproject.org"
-	<yocto-announce@lists.yoctoproject.org>
-Subject: [ANNOUNCEMENT] Milestone 2 for Yocto Project 6.1 (yocto-6.1_M2)  Now
- Available
-Thread-Topic: [ANNOUNCEMENT] Milestone 2 for Yocto Project 6.1 (yocto-6.1_M2)
-  Now Available
-Thread-Index: AQHdKUOIidvJ6LoSzkyTsslOPu07LA==
-Date: Tue, 11 Aug 2026 03:45:05 +0000
-Message-ID: <BL4PR11MB8797A21C58420AB38B84DE18B9DD2@BL4PR11MB8797.namprd11.prod.outlook.com>
-Accept-Language: en-SG, en-US
-Content-Language: en-SG
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-msip_labels: 
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: BL4PR11MB8797:EE_|DS3PR11MB9621:EE_
-x-ms-office365-filtering-correlation-id: 6004415b-39e0-4347-8b0a-08def75aee5f
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;ARA:13230040|23010399003|366016|1800799024|376014|38070700021|11063799006|56012099006|10067099003|18002099003;
-x-microsoft-antispam-message-info: pEs5LftRRj9EipPO2UXnBD4KLQqjb1xa+5mjxwezNVCQdnoE0wcCHus4d/ZiXGxsW3H8MAneR89d5s091k+0sA8UV8dmVHwa1hxF3ohei3lVXw7/Z/66YQWz8I09PI82LvOzTzR7WgtjlRpORHDFX7g1VdtSvVGJYAubuDjxPdlOoj46LUqj/v81ADYxuq2WJITWWNVA3YCZ3cVsXHotzq9LAaceazWaHVtYUHnxX47aSzIIKp6As0qTrOCTS1OHfyuQEyRDKvpFEkrqwW2U+E0bR/bVjZpztP7Q/+x8AugNBqkpf/5T3nFaTetCVwm6RvKsLf8JZou6oCR5W0mqcAgv0XjmekAmhB1H1xulix2VWndvU24lhP71LVJR+zWFWnGBTuz9mjCCiGFzy4xwgIeD19NcMV9VByhHXY3MKLfcYhNEYiw678FidFim5Ap7IpNBZoOlQwtSb2ProS4xzXR687NHcOALmXU4tUm+IexwrUmBhCUf8aMPtRlPa5GRJj1WzDKymnUCnofsBu2f13oEUrmsUOwayBc7B4LhZYD+TBaScY7xTn2qBnMIJIEF2b6pdoL9ylY5UARZWhtapkZnLpkOH9dOTtl6YCrBdpnfFCBPIliKlWn1QL4DCPs6WYRvCSE9RON3fDwic44r9TJEU2QOA65bh5xMtJTjPQF/pxhgzbtCVxToWJrhqptpvNABbuFmu+4hZuqwuEyRaTyA+jCLT82xH9Jjd9F4xeM=
-x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:BL4PR11MB8797.namprd11.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(23010399003)(366016)(1800799024)(376014)(38070700021)(11063799006)(56012099006)(10067099003)(18002099003);DIR:OUT;SFP:1101;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?iso-8859-1?Q?VlKSFe7VbETZg0Iv7ZcPxMNPqzGbKccsRaqG4/VM4mTBg/hVg8vzjO73xQ?=
- =?iso-8859-1?Q?iy7DTb8volTLtno4+n0TNe5QWkhF9JiV+aD89WCBmesf6IBxjkH8NdPkjc?=
- =?iso-8859-1?Q?fVgeCyXW+5SXGotHK3wrjZ9VyWAu5EOFlS++acifn9AYisaCbfEhd4p8Pg?=
- =?iso-8859-1?Q?M1ZMJwzyzLb6KUk/6IR8CIhHGuN4t+kyeohiVU26m9lbeKXYiVxJkeUNws?=
- =?iso-8859-1?Q?RVHK+ve1HjFjNVHdWZDu3tdXHG074DqO3rXBBQI9lcBRemJk0eBj4oGFX/?=
- =?iso-8859-1?Q?0qSxInwfrOZ88xS1S2i1hOYOx8xjiYyc1xbHhC/H6Za1rfHn2dgLjfF4ID?=
- =?iso-8859-1?Q?DkRihPM7W8hix+rJUbhtZzL1JMoT5HV0uvlRTTZLnay6FtYhzGoEdTVyOM?=
- =?iso-8859-1?Q?NZOAhMkbwT4bO+F+BYE8Mau1hvWQbExXG4W3Cn7d2vVsZDvBafmaM+IvZT?=
- =?iso-8859-1?Q?rxCJt57xfrhWZjQF1KpoQeEEj429F/Fx3eiKVVkcWgWAh/3en+5HoAPvdA?=
- =?iso-8859-1?Q?4VP2njq3THk6TYK9HdY8O4H/84Nx3QECer968puXBks2Uj7+bKiU2suli/?=
- =?iso-8859-1?Q?Kn9AWVxMWnUP7yKmVeG144IP5E30zFT1eXiK4pI4jW2yvpvok0IAjbF2Oe?=
- =?iso-8859-1?Q?aLLCwkX6YSeZjfrxW9cdbg7cGXSlz7RBOjkqQ8XbCf0V0Ske7rntJcYZSX?=
- =?iso-8859-1?Q?6lj4dwIHlNI382202pygljvYKmg6FwNo8zWwJl8AoPbXRQqKeX3S+bUCYZ?=
- =?iso-8859-1?Q?xkI3HkA3qWIKwnqNUEIyzahAApeutd+IkN1K9eixtEzhW47BAcRTfin0CE?=
- =?iso-8859-1?Q?e4WI3ZADORS2RaPMHqyc4X7QaXBoZEdJN5wa9KQWimByH4pXXnp6km2uM8?=
- =?iso-8859-1?Q?qllyi9Z3sql7x36SXjWU1FTCPmshCohUhVjjRjqvt7nCOm1+fPJw3YzQ7i?=
- =?iso-8859-1?Q?NX4+Mndr9npIEPrAV6Tr5ewKFaLu8jEGBptiijgrU6DD/A+2WHqybZFPai?=
- =?iso-8859-1?Q?klr+0WBKS8NSeQYL7fPLbuCNAqQ6wj5rUM4ec1EQfWaYkqT1qofmiQEpeD?=
- =?iso-8859-1?Q?o8hZb++jXComENgJMkUEWxc9Q25vyCRV3423dKQLGx4/MwfAnWpqwSyN6b?=
- =?iso-8859-1?Q?bSfpq2bzGChnvsALhdmV4mE0Cy5jDEH1IGsO9j5JprTS4QWq0xtL2bO+HA?=
- =?iso-8859-1?Q?HBTmQrkiSagQ/TckfQ2tStmZy6ocJ20LUt+DIIRTCh9xVpFU1DJFzCBLDV?=
- =?iso-8859-1?Q?fsR42uwaVeAwi+6pNcdLIsa/ko11Sn7LTOAtm5bBJc4JqYJ8S6NzfXOI8K?=
- =?iso-8859-1?Q?34lfDg0CadOxLfqD+/BvaCQePAkh4a4esvWdTAfMJEmovUT3yqojw8tal9?=
- =?iso-8859-1?Q?IYzJuvJ7JyJAvXSoM72pILNoTJ6CMCisG78JNsTCIQxQH5vv0mshVt7pOO?=
- =?iso-8859-1?Q?iZ85Xi22e+bgxJzrZpSV+kFy4VZ9w3xgqcEjjpQ5GtKKT9jILmZ2z3Cmf9?=
- =?iso-8859-1?Q?Tl0/nY8aNDQfv1Pv9e9LvPFYVYseiJsB31paRaHJtshB1wpIj0I2Q6NaTK?=
- =?iso-8859-1?Q?LNpsBVk9M7SXkzzRxs3VqdyTLHwlFlAKriohqoZ77U7EjSsFnaB5t4cYIC?=
- =?iso-8859-1?Q?8miSHFXb+p7+cLFAH0G72NJITpbYTTEOfh60G2XxFKUcX9KMwJuSXfyMnQ?=
- =?iso-8859-1?Q?0XmO07bGA4MEFN3fwz/atKwCC2F7b2cxpwBok1cFj0wzRS3T7tyXUt7Kcl?=
- =?iso-8859-1?Q?R1w8olAjTc0WATk3LFeZbKG3eHWOtDut2aVhHEHMiPxnYRGjxbWEtiYQD9?=
- =?iso-8859-1?Q?vbV7GdZRwQ=3D=3D?=
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+ dkim=pass header.i=@konsulko.com header.s=google header.b=HqP/upO5;
+ spf=pass (domain: konsulko.com, ip: 209.85.218.43, mailfrom: scott.murray@konsulko.com)
+Received: by mail-ej1-f43.google.com with SMTP id a640c23a62f3a-c2022323c37so416083066b.0
+        for <yocto@lists.yoctoproject.org>; Tue, 11 Aug 2026 06:40:48 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=konsulko.com; s=google; t=1786455647; x=1787060447; darn=lists.yoctoproject.org;
+        h=content-type:mime-version:message-id:subject:to:from:date:from:to
+         :cc:subject:date:message-id:reply-to:content-type;
+        bh=xYQAf2xekOshwNz0Yae56goi7KPK9txr5NZPzwxFGTw=;
+        b=HqP/upO5G5r7k/PLlmnA+nuB43fXclJOnYZ7UYSei+O+JDrcEWRSs8f+jT5FTtyiy1
+         SqSkD+3ucN47LO+32q9TxDcxMK9FlH6/KJ2eTgLg9ylw2zJiomq0Z4wBCJNwzeLuAhPe
+         lchoyfTrUqFas/piRiT6hiGKOpHZxuSYKF4zA=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20251104; t=1786455647; x=1787060447;
+        h=content-type:mime-version:message-id:subject:to:from:date:x-gm-gg
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
+         :content-type;
+        bh=xYQAf2xekOshwNz0Yae56goi7KPK9txr5NZPzwxFGTw=;
+        b=LFxoXIIhw0bxFNE4PtpJQwug4aysy09EXCKYDmZiM9SWOj88m8NK0gWyEsD1TxpEHd
+         yrIpCs73PRoKbXuj8XzngxulrIQJBQr9Rlxc4J7zbrxS3HLoRgDq7+HbNQ7CEiP0Q87P
+         IjKI6gxqK9g3TAGx5SQ3YPig5SptIv1b7oDhoOqKD2QOnWrODcS97rjCYbYVCx4dT7hL
+         s5AAlVLO4yoXMes9dbSiVRdu7ytL3XJTt72kXVFSYiOW+4gyjCz3Wj7o5n3MZ8R6NgPr
+         wuviub/YaRh8QZE2pJjbNLRYcHxUwB9Qg6Uk5AJx3abNorCYHUzOXcS0foUN4o2EW886
+         +lOg==
+X-Gm-Message-State: AOJu0YxUCN+ZqVrXc02NoNvnSoGVOqhyFttfW0y+nMHkoEGHRYVTyGyK
+	C5/gbD9N95mr/RXBoKw8cgEOmOPqRf+zqGihyWxWJtvVngnV/X6Xfh/DDcwMuvOlgE58UAqsSba
+	nSx7f
+X-Gm-Gg: AR+sD13A5mxuiLqZJtKpvOdmvxmwUwIelm9iaInecIYxSghHf1LK11IWbsXgUqBuepp
+	QYFcEQxxN/vU3OD5TZCYklWyW9Fhv5/aHsYE+R9vjV14DRD+CYSUat1tU/SNRJInmXOzTIT7PTQ
+	Lc+N6KnV+KcqZsa8DNZHKQ6l/Rec6hB+C8fTsIss7ZowYTe1lWZ/FQJ3e7VmkxLMOXgsH04yqjP
+	1eT3Yj6PbA8gyGR8S+xMVkPzsxpehpTXCRz/59R4jvfntrr185LrsDTszkIn89Ld/M0wGgHZbLn
+	1O8oSMV3GfMbYrkmE5QqF0y4D5gikc4ZmtZhuMJXCEsiDjqvCiG6DFP/sghaEMOB9EvRytJIPHn
+	yTMcy+WKGNSDuZYXPkJRRwuVSxUAlLS7fl3y7LtF0pCmMJFNlgDkeLKLL7kZEkl7VZZCfVvHdgh
+	pdg2NoFtGq+93sW9gQSwDmCgYfBWWVOfv0Eu1POJOpLIuv+5GSh6U+foxP+9sK0nlUD+ZzItHXi
+	X+nGk6a90oggDny3cgDvriCm6ocGGqp+U3mEpNfHDTrgc0RmJisYkgA/f0G5+zjL1M+FoDTEHYu
+	GWLWHPQq
+X-Received: by 2002:a17:907:1c29:b0:c1c:4a7d:c501 with SMTP id a640c23a62f3a-c20e6001676mr197371866b.1.1786455646835;
+        Tue, 11 Aug 2026 06:40:46 -0700 (PDT)
+Received: from godzilla (107-179-213-3.cpe.teksavvy.com. [107.179.213.3])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-c20e432072esm55850366b.37.2026.08.11.06.40.45
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 11 Aug 2026 06:40:46 -0700 (PDT)
+Date: Tue, 11 Aug 2026 09:40:44 -0400 (EDT)
+From: Scott Murray <scott.murray@konsulko.com>
+To: yocto@lists.yoctoproject.org, yocto-patches@lists.yoctoproject.org
+Subject: wrynose/rust mixin available
+Message-ID: <6795b198-0832-a888-7078-83fef412ab20@konsulko.com>
 MIME-Version: 1.0
-X-Exchange-RoutingPolicyChecked: r4akUr0kV1i9aCWKC56bw0Dh0wiu7ER33RwZuoSMuAnRKJtTHpWqngSRVioycomlvzyW3pAFhH6if5sgDPKXFZWM1ed+OD8BHbXQ0IH0PGrTmc/pAY9qu+YYPfFvDUpXx0EGxJ/dmSo3vBzoQx88uN1u6bDMBk+gsws19o+BhwLowpq7Dqi7dxe3tzY9hiHqcyEYRnxZGsvLcqKNnrvt3cbivPMoZCL2a3TKnOeOlqK67Xu0fMnio484rdas58wK0ySK2afKX/sPrpOTZdO0MkAw+hNURZdqAD4BFkkg8U2cSGzQFZSE7Twi8x9pJPPq1dON9dn5BsKG38IzE7jt+w==
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: BL4PR11MB8797.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 6004415b-39e0-4347-8b0a-08def75aee5f
-X-MS-Exchange-CrossTenant-originalarrivaltime: 11 Aug 2026 03:45:05.1074
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: BT0BYLKKXrPhmuxwN+SIAAo5iECC8QGIrxZcINvnICDnw+P0u7Xwxi+6s+N7pDJ8eypCyjL1kQ4ocju6h5wyOA==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS3PR11MB9621
-X-OriginatorOrg: intel.com
+Content-Type: text/plain; charset=US-ASCII
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from 45-33-107-173.ip.linodeusercontent.com [45.33.107.173] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Tue, 11 Aug 2026 03:45:15 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/66683
+ <yocto@lists.yoctoproject.org>; Tue, 11 Aug 2026 13:40:58 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/66684
 
-Hi=0A=
-=0A=
-We are pleased to announce the second milestone release for Yocto Project 6=
-.1 (yocto-6.1_M2) is now available for download.=0A=
-=0A=
-Download:=0A=
-=0A=
-https://downloads.yoctoproject.org/releases/yocto/milestones/yocto-6.1_M2/=
-=0A=
-=0A=
-bitbake: c251833d2062ef92fc7e77ab6456af928ad1d31a=0A=
-meta-agl: 3c55b45bf920bec93938af02f2452cd698d3bacc=0A=
-meta-arm: 167661762b7d3985751fff066b5e7355325f3ecc=0A=
-meta-aws: 64aaf5c905b47bff49060e217ee96bdd8423707f=0A=
-meta-clang: 0baedd06e78d26d3b927471cfd91960b7229a178=0A=
-meta-intel: 8877caca6b1fe6efe33c756698ce6ecdcaea2238=0A=
-meta-mingw: e2aac06ec74e46d08b7e68f61043047c761ae9f9=0A=
-meta-openembedded: 2dc51e7171cc94b55ae8cd72cac183bc7293ea35=0A=
-meta-qcom: 2eb6cef3b3c25cf80c57e8b76b1b573770465a2b=0A=
-meta-virtualization: a4987f0af6f30883e1dcd52cec66311343241d6f=0A=
-meta-yocto: e4690557fb0fffcb5e9a86d1c1ebc550bb0da090=0A=
-oecore: c0508fbea8d26242e0c761d412d727943f9d6355=0A=
-yocto-docs: 358519ca6406a89fee42c45dcaf63a37a374f33c=0A=
-=0A=
-Full Test Report:=0A=
-=0A=
-https://downloads.yoctoproject.org/releases/yocto/milestones/yocto-6.1_M2/t=
-estreport.txt=0A=
-=0A=
-Thank you.=0A=
-=0A=
-Chee Yang=0A=
-chee.yang.lee@intel.com=0A=
-Yocto Project Build and Release=
+I have just pushed my initial release of the wrynose/rust mixin layer
+branch to the meta-lts-mixins repository.  Like the previous Rust mixins,
+its aim is to backport the current version of Rust in openembedded-core
+master branch (currently 1.96.1) for the LTS release.  See below for the
+list of backported post-6.0 changes.
+
+Note that as with scarthgap/rust, I am attempting to ensure the selftest
+passes, and at present it does for all the platforms in openembedded-core.
+Since an existing selftest cannot be overlaid, the backported selftest
+needs to be run as "rust_mixin" if you want to try it yourself.
+See README.md in the layer for more information on the maintenance
+policy.
+
+Scott
+
+--
+
+Changes:
+
+Alex Kiernan (1):
+  rust-target-config: armv8a AArch32 Thumb build fixes
+
+Alexander Kanavin (1):
+  librsvg: upgrade: 2.62.2 -> 2.62.3
+
+Deepesh Varatharajan (7):
+  rust: Upgrade 1.94.1 -> 1.95.0
+  rust: Upgrade 1.95.0 -> 1.96.0
+  cargo-c: update 0.10.22 -> 0.10.23
+  cargo-c: upgrade 0.10.23 -> 0.10.24
+  rust: Fix reproducibility with shared source trees
+  rust: refactor source handling into a shared work-shared recipe
+  rust: Move do_update_snapshot to rust-source
+
+George Refseth (1):
+  cargo_common.bbclass: add subdir argument to git dependency to let
+    cargo find crate
+
+Jesse Van Gavere (1):
+  rust: export CARGO_BUILD_TARGET
+
+Peter Marko (2):
+  cargo: set status of CVE-2023-40030
+  cargo: set CVE_PRODUCT
+
+Peter Tatrai (2):
+  rust: fix codegen test failure on big-endian targets
+  rust: backport explicit-tail-calls test skips for unsupported LLVM
+    targets
+
+Richard Purdie (2):
+  libgit2: upgrade 1.9.2 -> 1.9.4
+  libgit: Add nativesdk variant
+
+Ross Burton (26):
+  librsvg: remove obsolete .la deletion
+  librsvg: consolidate DEPENDS
+  librsvg: consolidate PACKAGECONFIG
+  librsvg: rewrite cross gdk-pixbuf-query-loaders handling
+  librsvg: remove dependency on liberation-fonts
+  librsvg: add PACKAGECONFIGs for avif and gdkpixbuf
+  librsvg: upgrade 2.61.3 -> 2.62.2
+  classes/cargo: fix indentation
+  classes/cargo: remove BUILD_MODE, replace with CARGO_PROFILE
+  libgit2: remove library paths from installed .cmake
+  classes/rust-common: don't export rustlibdir
+  cargo: centralise anti-vendoring environment variables
+  cargo: add missing build dependencies
+  cargo-c: add missing build dependencies
+  python3-maturin: add missing build dependencies
+  python3-uv-build: add missing build dependencies
+  classes/cargo_common: move PKG_CONFIG_ALLOW_CROSS export to
+    oe_cargo_fix_env
+  classes/rust: remove unused variables
+  classes/cargo: move general assignments to cargo_common.bbclass
+  classes/cargo: consolidate dependencies
+  rust: clean up dependencies
+  classes/cargo_c: inherit cargo_common
+  classes/cargo-c: remove CARGO_C_BUILD/CARGO_C_INSTALL variables
+  classes/cargo-c: pass flags via CARGO_BUILD_FLAGS
+  classes/cargo: merge oe_cargo_build into cargo_do_compile
+  libgit2: set correct homepage URL
+
+Sundeep KOKKONDA (1):
+  rust: Upgrade 1.96.0 -> 1.96.1
+
+Taruntej Kanakamalla (1):
+  cargo_c.bbclass: pass --libdir to cargo cinstall
+
+WXbet (1):
+  rust-target-config: set MIPS ABI in the target JSON
+
+Wang Mingyu (1):
+  libgit2: upgrade 1.9.4 -> 1.9.6
+
+Yash Shinde (1):
+  cargo-c: update 0.10.21 -> 0.10.22
+
+ classes-recipe/cargo.bbclass                  |  36 +-
+ classes-recipe/cargo_c.bbclass                |  25 +-
+ classes-recipe/cargo_common.bbclass           |  68 +-
+ classes-recipe/rust-common.bbclass            |   6 +-
+ classes-recipe/rust-target-config.bbclass     |  39 +-
+ classes-recipe/rust.bbclass                   |  22 -
+ conf/layer.conf                               |   6 +-
+ lib/oeqa/selftest/cases/rust_mixin.py         |  11 +-
+ recipes-devtools/cargo-c/cargo-c-crates.inc   | 953 +++++++++---------
+ ...5.0.bb => cargo-c_0.10.24+cargo-0.98.0.bb} |   4 +-
+ .../python/python3-maturin_1.12.%.bbappend    |   3 +
+ .../python/python3-uv-build_0.10.%.bbappend   |   3 +
+ .../rust/{cargo_1.94.1.bb => cargo_1.96.1.bb} |  23 +-
+ recipes-devtools/rust/common-source.inc       |  28 +
+ .../0001-Adjust-loongarch-assembly-test.patch |  66 --
+ ...ix-flaky-assertions-in-oneshot-tests.patch |  72 --
+ .../0001-Update-amdgpu-data-layout.patch      |  44 -
+ ...001-Update-call-llvm-intrinsics-test.patch |  86 --
+ ...teps-tool.rs-switch-off-lto-for-rust.patch |   4 +-
+ ...-build-failure-with-unstable-options.patch |  63 ++
+ ...xplicit-tail-calls-disable-two-tests.patch |  39 +
+ ...lls-ignore-tests-on-unsupported-llvm.patch |  96 ++
+ ...ild-script-path-leakage-in-artifacts.patch |  28 +
+ .../rust/files/rust-oe-selftest.patch         |  52 +-
+ ...ibstd-rs_1.94.1.bb => libstd-rs_1.96.1.bb} |   4 +
+ recipes-devtools/rust/rust-cross-canadian.inc |   1 +
+ ....94.1.bb => rust-cross-canadian_1.96.1.bb} |   0
+ recipes-devtools/rust/rust-snapshot.inc       | 104 +-
+ recipes-devtools/rust/rust-source.inc         |  16 +-
+ recipes-devtools/rust/rust-source_1.96.1.bb   | 128 +++
+ .../rust/{rust_1.94.1.bb => rust_1.96.1.bb}   | 116 +--
+ recipes-gnome/librsvg/librsvg-crates.inc      | 498 ++++-----
+ ...ld-do-not-force-disable-gdk-pixbuf-l.patch |  49 -
+ ...append-RUSTFLAGS-to-rustc-executable.patch |   2 +-
+ ...e-care-of-deprecated-assert_cmd-Comm.patch |  10 +-
+ .../{librsvg_2.61.3.bb => librsvg_2.62.3.bb}  |  29 +-
+ ...m-libraries-are-private-link-librari.patch |  42 +
+ .../{libgit2_1.9.2.bb => libgit2_1.9.6.bb}    |  16 +-
+ 38 files changed, 1461 insertions(+), 1331 deletions(-)
+ rename recipes-devtools/cargo-c/{cargo-c_0.10.21+cargo-0.95.0.bb => cargo-c_0.10.24+cargo-0.98.0.bb} (82%)
+ create mode 100644 recipes-devtools/python/python3-maturin_1.12.%.bbappend
+ create mode 100644 recipes-devtools/python/python3-uv-build_0.10.%.bbappend
+ rename recipes-devtools/rust/{cargo_1.94.1.bb => cargo_1.96.1.bb} (81%)
+ create mode 100644 recipes-devtools/rust/common-source.inc
+ delete mode 100644 recipes-devtools/rust/files/0001-Adjust-loongarch-assembly-test.patch
+ delete mode 100644 recipes-devtools/rust/files/0001-Fix-flaky-assertions-in-oneshot-tests.patch
+ delete mode 100644 recipes-devtools/rust/files/0001-Update-amdgpu-data-layout.patch
+ delete mode 100644 recipes-devtools/rust/files/0001-Update-call-llvm-intrinsics-test.patch
+ create mode 100644 recipes-devtools/rust/files/0002-Fix-rust-build-failure-with-unstable-options.patch
+ create mode 100644 recipes-devtools/rust/files/0003-explicit-tail-calls-disable-two-tests.patch
+ create mode 100644 recipes-devtools/rust/files/0004-explicit-tail-calls-ignore-tests-on-unsupported-llvm.patch
+ create mode 100644 recipes-devtools/rust/files/0005-remap-OUT_DIR-paths-to-fix-build-script-path-leakage-in-artifacts.patch
+ rename recipes-devtools/rust/{libstd-rs_1.94.1.bb => libstd-rs_1.96.1.bb} (92%)
+ rename recipes-devtools/rust/{rust-cross-canadian_1.94.1.bb => rust-cross-canadian_1.96.1.bb} (100%)
+ create mode 100644 recipes-devtools/rust/rust-source_1.96.1.bb
+ rename recipes-devtools/rust/{rust_1.94.1.bb => rust_1.96.1.bb} (77%)
+ delete mode 100644 recipes-gnome/librsvg/librsvg/0001-Revert-meson.build-do-not-force-disable-gdk-pixbuf-l.patch
+ rename recipes-gnome/librsvg/{librsvg_2.61.3.bb => librsvg_2.62.3.bb} (79%)
+ create mode 100644 recipes-support/libgit2/files/0001-cmake-mark-system-libraries-are-private-link-librari.patch
+ rename recipes-support/libgit2/{libgit2_1.9.2.bb => libgit2_1.9.6.bb} (55%)
+
+-- 
+2.55.0
+
+
+
 
