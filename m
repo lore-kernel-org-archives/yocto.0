@@ -1,222 +1,173 @@
-Return-Path: <debal.ghosh@intel.com>
+Return-Path: <swami310@gmail.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 7BABDC61DB9
-	for <webhook@archiver.kernel.org>; Fri, 28 Aug 2026 13:30:33 +0000 (UTC)
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.17])
- by mx.groups.io with SMTP id smtpd.msgproc01-g2.569.1787923823628740497
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 78823C624D4
+	for <webhook@archiver.kernel.org>; Tue,  1 Sep 2026 13:52:09 +0000 (UTC)
+Received: from mail-qk1-f171.google.com (mail-qk1-f171.google.com [209.85.222.171])
+ by mx.groups.io with SMTP id smtpd.msgproc01-g2.8611.1788270720357281058
  for <yocto@lists.yoctoproject.org>;
- Fri, 28 Aug 2026 06:30:23 -0700
+ Tue, 01 Sep 2026 06:52:00 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@intel.com header.s=Intel header.b=UHh1Q488;
- spf=pass (domain: intel.com, ip: 192.198.163.17, mailfrom: debal.ghosh@intel.com)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1787923824; x=1819459824;
-  h=from:to:subject:date:message-id:references:in-reply-to:
-   content-transfer-encoding:mime-version;
-  bh=HPQnN2rd7hHDTgEiGTnGnqpWMf7q0tfhywmUmRRPvDk=;
-  b=UHh1Q488XW0GBRwONgiHB8XEQfg6s6LAEPcXAvyNgRDNAm380t8tI4iE
-   GcvrwyYxPQARBVXKt3mgDe5RICJZTpM9X/mXb1htfocvFWoN0obozZQt2
-   D8ILWv0MpjttwObF+l0G4Y7MkIqEuKBUzkGns49R2wLX/1JVPbevisS9B
-   zYdQ97QZGkaqwWVBVUNdGfvKjeKZV1w2Np9PZoqIghaGA95Qwl3D3CJbT
-   78QiGjOB5p2qmRWxPTt4rBIE/vAf7rkGluIeKMUAF2u14JXg+A6xAPr0H
-   bHnDFfniGDY3nVL/IM5mwTFB+ukG3tthDQ9QZ3GWUeSA89fIb2pKjZtIP
-   A==;
-X-CSE-ConnectionGUID: Yyi9A2NDTyGguw8k9sVeoQ==
-X-CSE-MsgGUID: LLxhq2k0SBS7CP3scIvWWg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11888"; a="88305046"
-X-IronPort-AV: E=Sophos;i="6.25,248,1779174000"; 
-   d="scan'208";a="88305046"
-Received: from fmviesa002.fm.intel.com ([10.60.135.142])
-  by fmvoesa111.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 28 Aug 2026 05:59:13 -0700
-X-CSE-ConnectionGUID: eWpKhEAcRE2h9Vni3Qk1xg==
-X-CSE-MsgGUID: i3/cVGz/SiyZP9Tp3bfrmA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.25,248,1779174000"; 
-   d="scan'208";a="291646776"
-Received: from orsmsx902.amr.corp.intel.com ([10.22.229.24])
-  by fmviesa002.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 28 Aug 2026 05:59:13 -0700
-Received: from ORSMSX902.amr.corp.intel.com (10.22.229.24) by
- ORSMSX902.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.46; Fri, 28 Aug 2026 05:59:12 -0700
-Received: from ORSEDG902.ED.cps.intel.com (10.7.248.12) by
- ORSMSX902.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.46 via Frontend Transport; Fri, 28 Aug 2026 05:59:12 -0700
-Received: from DM5PR21CU001.outbound.protection.outlook.com (52.101.62.56) by
- edgegateway.intel.com (134.134.137.112) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.46; Fri, 28 Aug 2026 05:59:12 -0700
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=cZ1f+UHHsESv9CZsJ3JR80cmcTHdPMFrXAw5RC5UIQi2FCtam0fy9f0rQoAhQt6yiLaoBwagtGcvH8tCOpS1HHzH/+b2bUdiEcL5SwDP21fgn7pqdYayUmRIcc1dK6Liv/rkePM35/KN81JpSsjxpbVOX7dgYkDQCkAmLPUoLkX0JtGnDafKP4ZvOQFZrkEmKOCWnBqoLDPzZC+DSFIwFOXF+8fyFUo7fQSQHwamu3GKS0bJkgjlu9y7hP3QlPbjoaImDmHn+yErp2uyP3Nn8x01asjytZNndhEblTFnKxvJeVntIziF2v0agVkbgJnG/6FMS46m5N2JBvmLnnpZSA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=a5zPD2+LPvz45Kty2LgZxKZ7/XvrxUVX0oW5sTYqE/s=;
- b=MMIoKDPIEXiOtUHHCSyr9doHPFxnaF3DjFOnQHCx3kV0a4HBIWTD0rQTq6gzwf/9ovEm4u/SYfIp38T9XSH/m6cJDq4EOhpz175CdXjXRJ2gAAUzJ0ujQ195gusAWv77tFYd7LnBMpcCmjOQnmJnM820ck9Yjqbj3p0uJwPA8YSoClVViyOA/B8eFE0cUOdpaQnmHIo0r1+Lp6hhuD8+9fOPlqvP3ucTEHGpNZ4/E2WM+CoUDda21YNfaVcXigS99AmfivG0vejNojUIhvfA0+/8LIjnrE5goofXOSqOQjTHtlP+sxQu6rjcbEQ32Zr+p5vcp/IHEZp6H0g44BSoLg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Received: from SN7PR11MB7018.namprd11.prod.outlook.com (2603:10b6:806:2ad::14)
- by CH0PR11MB5314.namprd11.prod.outlook.com (2603:10b6:610:bd::22) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.360.11; Fri, 28 Aug
- 2026 12:59:10 +0000
-Received: from SN7PR11MB7018.namprd11.prod.outlook.com
- ([fe80::bc48:bc16:39d:b43]) by SN7PR11MB7018.namprd11.prod.outlook.com
- ([fe80::bc48:bc16:39d:b43%2]) with mapi id 15.21.0360.006; Fri, 28 Aug 2026
- 12:59:10 +0000
-From: "Ghosh, Debal" <debal.ghosh@intel.com>
-To: "qa-build-notification@lists.yoctoproject.org"
-	<qa-build-notification@lists.yoctoproject.org>, Yocto-mailing-list
-	<yocto@lists.yoctoproject.org>, openembedded-core
-	<openembedded-core@lists.openembedded.org>, Pokybuild User
-	<pokybuild@yoctoproject.org>
-Subject: RE: [yocto] QA notification for completed autobuilder build
- (yocto-5.0.20.rc3)
-Thread-Topic: [yocto] QA notification for completed autobuilder build
- (yocto-5.0.20.rc3)
-Thread-Index: AQHdNK7OThEQfuESKEmWIYdhN1iYcLazb8WQ
-Date: Fri, 28 Aug 2026 12:59:10 +0000
-Message-ID: <SN7PR11MB7018E9B3EAC6999C98C1DC6DF4AC2@SN7PR11MB7018.namprd11.prod.outlook.com>
-References: <010101a039c0788a-1266317b-65ae-4f5a-be4e-1c4cb507bc5f-000000@us-west-2.amazonses.com>
-In-Reply-To: <010101a039c0788a-1266317b-65ae-4f5a-be4e-1c4cb507bc5f-000000@us-west-2.amazonses.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: SN7PR11MB7018:EE_|CH0PR11MB5314:EE_
-x-ms-office365-filtering-correlation-id: a1f805f4-a47a-443b-07ab-08df05042700
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;ARA:13230040|376014|1800799024|23010399003|366016|38070700021|6133799003|10067099003|56012099006|11063799006|22082099003|18002099003;
-x-microsoft-antispam-message-info: JsqHFlyQHhpfvUtxp14t0VeY38ZgO0VYAeTFTd+AvOyrPXgB0OKQ+YYsvTrryXPpJt2znJny6zbkptFKrlqgA5fLluMubscHTLBzquNZsn70nxrJ3DUj+H4gystN+Yy9tHjKQ09we6f+yBHZgwA7ez4FU2WUGRGQcFqxsh+RAXLCoMut0ja7DtN467WVi96B/3NKSSCa8lhIsS+elTBU2z5ZoB2c6Vix8pVSzZnZkVA91Xyc5PDojXEG0KgToElSTXni39oYkltsTrwSKvin4xSxUR5/Q/Bs20n60No3mCr8LJTLUGLaadXeG/+qXp+JUWAKbR2lNiOwPiqK/VB3j576UeX6AMpSiz4Op9koVn5Pt8guoHU5VJhvuNjOlLdgdRlMy/CddTA2W/BSqCl9yvUtA9+ldiGXzxyEcA9Rpj6Y+ULmuTiZpj3vcXhyoUN4+wxt27mxRVmph1IlbgBz5q18WTBuVbWEUpJP6aogxK0FkuUxp7BE2GItDpvpwlH3T/08gfkQWQfeNv5TGltupwlfuZ4qvADHBgHLzUyjv3NScQWTVG6phflKar7calKmwurelkbQOdkr/Ypby4JAC6lkImknHRjqb504LJHc6HeiRN70vYezV4dOWRVtTFQMjQ+VdEMsXFW5zRdlAz3D8MyPBVNQi2LXQnLgWFAK+BU=
-x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:SN7PR11MB7018.namprd11.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(376014)(1800799024)(23010399003)(366016)(38070700021)(6133799003)(10067099003)(56012099006)(11063799006)(22082099003)(18002099003);DIR:OUT;SFP:1101;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?ejtuJh/8lOy3E7vo9aEnfw6nnKmlw5lCcMMHkD0UmqdAFEcQV7LSEkIjE8eO?=
- =?us-ascii?Q?QOv8NRCmyBIaWx+Gqe0Bj5QXGZqku7/zdtGoF+87d6O87vmWH+8asSyE2imY?=
- =?us-ascii?Q?9H5v2+PpZfohxk1Pj6GaksMdwlCc67R0Wd1hnCfd1W0H+IWJFep04ayFyCZM?=
- =?us-ascii?Q?8us98x3qhdw/ZtuIjzAAbPBS9xw8Vq9AtjUWIZV81H4klZjonts4GEWE4gGL?=
- =?us-ascii?Q?a6OzXtwbxcHqZAMQQPibf58YCpLGnKR4g4mFkgqDvmhaBwxp8K+KGNqurV8Y?=
- =?us-ascii?Q?F3ucNsEuZbBrSMD+nYprCUFTEvaa0YCR7JV21u2uFGQYFLMS2nxDMsgrwBbC?=
- =?us-ascii?Q?XOLSGSZPnQcLhEXINQ17KJ1WF9Y5fe7hGmu3vAqoI+nurFx5e6KfScJk7wkX?=
- =?us-ascii?Q?QSwTrovQC8dwcGptKpxcZX0lyGNMhHZPJpLPztuV1ZfxHHsdSRXZpnXcPjtJ?=
- =?us-ascii?Q?itBT53IYCtsh2ZyDtdtem+Xzj++G3ldQmbQ2QxVvUmZi2wXaEX5y29w8o9ut?=
- =?us-ascii?Q?Vif2+fZRTWilRVWyVyT40rDo+ykqHQCvOLwmOvx3bvVAjm6JMDf41sy5a9xZ?=
- =?us-ascii?Q?4vYF/bADT0aw1ZBZxhGu/i5iM6hxrvv2fjqWWGFscS2bdkqSSIHuPWs92O5e?=
- =?us-ascii?Q?638FT4I+PSXbr5Ks1C0bqJ0mDp0i2V3OOX/XBTZGyaHe3wuZUfPeggoSC16K?=
- =?us-ascii?Q?IApSrO85EzjjNT9xUp5DZl1kYZV4qQpTMPUl45giTYTkUyeyF/o+1p3FOhC4?=
- =?us-ascii?Q?0liZLPKYMRS4Rk04QpOEbVA5P5qphvnwE1pAMbuhWCMw/5oxCmanlrqFimyf?=
- =?us-ascii?Q?7s6MtwAH1yopE+vBkR4gq4ZIbpGRCrmH+mL/MNbh0LRwEraKDkIE0flW2tEO?=
- =?us-ascii?Q?jCjPgBplbMCQdUO4nrF3MchHRh+BLXKrYrF03oCGmJFHR268vAP0g/hRwYbw?=
- =?us-ascii?Q?TSkCo+fMZ/c2B1iy6PnRdhCwZg8aqzExS9h2bKGbVcSXvj9dqObRTGsRSCu+?=
- =?us-ascii?Q?CsHHiBrRHfBBvll3MksreLQIegSE5s+tpf1fXVUfGxMgWDhnOQKN73UMMgaV?=
- =?us-ascii?Q?DW29zhgVIJZxFQ2ds4RpzqfxE2jZwuurY4qpkNuyc41PLyccAIFzkvVmfA9L?=
- =?us-ascii?Q?QZp47UGqkAFaXUnj7/nx6myhfYWnbvBQlDqLdi6bpi1M+LVzOueP+BSiwoMv?=
- =?us-ascii?Q?5jgBC55Duw3KXF3gO9hdADfaeCpA7PaWvdbzrgsbXzY0gMyf4T6/x7KKVgpW?=
- =?us-ascii?Q?RG4BKP4dMI+tkXGcDoA8/lIuUtcpJunZUae1C+IqIBmKr81hSbxPL4ewvMdP?=
- =?us-ascii?Q?k/QZuOdBo2Orsh9SUYfYvPToSPJOAXBIgSniHfuRk4YiWYT5iNIsp0undMvn?=
- =?us-ascii?Q?qLDGudrSJ3L4p3mToFbcsCXhHt6mdHvdt7tO/C/uXKecrCH8+eganFrSbGnP?=
- =?us-ascii?Q?jLVsj4skD/hyLhD6cwrF9NUjyP34BpDZ9u5zRHDAVsY5xYI290r0vkdKpzGe?=
- =?us-ascii?Q?m0qnVYr/Y9Q++2p9EMzMLpElpZsSGL27TbcgS2WI6qU4Ma0/4ntvtU2z78WB?=
- =?us-ascii?Q?JUEtVOM/klzUnarcCwq2hSFcLt37zfgFTDaQ4/SEt3No9vIi7pHuRl/23ZHK?=
- =?us-ascii?Q?pztdNYaC3L/1a9XJw6CKfjKHlKArlRWvmueP7ZxKL4AtbqFFbu+PzGTDStAm?=
- =?us-ascii?Q?RAmzOGWTiUkkSikgk+POwX1mLqaHF0FmiVdtEciMxyBE4CS3LEe+rIujW947?=
- =?us-ascii?Q?HsHpXna5Aw=3D=3D?=
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+ dkim=pass header.i=@gmail.com header.s=20251104 header.b=tKKHGnEv;
+ spf=pass (domain: gmail.com, ip: 209.85.222.171, mailfrom: swami310@gmail.com)
+Received: by mail-qk1-f171.google.com with SMTP id af79cd13be357-92ed3993c1eso63322085a.1
+        for <yocto@lists.yoctoproject.org>; Tue, 01 Sep 2026 06:52:00 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1788270719; cv=none;
+        d=google.com; s=arc-20260327;
+        b=mq8xOhsvvyPm60oNj1oY2au75LmUhs+kn1KhUm4iQbwevmu7LzDFr/NNDYDRjvEGvr
+         JZnHAzkKordSlsmx3nATSRkvB4/fIUSag/Y4c4XZWbIrZ9RA/HxVw73mDQswyJwSS01W
+         i8F8pOvKmFAxRfEl8vzd8I3hLQuDOqpz1ftEMrlh3fhntSEOcRxwRk52DBE3srxOvYoY
+         egoczq9p2VbsAjQEo9LNuzrHBiH/hVy53jogTWo4cqcyvLHznGfSFRz6GQ6b7EA+R2HJ
+         kr9pHeyPQB5RR8LnfzpxiTzcy3XPrlOUaBLAmLt67IdY8w5lCM/d1cv60WApKryv55ZY
+         rExg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20260327;
+        h=cc:to:subject:message-id:date:from:mime-version:dkim-signature;
+        bh=iLbmmryBLB31maBCQ3Oha8nrhIro2OOCQs+U1w8orco=;
+        fh=K6w1aCBF67TzXiQFIx8zX9AzuJ5Y0T0AFLZTUyKUyZw=;
+        b=gK4hpqkAQuoNRPHVWmM/oeZNS4lPkfeqN3knIcRX27NAhm0staLS62BjUi5KNdW2+L
+         ao+x2uFlz16Kk6lPhisQf0FGTpSmyYXBbBviJ7Y+OgvPiHaYvXl/KVpaBUtEkHkrDl85
+         7BPl7mpPvHIiN0rHEIRiJKira3KwhMs56jFKntXJHsgDtdVymWrk9SvVKQuaQpjacRZn
+         BPhs9Rbb+MHAcjf49UJWY17aoD3DQc2b3fhns03YvXHfwL5kRlxKsp/GVLueqPnHylYK
+         vaL96XkQ261Y4YonmWiH+nWk6jFn3mWC4QFKqzyGVXgmpccY3QXp1Qk4+PYoRJMXg2f6
+         Lg4Q==;
+        darn=lists.yoctoproject.org
+ARC-Authentication-Results: i=1; mx.google.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20251104; t=1788270719; x=1788875519; darn=lists.yoctoproject.org;
+        h=content-type:cc:to:subject:message-id:date:from:mime-version:from
+         :to:cc:subject:date:message-id:reply-to:content-type;
+        bh=iLbmmryBLB31maBCQ3Oha8nrhIro2OOCQs+U1w8orco=;
+        b=tKKHGnEvtgnPZGwpq3UyzVfNeDSwr/5ZM7sJB3xFr8SjT5qcy85U3gX8PW3s0b2b5l
+         1ZHBxtJthdK9RW7OYng24tsLLxDA7lYY85sM0M/E3+91+9plUkdj6mZ35Fy7XAJkY4V4
+         +sE9luGsfrvF5f148TDis+JkimJv4vcXE7E1D1qwcOZ7M2c++JqquX7TNeKtd9IwmOjJ
+         Gl4oKSkc985afT54QU+PKEiDMdktyfwATAsZ/a6p2UXEz39xjTMaDLvZVOH4JWg70VyJ
+         mRT7YzJH3zqsXcKlsn31FdsAC9/olwXJ8xSMyDqJQmR/pkDBJPSgt3u5J+MhDitqcAnI
+         mJeQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20251104; t=1788270719; x=1788875519;
+        h=content-type:cc:to:subject:message-id:date:from:mime-version
+         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to:content-type;
+        bh=iLbmmryBLB31maBCQ3Oha8nrhIro2OOCQs+U1w8orco=;
+        b=qGsi8mRQKGdGW/56aEQ5y69ImTJRn8V7Z2xjqVt0/8no1SHK+xqBRreG4cpO+9PHkT
+         iAhippj0sVPOBh8F+6Aa9R/9HmOvtIpYIEKfuErBPJad0ITP7v4Obe2qyVsbeIcg7/MT
+         mZqaM2VhcZHvXUMraEh1aflCjQbPmw6Syts4GIXHbZ+J05Grx4dt88lxjFaoE5w+9WNK
+         crE6Wn/DpTbmJpjANfw8ZTI/LK/AWfhjoDcBoZJSow+YTIh04ayHOBGqWT1+2g+L4GPD
+         S4vsH0oUBMo46jTNOApHjZ2kNJSy7bDjNEJcPdLRZpu+DAyK12jRjRIDfgwdhdYdeM9d
+         uP9g==
+X-Gm-Message-State: AFuF++l9Oxo5TVp2GzGMRrlLlpmdyqNjgUQE7jpjHcO7sAeDrw9M5OB8
+	afCTyt503TgcaUEHqMzm2DFvzszcwwyEb+EbwmXtyrLLQ6JgQ6pYFC3l9B0bGePqDSQ5S+GYBPV
+	8FPjuWKQA6bsqgVjyftyxFw8jDTk/zNSOloGe
+X-Gm-Gg: AR+sD13rN86mHivGbH82Mr4G+fEC9MOecSWKB7tnH7fjGyTGLxsAFo3dxfJfznBxG/l
+	N+E1lNpbfpUEpU1molrGEat8cNpR0myJtUFqOvycdMohn0u+u2nT6L9ueP0b8VaIlPG61fzaiBe
+	JrDdwOkuwDIX+gMAAWhItCwwiTe1rtdTh22amR9d4iA5AWDCkD/+g6lDo219iJaP9tsFsRjY7ma
+	jmE9jfaZK+mpw52qU3rU1l99k+OUwmGBzl/byq85gDMJm66oNUuV9z2bzr6Sq4wGSh62lP2OhwV
+	mbyd7UJapCYdxFUSb6gViAkpRCUTFBkiqKtc7L80vxj21tE6gU6fEb3VQP9sQOgV5HbURXxGa+S
+	rbJkXPZNK1HHl
+X-Received: by 2002:a05:620a:a115:b0:937:58a2:45c6 with SMTP id
+ af79cd13be357-93913904268mr3584036685a.31.1788270718877; Tue, 01 Sep 2026
+ 06:51:58 -0700 (PDT)
 MIME-Version: 1.0
-X-Exchange-RoutingPolicyChecked: ssm1FHvHAzEbJh6RsRgHJm3Cg/rBUe5b0TtvH82KYhT2o0pLzZ3eeEot+NURL3ojpxqNyRDb4ymJYlwm0UI+7k6h0Q/wnIp58kTsHRQfkPEOEGE8aVSPNiuew9j/624sSt5X7gcJTH/CCZWiS53yyd3/PUan1NqhLBQMP4fp0No0fbIj/bA9M9cwWtRul5kFnkVoF8vesccSReRZAU89eol0+/jspurLQuNMFSxJqj9kOQn6TeWnYneMQ50AP3jZk5b4bP0o7Z5ODC8OQW51e7135CA8rJ8wyurOwEMjfLcL5J12XD+6krSQY0dB7S4ioIUWCp0JfDjjbmTjPyiDAw==
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: SN7PR11MB7018.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: a1f805f4-a47a-443b-07ab-08df05042700
-X-MS-Exchange-CrossTenant-originalarrivaltime: 28 Aug 2026 12:59:10.1922
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: uYGkK6+T/bwzQ4WzyXBcv4MThzGrkSSqMwMA3VW5LOOchWULfQErx48B7mudjX0ihBkEL3wCOs8mQVr2jBbxlQ==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CH0PR11MB5314
-X-OriginatorOrg: intel.com
+From: Swaminathan K <swami310@gmail.com>
+Date: Tue, 1 Sep 2026 19:21:47 +0530
+X-Gm-Features: AcwNN1VyEoXGjt6fSGrQUfPdFxhpyawrn8YRZAiNQ9bEaQ4-5Ecan-GojyESu3Q
+Message-ID: <CA+-_Cq=SWJf7-TniK6iLaXzNe9zeSAhWMxkzRtjZT9H_MSAMcg@mail.gmail.com>
+Subject: LLM Performance: Yocto vs. Ubuntu
+To: yocto@lists.yoctoproject.org
+Cc: Michael Opdenacker <michael.opdenacker@rootcommit.com>
+Content-Type: multipart/alternative; boundary="000000000000f61458065a6c3880"
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from 45-33-107-173.ip.linodeusercontent.com [45.33.107.173] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Fri, 28 Aug 2026 13:30:33 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/66699
+ <yocto@lists.yoctoproject.org>; Tue, 01 Sep 2026 13:52:09 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/66700
 
-Hi all,
+--000000000000f61458065a6c3880
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Intel YP QA is planning for QA execution for YP build yocto-5.0.20.rc3. We =
-are planning to execute the following tests for this cycle:
+Hi all
 
-OEQA-manual tests for following module:
+I have been experimenting with running local LLMs on a Yocto image and
+compared the performance to standard Ubuntu 26.04 LTS.
+My goal was to determine if the significantly lower idle RAM usage of Yocto
+(~100MB vs. ~1GB on Ubuntu) translates to better inference performance.
 
-OE-Core
-BSP-hw
+Test Environment & Setup:
+    I ran three tests :  Test 1 : on Ubuntu desktop 24.04 LTS
+                                  Test 2 : On Ubuntu server 26.04 LTS
+                                  Test 3 : Yocto Linux  ( Wrynose)
 
-Runtime auto test for following platforms:
+ I ensured the same version of llama-cpp was used was compiled with these
+flags enabled: (-march=3Dskylake -mavx2 -mfma).
+ Note: This was critical.  without these flags, performance was negligible.
 
-1. Amston Lake
-2. Bartlett Lake
-3. Meteor Lake
-4. Alder Lake-S
-5. Raptor Lake-P
+and tested on the same Lenovo laptop with 16GB RAM
 
+Observations:
 
-ETA for completion: 1/09/2026.
+    Ubuntu Desktop vs. Yocto: Yocto was the clear winner. I guess , the
+massive idle overhead of Ubuntu Desktop noticeably hurt performance.
+    Ubuntu Server vs. Yocto: Surprisingly, Ubuntu Server showed a slight
+edge in prompt processing, while generation speeds were nearly identical.
 
-Best regards,
-Debal Ghosh
+Performance Comparison (Ubuntu Server vs. Yocto wrynose):
 
------Original Message-----
-From: yocto@lists.yoctoproject.org <yocto@lists.yoctoproject.org> On Behalf=
- Of Pokybuild User via lists.yoctoproject.org
-Sent: 25 August 2026 21:59
-To: yocto@lists.yoctoproject.org
-Cc: qa-build-notification@lists.yoctoproject.org
-Subject: [yocto] QA notification for completed autobuilder build (yocto-5.0=
-.20.rc3)
+    Qwen 3.5 9B:
+        Prompt Processing (pp512): Ubuntu 16.79 t/s vs Yocto 15.62 t/s
+        Generation (tg128): Ubuntu 4.85 t/s vs Yocto 4.77 t/s
+    Llama 3.2 3B:
+        Prompt Processing (pp512): Ubuntu 46.41 t/s vs Yocto 44.09 t/s
+        Generation (tg128): Ubuntu 12.86 t/s vs Yocto 12.88 t/s
 
-
-    A build flagged for QA (yocto-5.0.20.rc3) was completed on the autobuil=
-der and is available at:
-
-
-        https://valkyrie.yocto.io/pub/releases/yocto-5.0.20.rc3
-
-
-    Build URL: https://autobuilder.yoctoproject.org/valkyrie/#/builders/29/=
-builds/4572
-
-    Build hash information:=20
-
-    bitbake: cff3be6f664f8f07a40727ff63eeeb24d6f5e00b
-meta-agl: 97aaedbe2774c1deda43432b4bfbe725c55f9894
-meta-arm: 045eb74bd9abe7d9ccf365a2417e440ce83bcbb0
-meta-aws: cad59b89c00012ab67d8b4f105714c8aaa5c16a4
-meta-clang: cc29beb210ab94eacc53bbd67e287e4e33ede342
-meta-intel: 5d153e35b4e752505efeae368f188fac5e31cf33
-meta-mingw: a2065f321a3dbca1e69f070502917c76653d9105
-meta-openembedded: bec755063a8b5da65df626f5749496aadaa4f4bb
-meta-qcom: ec80a36bce11d8182b4bb2a6fa0359adfeccde0a
-meta-virtualization: f980aefbc8b3eeafb8d144e7fdac3c3b701a4fea
-meta-yocto: 961c2399d06fbdb04ee27d06079e186d2c4a14ad
-oecore: 70dc15941dd33270a92d1001174efb3093e79bdf
-poky: 64e69ed23703f6358ec431d3f5f1f8483f974cae
-yocto-docs: fe46d5de41930a2762a9ad2543d50e0f4e10463b
+It is interesting that while Yocto wins against the heavy Desktop
+environment, it trails slightly against a leaner Server environment. .
+I=E2=80=99d llike to understand why the "leaner" OS didn't outperform the s=
+tandard
+Ubuntu Server in this specific scenario.
+Are there specific options  that could bridge this gap?
 
 
-   =20
-This is an automated message from the Yocto Project Autobuilder
-Git: git://git.yoctoproject.org/yocto-autobuilder2
-Email: richard.purdie@linuxfoundation.org
+regards
+Swami
 
+--000000000000f61458065a6c3880
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-    =20
+<div dir=3D"ltr"><div>Hi all<br><br><div>I have been experimenting with run=
+ning local LLMs on a Yocto image and compared the performance to standard U=
+buntu 26.04 LTS.=C2=A0</div><div>My goal was to determine if the significan=
+tly lower idle RAM usage of Yocto (~100MB vs. ~1GB on Ubuntu) translates to=
+ better inference performance.</div><br>Test Environment &amp; Setup:<br></=
+div><div>=C2=A0 =C2=A0 I ran three tests :=C2=A0 Test 1 : on Ubuntu desktop=
+ 24.04 LTS</div><div>=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
+=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 Test 2 :=
+ On Ubuntu server 26.04 LTS</div><div>=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
+=A0 =C2=A0 Test 3 : Yocto Linux=C2=A0 ( Wrynose)</div><div>=C2=A0=C2=A0</di=
+v><div>=C2=A0I ensured the same version of llama-cpp was used was compiled =
+with these flags enabled: (-march=3Dskylake -mavx2 -mfma).<br>=C2=A0Note: T=
+his was critical.=C2=A0 without these flags, performance was negligible.</d=
+iv><div><br></div><div>and tested on the same Lenovo laptop with 16GB RAM</=
+div><div><br>Observations:<br><br>=C2=A0 =C2=A0 Ubuntu Desktop vs. Yocto: Y=
+octo was the clear winner. I guess , the massive idle overhead of Ubuntu De=
+sktop noticeably hurt performance.<br>=C2=A0 =C2=A0 Ubuntu Server vs. Yocto=
+: Surprisingly, Ubuntu Server showed a slight edge in prompt processing, wh=
+ile generation speeds were nearly identical.<br><br>Performance Comparison =
+(Ubuntu Server vs. Yocto wrynose):<br><br>=C2=A0 =C2=A0 Qwen 3.5 9B:<br>=C2=
+=A0 =C2=A0 =C2=A0 =C2=A0 Prompt Processing (pp512): Ubuntu 16.79 t/s vs Yoc=
+to 15.62 t/s<br>=C2=A0 =C2=A0 =C2=A0 =C2=A0 Generation (tg128): Ubuntu 4.85=
+ t/s vs Yocto 4.77 t/s<br>=C2=A0 =C2=A0 Llama 3.2 3B:<br>=C2=A0 =C2=A0 =C2=
+=A0 =C2=A0 Prompt Processing (pp512): Ubuntu 46.41 t/s vs Yocto 44.09 t/s<b=
+r>=C2=A0 =C2=A0 =C2=A0 =C2=A0 Generation (tg128): Ubuntu 12.86 t/s vs Yocto=
+ 12.88 t/s<br><br>It is interesting that while Yocto wins against the heavy=
+ Desktop environment, it trails slightly against a leaner Server environmen=
+t. .<br>I=E2=80=99d llike to understand why the &quot;leaner&quot; OS didn&=
+#39;t outperform the standard Ubuntu Server in this specific scenario.=C2=
+=A0</div><div>Are there specific options=C2=A0 that could bridge this gap?<=
+/div><div><br></div><div><br></div><div>regards</div><div>Swami</div></div>
+
+--000000000000f61458065a6c3880--
 
