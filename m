@@ -2,128 +2,138 @@ Return-Path: <richard.purdie@linuxfoundation.org>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 1B42FC79F85
-	for <webhook@archiver.kernel.org>; Sun,  6 Sep 2026 08:08:32 +0000 (UTC)
-Received: from PA4PR04CU001.outbound.protection.outlook.com (PA4PR04CU001.outbound.protection.outlook.com [40.107.162.44])
- by mx.groups.io with SMTP id smtpd.msgproc02-g2.8868.1788673127299892226
+	by smtp.lore.kernel.org (Postfix) with ESMTP id D5611C79FA0
+	for <webhook@archiver.kernel.org>; Tue,  8 Sep 2026 09:19:41 +0000 (UTC)
+Received: from mail-ed1-f42.google.com (mail-ed1-f42.google.com [209.85.208.42])
+ by mx.groups.io with SMTP id smtpd.msgproc01-g2.2739.1788856806406503440
  for <yocto@lists.yoctoproject.org>;
- Sat, 05 Sep 2026 22:38:47 -0700
+ Tue, 08 Sep 2026 01:40:06 -0700
 Authentication-Results: mx.groups.io;
- dkim=fail reason="dkim: body hash did not verify" header.i=@est.tech header.s=selector1 header.b=Wr4bBpJb;
- spf=pass (domain: est.tech, ip: 40.107.162.44, mailfrom: david.nystrom@est.tech)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=mG6dZNT552F/0s8vUQfTmjlvnCvXTwqRYJXnsaz3kfKWUtL1eUyymnSss/uN6hGfD++QIMERLWGnoFGlNABx+S9p+YOGlrynskoRgJI41lVkWP7lvs6gZZt71oDN9eKQyJIGPcxcy0fZOJNDSfuouVIOthcdL26yhTjMPGa0OIj8fFxXgsZEaS1VhsGwj1gkChqWnAWU4RxsUYAGeY0Rd6qIDO6Q51Au1JQ4wD8ILgpUgh0Jjek7s7B/fAA13dBDkMJvt8UhtbHLh0ENtos+mLUoQhXLIwYRmoyMKgHGUT/ZIbV+PvxSUS0HKXYRXafJYZ/zR/pI1LmJ47WFCF7vXg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=T+RnKiy3NF0pZ/yFaaZ2kNqkdfvyFxHdjO18NOlHIpU=;
- b=dOIA0RBMxvYOO2Mp1YX93UyM5Byrdod1KGJpMFDZ7PNfnxFZR0ls13ORhs3gCKJFxLWeLRubnxlALVc7sIPyO3Jgn+oX2zS6weW6KSdpKRIGed8MjELReqq7G/6k5k9QQODZPbh+60dpNbyRht99aDszya9KHcbr353cKya1niiS97nCHPqrkpVmVYj56fbSE5WmhlDksjd7QYV+JKJj/+QhOANWVLRPUQ6QUKI2mt+1gG88L0aUhmCqRGmk0LIcQLGr5ejDsOMwTV1CNsTX/2mzJgBC4r7OE+kGHcdzvLANFnFL+xr7bscV8qk++toiI/ijzT4dGoz2EmqU3+FcKg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=est.tech; dmarc=pass action=none header.from=est.tech;
- dkim=pass header.d=est.tech; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=est.tech; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=T+RnKiy3NF0pZ/yFaaZ2kNqkdfvyFxHdjO18NOlHIpU=;
- b=Wr4bBpJbkc4RM5vG5IhzSvZ7aQDdSY/3t0eVqayfLnBDKM7ydaZ42Gdmm6bsS2RFLXjkOn/L2o9HwJeHHKtXp6VXDMEtN3C8W+d2BnPVXjumRtEuxgVTzwFa/t4qDOyMz6ZMBJf/yMpf4zkg/qET/HHCbQmTcog2dJLpplC7Wn2RJwtXR1g8SMmvKc4BjohnZPK4HVa394SCaCB/OkiZtsYsnHF2ztbp2utMEjp14TU/sKLV6ZnJSYftCUYgqpFN13fPi/60l7C2YEF17HBGSSpl/StYW0/p8FaMlgMCYRuzrTyYaFwfsFzOvMPTSPVz/yxG/+UcirR7HdMdDHzI+Q==
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=est.tech;
-Received: from VI0P189MB3589.EURP189.PROD.OUTLOOK.COM (2603:10a6:800:2db::9)
- by DB9P189MB3527.EURP189.PROD.OUTLOOK.COM (2603:10a6:10:5f6::20) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.382.15; Sun, 6 Sep
- 2026 05:38:41 +0000
-Received: from VI0P189MB3589.EURP189.PROD.OUTLOOK.COM
- ([fe80::149:d9cc:d017:c9ec]) by VI0P189MB3589.EURP189.PROD.OUTLOOK.COM
- ([fe80::149:d9cc:d017:c9ec%5]) with mapi id 15.21.0382.007; Sun, 6 Sep 2026
- 05:38:41 +0000
-From: =?UTF-8?B?RGF2aWQgTnlzdHLDtm0=?= <david.nystrom@est.tech>
-To: yocto@lists.yoctoproject.org
-CC: tgamblin@baylibre.com,
-	=?UTF-8?q?David=20Nystr=C3=B6m?= <david.nystrom@est.tech>
-Subject: [meta-patchtest][PATCH] linux-yocto: Update version to 7.x
-Date: Sun,  6 Sep 2026 07:38:30 +0200
-Message-ID: <20260906053830.1976312-1-david.nystrom@est.tech>
-X-Mailer: git-send-email 2.53.0
-X-ClientProxiedBy: DB8PR06CA0063.eurprd06.prod.outlook.com
- (2603:10a6:10:120::37) To VI0P189MB3589.EURP189.PROD.OUTLOOK.COM
- (2603:10a6:800:2db::9)
+ dkim=pass header.i=@balena.io header.s=google header.b=F8WptzgI;
+ spf=pass (domain: balena.io, ip: 209.85.208.42, mailfrom: yann.cardaillac@balena.io)
+Received: by mail-ed1-f42.google.com with SMTP id 4fb4d7f45d1cf-6a600a1caf8so6772505a12.2
+        for <yocto@lists.yoctoproject.org>; Tue, 08 Sep 2026 01:40:06 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1788856805; cv=none;
+        d=google.com; s=arc-20260327;
+        b=RqmbcdzV4oViYfDwR/L/5B4EEvVaLMPTJXo9Oa2SuYjTjz3xBtslfJOTkf93Bii0ve
+         EgJnLITp+nZZf4LjJTh7S2WuP+JqNrAb1K+K6DrNcTpZaet7rNhO8wn0fiT7P+zmEzq6
+         x8a9AdsBw+MeiMyW9aY7UE4CWe4WihRB0Fc6fNuH+6h6oQaH3uWAvxbiu1Hb9yDrJPCE
+         wLug11/wj+80VjNhUxPoYPlu3Edn4JzanqC4LpIgsXrTW/qz+ZOu0ln+org+hMiU0xWw
+         APM6pymhwtpian4Gh+nHWhvxMcCybZq3Uv4HTGcZxAKMu0yQ/roZUWy3/Vqabhr7pi8G
+         lhpQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20260327;
+        h=to:subject:message-id:date:from:mime-version:dkim-signature;
+        bh=Zb/4FeitXykNo0R9TXoymnlTb9woPnzNX0aWARXA5XE=;
+        fh=gaHWFzVtu3p+JfCKPQnio9n4RIZglU7QiF7v1QFcvSI=;
+        b=Ro7p+23lPtMK0usnAYiE3Jtl6Ufq4cAY7v1xxV+qYJatUdIRA15O0agOHCYNOalk68
+         LCyQ8jJ7OFD0AwX1b2YdYcork+7kjOtI2IcPcIStjGhUCjiLcNMX9FC0nsx0IikIT/uj
+         6xvNW1nvqePSJZQn99iE6mtgnr00bGynufGjSHtpTXMbQ/Kfyxtb4LtmFxaKSYkopS4w
+         azOy7vMaVJnjXg57XkMHiRzBOWDY9vX9nqYD7Mk4C9ecP2I6RlMAPOnbbq0W4K+Io0b2
+         4Rv/XYWmym41FuV2NR32PXs8gCGxQ6Wvdd35H/e/DlDWDNIsb8c+5YyaOMi2HYXu/cK7
+         4BuA==;
+        darn=lists.yoctoproject.org
+ARC-Authentication-Results: i=1; mx.google.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=balena.io; s=google; t=1788856805; x=1789461605; darn=lists.yoctoproject.org;
+        h=content-type:to:subject:message-id:date:from:mime-version:from:to
+         :cc:subject:date:message-id:reply-to:content-type;
+        bh=Zb/4FeitXykNo0R9TXoymnlTb9woPnzNX0aWARXA5XE=;
+        b=F8WptzgIfC3X08prf7gfoRfBQ940tG0cI3ozsJGjV/GKsUtRr3SN5KZ4PK+fqSxb5D
+         VZiaptatnh+55TIucTXTugYNskTPLFlVHf0Ud09zUfXS1KhaIqz3fULwlvafyFQux6Ho
+         ftvK/qaDfbas6duGcHV7p3H98v4edFhCUpAgvEmmF2gOAkCHjxrxOF1DkHE2/xZb3aAG
+         YVQXx7RWnskJV2a8a3R26Fb90TWaEZojtIWNSUvZCFCZMD+xlvMKbL+OW4XnNVQE2uw2
+         xjR2kSwBaBeCnIiuW+3VmC4d7Fx9NlE3hl6xe/s6ehn6ynW8oaYn2goKHoNa/l1h9yZS
+         wGmA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20251104; t=1788856805; x=1789461605;
+        h=content-type:to:subject:message-id:date:from:mime-version:x-gm-gg
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
+         :content-type;
+        bh=Zb/4FeitXykNo0R9TXoymnlTb9woPnzNX0aWARXA5XE=;
+        b=auAJsqVPlaUCcJBwncQDYYJ/5HBEh2zEVlgJVe2v7NZAWyl3QznAAvg6gIBkB7+rX/
+         B7ooce7S6YTe8BhvP/YqslqZn8Ap5Pg2P2R98QoiXmJQx2Bt41GMFLZcbDvmsvBjrk+o
+         Yia/QBOgbhIsh6CiU1Ai0uIFIDYzn7eU4nXZn9F35Vgaqbuf3v6z/j7AJrSiHLr7tWIl
+         c/D9041Kk4e0s4LrQfVp9wOXclPM+HJdYmp3QKlnzjP1BJ23nGnUDxTdwZfjtk1x5FiN
+         v0i0oaqIRDQe2ExleyfzPzjHUdSJNgbo2nqd73RIYUSmmQGea0kM/3xBIUT2cSUkN/0G
+         S9Ww==
+X-Gm-Message-State: AFuF++loSTfgEFzLdVDG859Rg8XLDRngCpD0eS5CsyN1FsnC2AsuHixe
+	A3dR2kTakVTCHR8OsgH4OVGip6k1Qj35G7Bbz7LkPOHgWAe5cEPqH/xfGtLSlZkPIMHLJ7NAIJQ
+	CreunBj245KBf3/81ETw0l3UF0DDdue8iFeGcakqQmFDO1xJpM7ywop5JzQ==
+X-Gm-Gg: AYBFou2pW7LszB1bG1AQfk4dJxOuzBXPBVVtUJwY3gHQ7LBqwnvDF15zzniLHvqyG8D
+	iUP4RuazGhFd08fQa4idjQOYhovUF9aNLNReJfFwA/UAaul7lugahawXo8l/zkVhIn/nG9EGkD1
+	XgSX9XFHXgiRaC28L59bYbTfLPXQIiQaBmA+T0mR9xk/0791NsRWuTyzCvmMv8nKBduWQLkIi74
+	3cXkIhP6BH6d6IRTZFkd9Pwos1u9MicSGh6yQL/T3ee9S1rbmT8g7ScAAbnFT+iVfEn4lo30b1A
+	gT6X5x9B2/Uu0S+D4K1wBTPhHYxMxYM325rrQRXq718IIUqavZqAQU4WFh81OmRT0qjq5O0YZ8u
+	Gpr5auatLstEk5ViYLJ8Eqz8m95nYqQ==
+X-Received: by 2002:a05:6402:3546:b0:6a7:ee56:8158 with SMTP id
+ 4fb4d7f45d1cf-6a7ee56823emr8592328a12.38.1788856804547; Tue, 08 Sep 2026
+ 01:40:04 -0700 (PDT)
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: VI0P189MB3589:EE_|DB9P189MB3527:EE_
-X-MS-Office365-Filtering-Correlation-Id: 40014a29-e4b0-4502-9706-08df0bd91c06
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: 
-	BCL:0;ARA:13230040|376014|1800799024|23010399003|10070799003|366016|10067099003|56012099006|11063799006|18002099003;
-X-Microsoft-Antispam-Message-Info: 
-	LqU/hjHTWcK1N9pxxf9/iFUxjcU6WAZtnjF1ZgKJOEO3CdECj7O4zpDgOa1k1CnES1EeTrchAjm8Td31b4jDtpSavZgwhbvxby7RLUbNemeFHKpSBDhi4/DKnw6ZUHaExyofkHNelLFoFMZE7VopwZMAS9v/A6+gZA3uHZYZxhVShyl+ZmLbB8Cvt7M+JeUZKgRFPE7E5b8eDRhUN06nRGiH0jmZizSVdceKzR6kacvcFt2nLBcOXHP77rKPlFZQKWlb9cyZSLUYIqjxkzS/LijPzs3mBPYDz6+B1a7Gx2IfST5SN1XePamOQNQd29zrtEY+RzeH7eoBQ9WoMB/qcC/59GB5yigAziOuZmE+dRRcNv1W9NMR4S0ASM2Cx/VUEs+N5R44P/Um7csHDkF4lo8pW1fQUv0X36eJr1ac7ngO1W/evXgl33SrVcDEjewXj0ioHwDGf+p6dQgETfqHJN2d9LJI6zKw7r5pmuPFEZSGM1JMfiAyljrVTFlJwQ1nlnTTNyx9gIvBsv1PkC5WIWkzL/xjzY9jMp9VaQNDTmGm/i63LJIy27qgaYQag0GhI+JaDUm213pGH+slc5wgXlp7F5j++6fi1WYADTd1s4s/R83Ej5gWkgcHR0op9zPZyqCSmMrXAkkufIyBbU8hZMVA3HfML1rPKDdY3qdOiDE=
-X-Forefront-Antispam-Report: 
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:VI0P189MB3589.EURP189.PROD.OUTLOOK.COM;PTR:;CAT:NONE;SFS:(13230040)(376014)(1800799024)(23010399003)(10070799003)(366016)(10067099003)(56012099006)(11063799006)(18002099003);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 2
-X-MS-Exchange-AntiSpam-MessageData-0: 
-	=?us-ascii?Q?ozrXON9IbuEsZssqDnV1ifdwog7yEc+2z5sBNIG5UyBck1iMNX401p8v0ERQ?=
- =?us-ascii?Q?aoCqhpmP6JM0WbgUEj4VmYjsU7Hxy8erabhaLYY1PFNQoVdUyMA12ZyCpleq?=
- =?us-ascii?Q?88ZfIPDKoNRkIe3acb2Pexmm8M5KxvPLDlforhquZX3sRP+15LTNXaiWei6d?=
- =?us-ascii?Q?KONc0TwrkwdMFRlHntj6CX0UZTjyOl1FXysjMeWPuPmcEUz9r84CWPqsmqn8?=
- =?us-ascii?Q?eJr2UoEBLyXPKNIWDB82SuJdzt4mVUEagrTBMM4jE9uGOXTY7uc5ip4T81a0?=
- =?us-ascii?Q?0OzSJzpyUc11H3jGsXY1WoB2790mQEi5qU/BSidc8x7dGpSQy5RLucHMAopn?=
- =?us-ascii?Q?2dvuw7XVBq2/DUOZLSp4ZmsbeVpwriJ8RjZ8V8WmcaavZK/9xr1oEhFY7AM7?=
- =?us-ascii?Q?rLBsXl0USEFG4y2sId27Eeu8H/lEfrl+fdSnQaHhz3vvQstdD3kAOpLSGY+F?=
- =?us-ascii?Q?JbFQHlvAonVuQ9pf97IDa8GRYNW8p+ZGCw5KTK4SDsvl+k9ShAfOJI/C00CI?=
- =?us-ascii?Q?4nUL3BoNwbPcWylNS91dheZBJVz7v7ewP64hv6/97QELKD/vXcNO3gXUYyou?=
- =?us-ascii?Q?gfRRoelvdJYt1RJW/QQcldWJU/U3hKRKN5uwA8e4Fa5ezTgER1rZeKw+Man+?=
- =?us-ascii?Q?bNbBkAx+j8FHzHguWrBdPwFVSkd9OZ+/QaHbgqRBUmdqAb+4VNW2UkyAJe6N?=
- =?us-ascii?Q?xc6AaJms2l9wCa7g1epl7fgT+hpWrvEn7nquaGNVKpQG8DxmCxjb0Fz7h4Jh?=
- =?us-ascii?Q?Pmtb1SCl0UqH/ztHmpi68ERwzvpE/KQnQvGaQY7VCUn+JmnVeYhMMWaHGGKn?=
- =?us-ascii?Q?nnegszk7DLSLQmDhMwP8bfu6OB/qK0d8l6N/GFxPcI8+DQwo7MtsZwQlFqnw?=
- =?us-ascii?Q?BEh0ICJ+syw3S9vhtpEEDpMuauuci2dooI457XL7Bl+qkAu2pV6tVO/QKKtI?=
- =?us-ascii?Q?4U8lMzdaGaCfmpQYrHIzEw5SGzpe57xlLnQCtR4j+s0qLaMJ3e6Me1bejFAV?=
- =?us-ascii?Q?CigJaNvyvFhPz9SagG45ZOilKsdpUAXFCghTRK/NFf9r4ZWUY12Z7GzmH6a/?=
- =?us-ascii?Q?lfCtBzd1Z8YtT0l8ZbfiPhpJhIeNqH+tnlW2SqY8LXZtTWxvwvaZdzvOACgf?=
- =?us-ascii?Q?Jk6r7ztTETWWjYILOn39loKFT4Ucx5rafGolVcPgj8OJeimr3hDkUc3aTuHh?=
- =?us-ascii?Q?8TBiZHGCgMa3ZNGsu2mwpKUEKrdzBCKHItJuay/f3TuXBtIa0481j5KHQEjS?=
- =?us-ascii?Q?0EbgeIwvOv8R0JFgPvzlyVI552+NGfB5QtupIp9zcP6PMbfAWR9F9B0R1Y1G?=
- =?us-ascii?Q?uv58It4lW8uLeLI3uOCD4VYM7LhwuLzO4IbmifnsyI9i1Lve/BEWJ2B0cOQ5?=
- =?us-ascii?Q?/+/JIlK+JjKD45YJsKtzypJjNPTKj8DXEzLmomLEWg9U6No5fOKf66u8zuA/?=
- =?us-ascii?Q?nP07y7iTwisKBBmGqmCoajIlFQxq0SkyER5OoJOCJ3pzTKgALvCVJVccJUbB?=
- =?us-ascii?Q?fL3sDoG/tBolKOTTWzk/7X1NU32tTceoPmjNK8EBhftMM2vD6KXshlLUkXxr?=
- =?us-ascii?Q?EA6DGd3az5zP35Xryi+N2Ji9UCVGJvH0739eB2b/dmp8Ez88iRWJzHTPll+x?=
- =?us-ascii?Q?3D7/MYSpq9vtas5C8hDN/EFaS5ITqCZgIrXiR864V5Lu0WArhR34qZ7XWfK+?=
- =?us-ascii?Q?g8Y3azISAV9GQ3HmzKbz0O8fJEFQK0v3PN63MhqHEPjp7CbVV+5fCBh6M7fE?=
- =?us-ascii?Q?WTfh4+ZEJD/KdEj0NOpWWGAlW6Ycm4inDcj6Gq4jujmKwqUqlS17M/0H8yDQ?=
-X-MS-Exchange-AntiSpam-MessageData-1: V7v6OPdT0CCjLw==
-X-OriginatorOrg: est.tech
-X-MS-Exchange-CrossTenant-Network-Message-Id: 40014a29-e4b0-4502-9706-08df0bd91c06
-X-MS-Exchange-CrossTenant-AuthSource: VI0P189MB3589.EURP189.PROD.OUTLOOK.COM
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 06 Sep 2026 05:38:41.7191
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: d2585e63-66b9-44b6-a76e-4f4b217d97fd
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: F+S9piUOGEJime70BF4kRotLiiNKf5QDtMC8NxJlJMF9UKFCcQ7bnJc7GPKmXFHk7+Mahoqh736AZgreFvVMfQ==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DB9P189MB3527
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
+From: "Yann Cardaillac" <yann.cardaillac@balena.io>
+Date: Tue, 8 Sep 2026 10:39:53 +0200
+X-Gm-Features: AcwNN1XAIYenwLJusvXsj36Al3158UXu0wMax0S2b6vf5tC6k25hp2gvBu8tCFY
+Message-ID: <CACuRGzBAnGRfu-vRgJg5-ucBWcGfHRnsPH9mJuAubJ17K-E06A@mail.gmail.com>
+Subject: Multi-vendor Yocto distro: how do you structure layers?
+To: yocto@lists.yoctoproject.org
+Content-Type: multipart/alternative; boundary="00000000000063b25c065af4ae79"
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from 45-33-107-173.ip.linodeusercontent.com [45.33.107.173] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Sun, 06 Sep 2026 08:08:32 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/66707
+ <yocto@lists.yoctoproject.org>; Tue, 08 Sep 2026 09:19:41 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/66708
 
-Signed-off-by: David Nystr=C3=B6m <david.nystrom@est.tech>
----
- .../linux/{linux-yocto_6.%.bbappend =3D> linux-yocto_7.%.bbappend}  | 0
- 1 file changed, 0 insertions(+), 0 deletions(-)
- rename recipes-kernel/linux/{linux-yocto_6.%.bbappend =3D> linux-yocto_7.%=
-.bbappend} (100%)
+--00000000000063b25c065af4ae79
+Content-Type: text/plain; charset="UTF-8"
 
-diff --git a/recipes-kernel/linux/linux-yocto_6.%.bbappend b/recipes-kernel=
-/linux/linux-yocto_7.%.bbappend
-similarity index 100%
-rename from recipes-kernel/linux/linux-yocto_6.%.bbappend
-rename to recipes-kernel/linux/linux-yocto_7.%.bbappend
---=20
-2.53.0
+Hello Yocto community,
 
+I've been using Yocto for almost 10 years and keep hitting the same problem:
+How do you keep one distro coherent across multiple vendor BSPs and yocto
+versions?
+
+What I've tried personally:
+- stack two vendor BSPs under one distro: conflicts everywhere (Yocto
+version, kernel, systemd, invasive DISTRO layers)
+- fold the distro into each cleaned-up vendor BSP: works while the board
+count stays small, but doesn't scale, because I ended up with multiple
+version of my distro
+
+I now work at balena, where one distro is shared across many boards/vendors
+with a deliberate layer split. I'll present that layout at OSS Summit.
+
+I'd like to hear how others approach this. If you're willing to share:
+1. How you separate distro vs vendor vs board
+2. What broke when you tried to scale (version skew, DISTRO pollution,
+kernel/BSP coupling, etc.)
+3. Tradeoffs you accepted on purpose
+
+Reply here or ping me privately. Pointers to public repos are very welcome.
+
+Thanks!
+
+Yann
+
+--00000000000063b25c065af4ae79
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr"><div>Hello Yocto community,</div><div><br></div><div>I&#39=
+;ve been using Yocto for almost 10 years and keep hitting the same problem:=
+<br>How do you keep one distro coherent across multiple vendor BSPs and yoc=
+to versions?</div><div><br></div><div>What I&#39;ve tried personally:<br>- =
+stack two vendor BSPs under one distro: conflicts everywhere (Yocto version=
+, kernel, systemd, invasive DISTRO layers)<br>- fold the distro into each c=
+leaned-up vendor BSP: works while the board count stays small, but doesn&#3=
+9;t scale, because I ended up with multiple version of my distro</div><div>=
+<br>I now work at balena, where one distro is shared across many boards/ven=
+dors with a deliberate layer split. I&#39;ll present that layout at OSS Sum=
+mit.</div><div><br></div><div>I&#39;d like to hear how others approach this=
+. If you&#39;re willing to share:<br>1. How you separate distro vs vendor v=
+s board<br>2. What broke when you tried to scale (version skew, DISTRO poll=
+ution, kernel/BSP coupling, etc.)<br>3. Tradeoffs you accepted on purpose</=
+div><div><br>Reply here or ping me privately. Pointers to public repos=C2=
+=A0are very welcome.</div><div><br>Thanks!</div><div><br></div><div>Yann</d=
+iv></div>
+
+--00000000000063b25c065af4ae79--
 
