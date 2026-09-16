@@ -1,727 +1,860 @@
-Return-Path: <bruce.ashfield@gmail.com>
+Return-Path: <chee.yang.lee@intel.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id D203CC88E77
-	for <webhook@archiver.kernel.org>; Tue, 15 Sep 2026 21:49:24 +0000 (UTC)
-Received: from mail-qk2-f13.google.com (mail-qk2-f13.google.com [74.125.230.205])
- by mx.groups.io with SMTP id smtpd.msgproc01-g2.1631.1789508954843344265
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 84043C88E77
+	for <webhook@archiver.kernel.org>; Wed, 16 Sep 2026 06:52:29 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.12])
+ by mx.groups.io with SMTP id smtpd.msgproc01-g2.9067.1789541547985389244
  for <yocto@lists.yoctoproject.org>;
- Tue, 15 Sep 2026 14:49:15 -0700
+ Tue, 15 Sep 2026 23:52:28 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20251104 header.b=dEg54rhz;
- spf=pass (domain: gmail.com, ip: 74.125.230.205, mailfrom: bruce.ashfield@gmail.com)
-Received: by mail-qk2-f13.google.com with SMTP id d75a77b69052e-530fa0716f6so2143921cf.3
-        for <yocto@lists.yoctoproject.org>; Tue, 15 Sep 2026 14:49:14 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20251104; t=1789508954; x=1790113754; darn=lists.yoctoproject.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:to
-         :from:from:to:cc:subject:date:message-id:reply-to:content-type;
-        bh=wjStvyb7OTK5o26HJ9385bk9aw2SpA+zKkxk1so6sxU=;
-        b=dEg54rhz6H28/pUyE1COsGNBcgT5B+h0Z1hIOxVvfi8qSynP4QqrPew2zbbIPvRA1m
-         +rDJO2RrZvwdOqphXSgQ7gZ4hyvLJd3gxEtOfoEeMjDTyIDPRRRi4/+uH4+7TrNkl1a7
-         mkY/xufp/kNbRSAj5DEm7E7vpY+RS13zwNd0wzzKGoQn+/ZmWlEKQZD0/fLlOFUApxVu
-         FhSQ4OKwsUNWkQhHmsRPzdsDUQTKScHgtROa0G5OZ45zskijAdu/vA+aOuHh8XgqeLEG
-         wxdyt2PEFp1jpmlX0pdZUagtTd999iPCzaz03lSR9d+jzmN7OP7UbqiQtWM2Uao+p7R6
-         0olA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1789508954; x=1790113754;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:to
-         :from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to:content-type;
-        bh=wjStvyb7OTK5o26HJ9385bk9aw2SpA+zKkxk1so6sxU=;
-        b=F8tJIDXe/69eeeAHR7Z0YvgOADZ+33HKp7LgD4z54Sv1TdIyA6qsIiHmMQ9Q19SNUp
-         CC5IjX7funfoWzDhQNXxeEXwkPgtNn+VO4azfT91tJY+wWeMoaSe7wDs+ZFsHqCA7hY9
-         rB9Z1EuDE0cF4C24MHNGxPfHhCtaYAGrYUrtigjKsLSRoM1iEGs4oqjgodNOyL+bHzDA
-         Z2L42X9EcFtEjTtYlDhagjZhhavewnorhpoQ7Kqqpmt9xJx/qDgHnMw7I+DbS2n/hQkg
-         9aKYRDxjYm9uwaV34sC0ifBWOW49oUVZPxWs3z3pPyuFFQU2DBCFCNrJ1vW4B5ww1dWr
-         69cQ==
-X-Gm-Message-State: AFuF++kMKDRq6qC1Eh9wVQ/biEH8GUGz/v/WZZzqtzvtmnP8hetHmzsG
-	dVWoq4iYKw+5Q+d8kje7Ncf6TVQtv4l6rf9WBTdYREAgMExBfpczy8nGPv0jOR5q
-X-Gm-Gg: AYBFou26IdDswhcSY46LRSdsl0aGi0iB2vz34lwL/r550lXwM3Y8ZDOzsguc73wRU6X
-	eYBpuP/bU6ZK7ywjjqvQgWRTfTf9V/XcYrm2OkSkShkG4awIFrQ4haC1LW0moi9ib9F9cj2C74d
-	Ub9Vpw7lg1je6WbSycKa1N5O2S85RKcmSCY1nbJ5q9WmwKsGJJNb7N1pMGLCFIGSKxcCZnUi83l
-	zzHEU7NncwnEnE6NHM0EiFtRS/d4JlqYIaSzAMBZadhJvAYnuPWUCkJvyTrQSqnFxTlXEDXo0bB
-	uKSc749LcFgi+AXqhdFIE9uHfTlxm7CSuX6M56WqL9Id/CwnqxvwAeXq1hhqkdWdJ2MK/EjKb1V
-	vzcWMxNCNaF4dujFYgcKDzYX8sqK9J+Rogf+dM/F3m/LMzrwJMbHXVxV7aCR/B8aTPkFY20gvfY
-	VEtfTIpKPr7TAdHFmkA7kjdOnWHxj25+AIl/TtpRzZ/5PEEi/a95Asx4pJj5hoLUcRJWHJa9qwa
-	ccs+gQ5xg8puw000oGDLBCeFwYJwWU1Z9vxDoQLqixaR5mgY7oOouAMTLL50okxrrCwoVLHc9Ob
-	KXo7JjLC9t8/9OZlja3bQg254n6vOISC7723iza2IqMtVLha2VGuAb8tEo1HYvI/b4QOmU3jUPb
-	z115bpFJm8TfdsIo=
-X-Received: by 2002:ac8:7e95:0:b0:531:da7:2a06 with SMTP id d75a77b69052e-5327ed75038mr3557161cf.8.1789508952865;
-        Tue, 15 Sep 2026 14:49:12 -0700 (PDT)
-Received: from bruce-XPS-8940.localdomain (pool-174-112-62-108.cpe.net.cable.rogers.com. [174.112.62.108])
-        by smtp.gmail.com with ESMTPSA id d75a77b69052e-53262008855sm5016471cf.11.2026.09.15.14.49.11
-        for <yocto@lists.yoctoproject.org>
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 15 Sep 2026 14:49:12 -0700 (PDT)
-From: bruce.ashfield@gmail.com
-To: yocto@lists.yoctoproject.org
-Subject: [meta-yocto-bsp][PATCH 02/02] yocto-bsps: update to v6.18.50
-Date: Tue, 15 Sep 2026 17:49:11 -0400
-Message-ID: <20260915214911.1095011-1-bruce.ashfield@gmail.com>
-X-Mailer: git-send-email 2.43.0
+ dkim=pass header.i=@intel.com header.s=Intel header.b=mFmzeTvN;
+ spf=pass (domain: intel.com, ip: 192.198.163.12, mailfrom: chee.yang.lee@intel.com)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1789541548; x=1821077548;
+  h=from:to:subject:date:message-id:
+   content-transfer-encoding:mime-version;
+  bh=aHpWV1lZDjSaPPWCmuwc5R8hC5pYYFoxU+W3WpR/2yw=;
+  b=mFmzeTvNdvud9OdIvd7LDSC9S9WiAiOdbGvJWY5yhQoj/pQbzBkzRobV
+   XYiiFk6gBOriUWSs9Plo2lwsBvCLz9YTdkcE7Qr66T2wSe5Lk/TCzBeYs
+   3HWu2liyBiaKssEJnV4roMtyhxJ8e2Pr/PkkR3KvQ9LGHK1sjDSZaY/Zv
+   aXP80ka4poIOVCK/ss1KDRaPKj4WdbLegrT+1fU4DOOvt0jCOjnCUmWwC
+   /XrZw22Ta9ebAmTcGUXKBz5QN/9UgoPX6IyxrKXs6XHQ5bMFUt0WwabZP
+   JlOzMz2S+zy16JMLfxlOggkHLm/18eRwtnJZGLhBghocuxchAX0mkYdDm
+   w==;
+X-CSE-ConnectionGUID: SodXvKO4RRidW29HhMUgDQ==
+X-CSE-MsgGUID: tR9+FpftTq+/eO5Ndyjt/w==
+X-IronPort-AV: E=McAfee;i="6800,10657,11905"; a="93737416"
+X-IronPort-AV: E=Sophos;i="6.27,103,1787036400"; 
+   d="scan'208";a="93737416"
+Received: from fmviesa002.fm.intel.com ([10.60.135.142])
+  by fmvoesa106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 15 Sep 2026 23:51:10 -0700
+X-CSE-ConnectionGUID: zRE1P4TNTuSl21ZTNEINFA==
+X-CSE-MsgGUID: 2TWEh+F6Siuca68KnNil9w==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.27,103,1787036400"; 
+   d="scan'208";a="296745826"
+Received: from fmsmsx901.amr.corp.intel.com ([10.18.126.90])
+  by fmviesa002.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 15 Sep 2026 23:51:10 -0700
+Received: from FMSMSX901.amr.corp.intel.com (10.18.126.90) by
+ fmsmsx901.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.46; Tue, 15 Sep 2026 23:51:09 -0700
+Received: from fmsedg902.ED.cps.intel.com (10.1.192.144) by
+ FMSMSX901.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.46 via Frontend Transport; Tue, 15 Sep 2026 23:51:09 -0700
+Received: from CY7PR03CU001.outbound.protection.outlook.com (40.93.198.33) by
+ edgegateway.intel.com (192.55.55.82) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.46; Tue, 15 Sep 2026 23:51:08 -0700
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=Ur5UahR9/2Lke9wIwtnvxz5hIXGpSWUuHs4KE4BeFOccVfvITpPuWcv+nXyqEEXxV5Tafylc5jRfPs4CbLuXiYOUZpUBWtbrKo4/zfdlNV1cGy7O8cVSNROGJyZwI/AAq0GbjEtO2/drphM+1aKTCGuiS9fUgP4LlaCMvF4IJgT9gIgFiieT/Y1wHYuE5xzNJyG6ePSFij+2oaAMvBY2e75eIIszGgZEmtYPXJ9zFNqTnUhfhQODKXRcHp2vUegvqM+zKBmwHtcv7zy3/z9t9wCDxpSDbq+vuSnbcQrKMM1RptCP/gNo8L8K1QhZTEOPm16y3cx1854DxGCkS6tHOA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=aHpWV1lZDjSaPPWCmuwc5R8hC5pYYFoxU+W3WpR/2yw=;
+ b=bQNUaDgnXW4UsFmIJahWyrIdDCfY8XtK51pkBnNyvLNxFteMjXm3Z2ZWy3zvqDIDRv8p3yqsk0CjaKSeYwrTu35n/dJ4ESLKeM9fEG4eH4fc3kdzW2Y2lb6FBa3BnJN8FXHDJKcgHg07uI1FIzlX/MGLDi4XbbcMwd6/HhmOMj4cXJE9l6fN1CCZQVUf8CftG3ONibBFhA+YCpFqBIpV8gtLzgYBYfGv0OjY35DEus3yU/otqSe4meBbVofrJyFrViw8hrhvSLr+vFMqMvwOT5pEUzs+VHhdIlxITmRbVhGCIczvu9R0umjCCqQ2Io4+cMwCYqz/YYsvggiGHNX2vQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+Received: from BL4PR11MB8797.namprd11.prod.outlook.com (2603:10b6:208:5a7::8)
+ by SA1PR11MB6709.namprd11.prod.outlook.com (2603:10b6:806:259::20) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.406.12; Wed, 16 Sep
+ 2026 06:51:01 +0000
+Received: from BL4PR11MB8797.namprd11.prod.outlook.com
+ ([fe80::fe4:8775:47fa:b7d9]) by BL4PR11MB8797.namprd11.prod.outlook.com
+ ([fe80::fe4:8775:47fa:b7d9%5]) with mapi id 15.21.0428.008; Wed, 16 Sep 2026
+ 06:51:01 +0000
+From: "Lee, Chee Yang" <chee.yang.lee@intel.com>
+To: "yocto-announce@lists.yoctoproject.org"
+	<yocto-announce@lists.yoctoproject.org>, Yocto-mailing-list
+	<yocto@lists.yoctoproject.org>
+Subject: [ANNOUNCEMENT] Yocto Project 5.0.20 (scarthgap-5.0.20) is Released
+Thread-Topic: [ANNOUNCEMENT] Yocto Project 5.0.20 (scarthgap-5.0.20) is
+ Released
+Thread-Index: AQHdRX6qkp4iIPb1MEuxxj0BiRg4XQ==
+Date: Wed, 16 Sep 2026 06:51:01 +0000
+Message-ID: <BL4PR11MB87970590F5318825F75CC198B9B92@BL4PR11MB8797.namprd11.prod.outlook.com>
+Accept-Language: en-SG, en-US
+Content-Language: en-SG
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+msip_labels: 
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: BL4PR11MB8797:EE_|SA1PR11MB6709:EE_
+x-ms-office365-filtering-correlation-id: e678e09f-8842-4ce2-1488-08df13bedee0
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;ARA:13230040|376014|1800799024|23010399003|366016|10070799003|6133799003|7136999003|18002099003|13003099007|3023799007|38070700021|10067099003|11063799006|56012099006;
+x-microsoft-antispam-message-info: lzj5OJXUNzYCjE5VcyflJ5dDB8jzuy0Lm2FXrAVmrGpXywreHRAAKDnUNSfHdwdgCaf+ZbnvZ3wGHDjiPw7gqEE3DvvDu2rP258GpYO8zaonjj6l/oaGJDkv5Pmm5bM+sSEexnYVCoNt+vxUTJz/RIdfaDm5IY/ZsOURI7jrehP5jxrUFKG3Ac9vfZvCH5XLRW1R3cczcOFQKybq77SEJEcV/JnX3rPR9RDIetRRGUl8ZjS2AU+6+R9bpL+4inyNpKQ3MyCjDyRchfQGQF9Xv2YRQop9GvOGSAZKxeOLcoOWg7vcP4ensteohJqHOb53qFYf7ssnHhJBGEOnfbcXkg0uple+ci01dbWIzOaONibM+GCCyqGoGxLRWzge9FQBT+68SVveB5Gj6UyemsoIhsVpax3fCKyKsMKQT/mmABE8PQ0EOUa7xhbx1cX/xOVJXEJSTJl8SXISaKU3TPLZ6rphrm3EuWQ4z+7QCw2Z8uciQempDJO0mL+tO0cO574Z9XrXom17TMfirHZvNOTqq+SsZPe/el3rneGtJXxGQrRdjHT9tIDRg171jgr1LmLM4DS28Wi7y0nr2WjnxzdCTAuy615jhrOW5kLg24E95FxRclR4OUcjlkMY32HfUvatXDOPDOVoCsTGqgWSS8Or5XRBkLkQyIwTDXekAxZIyyU=
+x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:BL4PR11MB8797.namprd11.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(376014)(1800799024)(23010399003)(366016)(10070799003)(6133799003)(7136999003)(18002099003)(13003099007)(3023799007)(38070700021)(10067099003)(11063799006)(56012099006);DIR:OUT;SFP:1101;
+x-ms-exchange-antispam-messagedata-chunkcount: 2
+x-ms-exchange-antispam-messagedata-0: =?iso-8859-1?Q?WwUVMrGQq91YaZYkY8GlQBgmDOUFd5xgZZFYsk5QJ/dx1p4PJfN6CfzhUD?=
+ =?iso-8859-1?Q?mJwAH87feHJUC/7DdsNzhwFT0T5YRHqeCWJxRiEiq1oNEDisFmvf9CNrix?=
+ =?iso-8859-1?Q?F4lBn0DkIDgY9wVGVAi9EcfHrmXKpd7drhbtsmHzZrC3COFJxJlO3R7e62?=
+ =?iso-8859-1?Q?JjqqOK8OewPFCQG/YXmzpNFA4P1exS3LqTlSMl8p22Hzd32/lWrQoC9fdN?=
+ =?iso-8859-1?Q?GAuKjQHRcH9ALT/WVw1pKWA+AXF5exeMCqNKjO59La4OPEnXpBLpNHv9cN?=
+ =?iso-8859-1?Q?C7RYl5pz+oBe0dISqRr1dZ2LD3ALYapQY7NNyXdendoN6k3502aDmdCwdF?=
+ =?iso-8859-1?Q?MSqb5/EUHZphbeivP2UKoS2x+bF32eqnPaWV31oUpA5yr473UiDwjia4al?=
+ =?iso-8859-1?Q?Bi4EHVzVgDRKf9W/iqixmMRuJNbMGG38vPiQ2J+yjmb4WaddZ3JUu092II?=
+ =?iso-8859-1?Q?o6/qE2qKli3m13p5vYz+v0MiVMAHHTFChEe/ZHmSGKYmb8p7yXgLQIFDPY?=
+ =?iso-8859-1?Q?Y0kb3Si5pQacn9t0UkOT+pv0Rvvn2An5FcbyQCcx7AruWlzwLrSZAYhijH?=
+ =?iso-8859-1?Q?h8S3sFB2379tjb32otvX9USKZ9YfzOHNIdG0Ncr9GOJlfmHjotU59FJhtG?=
+ =?iso-8859-1?Q?JwFJs5fq4dRjfKPpmswOLoX6y7LwuHhdgBJlF1Dw8UlObjzioYL4RJaMIV?=
+ =?iso-8859-1?Q?i/T7Z/RQJSbYcVNroMSlvkaah3idjsPf2Va58lcsxBwFQbodv/ejT9jD/C?=
+ =?iso-8859-1?Q?1LvsUbo+ov4eKGw6kqTVLGyWTF0rFICcAQ/9Q7cHlbJh+eK6YT+VKoGWzk?=
+ =?iso-8859-1?Q?HJNgncXgmRkZ7JZzORFGdL8u+60df46XHPN0Dcm+Wy90ywRTkOuakg8YS6?=
+ =?iso-8859-1?Q?Ik3UzydvEJzlouHwAKDfmLjQ0xJGv8Tcz8n0/2ZHLJ2uM9lcVAfE6nrwqz?=
+ =?iso-8859-1?Q?ltuhdoAQlK3tbuKA72Rw8XI2pYL1hYFqgF7lxvTmwSiUORaFinT2cqQQDz?=
+ =?iso-8859-1?Q?xSAdEe5nXLot5O4X71L6otB1KwB/apIQqnA54Rm/XGB+jhIpDIQskRunSh?=
+ =?iso-8859-1?Q?bk3xHxI7/aCsiFH7Wsf6RayB4KVPK6ayEETll+Dw6t9mypmC6ARz9rPMiE?=
+ =?iso-8859-1?Q?m4cCXNDoaZAiOvKVOhtDs0XOJDUL46yp7oc+1N2IjQQp7QgKuP292twGjW?=
+ =?iso-8859-1?Q?57n3NK9ZAWuF62LN5FEZGnuX2Fs4tvStd3dAHE8viNlmiyhw+Ew24BbzsL?=
+ =?iso-8859-1?Q?2e8koth207uBDJ5k2UnMf+lUonnBUf1ctMBCvpFLADrcTExS6SRygnLzX+?=
+ =?iso-8859-1?Q?zPbFPTRGSjUJ+ljEZXhzP8ZeJe9UQDn9OUiEDyTZBzoMBFOpaozafNKwdE?=
+ =?iso-8859-1?Q?7BtsvPy234NahB1Dt2tXeIXqwivY4PgWhdWFvb7+57Ewg+eJOW9AdmORXi?=
+ =?iso-8859-1?Q?LAD/JGsykHMwpaROAZui8KaCej+B5XysJ9Xk0Krjb5SQY5uGpwGl0JJ9he?=
+ =?iso-8859-1?Q?kqXMjIH2h0aT1wruPeNPwGsile7YCDcEpiHcmR12y9sWdgmMS+5MlwkM0s?=
+ =?iso-8859-1?Q?1X2gjrarrfR/JyGyG0oqpKi+7kDEMyKdort6dBChGN8S3r94SKs36U5YIB?=
+ =?iso-8859-1?Q?4u7R8wM5k8xtvUkA8PnTik3aPaR0XCnLDQmfUK/xVzyovi3JTRaxrFngD4?=
+ =?iso-8859-1?Q?GgRBxs+SBvwfh2PV8+BUeIG0k/Fr2B9fnrMOKPSnMmx5UvYL7MeWe0TgR8?=
+ =?iso-8859-1?Q?oNmv9tDtINY1tSOoxNCS4DDNVDcP9sZSKXljV/XNFi1Mt6cLyXfiG5oeYs?=
+ =?iso-8859-1?Q?VXhyRDIya7zwxQklG9275M4SQODFgLz+HNnDK0mmQMm+fW6DKZp6EpIoDu?=
+ =?iso-8859-1?Q?pG?=
+x-ms-exchange-antispam-messagedata-1: BAtbjXuqPeLfwg==
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+X-Exchange-RoutingPolicyChecked: EFQgXVCCa7PKimMKPpGIUt4cA3m7Lsy4eLb/73ldOypenglmZloc+AVwl68qho7CNZvt31iIssdUjBD6iCgpw5Fmh+V4UKUUt4zbAsq0fUj+oSIXbJhu2zUlMhwEjJJCb/Yz5WziglOaAJ+fh+aFVqEyGUP91EdEC78PaaRKwujdYY2AQ4mIIrYr1Mg+mGpN8OT4ec6ACmFGjsMRFUPnGHIALipNc8WS08UlBOuLiaIHVcQX9EfnAgHDJxPvpU99mbrA38nOap+l7yIKamkDIY5yswIzQs55ePrIzX9fKIIpZLwkPnS1hNV8AkHN6i20VknS50S0SXnW/53+lPqhFw==
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: BL4PR11MB8797.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: e678e09f-8842-4ce2-1488-08df13bedee0
+X-MS-Exchange-CrossTenant-originalarrivaltime: 16 Sep 2026 06:51:01.3085
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: 7Wk0MPXVzRXGkETnX49+cAplX22vqR/MxygXTMknQuqc9jjonii4hT8OlmGwVs9BJ1KPEaqqjLAlKr0mPI5GQA==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA1PR11MB6709
+X-OriginatorOrg: intel.com
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from 45-33-107-173.ip.linodeusercontent.com [45.33.107.173] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Tue, 15 Sep 2026 21:49:24 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/66724
+ <yocto@lists.yoctoproject.org>; Wed, 16 Sep 2026 06:52:29 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/66725
 
-From: Bruce Ashfield <bruce.ashfield@gmail.com>
-
-Updating linux-yocto/6.18 to the latest korg -stable release that comprises
-the following commits:
-
-    7cfc41f8e80f1 Linux 6.18.50
-    8e30f5427f345 mm/rmap: use huge_ptep_get() in try_to_unmap_one()
-    381a0a524e967 mm: avoid unnecessary use of is_swap_pmd()
-    6a259dd313043 platform/chrome: sensorhub: Fix dropped timestamp events and log spam
-    e91d66e5ff661 selftests/mm: fix on-fault-limit false failure under sudo-rs
-    2d6150e5e6aa6 udf: Fix i_lenExtents truncation on 32-bit kernels
-    b7eff3f621ef2 timer: Keep debugobjects state consistent in migrate_timer_list()
-    fecf1e3777526 timekeeping: Check the return value of tk_get_aux_ts64 in __do_adjtimex()
-    6067c39c2cec1 taskstats: fix cpumask parsing cutting off the last character
-    ed64aa505875a smack: fix cred UAF in smack_file_send_sigiotask()
-    a246da20c8e4a signal: avoid shared siginfo namespace rewrites
-    236c8ecaafc63 sticon/parisc: Detect default STI graphics card for console output
-    e8527de7fea19 sysctl: move the "cad_pid" entry from pid_table[] to kern_reboot_table[]
-    cde2d927c29e8 tpm: tpm_i2c_nuvoton: disable IRQ on wait timeout
-    c3c7e87c76b42 zloop: truncate finished zones to zone capacity
-    f49e55b1c8fe1 xarray: honor XA_FLAGS_ACCOUNT in xas_split_alloc()
-    ae0c79a852704 w1: ds28e17: reject an oversize length on an I2C block read
-    165a330a68b5f vsock/virtio: flush works in dependency order
-    03b81f015dbb2 wifi: mt76: mt7996: validate default EEPROM firmware size
-    01f2e0da8548f wifi: mt76: mt7996: fix TX DMA mapping leak for AddBA req frames
-    304470333b7f5 wifi: mt76: mt7925: cancel mlo_pm_work on stop
-    5fdaf7016d768 wifi: mt76: mt7915: bound the device EEPROM address before the EFUSE copy
-    4506e229b2e46 wifi: mt76: mt7615: avoid waiting for mac work under the mt76 mutex
-    34a505071d1ff wifi: rtw88: pci: fix resource leak on failed NAPI setup
-    7364713f0931e wifi: rtw88: Fix potential memory leak in rtw_txq_push_skb()
-    dc8b0be0ec4d9 wifi: rtlwifi: rtl8192du: Fix possible memory leak in rtl92du_init_sw_vars()
-    0c0b374e12d52 wifi: rtlwifi: rtl8192du: check QoS TID before indexing tids
-    97a1af5ac131b wifi: rtl818x: initialize eeprom_93cx6 struct to zero
-    b1bbeb8970eeb wifi: mwifiex: Detach sync cmd buffer on interrupted wait
-    7c257a295e05c crypto: sun8i-ss - Remove crypto_rng interface
-    8e4f9110aba31 crypto: sun8i-ce - Remove crypto_rng interface
-    620acb1e8037b wifi: rtl8xxxu: fix use-after-free from rx_urb_wq on stop
-    84ba017a1e1ea wifi: iwlwifi: dvm: fix memory leak in iwl_op_mode_dvm_start()
-    261d7c7610b4b wifi: brcmfmac: Fix memory leak in brcmf_sdio_read_control()
-    7ef23317f9976 i3c: renesas: Reconfigure the DATBAS register on re-attach
-    9382fcf3a8c44 i3c: renesas: Clean DATBAS register on detach
-    0093f9fc102ba i3c: renesas: Check that the transfer is valid before accessing it
-    5697d779577e2 i3c: master: svc: bound IBI payload to the requested max_payload_len
-    94fb9786d67a8 i3c: master: Fix info leak and UAF in device unregister path
-    a15a1b95de980 i3c: master: adi: initialize the lock before enabling interrupts
-    1894fc7a3bab9 dm-pcache: fix use-after-free and invalid seg operations in kset_replay()
-    10acf740c3adb dm-pcache: fix implicit u8 truncation of gc_percent in message handler
-    83e3116283ed2 dm-pcache: only hand out initialized cache segments
-    663ee2f3824a5 dm-pcache: detect a cycle in the last-kset chain during replay
-    2cd9776fe3f2d dm-pcache: clamp the tail kset read to the segment data region
-    ffd9a214a94f9 dm-pcache: bound the persisted tail-position offset
-    91b93fe5cf4d6 dm-pcache: validate on-media seg_num against the cache device size
-    d8caf96040a06 dm-pcache: validate kset key_num and intra-segment bounds
-    ab5dcde6fa96b dm-pcache: validate geometry fields from on-disk cache_info
-    296efdc110b10 dm-switch: use WRITE_ONCE() in switch_region_table_write()
-    74210fa072960 dm-stats: fix a crash if allocation of per-cpu data fails
-    c860cd3f40382 arch_numa: avoid false positive fortify warning in setup_node_to_cpumask_map()
-    edf30d65e3ac5 net/smc: carry oversized SMC-Rv2 LLC messages in the queue entry
-    44dc702be9a9e rust: rust_is_available: warn for `bindgen` < 0.72.1 && libclang >= 22
-    b5fe67111e63a ovpn: run deferred work on a module-owned workqueue
-    50f4a793c4ff2 ring-buffer: Fix subbuf resize race with ring buffer readers
-    22fe01a2e2f7c ALSA: hda/realtek: Fix Lenovo Yoga Slim 7 14AKP10 quirk ordering
-    37c3210c491ac ALSA: hda/realtek: Enable micmute LED on HP EliteBook 6 G1a p/n: AD3Q9ET#UUG
-    8acb66d0513de ALSA: hda/realtek: Add quirk for TongFang XxAF5xxx
-    40ee4224e2fe2 ALSA: virmidi: Check card index validity at probe
-    7555e83d7738e ALSA: serial-u16550: Check card index validity at probe
-    d7ef7890e3e35 ALSA: portman2x4: Check card index validity at probe
-    7ef9ad82d95dd ALSA: pcxhr: initialize mutexes before requesting threaded IRQ
-    a4e774eeb61ae ALSA: mts64: Check card index validity at probe
-    cc4215cc2a4b2 ALSA: mpu401: Check card index validity at probe
-    13d61a920435d ALSA: hda/ext: preserve PPLCCTL bits when clearing reset
-    7df3194bdb747 ALSA: bcd2000: clear the URB pointers on disconnect
-    7b3f985584936 ALSA: aloop: Check card index validity at probe
-    2a6f6fba3bd31 ALSA: 6fire: bound the MIDI event length from the device
-    94ca4f040ba48 mfd: sm501: Fix potential memory leaks during remove
-    5e7fe9c6c8c31 mfd: cgbc: Fix teardown ordering in cgbc_remove()
-    efe0ed4c0f4e8 hwrng: stm32 - Fix runtime PM cleanup on registration failure
-    cfa186a0857a0 seg6: reset IP6CB after IPv6 decapsulation
-    288f997067084 net: skbuff: don't touch shared zerocopy state in skb_tx_error()
-    34ab62c959f5f net: fix spurious TX timeout after dev_activate()
-    af0ee8f04bea2 net: cap advertised IP tunnel headroom
-    5bd8b764a610b net/smc: unregister the connection before draining the rx tasklet
-    313f79149eb33 net/smc: stop killed, freed and out_of_sync sharing a byte
-    c52a998a223e7 net/smc: fix use-after-free of the LLC qentry in smc_llc_srv_add_link()
-    0761e49aa78c2 net/smc: fix use-after-free in smc_rx_pipe_buf_release()
-    d89dc1bd8845c net/smc: fix socket refcount leak in smc_switch_conns()
-    f950e1b1f0aad net/smc: do not dereference an unset send buffer on the SMC-D teardown path
-    486c699a8cde8 net/smc: bound the peer rkey counts in SMC-Rv2 LLC messages
-    b893152a886bb net: ntb_netdev: Count packets dropped on RX refill failure
-    4fac86e976975 net: ntb_netdev: Avoid double-accounting netif_rx() drops
-    dfab7171cd391 net: ntb_netdev: Fix TX busy and drop handling
-    6b6bbc6c878d6 NTB: ntb_transport: Reject oversized TX buffers
-    894e136b432da NTB: ntb_transport: Fail TX enqueue when the QP link is down
-    0c4aabc904490 NTB: ntb_transport: Recycle TX entries before client callbacks
-    f01e6a35c440b net: thunderbolt: Mark the connection down when bringing it up fails
-    61ff3c353e5d2 net: thunderbolt: Release the Rx HopID that was handed out on mismatch
-    67a82e6f886be net: ravb: serialize PTP clock teardown
-    8d4d06d6e2b50 net: ravb: avoid dereferencing an invalid PTP clock
-    b6b533f83461c net: phylink: correctly validate returned PCS in phylink_inband_caps
-    0860af127aa79 net: openvswitch: fix nf_connlabels leak in ovs_ct_init
-    ac73e3af571da net: openvswitch: fix flow mask use-after-free on flow deletion
-    9c340473f4822 net: l2tp: do not propagate multicast notification errors
-    62da38b4b3a0d net: ipa: fix stalled modem TX queue after runtime resume
-    42a33e679ea05 net: ibm: emac: mal: fix NAPI locking
-    f71087e7c63aa net: dsa: realtek: use gpiod_set_value_cansleep for reset GPIO
-    e098d9cc88596 net: tun: bound receive headroom
-    32785d75e60df net: usb: qmi_wwan: add Telit Cinterion FE990D50 composition
-    486577db80789 slip: fix use-after-free in sl_sync()
-    15d1f3c0dbe7a xdp: fix zero-copy frame layout
-    8e3763f1ccac3 net/iucv: filter frames in afiucv_hs_rcv() by ingress device
-    99692252b348c ipmi:msghandler: Cancel work cleanly on an error
-    53af3a8bae0a9 ipmi: si: Fix NULL pointer dereference after failed registration
-    d46c97eddcbc5 ipmi: Remove all sysfs files on registration failure
-    5719431ca2b5f ipmi: ipmb: validate write message length
-    db8147c5d5ad2 interconnect: Fix use after free in icc_get() and of_icc_get_by_index()
-    417e02f7b6051 io_uring/query: cap user size passed to copy_struct_to_user
-    0c12a798078bc platform/x86: hp-bioscfg: warn on element type mismatch instead of failing
-    a38127df99ae8 platform/x86: hp-bioscfg: pass validated element count to package parsers
-    95d2f9b5189d0 platform/x86: hp-bioscfg: fix ORD_LIST_ELEMENTS never being parsed
-    b15b334fbc3c0 platform/x86: hp-bioscfg: fix off-by-one write in hp_get_string_from_buffer()
-    e3c1c5d1c9230 platform/x86: hp-bioscfg: fix new_password_store() overwriting current_password
-    0f9aad0842488 platform/x86: hp-bioscfg: fix heap OOB read on empty password write
-    7cd8fe01aba30 platform/x86: hp-bioscfg: fix heap OOB read in sk_store() and kek_store()
-    dea1a41160e70 platform/x86: hp-bioscfg: bound ordered-list parsing by the package count
-    0cd1530f84e1c platform/x86: hp-bioscfg: advance elem past consumed array elements
-    0a14d35ef529a platform/x86: hp-bioscfg: accept reduced ACPI packages from older HP BIOS
-    bc9aa5fe21c39 platform/x86/amd/pmc: Fix LPS0 and debugfs leaks when STB init fails
-    8178f59d76570 platform/x86/amd/pmc: Propagate SMU errors and validate S2D address
-    98d91d5b6a988 platform/x86/amd/pmc: Restore msg_port on amd_stb_s2d_init() error paths
-    5eaf7faa99578 platform/chrome: sensorhub: Bound the EC-reported sensor number
-    56dc46094973d platform/x86: think-lmi: Fix current password length check
-    9c28adde051fe platform/x86: think-lmi: Free system certificate signatures
-    89a076948ed61 platform/x86: think-lmi: Fix certificate thumbprint sysfs output
-    d7cd3e4d76034 platform/x86: lenovo/ymc: Only match lower byte in WMI lid switch query response
-    e1b3f89673bd1 platform/x86: ishtp_eclite: Fix ACPI device reference leak in probe error path
-    e07a42bb9c909 platform/x86: ISST: Return error during profile addition
-    62840acc3044f platform/x86: ISST: Validate parameter for frequency and priority
-    93268bc3cd84f platform/x86: ISST: Validate parameter for core power state
-    5b032e1dda486 platform/x86: ISST: Validate logical CPU id and clos id
-    b14db79d02bd3 platform/x86: ISST: Use PP level enable mask
-    92c5fffa63ad9 platform/x86: ISST: Just allow 2 bits for SST feature enable
-    c280fcd53b938 platform/x86: ISST: Add a NULL check for sst_inst[]
-    2550f89589caa mmc: via-sdmmc: stop card-detect handling on probe failure
-    f7ff3027ef004 mmc: via-sdmmc: cancel card-detect work on remove
-    82e707eff9e3b platform/x86: ISST: Validate socket ID in clos_assoc ioctl
-    1889a9156553f platform/x86: ISST: Validate level in perf mask ioctls
-    22222f92b0a51 platform/x86: dell-wmi-sysman: Don't hex dump attribute security buffer
-    cab2895729516 iommufd: Fix UAF in selftest IOPF reporting
-    4c33d00ad9a91 iommufd: Release current IOAS on xa_store() failure
-    436189ee4bb2c iommufd: Avoid locking internal accesses during unmap
-    45705a6bfdb28 iommu/vt-d: Force requesting ACS when tboot is enabled
-    364279b5623f7 iommu/vt-d: Fix no_iommu to disable platform opt-in
-    f80f3acb69164 iommu: Fix dev_iommu memory leak when device_add fails in iommu_mock_device_add
-    2235eafda9b3d iommu/arm-smmu-v3: Manage teardown with devm
-    d903d99ffd22b iommu/tegra241-cmdqv: Reject a vSID wider than the SID_MATCH field
-    968e9a1f71140 iommu/sva: Set handle->dev before the SVA handle is visible
-    f532401be9312 iommu/msm: Unwind probe state on registration failure
-    cfc5c1b2caa17 iommu/amd: Put PCI device after handling PPR faults
-    238e1f7a1463f PCI/proc: Warn on writes to kernel-exclusive config space regions
-    c2d4174f49245 PCI/proc: Use file_ns_capable() when checking config space read access
-    301288f85679a PCI/proc: Avoid spurious runtime PM wakeup on config space accesses
-    b30713111325e PCI/MSI: Enable memory decoding before restoring MSI-X messages
-    0e59a232aaa04 PCI/ASPM: Avoid L0s for Realtek RTS525A
-    39c4dc79d77f8 PCI/AER: Fix mapping of errors to agent & layer
-    4f887d8ed75f8 PCI/AER: Emit TLP Log only for unmasked errors
-    6beadccc432cf PCI/sysfs: Avoid spurious runtime PM wakeup on config space accesses
-    7f4db64f0ba7b PCI/sysfs: Fix read byte order in pci_read_legacy_io()
-    43cf455dd5a9b PCI: Add ACS quirk for Pericom PI7C9X2G608 switches [12d8:2608]
-    4b575052ea654 PCI: plda: Fix IRQ domain leaks in the error paths of plda_init_interrupts()
-    01c2f0c66bd1f PCI: plda: Fix use-after-free of event IRQs during teardown
-    5d4bc470330a6 PCI: meson: Fix GPIO state while requesting PERST#
-    1ad6994853853 PCI: Fix 32-bit config write in Intel PCH Root Port MPC ACS quirk
-    6053d6eacbfd2 PCI: hv: Set irq_retrigger callback for the Hyper-V PCI MSI irqchip
-    ceafb262475ac s390/dasd: Propagate partial completion length across ERP recovery
-    6452c13646af7 s390/dasd: Guard sysfs discipline callbacks against unallocated private data
-    52b331c99baac s390/dasd: Do not complete a failed ESE read as successful
-    dcce7a06ea690 s390/cpum_cf: Handle CPU hotplug via prepare/dead callbacks
-    aad7247bd35ad power: supply: max17040: synchronize work cancellation on suspend
-    17d43f64b17e4 power: supply: max17040: drop incorrect I2C functionality check
-    13fb0477da9b4 power: supply: max17040: propagate register read errors
-    39b60d615dfa1 power: supply: ucs1002: fix use-after-free on remove
-    a4460e89d4088 power: supply: twl4030_charger: cancel workers via devm
-    1b9978433c61a power: supply: rt9455: quiesce delayed work before teardown
-    ee053561e21ce power: supply: qcom_battmgr: terminate the strings from firmware
-    06618447029c6 power: supply: qcom_battmgr: fix use-after-free
-    b3aa1e9509e1b power: supply: lp8788-charger: fix use-after-free on remove
-    ab6b1ad710bed power: supply: lp8727: fix use-after-free in lp8727_release_irq()
-    4b1f2be1e1b74 power: supply: cros_usbpd: Limit port counts to EC_USB_PD_MAX_PORTS
-    78be8b7403ff7 power: supply: cros_usbpd-charger: bound the EC-reported port count
-    86e4fa65368f3 power: supply: charger-manager: register regulators before exposing sysfs
-    238320ad029a3 power: supply: bq25890: Fix power_supply reference leak
-    9e1aba34df9a8 power: supply: bq256xx: drain usb_work before freeing the charger
-    f495808cdd6d9 power: supply: bq24257: fix use-after-free on remove
-    d02a5794c3dee sctp: fix stream->outcnt underflow on duplicate RECONF responses
-    7ad8933bca97b sctp: distinguish sequence zero from wildcard in reconf lookup
-    25419f516ea84 sctp: fix NULL deref on untransmitted RECONF completion
-    1035bdef1efb9 sctp: drop a chunk if its transport was removed
-    fa306a40e716c sctp: stop processing a packet once its association is deleted
-    8a02ad98798fd nvme-tcp: reject a read that transferred too few bytes
-    3b3d27670c0c8 nvme-tcp: fix host memory disclosure on R2T for a read command
-    6a01b58263108 nvme-tcp: do not accept C2HData based on blk_rq_payload_bytes() alone
-    0d4f317b07d6c nvme-pci: disable controller on admin queue IRQ setup failure
-    67551d8430df9 nvme: zero the discard fallback page
-    1e456cc2744ee nvme: nvme-fc: Fix nvme_fc_create_hw_io_queues() queue deletion in error path
-    d662f7fc04fde lockd: fix NULL dereference on lockowner allocation failure
-    41f0a6d31615f lockd: pin next file across nlm_inspect_file lock-drop
-    3088e41292fec ipmi: Fix use-after-free of cmd_rcvr in _ipmi_destroy_user()
-    6aeff1636b398 i2c: mxs: fix DMA channel leak on probe error
-    8d2c120d2d5bf hwmon: (max6621) fix temperature clamp range
-    9b38d9a2e46a2 hwmon: (max6621) fix negative temperature offset and crit readings
-    68c59343ad1a7 ASoC: amd: yc: Add DMI entry for MSI Thin A15 B7UC
-    f2a1a83487c6c arm64: proton-pack: Restore the nospectre_bhb command-line option
-    e7c9b1d433b05 arm64: compat: Fix decrementing LDM/STM alignment emulation
-    15d1feeae07d0 ALSA: ump: Fix corrupted data bytes at MIDI 1.0 SysEx to UMP conversion
-    e41a59fc056f6 openvswitch: only skb_tx_error() a packet we are about to drop
-    d64a75369cd0f openrisc: fix arbitrary kernel memory access via or1k_atomic syscall
-    c0c165487a2ea ocfs2: fix readdir position truncation on 32-bit kernels
-    0608018a71f24 ocfs2: cluster: fix o2hb_dependent_users leak on pin failure
-    251e38f5af7b2 ocfs2: cluster: avoid lock order inversion in o2hb_region_pin() from drop_item
-    ce035f208d68b ocfs2: cluster: don't sleep while holding o2hb_live_lock in o2hb_region_pin()
-    0761d2c949442 ocfs2: validate rl_used against rl_count in refcount block validator
-    50c4cc9183e11 ocfs2: validate lengths in dlm_mig_lockres_handler
-    de10cd3b062a5 ocfs2: bound namelen in dlm_migrate_request_handler
-    71f07b7f90b31 ocfs2: always run deallocs on copy-on-write completion
-    116d14f29a052 orangefs: skip leading spaces before parsing client debug masks
-    f796f38a324e8 orangefs: fix double-free of trailer_buf on readdir copy failure
-    bc6fdd425fdeb PM: sleep: Unblock runtime PM when device prepare fails
-    6fcb0b745a0b8 ring-buffer: Hold cpu_buffer::lock when resizing a subbuf
-    8c1ecdcdea738 ring-buffer: Free cpu_buffer::free_page with subbuf_order
-    2dc510957fe8f ring-buffer: Fix subbuf resize race with ring_buffer_alloc_read_page()
-    1c3036a818005 regulator: qcom-refgen: correct the regulator type to CURRENT
-    20e5fbb8c1a4c regulator: max8998_pmic_dt_parse_pdata: of_node_put on reg_np after ownership transferred to rdata
-    95342d26f9c6b regulator: as3722_get_regulator_dt_data: fix premature of_node_put leaving dangling of_node pointer
-    71d5c41ac583d RDMA/uverbs: Add UVERBS_ATTR_UHW to UVERBS_METHOD_REG_MR
-    4f8bb11dd2ff3 RDMA/ucma: Lock the handler in ucma_write_cm_event()
-    28ac2dd416482 RDMA/ucma: Lock the handler in ucma_set_ib_path()
-    a38cd610b24f7 RDMA/ionic: Cap eq_count to the eth driver's interrupt vector budget
-    85f438382a865 RDMA/cxgb4: Cancel reg_work before freeing device on remove
-    2a952fb1b20d8 qede: Fix NULL pointer dereference in TPA fragment processing
-    3f5677d2f8173 ptp: vmclock: prevent read-only mappings from becoming writable
-    c7e32814a6bf2 remoteproc: scp: Fix device reference leak on failed lookup
-    37797d5013c9e riscv: unaligned: stop using kthread for check_vector_unaligned_access()
-    8f392916a3540 riscv: acpi: Handle LPI architectural context loss flags
-    5343399ed7242 arm64: dts: rockchip: Fix rk3588s-roc-pc audio description
-    8fc4bafabc065 arm64: dts: rockchip: Fix rk3399-roc-pc-plus analog audio
-    650d2d5c0df7e arm64: dts: rockchip: fix emmc reset polarity on px30-cobra
-    5512c23231206 arm64: dts: rockchip: fix eMMC reset polarity on PX30 Ringneck
-    fe455c13bf01e arm64: dts: rockchip: fix eMMC reset polarity on PP-1516
-    b6b3e4d5973bd arm64: dts: qcom: x1-dell-thena: mark l12b and l15b always-on
-    6bb9469c34fff arm64: dts: qcom: sm6115-pro1x: Correct touchscreen GPIO flags
-    ff23eb4823d82 Revert "arm64: dts: rockchip: Further describe the WiFi for the Pinephone Pro"
-    eb57632f9418f rpmsg: glink: smem: order FIFO read after availability check
-    e7143c3f4e5c0 scsi: core: Fill in DMA padding bytes in scsi_alloc_sgtables()
-    2a8dd9fd12f3f media: staging/ipu7: fix async notifier UAF on probe error path
-    7f6956b6dcd66 staging: media: tegra-video: vi: fix probe failure on skipped last port
-    656d047dc0c29 staging: media: tegra-video: fix of_node_put() on VIP parse errors
-    5be6d02837d41 wifi: mt76: mt7925: cancel pending mlo_pm_work
-    e1330d719c047 wifi: ath6kl: clamp assoc request/response lengths before subtracting IE offsets
-    b95c33a4e7438 udf: reject VAT indexes equal to the entry count
-    f84ec84d8d4bc svcrdma: Validate Read chunk positions before reconstruction
-    a798714b58041 svcrdma: Reject Write/Reply chunks with segcount 0
-    1949dd1576f7a svcrdma: Reject inline replies that overflow the pull-up buffer
-    3cf372cec7ab2 svcrdma: Reject connection when transport allocation fails
-    5aabe070c00e5 svcrdma: Fix unmatched rn_unregister on failed accept
-    a1c954ca4977a svcrdma: Fix pcl_for_each_segment for empty chunks
-    a46b35f213c24 svcrdma: Fix offset arithmetic in read_chunk_range
-    1de391e8b94e3 SUNRPC: wait for in-flight client TLS handshake callback
-    1f9856af065b6 SUNRPC: Reject krb5 v2 wrap tokens with oversized ec field
-    7a1d0501cbb96 SUNRPC: reject duplicate CREDS_VALUE options
-    edeefb111d618 sunrpc: init gssp_lock before publishing proc entry
-    ebcbd2523a852 SUNRPC: harden gss_unwrap_resp_priv length checks
-    806584a4b67a7 SUNRPC: harden gss_krb5_unwrap_v2 against short tokens
-    fa46b6aa7a698 SUNRPC: Guard svcauth_gss_release() dispatch on rq_auth_stat
-    e769fcde3cc73 sunrpc: fix use-after-free in __rpc_clnt_handle_event and __rpc_clnt_remove_pipedir
-    08bc49e054126 sunrpc: defer rq_argp and rq_resp free until after RCU grace period
-    bd1ef2cfb44d7 SUNRPC: Check svc pool percpu counter allocation
-    2e861ce2aaa46 SUNRPC: always drain cache_cleaner before destroying a cache_detail
-    39981133df21c SUNRPC: Restore NUMA_NO_NODE for svc thread allocations in global mode
-    9d04d64ad1924 sunrpc: route to a populated pool in svc_pool_for_cpu()
-    de942dd8c2c83 SUNRPC: svcauth_gss: enforce krb5 token minimum length
-    e0778464049b0 SUNRPC: Zero rpc_gss_wire_cred at svcauth_gss_decode_credbody() entry
-    ad0cce80d4af2 SUNRPC: xdr_buf_trim: clamp buf->len to avoid underflow
-    f1b7b2c7ffa97 phy: fsl-imx8mq-usb: fix typec switch leak on probe error path
-    704ecd010d4a9 params: fix charp corruption on allocation failure
-    ff110e85837d7 nouveau/gem: reserve the bo in the info ioctl around the vma lookup
-    04ab51d4e369a module/kallsyms: fix nextval for data symbol lookup
-    51887ccd88791 mptcp: fix uninitialized local_id in syncookie MP_JOIN reconstruction
-    d82b90a38c2ca mpls: reload header after pskb_may_pull()
-    50d0aa7d25ba4 module: validate string table section types
-    3b097416b4cff md: do overflow check for sb->bblog_shift in super_1_load()
-    0efabe6229dc6 md/raid10: fix still_degraded being inverted in raid10_sync_request()
-    121d35014e497 mailbox: qcom-ipcc: fix duplicate channel allocation across holes
-    09e649117c54b libnvdimm/labels: Prevent integer overflow in __nd_label_validate()
-    627ce4902df1d landlock: Require LANDLOCK_ACCESS_FS_MAKE_REG for whiteout creation
-    a602cd128d17a ipv6: use RCU iterator to dump route exceptions
-    63f50e9f90d02 ipv6: rpl: fix NULL dereference of idev in ipv6_rpl_srh_rcv()
-    b8282668d8fa7 ip6_gre: fix hardware header length for NBMA tunnels
-    b36dfd6e8cff0 ip6_tunnel: use skb_cow_head() in ip6_tnl_xmit()
-    a8af6fbac895f ip: orphan prefetched skbs before multicast forwarding
-    31e4be21dacee ipip: fix skb leak in collect_md mode when metadata_dst allocation fails
-    f9182a85991a0 jbd2: check need_resched() when skipping busy checkpoint buffers
-    71c6b872c7464 jbd2: bound shrinker scans by examined checkpoint buffers
-    30e8cb8598aa4 kasan: fix cache shrink race with CPU hotplug
-    15deb4e33f474 Bluetooth: hci_sync: Clear HCI_CMD_PENDING when dropping the last request
-    657054159d83a Bluetooth: hci_intel: fix usage_count leak when autosuspend_delay is negative
-    94d548fc264a2 Bluetooth: hci_h5: fix usage_count leak when autosuspend_delay is negative
-    1bad0896cbc06 Bluetooth: hci_event: clear HCI_LE_ADV only on a created connection
-    d0b28e9655f4b Bluetooth: hci_core: use skb_get() instead of skb_clone() for req_skb
-    68e7a31abc88b Bluetooth: hci_conn: re-enable advertising only for peripheral role
-    946d76db77ee5 Bluetooth: RFCOMM: serialize security confirmation handling
-    49fd7116f76b8 Bluetooth: ISO: fix use-after-free of listener socket in iso_conn_ready
-    ec3992e38f777 Bluetooth: hci_uart: Fix false success return in hci_uart_setup()
-    62100186f1771 Bluetooth: hci_bcm: fix usage_count leak when autosuspend_delay is negative
-    1ed5982c53699 Bluetooth: hci_bcm4377: Ignore reserved PHY in ext adv reports on BCM4378
-    c674c504bfdd0 cxl/pmem: Format the nvdimm serial number as unsigned decimal
-    14d52c15d5d99 cxl/features: bound fwctl command payload to the input buffer
-    2924b2e365148 cpufreq: schedutil: Fix rate limit overflow
-    a807a9ef87ad0 coresight: etm3x: Fix cntr_val_show() to match cntr_val_store() behavior
-    ac4a5eb8b002a dm array: reject an array block whose value size is not the caller's
-    b33f76d33aaea dm array: validate array block headers on read
-    644140527ae49 dm raid1: reserve space for NUL-terminator in build_constructor_string()
-    36ff918637e35 dm-era: fix shadowed superblock leak on take-snap failure
-    49694a363f7ec dm-io: report non-retryable errors separatedly
-    9493ac67623d4 dm-io: clone the source bio instead of copying its biovec
-    272fcb4ba6fab bpf: Harden bloom filter sizing and indexing on 32-bit kernels
-    c9189693db47a buffer: avoid tail commit walk for uptodate folios
-    dbfecc8a6631c bpf: Disable preemption in __bpf_get_stack
-    6886642414f59 bpf, x86: Fix per-CPU address resolution into an extended register
-    49dcefa83c8ab bnxt_en: Write doorbell when linearizing skb fails
-    4d36e38e48340 bnx2x: fix double free in bnx2x_init_firmware() error path
-    c21fa79301d7d Bluetooth: eir: Fix OOB read in eir_get_service_data()
-    f609eac02d110 Bluetooth: btusb: limit RTL8761B BROKEN_EXT_SCAN quirk to 0bda:a728
-    bce588b4ca081 Bluetooth: btusb: Add ASUS USB-BT600 for Realtek 8761CU
-    aa7b93fe98ba7 Bluetooth: btusb: Add ASUS USB-BT540 for Realtek 8761CU
-    ce76ca5fb2794 block: set QUEUE_FLAG_DYING unconditionally in blk_mark_disk_dead()
-    84858671842ae auxdisplay: charlcd: cancel backlight work on registration failure
-    c2e3dccd68706 ata: libata-scsi: fix DSM TRIM for sector sizes larger than 2048 bytes
-    fdc0a5e2cbace ARM: 9477/1: Disable broken eBPF JIT on the Risc PC
-    87d07aa5d38b6 alpha: marvel: Fix lock ordering in init_io7_irqs()
-    9e1eefc01912c alpha: marvel: Fix irq_set_status_flags to use correct IRQ number
-    2fd984c44e3e4 alpha/PCI: Fix I/O port accessor argument order in pci_legacy_write()
-    6d4ed2fd022bc ACPI: pfr_update: fix stack buffer overflow in query_capability()
-    452eb28e03015 ACPI: APEI: GHES: fix ARM section length accounting after header
-    b7476b29b6961 ACPI: APEI: Fix ERST timeout unit conversion
-    c735dbce7ad03 acpi/apei/ghes: Use raw_spinlock_t for CXL CPER work locks
-    9ad8821573a36 accel/rocket: Fix error path handling in rocket_job_run()
-    3043230296653 accel/rocket: initialize job domain before cleanup paths
-    c1a5bf1b6e1d5 accel/rocket: fix NULL dereference and integer overflow in rocket_job_push()
-    a3c65af20cceb hugetlb: only adjust reservation during unmapping if mapcount is 0
-    4e019e5e247bf hsi: omap_ssi_core: fix missing DMA mask setup for SSI controller device
-    137c61a6cfd96 fpga: stratix10-soc: Fix SVC mailbox handling during reconfiguration
-    0c3f4544ff387 forcedeth: fix off-by-one when saving/restoring non-PCI config space
-    466a8af0dee2c fbdev: uvesafb: unregister connector callback on init failure
-    3bcab9b21f71d fbdev: ssd1307fb: defer I2C transfers from damage callbacks
-    3c1b5809615c3 fbdev: pvr2fb: correct user pointer annotation and sentinel initializer
-    76818e81cfcae fbdev: omapfb: panel-dsi-cm: initialize lock before registering display
-    2f66f8ceefc25 fat: restore original value when fat_ent_write failed
-    66aa9a9e6481b fanotify: fix use-after-free of file range info
-    92895a14329cc efivarfs: Rate limit statfs() handler
-    ce568f6e025df ecryptfs: show filename encryption options
-    9319706316a8e ecryptfs: release message context on send failure
-    b31da1ecf1392 ecryptfs: reject too-small tag 70 packets
-    14cb36a500a5a ecryptfs: reject oversized encrypted_key_size in parse_tag_3_packet
-    e5d254e654f23 ecryptfs: pass packet set buffer size to parser
-    0d9636ecba34b ecryptfs: hold msg ctx list lock when cleaning daemon queue
-    c1bc956a615d0 ecryptfs: fix tag 11 packet exact-fit size check
-    98b890563424a eCryptfs: bound the packet-length peek to the user buffer
-    7ccb94901f38a fs/ntfs3: bound page_lcns[] index by the log record
-    376ee45659a4b fs/ntfs3: fix info-leak on partial LZNT decompress in ni_read_frame()
-    2d94ffc9d7b5b fs/ntfs3: validate dirty page table on log replay
-    5333e18e6b425 eventfs: Initialize ei->children and ei->list in init_ei()
-    b2301bdb4b3ed HID: intel-thc-hid: intel-quickspi: fix autosuspend cleanup during teardown
-    99f3e197920df HID: intel-thc-hid: intel-quicki2c: fix autosuspend cleanup during teardown
-    72706b44b6656 HID: intel-thc-hid: intel-quickspi: bound GET_REPORT response to the caller buffer
-    6fcefe71aeb52 HID: intel-thc-hid: intel-quickspi: validate report size before copy
-    127de5919820f HID: mcp2221: validate report size in mcp2221_raw_event()
-    c99ba6c234d4d HID: mcp2221: stop device IO before hid_hw_stop
-    01d9874e84d3a HID: universal-pidff: stop the device when force-feedback init fails
-    114a58640aaf3 HID: sony: fix UAF of ghl_poke_timer / ghl_urb at driver unbind
-    f3f37b937a6ea HID: sensor: custom: Fix field sysfs group cleanup on failure
-    da00eac19feef HID: roccat: free buffered reports when destroying device
-    471f4a939c66d HID: picolcd: clamp eeprom debugfs read to bytes actually received
-    79465a30050da HID: corsair-void: Check size of status and firmware events before reading them
-    e78973fe3ef59 HID: apple: preserve keyboard backlight across T2 resume
-    846f0709559b9 smb: client: harden DFS cache against invalid target hints
-    17a1922ada873 smb: client: fix copy-paste error in WSL EA length accounting for $LXDEV
-    1f824f61d1df5 smb: client: fix ALIGN() overflow in symlink_data() error context loop
-    9ab46a13798a6 smb: client: clear ce->tgthint in free_tgts()
-    8b9b10fe5b8b4 cifs: use cifs_invalidate_cache() in cifs_do_truncate() for O_TRUNC
-    c2a0dcb5a7a15 cifs: fix loff_t underflow in cifs_remap_file_range() when len == 0
-    4f18c9e7ee464 cifs: clear tcon after cifsFileInfo_put() in cifs_file_set_size()
-    636a99bab36ba audit: avoid dropping live tree ref on fsnotify rule autoremove
-    25128202a8df5 btrfs: do not overwrite NODATASUM flag when removing NODATACOW flag
-    f42efd634c0ae btrfs: fix extent map leak in NOCOW direct I/O write
-    8a64baeb5bbb7 btrfs: drop recovered reloc root refs on recovery failure
-    ec32015a955c5 ceph: fix leaked inode reference on writeback abort at umount
-    37d6edb2f03b2 ceph: do not repeat ceph_trim_dentries() if no progress possible
-    1dd356310b166 ceph: bound xattr value length in __build_xattrs()
-    58c2d3e954c13 ceph: bound num_export_targets array for mds info v2/v3
-    c37db86d2b5e9 ceph: bound MDSCapAuth path and fs_name decode in handle_session()
-    06fb5e623cdc2 ceph: bound copied dentry name length in NFS export get_name
-    4d298880f82c4 ceph: reject export_targets ranks >= CEPH_MAX_MDS in mdsmap decode
-    fe46746087b5b ceph: fix UAF in __kick_flushing_caps() on cf entry freed during unlock
-    00562ccd4e88d libceph: reject buckets with mismatched CRUSH ids
-    2571b35883268 libceph: validate OSD extent maps before cursor advance
-    b413ec5b23e34 NFSD: Prevent client use-after-free during NFSv4.0 revoked-state cleanup
-    4804c58f73a80 NFSD: Prevent lock owner use-after-free during client teardown
-    b56d2c5f01cdd nfsd: revoke copy-notify stateids before dropping their reference
-    dbc11a12aa545 nfsd: reject reclaim LOCK after RECLAIM_COMPLETE
-    ad02d095439f8 nfsd: reject out-of-range useconds in NFSv2 SETATTR/CREATE
-    54e02f5e32c52 nfsd: reject out-of-range nseconds in NFSv3 SETATTR and create ops
-    4ae5d7490ae6a nfsd: move nfsd_debugfs_init() after nfsd4_init_slabs() in init_nfsd()
-    b57bd8cb739cb nfsd: initialize DRC hash table before registering shrinker
-    a4d7fedcaaf33 nfsd: initialize copy-notify stateid before publishing it
-    763c0bad87236 nfsd: hold rcu across localio cmpxchg retry
-    b3bff820d068e nfsd: gate nfs3 setacl by argp->mask
-    f951b22dbeec4 nfsd: gate nfs2 setacl by argp->mask
-    41ebca28e17f8 nfsd: fix XDR padding calculation in ff_encode_getdeviceinfo
-    0380129b1373c nfsd: fix XDR length calculation in nfsd4_ff_encode_layoutget
-    4106d7a6aaf1e nfsd: fix version mismatch loops in nfsd_acl_init_request()
-    9b4e5e9ba5ae1 nfsd: fix stale s2s_cp_stateids IDR entry for async COPY
-    2ebbf4e3e9cf5 nfsd: fix reply size estimate for GET_DIR_DELEGATION
-    cf081015a0d1b nfsd: fix refcount leak in nfsd_file_lru_add on insertion failure
-    3c5119b799a7f nfsd: fix null dereference in nfsd4_setattr for deleg timestamp attrs
-    424d5c95108a4 nfsd: fix nfsd_file leak on inter-server COPY setup failure
-    360e1b9e3f316 nfsd: fix netlink dumpit error handling for rpc_status_get
-    65c79d9bb3717 nfsd: fix FL_SLEEP being set unconditionally for all LOCK types
-    c1ae0f973bcba nfsd: fix dentry ref leak on V4ROOT export filehandle lookup
-    a631a26a8777b nfsd: fix cpntf publish race in nfs4_init_cp_state
-    607a56fea772c nfsd: fix BUG_ON in nfsd4_alloc_layout_stateid on racing delegation revoke
-    00843074d9b84 nfsd: drop the stateid, not the stateowner, on seqid_op replay retry
-    72d40b103bb03 nfsd: don't free session slots that are still in use
-    6703199f4d7e7 nfsd: defer vfree of compound ops to fix rpc_status UAF
-    631b7d5dbbba8 nfsd: defer setting NFSD4_CALLBACK_RUNNING in deleg_reaper
-    e879148867bd4 nfsd: clear opcnt on compound arg release to prevent OOB read
-    b137930ee52e3 nfsd: clear CALLBACK_RUNNING on failed delegation recall queue
-    b42dc26a14b4a nfsd: check client ownership when cancelling a copy-notify stateid
-    311f7d9266309 nfsd: block non-SAVEFH ops after FOREIGN PUTFH to prevent NULL deref
-    1aea0482b98ec nfsd: add missing read barrier to rpc_status_get dumpit seqcount retry
-    bff024551a713 nfsd: add filehandle match check to nfsd4_delegreturn()
-    533964d420d38 nfsd: add fh_want_write() for early-verified SETATTR in nfsd_proc_setattr()
-    895a485cd3758 nfsd: validate symlink target length in NFSv4 CREATE
-    2aca70c18c5f5 nfsd: validate sockaddr length per family in listener_set
-    7e7b93da7fa2e nfsd: validate nseconds in TIME_DELEG decode paths
-    7ff8d6363cfff nfsd: size fh_verify server sockaddr slot by xpt_locallen
-    1e4795766719f nfsd: set SC_STATUS_FREED in nfsd4_drop_revoked_stid for delegations
-    8277d4a11ae2c nfsd: sample writeback error cursor before async COPY loop
-    fc83f30731dd2 nfsd: return NFS4ERR_NOTSUPP for unsupported netloc4 types
-    591134e059e34 nfsd: Reset write verifier when async COPY writeback fails
-    467d56fd3ff57 nfsd: release path refs on follow_down() error
-    f164eb52b6f3c nfsd: RCU-protect cl_cb_session to fix use-after-free on session teardown
-    dc803d46a8b90 pNFS: Fix EBUSY check in pnfs_layout_need_return
-    36e3f13bf0728 NFSv4.1: fix layout segment leak on the pnfs_layout_process() forget path
-    59baf45a06435 nfsd: guard nfsd_serv deref in nfsd_file_net_dispose
-    7ef182a8fe9c1 NFSD: remove flawed WARN_ON_ONCE from nfsd_mode_check
-    4ed8d2317aef2 NFSD: restart ssc_expire_umount walk after dropping nfsd_ssc_lock
-    75d13317f163a NFSD: Fix off-by-one in DRC bucket pruning limit
-    e547b06234f88 NFSD: Encode only the status in NFS-ACL v2 GETACL error replies
-    d8352da196349 NFSD: check truncate permission under inode lock
-    f3adf16435173 NFS: fix delegation_hash_table leak when nfs4_server_common_setup() fails
-    5215e734bf7cb NFS/localio: fix ref leak on nfs_uuid_add_file failure
-    344ae0e232d4f zsmalloc: account for handle size in class lookup
-    923578d0f0d07 zram: validate deflate params
-    a1dc246f98bb9 ubifs: fix out-of-bounds read in signature length check
-    14afe18655c09 phy: rockchip-samsung-dcphy: fix out-of-range max_register
-    e892f05f1f790 PCI/sysfs: Fix out-of-bounds read in pci_write_legacy_io()
-    9253cfc5a85be of: fix out-of-bounds read in of_alias_scan() stem parser
-    448636c745a3f nilfs2: fix slab-out-of-bounds in nilfs_direct_propagate after truncation
-    8c14472431e27 media: vicodec: fix out-of-bounds write in FWHT encoder
-    0c260d3f97e52 media: cec: stm32: prevent out-of-bounds write on RX overflow
-    7d658da725ea8 lib/ucs2_string.c: fix out-of-bounds read in ucs2_strnlen()
-    9f43499ce6458 HID: sensor-hub: Fix out-of-bounds write in sensor_hub_get_feature
-    827ec385458ad fpga: altera-cvp: Avoid out-of-bounds read in trailing byte write
-    34e88f5361464 usb: gadget: f_fs: Prevent deadlock during ep0 read loop
-    9897b7da8c0ad usb: gadget: uvc: fix dangling pointers in uvc_function_bind() and uvc_function_unbind()
-    dbe2762ae8e54 usb: gadget: uvc: Fix null pointer dereference in uvcg_video_init()
-    6bcd9ee6ad698 usb: gadget: f_tcm: fix deadlock in usbg_make_tpg()
-    a15c2acd30834 usb: gadget: midi2: remove default configfs groups on teardown
-    64005cf3e897e usb: gadget: snps_udc_plat: clean up PHY on probe deferral
-    4e747c864a885 usb: gadget: u_audio: Fix use-after-free on sound card disconnect
-    14fa29f3be066 usb: typec: ucsi: use UCSI_TIMEOUT_MS for sync command completion
-    ebb840d982a61 usb: typec: thunderbolt: Disable work before freeing tbt on remove
-    d793bd8422e78 usb: typec: tcpci: pass correct rx_type to tcpm_pd_receive()
-    12414bbd3e3f3 USB: phy: fsl-usb: fix missing static keywords
-    51a311eb97e91 usb: gadget: at91_udc: drain polled-VBUS timer/work before udc is freed
-    448e95c0f3eaa usb: dwc3: gadget: Fix use-after-free in dwc3_gadget_free_endpoints due to race condition
-    316abfe39dce7 usb: dwc2: gadget: Exit partial power down state when changing USB pull-up
-    78f5c6e6aef9a staging: greybus: hid: fix SET_REPORT return value
-    28b932202fcdb serial: imx: serialize imx_uart_ports[] lifetime
-    aad08b5f67d2a Revert "media: v4l2-dev: fix error handling in __video_register_device()"
-    e6e925cc1f806 rapidio: mport_cdev: fix use-after-free in dma_req_free()
-    c3d4be91c6fce powerpc/powermac: fix OF node refcount
-    29e634a18957a misc: nsm: bound the device-reported response length
-    ba69d892ff4e4 device property: fix infinite loop in fwnode_for_each_child_node()
-    4cd24873ab9fd cdx: Fix double free when sysfs file creation fails
-    b1a49c22de01f tracing: Fix use-after-free with same-name named triggers
-    ddbe921ed16a0 tracing: Fix use-after-free in trace_pipe read on sub-buffer order change
-    cdb6fb6cf1a7a tracing: Fix logged instance name on creation failure
-    adadf4192f700 tracing: Fix crash passing ERR_PTR to kthread_stop()
-    25a0758cf6bdb tracing/user_events: Clear copied tracing state before fork duplication
-    b503a61d5d392 hwtracing: hisi_ptt: Propagate DMA reset timeout in trace_start()
-    9b51dcb4f2305 x86/tdx: Fix zero-extension for 32-bit port I/O
-    c4a2215487081 x86/tdx: Fix off-by-one in port I/O handling
-    b9ae969e6f1e3 x86/locking: Use sfence for wmb() if SSE is available
-    08b4cdef3c2ef x86/insn-eval: Move assign_register() out of KVM as insn_assign_reg()
-    968eea4659420 tools/compiler: match glibc 2.42 definition of __attribute_const__
-    d4bf3a74e2bae mm: vmscan: fix node reclaim ignoring swappiness parameter
-    461d23368f296 mm: page_alloc: fix non-movable reclaim storm in defrag_mode
-    d435ba3c21a02 mm: page_alloc: move capture_control to the page allocator
-    0df04778ea14a mm: page_alloc: __GFP_FS lockdep annotation for direct compaction
-    b3d4b65085ef5 mm: mempolicy: fix automatic numa balancing for shmem
-    5d866086d5f8d mm: memcontrol: update state_local when flushing NMI stats
-    95d87030cae77 mm: memcg: stop reclaim when a limit update is superseded
-    680b93894ddf6 mm: memcg-v1: fix memsw and TCP failcnt accounting
-    d0943afb5ed8b mm: memcg-v1: fix wrong linux-mm list address in deprecation warnings
-    295f5a61d3aea mm: compaction: support non-movable compaction for pageblock requests
-    ef765a2e4f579 mm/zswap: fix global shrinker when memory cgroup is disabled
-    3fd5023998630 mm/vmscan: report RCU-tasks quiescent states in shrink_lruvec()
-    895cd4ecbb2e0 mm/pagewalk: fix stale walk->action escaping walk_pmd_range()
-    45489d4f95802 mm/mm_init: deferred_grow_zone(): fix out-of-range first_deferred_pfn
-    5dc0daff0341c mm/migrate: report RCU-tasks quiescent states in migrate_pages_batch()
-    3fc8044251de2 mm/kmemleak: avoid soft lockup when scanning task stacks
-    2cfa9ae90813b mm/gup: fix always draining LRU caches in collect_longterm_unpinnable_folios()
-    d423737dca23f mm, swap: ratelimit bad swap entry reports
-    f2c14f4d427d1 include/linux/list.h: mark list_add and __list_add as __always_inline
-    28069434aef66 apparmor: fix out-of-bounds write when null terminating a label vec
-    587a6a92b93ec apparmor: fix cred UAF caused by begin_current_label_crit_section()
-    753c978f2400f KEYS: trusted: Fix TPM teardown ordering
-    0a10989de6103 rust: kernel: list: fix incorrect pop_back example comment
-    138722d631acf rust: bug: skip arch-specific asm in `testlib` builds
-    2bf5e8f7c9bf4 timers/itimer: Zero-init old itimerval before copy to userspace
-    e6da8a0f39769 powerpc/pseries/iommu: switch to Default DMA window during kdump
-    c03114634d342 fs: fix user path of nested backing files
-    bf38be01d43c4 clocksource/drivers/timer-sun4i: Advertise a real minimum delta
-    d53c29a89a15e clocksource/drivers/nxp-pit: Fix IRQ leak on cpuhp_setup_state error path
-    312f85fdd029b alpha: don't leak hardware-fabricated FP exception bits to user space
-    c25b2aa077d5b rust: time: fix as_micros_ceil() rounding near i64::MAX
-    7d00a3ff6244f alpha: fix ieee_swcr_to_fpcr setting FPCR_DNOD unconditionally
-    4628e40c9ca79 drm/amd/display: Prune per-tile Timing from Apple Studio Display Primary Tile
-    7d860bed13369 drm/amd/display: hide Apple Studio Display secondary tile
-    c6b915f0df311 drm/amd/display: Refactor amdgpu_dm_connector_detect (v2)
-    a1fa3d1197cc2 drm/amd/display: Skip PHY SSC reduction on some 8K panels
-    d5c9d19b0ff2f netfs: Fix missing locking around retry adding new subreqs
-    ce493f9261cd3 platform/x86: lenovo-wmi-helpers: Fix memory leak in lwmi_dev_evaluate_int()
-    2ab18de5ebb11 drm/amd/display: Avoid NULL dereference in dc_dmub_srv error paths
-    24ebaf6676ae4 nsfs: tighten permission checks for handle opening
-    ea150ffa9fc9f bpf: Fix incorrect pruning due to atomic fetch precision tracking
-    5d562153b4719 ip_tunnel: adapt iptunnel_xmit_stats() to NETDEV_PCPU_STAT_DSTATS
-    a8bbb2a60513b fuse: wait for FR_FINISHED on abort_on_kill to prevent use-after-free
-    5fc3d921512d3 wifi: ath11k: fix memory leaks in beacon template setup
-    8527ac1bce87a wifi: mt76: Fix memory leak after mt76_connac_mcu_alloc_sta_req()
-    c79ef3342632e perf/x86/intel/uncore: Fix die ID init and look up bugs
-    1c732c6b94f0f Linux 6.18.49
-    5f08c45bdcfd2 usb: usbfs: fix use-after-free of usb_device in usbdev_release()
-    22edb67861272 wifi: mt76: mt7925: ensure tx headroom in usb_sdio_tx_prepare_skb
-    b4cb8081cf80f USB: c67x00: fix use-after-free in c67x00_add_iso_urb()
-    683df50fff0f5 USB: serial: spcp8x5: drop broken carrier detect support
-    2ef5560387f2c USB: serial: option: fix slab OOB read in interrupt URB callback
-    6d3e202670b81 ALSA: usb-audio: Complete cleanup after system-resume errors
-    91919b3b99ab7 ALSA: usb-audio: fix OOB write in snd_usbmidi_novation_output()
-    7eb02825b3684 usb: core: Strengthen error handling in hub_hub_status()
-    d80b946804674 usb: core: Add lock to usb_wakeup_notification()
-    935eeba276012 KVM: s390: vsie: zero stale crypto bits
-    545a6b9c91e2b crypto: qce - Remove unsafe/deprecated algorithms
-    182f16a20d329 crypto: mxs-dcp - fix source scatterlist length access
-    2f65718b9c109 crypto: qce - fix CCM AAD buffer underallocation
-    731a5b6fb4c17 crypto: krb5 - use kfree_sensitive() for derived key buffers
-    302ecd1106065 crypto: atmel-tdes - use scatterlist length before DMA mapping
-    4c00183209420 crypto: qcom-rng - Allow zero as a random number
-    14d9ee8286460 crypto: qcom-rng - Remove crypto_rng interface
-    070b73019a534 crypto: qcom-rng - Enable clock in hwrng case
-    5545de5050cbc crypto: virtio - bound the akcipher result length
-    e90bc78125cd7 kunit: irq: Continue increasing hrtimer interval for longer
-    34f3c35dd13a3 mm/swap: reject swapon() on filesystem-level encrypted files
-    6fa88d11983c6 netfilter: nf_tables: don't queue packet path object notifications
-    07ee91e6b7b0a netfilter: nft_set_pipapo_avx2: add missing vzeroupper
-    a8820c8a77183 vxlan: keep the last remote linked during FDB flush
-    916ec741e65af batman-adv: reject unrepresentable multicast TVLV offsets
-    3e4476e58343f ipv6: seg6: clear IPv4 control block on IPIP decapsulation
-    c069f29da7232 net: bridge: mcast: fix use-after-free of a master VLAN's multicast context
-    50229d334558a xfrm: bound nat keepalive state collection
-    cf67361e78dca xfrm: fix xfrm_state_construct() auth-trunc leak
-    6733ae71268a2 xfrm: ah6: validate routing header segments_left
-    5c86c895d1cac xfrm: avoid lock inversion in nat keepalive work
-    328e40aa774b4 xfrm: drop ESP-in-TCP packets with no ingress device
-    24efebecf415b xfrm: espintcp: fix UAF during close
-    73fde8fe4469f net/tcp-ao: fix use-after-free of current_key on reconnect to another peer
-    70051a57786d5 tcp: fix AO info use-after-free in tcp_ao_connect_init()
-    4527747760239 net/tcp: fix TCP-AO key deletion in VRFs
-    b5d1534db32af x86/CPU/AMD: Carve out a Zen5 models range
-    3d950e98f74af gtp: serialize PDP context updates
-    fadbc1ed2a872 tls: device: fix out-of-bounds write in tls_append_frag()
-    0b0a668febb62 KVM: SEV: Wire up kvm_x86_ops.gmem_xxx() if and only if CONFIG_KVM_AMD_SEV=y
-    9a45e7b0b140a KVM: SEV: Mark vCPU RUNNABLE after AP_CREATE, even if VMSA is unusable
-    a3d45c2d645c6 KVM: SEV: Extract loading of guest-provided VMSA to a separate helper
-    2de20fea62043 KVM: SEV: Track the GPA of the guest-controlled VMSA used for SNP guests
-    dd1638c95163d KVM: SEV: Drop FOLL_WRITE for encrypted region registration
-    85aa61fedcb4e usb: gadget: f_tcm: keep port count until LUN teardown completes
-    3f6face69034f usb: usbtest: disable dynamic ID support
-    776e85fda752f fuse: fix invalidate lock leak on open O_TRUNC DAX failure
-    1758730d9eaa3 fuse: fix invalidate lock leak on setattr writeback failure
-    0f127d522dbcb xhci: dbgtty: Fix unregister on tty_alloc_driver() failure
-    0d0faf3cc44c4 xhci: dbgtty: Fix unregister on tty_register_driver() failure
-    45dbddc389c59 usb: xhci: Handle USB3 port events when there is one roothub
-    56f20a406cc3b usb: xhci: Handle bogus TRB pointers in Missed Service Error events
-    9786c42df8efb accessibility: speakup: unregister tty ldisc on later init failures
-    8ec7271e05df7 fpga: dfl: fme: add error handling
-    6106fb7962a00 ksmbd: harden file lifetime during session teardown
-    a8e1f970f9040 HID: ft260: fix stack-use-after-return write in I2C read race
-    30c37ac21a458 HID: ft260: validate i2c input report length
-    8b5debb6252cd HID: asus: fix missing hid_is_usb() check
-    d0754db7883c8 HID: asus: simplify RGB init sequence
-    70589b0c005db HID: magicmouse: prevent unbounded recursion in magicmouse_raw_event()
-    e22f4494cc948 io_uring: defer eventfd signaling when queued from a wakeup handler
-    0bcec5dda029c io_uring/rsrc: improve regbuf iov validation
-    e973a371d35a2 io_uring: simplify IORING_SETUP_DEFER_TASKRUN && !SQPOLL check
-    2b7c6b90ce801 io_uring/futex: only mark private futex waits as inflight
-    b61ebb2826ca1 powerpc/hv-gpci: fix preempt count leak in sysfs show paths
-    f2192741bdfc7 veth: fix OOB txq access in veth_poll() with asymmetric queue counts
-    34aef83af724a selinux: switch two allocations to use kzalloc_objs()
-    caacbfb367210 ASoC: nau8821: Cancel pending work before suspend
-    0599aa23734c4 riscv: Fix register corruption from uninitialized cregs on error
-    85dc711f742b1 bpf: Fix use-after-free in offloaded map/prog info fill
-    13d20517bee1c ASoC: nau8821: Cancel delayed work on component remove
-    9ebaeeb6c2d42 selinux: require a class's permission values to cover its permission count
-    dfc59a062c386 selinux: reject a permission value exceeding the class permission count
-    42c5747a9f839 selinux: more strict policy parsing
-    4ac3cc8a14db6 selinux: use u16 for security classes
-    71ecdc1ba07fd Revert "selinux: reject a permission value exceeding the class permission count"
-    64561afb42d83 nvme-tcp: fix usage of page_frag_cache
-    c0a9bd5fca0b5 KVM: x86/mmu: Check write tracking in all address spaces
-    8be5f23ae9490 drm/xe/guc_ads: use uncached mapping for UM queue BO
-    a65b52f6cdc92 drm/xe/guc_ads: allocate UM queues in VRAM on dGFX
-    af2d3f6f29b07 drm/xe/guc_ads: allocate UM queues in a separate BO
-    bdf5deccfbf9f RDMA/rxe: Fix OOB in free_rd_atomic_resources()
-    ffa4f0be69656 RDMA/rxe: Fix responder UAF on IB_QP_MAX_DEST_RD_ATOMIC modify_qp
-
-Signed-off-by: Bruce Ashfield <bruce.ashfield@gmail.com>
----
- meta-yocto-bsp/recipes-kernel/linux/linux-yocto_6.18.bbappend | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
-
-diff --git a/meta-yocto-bsp/recipes-kernel/linux/linux-yocto_6.18.bbappend b/meta-yocto-bsp/recipes-kernel/linux/linux-yocto_6.18.bbappend
-index 3fd33fc..1b93ec2 100644
---- a/meta-yocto-bsp/recipes-kernel/linux/linux-yocto_6.18.bbappend
-+++ b/meta-yocto-bsp/recipes-kernel/linux/linux-yocto_6.18.bbappend
-@@ -8,4 +8,4 @@ KMACHINE:genericx86 ?= "common-pc"
- KMACHINE:genericx86-64 ?= "common-pc-64"
- 
- KBRANCH:genericarm64 ?= "v6.18/standard/genericarm64"
--SRCREV_machine:genericarm64 ?= "5b1e83ae84e1bbe2ab8197bf2ea3c24302f7d1e3"
-+SRCREV_machine:genericarm64 ?= "ed4c9c267bfed1a73adf650106af110034b25e2f"
--- 
-2.43.0
-
+Hi =0A=
+=0A=
+We are pleased to announce the Yocto Project 5.0.20 Release is now availabl=
+e for download.=0A=
+=0A=
+https://downloads.yoctoproject.org/releases/yocto/yocto-5.0.20/poky-64e69ed=
+23703f6358ec431d3f5f1f8483f974cae.tar.bz2=0A=
+https://mirrors.edge.kernel.org/yocto/yocto/yocto-5.0.20/poky-64e69ed23703f=
+6358ec431d3f5f1f8483f974cae.tar.bz2=0A=
+=0A=
+A gpg signed version of these release notes is available at:=0A=
+=0A=
+https://downloads.yoctoproject.org/releases/yocto/yocto-5.0.20/RELEASENOTES=
+=0A=
+=0A=
+Full Test Report:=0A=
+=0A=
+https://downloads.yoctoproject.org/releases/yocto/yocto-5.0.20/testreport.t=
+xt=0A=
+=0A=
+Thank you for everyone's contributions to this release.=0A=
+=0A=
+Chee Yang=0A=
+chee.yang.lee@intel.com=0A=
+Yocto Project Build and Release=0A=
+=0A=
+=0A=
+--------------------------=0A=
+yocto-5.0.20 Release Notes=0A=
+--------------------------=0A=
+=0A=
+=0A=
+--------------------------=0A=
+ Repositories/Downloads=0A=
+--------------------------=0A=
+=0A=
+Repository Name: yocto-docs=0A=
+Repository Location: https://git.yoctoproject.org/yocto-docs=0A=
+Branch: scarthgap=0A=
+Tag: yocto-5.0.20=0A=
+Git Revision: fe46d5de41930a2762a9ad2543d50e0f4e10463b=0A=
+Release Artefact: yocto-docs-fe46d5de41930a2762a9ad2543d50e0f4e10463b=0A=
+sha: aae57cc7fce4c3d06a24206c939b614d55fe7dc41e0525e88282ab7ae9c429d5=0A=
+Download Locations:=0A=
+https://downloads.yoctoproject.org/releases/yocto/yocto-5.0.20/yocto-docs-f=
+e46d5de41930a2762a9ad2543d50e0f4e10463b.tar.bz2=0A=
+https://mirrors.edge.kernel.org/yocto/yocto/yocto-5.0.20/yocto-docs-fe46d5d=
+e41930a2762a9ad2543d50e0f4e10463b.tar.bz2=0A=
+=0A=
+Repository Name: poky=0A=
+Repository Location: https://git.yoctoproject.org/poky=0A=
+Branch: scarthgap=0A=
+Tag: yocto-5.0.20=0A=
+Git Revision: 64e69ed23703f6358ec431d3f5f1f8483f974cae=0A=
+Release Artefact: poky-64e69ed23703f6358ec431d3f5f1f8483f974cae=0A=
+sha: 533b0bbe168d5e8cfd0b58b8bff75d6110a85d3dae8e6828871868254257f762=0A=
+Download Locations:=0A=
+https://downloads.yoctoproject.org/releases/yocto/yocto-5.0.20/poky-64e69ed=
+23703f6358ec431d3f5f1f8483f974cae.tar.bz2=0A=
+https://mirrors.edge.kernel.org/yocto/yocto/yocto-5.0.20/poky-64e69ed23703f=
+6358ec431d3f5f1f8483f974cae.tar.bz2=0A=
+=0A=
+Repository Name: openembedded-core=0A=
+Repository Location: https://git.openembedded.org/openembedded-core=0A=
+Branch: scarthgap=0A=
+Tag: yocto-5.0.20=0A=
+Git Revision: 70dc15941dd33270a92d1001174efb3093e79bdf=0A=
+Release Artefact: oecore-70dc15941dd33270a92d1001174efb3093e79bdf=0A=
+sha: 3025900891f488349cc2e5327b0c57287a28eca398970c691000075b54c6556f=0A=
+Download Locations:=0A=
+https://downloads.yoctoproject.org/releases/yocto/yocto-5.0.20/oecore-70dc1=
+5941dd33270a92d1001174efb3093e79bdf.tar.bz2=0A=
+https://mirrors.edge.kernel.org/yocto/yocto/yocto-5.0.20/oecore-70dc15941dd=
+33270a92d1001174efb3093e79bdf.tar.bz2=0A=
+=0A=
+Repository Name: meta-yocto=0A=
+Repository Location: https://git.yoctoproject.org/meta-yocto=0A=
+Branch: scarthgap=0A=
+Tag: yocto-5.0.20=0A=
+Git Revision: 961c2399d06fbdb04ee27d06079e186d2c4a14ad=0A=
+Release Artefact: meta-yocto-961c2399d06fbdb04ee27d06079e186d2c4a14ad=0A=
+sha: a51ccee6d11696703faf8f154a44a5ceb71c3be08b6565158ad8cae0a71c9939=0A=
+Download Locations:=0A=
+https://downloads.yoctoproject.org/releases/yocto/yocto-5.0.20/meta-yocto-9=
+61c2399d06fbdb04ee27d06079e186d2c4a14ad.tar.bz2=0A=
+https://mirrors.edge.kernel.org/yocto/yocto/yocto-5.0.20/meta-yocto-961c239=
+9d06fbdb04ee27d06079e186d2c4a14ad.tar.bz2=0A=
+=0A=
+Repository Name: meta-mingw=0A=
+Repository Location: https://git.yoctoproject.org/meta-mingw=0A=
+Branch: scarthgap=0A=
+Tag: yocto-5.0.20=0A=
+Git Revision: a2065f321a3dbca1e69f070502917c76653d9105=0A=
+Release Artefact: meta-mingw-a2065f321a3dbca1e69f070502917c76653d9105=0A=
+sha: 02042144a265ca5a25a8345688bb626636639a96f33d2b7b8c581edcf2d8df4e=0A=
+Download Locations:=0A=
+https://downloads.yoctoproject.org/releases/yocto/yocto-5.0.20/meta-mingw-a=
+2065f321a3dbca1e69f070502917c76653d9105.tar.bz2=0A=
+https://mirrors.edge.kernel.org/yocto/yocto/yocto-5.0.20/meta-mingw-a2065f3=
+21a3dbca1e69f070502917c76653d9105.tar.bz2=0A=
+=0A=
+Repository Name: bitbake=0A=
+Repository Location: https://git.openembedded.org/bitbake=0A=
+Branch: 2.8=0A=
+Tag: yocto-5.0.20=0A=
+Git Revision: cff3be6f664f8f07a40727ff63eeeb24d6f5e00b=0A=
+Release Artefact: bitbake-cff3be6f664f8f07a40727ff63eeeb24d6f5e00b=0A=
+sha: 42622a37bc52f7fe9921e943026d73316cc2e8d62535e41bc4d308318c4a706e=0A=
+Download Locations:=0A=
+https://downloads.yoctoproject.org/releases/yocto/yocto-5.0.20/bitbake-cff3=
+be6f664f8f07a40727ff63eeeb24d6f5e00b.tar.bz2=0A=
+https://mirrors.edge.kernel.org/yocto/yocto/yocto-5.0.20/bitbake-cff3be6f66=
+4f8f07a40727ff63eeeb24d6f5e00b.tar.bz2=0A=
+=0A=
+=0A=
+---------------=0A=
+ Contributors=0A=
+---------------=0A=
+=0A=
+Thanks to the following people who contributed to this release:=0A=
+=0A=
+Adarsh Jagadish Kamini=0A=
+Aleksandar Nikolic=0A=
+Alexander Kanavin=0A=
+Amaury Couderc=0A=
+Anil Dongare=0A=
+Ankur Tyagi=0A=
+Antonin Godard=0A=
+AshishKumar Mishra=0A=
+Ashishkumar Parmar=0A=
+Benjamin Robin (Schneider Electric)=0A=
+Bruce Ashfield=0A=
+Daiane Angolini=0A=
+Daniel Turull=0A=
+Darsh Kelaiya=0A=
+David Nystr=F6m=0A=
+Deepak Rathore=0A=
+Devansh Patel=0A=
+Enoch Ng=0A=
+Eric Meyers=0A=
+Esa Jaaskela=0A=
+Harish Sadineni=0A=
+Himanshu Jadon=0A=
+Hitendra Prajapati=0A=
+Hongxu Jia=0A=
+Hugo SIMELIERE (Schneider Electric)=0A=
+Jaipaul Cheernam=0A=
+Jakub Szczudlo=0A=
+Joshua Watt=0A=
+Jo=E3o Marcos Costa=0A=
+Kris Gavvala=0A=
+Lee Chee Yang=0A=
+Maik Otto=0A=
+Marta Rybczynska=0A=
+Martin Schwan=0A=
+Mathieu Dubois-Briand=0A=
+Nate Kent=0A=
+Niko Mauno=0A=
+Paul Barker=0A=
+Peter Marko=0A=
+Quentin Schulz=0A=
+Richard Purdie=0A=
+Robert P. J. Day=0A=
+Roland Kovacs=0A=
+Ross Burton=0A=
+Shubham Pushpkar=0A=
+Siddharth Doshi=0A=
+Sudhir Dumbhare=0A=
+Theo Gaige (Schneider Electric)=0A=
+Vijay Anusuri=0A=
+Yoann Congal=0A=
+mark.yang=0A=
+=0A=
+---------------=0A=
+ Known Issues=0A=
+---------------=0A=
+N/A=0A=
+=0A=
+=0A=
+---------------=0A=
+Security Fixes=0A=
+---------------=0A=
+=0A=
+binutils: Fix CVE-2025-69645 CVE-2025-69649 CVE-2025-69652 CVE-2026-6846=0A=
+busybox: Fix CVE-2026-38754=0A=
+bzip2: Fix CVE-2026-42250=0A=
+cargo: Fix CVE-2026-5222 CVE-2026-5223=0A=
+cups: Fix CVE-2026-27447 CVE-2026-34978 CVE-2026-34979 CVE-2026-34980 CVE-2=
+026-34990 CVE-2026-39314 CVE-2026-39316 CVE-2026-41079=0A=
+curl: Ignore CVE-2026-10536 if nghttp2 not enabled=0A=
+curl: Fix CVE-2026-4873 CVE-2026-5545 CVE-2026-5773 CVE-2026-6253 CVE-2026-=
+6276=0A=
+dhcpcd: Fix CVE-2026-56113 CVE-2026-56114 CVE-2026-56117=0A=
+expat: Fix CVE-2026-41080 CVE-2026-45186 CVE-2026-56132 CVE-2026-56403 CVE-=
+2026-56404 CVE-2026-56405 CVE-2026-56406 CVE-2026-56407 CVE-2026-56408 CVE-=
+2026-56409 CVE-2026-56410 CVE-2026-56411=0A=
+gawk: Fix CVE-2026-40467 CVE-2026-40468 CVE-2026-40469 CVE-2026-40553=0A=
+glib-2.0: Fix CVE-2026-58010 CVE-2026-58011 CVE-2026-58012 CVE-2026-58013 C=
+VE-2026-58014 CVE-2026-58016=0A=
+gnutls: Fix CVE-2026-3833 CVE-2026-42009=0A=
+gnutls: Ignore CVE-2026-3832=0A=
+gzip: Fix CVE-2026-41991 CVE-2026-41992=0A=
+libcap: Fix CVE-2026-4878=0A=
+libpng: Fix CVE-2026-34757=0A=
+libsndfile1: Fix CVE-2026-37555=0A=
+libsolv: Fix CVE-2026-9149=0A=
+libssh2: Fix CVE-2025-15661 CVE-2026-55199 CVE-2026-55200 CVE-2026-66032 CV=
+E-2026-66033 CVE-2026-66034 CVE-2026-66035=0A=
+libxml2: Fix CVE-2026-11979=0A=
+libxpm: Fix CVE-2026-4367=0A=
+linux-yocto/6.6: Fix CVE-2025-23131 CVE-2025-68296 CVE-2025-68736 CVE-2025-=
+68768 CVE-2026-23278 CVE-2026-23346 CVE-2026-31419 CVE-2026-31432 CVE-2026-=
+31486 CVE-2026-43010 CVE-2026-43019 CVE-2026-43088 CVE-2026-43116 CVE-2026-=
+43129 CVE-2026-43219 CVE-2026-43240 CVE-2026-43303 CVE-2026-43311 CVE-2026-=
+43331 CVE-2026-43421 CVE-2026-45850 CVE-2026-45930 CVE-2026-46054 CVE-2026-=
+46135 CVE-2026-46140 CVE-2026-46242 CVE-2026-46252 CVE-2026-46320 CVE-2026-=
+46321 CVE-2026-46322 CVE-2026-46331 CVE-2026-52908 CVE-2026-52909 CVE-2026-=
+52910 CVE-2026-52913 CVE-2026-52917 CVE-2026-52923 CVE-2026-52924 CVE-2026-=
+52927 CVE-2026-52928 CVE-2026-52929 CVE-2026-52930 CVE-2026-52934 CVE-2026-=
+52935 CVE-2026-52939 CVE-2026-52942 CVE-2026-52943 CVE-2026-52944 CVE-2026-=
+52946 CVE-2026-52947 CVE-2026-52948 CVE-2026-53080 CVE-2026-53131 CVE-2026-=
+53133 CVE-2026-53134 CVE-2026-53135 CVE-2026-53136 CVE-2026-53137 CVE-2026-=
+53138 CVE-2026-53139 CVE-2026-53143 CVE-2026-53144 CVE-2026-53146 CVE-2026-=
+53147 CVE-2026-53148 CVE-2026-53149 CVE-2026-53150 CVE-2026-53151 CVE-2026-=
+53154 CVE-2026-53157 CVE-2026-53158 CVE-2026-53159 CVE-2026-53160 CVE-2026-=
+53161 CVE-2026-53163 CVE-2026-53167 CVE-2026-53168 CVE-2026-53176 CVE-2026-=
+53177 CVE-2026-53181 CVE-2026-53182 CVE-2026-53183 CVE-2026-53184 CVE-2026-=
+53185 CVE-2026-53186 CVE-2026-53189 CVE-2026-53190 CVE-2026-53194 CVE-2026-=
+53195 CVE-2026-53196 CVE-2026-53198 CVE-2026-53199 CVE-2026-53207 CVE-2026-=
+53208 CVE-2026-53209 CVE-2026-53212 CVE-2026-53213 CVE-2026-53214 CVE-2026-=
+53215 CVE-2026-53216 CVE-2026-53217 CVE-2026-53218 CVE-2026-53219 CVE-2026-=
+53221 CVE-2026-53223 CVE-2026-53225 CVE-2026-53227 CVE-2026-53228 CVE-2026-=
+53230 CVE-2026-53232 CVE-2026-53236 CVE-2026-53237 CVE-2026-53238 CVE-2026-=
+53239 CVE-2026-53242 CVE-2026-53245 CVE-2026-53247 CVE-2026-53249 CVE-2026-=
+53252 CVE-2026-53253 CVE-2026-53254 CVE-2026-53255 CVE-2026-53256 CVE-2026-=
+53263 CVE-2026-53264 CVE-2026-53265 CVE-2026-53266 CVE-2026-53267 CVE-2026-=
+53268 CVE-2026-53269 CVE-2026-53270 CVE-2026-53271 CVE-2026-53273 CVE-2026-=
+53274 CVE-2026-53275 CVE-2026-53325 CVE-2026-53327 CVE-2026-53329 CVE-2026-=
+53331 CVE-2026-53336 CVE-2026-53337 CVE-2026-53339 CVE-2026-53343 CVE-2026-=
+53345 CVE-2026-53347 CVE-2026-53349 CVE-2026-53350 CVE-2026-53352 CVE-2026-=
+53353 CVE-2026-53354 CVE-2026-53355 CVE-2026-53356 CVE-2026-53358 CVE-2026-=
+53359 CVE-2026-53361 CVE-2026-53362 CVE-2026-53366 CVE-2026-53381 CVE-2026-=
+53382 CVE-2026-53383 CVE-2026-53384 CVE-2026-53385 CVE-2026-53388 CVE-2026-=
+53390 CVE-2026-53391 CVE-2026-53397 CVE-2026-53398 CVE-2026-53403 CVE-2026-=
+63794 CVE-2026-63795 CVE-2026-63796 CVE-2026-63797 CVE-2026-63798 CVE-2026-=
+63800 CVE-2026-63801 CVE-2026-63802 CVE-2026-63803 CVE-2026-63804 CVE-2026-=
+63807 CVE-2026-63808 CVE-2026-63809 CVE-2026-63812 CVE-2026-63814 CVE-2026-=
+63817 CVE-2026-63821 CVE-2026-63822 CVE-2026-63823 CVE-2026-63824 CVE-2026-=
+63826 CVE-2026-63827 CVE-2026-63828 CVE-2026-63830 CVE-2026-63831 CVE-2026-=
+63833 CVE-2026-63834 CVE-2026-63835 CVE-2026-63836 CVE-2026-63867 CVE-2026-=
+63868 CVE-2026-63870 CVE-2026-63875 CVE-2026-63876 CVE-2026-63877 CVE-2026-=
+63881 CVE-2026-63882 CVE-2026-63883 CVE-2026-63884 CVE-2026-63886 CVE-2026-=
+63887 CVE-2026-63888 CVE-2026-63889 CVE-2026-63890 CVE-2026-63891 CVE-2026-=
+63892 CVE-2026-63893 CVE-2026-63895 CVE-2026-63896 CVE-2026-63897 CVE-2026-=
+63898 CVE-2026-63899 CVE-2026-63900 CVE-2026-63901 CVE-2026-63902 CVE-2026-=
+63903 CVE-2026-63904 CVE-2026-63905 CVE-2026-63906 CVE-2026-63908 CVE-2026-=
+63909 CVE-2026-63912 CVE-2026-63913 CVE-2026-63914 CVE-2026-63915 CVE-2026-=
+63916 CVE-2026-63917 CVE-2026-63919 CVE-2026-63920 CVE-2026-63921 CVE-2026-=
+63922 CVE-2026-63924 CVE-2026-63925 CVE-2026-63926 CVE-2026-63927 CVE-2026-=
+63928 CVE-2026-63930 CVE-2026-63931 CVE-2026-63933 CVE-2026-63934 CVE-2026-=
+63942 CVE-2026-63943 CVE-2026-63944 CVE-2026-63945 CVE-2026-63946 CVE-2026-=
+63947 CVE-2026-63948 CVE-2026-63949 CVE-2026-63952 CVE-2026-63954 CVE-2026-=
+63956 CVE-2026-63957 CVE-2026-63958 CVE-2026-63959 CVE-2026-63960 CVE-2026-=
+63961 CVE-2026-63964 CVE-2026-63967 CVE-2026-63968 CVE-2026-63969 CVE-2026-=
+63971 CVE-2026-63973 CVE-2026-63975 CVE-2026-63976 CVE-2026-63984 CVE-2026-=
+63985 CVE-2026-63990 CVE-2026-63991 CVE-2026-63992 CVE-2026-63993 CVE-2026-=
+63994 CVE-2026-64000 CVE-2026-64002 CVE-2026-64003 CVE-2026-64004 CVE-2026-=
+64005 CVE-2026-64006 CVE-2026-64007 CVE-2026-64009 CVE-2026-64010 CVE-2026-=
+64011 CVE-2026-64012 CVE-2026-64014 CVE-2026-64026 CVE-2026-64090 CVE-2026-=
+64091 CVE-2026-64093 CVE-2026-64094 CVE-2026-64095 CVE-2026-64109 CVE-2026-=
+64116 CVE-2026-64123 CVE-2026-64131 CVE-2026-64137 CVE-2026-64188 CVE-2026-=
+64191 =0A=
+linux-yocto/6.6: Ignore CVE-2023-52920 CVE-2024-14027 CVE-2024-27022 CVE-20=
+24-43826 CVE-2024-46691 CVE-2024-56647 CVE-2024-58093 CVE-2025-21682 CVE-20=
+25-21739 CVE-2025-21817 CVE-2025-22125 CVE-2025-38164 CVE-2025-38426 CVE-20=
+25-38531 CVE-2025-38584 CVE-2025-38704 CVE-2025-38710 CVE-2025-39748 CVE-20=
+25-39764 CVE-2025-39930 CVE-2025-39981 CVE-2025-40135 CVE-2025-40150 CVE-20=
+25-40219 CVE-2025-40242 CVE-2025-68206 CVE-2025-68239 CVE-2025-68315 CVE-20=
+25-68334 CVE-2025-71152 CVE-2025-71161 CVE-2025-71184 CVE-2025-71203 CVE-20=
+25-71221 CVE-2025-71239 CVE-2025-71265 CVE-2025-71266 CVE-2025-71267 CVE-20=
+25-71269 CVE-2025-71274 CVE-2025-71286 CVE-2025-71287 CVE-2025-71288 CVE-20=
+25-71291 CVE-2025-71292 CVE-2025-71295 CVE-2025-71297 CVE-2025-71303 CVE-20=
+25-71304 CVE-2025-71305 CVE-2025-71306 CVE-2025-71307 CVE-2025-71308 CVE-20=
+25-71309 CVE-2025-71311 CVE-2025-71312 CVE-2025-71314 CVE-2026-23004 CVE-20=
+26-23050 CVE-2026-23053 CVE-2026-23066 CVE-2026-23118 CVE-2026-23138 CVE-20=
+26-23154 CVE-2026-23157 CVE-2026-23171 CVE-2026-23227 CVE-2026-23231 CVE-20=
+26-23242 CVE-2026-23243 CVE-2026-23244 CVE-2026-23245 CVE-2026-23246 CVE-20=
+26-23253 CVE-2026-23255 CVE-2026-23268 CVE-2026-23269 CVE-2026-23270 CVE-20=
+26-23271 CVE-2026-23272 CVE-2026-23273 CVE-2026-23274 CVE-2026-23277 CVE-20=
+26-23279 CVE-2026-23281 CVE-2026-23284 CVE-2026-23285 CVE-2026-23286 CVE-20=
+26-23287 CVE-2026-23289 CVE-2026-23290 CVE-2026-23291 CVE-2026-23292 CVE-20=
+26-23293 CVE-2026-23296 CVE-2026-23298 CVE-2026-23300 CVE-2026-23302 CVE-20=
+26-23303 CVE-2026-23304 CVE-2026-23306 CVE-2026-23307 CVE-2026-23308 CVE-20=
+26-23309 CVE-2026-23310 CVE-2026-23312 CVE-2026-23313 CVE-2026-23315 CVE-20=
+26-23317 CVE-2026-23318 CVE-2026-23319 CVE-2026-23321 CVE-2026-23324 CVE-20=
+26-23325 CVE-2026-23330 CVE-2026-23334 CVE-2026-23335 CVE-2026-23336 CVE-20=
+26-23339 CVE-2026-23340 CVE-2026-23343 CVE-2026-23347 CVE-2026-23351 CVE-20=
+26-23352 CVE-2026-23356 CVE-2026-23357 CVE-2026-23359 CVE-2026-23360 CVE-20=
+26-23362 CVE-2026-23364 CVE-2026-23365 CVE-2026-23367 CVE-2026-23368 CVE-20=
+26-23370 CVE-2026-23372 CVE-2026-23374 CVE-2026-23378 CVE-2026-23379 CVE-20=
+26-23381 CVE-2026-23382 CVE-2026-23386 CVE-2026-23387 CVE-2026-23388 CVE-20=
+26-23389 CVE-2026-23391 CVE-2026-23392 CVE-2026-23394 CVE-2026-23395 CVE-20=
+26-23396 CVE-2026-23397 CVE-2026-23398 CVE-2026-23399 CVE-2026-23401 CVE-20=
+26-23403 CVE-2026-23404 CVE-2026-23405 CVE-2026-23406 CVE-2026-23407 CVE-20=
+26-23408 CVE-2026-23409 CVE-2026-23410 CVE-2026-23411 CVE-2026-23412 CVE-20=
+26-23413 CVE-2026-23414 CVE-2026-23419 CVE-2026-23420 CVE-2026-23422 CVE-20=
+26-23426 CVE-2026-23427 CVE-2026-23428 CVE-2026-23434 CVE-2026-23438 CVE-20=
+26-23439 CVE-2026-23440 CVE-2026-23441 CVE-2026-23442 CVE-2026-23443 CVE-20=
+26-23444 CVE-2026-23446 CVE-2026-23447 CVE-2026-23448 CVE-2026-23449 CVE-20=
+26-23450 CVE-2026-23452 CVE-2026-23454 CVE-2026-23455 CVE-2026-23456 CVE-20=
+26-23457 CVE-2026-23458 CVE-2026-23460 CVE-2026-23461 CVE-2026-23462 CVE-20=
+26-23463 CVE-2026-23465 CVE-2026-23468 CVE-2026-23474 CVE-2026-23475 CVE-20=
+26-31389 CVE-2026-31391 CVE-2026-31392 CVE-2026-31393 CVE-2026-31396 CVE-20=
+26-31399 CVE-2026-31400 CVE-2026-31402 CVE-2026-31403 CVE-2026-31405 CVE-20=
+26-31407 CVE-2026-31408 CVE-2026-31409 CVE-2026-31411 CVE-2026-31412 CVE-20=
+26-31414 CVE-2026-31415 CVE-2026-31416 CVE-2026-31417 CVE-2026-31418 CVE-20=
+26-31421 CVE-2026-31422 CVE-2026-31423 CVE-2026-31424 CVE-2026-31425 CVE-20=
+26-31426 CVE-2026-31427 CVE-2026-31428 CVE-2026-31429 CVE-2026-31430 CVE-20=
+26-31431 CVE-2026-31433 CVE-2026-31434 CVE-2026-31439 CVE-2026-31440 CVE-20=
+26-31441 CVE-2026-31444 CVE-2026-31446 CVE-2026-31447 CVE-2026-31448 CVE-20=
+26-31449 CVE-2026-31450 CVE-2026-31451 CVE-2026-31452 CVE-2026-31453 CVE-20=
+26-31454 CVE-2026-31455 CVE-2026-31458 CVE-2026-31464 CVE-2026-31466 CVE-20=
+26-31467 CVE-2026-31469 CVE-2026-31473 CVE-2026-31474 CVE-2026-31476 CVE-20=
+26-31477 CVE-2026-31478 CVE-2026-31480 CVE-2026-31482 CVE-2026-31483 CVE-20=
+26-31485 CVE-2026-31488 CVE-2026-31489 CVE-2026-31492 CVE-2026-31494 CVE-20=
+26-31495 CVE-2026-31496 CVE-2026-31497 CVE-2026-31498 CVE-2026-31500 CVE-20=
+26-31503 CVE-2026-31504 CVE-2026-31507 CVE-2026-31508 CVE-2026-31509 CVE-20=
+26-31510 CVE-2026-31512 CVE-2026-31515 CVE-2026-31518 CVE-2026-31519 CVE-20=
+26-31520 CVE-2026-31521 CVE-2026-31522 CVE-2026-31523 CVE-2026-31524 CVE-20=
+26-31525 CVE-2026-31527 CVE-2026-31528 CVE-2026-31532 CVE-2026-31533 CVE-20=
+26-31540 CVE-2026-31542 CVE-2026-31545 CVE-2026-31546 CVE-2026-31548 CVE-20=
+26-31549 CVE-2026-31550 CVE-2026-31551 CVE-2026-31552 CVE-2026-31555 CVE-20=
+26-31563 CVE-2026-31565 CVE-2026-31566 CVE-2026-31570 CVE-2026-31576 CVE-20=
+26-31577 CVE-2026-31578 CVE-2026-31580 CVE-2026-31581 CVE-2026-31583 CVE-20=
+26-31584 CVE-2026-31585 CVE-2026-31586 CVE-2026-31587 CVE-2026-31588 CVE-20=
+26-31590 CVE-2026-31594 CVE-2026-31595 CVE-2026-31596 CVE-2026-31597 CVE-20=
+26-31598 CVE-2026-31599 CVE-2026-31602 CVE-2026-31603 CVE-2026-31604 CVE-20=
+26-31605 CVE-2026-31607 CVE-2026-31610 CVE-2026-31611 CVE-2026-31612 CVE-20=
+26-31613 CVE-2026-31614 CVE-2026-31615 CVE-2026-31616 CVE-2026-31617 CVE-20=
+26-31618 CVE-2026-31619 CVE-2026-31622 CVE-2026-31623 CVE-2026-31624 CVE-20=
+26-31625 CVE-2026-31626 CVE-2026-31627 CVE-2026-31628 CVE-2026-31629 CVE-20=
+26-31634 CVE-2026-31637 CVE-2026-31638 CVE-2026-31639 CVE-2026-31642 CVE-20=
+26-31646 CVE-2026-31648 CVE-2026-31649 CVE-2026-31651 CVE-2026-31655 CVE-20=
+26-31656 CVE-2026-31657 CVE-2026-31658 CVE-2026-31659 CVE-2026-31660 CVE-20=
+26-31661 CVE-2026-31662 CVE-2026-31664 CVE-2026-31665 CVE-2026-31667 CVE-20=
+26-31668 CVE-2026-31669 CVE-2026-31670 CVE-2026-31671 CVE-2026-31672 CVE-20=
+26-31673 CVE-2026-31674 CVE-2026-31675 CVE-2026-31676 CVE-2026-31678 CVE-20=
+26-31679 CVE-2026-31680 CVE-2026-31681 CVE-2026-31682 CVE-2026-31683 CVE-20=
+26-31684 CVE-2026-31685 CVE-2026-31686 CVE-2026-31689 CVE-2026-31693 CVE-20=
+26-31694 CVE-2026-31695 CVE-2026-31696 CVE-2026-31697 CVE-2026-31698 CVE-20=
+26-31699 CVE-2026-31700 CVE-2026-31701 CVE-2026-31702 CVE-2026-31704 CVE-20=
+26-31705 CVE-2026-31707 CVE-2026-31708 CVE-2026-31709 CVE-2026-31711 CVE-20=
+26-31712 CVE-2026-31714 CVE-2026-31715 CVE-2026-31716 CVE-2026-31717 CVE-20=
+26-31718 CVE-2026-31720 CVE-2026-31721 CVE-2026-31726 CVE-2026-31728 CVE-20=
+26-31730 CVE-2026-31737 CVE-2026-31738 CVE-2026-31740 CVE-2026-31741 CVE-20=
+26-31747 CVE-2026-31748 CVE-2026-31749 CVE-2026-31751 CVE-2026-31752 CVE-20=
+26-31754 CVE-2026-31755 CVE-2026-31756 CVE-2026-31758 CVE-2026-31759 CVE-20=
+26-31761 CVE-2026-31762 CVE-2026-31763 CVE-2026-31768 CVE-2026-31770 CVE-20=
+26-31773 CVE-2026-31778 CVE-2026-31779 CVE-2026-31780 CVE-2026-31781 CVE-20=
+26-31786 CVE-2026-31787 CVE-2026-31788 CVE-2026-43007 CVE-2026-43011 CVE-20=
+26-43013 CVE-2026-43014 CVE-2026-43015 CVE-2026-43016 CVE-2026-43017 CVE-20=
+26-43018 CVE-2026-43020 CVE-2026-43023 CVE-2026-43024 CVE-2026-43025 CVE-20=
+26-43026 CVE-2026-43027 CVE-2026-43028 CVE-2026-43030 CVE-2026-43032 CVE-20=
+26-43033 CVE-2026-43035 CVE-2026-43037 CVE-2026-43038 CVE-2026-43040 CVE-20=
+26-43041 CVE-2026-43043 CVE-2026-43044 CVE-2026-43046 CVE-2026-43047 CVE-20=
+26-43050 CVE-2026-43051 CVE-2026-43052 CVE-2026-43054 CVE-2026-43056 CVE-20=
+26-43057 CVE-2026-43058 CVE-2026-43060 CVE-2026-43061 CVE-2026-43062 CVE-20=
+26-43064 CVE-2026-43065 CVE-2026-43066 CVE-2026-43067 CVE-2026-43068 CVE-20=
+26-43069 CVE-2026-43071 CVE-2026-43072 CVE-2026-43074 CVE-2026-43075 CVE-20=
+26-43076 CVE-2026-43077 CVE-2026-43078 CVE-2026-43079 CVE-2026-43080 CVE-20=
+26-43081 CVE-2026-43082 CVE-2026-43085 CVE-2026-43086 CVE-2026-43089 CVE-20=
+26-43091 CVE-2026-43092 CVE-2026-43093 CVE-2026-43094 CVE-2026-43098 CVE-20=
+26-43099 CVE-2026-43103 CVE-2026-43104 CVE-2026-43105 CVE-2026-43109 CVE-20=
+26-43110 CVE-2026-43111 CVE-2026-43112 CVE-2026-43113 CVE-2026-43114 CVE-20=
+26-43117 CVE-2026-43120 CVE-2026-43123 CVE-2026-43124 CVE-2026-43128 CVE-20=
+26-43130 CVE-2026-43132 CVE-2026-43133 CVE-2026-43134 CVE-2026-43135 CVE-20=
+26-43136 CVE-2026-43137 CVE-2026-43139 CVE-2026-43140 CVE-2026-43141 CVE-20=
+26-43143 CVE-2026-43145 CVE-2026-43147 CVE-2026-43148 CVE-2026-43149 CVE-20=
+26-43150 CVE-2026-43152 CVE-2026-43156 CVE-2026-43157 CVE-2026-43158 CVE-20=
+26-43159 CVE-2026-43162 CVE-2026-43163 CVE-2026-43167 CVE-2026-43168 CVE-20=
+26-43170 CVE-2026-43171 CVE-2026-43173 CVE-2026-43180 CVE-2026-43182 CVE-20=
+26-43183 CVE-2026-43184 CVE-2026-43186 CVE-2026-43187 CVE-2026-43189 CVE-20=
+26-43190 CVE-2026-43194 CVE-2026-43196=0A=
+linux-yocto/6.6: (cont.) Ignore CVE-2026-43200 CVE-2026-43202 CVE-2026-4320=
+3 CVE-2026-43205 CVE-2026-43206 CVE-2026-43207 CVE-2026-43209 CVE-2026-4321=
+1 CVE-2026-43212 CVE-2026-43214 CVE-2026-43215 CVE-2026-43218 CVE-2026-4322=
+0 CVE-2026-43221 CVE-2026-43222 CVE-2026-43223 CVE-2026-43225 CVE-2026-4322=
+6 CVE-2026-43227 CVE-2026-43230 CVE-2026-43231 CVE-2026-43232 CVE-2026-4323=
+3 CVE-2026-43236 CVE-2026-43238 CVE-2026-43239 CVE-2026-43241 CVE-2026-4324=
+2 CVE-2026-43245 CVE-2026-43246 CVE-2026-43251 CVE-2026-43252 CVE-2026-4325=
+3 CVE-2026-43255 CVE-2026-43256 CVE-2026-43257 CVE-2026-43261 CVE-2026-4326=
+2 CVE-2026-43264 CVE-2026-43265 CVE-2026-43266 CVE-2026-43268 CVE-2026-4326=
+9 CVE-2026-43270 CVE-2026-43271 CVE-2026-43273 CVE-2026-43275 CVE-2026-4327=
+7 CVE-2026-43278 CVE-2026-43279 CVE-2026-43281 CVE-2026-43283 CVE-2026-4328=
+4 CVE-2026-43287 CVE-2026-43288 CVE-2026-43289 CVE-2026-43291 CVE-2026-4329=
+5 CVE-2026-43296 CVE-2026-43302 CVE-2026-43304 CVE-2026-43312 CVE-2026-4331=
+3 CVE-2026-43314 CVE-2026-43315 CVE-2026-43316 CVE-2026-43319 CVE-2026-4332=
+4 CVE-2026-43327 CVE-2026-43328 CVE-2026-43329 CVE-2026-43330 CVE-2026-4333=
+2 CVE-2026-43333 CVE-2026-43334 CVE-2026-43336 CVE-2026-43339 CVE-2026-4334=
+0 CVE-2026-43341 CVE-2026-43342 CVE-2026-43343 CVE-2026-43345 CVE-2026-4335=
+0 CVE-2026-43355 CVE-2026-43357 CVE-2026-43359 CVE-2026-43360 CVE-2026-4336=
+1 CVE-2026-43362 CVE-2026-43363 CVE-2026-43365 CVE-2026-43366 CVE-2026-4336=
+8 CVE-2026-43370 CVE-2026-43371 CVE-2026-43372 CVE-2026-43373 CVE-2026-4337=
+6 CVE-2026-43377 CVE-2026-43378 CVE-2026-43379 CVE-2026-43380 CVE-2026-4338=
+1 CVE-2026-43382 CVE-2026-43383 CVE-2026-43386 CVE-2026-43387 CVE-2026-4339=
+7 CVE-2026-43405 CVE-2026-43406 CVE-2026-43407 CVE-2026-43409 CVE-2026-4341=
+1 CVE-2026-43412 CVE-2026-43413 CVE-2026-43415 CVE-2026-43419 CVE-2026-4342=
+0 CVE-2026-43424 CVE-2026-43425 CVE-2026-43426 CVE-2026-43427 CVE-2026-4342=
+8 CVE-2026-43429 CVE-2026-43430 CVE-2026-43432 CVE-2026-43436 CVE-2026-4343=
+7 CVE-2026-43439 CVE-2026-43441 CVE-2026-43445 CVE-2026-43448 CVE-2026-4344=
+9 CVE-2026-43450 CVE-2026-43451 CVE-2026-43452 CVE-2026-43453 CVE-2026-4345=
+5 CVE-2026-43457 CVE-2026-43458 CVE-2026-43459 CVE-2026-43466 CVE-2026-4346=
+8 CVE-2026-43469 CVE-2026-43471 CVE-2026-43472 CVE-2026-43473 CVE-2026-4347=
+5 CVE-2026-43476 CVE-2026-43480 CVE-2026-43483 CVE-2026-43484 CVE-2026-4348=
+8 CVE-2026-43490 CVE-2026-43491 CVE-2026-43492 CVE-2026-43493 CVE-2026-4349=
+4 CVE-2026-43495 CVE-2026-43496 CVE-2026-43497 CVE-2026-43499 CVE-2026-4350=
+0 CVE-2026-43501 CVE-2026-43502 CVE-2026-43503 CVE-2026-45834 CVE-2026-4583=
+5 CVE-2026-45836 CVE-2026-45837 CVE-2026-45838 CVE-2026-45839 CVE-2026-4584=
+0 CVE-2026-45841 CVE-2026-45842 CVE-2026-45843 CVE-2026-45844 CVE-2026-4584=
+5 CVE-2026-45846 CVE-2026-45847 CVE-2026-45848 CVE-2026-45849 CVE-2026-4585=
+1 CVE-2026-45852 CVE-2026-45853 CVE-2026-45854 CVE-2026-45856 CVE-2026-4585=
+7 CVE-2026-45858 CVE-2026-45860 CVE-2026-45862 CVE-2026-45863 CVE-2026-4586=
+4 CVE-2026-45865 CVE-2026-45866 CVE-2026-45867 CVE-2026-45868 CVE-2026-4586=
+9 CVE-2026-45870 CVE-2026-45871 CVE-2026-45872 CVE-2026-45873 CVE-2026-4587=
+4 CVE-2026-45875 CVE-2026-45876 CVE-2026-45878 CVE-2026-45879 CVE-2026-4588=
+0 CVE-2026-45881 CVE-2026-45882 CVE-2026-45883 CVE-2026-45884 CVE-2026-4588=
+5 CVE-2026-45886 CVE-2026-45887 CVE-2026-45888 CVE-2026-45889 CVE-2026-4589=
+0 CVE-2026-45891 CVE-2026-45892 CVE-2026-45895 CVE-2026-45896 CVE-2026-4589=
+8 CVE-2026-45899 CVE-2026-45900 CVE-2026-45902 CVE-2026-45903 CVE-2026-4590=
+4 CVE-2026-45905 CVE-2026-45906 CVE-2026-45907 CVE-2026-45908 CVE-2026-4590=
+9 CVE-2026-45910 CVE-2026-45911 CVE-2026-45912 CVE-2026-45913 CVE-2026-4591=
+4 CVE-2026-45915 CVE-2026-45916 CVE-2026-45918 CVE-2026-45919 CVE-2026-4592=
+0 CVE-2026-45921 CVE-2026-45922 CVE-2026-45923 CVE-2026-45924 CVE-2026-4592=
+5 CVE-2026-45926 CVE-2026-45927 CVE-2026-45928 CVE-2026-45929 CVE-2026-4593=
+1 CVE-2026-45933 CVE-2026-45935 CVE-2026-45936 CVE-2026-45937 CVE-2026-4593=
+8 CVE-2026-45939 CVE-2026-45941 CVE-2026-45942 CVE-2026-45945 CVE-2026-4594=
+6 CVE-2026-45947 CVE-2026-45948 CVE-2026-45950 CVE-2026-45951 CVE-2026-4595=
+2 CVE-2026-45953 CVE-2026-45954 CVE-2026-45955 CVE-2026-45956 CVE-2026-4595=
+7 CVE-2026-45958 CVE-2026-45959 CVE-2026-45960 CVE-2026-45962 CVE-2026-4596=
+4 CVE-2026-45965 CVE-2026-45966 CVE-2026-45967 CVE-2026-45968 CVE-2026-4596=
+9 CVE-2026-45970 CVE-2026-45971 CVE-2026-45972 CVE-2026-45973 CVE-2026-4597=
+4 CVE-2026-45975 CVE-2026-45976 CVE-2026-45977 CVE-2026-45978 CVE-2026-4597=
+9 CVE-2026-45980 CVE-2026-45981 CVE-2026-45982 CVE-2026-45983 CVE-2026-4598=
+4 CVE-2026-45985 CVE-2026-45986 CVE-2026-45987 CVE-2026-45988 CVE-2026-4598=
+9 CVE-2026-45990 CVE-2026-45991 CVE-2026-45993 CVE-2026-45994 CVE-2026-4599=
+5 CVE-2026-45996 CVE-2026-45997 CVE-2026-45998 CVE-2026-45999 CVE-2026-4600=
+0 CVE-2026-46001 CVE-2026-46002 CVE-2026-46003 CVE-2026-46004 CVE-2026-4600=
+5 CVE-2026-46006 CVE-2026-46007 CVE-2026-46008 CVE-2026-46009 CVE-2026-4601=
+0 CVE-2026-46011 CVE-2026-46012 CVE-2026-46013 CVE-2026-46015 CVE-2026-4601=
+6 CVE-2026-46018 CVE-2026-46019 CVE-2026-46020 CVE-2026-46021 CVE-2026-4602=
+2 CVE-2026-46023 CVE-2026-46024 CVE-2026-46025 CVE-2026-46026 CVE-2026-4602=
+7 CVE-2026-46028 CVE-2026-46029 CVE-2026-46030 CVE-2026-46031 CVE-2026-4603=
+3 CVE-2026-46034 CVE-2026-46035 CVE-2026-46036 CVE-2026-46037 CVE-2026-4603=
+8 CVE-2026-46039 CVE-2026-46040 CVE-2026-46041 CVE-2026-46042 CVE-2026-4604=
+3 CVE-2026-46045 CVE-2026-46046 CVE-2026-46047 CVE-2026-46048 CVE-2026-4604=
+9 CVE-2026-46050 CVE-2026-46051 CVE-2026-46052 CVE-2026-46053 CVE-2026-4605=
+5 CVE-2026-46056 CVE-2026-46057 CVE-2026-46058 CVE-2026-46060 CVE-2026-4606=
+1 CVE-2026-46062 CVE-2026-46063 CVE-2026-46064 CVE-2026-46065 CVE-2026-4606=
+7 CVE-2026-46068 CVE-2026-46069 CVE-2026-46070 CVE-2026-46072 CVE-2026-4607=
+3 CVE-2026-46074 CVE-2026-46075 CVE-2026-46077 CVE-2026-46078 CVE-2026-4607=
+9 CVE-2026-46080 CVE-2026-46081 CVE-2026-46082 CVE-2026-46083 CVE-2026-4608=
+4 CVE-2026-46085 CVE-2026-46086 CVE-2026-46087 CVE-2026-46088 CVE-2026-4608=
+9 CVE-2026-46091 CVE-2026-46092 CVE-2026-46093 CVE-2026-46094 CVE-2026-4609=
+5 CVE-2026-46096 CVE-2026-46097 CVE-2026-46098 CVE-2026-46099 CVE-2026-4610=
+0 CVE-2026-46101 CVE-2026-46102 CVE-2026-46103 CVE-2026-46104 CVE-2026-4610=
+5 CVE-2026-46106 CVE-2026-46107 CVE-2026-46108 CVE-2026-46109 CVE-2026-4611=
+0 CVE-2026-46111 CVE-2026-46112 CVE-2026-46113 CVE-2026-46114 CVE-2026-4611=
+5 CVE-2026-46116 CVE-2026-46117 CVE-2026-46118 CVE-2026-46119 CVE-2026-4612=
+0 CVE-2026-46121 CVE-2026-46122 CVE-2026-46123 CVE-2026-46124 CVE-2026-4612=
+5 CVE-2026-46126 CVE-2026-46127 CVE-2026-46128 CVE-2026-46129 CVE-2026-4613=
+1 CVE-2026-46132 CVE-2026-46133 CVE-2026-46134 CVE-2026-46136 CVE-2026-4613=
+7 CVE-2026-46138 CVE-2026-46139 CVE-2026-46141 CVE-2026-46142 CVE-2026-4614=
+3 CVE-2026-46144 CVE-2026-46145 CVE-2026-46146 CVE-2026-46149 CVE-2026-4615=
+0 CVE-2026-46151 CVE-2026-46152 CVE-2026-46154 CVE-2026-46155 CVE-2026-4615=
+6 CVE-2026-46158 CVE-2026-46159 CVE-2026-46160 CVE-2026-46161 CVE-2026-4616=
+2 CVE-2026-46163 CVE-2026-46164 CVE-2026-46165 CVE-2026-46166 CVE-2026-4616=
+7 CVE-2026-46168 CVE-2026-46169 CVE-2026-46170 CVE-2026-46172 CVE-2026-4617=
+3 CVE-2026-46174 CVE-2026-46176 CVE-2026-46177 CVE-2026-46178 CVE-2026-4617=
+9 CVE-2026-46180 CVE-2026-46182 CVE-2026-46183 CVE-2026-46184 CVE-2026-4618=
+5 CVE-2026-46186 CVE-2026-46187 CVE-2026-46188 CVE-2026-46189 CVE-2026-4619=
+0 CVE-2026-46191 CVE-2026-46192 CVE-2026-46193 CVE-2026-46194 CVE-2026-4619=
+5 CVE-2026-46196 CVE-2026-46197 CVE-2026-46198 CVE-2026-46199 CVE-2026-4620=
+1 CVE-2026-46202 CVE-2026-46203 CVE-2026-46204 CVE-2026-46205 CVE-2026-4620=
+6 CVE-2026-46207 CVE-2026-46208 CVE-2026-46209 CVE-2026-46210 CVE-2026-4621=
+1 CVE-2026-46212 CVE-2026-46213 CVE-2026-46214 CVE-2026-46215 CVE-2026-4621=
+6 CVE-2026-46218 CVE-2026-46219 CVE-2026-46220 CVE-2026-46221 CVE-2026-4622=
+2 CVE-2026-46223 CVE-2026-46224 CVE-2026-46225 CVE-2026-46226 CVE-2026-4622=
+7 CVE-2026-46228 CVE-2026-46229 CVE-2026-46230 CVE-2026-46231 CVE-2026-4623=
+2 CVE-2026-46233 CVE-2026-46234 CVE-2026-46235 CVE-2026-46236 CVE-2026-4623=
+8 CVE-2026-46239 CVE-2026-46240 CVE-2026-46243 CVE-2026-46244 CVE-2026-4624=
+6 CVE-2026-46247 CVE-2026-46248 CVE-2026-46249 CVE-2026-46250 CVE-2026-4625=
+1 CVE-2026-46253 CVE-2026-46255 CVE-2026-46256 CVE-2026-46257 CVE-2026-4625=
+8 CVE-2026-46259 CVE-2026-46260 CVE-2026-46261 CVE-2026-46262 CVE-2026-4626=
+3 CVE-2026-46264 CVE-2026-46265 CVE-2026-46266 CVE-2026-46267 CVE-2026-4626=
+8 CVE-2026-46269 CVE-2026-46270 CVE-2026-46271 CVE-2026-46273 CVE-2026-4627=
+4 CVE-2026-46275 CVE-2026-46276 CVE-2026-46277 CVE-2026-46278 CVE-2026-4627=
+9 CVE-2026-46280 CVE-2026-46281 CVE-2026-46283 CVE-2026-46284 CVE-2026-4628=
+5 CVE-2026-46286 CVE-2026-46287 CVE-2026-46288 CVE-2026-46289 CVE-2026-4629=
+0 CVE-2026-46291 CVE-2026-46292 CVE-2026-46293 CVE-2026-46294 CVE-2026-4629=
+5 CVE-2026-46296 CVE-2026-46297 CVE-2026-46298 CVE-2026-46299 =0A=
+linux-yocto/6.6: (cont.) Ignore CVE-2026-46300 CVE-2026-46301 CVE-2026-4630=
+3 CVE-2026-46304 CVE-2026-46305 CVE-2026-46306 CVE-2026-46307 CVE-2026-4630=
+8 CVE-2026-46309 CVE-2026-46310 CVE-2026-46311 CVE-2026-46312 CVE-2026-4631=
+3 CVE-2026-46315 CVE-2026-46316 CVE-2026-46317 CVE-2026-46318 CVE-2026-4631=
+9 CVE-2026-46323 CVE-2026-46326 CVE-2026-46327 CVE-2026-46328 CVE-2026-4632=
+9 CVE-2026-46332 CVE-2026-46333 CVE-2026-52904 CVE-2026-52905 CVE-2026-5290=
+6 CVE-2026-52907 CVE-2026-52911 CVE-2026-52912 CVE-2026-52914 CVE-2026-5291=
+5 CVE-2026-52916 CVE-2026-52918 CVE-2026-52919 CVE-2026-52920 CVE-2026-5292=
+1 CVE-2026-52922 CVE-2026-52925 CVE-2026-52926 CVE-2026-52931 CVE-2026-5293=
+2 CVE-2026-52933 CVE-2026-52936 CVE-2026-52938 CVE-2026-52940 CVE-2026-5294=
+1 CVE-2026-52945 CVE-2026-52949 CVE-2026-52950 CVE-2026-52951 CVE-2026-5295=
+2 CVE-2026-52954 CVE-2026-52955 CVE-2026-52957 CVE-2026-52958 CVE-2026-5295=
+9 CVE-2026-52960 CVE-2026-52962 CVE-2026-52963 CVE-2026-52964 CVE-2026-5296=
+5 CVE-2026-52966 CVE-2026-52967 CVE-2026-52968 CVE-2026-52969 CVE-2026-5297=
+0 CVE-2026-52971 CVE-2026-52972 CVE-2026-52973 CVE-2026-52974 CVE-2026-5297=
+5 CVE-2026-52976 CVE-2026-52977 CVE-2026-52978 CVE-2026-52979 CVE-2026-5298=
+0 CVE-2026-52981 CVE-2026-52982 CVE-2026-52983 CVE-2026-52984 CVE-2026-5298=
+5 CVE-2026-52986 CVE-2026-52987 CVE-2026-52989 CVE-2026-52992 CVE-2026-5299=
+3 CVE-2026-52994 CVE-2026-52995 CVE-2026-52996 CVE-2026-52997 CVE-2026-5299=
+8 CVE-2026-52999 CVE-2026-53001 CVE-2026-53002 CVE-2026-53003 CVE-2026-5300=
+4 CVE-2026-53006 CVE-2026-53007 CVE-2026-53008 CVE-2026-53011 CVE-2026-5301=
+2 CVE-2026-53013 CVE-2026-53014 CVE-2026-53016 CVE-2026-53019 CVE-2026-5302=
+0 CVE-2026-53021 CVE-2026-53022 CVE-2026-53023 CVE-2026-53026 CVE-2026-5302=
+8 CVE-2026-53029 CVE-2026-53030 CVE-2026-53031 CVE-2026-53032 CVE-2026-5303=
+3 CVE-2026-53034 CVE-2026-53035 CVE-2026-53036 CVE-2026-53037 CVE-2026-5303=
+8 CVE-2026-53039 CVE-2026-53040 CVE-2026-53041 CVE-2026-53042 CVE-2026-5304=
+3 CVE-2026-53044 CVE-2026-53045 CVE-2026-53046 CVE-2026-53047 CVE-2026-5304=
+8 CVE-2026-53049 CVE-2026-53050 CVE-2026-53051 CVE-2026-53052 CVE-2026-5305=
+4 CVE-2026-53055 CVE-2026-53056 CVE-2026-53057 CVE-2026-53058 CVE-2026-5305=
+9 CVE-2026-53060 CVE-2026-53061 CVE-2026-53062 CVE-2026-53063 CVE-2026-5306=
+4 CVE-2026-53065 CVE-2026-53066 CVE-2026-53067 CVE-2026-53068 CVE-2026-5306=
+9 CVE-2026-53071 CVE-2026-53072 CVE-2026-53073 CVE-2026-53074 CVE-2026-5307=
+5 CVE-2026-53076 CVE-2026-53077 CVE-2026-53079 CVE-2026-53081 CVE-2026-5308=
+2 CVE-2026-53083 CVE-2026-53084 CVE-2026-53085 CVE-2026-53086 CVE-2026-5308=
+7 CVE-2026-53088 CVE-2026-53092 CVE-2026-53093 CVE-2026-53094 CVE-2026-5309=
+5 CVE-2026-53096 CVE-2026-53098 CVE-2026-53099 CVE-2026-53100 CVE-2026-5310=
+1 CVE-2026-53103 CVE-2026-53104 CVE-2026-53105 CVE-2026-53107 CVE-2026-5311=
+0 CVE-2026-53111 CVE-2026-53112 CVE-2026-53114 CVE-2026-53116 CVE-2026-5311=
+7 CVE-2026-53119 CVE-2026-53121 CVE-2026-53123 CVE-2026-53124 CVE-2026-5312=
+5 CVE-2026-53126 CVE-2026-53127 CVE-2026-53128 CVE-2026-53130 CVE-2026-5314=
+0 CVE-2026-53141 CVE-2026-53142 CVE-2026-53145 CVE-2026-53152 CVE-2026-5315=
+3 CVE-2026-53155 CVE-2026-53162 CVE-2026-53164 CVE-2026-53165 CVE-2026-5316=
+9 CVE-2026-53170 CVE-2026-53171 CVE-2026-53172 CVE-2026-53173 CVE-2026-5317=
+4 CVE-2026-53175 CVE-2026-53180 CVE-2026-53187 CVE-2026-53188 CVE-2026-5319=
+1 CVE-2026-53192 CVE-2026-53193 CVE-2026-53197 CVE-2026-53200 CVE-2026-5320=
+1 CVE-2026-53202 CVE-2026-53203 CVE-2026-53204 CVE-2026-53205 CVE-2026-5320=
+6 CVE-2026-53210 CVE-2026-53211 CVE-2026-53222 CVE-2026-53231 CVE-2026-5323=
+3 CVE-2026-53234 CVE-2026-53235 CVE-2026-53240 CVE-2026-53241 CVE-2026-5324=
+3 CVE-2026-53244 CVE-2026-53248 CVE-2026-53250 CVE-2026-53251 CVE-2026-5325=
+7 CVE-2026-53259 CVE-2026-53260 CVE-2026-53261 CVE-2026-53276 CVE-2026-5327=
+7 CVE-2026-53278 CVE-2026-53279 CVE-2026-53280 CVE-2026-53281 CVE-2026-5328=
+2 CVE-2026-53283 CVE-2026-53286 CVE-2026-53287 CVE-2026-53288 CVE-2026-5328=
+9 CVE-2026-53290 CVE-2026-53291 CVE-2026-53293 CVE-2026-53294 CVE-2026-5329=
+5 CVE-2026-53296 CVE-2026-53298 CVE-2026-53299 CVE-2026-53300 CVE-2026-5330=
+1 CVE-2026-53302 CVE-2026-53303 CVE-2026-53304 CVE-2026-53305 CVE-2026-5330=
+6 CVE-2026-53307 CVE-2026-53308 CVE-2026-53309 CVE-2026-53310 CVE-2026-5331=
+1 CVE-2026-53312 CVE-2026-53314 CVE-2026-53315 CVE-2026-53316 CVE-2026-5331=
+8 CVE-2026-53319 CVE-2026-53320 CVE-2026-53321 CVE-2026-53322 CVE-2026-5332=
+3 CVE-2026-53324 CVE-2026-53326 CVE-2026-53328 CVE-2026-53333 CVE-2026-5333=
+4 CVE-2026-53335 CVE-2026-53338 CVE-2026-53340 CVE-2026-53341 CVE-2026-5334=
+2 CVE-2026-53344 CVE-2026-53346 CVE-2026-53348 CVE-2026-53351 CVE-2026-5335=
+7 CVE-2026-53360 CVE-2026-53363 CVE-2026-53364 CVE-2026-53365 CVE-2026-5336=
+7 CVE-2026-53369 CVE-2026-53370 CVE-2026-53371 CVE-2026-53372 CVE-2026-5337=
+3 CVE-2026-53374 CVE-2026-53375 CVE-2026-53376 CVE-2026-53378 CVE-2026-5337=
+9 CVE-2026-53380 CVE-2026-53386 CVE-2026-53387 CVE-2026-53389 CVE-2026-5339=
+4 CVE-2026-53395 CVE-2026-53396 CVE-2026-63793 CVE-2026-63799 CVE-2026-6381=
+3 CVE-2026-63820 CVE-2026-63832 CVE-2026-63837 CVE-2026-63838 CVE-2026-6383=
+9 CVE-2026-63840 CVE-2026-63841 CVE-2026-63842 CVE-2026-63843 CVE-2026-6384=
+4 CVE-2026-63845 CVE-2026-63846 CVE-2026-63847 CVE-2026-63848 CVE-2026-6384=
+9 CVE-2026-63850 CVE-2026-63851 CVE-2026-63852 CVE-2026-63854 CVE-2026-6385=
+5 CVE-2026-63856 CVE-2026-63857 CVE-2026-63859 CVE-2026-63860 CVE-2026-6386=
+1 CVE-2026-63862 CVE-2026-63863 CVE-2026-63864 CVE-2026-63865 CVE-2026-6386=
+6 CVE-2026-63869 CVE-2026-63873 CVE-2026-63874 CVE-2026-63878 CVE-2026-6388=
+0 CVE-2026-63885 CVE-2026-63894 CVE-2026-63907 CVE-2026-63910 CVE-2026-6391=
+1 CVE-2026-63918 CVE-2026-63923 CVE-2026-63929 CVE-2026-63932 CVE-2026-6393=
+5 CVE-2026-63936 CVE-2026-63937 CVE-2026-63938 CVE-2026-63939 CVE-2026-6394=
+1 CVE-2026-63950 CVE-2026-63951 CVE-2026-63953 CVE-2026-63955 CVE-2026-6396=
+5 CVE-2026-63966 CVE-2026-63970 CVE-2026-63972 CVE-2026-63977 CVE-2026-6398=
+0 CVE-2026-63981 CVE-2026-63982 CVE-2026-63986 CVE-2026-63987 CVE-2026-6398=
+8 CVE-2026-63989 CVE-2026-63995 CVE-2026-63996 CVE-2026-63997 CVE-2026-6399=
+8 CVE-2026-64008 CVE-2026-64013 CVE-2026-64015 CVE-2026-64016 CVE-2026-6401=
+8 CVE-2026-64019 CVE-2026-64020 CVE-2026-64021 CVE-2026-64022 CVE-2026-6402=
+3 CVE-2026-64024 CVE-2026-64025 CVE-2026-64027 CVE-2026-64028 CVE-2026-6402=
+9 CVE-2026-64030 CVE-2026-64031 CVE-2026-64032 CVE-2026-64033 CVE-2026-6403=
+4 CVE-2026-64035 CVE-2026-64037 CVE-2026-64039 CVE-2026-64040 CVE-2026-6404=
+1 CVE-2026-64042 CVE-2026-64043 CVE-2026-64044 CVE-2026-64045 CVE-2026-6404=
+6 CVE-2026-64047 CVE-2026-64048 CVE-2026-64049 CVE-2026-64050 CVE-2026-6405=
+1 CVE-2026-64052 CVE-2026-64053 CVE-2026-64054 CVE-2026-64055 CVE-2026-6405=
+6 CVE-2026-64057 CVE-2026-64058 CVE-2026-64059 CVE-2026-64061 CVE-2026-6406=
+2 CVE-2026-64063 CVE-2026-64064 CVE-2026-64065 CVE-2026-64066 CVE-2026-6406=
+7 CVE-2026-64068 CVE-2026-64069 CVE-2026-64071 CVE-2026-64072 CVE-2026-6407=
+3 CVE-2026-64074 CVE-2026-64075 CVE-2026-64080 CVE-2026-64081 CVE-2026-6408=
+3 CVE-2026-64084 CVE-2026-64085 CVE-2026-64086 CVE-2026-64087 CVE-2026-6408=
+8 CVE-2026-64089 CVE-2026-64092 CVE-2026-64096 CVE-2026-64097 CVE-2026-6409=
+8 CVE-2026-64099 CVE-2026-64100 CVE-2026-64101 CVE-2026-64102 CVE-2026-6410=
+3 CVE-2026-64104 CVE-2026-64105 CVE-2026-64106 CVE-2026-64107 CVE-2026-6410=
+8 CVE-2026-64110 CVE-2026-64111 CVE-2026-64113 CVE-2026-64114 CVE-2026-6411=
+5 CVE-2026-64118 CVE-2026-64119 CVE-2026-64120 CVE-2026-64121 CVE-2026-6412=
+2 CVE-2026-64124 CVE-2026-64125 CVE-2026-64126 CVE-2026-64127 CVE-2026-6412=
+8 CVE-2026-64129 CVE-2026-64130 CVE-2026-64132 CVE-2026-64133 CVE-2026-6413=
+4 CVE-2026-64135 CVE-2026-64136 CVE-2026-64139 CVE-2026-64140 CVE-2026-6414=
+1 CVE-2026-64142 CVE-2026-64143 CVE-2026-64144 CVE-2026-64145 CVE-2026-6414=
+7 CVE-2026-64148 CVE-2026-64149 CVE-2026-64150 CVE-2026-64151 CVE-2026-6415=
+2 CVE-2026-64153 CVE-2026-64155 CVE-2026-64156 CVE-2026-64157 CVE-2026-6415=
+8 CVE-2026-64159 CVE-2026-64161 CVE-2026-64162 CVE-2026-64163 CVE-2026-6416=
+4 CVE-2026-64165 CVE-2026-64166 CVE-2026-64167 CVE-2026-64168 CVE-2026-6416=
+9 CVE-2026-64170 CVE-2026-64171 CVE-2026-64172 CVE-2026-64173 CVE-2026-6417=
+4 CVE-2026-64175 CVE-2026-64176 CVE-2026-64177 CVE-2026-64178 CVE-2026-6417=
+9 CVE-2026-64180 CVE-2026-64181 CVE-2026-64182 CVE-2026-64183 CVE-2026-6418=
+4 CVE-2026-64185 CVE-2026-64186 CVE-2026-64207=0A=
+openssh: Fix CVE-2026-59995 CVE-2026-59996 CVE-2026-59997 CVE-2026-59999 CV=
+E-2026-60000 CVE-2026-60001 CVE-2026-60002=0A=
+openssh: Ignore CVE-2026-59998 if kerberos not enabled=0A=
+openssh: Ignore CVE-2026-3497=0A=
+perl: Fix CVE-2026-8376=0A=
+python3: Fix CVE-2026-7210 CVE-2026-9669 CVE-2026-11940 CVE-2026-11972=0A=
+python3-setuptools: Fix CVE-2026-59890=0A=
+python3-urllib3: Fix CVE-2026-44431=0A=
+qemu: Fix CVE-2025-14876 CVE-2026-0665 CVE-2026-2243=0A=
+socat: Fix CVE-2026-56123=0A=
+sqlite3: Fix CVE-2026-11822 CVE-2026-11824=0A=
+tar: Fix CVE-2026-5704=0A=
+util-linux: Fix CVE-2026-13595=0A=
+vim: Fix CVE-2026-28417 CVE-2026-28420 CVE-2026-28421 CVE-2026-28422 CVE-20=
+26-32249 CVE-2026-34714 CVE-2026-34982 CVE-2026-35177 CVE-2026-41411 CVE-20=
+26-42307 CVE-2026-43961 CVE-2026-44656 CVE-2026-45130 CVE-2026-46483 CVE-20=
+26-47162 CVE-2026-47167 CVE-2026-52858 CVE-2026-52859 CVE-2026-52860=0A=
+=0A=
+=0A=
+---------------=0A=
+Fixes=0A=
+---------------=0A=
+=0A=
+bind: Upgrade to 9.18.49=0A=
+binutils: CVE-2025-69648.patch also fixed CVE-2025-69646=0A=
+bitbake.rst: rename section to "BitBake User Manual"=0A=
+bitbake: README: Add "2.8" subject-prefix to git-send-email suggestion=0A=
+bitbake: utils: Add NFS EEXISTS/isdir failure workaround=0A=
+build-appliance-image: Update to scarthgap head revision=0A=
+bzip2: fix 'bzip2 --version > /tmp/aaa 2>&1' hang=0A=
+ca-certificates: upgrade to 20260601=0A=
+cargo-update-recipe-crates: Don't fail for partially empty Cargo.lock=0A=
+contributor-guide/identify-component.rst: use the same tense as other secti=
+on=0A=
+contributor-guide: Note patch complexity requirements for stable branches=
+=0A=
+create-spdx-image-3.0: correct SSTATE_SKIP_CREATION key for do_create_image=
+_sbom_spdx=0A=
+cve-update: Avoid NFS caching issues=0A=
+dev-manual/sbom.rst: refresh for SPDX3=0A=
+docs: fix broken path links=0A=
+docs: fix manual names in cross references=0A=
+docs: fix various broken links=0A=
+docs: index.rst: add introduction paragraphs=0A=
+docs: index.rst: move external links to the bottom of the intro section=0A=
+docs: index.rst: move release notes in their own section=0A=
+docs: index.rst: move the "Overview and Concepts" manual in the "Introducti=
+on and Overview" section=0A=
+docs: index.rst: move the contributor guide out of the Manuals section=0A=
+docs: index.rst: show the intro paragraph only for html-based docs=0A=
+docs: kernel-dev/common.rst: remove taskhash mismatch note=0A=
+docs: README: update instructions for installing vale and sphinx-lint=0A=
+docs: recipe-style-guide: Clarify when License-Update tag is needed=0A=
+docs: remove CROPS references=0A=
+flex: update CVE_PRODUCT=0A=
+glibc-testsuite: Do not generate SPDX=0A=
+glibc: stable 2.39 branch updates=0A=
+libgcrypt: upgrade to 1.10.4=0A=
+linux-yocto/6.6: update to v6.6.147=0A=
+migration-guide: add release notes for 5.0.19=0A=
+migration-guides/release-notes-3.4.2.rst: fix a broken link=0A=
+migration-guides/release-notes-5.0.rst: remove broken link=0A=
+migration-guides: replace broken link with archive links=0A=
+openssh: CVE-2026-35387.patch also fixed CVE-2026-35414 =0A=
+overview-manual: move the intro content in the index=0A=
+package.bbclass: hardcode emit_pkgdata to run last=0A=
+perf: drop newt from tui build requirements=0A=
+poky.conf: Bump version for 5.0.20 release=0A=
+python3-certifi: set CVE_PRODUCT=0A=
+python3-cryptography: set CVE_PRODUCT=0A=
+python3-idna: set CVE_PRODUCT=0A=
+python3-pip: set CVE_PRODUCT=0A=
+python3-ply: set CVE_PRODUCT=0A=
+python3-pyasn1: set CVE_PRODUCT=0A=
+python3-pyopenssl: set CVE_PRODUCT=0A=
+python3-pyyaml: set CVE_PRODUCT=0A=
+python3-xmltodict: set CVE_PRODUCT=0A=
+python3: Simplify ptest exclusion list=0A=
+python3: skiptest tracemalloc_track_race=0A=
+ref-manual/classes.rst: replace obsolete mailing list thread=0A=
+ref-manual/features.rst: fix some cross references=0A=
+ref-manual/images.rst: update obsolete VMWare links=0A=
+ref-manual/release-process.rst: update LTS supported versions=0A=
+ref-manual: Fix occurrences of omitted space with :prepend=0A=
+ref-manual: remove all traces of "kernel_menuconfig" task=0A=
+rootfs: move tasks using image_list_installed_packages to postuninstall=0A=
+scripts/install-buildtools: Update to 5.0.19=0A=
+shadow: set CVE_PRODUCT=0A=
+sudo: fix pam-wheel sed for sudo 1.9.17p2 sudoers=0A=
+sudo: set CVE_PRODUCT=0A=
+tzdata/tzcode-native: upgrade 2026b -> 2026c=0A=
+u-boot: Set CVE_PRODUCT=0A=
+vex: remove obsolete semicolon=0A=
+wic: Fix updating fstab for nvme devices=0A=
+wireless-regdb: upgrade to 2026.05.30=0A=
+xmlto: update SRC_URI=0A=
+xserver-org: update CVE_PRODUCT=0A=
+=0A=
 
