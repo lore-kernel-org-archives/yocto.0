@@ -1,515 +1,728 @@
-Return-Path: <diwateprashant44@gmail.com>
+Return-Path: <sjolley.yp.pm@gmail.com>
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 	aws-us-west-2-korg-lkml-1.web.codeaurora.org
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 4360BC982EE
-	for <webhook@archiver.kernel.org>; Mon, 21 Sep 2026 13:23:54 +0000 (UTC)
-Subject: [ANNOUNCE] open-source Embedded Linux device fleet management platform 
-To: yocto@lists.yoctoproject.org
-From: "Prashant Divate" <diwateprashant44@gmail.com>
-X-Originating-Location: Bengaluru, Karnataka, IN (49.43.240.245)
-X-Originating-Platform: Windows Chrome 153
-User-Agent: GROUPS.IO Web Poster
+	by smtp.lore.kernel.org (Postfix) with ESMTP id AF9D4C98302
+	for <webhook@archiver.kernel.org>; Tue, 22 Sep 2026 14:48:30 +0000 (UTC)
+Received: from mail-pj2-f12.google.com (mail-pj2-f12.google.com [74.125.227.140])
+ by mx.groups.io with SMTP id smtpd.msgproc01-g2.12063.1790088500481115934
+ for <yocto@lists.yoctoproject.org>;
+ Tue, 22 Sep 2026 07:48:20 -0700
+Authentication-Results: mx.groups.io;
+ dkim=pass header.i=@gmail.com header.s=20251104 header.b=IyajjQ2U;
+ spf=pass (domain: gmail.com, ip: 74.125.227.140, mailfrom: sjolley.yp.pm@gmail.com)
+Received: by mail-pj2-f12.google.com with SMTP id 98e67ed59e1d1-396ccd5cef0so2940084a91.0
+        for <yocto@lists.yoctoproject.org>; Tue, 22 Sep 2026 07:48:20 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1790088500; cv=none;
+        d=google.com; s=arc-20260327;
+        b=SLj9Sgc4BaBql9JedorilpzpYydUsb3CVGhFIeahcpXppKAdOSsWTNsm61o6EbC66k
+         koAlaT3ogGIHx0s5ipenqBDjjRN3ma7WCejRCXhjIwUidPtdr9WI9A2lr7Hn1f5ko5U5
+         k70x2h5LOezySI7556QG8kx9HCw41A/RCeCuPSGaHIZX944srjBfOPoWVOOKzgnt6C40
+         69RcQ479R3+AdFalxzPgsbB65MtW6ieULT5o60094YkBczSGSj90scRgU5HLMxfl87ml
+         uWj4HYZnjSoUuetUQSU41QLGcWa5caTAqeYyHj7QdA4FVX5cRYTYjL7jonDek8SenWC4
+         5+Mg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20260327;
+        h=to:subject:message-id:date:from:mime-version:dkim-signature;
+        bh=WcFLvtMiUdnEFYRZz32Z3136VGJx9ZBc3+yvEW5RE+A=;
+        fh=o/Rz/wHjkEPQzjeT84wFAd2PuiZZ0xTjUSMI95g/gEc=;
+        b=ihfYwQtamPqga2QKhzpKc6EW+EQScQIAqMrThEX/0HVFl+ks/gAMwdXd4J1kUZkdHO
+         O/3HJ45zXI9dkGJCz5Ckp2VsRKnLZL3ltlL4N2e52oAOXpmpdpvB1OrpxpTas0riwnzr
+         M7If7mMtj3AxAuyMktOB/AsJ6ojBWDdKJ8QnkU/t5bS4xPeIYWbgVEj4NO/IIv2uzbyY
+         QIl6dAIiW2UHgUp0y1B9kF99Hw5EmSr6OwDcgEwi1zoDKGQ0iPqW+rYrp2mJqOXqLNZt
+         lE1nmdCbMa51o1gMdZiQjrlJOpYynH7ViJ93OFWV/poHMAXREWLVAYiGzJLoIwQ6ttlE
+         SXFg==;
+        darn=lists.yoctoproject.org
+ARC-Authentication-Results: i=1; mx.google.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20251104; t=1790088500; x=1790693300; darn=lists.yoctoproject.org;
+        h=content-type:to:subject:message-id:date:from:mime-version:from:to
+         :cc:subject:date:message-id:reply-to:content-type;
+        bh=WcFLvtMiUdnEFYRZz32Z3136VGJx9ZBc3+yvEW5RE+A=;
+        b=IyajjQ2UJjoRZZ8Sh+hM6UmYc2wqc3oxXoDVyFRUxMR31VIwG1ZZ4StxavmAJOu0EZ
+         gM7DeKMz3XItLRjUXQ+Z7QHzaNBGMecYmPFGUcUOfz68SHOtzoIOf88wQF0BvrZBmoYD
+         Vf84Ci4u2/VU+IZOweGeiPxDyP/8svboxFwzZHDsrEm+2ab6KT5lko2K8Pc2rv3eZvWj
+         vjYswgErK0n3fEAlUzlqjBcAKFdZInFz2Dw5HOGEFcU32IQAvLuQY1+Pmphz8I2sOKQS
+         LEWbeN9SUToTm3+zh+9mLjKLDJkUaw73kMLywNnI42ODVR7007IiwNvk2TeOdAseF4LD
+         18bA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20260707; t=1790088500; x=1790693300;
+        h=content-type:to:subject:message-id:date:from:mime-version:x-gm-gg
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
+         :content-type;
+        bh=WcFLvtMiUdnEFYRZz32Z3136VGJx9ZBc3+yvEW5RE+A=;
+        b=Q4G45RDXZWCMBxFd16InQg+Q6jUoB/ZE8TqJt3Fc6U9McIxpoag1NLTzRGLnJ2beEL
+         7axMptwhpJpWnVHw1GsJzIU1d78Arg9tGnu1NpzekbkhSzPzycYScpHK5CoiW+7mA/zd
+         uhzkE9ujsr2tyzHB/CH5efqTvvmc5zwmeQKIwNQJGLJt21zuqP6LoiJ5W1Pg5orjOZqv
+         WsZn0u/9Yr1qkCLkUvaibjVIV52POjXEBQMtiMEoQgOLRo9mthsN7Fsle1Ra686N9lFz
+         7xZ6HOXqnDSUIYmlz26sBC8+tsQc72BdscV0Pr+bIckJKKZVI8g/xx6cYGhSg598rLgk
+         Nmzw==
+X-Gm-Message-State: AFuF++mv2IpxwKWLVWL1LvG/DqbUjqRvjldLOnzXjbXeE/pUtQzmwPif
+	HBxmrLdbQZ1ilv5u77x/AFxSrdRlQQVshugGP12h/h+MUA9Vo50jFK9F0Dg4eSAoYL9Gk8rfKuD
+	UgG5S9QZiUqRUbfUJYFMw7LuUZBe+wk8ZX9mb
+X-Gm-Gg: AYBFou1GReN7UmRIyJve2xhxjV9nc0ClHUg7R+51IEyte44hi+g9G3gOH5tfRvLgScd
+	h/N2g5x9ljQrrrAq1KJaVS3yx9bK3qPUaCB50LojS41M6KjIjzirhp1M/w/9GGTmxLtgFkdjL1Z
+	llHeAQesf3uCg1NQrS/TjqpTLGjwkBVablfMZnZtpl31AeRpJxD6jdPRpTxAfNUXW8G3vh9nvb+
+	XZeHwwqkdz3YxlBeZYV9T8734DKU7vheCNBMm3WAEDl4OV2JYSaoGuoXd5ypMIuFZ+838KAjPJ2
+	foB2HU84eLD23Hl/eAX1pAtWjIA1Gn44YkbBKUU52a50+0E+17/K4SGg3jIq8drWJRr6bV2CD+Y
+	KETyRvRfzOGRr60/5Lg9uwr3Bsop3oT+J4CMY08XgBs+e8pmMLMOnTlITtoUeJzcENz2ptrj8uC
+	2IoeZYdTPTSk87YNW8i2sBoBo8EJsVQCC2DWBEX/0YB4x/QfSs9/imp4kRnu22Tm+q+rHwOdsuM
+	cXCEwJqss6v1X3rriVt4NJ7oxCS5TH47o4Q6Ys=
+X-Received: by 2002:a17:90a:e7cc:b0:3a0:2900:f57e with SMTP id
+ 98e67ed59e1d1-3a07320034amr1593060a91.40.1790088499348; Tue, 22 Sep 2026
+ 07:48:19 -0700 (PDT)
 MIME-Version: 1.0
-Date: Mon, 21 Sep 2026 06:23:46 -0700
-Message-ID: <a7zA.1789997026143862663.WNvz@lists.yoctoproject.org>
-Content-Type: multipart/alternative; boundary="ul93aEmx7S5x2fmQArix"
+From: Stephen K Jolley <sjolley.yp.pm@gmail.com>
+Date: Tue, 22 Sep 2026 07:48:07 -0700
+X-Gm-Features: AclHuK8WHB-ejTJG0hKvaDzUXUimX2yJ4kOx9qwuYF_1R7dURN4xYj6Lh5N2Zzs
+Message-ID: <CAK5yBb8YFZsxhBOY2s+Nrs2-gS=5n7qoa-XHgVud5RC6z3M04w@mail.gmail.com>
+Subject: Yocto Project Status 22 September 2026 (WW39)
+To: Yocto-mailing-list <yocto@lists.yoctoproject.org>, 
+	",openembedded-core@lists.openembedded.org" <openembedded-core@lists.openembedded.org>, 
+	yocto-status@lists.yoctoproject.org
+Content-Type: multipart/alternative; boundary="0000000000001ec9a1065c137530"
 List-Id: <yocto.lists.yoctoproject.org>
 X-Webhook-Received: from 45-33-107-173.ip.linodeusercontent.com [45.33.107.173] by
  aws-us-west-2-korg-lkml-1.web.codeaurora.org with HTTPS for
- <yocto@lists.yoctoproject.org>; Mon, 21 Sep 2026 13:23:54 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/66737
+ <yocto@lists.yoctoproject.org>; Tue, 22 Sep 2026 14:48:30 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/66738
 
---ul93aEmx7S5x2fmQArix
-Content-Type: text/plain; charset="utf-8"
+--0000000000001ec9a1065c137530
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-Managing a Linux fleet shouldn=E2=80=99t mean replacing the update mechanis=
-m your devices already use.
+Current Dev Position: YP 6.1 M4 - Stabilisation (Bug Fixing)
 
-That=E2=80=99s the idea behind *Soul Room* , an open-source fleet-managemen=
-t platform for embedded Linux and edge devices.
-After months of development, testing, and iteration, I built Soul Room to b=
-ring device visibility, remote access, and update workflows together for te=
-ams working with *Yocto-based systems* , and other embedded Linux distribut=
-ions like Ubuntu.
+Next Deadline: YP 6.1 M4: w/c 2026-10-12
 
-One important design choice: work with the device=E2=80=99s existing update=
- approach.
-Soul Room supports capability-aware workflows for Mender, RAUC, OSTree, SWU=
-pdate, Flatpak applications and product-specific adapter plugins, so teams =
-can retain the update mechanism already validated for their devices through=
- a secure channel
+Next Team Meetings:
 
-What=E2=80=99s available in the beta?
-=E2=80=A2 *User/role management* with different roles so cross-teams can ac=
-cess the platform.
-=E2=80=A2 Device enrollment with *TLS support* , live fleet monitoring and =
-system telemetry.
-=E2=80=A2 Hardware/software inventory, plus CVE and security-advisory visib=
-ility.
-=E2=80=A2 *Remote device access* through integrated ShellHub support.
-=E2=80=A2 Jobs, deployments and controlled *secure OTA update campaigns*.
+   -
 
-The platform also includes *fleet mapping, alerts, audit logs and role mana=
-gement*. A portable Linux agent for system and the cloud platform can be de=
-ployed using Docker Compose.
-My goal is a practical, vendor-neutral platform that gives engineering team=
-s visibility and control without tying them to one hardware vendor or Linux=
- distribution.
+   Bug Triage meeting - Thursday 24th Sept. 7:30am PDT (
+   https://zoom.us/j/454367603?pwd=3DZGxoa2ZXL3FkM3Y0bFd5aVpHVVZ6dz09)
+   -
 
-Repository: https://github.com/prashantdivate/soul-room-edge-platform
-This is a first public beta, and I=E2=80=99d like the next iterations to be=
- shaped by people working with real devices.
+   Weekly Project Engineering Sync  - Tuesday 22nd Sept. 8am PDT (
+   https://zoom.us/j/990892712?pwd=3DcHU1MjhoM2x6ck81bkcrYjRrcmJsUT09)
+   <https://zoom.us/j/990892712>
+   -
 
-Embedded Linux and Yocto developers: try it on a non-production device and =
-tell me what works, what breaks, and what=E2=80=99s missing. Contributors a=
-nd teams interested in pilot deployments are welcome.
-What=E2=80=99s the biggest gap in your current fleet-management workflow?
+   Yocto Project Patch Review - Thursday 24th Sept. 10am GMT and Monday
+   28th Sept. 9am PDT (
+   https://zoom.us/j/97762397148?pwd=3D1xk0iC9hp9SjEonaTaONwTb6iWry4Eb.1)
 
---ul93aEmx7S5x2fmQArix
-Content-Type: text/html; charset="utf-8"
+
+Project data dashboard: https://dashboard.yoctoproject.org/
+
+Key Status/Updates:
+
+   -
+
+   YP 5.0.20 was released
+   -
+
+   YP 6.1 M3 is due for release
+   -
+
+   Our plan is to build M4 within the next week unless significant problems
+   become known as we=E2=80=99re not aware of anyone working on any major f=
+ixes which
+   would delay it.
+   -
+
+   If there are release blocking issues, please report ASAP.
+   -
+
+   We have made progress on the build architecture reproducibility issues,
+   thanks in particular to Alejandro and Sunil and team at Windriver for
+   getting the major rust issues resolved. There are around 30 issues left =
+as
+   shown by the autobuilder tests (down from ~90) so great progress.
+   -
+
+   python3-six recipe moved to meta-oe, it provides python 2.x era support
+   so nothing should be needing that now - references are a sign that
+   dependencies probably need updating but it is still available if needed.
+   -
+
+   There are issues which are in a position where others could now help:
+   -
+
+      Matchbox-wm segfault/xserver restart
+      -
+
+      aarch64/x86-64 build host contamination/reproducibility issue -
+      thanks for the work and fixes so far on this.
+      -
+
+      See Richard=E2=80=99s email on the list
+      https://lists.openembedded.org/g/openembedded-core/topic/areas_we_cou=
+ld_do_with/121159956
+      which details some others too
+
+We get a lot of comments about these being hard to reproduce or work on, in
+both cases, these have specific well defined things which need to be done
+and a basic understanding of what the issue relates to, if not the actual
+fix.
+
+Want to contribute? We would appreciate help with the following areas:
+
+   -
+
+   We have several open issues for pseudo and limited maintainer time to
+   work on them. Help from someone familiar with systems programming in C
+   would be greatly appreciated.
+   https://bugzilla.yoctoproject.org/buglist.cgi?list_id=3D661406&priority=
+=3DHigh&priority=3DMedium%2B&product=3DPseudo&query_format=3Dadvanced&resol=
+ution=3D---
+   -
+
+   There are a large number of intermittent failures on our autobuilder,
+   any help with investigating, reproducing or solving these issues would b=
+e
+   welcome! https://valkyrie.yocto.io/pub/non-release/abint/
+   -
+
+   Many recipes in openembedded-core would benefit from a new recipe
+   maintainer. Please look at
+   https://git.openembedded.org/openembedded-core/tree/meta/conf/distro/inc=
+lude/maintainers.inc
+   and see if you can adopt any of the unassigned recipes.
+   -
+
+   For more ways to contribute, see
+   https://docs.google.com/document/d/18oxKWxLorfF813h82mK6yKTIHeBp_-9owFuC=
+WbzgjOk/edit?usp=3Dsharing
+
+
+New to the project?
+
+   -
+
+   We have a list of issues we think are good places to start contributing:
+   https://bugzilla.yoctoproject.org/buglist.cgi?quicksearch=3DNEWCOMER
+
+
+Tracking Metrics:
+
+   -
+
+   WDD 2640 (last week 2647) (
+   https://wiki.yoctoproject.org/charts/combo.html)
+   -
+
+   OE-Core/Poky Patch Metrics
+   -
+
+      Total patches found: 1055 (last week 1054)
+      -
+
+      Patches in the Pending State: 137 (13%) [last week 135 (13%)]
+      -
+
+      https://valkyrie.yocto.io/pub/non-release/patchmetrics/
+
+
+Upcoming development releases
+
+   -
+
+   6.1 M3: is due for release
+   -
+
+   6.1.0:
+   -
+
+      Build Date (M4): w/c 2026-10-12
+      -
+
+      Release Date: w/c 2026-11-02
+
+
+Upcoming dot releases:
+
+   -
+
+   YP 6.0.4
+   -
+
+      Build Date w/c 2026-09-28
+      -
+
+      Release Date w/c 2026-10-12
+      -
+
+   YP 5.0.21
+   -
+
+      Build Date w/c 2026-10-05
+      -
+
+      Release Date w/c 2026-10-19
+      -
+
+   For future release dates, see
+   https://wiki.yoctoproject.org/wiki/Release_calendar
+
+
+The Yocto Project=E2=80=99s technical governance is through its Technical S=
+teering
+Committee, more information is available at:
+
+https://wiki.yoctoproject.org/wiki/TSC
+
+The Status reports are stored on the wiki at:
+https://wiki.yoctoproject.org/wiki/Weekly_Status
+
+[If anyone has suggestions for other information you=E2=80=99d like to see =
+on this
+weekly status update, let us know!]
+
+Thanks,
+
+
+
+*Stephen K. Jolley*
+
+*Yocto Project Program Manager*
+
+(    *Cell*:                (208) 244-4460
+
+* *Email*:                 *s
+<stephen.k.jolley@intel.com>jolley.yp.pm@gmail.com <jolley.yp.pm@gmail.com>=
+*
+
+--0000000000001ec9a1065c137530
+Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-<div><span style=3D"color: rgba(0, 0, 0, 0.9); font-family: system-ui, -app=
-le-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Ubuntu, Oxygen, Cantarel=
-l, 'Fira Sans', 'Droid Sans', 'Helvetica Neue', Arial, sans-serif, 'Apple C=
-olor Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'; font-size: 14px; font-sty=
-le: normal; font-variant-ligatures: normal; font-variant-caps: normal; font=
--weight: 400; letter-spacing: normal; orphans: 2; text-align: start; text-i=
-ndent: 0px; text-transform: none; widows: 2; word-spacing: 0px; -webkit-tex=
-t-stroke-width: 0px; white-space: pre-wrap; background-color: #ffffff; text=
--decoration-thickness: initial; text-decoration-style: initial; text-decora=
-tion-color: initial; display: inline !important; float: none;">Managing a L=
-inux fleet shouldn&rsquo;t mean replacing the update mechanism your devices=
- already use.</span><br style=3D"box-sizing: border-box; color: rgba(0, 0, =
-0, 0.9); font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe =
-UI', Roboto, Ubuntu, Oxygen, Cantarell, 'Fira Sans', 'Droid Sans', 'Helveti=
-ca Neue', Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe =
-UI Symbol'; font-size: 14px; font-style: normal; font-variant-ligatures: no=
-rmal; font-variant-caps: normal; font-weight: 400; letter-spacing: normal; =
-orphans: 2; text-align: start; text-indent: 0px; text-transform: none; wido=
-ws: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; white-space: pre-=
-wrap; background-color: #ffffff; text-decoration-thickness: initial; text-d=
-ecoration-style: initial; text-decoration-color: initial;" /><br style=3D"b=
-ox-sizing: border-box; color: rgba(0, 0, 0, 0.9); font-family: system-ui, -=
-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Ubuntu, Oxygen, Canta=
-rell, 'Fira Sans', 'Droid Sans', 'Helvetica Neue', Arial, sans-serif, 'Appl=
-e Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'; font-size: 14px; font-=
-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; f=
-ont-weight: 400; letter-spacing: normal; orphans: 2; text-align: start; tex=
-t-indent: 0px; text-transform: none; widows: 2; word-spacing: 0px; -webkit-=
-text-stroke-width: 0px; white-space: pre-wrap; background-color: #ffffff; t=
-ext-decoration-thickness: initial; text-decoration-style: initial; text-dec=
-oration-color: initial;" /><span style=3D"color: rgba(0, 0, 0, 0.9); font-f=
-amily: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Ub=
-untu, Oxygen, Cantarell, 'Fira Sans', 'Droid Sans', 'Helvetica Neue', Arial=
-, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'; fon=
-t-size: 14px; font-style: normal; font-variant-ligatures: normal; font-vari=
-ant-caps: normal; font-weight: 400; letter-spacing: normal; orphans: 2; tex=
-t-align: start; text-indent: 0px; text-transform: none; widows: 2; word-spa=
-cing: 0px; -webkit-text-stroke-width: 0px; white-space: pre-wrap; backgroun=
-d-color: #ffffff; text-decoration-thickness: initial; text-decoration-style=
-: initial; text-decoration-color: initial; display: inline !important; floa=
-t: none;">That&rsquo;s the idea behind <strong>Soul Room</strong>, an open-=
-source fleet-management platform for embedded Linux and edge devices.</span=
-><br style=3D"box-sizing: border-box; color: rgba(0, 0, 0, 0.9); font-famil=
-y: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Ubuntu=
-, Oxygen, Cantarell, 'Fira Sans', 'Droid Sans', 'Helvetica Neue', Arial, sa=
-ns-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'; font-si=
-ze: 14px; font-style: normal; font-variant-ligatures: normal; font-variant-=
-caps: normal; font-weight: 400; letter-spacing: normal; orphans: 2; text-al=
-ign: start; text-indent: 0px; text-transform: none; widows: 2; word-spacing=
-: 0px; -webkit-text-stroke-width: 0px; white-space: pre-wrap; background-co=
-lor: #ffffff; text-decoration-thickness: initial; text-decoration-style: in=
-itial; text-decoration-color: initial;" /><span style=3D"color: rgba(0, 0, =
-0, 0.9); font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe =
-UI', Roboto, Ubuntu, Oxygen, Cantarell, 'Fira Sans', 'Droid Sans', 'Helveti=
-ca Neue', Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe =
-UI Symbol'; font-size: 14px; font-style: normal; font-variant-ligatures: no=
-rmal; font-variant-caps: normal; font-weight: 400; letter-spacing: normal; =
-orphans: 2; text-align: start; text-indent: 0px; text-transform: none; wido=
-ws: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; white-space: pre-=
-wrap; background-color: #ffffff; text-decoration-thickness: initial; text-d=
-ecoration-style: initial; text-decoration-color: initial; display: inline !=
-important; float: none;">After months of development, testing, and iteratio=
-n, I built Soul Room to bring device visibility, remote access, and update =
-workflows together for teams working with <strong>Yocto-based systems</stro=
-ng>, and other embedded Linux distributions like <span style=3D"color: rgba=
-(0, 0, 0, 0.9); font-family: system-ui, -apple-system, BlinkMacSystemFont, =
-'Segoe UI', Roboto, Ubuntu, Oxygen, Cantarell, 'Fira Sans', 'Droid Sans', '=
-Helvetica Neue', Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', =
-'Segoe UI Symbol'; font-size: 14px; font-style: normal; font-variant-ligatu=
-res: normal; font-variant-caps: normal; font-weight: 400; letter-spacing: n=
-ormal; orphans: 2; text-align: start; text-indent: 0px; text-transform: non=
-e; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; white-spac=
-e: pre-wrap; background-color: #ffffff; text-decoration-thickness: initial;=
- text-decoration-style: initial; text-decoration-color: initial; display: i=
-nline !important; float: none;">Ubuntu.</span></span><br style=3D"box-sizin=
-g: border-box; color: rgba(0, 0, 0, 0.9); font-family: system-ui, -apple-sy=
-stem, BlinkMacSystemFont, 'Segoe UI', Roboto, Ubuntu, Oxygen, Cantarell, 'F=
-ira Sans', 'Droid Sans', 'Helvetica Neue', Arial, sans-serif, 'Apple Color =
-Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'; font-size: 14px; font-style: n=
-ormal; font-variant-ligatures: normal; font-variant-caps: normal; font-weig=
-ht: 400; letter-spacing: normal; orphans: 2; text-align: start; text-indent=
-: 0px; text-transform: none; widows: 2; word-spacing: 0px; -webkit-text-str=
-oke-width: 0px; white-space: pre-wrap; background-color: #ffffff; text-deco=
-ration-thickness: initial; text-decoration-style: initial; text-decoration-=
-color: initial;" /><br style=3D"box-sizing: border-box; color: rgba(0, 0, 0=
-, 0.9); font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe U=
-I', Roboto, Ubuntu, Oxygen, Cantarell, 'Fira Sans', 'Droid Sans', 'Helvetic=
-a Neue', Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe U=
-I Symbol'; font-size: 14px; font-style: normal; font-variant-ligatures: nor=
-mal; font-variant-caps: normal; font-weight: 400; letter-spacing: normal; o=
-rphans: 2; text-align: start; text-indent: 0px; text-transform: none; widow=
-s: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; white-space: pre-w=
-rap; background-color: #ffffff; text-decoration-thickness: initial; text-de=
-coration-style: initial; text-decoration-color: initial;" /><span style=3D"=
-color: rgba(0, 0, 0, 0.9); font-family: system-ui, -apple-system, BlinkMacS=
-ystemFont, 'Segoe UI', Roboto, Ubuntu, Oxygen, Cantarell, 'Fira Sans', 'Dro=
-id Sans', 'Helvetica Neue', Arial, sans-serif, 'Apple Color Emoji', 'Segoe =
-UI Emoji', 'Segoe UI Symbol'; font-size: 14px; font-style: normal; font-var=
-iant-ligatures: normal; font-variant-caps: normal; font-weight: 400; letter=
--spacing: normal; orphans: 2; text-align: start; text-indent: 0px; text-tra=
-nsform: none; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px;=
- white-space: pre-wrap; background-color: #ffffff; text-decoration-thicknes=
-s: initial; text-decoration-style: initial; text-decoration-color: initial;=
- display: inline !important; float: none;">One important design choice: wor=
-k with the device&rsquo;s existing update approach.</span><br style=3D"box-=
-sizing: border-box; color: rgba(0, 0, 0, 0.9); font-family: system-ui, -app=
-le-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Ubuntu, Oxygen, Cantarel=
-l, 'Fira Sans', 'Droid Sans', 'Helvetica Neue', Arial, sans-serif, 'Apple C=
-olor Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'; font-size: 14px; font-sty=
-le: normal; font-variant-ligatures: normal; font-variant-caps: normal; font=
--weight: 400; letter-spacing: normal; orphans: 2; text-align: start; text-i=
-ndent: 0px; text-transform: none; widows: 2; word-spacing: 0px; -webkit-tex=
-t-stroke-width: 0px; white-space: pre-wrap; background-color: #ffffff; text=
--decoration-thickness: initial; text-decoration-style: initial; text-decora=
-tion-color: initial;" /><span style=3D"color: rgba(0, 0, 0, 0.9); font-fami=
-ly: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Ubunt=
-u, Oxygen, Cantarell, 'Fira Sans', 'Droid Sans', 'Helvetica Neue', Arial, s=
-ans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'; font-s=
-ize: 14px; font-style: normal; font-variant-ligatures: normal; font-variant=
--caps: normal; font-weight: 400; letter-spacing: normal; orphans: 2; text-a=
-lign: start; text-indent: 0px; text-transform: none; widows: 2; word-spacin=
-g: 0px; -webkit-text-stroke-width: 0px; white-space: pre-wrap; background-c=
-olor: #ffffff; text-decoration-thickness: initial; text-decoration-style: i=
-nitial; text-decoration-color: initial; display: inline !important; float: =
-none;">Soul Room supports capability-aware workflows for Mender, RAUC, OSTr=
-ee, SWUpdate, Flatpak applications and product-specific adapter plugins, so=
- teams can retain the update mechanism already validated for their devices =
-through a secure channel</span><br style=3D"box-sizing: border-box; color: =
-rgba(0, 0, 0, 0.9); font-family: system-ui, -apple-system, BlinkMacSystemFo=
-nt, 'Segoe UI', Roboto, Ubuntu, Oxygen, Cantarell, 'Fira Sans', 'Droid Sans=
-', 'Helvetica Neue', Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoj=
-i', 'Segoe UI Symbol'; font-size: 14px; font-style: normal; font-variant-li=
-gatures: normal; font-variant-caps: normal; font-weight: 400; letter-spacin=
-g: normal; orphans: 2; text-align: start; text-indent: 0px; text-transform:=
- none; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; white-=
-space: pre-wrap; background-color: #ffffff; text-decoration-thickness: init=
-ial; text-decoration-style: initial; text-decoration-color: initial;" /><br=
- style=3D"box-sizing: border-box; color: rgba(0, 0, 0, 0.9); font-family: s=
-ystem-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Ubuntu, Ox=
-ygen, Cantarell, 'Fira Sans', 'Droid Sans', 'Helvetica Neue', Arial, sans-s=
-erif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'; font-size: =
-14px; font-style: normal; font-variant-ligatures: normal; font-variant-caps=
-: normal; font-weight: 400; letter-spacing: normal; orphans: 2; text-align:=
- start; text-indent: 0px; text-transform: none; widows: 2; word-spacing: 0p=
-x; -webkit-text-stroke-width: 0px; white-space: pre-wrap; background-color:=
- #ffffff; text-decoration-thickness: initial; text-decoration-style: initia=
-l; text-decoration-color: initial;" /><span style=3D"color: rgba(0, 0, 0, 0=
-.9); font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI',=
- Roboto, Ubuntu, Oxygen, Cantarell, 'Fira Sans', 'Droid Sans', 'Helvetica N=
-eue', Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI S=
-ymbol'; font-size: 14px; font-style: normal; font-variant-ligatures: normal=
-; font-variant-caps: normal; font-weight: 400; letter-spacing: normal; orph=
-ans: 2; text-align: start; text-indent: 0px; text-transform: none; widows: =
-2; word-spacing: 0px; -webkit-text-stroke-width: 0px; white-space: pre-wrap=
-; background-color: #ffffff; text-decoration-thickness: initial; text-decor=
-ation-style: initial; text-decoration-color: initial; display: inline !impo=
-rtant; float: none;">What&rsquo;s available in the beta?</span><br style=3D=
-"box-sizing: border-box; color: rgba(0, 0, 0, 0.9); font-family: system-ui,=
- -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Ubuntu, Oxygen, Can=
-tarell, 'Fira Sans', 'Droid Sans', 'Helvetica Neue', Arial, sans-serif, 'Ap=
-ple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'; font-size: 14px; fon=
-t-style: normal; font-variant-ligatures: normal; font-variant-caps: normal;=
- font-weight: 400; letter-spacing: normal; orphans: 2; text-align: start; t=
-ext-indent: 0px; text-transform: none; widows: 2; word-spacing: 0px; -webki=
-t-text-stroke-width: 0px; white-space: pre-wrap; background-color: #ffffff;=
- text-decoration-thickness: initial; text-decoration-style: initial; text-d=
-ecoration-color: initial;" /><span style=3D"color: rgba(0, 0, 0, 0.9); font=
--family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, =
-Ubuntu, Oxygen, Cantarell, 'Fira Sans', 'Droid Sans', 'Helvetica Neue', Ari=
-al, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'; f=
-ont-size: 14px; font-style: normal; font-variant-ligatures: normal; font-va=
-riant-caps: normal; font-weight: 400; letter-spacing: normal; orphans: 2; t=
-ext-align: start; text-indent: 0px; text-transform: none; widows: 2; word-s=
-pacing: 0px; -webkit-text-stroke-width: 0px; white-space: pre-wrap; backgro=
-und-color: #ffffff; text-decoration-thickness: initial; text-decoration-sty=
-le: initial; text-decoration-color: initial; display: inline !important; fl=
-oat: none;">&bull; <strong>User/role management</strong> with different rol=
-es so cross-teams can access the platform.</span><br style=3D"box-sizing: b=
-order-box; color: rgba(0, 0, 0, 0.9); font-family: system-ui, -apple-system=
-, BlinkMacSystemFont, 'Segoe UI', Roboto, Ubuntu, Oxygen, Cantarell, 'Fira =
-Sans', 'Droid Sans', 'Helvetica Neue', Arial, sans-serif, 'Apple Color Emoj=
-i', 'Segoe UI Emoji', 'Segoe UI Symbol'; font-size: 14px; font-style: norma=
-l; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: =
-400; letter-spacing: normal; orphans: 2; text-align: start; text-indent: 0p=
-x; text-transform: none; widows: 2; word-spacing: 0px; -webkit-text-stroke-=
-width: 0px; white-space: pre-wrap; background-color: #ffffff; text-decorati=
-on-thickness: initial; text-decoration-style: initial; text-decoration-colo=
-r: initial;" /><span style=3D"color: rgba(0, 0, 0, 0.9); font-family: syste=
-m-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Ubuntu, Oxygen=
-, Cantarell, 'Fira Sans', 'Droid Sans', 'Helvetica Neue', Arial, sans-serif=
-, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'; font-size: 14px=
-; font-style: normal; font-variant-ligatures: normal; font-variant-caps: no=
-rmal; font-weight: 400; letter-spacing: normal; orphans: 2; text-align: sta=
-rt; text-indent: 0px; text-transform: none; widows: 2; word-spacing: 0px; -=
-webkit-text-stroke-width: 0px; white-space: pre-wrap; background-color: #ff=
-ffff; text-decoration-thickness: initial; text-decoration-style: initial; t=
-ext-decoration-color: initial; display: inline !important; float: none;">&b=
-ull; Device enrollment with <strong>TLS support</strong>, live fleet monito=
-ring and system telemetry.</span><br style=3D"box-sizing: border-box; color=
-: rgba(0, 0, 0, 0.9); font-family: system-ui, -apple-system, BlinkMacSystem=
-Font, 'Segoe UI', Roboto, Ubuntu, Oxygen, Cantarell, 'Fira Sans', 'Droid Sa=
-ns', 'Helvetica Neue', Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Em=
-oji', 'Segoe UI Symbol'; font-size: 14px; font-style: normal; font-variant-=
-ligatures: normal; font-variant-caps: normal; font-weight: 400; letter-spac=
-ing: normal; orphans: 2; text-align: start; text-indent: 0px; text-transfor=
-m: none; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; whit=
-e-space: pre-wrap; background-color: #ffffff; text-decoration-thickness: in=
-itial; text-decoration-style: initial; text-decoration-color: initial;" /><=
-span style=3D"color: rgba(0, 0, 0, 0.9); font-family: system-ui, -apple-sys=
-tem, BlinkMacSystemFont, 'Segoe UI', Roboto, Ubuntu, Oxygen, Cantarell, 'Fi=
-ra Sans', 'Droid Sans', 'Helvetica Neue', Arial, sans-serif, 'Apple Color E=
-moji', 'Segoe UI Emoji', 'Segoe UI Symbol'; font-size: 14px; font-style: no=
-rmal; font-variant-ligatures: normal; font-variant-caps: normal; font-weigh=
-t: 400; letter-spacing: normal; orphans: 2; text-align: start; text-indent:=
- 0px; text-transform: none; widows: 2; word-spacing: 0px; -webkit-text-stro=
-ke-width: 0px; white-space: pre-wrap; background-color: #ffffff; text-decor=
-ation-thickness: initial; text-decoration-style: initial; text-decoration-c=
-olor: initial; display: inline !important; float: none;">&bull; Hardware/so=
-ftware inventory, plus CVE and security-advisory visibility.</span><br styl=
-e=3D"box-sizing: border-box; color: rgba(0, 0, 0, 0.9); font-family: system=
--ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Ubuntu, Oxygen,=
- Cantarell, 'Fira Sans', 'Droid Sans', 'Helvetica Neue', Arial, sans-serif,=
- 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'; font-size: 14px;=
- font-style: normal; font-variant-ligatures: normal; font-variant-caps: nor=
-mal; font-weight: 400; letter-spacing: normal; orphans: 2; text-align: star=
-t; text-indent: 0px; text-transform: none; widows: 2; word-spacing: 0px; -w=
-ebkit-text-stroke-width: 0px; white-space: pre-wrap; background-color: #fff=
-fff; text-decoration-thickness: initial; text-decoration-style: initial; te=
-xt-decoration-color: initial;" /><span style=3D"color: rgba(0, 0, 0, 0.9); =
-font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Robo=
-to, Ubuntu, Oxygen, Cantarell, 'Fira Sans', 'Droid Sans', 'Helvetica Neue',=
- Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol=
-'; font-size: 14px; font-style: normal; font-variant-ligatures: normal; fon=
-t-variant-caps: normal; font-weight: 400; letter-spacing: normal; orphans: =
-2; text-align: start; text-indent: 0px; text-transform: none; widows: 2; wo=
-rd-spacing: 0px; -webkit-text-stroke-width: 0px; white-space: pre-wrap; bac=
-kground-color: #ffffff; text-decoration-thickness: initial; text-decoration=
--style: initial; text-decoration-color: initial; display: inline !important=
-; float: none;">&bull; <strong>Remote device access</strong> through integr=
-ated ShellHub support.</span><br style=3D"box-sizing: border-box; color: rg=
-ba(0, 0, 0, 0.9); font-family: system-ui, -apple-system, BlinkMacSystemFont=
-, 'Segoe UI', Roboto, Ubuntu, Oxygen, Cantarell, 'Fira Sans', 'Droid Sans',=
- 'Helvetica Neue', Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji'=
-, 'Segoe UI Symbol'; font-size: 14px; font-style: normal; font-variant-liga=
-tures: normal; font-variant-caps: normal; font-weight: 400; letter-spacing:=
- normal; orphans: 2; text-align: start; text-indent: 0px; text-transform: n=
-one; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; white-sp=
-ace: pre-wrap; background-color: #ffffff; text-decoration-thickness: initia=
-l; text-decoration-style: initial; text-decoration-color: initial;" /><span=
- style=3D"color: rgba(0, 0, 0, 0.9); font-family: system-ui, -apple-system,=
- BlinkMacSystemFont, 'Segoe UI', Roboto, Ubuntu, Oxygen, Cantarell, 'Fira S=
-ans', 'Droid Sans', 'Helvetica Neue', Arial, sans-serif, 'Apple Color Emoji=
-', 'Segoe UI Emoji', 'Segoe UI Symbol'; font-size: 14px; font-style: normal=
-; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 4=
-00; letter-spacing: normal; orphans: 2; text-align: start; text-indent: 0px=
-; text-transform: none; widows: 2; word-spacing: 0px; -webkit-text-stroke-w=
-idth: 0px; white-space: pre-wrap; background-color: #ffffff; text-decoratio=
-n-thickness: initial; text-decoration-style: initial; text-decoration-color=
-: initial; display: inline !important; float: none;">&bull; Jobs, deploymen=
-ts and controlled<strong> secure OTA update campaigns</strong>.</span><br s=
-tyle=3D"box-sizing: border-box; color: rgba(0, 0, 0, 0.9); font-family: sys=
-tem-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Ubuntu, Oxyg=
-en, Cantarell, 'Fira Sans', 'Droid Sans', 'Helvetica Neue', Arial, sans-ser=
-if, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'; font-size: 14=
-px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: =
-normal; font-weight: 400; letter-spacing: normal; orphans: 2; text-align: s=
-tart; text-indent: 0px; text-transform: none; widows: 2; word-spacing: 0px;=
- -webkit-text-stroke-width: 0px; white-space: pre-wrap; background-color: #=
-ffffff; text-decoration-thickness: initial; text-decoration-style: initial;=
- text-decoration-color: initial;" /><span style=3D"color: rgba(0, 0, 0, 0.9=
-); font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', R=
-oboto, Ubuntu, Oxygen, Cantarell, 'Fira Sans', 'Droid Sans', 'Helvetica Neu=
-e', Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Sym=
-bol'; font-size: 14px; font-style: normal; font-variant-ligatures: normal; =
-font-variant-caps: normal; font-weight: 400; letter-spacing: normal; orphan=
-s: 2; text-align: start; text-indent: 0px; text-transform: none; widows: 2;=
- word-spacing: 0px; -webkit-text-stroke-width: 0px; white-space: pre-wrap; =
-background-color: #ffffff; text-decoration-thickness: initial; text-decorat=
-ion-style: initial; text-decoration-color: initial; display: inline !import=
-ant; float: none;"> </span><br style=3D"box-sizing: border-box; color: rgba=
-(0, 0, 0, 0.9); font-family: system-ui, -apple-system, BlinkMacSystemFont, =
-'Segoe UI', Roboto, Ubuntu, Oxygen, Cantarell, 'Fira Sans', 'Droid Sans', '=
-Helvetica Neue', Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', =
-'Segoe UI Symbol'; font-size: 14px; font-style: normal; font-variant-ligatu=
-res: normal; font-variant-caps: normal; font-weight: 400; letter-spacing: n=
-ormal; orphans: 2; text-align: start; text-indent: 0px; text-transform: non=
-e; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; white-spac=
-e: pre-wrap; background-color: #ffffff; text-decoration-thickness: initial;=
- text-decoration-style: initial; text-decoration-color: initial;" /><span s=
-tyle=3D"color: rgba(0, 0, 0, 0.9); font-family: system-ui, -apple-system, B=
-linkMacSystemFont, 'Segoe UI', Roboto, Ubuntu, Oxygen, Cantarell, 'Fira San=
-s', 'Droid Sans', 'Helvetica Neue', Arial, sans-serif, 'Apple Color Emoji',=
- 'Segoe UI Emoji', 'Segoe UI Symbol'; font-size: 14px; font-style: normal; =
-font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 400=
-; letter-spacing: normal; orphans: 2; text-align: start; text-indent: 0px; =
-text-transform: none; widows: 2; word-spacing: 0px; -webkit-text-stroke-wid=
-th: 0px; white-space: pre-wrap; background-color: #ffffff; text-decoration-=
-thickness: initial; text-decoration-style: initial; text-decoration-color: =
-initial; display: inline !important; float: none;">The platform also includ=
-es <strong>fleet mapping, alerts, audit logs and role management</strong>. =
-A portable Linux agent for system and the cloud platform can be deployed us=
-ing Docker Compose.</span><br style=3D"box-sizing: border-box; color: rgba(=
-0, 0, 0, 0.9); font-family: system-ui, -apple-system, BlinkMacSystemFont, '=
-Segoe UI', Roboto, Ubuntu, Oxygen, Cantarell, 'Fira Sans', 'Droid Sans', 'H=
-elvetica Neue', Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', '=
-Segoe UI Symbol'; font-size: 14px; font-style: normal; font-variant-ligatur=
-es: normal; font-variant-caps: normal; font-weight: 400; letter-spacing: no=
-rmal; orphans: 2; text-align: start; text-indent: 0px; text-transform: none=
-; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; white-space=
-: pre-wrap; background-color: #ffffff; text-decoration-thickness: initial; =
-text-decoration-style: initial; text-decoration-color: initial;" /><span st=
-yle=3D"color: rgba(0, 0, 0, 0.9); font-family: system-ui, -apple-system, Bl=
-inkMacSystemFont, 'Segoe UI', Roboto, Ubuntu, Oxygen, Cantarell, 'Fira Sans=
-', 'Droid Sans', 'Helvetica Neue', Arial, sans-serif, 'Apple Color Emoji', =
-'Segoe UI Emoji', 'Segoe UI Symbol'; font-size: 14px; font-style: normal; f=
-ont-variant-ligatures: normal; font-variant-caps: normal; font-weight: 400;=
- letter-spacing: normal; orphans: 2; text-align: start; text-indent: 0px; t=
-ext-transform: none; widows: 2; word-spacing: 0px; -webkit-text-stroke-widt=
-h: 0px; white-space: pre-wrap; background-color: #ffffff; text-decoration-t=
-hickness: initial; text-decoration-style: initial; text-decoration-color: i=
-nitial; display: inline !important; float: none;">My goal is a practical, v=
-endor-neutral platform that gives engineering teams visibility and control =
-without tying them to one hardware vendor or Linux distribution.</span><br =
-style=3D"box-sizing: border-box; color: rgba(0, 0, 0, 0.9); font-family: sy=
-stem-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Ubuntu, Oxy=
-gen, Cantarell, 'Fira Sans', 'Droid Sans', 'Helvetica Neue', Arial, sans-se=
-rif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'; font-size: 1=
-4px; font-style: normal; font-variant-ligatures: normal; font-variant-caps:=
- normal; font-weight: 400; letter-spacing: normal; orphans: 2; text-align: =
-start; text-indent: 0px; text-transform: none; widows: 2; word-spacing: 0px=
-; -webkit-text-stroke-width: 0px; white-space: pre-wrap; background-color: =
-#ffffff; text-decoration-thickness: initial; text-decoration-style: initial=
-; text-decoration-color: initial;" /><br style=3D"box-sizing: border-box; c=
-olor: rgba(0, 0, 0, 0.9); font-family: system-ui, -apple-system, BlinkMacSy=
-stemFont, 'Segoe UI', Roboto, Ubuntu, Oxygen, Cantarell, 'Fira Sans', 'Droi=
-d Sans', 'Helvetica Neue', Arial, sans-serif, 'Apple Color Emoji', 'Segoe U=
-I Emoji', 'Segoe UI Symbol'; font-size: 14px; font-style: normal; font-vari=
-ant-ligatures: normal; font-variant-caps: normal; font-weight: 400; letter-=
-spacing: normal; orphans: 2; text-align: start; text-indent: 0px; text-tran=
-sform: none; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; =
-white-space: pre-wrap; background-color: #ffffff; text-decoration-thickness=
-: initial; text-decoration-style: initial; text-decoration-color: initial;"=
- /><span style=3D"color: rgba(0, 0, 0, 0.9); font-family: system-ui, -apple=
--system, BlinkMacSystemFont, 'Segoe UI', Roboto, Ubuntu, Oxygen, Cantarell,=
- 'Fira Sans', 'Droid Sans', 'Helvetica Neue', Arial, sans-serif, 'Apple Col=
-or Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'; font-size: 14px; font-style=
-: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-w=
-eight: 400; letter-spacing: normal; orphans: 2; text-align: start; text-ind=
-ent: 0px; text-transform: none; widows: 2; word-spacing: 0px; -webkit-text-=
-stroke-width: 0px; white-space: pre-wrap; background-color: #ffffff; text-d=
-ecoration-thickness: initial; text-decoration-style: initial; text-decorati=
-on-color: initial; display: inline !important; float: none;">Repository:</s=
-pan><span class=3D"_8df50281 d1901be7" style=3D"box-sizing: border-box; mar=
-gin: 0px; padding: 0px; border: 0px; font-size: 14px; font-family: system-u=
-i, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Ubuntu, Oxygen, C=
-antarell, 'Fira Sans', 'Droid Sans', 'Helvetica Neue', Arial, sans-serif, '=
-Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'; vertical-align: ba=
-seline; white-space: pre; color: rgba(0, 0, 0, 0.9); font-style: normal; fo=
-nt-variant-ligatures: normal; font-variant-caps: normal; font-weight: 400; =
-letter-spacing: normal; orphans: 2; text-align: start; text-indent: 0px; te=
-xt-transform: none; widows: 2; word-spacing: 0px; -webkit-text-stroke-width=
-: 0px; background-color: #ffffff; text-decoration-thickness: initial; text-=
-decoration-style: initial; text-decoration-color: initial;"> <a href=3D"htt=
-ps://github.com/prashantdivate/soul-room-edge-platform" target=3D"_blank" r=
-el=3D"noopener">https://github.com/prashantdivate/soul-room-edge-platform</=
-a></span><br style=3D"box-sizing: border-box; color: rgba(0, 0, 0, 0.9); fo=
-nt-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto=
-, Ubuntu, Oxygen, Cantarell, 'Fira Sans', 'Droid Sans', 'Helvetica Neue', A=
-rial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';=
- font-size: 14px; font-style: normal; font-variant-ligatures: normal; font-=
-variant-caps: normal; font-weight: 400; letter-spacing: normal; orphans: 2;=
- text-align: start; text-indent: 0px; text-transform: none; widows: 2; word=
--spacing: 0px; -webkit-text-stroke-width: 0px; white-space: pre-wrap; backg=
-round-color: #ffffff; text-decoration-thickness: initial; text-decoration-s=
-tyle: initial; text-decoration-color: initial;" /><span style=3D"color: rgb=
-a(0, 0, 0, 0.9); font-family: system-ui, -apple-system, BlinkMacSystemFont,=
- 'Segoe UI', Roboto, Ubuntu, Oxygen, Cantarell, 'Fira Sans', 'Droid Sans', =
-'Helvetica Neue', Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',=
- 'Segoe UI Symbol'; font-size: 14px; font-style: normal; font-variant-ligat=
-ures: normal; font-variant-caps: normal; font-weight: 400; letter-spacing: =
-normal; orphans: 2; text-align: start; text-indent: 0px; text-transform: no=
-ne; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; white-spa=
-ce: pre-wrap; background-color: #ffffff; text-decoration-thickness: initial=
-; text-decoration-style: initial; text-decoration-color: initial; display: =
-inline !important; float: none;">This is a first public beta, and I&rsquo;d=
- like the next iterations to be shaped by people working with real devices.=
-</span><br style=3D"box-sizing: border-box; color: rgba(0, 0, 0, 0.9); font=
--family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, =
-Ubuntu, Oxygen, Cantarell, 'Fira Sans', 'Droid Sans', 'Helvetica Neue', Ari=
-al, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'; f=
-ont-size: 14px; font-style: normal; font-variant-ligatures: normal; font-va=
-riant-caps: normal; font-weight: 400; letter-spacing: normal; orphans: 2; t=
-ext-align: start; text-indent: 0px; text-transform: none; widows: 2; word-s=
-pacing: 0px; -webkit-text-stroke-width: 0px; white-space: pre-wrap; backgro=
-und-color: #ffffff; text-decoration-thickness: initial; text-decoration-sty=
-le: initial; text-decoration-color: initial;" /><br style=3D"box-sizing: bo=
-rder-box; color: rgba(0, 0, 0, 0.9); font-family: system-ui, -apple-system,=
- BlinkMacSystemFont, 'Segoe UI', Roboto, Ubuntu, Oxygen, Cantarell, 'Fira S=
-ans', 'Droid Sans', 'Helvetica Neue', Arial, sans-serif, 'Apple Color Emoji=
-', 'Segoe UI Emoji', 'Segoe UI Symbol'; font-size: 14px; font-style: normal=
-; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 4=
-00; letter-spacing: normal; orphans: 2; text-align: start; text-indent: 0px=
-; text-transform: none; widows: 2; word-spacing: 0px; -webkit-text-stroke-w=
-idth: 0px; white-space: pre-wrap; background-color: #ffffff; text-decoratio=
-n-thickness: initial; text-decoration-style: initial; text-decoration-color=
-: initial;" /><span style=3D"color: rgba(0, 0, 0, 0.9); font-family: system=
--ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Ubuntu, Oxygen,=
- Cantarell, 'Fira Sans', 'Droid Sans', 'Helvetica Neue', Arial, sans-serif,=
- 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'; font-size: 14px;=
- font-style: normal; font-variant-ligatures: normal; font-variant-caps: nor=
-mal; font-weight: 400; letter-spacing: normal; orphans: 2; text-align: star=
-t; text-indent: 0px; text-transform: none; widows: 2; word-spacing: 0px; -w=
-ebkit-text-stroke-width: 0px; white-space: pre-wrap; background-color: #fff=
-fff; text-decoration-thickness: initial; text-decoration-style: initial; te=
-xt-decoration-color: initial; display: inline !important; float: none;">Emb=
-edded Linux and Yocto developers: try it on a non-production device and tel=
-l me what works, what breaks, and what&rsquo;s missing. Contributors and te=
-ams interested in pilot deployments are welcome.</span><br style=3D"box-siz=
-ing: border-box; color: rgba(0, 0, 0, 0.9); font-family: system-ui, -apple-=
-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Ubuntu, Oxygen, Cantarell, =
-'Fira Sans', 'Droid Sans', 'Helvetica Neue', Arial, sans-serif, 'Apple Colo=
-r Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'; font-size: 14px; font-style:=
- normal; font-variant-ligatures: normal; font-variant-caps: normal; font-we=
-ight: 400; letter-spacing: normal; orphans: 2; text-align: start; text-inde=
-nt: 0px; text-transform: none; widows: 2; word-spacing: 0px; -webkit-text-s=
-troke-width: 0px; white-space: pre-wrap; background-color: #ffffff; text-de=
-coration-thickness: initial; text-decoration-style: initial; text-decoratio=
-n-color: initial;" /><span style=3D"color: rgba(0, 0, 0, 0.9); font-family:=
- system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Ubuntu, =
-Oxygen, Cantarell, 'Fira Sans', 'Droid Sans', 'Helvetica Neue', Arial, sans=
--serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'; font-size=
-: 14px; font-style: normal; font-variant-ligatures: normal; font-variant-ca=
-ps: normal; font-weight: 400; letter-spacing: normal; orphans: 2; text-alig=
-n: start; text-indent: 0px; text-transform: none; widows: 2; word-spacing: =
-0px; -webkit-text-stroke-width: 0px; white-space: pre-wrap; background-colo=
-r: #ffffff; text-decoration-thickness: initial; text-decoration-style: init=
-ial; text-decoration-color: initial; display: inline !important; float: non=
-e;">What&rsquo;s the biggest gap in your current fleet-management workflow?=
-</span></div>
+<div dir=3D"ltr"><div><span id=3D"gmail-docs-internal-guid-6c3e4a29-7fff-66=
+59-079a-37d1a0c9f6df"><p dir=3D"ltr" style=3D"line-height:1.38;margin-top:0=
+pt;margin-bottom:0pt"><span style=3D"font-size:11pt;font-family:Arial,sans-=
+serif;color:rgb(0,0,0);background-color:transparent;font-variant:normal;ver=
+tical-align:baseline;white-space:pre-wrap">Current Dev Position: YP 6.1 M4 =
+- Stabilisation (Bug Fixing)</span></p><p dir=3D"ltr" style=3D"line-height:=
+1.38;margin-top:0pt;margin-bottom:0pt"><span style=3D"font-size:11pt;font-f=
+amily:Arial,sans-serif;color:rgb(0,0,0);background-color:transparent;font-v=
+ariant:normal;vertical-align:baseline;white-space:pre-wrap">Next Deadline: =
+YP 6.1 M4: w/c 2026-10-12</span></p><br><p dir=3D"ltr" style=3D"line-height=
+:1.38;margin-top:0pt;margin-bottom:0pt"><span style=3D"font-size:11pt;font-=
+family:Arial,sans-serif;color:rgb(0,0,0);background-color:transparent;font-=
+variant:normal;vertical-align:baseline;white-space:pre-wrap">Next Team Meet=
+ings:</span></p><ul style=3D"margin-top:0px;margin-bottom:0px"><li dir=3D"l=
+tr" style=3D"list-style-type:disc;font-size:9.5pt;font-family:Arial,sans-se=
+rif;color:rgb(0,0,0);background-color:transparent;font-variant:normal;verti=
+cal-align:baseline;white-space:pre"><p dir=3D"ltr" style=3D"line-height:1.3=
+8;margin-top:0pt;margin-bottom:0pt" role=3D"presentation"><span style=3D"fo=
+nt-size:11pt;background-color:transparent;font-variant:normal;vertical-alig=
+n:baseline;white-space:pre-wrap">Bug Triage meeting - Thursday 24th Sept. 7=
+:30am PDT (</span><a href=3D"https://zoom.us/j/454367603?pwd=3DZGxoa2ZXL3Fk=
+M3Y0bFd5aVpHVVZ6dz09" style=3D"text-decoration:none"><span style=3D"font-si=
+ze:11pt;background-color:transparent;font-variant:normal;text-decoration:un=
+derline;vertical-align:baseline;white-space:pre-wrap">https://zoom.us/j/454=
+367603?pwd=3DZGxoa2ZXL3FkM3Y0bFd5aVpHVVZ6dz09</span></a><span style=3D"font=
+-size:11pt;background-color:transparent;font-variant:normal;vertical-align:=
+baseline;white-space:pre-wrap">)</span></p></li><li dir=3D"ltr" style=3D"li=
+st-style-type:disc;font-size:9.5pt;font-family:Arial,sans-serif;color:rgb(0=
+,0,0);background-color:transparent;font-variant:normal;vertical-align:basel=
+ine;white-space:pre"><p dir=3D"ltr" style=3D"line-height:1.38;margin-top:0p=
+t;margin-bottom:0pt" role=3D"presentation"><span style=3D"font-size:11pt;ba=
+ckground-color:transparent;font-variant:normal;vertical-align:baseline;whit=
+e-space:pre-wrap">Weekly Project Engineering Sync=C2=A0 - Tuesday 22nd Sept=
+. 8am PDT (</span><a href=3D"https://zoom.us/j/990892712?pwd=3DcHU1MjhoM2x6=
+ck81bkcrYjRrcmJsUT09" style=3D"text-decoration:none"><span style=3D"font-si=
+ze:11pt;background-color:transparent;font-variant:normal;text-decoration:un=
+derline;vertical-align:baseline;white-space:pre-wrap">https://zoom.us/j/990=
+892712?pwd=3DcHU1MjhoM2x6ck81bkcrYjRrcmJsUT09</span></a><a href=3D"https://=
+zoom.us/j/990892712" style=3D"text-decoration:none"><span style=3D"font-siz=
+e:11pt;background-color:transparent;font-variant:normal;text-decoration:und=
+erline;vertical-align:baseline;white-space:pre-wrap">)</span></a></p></li><=
+li dir=3D"ltr" style=3D"list-style-type:disc;font-size:9.5pt;font-family:Ar=
+ial,sans-serif;color:rgb(0,0,0);background-color:transparent;font-variant:n=
+ormal;vertical-align:baseline;white-space:pre"><p dir=3D"ltr" style=3D"line=
+-height:1.38;margin-top:0pt;margin-bottom:0pt" role=3D"presentation"><span =
+style=3D"font-size:11pt;background-color:transparent;font-variant:normal;ve=
+rtical-align:baseline;white-space:pre-wrap">Yocto Project Patch Review - Th=
+ursday 24th Sept. 10am GMT and Monday 28th Sept. 9am PDT (</span><a href=3D=
+"https://zoom.us/j/97762397148?pwd=3D1xk0iC9hp9SjEonaTaONwTb6iWry4Eb.1" sty=
+le=3D"text-decoration:none"><span style=3D"font-size:11pt;background-color:=
+transparent;font-variant:normal;text-decoration:underline;vertical-align:ba=
+seline;white-space:pre-wrap">https://zoom.us/j/97762397148?pwd=3D1xk0iC9hp9=
+SjEonaTaONwTb6iWry4Eb.1</span></a><span style=3D"font-size:11pt;background-=
+color:transparent;font-variant:normal;vertical-align:baseline;white-space:p=
+re-wrap">)</span></p></li></ul><br><p dir=3D"ltr" style=3D"line-height:1.38=
+;margin-top:0pt;margin-bottom:0pt"><span style=3D"font-size:11pt;font-famil=
+y:Arial,sans-serif;color:rgb(0,0,0);background-color:transparent;font-varia=
+nt:normal;vertical-align:baseline;white-space:pre-wrap">Project data dashbo=
+ard: </span><a href=3D"https://dashboard.yoctoproject.org/" style=3D"text-d=
+ecoration:none"><span style=3D"font-size:11pt;font-family:Arial,sans-serif;=
+background-color:transparent;font-variant:normal;text-decoration:underline;=
+vertical-align:baseline;white-space:pre-wrap">https://dashboard.yoctoprojec=
+t.org/</span></a><span style=3D"font-size:11pt;font-family:Arial,sans-serif=
+;color:rgb(0,0,0);background-color:transparent;font-variant:normal;vertical=
+-align:baseline;white-space:pre-wrap">=C2=A0</span></p><br><p dir=3D"ltr" s=
+tyle=3D"line-height:1.38;margin-top:0pt;margin-bottom:0pt"><span style=3D"f=
+ont-size:11pt;font-family:Arial,sans-serif;color:rgb(0,0,0);background-colo=
+r:transparent;font-variant:normal;vertical-align:baseline;white-space:pre-w=
+rap">Key Status/Updates:</span></p><ul style=3D"margin-top:0px;margin-botto=
+m:0px"><li dir=3D"ltr" style=3D"list-style-type:disc;font-size:11pt;font-fa=
+mily:Arial,sans-serif;color:rgb(0,0,0);background-color:transparent;font-va=
+riant:normal;vertical-align:baseline;white-space:pre"><p dir=3D"ltr" style=
+=3D"line-height:1.38;margin-top:0pt;margin-bottom:0pt" role=3D"presentation=
+"><span style=3D"font-size:11pt;background-color:transparent;font-variant:n=
+ormal;vertical-align:baseline;white-space:pre-wrap">YP 5.0.20 was released<=
+/span></p></li><li dir=3D"ltr" style=3D"list-style-type:disc;font-size:11pt=
+;font-family:Arial,sans-serif;color:rgb(0,0,0);background-color:transparent=
+;font-variant:normal;vertical-align:baseline;white-space:pre"><p dir=3D"ltr=
+" style=3D"line-height:1.38;margin-top:0pt;margin-bottom:0pt" role=3D"prese=
+ntation"><span style=3D"font-size:11pt;background-color:transparent;font-va=
+riant:normal;vertical-align:baseline;white-space:pre-wrap">YP 6.1 M3 is due=
+ for release</span></p></li><li dir=3D"ltr" style=3D"list-style-type:disc;f=
+ont-size:11pt;font-family:Arial,sans-serif;color:rgb(0,0,0);background-colo=
+r:transparent;font-variant:normal;vertical-align:baseline;white-space:pre">=
+<p dir=3D"ltr" style=3D"line-height:1.38;margin-top:0pt;margin-bottom:0pt" =
+role=3D"presentation"><span style=3D"font-size:11pt;background-color:transp=
+arent;font-variant:normal;vertical-align:baseline;white-space:pre-wrap">Our=
+ plan is to build M4 within the next week unless significant problems becom=
+e known as we=E2=80=99re not aware of anyone working on any major fixes whi=
+ch would delay it.</span></p></li><li dir=3D"ltr" style=3D"list-style-type:=
+disc;font-size:11pt;font-family:Arial,sans-serif;color:rgb(0,0,0);backgroun=
+d-color:transparent;font-variant:normal;vertical-align:baseline;white-space=
+:pre"><p dir=3D"ltr" style=3D"line-height:1.38;margin-top:0pt;margin-bottom=
+:0pt" role=3D"presentation"><span style=3D"font-size:11pt;background-color:=
+transparent;font-variant:normal;vertical-align:baseline;white-space:pre-wra=
+p">If there are release blocking issues, please report ASAP.</span></p></li=
+><li dir=3D"ltr" style=3D"list-style-type:disc;font-size:11pt;font-family:A=
+rial,sans-serif;color:rgb(0,0,0);background-color:transparent;font-variant:=
+normal;vertical-align:baseline;white-space:pre"><p dir=3D"ltr" style=3D"lin=
+e-height:1.38;margin-top:0pt;margin-bottom:0pt" role=3D"presentation"><span=
+ style=3D"font-size:11pt;background-color:transparent;font-variant:normal;v=
+ertical-align:baseline;white-space:pre-wrap">We have made progress on the b=
+uild architecture reproducibility issues, thanks in particular to Alejandro=
+ and Sunil and team at Windriver for getting the major rust issues resolved=
+. There are around 30 issues left as shown by the autobuilder tests (down f=
+rom ~90) so great progress.</span></p></li><li dir=3D"ltr" style=3D"list-st=
+yle-type:disc;font-size:11pt;font-family:Arial,sans-serif;color:rgb(0,0,0);=
+background-color:transparent;font-variant:normal;vertical-align:baseline;wh=
+ite-space:pre"><p dir=3D"ltr" style=3D"line-height:1.38;margin-top:0pt;marg=
+in-bottom:0pt" role=3D"presentation"><span style=3D"font-size:11pt;backgrou=
+nd-color:transparent;font-variant:normal;vertical-align:baseline;white-spac=
+e:pre-wrap">python3-six recipe moved to meta-oe, it provides python 2.x era=
+ support so nothing should be needing that now - references are a sign that=
+ dependencies probably need updating but it is still available if needed.</=
+span></p></li><li dir=3D"ltr" style=3D"list-style-type:disc;font-size:11pt;=
+font-family:Arial,sans-serif;color:rgb(0,0,0);background-color:transparent;=
+font-variant:normal;vertical-align:baseline;white-space:pre"><p dir=3D"ltr"=
+ style=3D"line-height:1.38;margin-top:0pt;margin-bottom:0pt" role=3D"presen=
+tation"><span style=3D"font-size:11pt;background-color:transparent;font-var=
+iant:normal;vertical-align:baseline;white-space:pre-wrap">There are issues =
+which are in a position where others could now help:</span></p></li><ul sty=
+le=3D"margin-top:0px;margin-bottom:0px"><li dir=3D"ltr" style=3D"list-style=
+-type:circle;font-size:11pt;font-family:Arial,sans-serif;color:rgb(0,0,0);b=
+ackground-color:transparent;font-variant:normal;vertical-align:baseline;whi=
+te-space:pre"><p dir=3D"ltr" style=3D"line-height:1.38;margin-top:0pt;margi=
+n-bottom:0pt" role=3D"presentation"><span style=3D"font-size:11pt;backgroun=
+d-color:transparent;font-variant:normal;vertical-align:baseline;white-space=
+:pre-wrap">Matchbox-wm segfault/xserver restart</span></p></li><li dir=3D"l=
+tr" style=3D"list-style-type:circle;font-size:11pt;font-family:Arial,sans-s=
+erif;color:rgb(0,0,0);background-color:transparent;font-variant:normal;vert=
+ical-align:baseline;white-space:pre"><p dir=3D"ltr" style=3D"line-height:1.=
+38;margin-top:0pt;margin-bottom:0pt" role=3D"presentation"><span style=3D"f=
+ont-size:11pt;background-color:transparent;font-variant:normal;vertical-ali=
+gn:baseline;white-space:pre-wrap">aarch64/x86-64 build host contamination/r=
+eproducibility issue - thanks for the work and fixes so far on this.</span>=
+</p></li><li dir=3D"ltr" style=3D"list-style-type:circle;font-size:11pt;fon=
+t-family:Arial,sans-serif;color:rgb(0,0,0);background-color:transparent;fon=
+t-variant:normal;vertical-align:baseline;white-space:pre"><p dir=3D"ltr" st=
+yle=3D"line-height:1.38;margin-top:0pt;margin-bottom:0pt" role=3D"presentat=
+ion"><span style=3D"font-size:11pt;background-color:transparent;font-varian=
+t:normal;vertical-align:baseline;white-space:pre-wrap">See Richard=E2=80=99=
+s email on the list </span><a href=3D"https://lists.openembedded.org/g/open=
+embedded-core/topic/areas_we_could_do_with/121159956" style=3D"text-decorat=
+ion:none"><span style=3D"font-size:11pt;background-color:transparent;font-v=
+ariant:normal;text-decoration:underline;vertical-align:baseline;white-space=
+:pre-wrap">https://lists.openembedded.org/g/openembedded-core/topic/areas_w=
+e_could_do_with/121159956</span></a><span style=3D"font-size:11pt;backgroun=
+d-color:transparent;font-variant:normal;vertical-align:baseline;white-space=
+:pre-wrap"> which details some others too</span></p></li></ul></ul><p dir=
+=3D"ltr" style=3D"line-height:1.38;margin-left:36pt;margin-top:0pt;margin-b=
+ottom:0pt"><span style=3D"font-size:11pt;font-family:Arial,sans-serif;color=
+:rgb(0,0,0);background-color:transparent;font-variant:normal;vertical-align=
+:baseline;white-space:pre-wrap">We get a lot of comments about these being =
+hard to reproduce or work on, in both cases, these have specific well defin=
+ed things which need to be done and a basic understanding of what the issue=
+ relates to, if not the actual fix.</span></p><br><p dir=3D"ltr" style=3D"l=
+ine-height:1.38;margin-top:0pt;margin-bottom:0pt"><span style=3D"font-size:=
+11pt;font-family:Arial,sans-serif;color:rgb(0,0,0);background-color:transpa=
+rent;font-variant:normal;vertical-align:baseline;white-space:pre-wrap">Want=
+ to contribute? We would appreciate help with the following areas:</span></=
+p><ul style=3D"margin-top:0px;margin-bottom:0px"><li dir=3D"ltr" style=3D"l=
+ist-style-type:disc;font-size:11pt;font-family:Arial,sans-serif;color:rgb(0=
+,0,0);background-color:transparent;font-variant:normal;vertical-align:basel=
+ine;white-space:pre"><p dir=3D"ltr" style=3D"line-height:1.38;margin-top:0p=
+t;margin-bottom:0pt" role=3D"presentation"><span style=3D"font-size:11pt;ba=
+ckground-color:transparent;font-variant:normal;vertical-align:baseline;whit=
+e-space:pre-wrap">We have several open issues for pseudo and limited mainta=
+iner time to work on them. Help from someone familiar with systems programm=
+ing in C would be greatly appreciated. </span><a href=3D"https://bugzilla.y=
+octoproject.org/buglist.cgi?list_id=3D661406&amp;priority=3DHigh&amp;priori=
+ty=3DMedium%2B&amp;product=3DPseudo&amp;query_format=3Dadvanced&amp;resolut=
+ion=3D---" style=3D"text-decoration:none"><span style=3D"font-size:11pt;bac=
+kground-color:transparent;font-variant:normal;text-decoration:underline;ver=
+tical-align:baseline;white-space:pre-wrap">https://bugzilla.yoctoproject.or=
+g/buglist.cgi?list_id=3D661406&amp;priority=3DHigh&amp;priority=3DMedium%2B=
+&amp;product=3DPseudo&amp;query_format=3Dadvanced&amp;resolution=3D---</spa=
+n></a></p></li><li dir=3D"ltr" style=3D"list-style-type:disc;font-size:11pt=
+;font-family:Arial,sans-serif;color:rgb(0,0,0);background-color:transparent=
+;font-variant:normal;vertical-align:baseline;white-space:pre"><p dir=3D"ltr=
+" style=3D"line-height:1.38;margin-top:0pt;margin-bottom:0pt" role=3D"prese=
+ntation"><span style=3D"font-size:11pt;background-color:transparent;font-va=
+riant:normal;vertical-align:baseline;white-space:pre-wrap">There are a larg=
+e number of intermittent failures on our autobuilder, any help with investi=
+gating, reproducing or solving these issues would be welcome! </span><a hre=
+f=3D"https://valkyrie.yocto.io/pub/non-release/abint/" style=3D"text-decora=
+tion:none"><span style=3D"font-size:11pt;background-color:transparent;font-=
+variant:normal;text-decoration:underline;vertical-align:baseline;white-spac=
+e:pre-wrap">https://valkyrie.yocto.io/pub/non-release/abint/</span></a></p>=
+</li><li dir=3D"ltr" style=3D"list-style-type:disc;font-size:11pt;font-fami=
+ly:Arial,sans-serif;color:rgb(0,0,0);background-color:transparent;font-vari=
+ant:normal;vertical-align:baseline;white-space:pre"><p dir=3D"ltr" style=3D=
+"line-height:1.38;margin-top:0pt;margin-bottom:0pt" role=3D"presentation"><=
+span style=3D"font-size:11pt;background-color:transparent;font-variant:norm=
+al;vertical-align:baseline;white-space:pre-wrap">Many recipes in openembedd=
+ed-core would benefit from a new recipe maintainer. Please look at </span><=
+a href=3D"https://git.openembedded.org/openembedded-core/tree/meta/conf/dis=
+tro/include/maintainers.inc" style=3D"text-decoration:none"><span style=3D"=
+font-size:11pt;background-color:transparent;font-variant:normal;text-decora=
+tion:underline;vertical-align:baseline;white-space:pre-wrap">https://git.op=
+enembedded.org/openembedded-core/tree/meta/conf/distro/include/maintainers.=
+inc</span></a><span style=3D"font-size:11pt;background-color:transparent;fo=
+nt-variant:normal;vertical-align:baseline;white-space:pre-wrap"> and see if=
+ you can adopt any of the unassigned recipes.</span></p></li><li dir=3D"ltr=
+" style=3D"list-style-type:disc;font-size:11pt;font-family:Arial,sans-serif=
+;color:rgb(0,0,0);background-color:transparent;font-variant:normal;vertical=
+-align:baseline;white-space:pre"><p dir=3D"ltr" style=3D"line-height:1.38;m=
+argin-top:0pt;margin-bottom:0pt" role=3D"presentation"><span style=3D"font-=
+size:11pt;background-color:transparent;font-variant:normal;vertical-align:b=
+aseline;white-space:pre-wrap">For more ways to contribute, see </span><a hr=
+ef=3D"https://docs.google.com/document/d/18oxKWxLorfF813h82mK6yKTIHeBp_-9ow=
+FuCWbzgjOk/edit?usp=3Dsharing" style=3D"text-decoration:none"><span style=
+=3D"font-size:11pt;background-color:transparent;font-variant:normal;text-de=
+coration:underline;vertical-align:baseline;white-space:pre-wrap">https://do=
+cs.google.com/document/d/18oxKWxLorfF813h82mK6yKTIHeBp_-9owFuCWbzgjOk/edit?=
+usp=3Dsharing</span></a></p></li></ul><br><p dir=3D"ltr" style=3D"line-heig=
+ht:1.38;margin-top:0pt;margin-bottom:0pt"><span style=3D"font-size:11pt;fon=
+t-family:Arial,sans-serif;color:rgb(0,0,0);background-color:transparent;fon=
+t-variant:normal;vertical-align:baseline;white-space:pre-wrap">New to the p=
+roject?</span></p><ul style=3D"margin-top:0px;margin-bottom:0px"><li dir=3D=
+"ltr" style=3D"list-style-type:disc;font-size:11pt;font-family:Arial,sans-s=
+erif;color:rgb(0,0,0);background-color:transparent;font-variant:normal;vert=
+ical-align:baseline;white-space:pre"><p dir=3D"ltr" style=3D"line-height:1.=
+38;margin-top:0pt;margin-bottom:0pt" role=3D"presentation"><span style=3D"f=
+ont-size:11pt;background-color:transparent;font-variant:normal;vertical-ali=
+gn:baseline;white-space:pre-wrap">We have a list of issues we think are goo=
+d places to start contributing: </span><a href=3D"https://bugzilla.yoctopro=
+ject.org/buglist.cgi?quicksearch=3DNEWCOMER" style=3D"text-decoration:none"=
+><span style=3D"font-size:11pt;background-color:transparent;font-variant:no=
+rmal;text-decoration:underline;vertical-align:baseline;white-space:pre-wrap=
+">https://bugzilla.yoctoproject.org/buglist.cgi?quicksearch=3DNEWCOMER</spa=
+n></a></p></li></ul><br><p dir=3D"ltr" style=3D"line-height:1.38;margin-top=
+:0pt;margin-bottom:0pt"><span style=3D"font-size:11pt;font-family:Arial,san=
+s-serif;color:rgb(0,0,0);background-color:transparent;font-variant:normal;v=
+ertical-align:baseline;white-space:pre-wrap">Tracking Metrics:</span></p><u=
+l style=3D"margin-top:0px;margin-bottom:0px"><li dir=3D"ltr" style=3D"list-=
+style-type:disc;font-size:11pt;font-family:Arial,sans-serif;color:rgb(0,0,0=
+);background-color:transparent;font-variant:normal;vertical-align:baseline;=
+white-space:pre"><p dir=3D"ltr" style=3D"line-height:1.38;margin-top:0pt;ma=
+rgin-bottom:0pt" role=3D"presentation"><span style=3D"font-size:11pt;backgr=
+ound-color:transparent;font-variant:normal;vertical-align:baseline;white-sp=
+ace:pre-wrap">WDD 2640 (last week 2647) </span><span style=3D"font-size:11p=
+t;font-family:Consolas,sans-serif;background-color:transparent;font-variant=
+:normal;vertical-align:baseline;white-space:pre-wrap">(</span><a href=3D"ht=
+tps://wiki.yoctoproject.org/charts/combo.html" style=3D"text-decoration:non=
+e"><span style=3D"font-size:11pt;background-color:transparent;font-variant:=
+normal;text-decoration:underline;vertical-align:baseline;white-space:pre-wr=
+ap">https://wiki.yoctoproject.org/charts/combo.html</span></a><span style=
+=3D"font-size:11pt;font-family:Consolas,sans-serif;background-color:transpa=
+rent;font-variant:normal;vertical-align:baseline;white-space:pre-wrap">)</s=
+pan></p></li><li dir=3D"ltr" style=3D"list-style-type:disc;font-size:11pt;f=
+ont-family:Consolas,sans-serif;color:rgb(0,0,0);background-color:transparen=
+t;font-variant:normal;vertical-align:baseline;white-space:pre"><p dir=3D"lt=
+r" style=3D"line-height:1.38;margin-top:0pt;margin-bottom:0pt" role=3D"pres=
+entation"><span style=3D"font-size:11pt;font-family:Arial,sans-serif;backgr=
+ound-color:transparent;font-variant:normal;vertical-align:baseline;white-sp=
+ace:pre-wrap">OE-Core/Poky Patch Metrics</span></p></li><ul style=3D"margin=
+-top:0px;margin-bottom:0px"><li dir=3D"ltr" style=3D"list-style-type:circle=
+;font-size:11pt;font-family:Arial,sans-serif;color:rgb(0,0,0);background-co=
+lor:transparent;font-variant:normal;vertical-align:baseline;white-space:pre=
+"><p dir=3D"ltr" style=3D"line-height:1.38;margin-top:0pt;margin-bottom:0pt=
+" role=3D"presentation"><span style=3D"font-size:11pt;background-color:tran=
+sparent;font-variant:normal;vertical-align:baseline;white-space:pre-wrap">T=
+otal patches found: 1055 (last week 1054)</span></p></li><li dir=3D"ltr" st=
+yle=3D"list-style-type:circle;font-size:11pt;font-family:Arial,sans-serif;c=
+olor:rgb(0,0,0);background-color:transparent;font-variant:normal;vertical-a=
+lign:baseline;white-space:pre"><p dir=3D"ltr" style=3D"line-height:1.38;mar=
+gin-top:0pt;margin-bottom:0pt" role=3D"presentation"><span style=3D"font-si=
+ze:11pt;background-color:transparent;font-variant:normal;vertical-align:bas=
+eline;white-space:pre-wrap">Patches in the Pending State: 137 (13%) [last w=
+eek 135 (13%)]</span></p></li><li dir=3D"ltr" style=3D"list-style-type:circ=
+le;font-size:11pt;font-family:Consolas,sans-serif;color:rgb(0,0,0);backgrou=
+nd-color:transparent;font-variant:normal;vertical-align:baseline;white-spac=
+e:pre"><p dir=3D"ltr" style=3D"line-height:1.38;margin-top:0pt;margin-botto=
+m:0pt" role=3D"presentation"><a href=3D"https://valkyrie.yocto.io/pub/non-r=
+elease/patchmetrics/" style=3D"text-decoration:none"><span style=3D"font-si=
+ze:11pt;font-family:Arial,sans-serif;background-color:transparent;font-vari=
+ant:normal;text-decoration:underline;vertical-align:baseline;white-space:pr=
+e-wrap">https://valkyrie.yocto.io/pub/non-release/patchmetrics/</span></a><=
+/p></li></ul></ul><br><p dir=3D"ltr" style=3D"line-height:1.38;margin-top:0=
+pt;margin-bottom:0pt"><span style=3D"font-size:11pt;font-family:Arial,sans-=
+serif;color:rgb(0,0,0);background-color:transparent;font-variant:normal;ver=
+tical-align:baseline;white-space:pre-wrap">Upcoming development releases</s=
+pan></p><ul style=3D"margin-top:0px;margin-bottom:0px"><li dir=3D"ltr" styl=
+e=3D"list-style-type:disc;font-size:11pt;font-family:Arial,sans-serif;color=
+:rgb(0,0,0);background-color:transparent;font-variant:normal;vertical-align=
+:baseline;white-space:pre"><p dir=3D"ltr" style=3D"line-height:1.38;margin-=
+top:0pt;margin-bottom:0pt" role=3D"presentation"><span style=3D"font-size:1=
+1pt;background-color:transparent;font-variant:normal;vertical-align:baselin=
+e;white-space:pre-wrap">6.1 M3: is due for release</span></p></li><li dir=
+=3D"ltr" style=3D"list-style-type:disc;font-size:11pt;font-family:Arial,san=
+s-serif;color:rgb(0,0,0);background-color:transparent;font-variant:normal;v=
+ertical-align:baseline;white-space:pre"><p dir=3D"ltr" style=3D"line-height=
+:1.38;margin-top:0pt;margin-bottom:0pt" role=3D"presentation"><span style=
+=3D"font-size:11pt;background-color:transparent;font-variant:normal;vertica=
+l-align:baseline;white-space:pre-wrap">6.1.0:</span></p></li><ul style=3D"m=
+argin-top:0px;margin-bottom:0px"><li dir=3D"ltr" style=3D"list-style-type:c=
+ircle;font-size:11pt;font-family:Arial,sans-serif;color:rgb(0,0,0);backgrou=
+nd-color:transparent;font-variant:normal;vertical-align:baseline;white-spac=
+e:pre"><p dir=3D"ltr" style=3D"line-height:1.38;margin-top:0pt;margin-botto=
+m:0pt" role=3D"presentation"><span style=3D"font-size:11pt;background-color=
+:transparent;font-variant:normal;vertical-align:baseline;white-space:pre-wr=
+ap">Build Date (M4): w/c 2026-10-12</span></p></li><li dir=3D"ltr" style=3D=
+"list-style-type:circle;font-size:11pt;font-family:Arial,sans-serif;color:r=
+gb(0,0,0);background-color:transparent;font-variant:normal;vertical-align:b=
+aseline;white-space:pre"><p dir=3D"ltr" style=3D"line-height:1.38;margin-to=
+p:0pt;margin-bottom:0pt" role=3D"presentation"><span style=3D"font-size:11p=
+t;background-color:transparent;font-variant:normal;vertical-align:baseline;=
+white-space:pre-wrap">Release Date: w/c 2026-11-02</span></p></li></ul></ul=
+><br><p dir=3D"ltr" style=3D"line-height:1.38;margin-top:0pt;margin-bottom:=
+0pt"><span style=3D"font-size:11pt;font-family:Arial,sans-serif;color:rgb(0=
+,0,0);background-color:transparent;font-variant:normal;vertical-align:basel=
+ine;white-space:pre-wrap">Upcoming dot releases:</span></p><ul style=3D"mar=
+gin-top:0px;margin-bottom:0px"><li dir=3D"ltr" style=3D"list-style-type:dis=
+c;font-size:11pt;font-family:Arial,sans-serif;background-color:transparent;=
+font-variant:normal;vertical-align:baseline;white-space:pre"><p dir=3D"ltr"=
+ style=3D"line-height:1.38;margin-top:0pt;margin-bottom:0pt" role=3D"presen=
+tation"><span style=3D"font-size:11pt;font-variant:normal;vertical-align:ba=
+seline;white-space:pre-wrap">YP 6.0.4</span></p></li><ul style=3D"margin-to=
+p:0px;margin-bottom:0px"><li dir=3D"ltr" style=3D"list-style-type:circle;fo=
+nt-size:11pt;font-family:Arial,sans-serif;background-color:transparent;font=
+-variant:normal;vertical-align:baseline;white-space:pre"><p dir=3D"ltr" sty=
+le=3D"line-height:1.38;margin-top:0pt;margin-bottom:0pt" role=3D"presentati=
+on"><span style=3D"font-size:11pt;font-variant:normal;vertical-align:baseli=
+ne;white-space:pre-wrap">Build Date w/c 2026-09-28</span></p></li><li dir=
+=3D"ltr" style=3D"list-style-type:circle;font-size:11pt;font-family:Arial,s=
+ans-serif;background-color:transparent;font-variant:normal;vertical-align:b=
+aseline;white-space:pre"><p dir=3D"ltr" style=3D"line-height:1.38;margin-to=
+p:0pt;margin-bottom:0pt" role=3D"presentation"><span style=3D"font-size:11p=
+t;font-variant:normal;vertical-align:baseline;white-space:pre-wrap">Release=
+ Date w/c 2026-10-12</span></p></li></ul><li dir=3D"ltr" style=3D"list-styl=
+e-type:disc;font-size:11pt;font-family:Arial,sans-serif;background-color:tr=
+ansparent;font-variant:normal;vertical-align:baseline;white-space:pre"><p d=
+ir=3D"ltr" style=3D"line-height:1.38;margin-top:0pt;margin-bottom:0pt" role=
+=3D"presentation"><span style=3D"font-size:11pt;font-variant:normal;vertica=
+l-align:baseline;white-space:pre-wrap">YP 5.0.21</span></p></li><ul style=
+=3D"margin-top:0px;margin-bottom:0px"><li dir=3D"ltr" style=3D"list-style-t=
+ype:circle;font-size:11pt;font-family:Arial,sans-serif;background-color:tra=
+nsparent;font-variant:normal;vertical-align:baseline;white-space:pre"><p di=
+r=3D"ltr" style=3D"line-height:1.38;margin-top:0pt;margin-bottom:0pt" role=
+=3D"presentation"><span style=3D"font-size:11pt;font-variant:normal;vertica=
+l-align:baseline;white-space:pre-wrap">Build Date w/c 2026-10-05</span></p>=
+</li><li dir=3D"ltr" style=3D"list-style-type:circle;font-size:11pt;font-fa=
+mily:Arial,sans-serif;background-color:transparent;font-variant:normal;vert=
+ical-align:baseline;white-space:pre"><p dir=3D"ltr" style=3D"line-height:1.=
+38;margin-top:0pt;margin-bottom:0pt" role=3D"presentation"><span style=3D"f=
+ont-size:11pt;font-variant:normal;vertical-align:baseline;white-space:pre-w=
+rap">Release Date w/c 2026-10-19</span></p></li></ul><li dir=3D"ltr" style=
+=3D"list-style-type:disc;font-size:11pt;font-family:Arial,sans-serif;color:=
+rgb(0,0,0);background-color:transparent;font-variant:normal;vertical-align:=
+baseline;white-space:pre"><p dir=3D"ltr" style=3D"line-height:1.38;margin-t=
+op:0pt;margin-bottom:0pt" role=3D"presentation"><span style=3D"font-size:11=
+pt;background-color:transparent;font-variant:normal;vertical-align:baseline=
+;white-space:pre-wrap">For future release dates, see </span><a href=3D"http=
+s://wiki.yoctoproject.org/wiki/Release_calendar" style=3D"text-decoration:n=
+one"><span style=3D"font-size:11pt;background-color:transparent;font-varian=
+t:normal;text-decoration:underline;vertical-align:baseline;white-space:pre-=
+wrap">https://wiki.yoctoproject.org/wiki/Release_calendar</span></a></p></l=
+i></ul><br><p dir=3D"ltr" style=3D"line-height:1.38;margin-top:0pt;margin-b=
+ottom:0pt"><span style=3D"font-size:11pt;font-family:Arial,sans-serif;color=
+:rgb(0,0,0);background-color:transparent;font-variant:normal;vertical-align=
+:baseline;white-space:pre-wrap">The Yocto Project=E2=80=99s technical gover=
+nance is through its Technical Steering Committee, more information is avai=
+lable at:</span></p><p dir=3D"ltr" style=3D"line-height:1.38;margin-top:0pt=
+;margin-bottom:0pt"><a href=3D"https://wiki.yoctoproject.org/wiki/TSC" styl=
+e=3D"text-decoration:none"><span style=3D"font-size:11pt;font-family:Arial,=
+sans-serif;background-color:transparent;font-variant:normal;text-decoration=
+:underline;vertical-align:baseline;white-space:pre-wrap">https://wiki.yocto=
+project.org/wiki/TSC</span></a></p><br><p dir=3D"ltr" style=3D"line-height:=
+1.38;margin-top:0pt;margin-bottom:0pt"><span style=3D"font-size:11pt;font-f=
+amily:Arial,sans-serif;color:rgb(0,0,0);background-color:transparent;font-v=
+ariant:normal;vertical-align:baseline;white-space:pre-wrap">The Status repo=
+rts are stored on the wiki at: </span><a href=3D"https://wiki.yoctoproject.=
+org/wiki/Weekly_Status" style=3D"text-decoration:none"><span style=3D"font-=
+size:11pt;font-family:Arial,sans-serif;background-color:transparent;font-va=
+riant:normal;text-decoration:underline;vertical-align:baseline;white-space:=
+pre-wrap">https://wiki.yoctoproject.org/wiki/Weekly_Status</span></a></p><b=
+r><p dir=3D"ltr" style=3D"line-height:1.38;margin-top:0pt;margin-bottom:0pt=
+"><span style=3D"font-size:11pt;font-family:Arial,sans-serif;color:rgb(0,0,=
+0);background-color:transparent;font-variant:normal;vertical-align:baseline=
+;white-space:pre-wrap">[If anyone has suggestions for other information you=
+=E2=80=99d like to see on this weekly status update, let us know!]</span></=
+p></span><br class=3D"gmail-Apple-interchange-newline"></div><div dir=3D"lt=
+r" class=3D"gmail_signature" data-smartmail=3D"gmail_signature"><div dir=3D=
+"ltr"><div dir=3D"ltr"><p class=3D"MsoNormal" style=3D"background-image:ini=
+tial;background-position:initial;background-repeat:initial"><span style=3D"=
+font-size:12pt;font-family:Arial,sans-serif">Thanks,<span></span></span></p=
+>
 
---ul93aEmx7S5x2fmQArix--
+<p class=3D"MsoNormal" style=3D"background-image:initial;background-positio=
+n:initial;background-repeat:initial"><span style=3D"font-size:12pt;font-fam=
+ily:Arial,sans-serif">=C2=A0<span></span></span></p>
+
+<p class=3D"MsoNormal" style=3D"background-image:initial;background-positio=
+n:initial;background-repeat:initial"><b><i><span style=3D"font-size:16pt;co=
+lor:purple">Stephen K. Jolley</span></i></b><span style=3D"font-size:12pt;f=
+ont-family:Arial,sans-serif"><span></span></span></p>
+
+<p class=3D"MsoNormal" style=3D"background-image:initial;background-positio=
+n:initial;background-repeat:initial"><b><span style=3D"font-size:8pt;font-f=
+amily:&quot;Courier New&quot;;color:blue">Yocto Project Program Manager</sp=
+an></b></p>
+
+<p class=3D"MsoNormal" style=3D"background-image:initial;background-positio=
+n:initial;background-repeat:initial"><span style=3D"font-size:9pt;font-fami=
+ly:Wingdings;color:black">(</span><span style=3D"font-size:9pt;font-family:=
+&quot;MS Sans Serif&quot;,serif;color:teal">=C2=A0=C2=A0=C2=A0=C2=A0</span>=
+<b><span style=3D"font-size:8pt;font-family:&quot;Comic Sans MS&quot;;color=
+:teal">Cell</span></b><span style=3D"font-size:9pt;font-family:&quot;MS San=
+s Serif&quot;,serif;color:teal">:=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 </span><span style=3D"font=
+-size:9pt;font-family:&quot;MS Sans Serif&quot;,serif">(208) 244-4460</span=
+><span style=3D"font-size:12pt;font-family:Arial,sans-serif"><span></span><=
+/span></p>
+
+<p class=3D"MsoNormal" style=3D"background-image:initial;background-positio=
+n:initial;background-repeat:initial"><span style=3D"font-size:9pt;font-fami=
+ly:Wingdings">*=C2=A0</span><b><span lang=3D"FR" style=3D"font-size:8pt;fon=
+t-family:&quot;Comic Sans MS&quot;;color:teal">Email</span></b><span lang=
+=3D"FR" style=3D"font-size:9pt;font-family:&quot;MS Sans Serif&quot;,serif;=
+color:teal">:</span><span lang=3D"FR" style=3D"font-size:9pt;font-family:&q=
+uot;MS Sans Serif&quot;,serif">=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0</span><u><span=
+ lang=3D"FR" style=3D"font-size:9pt;font-family:&quot;MS Sans Serif&quot;,s=
+erif;color:blue"><span style=3D"color:rgb(17,85,204)"><a href=3D"mailto:ste=
+phen.k.jolley@intel.com" target=3D"_blank">s</a><a href=3D"mailto:jolley.yp=
+.pm@gmail.com" target=3D"_blank">jolley.yp.pm@gmail.com</a></span></span></=
+u></p></div></div></div></div>
+
+--0000000000001ec9a1065c137530--
 
