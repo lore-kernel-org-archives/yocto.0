@@ -1,91 +1,104 @@
-Received: from mail.savoirfairelinux.com (mail.savoirfairelinux.com [208.88.110.44])
- by mx.groups.io with SMTP id smtpd.msgproc01-g2.764.1792594898947995356
+Received: from mail-lj1-f181.google.com (mail-lj1-f181.google.com [209.85.208.181])
+ by mx.groups.io with SMTP id smtpd.msgproc01-g2.4007.1792602683239048512
  for <yocto@lists.yoctoproject.org>;
- Wed, 21 Oct 2026 08:01:39 -0700
+ Wed, 21 Oct 2026 10:11:23 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@savoirfairelinux.com header.s=DFC430D2-D198-11EC-948E-34200CB392D2 header.b=M+25UHBK;
- spf=pass (domain: savoirfairelinux.com, ip: 208.88.110.44, mailfrom: elinor.montmasson@savoirfairelinux.com)
-Received: from localhost (localhost [127.0.0.1])
-	by mail.savoirfairelinux.com (Postfix) with ESMTP id A6AB73D81665;
-	Wed, 21 Oct 2026 11:01:37 -0400 (EDT)
-Received: from mail.savoirfairelinux.com ([127.0.0.1])
- by localhost (mail.savoirfairelinux.com [127.0.0.1]) (amavis, port 10032)
- with ESMTP id hnuSOo8s18ni; Wed, 21 Oct 2026 11:01:37 -0400 (EDT)
-Received: from localhost (localhost [127.0.0.1])
-	by mail.savoirfairelinux.com (Postfix) with ESMTP id DAF5F3D80F30;
-	Wed, 21 Oct 2026 11:01:36 -0400 (EDT)
-DKIM-Filter: OpenDKIM Filter v2.10.3 mail.savoirfairelinux.com DAF5F3D80F30
+ dkim=pass header.i=@linuxfoundation.org header.s=google header.b=dgy1AFbA;
+ spf=pass (domain: linuxfoundation.org, ip: 209.85.208.181, mailfrom: mhalstead@linuxfoundation.org)
+Received: by mail-lj1-f181.google.com with SMTP id 38308e7fff4ca-3a75f960be4so6603571fa.2
+        for <yocto@lists.yoctoproject.org>; Wed, 21 Oct 2026 10:11:22 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1792602681; cv=none;
+        d=google.com; s=arc-20260327;
+        b=MY3cCV5c5XApUuP224pdebbq4od1xWLYQu6Wy2wLyHr+SFukWJZl0foZ6FBvGoopAw
+         oL3x1I+YpC2GVpO0oZGxPFK5DVVs4D9rDDLxPpcoAtQODQTWnlOACtqS+uCixXkoNBUL
+         X+rDGfKJWHVEBIUnxCUPvTI12J6pUCao1q5+OIM4U+WgR2wziAOylQ/qWP3KF3rwcOSL
+         lQoG8b7ZXKy9f4ftTa8vsHwpFeDrtuhZ9krF2ffilF2kVYn2bDDJl6hriJLcOscKy9cW
+         R/iC/H6/aAKSfWKBYksIXdI9EecXlI9Mlp1GJjBdpgx/91WUd2QguS3xwetSNiQExXC8
+         N6wA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20260327;
+        h=to:subject:message-id:date:from:mime-version:dkim-signature;
+        bh=zi5Gm5xdqK5H9FGUZHyNZVjmKB5uPWe+rbaqeBYNim4=;
+        fh=5jsKs5XONFSYwxKSacuHqza0T+FRO2cnutRJ4fEHpvs=;
+        b=qxDeOgeK5fVQIFE8s3E2yVCP6WXjrw5EgHc4+bLr3gWN8BFXTRds2TEbC0YiXwit5H
+         bALEa9XjJL71TMbery29Nz7zpiR8HAQFje8CO7KMtSuKkJxOS4RXeM5OzLTil/6sa+ol
+         TF+XkwFmqqoq/MBa7bF+sjARoZoyTNq6eWXtEjTA/2/FFPv+fGVCoW+XoOny2S/5VTM3
+         oq1UruiZx1HivlrGlldx8mgTbpiqQEF8LbhcbuCRva0Vl4hV+cP2Zw9LMgEbgy3wNPjF
+         wO8V310phic8pDs5mdNQ+AElyiSk02LgfzNUZzMPDyj0qi3uWdx/evGxVzzPGCNr9LtN
+         b/eg==;
+        darn=lists.yoctoproject.org
+ARC-Authentication-Results: i=1; mx.google.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=savoirfairelinux.com; s=DFC430D2-D198-11EC-948E-34200CB392D2;
-	t=1792594896; bh=R75cZhn6fymXv/HbBMISKkOJpWzoTucubn+BZf5RrPQ=;
-	h=Date:From:To:Message-ID:MIME-Version;
-	b=M+25UHBKMkGcTTyUgVFoUJ6q873Hz0ucA5YT7W26TKwt2n++ZIO/7GzLrGK1jlpCl
-	 3VtIPpvfNGzNAvtOuNWQOJD9Tn7mFnh6YIT2F+UVQ8O5s/BOD9aYPagjDrBxSf1pb0
-	 Os2jZZW5eyhOlHWjL31VWFtYzvvRa6uTA8nB05OyOC1N277s/duMwzAmslrf8ayHnC
-	 snHi4CJmCxAxjG9RP1v6b5su3Q2MiE0sXUVL4vcUb3Ch3elE3sgRQKsNWsBk/kEQQL
-	 dpkuPqv+NMCYYMJ4e6t4GFH+Fg403C1WOpp+sR2uxRIyQhIajr2LN8cgQNPhAaaqTZ
-	 iCaNQXCIUSliA==
-X-Virus-Scanned: amavis at mail.savoirfairelinux.com
-Received: from mail.savoirfairelinux.com ([127.0.0.1])
- by localhost (mail.savoirfairelinux.com [127.0.0.1]) (amavis, port 10026)
- with ESMTP id j3AhT85m0zvK; Wed, 21 Oct 2026 11:01:36 -0400 (EDT)
-Received: from mail.savoirfairelinux.com (mail.savoirfairelinux.com [192.168.48.237])
-	by mail.savoirfairelinux.com (Postfix) with ESMTP id A06CE3D81665;
-	Wed, 21 Oct 2026 11:01:36 -0400 (EDT)
-Date: Wed, 21 Oct 2026 11:01:36 -0400 (EDT)
-From: Elinor Montmasson <elinor.montmasson@savoirfairelinux.com>
-To: peter marko <Peter.Marko@siemens.com>
-Cc: adrian freihofer <adrian.freihofer@siemens.com>, 
-	yocto <yocto@lists.yoctoproject.org>
-Message-ID: <248975416.905486.1792594896595.JavaMail.zimbra@savoirfairelinux.com>
-In-Reply-To: <AS8PR10MB507312025652BBCA5759F02BFD662@AS8PR10MB5073.EURPRD10.PROD.OUTLOOK.COM>
-References: <1383658177.878587.1792571670575.JavaMail.zimbra@savoirfairelinux.com> <AS8PR10MB507312025652BBCA5759F02BFD662@AS8PR10MB5073.EURPRD10.PROD.OUTLOOK.COM>
-Subject: Re: Issues and questions regarding PowerPC 32-bits e500v2 tuning
+        d=linuxfoundation.org; s=google; t=1792602681; x=1793207481; darn=lists.yoctoproject.org;
+        h=content-type:to:subject:message-id:date:from:mime-version:from:to
+         :cc:subject:date:message-id:reply-to:content-type;
+        bh=zi5Gm5xdqK5H9FGUZHyNZVjmKB5uPWe+rbaqeBYNim4=;
+        b=dgy1AFbAaI/xYFjkJMlqr7Rf6iGQovul9r4ci5XSupiaFmgsIQ3fOaT9hYfVpu7/Ft
+         hcKXx+oSrvKdzx1PJfSa5WduFDYhIes5YUgStcX0+OAgAt9vKLEvqC/1zjsXuhtlkQH8
+         7ey4V9wfstmH9JVDq/QsociplqOBbfOBQnREM=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20260707; t=1792602681; x=1793207481;
+        h=content-type:to:subject:message-id:date:from:mime-version:x-gm-gg
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
+         :content-type;
+        bh=zi5Gm5xdqK5H9FGUZHyNZVjmKB5uPWe+rbaqeBYNim4=;
+        b=F2LASVM6xPsXW9oMu7QmXmYrMfdM35RwavKIEKXEzgAaUm88uDGwBEDyqZny6Yt8G7
+         wsjW0zotmsRpxWzyxCeApy9aMOHyKB/ekUwzLi/UlAtT+Y7AiUq567wC/x3E/QIlVDqW
+         tQzHDCBPbRJ2Ksg4YTGhHtUDKTwi7krGBZXB9MOdQknjeVi8PpVVNTYEyeGyoUIYzKlz
+         xyFbyS54BjyD55n03InjP1XQev75a3oI5DxNHzAqhM8AL353uxz7OVuPQcDjyewmHcNe
+         /IeId9WzW9inN0Opoa2+eBCNH4X5exqo6W9yjeW9puynhPFdxIfIIAsNGh8/zEBA7LTh
+         P3Jw==
+X-Forwarded-Encrypted: i=1; AKwUvBwPT6GTfNQUslZ76OLUWvJHRmk/21Uc6XMZUPGHVJbY1ojf+cwzS83L6Ul/ucdN73vjofMpDA==@lists.yoctoproject.org
+X-Gm-Message-State: AFq9FYIHqvEm901ybdpO+N1+9Zc5iDVGjXhQt8WO6nmxwAl7wWtDhu1T
+	W7VMDCspwCp+0C95HUlpEIlY3bXcbabSGfd/eOOsQSODsCdt5L156cu4syfotDHA+owYsrI0Sr0
+	pyelx/fFbfLehujMQVm+EEACc+UDzCSLRtbLaCjAckQ==
+X-Gm-Gg: AYBFou3Ik6IKupaTaZmpsXRbPSJydY3MNYtLFeXu/b5pyo2wDTaJQ7Jbgd61zbOgv5u
+	D2Tt5nk/ZfJXAEfakO4yk63D8jKO5K08c1Eppm2hFUor108X0Kga7kNida/iDtmstBo+jRVD20x
+	Dx0NZXaZGSOgEDlGQOQLVQFCPCS5JqAaRlDiOfYo6TqDTL2aDqjLGnrKtH9C/Oe3kr1qwliPanN
+	YglCI3VVe5hO6rDHdg2P9Yr/WOVIksYPB/12BNoBalNU3RRJ4hWaVTOZFVSfl0kKqPXfSLKMJpr
+	kgS+RA4PFHv9+SV5ww1aixsiA3NrPvu7xj1kBGbGue00fFCwU1/kukp40LtEL6SpUfTy34mvQm+
+	1FA19YQ3C/nbsrHG6eQIo+TxKnzy60/MXrPYrkzSOGQ82NEKHDwzIT5KrZVOR7L+s6Hv98sBCI0
+	o0GpGvymOAmT2LxSnAhz6eRE6l34s=
+X-Received: by 2002:a2e:b8d5:0:b0:3ab:ac4c:186d with SMTP id
+ 38308e7fff4ca-3ac4415e8d9mr8187221fa.13.1792602680476; Wed, 21 Oct 2026
+ 10:11:20 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: 7bit
-X-Mailer: Zimbra 10.1.20_GA_0326 (ZimbraWebClient - FF158 (Linux)/10.1.20_GA_0326)
-X-Zimbra-Message-Verification: hash=SHA256;guid=ZWY0NGQ1Njk5NWUzMTYyMDExNjNiZjIzNThkMDgyYzRiZDY2N2ViNmMwNGVhMWI3NDUyNGYzMzQwNTBmOGFhNQ==
-Thread-Topic: Issues and questions regarding PowerPC 32-bits e500v2 tuning
-Thread-Index: csrwnORdasdJ3xzr7D7vjdu/N9REb6ThjGzwNaVB2iM=
+From: Michael Halstead <mhalstead@linuxfoundation.org>
+Date: Wed, 21 Oct 2026 10:11:09 -0700
+X-Gm-Features: AclHuK9w1NggZAWVVWynmeJZZblwxKUUh0N4MDLCzw1oom6r3GhmzNkN5nukxwo
+Message-ID: <CADfgfoY-e_Dwh=sEYzREf16iTHynr+2HVeTMLJfJdthUNjj=fw@mail.gmail.com>
+Subject: Yocto Project wiki replaced with a a read-only snapshot
+To: yocto-infrastructure <yocto-infrastructure@lists.yoctoproject.org>, 
+	Yocto-mailing-list <yocto@lists.yoctoproject.org>
+Content-Type: multipart/alternative; boundary="000000000000fe5989065e5cd5ed"
 List-Id: <yocto.lists.yoctoproject.org>
-X-Webhook-Received: from 45-33-107-173.ip.linodeusercontent.com [45.33.107.173] by lin-tor-korg-lkml-alma10-1 with HTTPS for <yocto@lists.yoctoproject.org>; Wed, 21 Oct 2026 15:01:49 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/66777
+X-Webhook-Received: from 45-33-107-173.ip.linodeusercontent.com [45.33.107.173] by lin-tor-korg-lkml-alma10-1 with HTTPS for <yocto@lists.yoctoproject.org>; Wed, 21 Oct 2026 17:11:30 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/66778
 
-Hello Peter,
+--000000000000fe5989065e5cd5ed
+Content-Type: text/plain; charset="UTF-8"
 
------ Original Message -----
-> From: "peter marko" <Peter.Marko@siemens.com>
-> To: "Elinor Montmasson" <elinor.montmasson@savoirfairelinux.com>, "adrian freihofer" <adrian.freihofer@siemens.com>
-> Cc: "yocto" <yocto@lists.yoctoproject.org>
-> Sent: Wednesday, 21 October, 2026 15:50:22
-> Subject: RE: Issues and questions regarding PowerPC 32-bits e500v2 tuning
+Due to CVE-2026-109618 and CVE-2026-109619, the Yocto Project wiki at
+https://wiki.yoctoproject.org/wiki/Main_Page has been taken offline and
+replaced with a read-only snapshot. Efforts to restore and replace the
+required wiki functionality are currently in progress.
 
-> Hello Elinor,
-> 
-> I have already checked SPE on e500 before and can confirm that it needs to be
-> disabled in favor of soft-fpu with newer GCC versions.
-> It of course dramatically decreases performance, but what can we do...
-> 
-> As usual with Yocto, only the default settings are being tested and untested
-> features slowly bit rot by time.
-> For now, we don't plan to extend our pipeline to all possible tunes/variations.
-> So ideally, you should send patches to fix your tune configuration and spin a
-> regular local pipeline with Yocto master to catch if it would break again.
-> 
-> Best Regards,
->  Peter
+-- 
+Michael Halstead (he/him)
+Linux Foundation / Yocto Project
+Staff IT Engineer
 
-Ok, thank you for your answer, at least it confirms my analysis.
+--000000000000fe5989065e5cd5ed
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Because GCC is not an option for SPE support, I am considering using
-the LLVM/Clang toolchain through meta-clang, as it seems to support
-PowerPC SPE.
-I know that some specific recipes will require building with GCC anyway,
-in that case fpu-soft will be enabled, but most of the distribution
-could build with clang.
+<div dir=3D"ltr">Due to CVE-2026-109618 and CVE-2026-109619, the Yocto Proj=
+ect wiki at <a href=3D"https://wiki.yoctoproject.org/wiki/Main_Page">https:=
+//wiki.yoctoproject.org/wiki/Main_Page</a> has been taken offline and repla=
+ced with a read-only snapshot. Efforts to restore and replace the required =
+wiki functionality are currently in progress.<br><br><span class=3D"gmail_s=
+ignature_prefix">-- </span><br><div dir=3D"ltr" class=3D"gmail_signature" d=
+ata-smartmail=3D"gmail_signature"><div dir=3D"ltr">Michael Halstead (he/him=
+)<br>Linux Foundation / Yocto Project<br>Staff IT Engineer</div></div></div=
+>
 
-Is it something you have tested?
-
-Best regards,
-Elinor Montmasson
+--000000000000fe5989065e5cd5ed--
