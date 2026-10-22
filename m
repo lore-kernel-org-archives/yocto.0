@@ -1,135 +1,428 @@
-Received: from PA4PR04CU001.outbound.protection.outlook.com (PA4PR04CU001.outbound.protection.outlook.com [40.107.162.34])
- by mx.groups.io with SMTP id smtpd.msgproc02-g2.169.1792677826417817735
+Received: from mail-yw1-f181.google.com (mail-yw1-f181.google.com [209.85.128.181])
+ by mx.groups.io with SMTP id smtpd.msgproc01-g2.1945.1792701473142198244
  for <yocto@lists.yoctoproject.org>;
- Thu, 22 Oct 2026 07:03:46 -0700
+ Thu, 22 Oct 2026 13:37:53 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@arm.com header.s=selector1 header.b=OY3O1w83;
- dkim=pass header.i=@arm.com header.s=selector1 header.b=OY3O1w83;
- spf=pass (domain: arm.com, ip: 40.107.162.34, mailfrom: ross.burton@arm.com)
-ARC-Seal: i=2; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=pass;
- b=MIV/KqR4uQfQmtsRp3uGQt0YaW4cZpfDahj7/Tl/qnIQXutAN8dscGskfjoUZyIj0jCkzAitAGitZP7CwT1Z/TqGKuDuuJSZTztH1/9SXNUkVGnT7yUvktao9DVii6ocDXBECihVJBXBWwUJhKnVeRRwi01RwI+xLaXocDB8pSzA7DLNcBAXC4DIWg4KsjFT6pznPsHxMxdHkBXtl52mXD+Sbkd5nqRcjFOYHQycE2CtjKucA576rXamibeoYqH1GyUMfEqQ1uqvCOcMgoFs6B6lsvmhUCjKU/hD5nQY8DFlmiaI282FSFEWO3giQj6faThPp0Nuoz/wO3umZc5TZg==
-ARC-Message-Signature: i=2; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=X8SgD/qf25h8WIweZoGUyn5AS2FzQaQ4Y2RWWr5oqFo=;
- b=m3W69Bom9VRvMb6MxEl2eFdDbzIoiOPYT79FrxJY+u7y0Wv9oCybGiSFbIxspElSvgDCKhC7RmQSy9wjwU01w8/O6zb+sWDjTpc35QoqJiDcj5mh/kSgf49lSGs9hZXI190eP2lNOffU/3FxJhwYn5tozR2aw0E/SZSaYMlgoGzgRcZvyJqxOd+eqorVwodefkAK5MFkBpqzGhe6JfFWtzXOb6SMxEzM+c+XgHljhx+cSatA0WtO34pV/ggRZR2YHzYfKzQiCJGX7xJINBnsUx/EOPYmaXD1KsHluYXDAcQGPK0jToccIx5QDlxlXIZCbTN/ES8qB0f1JgfT94ajRQ==
-ARC-Authentication-Results: i=2; mx.microsoft.com 1; spf=pass (sender ip is
- 4.158.2.129) smtp.rcpttodomain=balister.org smtp.mailfrom=arm.com; dmarc=pass
- (p=none sp=none pct=100) action=none header.from=arm.com; dkim=pass
- (signature was verified) header.d=arm.com; arc=pass (0 oda=1 ltdi=1
- spf=[1,1,smtp.mailfrom=arm.com] dkim=[1,1,header.d=arm.com]
- dmarc=[1,1,header.from=arm.com])
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=arm.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=X8SgD/qf25h8WIweZoGUyn5AS2FzQaQ4Y2RWWr5oqFo=;
- b=OY3O1w835a/u5+N04oMeAZq3Pss7zZefY1OdHkK6e0CMPXHuO/Daaxn5Md85HOwLbv1ZTpGHKEcRbdNHzeqCdkAYXAz5+FGaNhkvL/5XxP8Bfv+1RrURnhkMBRKiPPFigUy/nJ+WFvBvtA6rA9Nsiom14BO1MVRG5EYDODQorZs=
-Received: from DU7P190CA0014.EURP190.PROD.OUTLOOK.COM (2603:10a6:10:550::12)
- by DB9PR08MB6683.eurprd08.prod.outlook.com (2603:10a6:10:2ad::19) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.546.15; Thu, 22 Oct
- 2026 14:03:39 +0000
-Received: from DB1PEPF000509FF.eurprd03.prod.outlook.com
- (2603:10a6:10:550:cafe::8) by DU7P190CA0014.outlook.office365.com
- (2603:10a6:10:550::12) with Microsoft SMTP Server (version=TLS1_3,
- cipher=TLS_AES_256_GCM_SHA384) id 15.21.546.17 via Frontend Transport; Thu,
- 22 Oct 2026 14:03:39 +0000
-X-MS-Exchange-Authentication-Results: mx.microsoft.com 1; spf=pass (sender IP
- is 4.158.2.129) smtp.mailfrom=arm.com; dkim=pass (signature was verified)
- header.d=arm.com;dmarc=pass action=none header.from=arm.com;
-Received-SPF: Pass (protection.outlook.com: domain of arm.com designates
- 4.158.2.129 as permitted sender) receiver=protection.outlook.com;
- client-ip=4.158.2.129; helo=outbound-uk1.az.dlp.m.darktrace.com; pr=C
-Received: from outbound-uk1.az.dlp.m.darktrace.com (4.158.2.129) by
- DB1PEPF000509FF.mail.protection.outlook.com (10.167.242.41) with Microsoft
- SMTP Server (version=TLS1_3, cipher=TLS_AES_256_GCM_SHA384) id 15.21.546.15
- via Frontend Transport; Thu, 22 Oct 2026 14:03:38 +0000
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=k7EZqo0glNTNk4AXeKEaShwHchvZC0WpWZu0/TPODA3Dm4+v3DiiAIMTiFJyRKtRbtBqaaVy5wEe5nsUvRW0GGDc+oIHPXUol1FCDS1TY88w9IDARwRMy5b762Cor4Wyfc1jFktusfr5bjS29OrF4QEqjkq3VT2TFvSTvyVWGJ0hE8MVd5QsELA8j2TgfCrno8M9NIWlL0ksiLGg6xljNtqkclVggkK0wRq4o+PI06pATfzF0iLQxQLv3/QF7HSOjLMEXE+d2ZawgFdGfD1Lvj9QxKAhsnIK9Cp2osXwMm6Th7XgP1J13bVvTseNTfEgE7mBE7X0KvNuvtpzBKtjEw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=X8SgD/qf25h8WIweZoGUyn5AS2FzQaQ4Y2RWWr5oqFo=;
- b=SuMGz24dNNl198lyMN00ywELC8qdpL8Lo6LhkiQsKi93W99l4bl0u12Rca3WnSVBxedtTvuEvMOUkyge6BAwqwQmArlfwfSGg95glsktAHRXtTmNeC3TduTR7gOFihFuVa/EJ51CQQDSNvJWkLmKiRucU0DOn1OhQwEIJiJNS/0ODT1TdWj4xd6L+IGKjeqBM8MsntOKZ6vdDaqWXSozGPnLuNDG/s/uCBOYA5LTSNmXYBAN8Zfm7WiJuutwUwDvOI//LGkSNt1kYoWs7010KwPTJD9of7tuOjHnw1ivYxlCXIhiOd4goBN420v+nquEWF72PKNMaF3rL9oxBbZbXA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=arm.com; dmarc=pass action=none header.from=arm.com; dkim=pass
- header.d=arm.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=arm.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=X8SgD/qf25h8WIweZoGUyn5AS2FzQaQ4Y2RWWr5oqFo=;
- b=OY3O1w835a/u5+N04oMeAZq3Pss7zZefY1OdHkK6e0CMPXHuO/Daaxn5Md85HOwLbv1ZTpGHKEcRbdNHzeqCdkAYXAz5+FGaNhkvL/5XxP8Bfv+1RrURnhkMBRKiPPFigUy/nJ+WFvBvtA6rA9Nsiom14BO1MVRG5EYDODQorZs=
-Received: from AS8PR08MB9410.eurprd08.prod.outlook.com (2603:10a6:20b:5a9::13)
- by GVUPR08MB11932.eurprd08.prod.outlook.com (2603:10a6:150:349::10) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.546.14; Thu, 22 Oct
- 2026 14:03:06 +0000
-Received: from AS8PR08MB9410.eurprd08.prod.outlook.com
- ([fe80::1f2c:bae7:a4d3:fefb]) by AS8PR08MB9410.eurprd08.prod.outlook.com
- ([fe80::1f2c:bae7:a4d3:fefb%5]) with mapi id 15.21.0546.006; Thu, 22 Oct 2026
- 14:03:06 +0000
-From: Ross Burton <Ross.Burton@arm.com>
-To: Philip Balister <philip@balister.org>
-CC: "yocto@lists.yoctoproject.org" <yocto@lists.yoctoproject.org>,
-	"mhalstead@linuxfoundation.org" <mhalstead@linuxfoundation.org>,
-	yocto-infrastructure <yocto-infrastructure@lists.yoctoproject.org>
-Subject: Re: [yocto] Yocto Project wiki replaced with a a read-only snapshot
-Thread-Topic: [yocto] Yocto Project wiki replaced with a a read-only snapshot
-Thread-Index: AQHdYX83jt4/bUvo30q+f6IGUtrpd7cJkyYAgAAFiYCAAABkgA==
-Date: Thu, 22 Oct 2026 14:03:06 +0000
-Message-ID: <F25E22D1-27F1-4140-99FF-91B69FB0DCC6@arm.com>
-References: <CADfgfoY-e_Dwh=sEYzREf16iTHynr+2HVeTMLJfJdthUNjj=fw@mail.gmail.com>
- <9B005854-190F-4DE0-A2A5-7F17E4816B1A@arm.com>
- <2f242967-754e-4eaa-9f1d-f1cbddc29bbc@balister.org>
-In-Reply-To: <2f242967-754e-4eaa-9f1d-f1cbddc29bbc@balister.org>
-Accept-Language: en-GB, en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-mailer: Apple Mail (2.3864.700.51.1.3)
-Authentication-Results-Original: mx.microsoft.com 1; dkim=none (message not
- signed) header.d=none;dmarc=none action=none header.from=arm.com;
-x-ms-traffictypediagnostic: AS8PR08MB9410:EE_|GVUPR08MB11932:EE_|DB1PEPF000509FF:EE_|DB9PR08MB6683:EE_
-X-MS-Office365-Filtering-Correlation-Id: 8bef7813-3397-4934-889f-08df30454596
-x-checkrecipientrouted: true
-nodisclaimer: true
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam-Untrusted: BCL:0;ARA:13230040|23010399003|1800799024|376014|366016|22082099003|18002099003|4143699003|11063799006|10067099003|38070700021|56012099006;
-X-Microsoft-Antispam-Message-Info-Original: 5niKHCkWKmdv493qpPKnlxwqGw+ajmhjlNvOQJyij4hojnL9/vpbqI9lz8Kuqlu9II+nLaf2lSvEo6HIxXZM9F0gVPO4DDH40YH2G5/6HLJd38OJiwvhtiNxonqwQxKVIko9b/AD5hxKSyNFd4+o/e1j0Q0LqqZMaqTnp1n2JIlU5VYOBiUTgcUxPsobGNKFJTIiSyNqby2lE3/Dcez0ZX+fOxckPNl9O+6ffbzJO0rH6K56Mz7ssV0MI1diNvx+eOMNpmid4XjNVghHH63Yf6oQ1nh25p5GaDzvZbxt3Di6SmoCndvq9rEioSNceGXYDaj509iCkwzsZGW0/tkpjsGJt05AnEic8hd0WDniHSXIRvqYqlr/U7DMkF+fiIIdM96tGggRg9YkQ4jOXEpI0GnbNty8MPZjCYu37SfgKpfwomHfWSSGyIzEEiTuQlyq2TbWNnoiPmDpcWsWKQauaOJjxhVe6OlHh3Dut70b/NS13ttlpoGwOx9FXuUEn0WASPTEQkf/82sHs+gsCmvkZyKgqO2cZjAJoW+Q68TsSHU933jAFIlmoa+Ma6pApe2QNlEICOdhAxhxt0lF3jVSYyTiKcK1q5DuEvkllGWEtdpJY7FqgRMJrdTZepykiqDXtGwpm0lpH3ZH2Z2qG7JD2af/ebNW/xttZNFQ1COSg9w52Yr8k77AfFBZAzR3NWExpFflB08MZUnD+zuJd2bupQ==
-X-Forefront-Antispam-Report-Untrusted: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AS8PR08MB9410.eurprd08.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(23010399003)(1800799024)(376014)(366016)(22082099003)(18002099003)(4143699003)(11063799006)(10067099003)(38070700021)(56012099006);DIR:OUT;SFP:1101;
-Content-Type: text/plain; charset="utf-8"
-Content-ID: <E81414AF511F5A4AAE7E516514BB286E@eurprd08.prod.outlook.com>
-Content-Transfer-Encoding: base64
+ dkim=pass header.i=@gmail.com header.s=20251104 header.b=iJpng7wU;
+ spf=pass (domain: gmail.com, ip: 209.85.128.181, mailfrom: raj.khem@gmail.com)
+Received: by mail-yw1-f181.google.com with SMTP id 00721157ae682-8ac525c1f05so2605017b3.1
+        for <yocto@lists.yoctoproject.org>; Thu, 22 Oct 2026 13:37:53 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1792701472; cv=none;
+        d=google.com; s=arc-20260327;
+        b=WqGl3OxWKMstqX98y0nVpl6eNWMz2rpwNAcamIkFhaUQtwVczIyRgmQESqZAc2x2Ro
+         L6k9DERYPywAKXf9EoK/U/zRYMjOzWCWI2LRGHlKufVqAl8jQY4ZXjWN1gLwvbNRMa/u
+         5NthmqxkAxpShTtrbm3Amok3HfpqX6ZWpoaCIuAB854OQdRYlX1R1KdVUpIZhUMVVItP
+         TUZtBFXcM5+baWrUYt4jc24cPyCkpPj4TU1nMxFVCFyLBNkdf4spWB/EGomCORPWBdkY
+         HuKeW5+oYgtdb1oUqHURsAMRaWFPpomlsessmPDWacaY476mgZWKG6gpdnLJUBup/3P0
+         CkQA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20260327;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:dkim-signature;
+        bh=htnvi3q+qD3dv99lh1ZRQIQoOpAHZTFyPrQv/szsvHE=;
+        fh=6bGGp8up+aDiq2s1yQpl+/xwlBgSdV6JJvGfvQrmisc=;
+        b=BfclIGgbSDNiPSgnWpcXDbUkFiazfnrrc0kEMIZE9jCGXfHZ2qLVMdSz2IW2bBvGLU
+         n8vj6o0GBCeLYSxo4KlXAnzP+o4mBzaqDGdYlPkknorctQTIQmz5/suip2gTvfkD6Ecy
+         R0cFP0YCwcO33nGrjpqsSySHv5YsDTIq0qYznOW8QTN2b/a1azGHWYFwNpEu1lJy+nM+
+         hYX22vqMmM2f/fAg+RbaUfdXAve+WQW9M+6qToc9BwXj4+HVXQFjwRlcY6yLB4jOOx5v
+         lB7g0rG6aFsKk7a76L13jC1XeYvXjDw9WjO/SbnyIqYWtXUMa3DDAUaYE696tt5UgtEv
+         J6oA==;
+        darn=lists.yoctoproject.org
+ARC-Authentication-Results: i=1; mx.google.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20251104; t=1792701472; x=1793306272; darn=lists.yoctoproject.org;
+        h=content-type:cc:to:subject:message-id:date:from:in-reply-to
+         :references:mime-version:from:to:cc:subject:date:message-id:reply-to
+         :content-type;
+        bh=htnvi3q+qD3dv99lh1ZRQIQoOpAHZTFyPrQv/szsvHE=;
+        b=iJpng7wUZiPPAzKq+AjpnbwzQHOOBFyDW1tJWIpnoCfrvS2hX+axU8TFhn5Xgcwr7k
+         9Pe8eTiVF3E49hBPHoiOTRJxn5Zpvy8FMkPRI/Xa7i4GtRuJJuR0Ak/x1rXgOPmR6etY
+         7P+y5oqyxQ4rRZvu7CMFxW/WRr0HZiODkOglm9AY76QP2J397JeaV5YFoBGURmrvLOAn
+         74wc6W7sW9hW9Ns5d5/UOP6rex4W9G/dkx+BhfY0sf+T51tDB480V/y7qqMNPyTOGKne
+         tZ+sLp8ueK9pHwWaCRF8aJXpS9LNFbshqMuQN9jWiOtTPsfekGpbZ3A6byJcZoSXMzF4
+         aIKg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20260707; t=1792701472; x=1793306272;
+        h=content-type:cc:to:subject:message-id:date:from:in-reply-to
+         :references:mime-version:x-gm-gg:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to:content-type;
+        bh=htnvi3q+qD3dv99lh1ZRQIQoOpAHZTFyPrQv/szsvHE=;
+        b=VlCqEYYT+w2VFSVLEFlda/Khfl9cX8tQ4h0zdgiVvOXZPKyGvqjKf82OYUfInFDuYZ
+         55MCdJwTujqXxMyesL1VQbspaA0LBn/VwH7Mro6mNcHTrUpFjTlc7IJSmFGL79PwJl0l
+         moPx+5UwzirBkBAu2ytqs9TIrPZUjFn4T7BlinCWB/eFBNqeap5okFEhiuU+9sq1mAwx
+         n0XpnKTOkrez8Czwj1Z2ybsUbXS1m28dbF9RnIPehAuZz2cP9r/7XaV/7Pxmro8wjIwr
+         lSQBTNhjRPhfpvQsmYFCCFxjN7s4NUUMLLELJ70KlhcuCH/lRKNB6YQkObFo5x6RhWeD
+         v49g==
+X-Gm-Message-State: AFq9FYKwarQnWdfV8ibNiZRZ+j+xumJyRW/zhRLVhGrbApIE2hpCBFAW
+	hckHf/Pblgh6SIu0Jct4yEgf0+ofvehd6lVmwOoj0IyVfssHBrOkZUL/CLqmbJa6LaNFj8/WCqe
+	X6gtHYnd49u8Zh/RhZBK2qfphi1pIyWldmhTd5F6m8Q==
+X-Gm-Gg: AYBFou2YHaLKRbj+zUqRWl45wmQpjclZ7UjR85wMT9VOSwYWZWDm9VnxsdzUTtyAZDQ
+	M9mLXJa8HvaVn4IugqqPBLOKHfZ8e1pLwcds48BQLDpHlFEMqv7n4TDHY+otF1c1N9hzoMblAoi
+	DE5jFDbZ/Jsns5A+tMW40sRoPyFc60X/pJQY1lI1+/8WoG/1nPGQGE3Tsw+SZnoO/aR+cWxEKW8
+	ZDExlvQJ/dfpfn8UwEOUcTPG6CqE12GD1b3qPJ7Wz04HMaJeUzrRx7D4ZXhRUScbS2enELxVAeZ
+	PaE3x+edHAT4spGmImvpxnRVVN5JKrW9+ZBrZP6HrC8Ovji5PJIg9n7ZY4R8TpW1FkEROkmEIHv
+	0OWPw152JYXSX8Bdv9NLRUB+O/7vo4XruS3yogV2TvEMnrx6QHIOmt+Laf53NM5hFGbtUqH6268
+	FWRYOHMDe7a+AsRcWO0X3qOyjYaRvMgWHi0f/s1Q1Bzf7253zZUB+Jsui17hClrSaVYwxZmuzBE
+	Jr3zx4D8nqNzPeVFc76UPVDi5qWkpTz3/vF0gY2uplpvRqC9FTubrbeuYqmjtwzHrneENfVNQUa
+	tjw0CGhr81v/fNMAtcoU0lJL07ixlPEM4lIAqySPq7pNGoo0qrBxo21IeY2dq99z
+X-Received: by 2002:a05:690c:f87:b0:8b0:a176:fa5b with SMTP id
+ 00721157ae682-8b157e0fd99mr1336247b3.64.1792701471838; Thu, 22 Oct 2026
+ 13:37:51 -0700 (PDT)
 MIME-Version: 1.0
-X-Exchange-RoutingPolicyChecked: UfImZn2B5SYRzZhCDp5M6vMr/9k3IuBi9uY0hraJ4GMO/mvekierpfIkbesgw16aiWN0iO5wpQifZaTUY9y9gOJJ/maHXAMr+xtklOmvTHy927LNspqfpDLxq9WOW9BbRqa+Uk9fevRFRD/hi8u2SUYSHb1B4i08ro6sXQGYFN+/w+0cXhf4ZiSkd1sDhZh5Dm6YYZyC1Sfq+ej3NVKJN47CDRNDJZyYdGwUJPCbxyDy7ZVh1azy9J5S7QlXTTV8EIfUg2HRPUUwc4NurI5tCoRzbavNLw9wsER8L4lzf/NtaE5Dob8e3j3uPQK8Xpr1BEfcBUyUEzz7jUTx6XDrkg==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: GVUPR08MB11932
-Return-Path: Ross.Burton@arm.com
-X-EOPAttributedMessage: 0
-X-MS-Exchange-Transport-CrossTenantHeadersStripped: DB1PEPF000509FF.eurprd03.prod.outlook.com
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id-Prvs: ea29f1b1-9d37-4a99-59f4-08df30453219
-X-Microsoft-Antispam: BCL:0;ARA:13230040|82310400026|14060799003|36860700016|35042699022|376014|1800799024|23010399003|10067099003|56012099006|18002099003|22082099003|4143699003|11063799006;
-X-Microsoft-Antispam-Message-Info: YIa/qjYNOWaaPFNjUArkrAX/4BZXF458GZH75x8z9kLjl6j3jue8USu1zLJwUcx1w9kUCYyJaIQnr9tI6y+f/SmrpFT8JMJ5TtOM0g7ndq/b40iebVNwiHyRhGq8sKrSxodk6oLMRou5GVC2bTcuhMJIdMQ8rzZ5krMDgFtBNVYWY9y3H32llblJS2ie8QdmhIXQeyesd2Suzg4wm6FcIgJ7BgXTlet2bmjta3C+1NX/M5mkBAOPoEjndx/ZrBdMuV4lXeV5y79yKchH8EEoVzR2dT8BmDZt60kOKeAazy3VHVHKv+Xh6dJO+KXucJoJ4wdl4v7BbI1/K8P3xLknOLoXeQZEJ3zOxrZOH688LCjyyBgvMGO3FTWetNpJeEWl+7P+bQQHUCTSbHk2VRCv/tLOxI3xrl+nNlcm0f8SCHkzBoOdnulQ41R/EDymSWmCwclV1cVbLVq3t8DL0lgJoR3uZEzal7ENyfdCZJ7sTVVuvQecgz1vFzcTfdoZbZ/N/Mxl3ufTSB0pH5R/IFpS/KcxZZq8A+kvxfwzX2+0Fj4PX66x4bDQZTtFxDa9pnzhf2GqtcCNmSvOgIlzMLgVU/SZn15O2OqrOQmel59+sdu6Xvh83vrSFbSAxufOPj9Q3URJ1kIaE0/j/Zdgd85b9EBr5JhR5l7IcqvY1HXEXlPopf0+yTyOssQTSHGW68mgvbU5Il+TlgYvr7KfM4epBA==
-X-Forefront-Antispam-Report: CIP:4.158.2.129;CTRY:GB;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:outbound-uk1.az.dlp.m.darktrace.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230040)(82310400026)(14060799003)(36860700016)(35042699022)(376014)(1800799024)(23010399003)(10067099003)(56012099006)(18002099003)(22082099003)(4143699003)(11063799006);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: gRC5Doi3QvTLsbkgUnoD70zLYZfMUVKxu22d2o2ypzms6yoq9isKaokIQrllc8UOrn/l02+PlApQpaecH2EkIm41xVlpOgPiWyklpVHbu9TcUj5BF13aGwJId6Jz1MlEgBK3khI6sHngR4fs/xEJNV+toB12UVCl+hwf22Qz6qE4I5cEjM+O7NRZH4Tp0l+wfIeB4Zxb2QOcOSZFy6Slgct0CKLndUQ37Ph5L2Qir9v8RWKhALAu6xTs+vao52+bFICwqKoZG1DjMVLOsyX5M0g5kPVlg9pDP/h4V72Q1DkaafNGeUduINe6MxS62EkEUherm9QrIwF80oqO/N6zqPrK3LnSMUdqUAM9k6A8vjnaU1KTA8fAdHf+vnsjjqb+gsInxVXr1Xb72E/3vxPLMc8cNiesjUe+r0HgLV1NkUDmQ2oLoG/jqLC6QQS7x025
-X-OriginatorOrg: arm.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 22 Oct 2026 14:03:38.7293
- (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 8bef7813-3397-4934-889f-08df30454596
-X-MS-Exchange-CrossTenant-Id: f34e5979-57d9-4aaa-ad4d-b122a662184d
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=f34e5979-57d9-4aaa-ad4d-b122a662184d;Ip=[4.158.2.129];Helo=[outbound-uk1.az.dlp.m.darktrace.com]
-X-MS-Exchange-CrossTenant-AuthSource: DB1PEPF000509FF.eurprd03.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DB9PR08MB6683
+References: <1383658177.878587.1792571670575.JavaMail.zimbra@savoirfairelinux.com>
+ <AS8PR10MB507312025652BBCA5759F02BFD662@AS8PR10MB5073.EURPRD10.PROD.OUTLOOK.COM>
+ <248975416.905486.1792594896595.JavaMail.zimbra@savoirfairelinux.com>
+ <AM9PR10MB50824700DB37B9957B798A5CFD652@AM9PR10MB5082.EURPRD10.PROD.OUTLOOK.COM>
+ <fbee9a7aecebbf87ce34560d6e097e16fb5b20e9.camel@siemens.com>
+In-Reply-To: <fbee9a7aecebbf87ce34560d6e097e16fb5b20e9.camel@siemens.com>
+From: Khem Raj <raj.khem@gmail.com>
+Date: Thu, 22 Oct 2026 13:37:25 -0700
+X-Gm-Features: AclHuK9bJb506t6NHZKGEZifZMwsipVPAd8uAMwpX0BFw9mnrGBgYvwnb1sZ5sE
+Message-ID: <CAMKF1soAKNqtrd29vRSx7bEvN=JC-2idUiX8_LZghd_W91fDyQ@mail.gmail.com>
+Subject: Re: [yocto] Issues and questions regarding PowerPC 32-bits e500v2 tuning
+To: yocto@lists.yoctoproject.org, adrian.freihofer@siemens.com
+Cc: Elinor Montmasson <elinor.montmasson@savoirfairelinux.com>
+Content-Type: multipart/alternative; boundary="0000000000006ad664065e73d63e"
 List-Id: <yocto.lists.yoctoproject.org>
-X-Webhook-Received: from 45-33-107-173.ip.linodeusercontent.com [45.33.107.173] by lin-tor-korg-lkml-alma10-1 with HTTPS for <yocto@lists.yoctoproject.org>; Thu, 22 Oct 2026 14:03:48 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/66783
+X-Webhook-Received: from 45-33-107-173.ip.linodeusercontent.com [45.33.107.173] by lin-tor-korg-lkml-alma10-1 with HTTPS for <yocto@lists.yoctoproject.org>; Thu, 22 Oct 2026 20:37:59 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/66784
 
-T24gMjIgT2N0IDIwMjYsIGF0IDE1OjAxLCBQaGlsaXAgQmFsaXN0ZXIgPHBoaWxpcEBiYWxpc3Rl
-ci5vcmc+IHdyb3RlOg0KPiANCj4gRG8gd2UgaGF2ZSBhbnkgYW5hbHl0aWNzIG9uIHRoZSB3aWtp
-IHBhZ2VzPw0KDQpJ4oCZbGwgbGV0IE1pY2hhZWwgY29tbWVudCBvbiB0aGF0LCBidXQgSSBkbyBo
-YXZlIHRoZSBSZWNlbnQgQ2hhbmdlcyBwYWdlIGluIG15IHJzcyBmZWVkLiAgSXTigJlzIDk5JSB0
-aGUgd2Vla2x5IHN0YXR1cywgb2NjYXNpb25hbGx5IHRoZSBSZWxlYXNlcyBhbmQgUHJvamVjdCBV
-c2VycyBwYWdlcy4gIFN0cnVnZ2xpbmcgdG8gcmVtZW1iZXIgYW55IG90aGVyIHBhZ2VzIHRoYXQg
-Y2hhbmdlZCByZWNlbnRseS4NCg0KUm9zcw==
+--0000000000006ad664065e73d63e
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+On Thu, Oct 22, 2026 at 2:27=E2=80=AFAM Adrian Freihofer via lists.yoctopro=
+ject.org
+<adrian.freihofer=3Dsiemens.com@lists.yoctoproject.org> wrote:
+
+> On Thu, 2026-10-22 at 08:21 +0000, Marko, Peter (FT D EU SK BFS1)
+> wrote:
+> >
+> >
+> > > -----Original Message-----
+> > > From: Elinor Montmasson <elinor.montmasson@savoirfairelinux.com>
+> > > Sent: Wednesday, October 21, 2026 5:02 PM
+> > > To: Marko, Peter (FT D EU SK BFS1) <Peter.Marko@siemens.com>
+> > > Cc: Freihofer, Adrian (SI B PRO TI EAC CCP)
+> > > <adrian.freihofer@siemens.com>;
+> > > yocto <yocto@lists.yoctoproject.org>
+> > > Subject: Re: Issues and questions regarding PowerPC 32-bits e500v2
+> > > tuning
+> > >
+> > > Hello Peter,
+> > >
+> > > ----- Original Message -----
+> > > > From: "peter marko" <Peter.Marko@siemens.com>
+> > > > To: "Elinor Montmasson" <elinor.montmasson@savoirfairelinux.com>,
+> > > > "adrian
+> > > freihofer" <adrian.freihofer@siemens.com>
+> > > > Cc: "yocto" <yocto@lists.yoctoproject.org>
+> > > > Sent: Wednesday, 21 October, 2026 15:50:22
+> > > > Subject: RE: Issues and questions regarding PowerPC 32-bits
+> > > > e500v2 tuning
+> > >
+> > > > Hello Elinor,
+> > > >
+> > > > I have already checked SPE on e500 before and can confirm that it
+> > > > needs to be
+> > > > disabled in favor of soft-fpu with newer GCC versions.
+> > > > It of course dramatically decreases performance, but what can we
+> > > > do...
+> > > >
+> > > > As usual with Yocto, only the default settings are being tested
+> > > > and untested
+> > > > features slowly bit rot by time.
+> > > > For now, we don't plan to extend our pipeline to all possible
+> > > > tunes/variations.
+> > > > So ideally, you should send patches to fix your tune
+> > > > configuration and spin a
+> > > > regular local pipeline with Yocto master to catch if it would
+> > > > break again.
+> > > >
+> > > > Best Regards,
+> > > >  Peter
+> > >
+> > > Ok, thank you for your answer, at least it confirms my analysis.
+> > >
+> > > Because GCC is not an option for SPE support, I am considering
+> > > using
+> > > the LLVM/Clang toolchain through meta-clang, as it seems to support
+> > > PowerPC SPE.
+> > > I know that some specific recipes will require building with GCC
+> > > anyway,
+> > > in that case fpu-soft will be enabled, but most of the distribution
+> > > could build with clang.
+> > >
+> > > Is it something you have tested?
+> >
+> > This is an interesting idea well worth trying, but afaik we have not
+> > tried that.
+> > Note that I was only involved in discussions with other projects, I
+> > personally have never built/used e500.
+>
+> Hi Elinor
+>
+> I remember the times when I was working with a MPC5200. Quite a few
+> years ago :-).
+>
+> If you can mix binaries built with different floating point
+> implementations depends on the details of the CPU architecture, at
+> least. We had some discussions related to ARM 32 a few years ago. I
+> just remember that "it depends on the details".
+>
+> With wrynose there is now a TOOLCHAIN variable which can be set to
+> clang globally. But it depends on what you need if a build without gcc
+> is possible or not. For example, there is a patchset which fixes glibc
+> for building with clang (around 50 patches from ARM) somewhere around.
+> With musl it should work as well. Not sure this would allow you to go
+> with clang only for your use case.
+>
+> There are also some discussions with maintaining some LTS branches like
+> dunfell for longer than 4 years unofficially by users who need that.
+>
+> Just some alternative ideas.
+>
+>
+GCC dropped SPE in 9.1 timeframe, so soft-float is the only option. however
+another
+issue is that glibc also dropped it starting 2.30 release, so only option
+is using musl since
+it does support single float (-sf)  abi on ppc.
+
+I added  0019-Re-introduce-spe-commandline-options.patch, back then to keep
+qemuppc working, it simply made gcc to accept  -mabi=3Dspe -mspe
+-mfloat-gprs=3Ddouble
+which are passed from tune-ppce500v2.inc, it then ignores them and falls
+back to
+classic hard-float FPU instructions, e500v2 has no classic FPU, so the
+binaries crash with SIGILL
+is no surprise.  tune-ppce500.inc has the same problem. It has the same spe
+feature with
+-mfloat-gprs=3Dsingle.
+a performance-compromised fix is to make these tunes use fpu-soft and drop
+spe
+
+Using clang is not going to work out of box either, while it does support
+SPE it does have
+some things to take care of e.g. -mfloat-gprs=3Ddouble is not supported. it
+also will reject
+ linux-gnuspe and linux-muslspe triples that OE uses. it needs something
+like  powerpcspe-*-*
+or patching llvm sources to do what OE has done in past.
+
+Some recipes with GCC + fpu-soft, the rest with clang + SPE combo has an
+ABI problem.
+Ordinary calls and returns are compatible, since both pass doubles in pairs
+of general registers.
+The trouble is mixing the two in one process: a libgcc built for soft-float
+sets the FP environment
+differently from SPE code.
+
+Dunfell is not a way to keep SPE; only warrior or older is.
+
+
+> Regards,
+> Adrian
+>
+> >
+> > Peter
+> >
+> > >
+> > > Best regards,
+> > > Elinor Montmasson
+>
+> -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
+> Links: You receive all messages sent to this group.
+> You automatically follow any topics you start or reply to.
+> View/Reply Online (#66780):
+> https://lists.yoctoproject.org/g/yocto/message/66780
+> Mute This Topic: https://lists.yoctoproject.org/mt/121863659/1997914
+> Group Owner: yocto+owner@lists.yoctoproject.org
+> Unsubscribe: https://lists.yoctoproject.org/g/yocto/unsub [
+> raj.khem@gmail.com]
+> -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
+>
+>
+
+--0000000000006ad664065e73d63e
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr"><div dir=3D"ltr"><br></div><br><div class=3D"gmail_quote g=
+mail_quote_container"><div dir=3D"ltr" class=3D"gmail_attr">On Thu, Oct 22,=
+ 2026 at 2:27=E2=80=AFAM Adrian Freihofer via <a href=3D"http://lists.yocto=
+project.org">lists.yoctoproject.org</a> &lt;adrian.freihofer=3D<a href=3D"m=
+ailto:siemens.com@lists.yoctoproject.org">siemens.com@lists.yoctoproject.or=
+g</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote" style=3D"margin=
+:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex"=
+>On Thu, 2026-10-22 at 08:21 +0000, Marko, Peter (FT D EU SK BFS1)<br>
+wrote:<br>
+&gt; <br>
+&gt; <br>
+&gt; &gt; -----Original Message-----<br>
+&gt; &gt; From: Elinor Montmasson &lt;<a href=3D"mailto:elinor.montmasson@s=
+avoirfairelinux.com" target=3D"_blank">elinor.montmasson@savoirfairelinux.c=
+om</a>&gt;<br>
+&gt; &gt; Sent: Wednesday, October 21, 2026 5:02 PM<br>
+&gt; &gt; To: Marko, Peter (FT D EU SK BFS1) &lt;<a href=3D"mailto:Peter.Ma=
+rko@siemens.com" target=3D"_blank">Peter.Marko@siemens.com</a>&gt;<br>
+&gt; &gt; Cc: Freihofer, Adrian (SI B PRO TI EAC CCP)<br>
+&gt; &gt; &lt;<a href=3D"mailto:adrian.freihofer@siemens.com" target=3D"_bl=
+ank">adrian.freihofer@siemens.com</a>&gt;;<br>
+&gt; &gt; yocto &lt;<a href=3D"mailto:yocto@lists.yoctoproject.org" target=
+=3D"_blank">yocto@lists.yoctoproject.org</a>&gt;<br>
+&gt; &gt; Subject: Re: Issues and questions regarding PowerPC 32-bits e500v=
+2<br>
+&gt; &gt; tuning<br>
+&gt; &gt; <br>
+&gt; &gt; Hello Peter,<br>
+&gt; &gt; <br>
+&gt; &gt; ----- Original Message -----<br>
+&gt; &gt; &gt; From: &quot;peter marko&quot; &lt;<a href=3D"mailto:Peter.Ma=
+rko@siemens.com" target=3D"_blank">Peter.Marko@siemens.com</a>&gt;<br>
+&gt; &gt; &gt; To: &quot;Elinor Montmasson&quot; &lt;<a href=3D"mailto:elin=
+or.montmasson@savoirfairelinux.com" target=3D"_blank">elinor.montmasson@sav=
+oirfairelinux.com</a>&gt;,<br>
+&gt; &gt; &gt; &quot;adrian<br>
+&gt; &gt; freihofer&quot; &lt;<a href=3D"mailto:adrian.freihofer@siemens.co=
+m" target=3D"_blank">adrian.freihofer@siemens.com</a>&gt;<br>
+&gt; &gt; &gt; Cc: &quot;yocto&quot; &lt;<a href=3D"mailto:yocto@lists.yoct=
+oproject.org" target=3D"_blank">yocto@lists.yoctoproject.org</a>&gt;<br>
+&gt; &gt; &gt; Sent: Wednesday, 21 October, 2026 15:50:22<br>
+&gt; &gt; &gt; Subject: RE: Issues and questions regarding PowerPC 32-bits<=
+br>
+&gt; &gt; &gt; e500v2 tuning<br>
+&gt; &gt; <br>
+&gt; &gt; &gt; Hello Elinor,<br>
+&gt; &gt; &gt; <br>
+&gt; &gt; &gt; I have already checked SPE on e500 before and can confirm th=
+at it<br>
+&gt; &gt; &gt; needs to be<br>
+&gt; &gt; &gt; disabled in favor of soft-fpu with newer GCC versions.<br>
+&gt; &gt; &gt; It of course dramatically decreases performance, but what ca=
+n we<br>
+&gt; &gt; &gt; do...<br>
+&gt; &gt; &gt; <br>
+&gt; &gt; &gt; As usual with Yocto, only the default settings are being tes=
+ted<br>
+&gt; &gt; &gt; and untested<br>
+&gt; &gt; &gt; features slowly bit rot by time.<br>
+&gt; &gt; &gt; For now, we don&#39;t plan to extend our pipeline to all pos=
+sible<br>
+&gt; &gt; &gt; tunes/variations.<br>
+&gt; &gt; &gt; So ideally, you should send patches to fix your tune<br>
+&gt; &gt; &gt; configuration and spin a<br>
+&gt; &gt; &gt; regular local pipeline with Yocto master to catch if it woul=
+d<br>
+&gt; &gt; &gt; break again.<br>
+&gt; &gt; &gt; <br>
+&gt; &gt; &gt; Best Regards,<br>
+&gt; &gt; &gt; =C2=A0Peter<br>
+&gt; &gt; <br>
+&gt; &gt; Ok, thank you for your answer, at least it confirms my analysis.<=
+br>
+&gt; &gt; <br>
+&gt; &gt; Because GCC is not an option for SPE support, I am considering<br=
+>
+&gt; &gt; using<br>
+&gt; &gt; the LLVM/Clang toolchain through meta-clang, as it seems to suppo=
+rt<br>
+&gt; &gt; PowerPC SPE.<br>
+&gt; &gt; I know that some specific recipes will require building with GCC<=
+br>
+&gt; &gt; anyway,<br>
+&gt; &gt; in that case fpu-soft will be enabled, but most of the distributi=
+on<br>
+&gt; &gt; could build with clang.<br>
+&gt; &gt; <br>
+&gt; &gt; Is it something you have tested?<br>
+&gt; <br>
+&gt; This is an interesting idea well worth trying, but afaik we have not<b=
+r>
+&gt; tried that.<br>
+&gt; Note that I was only involved in discussions with other projects, I<br=
+>
+&gt; personally have never built/used e500.<br>
+<br>
+Hi Elinor<br>
+<br>
+I remember the times when I was working with a MPC5200. Quite a few<br>
+years ago :-).<br>
+<br>
+If you can mix binaries built with different floating point<br>
+implementations depends on the details of the CPU architecture, at<br>
+least. We had some discussions related to ARM 32 a few years ago. I<br>
+just remember that &quot;it depends on the details&quot;.<br>
+<br>
+With wrynose there is now a TOOLCHAIN variable which can be set to<br>
+clang globally. But it depends on what you need if a build without gcc<br>
+is possible or not. For example, there is a patchset which fixes glibc<br>
+for building with clang (around 50 patches from ARM) somewhere around.<br>
+With musl it should work as well. Not sure this would allow you to go<br>
+with clang only for your use case.<br>
+<br>
+There are also some discussions with maintaining some LTS branches like<br>
+dunfell for longer than 4 years unofficially by users who need that.<br>
+<br>
+Just some alternative ideas.<br>
+<br></blockquote><div><br></div><div>GCC dropped SPE in 9.1 timeframe, so s=
+oft-float is the only option. however another</div><div>issue is that glibc=
+ also dropped it starting 2.30 release, so only option is using musl since<=
+/div><div>it does support single float (-sf)=C2=A0 abi on ppc.</div><div><b=
+r></div><div>I added=C2=A0=C2=A00019-Re-introduce-spe-commandline-options.p=
+atch, back then to keep</div><div>qemuppc=C2=A0working, it simply made gcc =
+to accept=C2=A0=C2=A0-mabi=3Dspe -mspe -mfloat-gprs=3Ddouble</div><div>whic=
+h are passed from=C2=A0tune-ppce500v2.inc, it then ignores them and falls b=
+ack to</div><div><span style=3D"background-color:transparent">classic hard-=
+float FPU instructions,=C2=A0e500v2 has no classic FPU, so the binaries cra=
+sh with SIGILL</span></div><div>is no surprise.=C2=A0=C2=A0tune-ppce500.inc=
+ has the same problem. It has the same spe feature with</div><div>-mfloat-g=
+prs=3Dsingle.<span style=3D"background-color:transparent">=C2=A0</span></di=
+v><div><span style=3D"background-color:transparent">a performance-compromis=
+ed fix is to make these tunes use fpu-soft and drop spe</span></div><div><s=
+pan style=3D"background-color:transparent"><br></span></div><div><span styl=
+e=3D"background-color:transparent">Using clang is not going to work out of =
+box either, while it does support SPE it does have</span></div><div><span s=
+tyle=3D"background-color:transparent">some things to take care of e.g.=C2=
+=A0</span><span style=3D"background-color:transparent">-mfloat-gprs=3Ddoubl=
+e is not supported. it also will reject</span></div><div>=C2=A0linux-gnuspe=
+ and linux-muslspe triples that OE uses. it needs something like=C2=A0=C2=
+=A0powerpcspe-*-*</div><div>or patching llvm sources to do what OE has done=
+ in past.=C2=A0<span style=3D"background-color:transparent"></span></div><d=
+iv><br></div><div>Some recipes with GCC + fpu-soft, the rest with clang + S=
+PE combo has an ABI problem.</div><div>Ordinary calls and returns are compa=
+tible, since both pass doubles in pairs of general registers.</div><div>The=
+ trouble is mixing the two in one process: a libgcc built for soft-float se=
+ts the FP environment</div><div>differently from SPE code.</div><div><br></=
+div><div>Dunfell is not a way to keep SPE; only warrior or older is.</div><=
+div>=C2=A0</div><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0=
+px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex">Regards,<=
+br>
+Adrian<br>
+<br>
+&gt; <br>
+&gt; Peter<br>
+&gt; <br>
+&gt; &gt; <br>
+&gt; &gt; Best regards,<br>
+&gt; &gt; Elinor Montmasson<br>
+<br>
+-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-<br>
+Links: You receive all messages sent to this group.<br>
+You automatically follow any topics you start or reply to.<br>
+View/Reply Online (#66780): <a href=3D"https://lists.yoctoproject.org/g/yoc=
+to/message/66780" rel=3D"noreferrer" target=3D"_blank">https://lists.yoctop=
+roject.org/g/yocto/message/66780</a><br>
+Mute This Topic: <a href=3D"https://lists.yoctoproject.org/mt/121863659/199=
+7914" rel=3D"noreferrer" target=3D"_blank">https://lists.yoctoproject.org/m=
+t/121863659/1997914</a><br>
+Group Owner: <a href=3D"mailto:yocto%2Bowner@lists.yoctoproject.org" target=
+=3D"_blank">yocto+owner@lists.yoctoproject.org</a><br>
+Unsubscribe: <a href=3D"https://lists.yoctoproject.org/g/yocto/unsub" rel=
+=3D"noreferrer" target=3D"_blank">https://lists.yoctoproject.org/g/yocto/un=
+sub</a> [<a href=3D"mailto:raj.khem@gmail.com" target=3D"_blank">raj.khem@g=
+mail.com</a>]<br>
+-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-<br>
+<br>
+</blockquote></div></div>
+
+--0000000000006ad664065e73d63e--
