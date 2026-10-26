@@ -1,377 +1,225 @@
-Received: from mail-yw1-f175.google.com (mail-yw1-f175.google.com [209.85.128.175])
- by mx.groups.io with SMTP id smtpd.msgproc02-g2.8258.1792765524141579503
+Received: from act2-mtaout4.csiro.au (act2-mtaout4.csiro.au [150.229.7.136])
+ by mx.groups.io with SMTP id smtpd.msgproc01-g2.36172.1792988497731231304
  for <yocto@lists.yoctoproject.org>;
- Fri, 23 Oct 2026 07:25:24 -0700
+ Sun, 25 Oct 2026 21:21:39 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20251104 header.b=Q9owReNE;
- spf=pass (domain: gmail.com, ip: 209.85.128.175, mailfrom: raj.khem@gmail.com)
-Received: by mail-yw1-f175.google.com with SMTP id 00721157ae682-8b056d58f2aso8860707b3.2
-        for <yocto@lists.yoctoproject.org>; Fri, 23 Oct 2026 07:25:24 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; t=1792765523; cv=none;
-        d=google.com; s=arc-20260327;
-        b=kkMfMexDOZnai+tDP9tMeEXxhaALCrAKA/uTo6cnmlNIKeTd9FWlNVlguUjioFFmBW
-         ZfEdyy8NcBW5ox2gOXNnq1pc4460QooHU4zQyIFqh2EfZS6Wraocq5wluDoZ0PXDAqlm
-         W54ZrRqIyxhrbiIecbGHqOKBlxzFKsms8G1H+qfpexuO46gETP6/mXvKZsNArK59xBXA
-         iXwOQ7DtjFNGJslTT3iDlqU7BEyXUkO8L9cAo7xGOEfBkt6EnBDF0QAkRYQFs85QuNhH
-         //1n039onrx7Kxl5988Jbs10tOTJU8PK83gzEDrwBPzeUPt0aabRz8eKwVfP4YQtr7b7
-         e49w==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20260327;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:dkim-signature;
-        bh=fcMKZQ+O+28v1mqRKF/EI+quS/uOyogaoAFK6xOBPjY=;
-        fh=lJIHZVf3EgChQpsdFgxbNCRSkgRpGvM9iAcwLgASmtM=;
-        b=FPTElwjAemcL+r+wI45mf9+3qwO3b87HKa8HCTa0PLRYe1JrSnpGkd8zzKTFl7QaxM
-         dsNfhmo9hyq605ndfNAw6wV/dQF8WL5taaTgkOJ1i7tyJp8lrzjqehZmV0DEgLE9MSV9
-         cF6fY3rM5ENMYD0zRovi4qt6UhXuFdwJ6HZdyvvEMD87plXdJtZ/beY8YBQif7SPCtgl
-         Bzwd4dU7J03iVPS+PZCEYvZGQzaOtpNQ+oB9RkDb/NtXSgIfhjzEgcRel0leclCI7a+v
-         UTx+ptEqBJjrIU1+nLy64ZAz2Fp9hBrOCjnFYC1hlpewQqqI1MSZ7jY0hjASrZZPCJUq
-         xUkQ==;
-        darn=lists.yoctoproject.org
-ARC-Authentication-Results: i=1; mx.google.com; arc=none
+ dkim=fail reason="dkim: message contains an insecure body length tag" header.i=@csiro.au header.s=selector1 header.b=Nh/hX4Pm;
+ dkim=pass header.i=@CSIROAU.onmicrosoft.com header.s=selector1-CSIROAU-onmicrosoft-com header.b=T8n4NwIH;
+ spf=pass (domain: csiro.au, ip: 150.229.7.136, mailfrom: prvs=752d37bc3=kevin.buckley@csiro.au)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20251104; t=1792765523; x=1793370323; darn=lists.yoctoproject.org;
-        h=content-type:cc:to:subject:message-id:date:from:in-reply-to
-         :references:mime-version:from:to:cc:subject:date:message-id:reply-to
-         :content-type;
-        bh=fcMKZQ+O+28v1mqRKF/EI+quS/uOyogaoAFK6xOBPjY=;
-        b=Q9owReNE1kEOs5tAPfzBYYaKVZr/uCRsPGZAEmu7ocC5XDZFRTdwSr2Five5CPhirR
-         ICWhki8n/JxOnpRQOk3YWSEg+R7l5A3FT3u+XE7MYhbPOZYFztuszML55/K22ycolHHL
-         8X0GBH/3nsdnS0SLYtR4BkKKnnZNYQPtxyl7VnpfDQAWxz+0eQePu8oKJSMkZlNX29Bt
-         zEWsnNTd9bLl6RaZwZacd5ACTGIN9lVVCbIExCj9ofaKgu8LPdBwBVDKJAvn4wZRkK0k
-         akg0clr8b7s4sdn/v733pHZoAGw458I4fLRFOuv2ym+w1Bw5pL1e3oaLtGDeHY3MUuCD
-         QKiA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1792765523; x=1793370323;
-        h=content-type:cc:to:subject:message-id:date:from:in-reply-to
-         :references:mime-version:x-gm-gg:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to:content-type;
-        bh=fcMKZQ+O+28v1mqRKF/EI+quS/uOyogaoAFK6xOBPjY=;
-        b=M+jMlMVESthq59YmMS1Eqk58+L8JF6/1VmHKrDhD33b3Mf4z5oO53ETouIq5qUqb7V
-         XS4r88Y+qShn2n2FMqEhv2pUhT2LUJCRt0qKAoad1Wvk6JOtYZEv3E5O949IoXo3E7lW
-         jzoeRAPRDtK5whXgJBQ64t1M+tp576xv7ifartuqXHQ75U1H2tW/QGVfC5q/xRbrf7qc
-         xsBSJV/q90wlYWxIYVJSU7OsWx6Nfosdp1t3adVufSWcHu0WhoGxuCTacPSDJPHa5tR+
-         yalAEEf09X2zWrH91z9IpKc2aSsu2w9pTcn+BONCTNLqnLuONKO8KvbiI/Vp/F4WsNHk
-         14lA==
-X-Gm-Message-State: AFq9FYJHr8/F42g3zZRjxyqaGNvmg8IJz+fKa3hVF8IYWuH+QD2dhLQ9
-	Sq2VlZpYH/x59UsQvCVH0l61welcwgT/ZZnFsyssmEjmqKN/Z6+QL6lTbno5WgTfYmVcjoa/usI
-	11xtCxdm2OuBGSJXKy1UHcBo9LN3J8VE=
-X-Gm-Gg: AYBFou2oYtHyKCzFHLY4fWSWmcadcsiE/q8R/EZv5pD2NYmfYs+Dgw/v+ifDjPQqKqV
-	/DqR0CVaq/y9g+fa1DMBtcHnQmFQ1mRew7w067hwdDjx3Q1nuapwELYDAaIFQ8n+XeD7j40x0+7
-	vxn4gYDzOPnI3zM0Mq1mxS2MEnUp/Z5mlI6ooHRFdjkX+uaytW4L/QwqShvTj2ICFFt2FxwfmUn
-	GIUXQn1cYLm9CfB77Fo94qhzP6iBcH/buk0SpB1IvqnDHF41NqNjZebw5cXkvhu+cE7Fle3MNOF
-	GA8zsvKLyGHc/bCtS5MVdxV5Hc1M9N00ZrFuepmotu0QR0l2XezMkhuo7Yhl2rbOgudAEfb+ICo
-	AeyDHvNpQ2dJz2+B1LXLDyoixVr+wipfxDp7WxPQFGd3ZrZuLmWB3k0NqJh+j71wCz2EDuG8bro
-	lAUQQWjKRDPQZq4TkuYYJ3/vKXWyOO5fY11Ak9CB3mVn/e33bnE3RsyQDspAfmJZdPXskxvP9n/
-	qepzTKE9lW25TCg6wG6qa/dNNuP61GI6sgbcRMRuUt1maO9BNwFN133u0KrCv2wt9OC4+RFT6Mg
-	9AfThZQnwNx8S/6uXbMArYVjbnSeP961NcQCq4+Hc9iR3TCSM/XCloYxQDpU57CKsi7IajyAI1j
-	AB92iga0XSWQHSDXbOKGs8w==
-X-Received: by 2002:a05:690c:c181:b0:8ab:4989:bcc3 with SMTP id
- 00721157ae682-8b157de1f74mr14055327b3.42.1792765522950; Fri, 23 Oct 2026
- 07:25:22 -0700 (PDT)
+  d=csiro.au; i=@csiro.au; l=588; q=dns/txt;
+  s=selector1; t=1792988498; x=1824524498;
+  h=from:to:subject:date:message-id:content-id:
+   content-transfer-encoding:mime-version;
+  bh=n50kkk/gQW1pByAfKRkIK+MAltvGKO+4eRE5lIGSBpE=;
+  b=Nh/hX4PmlZalvIv/9ZczArFhR8WbN8MvqXg844QpYGI1RRyqOIkGUDyg
+   c2Amfd9DMWMBNLzJ2qLRuhnEkeEjdnDNAl7EDUr8z1EqCOWoZper8rAmX
+   AT0gOPB+92T+rN23yPXmWXkdIekE5EUpz1Qdvi0rz93hyKKoVS+pvj9Nb
+   K4elFKWbfePaZauRSdAGI5igOMuPkmH64JjpmKvkab4rsSnFhZfavTS0w
+   PVLZzUSbIN/uJ1NDvMXuvkBtI0RffvV32kMIHC1TcqDactMJifEUx31gW
+   EAy7ZYJzPkVix499ip1XZNNDiHSKfFnSKK/3Kc5URmNnwkUMvGZzig+Pu
+   Q==;
+X-CSE-ConnectionGUID: E0GpTAr9SBWttm9IwqhUmg==
+X-CSE-MsgGUID: sYpTA2gpSgiqDTxpRYs4LQ==
+Received-SPF: None (act2-mx-ext.csiro.au: no sender authenticity
+  information available from domain of Kevin.Buckley@csiro.au)
+  identity=pra; client-ip=52.101.150.19;
+  receiver=act2-mx-ext.csiro.au;
+  envelope-from="Kevin.Buckley@csiro.au";
+  x-sender="Kevin.Buckley@csiro.au";
+  x-conformance=sidf_compatible
+Received-SPF: None (act2-mx-ext.csiro.au: no sender authenticity
+  information available from domain of Kevin.Buckley@csiro.au)
+  identity=mailfrom; client-ip=52.101.150.19;
+  receiver=act2-mx-ext.csiro.au;
+  envelope-from="Kevin.Buckley@csiro.au";
+  x-sender="Kevin.Buckley@csiro.au";
+  x-conformance=sidf_compatible
+Authentication-Results: act2-mx-ext.csiro.au; spf=None smtp.pra=Kevin.Buckley@csiro.au; spf=None smtp.mailfrom=Kevin.Buckley@csiro.au; dkim=pass (signature verified) header.i=@CSIROAU.onmicrosoft.com
+X-SBRS: 4.2
+X-IPAS-Result: =?us-ascii?q?A2HIZgBv1N5qjhOWZTRaHQEBKwsGAQUFAQIBCQGBXAcBA?=
+ =?us-ascii?q?wGBVQIBAQE7KUIBSIEUBFSEWJFHhGuZYoEjA1cPAQEBDQEBFAIRFhQEAQEDB?=
+ =?us-ascii?q?IUWjgMlBjYEDQECAQMDAgMBAQEBAQEBAQEBAQEKAQEGAQEBAQEBAgQHAhABA?=
+ =?us-ascii?q?QEBAQE5BQ47hglGAQyNP4EmAQEBAQEBAQEBAQEBHQINKFcEJBEMAQE4BA0BI?=
+ =?us-ascii?q?gIZDQIELxUSBIMVAYIkBBIDECcUthOBMoEBggwBAQYEBIJi2EwYglIDBoEfL?=
+ =?us-ascii?q?AIBAQEBAYN6hGABgXGEQIcUgTyDQoJVhUmCaoImehKCZoVnjWYJgUEIFANZL?=
+ =?us-ascii?q?AFVExcLBwVjgQUDKi8tbjIdgSM+Fy9YGwYFgR2BBwQTdSprgQddgSspYSGBC?=
+ =?us-ascii?q?IF2AoJRgSVbAgFJQQ4HRVMJJUMSRyQiCBIJARMaLguBGjU8CSZBFQxkCxoFY?=
+ =?us-ascii?q?ggCDQx7ORA1DW09NwoLGQQ9kjyERAWZVK9YBwOEHowilT8GDwQvg3EBpn0uj?=
+ =?us-ascii?q?nGJaSONZ5VzhRsCBAIEBQIQCIICCIF0bIM7EkEZD447gR0BCIJDhRPHeXk9A?=
+ =?us-ascii?q?QEHAgcOAwuBaJIAAQE?=
+IronPort-PHdr: A9a23:qK7gHBbpMmdInHLo7hEgqLP/LTFN1oqcDmcuAucPlecXIeyqqo75N
+ QnE5fw30QGaFY6O8f9Agvrbv+f6VGgJ8ZuN4xVgOJAZfCQks+I/okonBsuEAlf8N/nkc2oxG
+ 8ERHEQw5Hy/PENJH9ynInbpg0eVxANXHRP6NAFvIf/yFJKXhMOyhIXQs52GTR9PgWiRaK9/f
+ i6rpwfcvdVEpIZ5Ma8+x17ojiljfOJKyGV0YG6Chxuuw+aV0dtd/j5LuvUnpf4FdJ6/UrQzT
+ bVeAzljCG0z6MDxnDXoTQaE5Sh5MC0ckk9OXlDG7xK9Ua7O6zPQp8Nz+xOZHO61aJkwRSqNz
+ IAoFBLSpXoDFhEC2nn6358V7upR9S7xoUBZ3K/0TJ2Laup0f7vAUtk2dEx+TsBeRm9MPry8T
+ 9okBu0uArwBhI6lngc/jljjL1DzWbnm9x5JmU6v5rM66b8ZSw+eggUlTttJtnuOnvrvC6M0F
+ sKP0LSLwDjdX9BP0hGgy4nOQkx8gOu+R6xbapH74BgvJQHMqUTP8qW6OTiVyeQSrjOR6rdsX
+ vOVqVV9rxBchwir5ZYglYnq34UUkmL56QtCmtsudYjrAF4+YMSjFoNXrT3fLYZtX8c+Fnlho
+ z1polVnkZewYHJPzYRiyg7DLfeccpKPpBv+B66KOTktonVjdfqkggqqt1C6w7jfW9e11hBgs
+ yFGltTdnnsW1gbUrMGaGbNm5kn0/zGJ2kjI7/1cZ0U9lK7VMZkkl509iJsV927eFSzylVTeh
+ 7SXbEJi8/X7o+jkY7CzvpaHLMc0kQDxNK0yh9aySfo1KAkAXmWXuKy82bTv8Fe/QeBipcYXq
+ I7wjdbdI8EarbS+GAhbzsAo7BPX4y6O9tMekDFHJVlZIleCn83kK02IK+v5F/D5ikn+2DFsj
+ +vLOLHsGN3EM2TDnbH9fL189185qkJ7zNZR4IhRA60AJ/S7U1H4tdjRBBs0ewKuxOOvBNJ43
+ 4IYEWWBSoyULqLU93WV7eErLvikb5QUojG7IuVkgpymxX41lFkBfLW4iIMNYSPwFfBnLkOFJ
+ Hv014pbVz5S50xnEbSs0QzRNFwbL2y/VK89+DwhXYutEd2GQ5DojaydmiygH4dRIGlbWTXuW
+ T/lcZuJX/AUZWecOMhkx3YnWKagTckLyBqtsALr47F8L/DTvCQF/8GGtpA996jImBc++CYhR
+ eeQzWCLCUtplWAMSi4e17t+u0s7w0rJgs0ay7RIUNdU4f1OSAIzM5XRmvd7B97FUQXEZt6VS
+ VyiT71KGBkXSdQ8i58HaFonXtCyyx3Tw2yhGL4PkPqCGc589KWUxHX3K8tng3/byKksiUUnS
+ cpTJAjEzuZ+8QbUHYvAj0Seke6ja60d2CfH8GrLw3CJuQlUVwt5UKONWn5XRUbIrNK/zF7JT
+ LujGJwsKQpbzoiLN+ovCJWhjFlLQuviJMWLZmuwn2mqAhPbjriIbYfsZyAcxHCAUg5dy1lVp
+ Cvec1FvVULD6yrEATdjFEzieRbl+vUk7XarC0Ik00eBdEx70Py8501w57TURvUN07YDoCpkp
+ S9zGQP3/N/ICtzGjRdqf6FRcPs2+1Zd0iTQqkYuW/7oZ7AnnVMYfwlt6gnN2gt2DMNqjMMpq
+ H475AFpKLifllpcPWD9v9i4KvjcLW/8+wqqYqjd1wTF0dqYzawI7ewxt1TpuAzB/qUK+G5my
+ d4T2mbOvv0i6SIZSpPrVQA+6koiz4w=
+IronPort-Data: A9a23:urF3T6OtNfqyj07vrR1pl8FynXyQoLVcMsEvi/4bfWQNrUom0mNUx
+ mEaDTiEOKzfYTbzfoojPNm/p0oHucfVmt5mGnM5pCpnJ55oRWopJjg7wmPYZX76whjrERoPA
+ /02M4eGcYZsCCCM/n9BC5C5xVFkz6aEW7HgP+DNPyF1VGdMRTwo4f5Zs7dRbrNA2LBVPSvc4
+ bsenOWHULOV82YcGn4Z7auFtCRusJza0BsEvkYzbOx8p1TXkX8YFvo3fcld+FOjGuG4tsbjL
+ wry5OnRElHxpn/BOfv5+lrPSXDmd5aJVeS4Ztu6bID56vRKjnRaPq/Wr5PwY28P49mCt4gZJ
+ NmgKfVc4OrmV0HBsL11bvVWL81xFYAe16f7CGLuiuas01HDIlrz2vVTCU5jaOX0+s4vaY1P3
+ ccpeAg3NkmourrumvS8V/VmgdklII/zJoQDt3p8zDbfS/E7XZTERKaM7thdtNsyrp0UW6+GP
+ oxANGIpNUWojx5nYz/7DLodkfmpgD/VbjZbrF+EjaEs4nLUigVsuFToGICNIoDVGpU9ckCwv
+ VPew02jDQkhO92G5QaV6kidnbPrpHauMG4VPObjrKI16LGJ/UQCDxYKUnO/oOKlkQivXNlDL
+ FQO/SgjprR081akJuQRRDW9qX+A+xcBQMZKGuk74QyE0bbd8QGfXzFcF2YZMY1gs9IqTzs30
+ FPPh8nuGTFkrLySTzSa66uQqjSxfyMSKAfueBPoUyMou/b7nKgp3ynlccp/Ff+UkcT1JDT/l
+ mXiQDcFu1kFsSIc/4yGlW0rbhqpr5nNCwco/RnNV2ak5w5wf5KsdYuusAGDtK4YddffSUSdt
+ n8ZncTY9PoJEZyGiC2KRqMKAa2t4PGGdjbbhDaD/qXNFRzypRZPnqgJvVmSwXuF1e5fI1fUj
+ Lf741852XOqFCLCgVVLj32N5zQClvO6SYuNugH8a9tFeJ9qcwGbtCppf1b44l0BZHMEyPllU
+ b/CKJ7EJS9DVcxPkmDqL89DiuVD7n5lmgvuqWXTk07PPUy2OCTNEe9t3ZrnRrxR0Z5oVy2Oo
+ 48EbJDUkkUEOAA8CwGOmbMuwZkxBSFTLbjdkO1tUce+ZA1gHWAqEfjKxr09PYdimsxoei3gp
+ RlRhmcwJJvDab/vcG1mqUyPrJvkRpdlqjQyIETA+LpuN2cLOe6SAWR2S3fzVbI89fZki/dpJ
+ xXAlwNsHdwXIgn6F+whUKTA
+IronPort-HdrOrdr: A9a23:a1mzIK/LTpddR9e1b8Juk+ECdr1zdoMgy1knxilNoENuH/Bwxv
+ rFoB1E73TJYW4qKRcdcUjpAtjJfZquz+8N3WB3B8boYOCGghrgEGgG1+ffKlLbaknDH4JmtJ
+ uIEJIOQuEYb2IK6voSiTPQe7lP/DDtytHKuQ6q9QYJcegcUdAD0+4WMGamO3wzaBhNBJI/Gp
+ bZ3cxaujqmd00Qa8SwFlMFU+LAq9CjruOqXTc2QzocrCWehzKh77D3VzCewxclSjtKhZsy7G
+ TflAT9x6O799W20AXV2WP/54lf3IKJ8KoNOOW8zuwubhn8gAehY4psH5WEoTAOuemqrHo6jd
+ XWpB8kHsJrr1fcZHu8rxfB0xTplBwu93jh41mFhmaLm720eBsKT+56wa5JeBrQ7EQt+Ptm1r
+ hQ4m6fv51LSTvdgSXU/bHzJlBXv3vxhUBnvf8YjnRZX4dbQqRWt5Yj8ERcF4pFND7m6bogDP
+ JlAKjnlbZrmBKhHjPkV1tUsZmRt0cIb1O7q485y4uoOg1t7TJEJo0jtYoidzk7hcsAotJ/lp
+ z52+xT5cpzp4ktHOxA7a46MLaK4iame2O3DEuCZVvgD60JIHTLttr+56g0/vijfNgSwII1g4
+ mpaiItiYceQTOdNSS15uw/zjndBGGmGTj9wMBX4JZ0/rX6WbrwKCWGDFQjidGprfkTCtDSH6
+ /bAuMhP9bzaW/1XYpZ1Qz3XJdfbXEYTc0Oo94+H1aDuNjCJIHmvvHSNPzTOL3uGzA5XX6XOA
+ p1YBHjYMFbqky7UH7xhxbcH3vrZ0zk5Jp1VLPX+uACobJ9RbGkcjJl+WhRyvv7VwGq6JZGAH
+ eWCImX7Z+TtC2x4XvC6XlvN15UEltViY+QIk93mQ==
+X-Talos-CUID: 9a23:zTDzKmNWY9x5Fu5DdXFI7HI9AJEeWELB0HKBAlChCVtsR+jA
+X-Talos-MUID: 9a23:KD4pGQnYoy0xLokBAKG6dnp5Bd9Uyv6hEHsCkIwqh9mcDx1rZxOk2WE=
+X-IronPort-Anti-Spam-Filtered: true
+Received: from mail-australiaeastazon11010019.outbound.protection.outlook.com (HELO SY8PR01CU002.outbound.protection.outlook.com) ([52.101.150.19])
+  by act2-mx-ext.csiro.au with ESMTP/TLS/TLS_AES_256_GCM_SHA384; 26 Oct 2026 15:21:35 +1100
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=XOPrRPUG/v7CIbJVvfbR8ohIRrB/5YfjzPmTB+t7BqPhRi3QNkIttFI7/T1Jv52kw59FrAr47RLlJ3C4vqn2eY36rqpkWyEP9vN14qWI5PUXW3vQ6Z2KhLMMsOGjnChC7qD+7STcSCCnAsWWlzWNt12xkMzxzZWp8LfCqo1jzjy2z8rU3yf6pbZpJnXT00RZarV+Ezaynai9b4kRBq+Lrx/HxaxaYuWzoDT6OSkAvcAdHGt+AQPfDTuHM58Xowq7+2tUAVG19YmHfvwlq74ZVoXMltzgS2pEvttbRMRHcce2AzteVvRtnMwz3JPOPMjP6lZcYgYTdvcJfiXOSMen7Q==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=n50kkk/gQW1pByAfKRkIK+MAltvGKO+4eRE5lIGSBpE=;
+ b=dYIblk71oyqOBoRVjEvUkVOs8BrtN3NHt5aYSj8ZsDIng/veBQpz4poOZnnhColyjP5RxOk3QTq8gL+lHBpCbJOQF3/6pJR450RczNKYhvu2VGh/4urWcBBabw5MfDr3YbVyjlzetaWOlLWtRz4hg2t52jK30TSJp5TNWTLMdYaG+yFTn2i4ffpKDjsN2SuwClvY7Ec9v5+UaamGF/lkCx3knRYZL6GsJPib0vwyxbp/pyWnoVT68225K+xXtcqq2AXb+6J8usNwfdDbveYoviX9eFY2qwiQaKd17vLja26ukKHcGNjXscIG7CgkBjsqIH5U3tZlw57VS37JHVnKrg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=csiro.au; dmarc=pass action=none header.from=csiro.au;
+ dkim=pass header.d=csiro.au; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=CSIROAU.onmicrosoft.com; s=selector1-CSIROAU-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=n50kkk/gQW1pByAfKRkIK+MAltvGKO+4eRE5lIGSBpE=;
+ b=T8n4NwIHDtv6xbipuGbDYNWxngy+eTWhH9CaoGW21Co0Q4YK+5B1752aUIiwY1SvhR3P2f06am9a/ng2ZGrWlN/JRtu+eevXKqcN5KinX45IrZrvCs3BA9hZjaOy73A7nchwhwu3bm5dcyRJS2lyEMXlK9dwhK1oi0ZUtFS25s8=
+Received: from SY0P282MB6047.AUSP282.PROD.OUTLOOK.COM (2603:10c6:10:30c::6) by
+ ME7P282MB644738.AUSP282.PROD.OUTLOOK.COM (2603:10c6:220:2a3::7) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.569.6; Mon, 26 Oct
+ 2026 04:21:32 +0000
+Received: from SY0P282MB6047.AUSP282.PROD.OUTLOOK.COM
+ ([fe80::da5:3464:8efd:3253]) by SY0P282MB6047.AUSP282.PROD.OUTLOOK.COM
+ ([fe80::da5:3464:8efd:3253%7]) with mapi id 15.21.0569.005; Mon, 26 Oct 2026
+ 04:21:32 +0000
+From: "Buckley, Kevin (Pawsey, Kensington WA)" <Kevin.Buckley@csiro.au>
+To: "yocto@lists.yoctoproject.org" <yocto@lists.yoctoproject.org>
+Subject: Yocto Project Wiki: Main_Page: Small typo
+Thread-Topic: Yocto Project Wiki: Main_Page: Small typo
+Thread-Index: AQHdZQF6+KPG6AuXpUakCH36NgZwaQ==
+Date: Mon, 26 Oct 2026 04:21:31 +0000
+Message-ID: <589e7d5c-3c03-4bb9-ba79-c3644bb8365f@csiro.au>
+Accept-Language: en-AU, en-US
+Content-Language: en-AU
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+user-agent: Betterbird (Linux)
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: SY0P282MB6047:EE_|ME7P282MB644738:EE_
+x-ms-office365-filtering-correlation-id: 652e5ffd-7b81-419d-723b-08df33189d3e
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;ARA:13230040|376014|23010399003|1800799024|366016|38070700021|11063799006|56012099006|261022115727099003|261022105027099003|261022075727099003|261021121427099003|10067099003|18002099003;
+x-microsoft-antispam-message-info: zckDTqnaGFX6jjYCB83y9crt+QIVnzh7LnuDXD1ov2c+DM9TlReAK9Kwd6cPcKeEKBF72uHxqevohBT0YTFQVV2y8ppNBopi0JZjSycwrPgvJlYcCtZAiR9reIAJ8GNQCudJjFc+iFRksRuHM1haqHkWlywgxUBMtRTCjR4B76SUVaNKch/P5RkUeDqFBL4uXzoETp4lcxjplSSlzdGTMS7mqQfbme2XR0Na+GLQ4nKeUiFkEuKudh3HL4bz7T0BI5Fux6Zsz0EGuIIu1+TqC3XSUXKur81tg5+lVRfP4pYuDYHgD+Lzw3XpEj76hpOptKIL7ND8MuYiiplZGpr/BetsyxFYZRYO8SiBKWvI/YddbbkNKo8DFm64F8irzqJzp0Iyj8cOqQDWLBkKf7FKu2HoC8kzraPcz17XKIGN2YTAtGNmVvxsHe4NJndkQQxhcPTtZgT3Wprkr74JEQeLK0dupzQz9tO6A9vixhBEDOuW1k3YAIhtbLkyOYwBsEb6z9hx60jv4oGDjBqqx2OEQ5kF7nqyhegYO1kBfYaMmJYgtfMD5EW0GhCVVyV17+LaciAhr6LZFrwIizkfdp9pSb0rKHRU454M9XHfopib2yRqYaqv3dQcvB6XPfU2/m6a3IV4Nyp1/dbHDNS3poai1YRJ+dd04LfuYYBeGbpeqCc=
+x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:SY0P282MB6047.AUSP282.PROD.OUTLOOK.COM;PTR:;CAT:NONE;SFS:(13230040)(376014)(23010399003)(1800799024)(366016)(38070700021)(11063799006)(56012099006)(261022115727099003)(261022105027099003)(261022075727099003)(261021121427099003)(10067099003)(18002099003);DIR:OUT;SFP:1101;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: =?utf-8?B?UWdOMU1qL21RcStKaGxRbFBuOCtBdFRyODU5QnJzN3pLWWxrTDFiV3VkZmxr?=
+ =?utf-8?B?MGc4ckFnS1NlNUJJcmlwVFExU2tSZ2FvNkRteExHMkdld0xVRzE4bkYwdGJW?=
+ =?utf-8?B?cDZ0ZlQ5dHJaeHVCdDEzRnpqNFUzdUtKTHJ3MlRPRXI2dHE1QnB6Q2dVMVo1?=
+ =?utf-8?B?anRNNW56eTJGczVIN3VpOE5WT1NwVUJ2VGRLb0FLeVo2bkdGeEpCenlrY0pn?=
+ =?utf-8?B?OW9SdFJkMGk5ZDFYRWtwMmFDS0Yva1c5VUlSN3hsRWw2dElFSW5jWnBPbEJE?=
+ =?utf-8?B?V05oaU0rcmoyZFF5RDBhcGVkOHRQemZOWnNRZFlUVGFPQ2xuNSttWFVVS284?=
+ =?utf-8?B?S1QxckVCUk1RL0JZOFMxT1RTUnkwT0ZqSHNJVUV3QVYxdEM3MXZ1NUdJV3Ay?=
+ =?utf-8?B?VGRuMDkwTTlYNjNmSVRZbVprZkRHZkhUdUw5bHNQSm1FbXdBQi80YmFhQU4r?=
+ =?utf-8?B?MkRhbk15VGtEZ3pVNnk4dnVISklIRlQvUlJHbGZYRmlPWWRHWjVSWTFwc01G?=
+ =?utf-8?B?Zzlvdyt4bDNDVlUybkRrTHlFbzZlaC9yQXVTZStWTWIwSml6U0oreGo0VW1l?=
+ =?utf-8?B?OHpaMTBDYjkvY0g4Vnd2bkpmOTBmeVBWNWY3SVVwOHVOM0dlMVdoUnBqSVZs?=
+ =?utf-8?B?WjBmWWtwUzhLSXpxZ2ZQM09Ka0c3R20wZDNvdCtRT3cyNGVVT3M3N0NaM0xz?=
+ =?utf-8?B?c3UyOHkvU0pWS1ZOVEtXS0MwNjJRSFI2NDBKejdDcDVHNkRZWUZGV0oxYXNs?=
+ =?utf-8?B?U1hQa0JTMHQrOWRSbHBQT3pNZ290SWIweUtCeWJaVEdLaHRLOEdUVkY2NDh3?=
+ =?utf-8?B?K252SFVQQWc4c2RkOE51bndQdXlMMkNURGI2WDlMWUZoK3p6V2xTS3FXRVZm?=
+ =?utf-8?B?TjNCaS96RUNMT2xFMEw5MGNUZy90UGxCZzFjUERQOE9jT0lOaDN2N3JmdTVT?=
+ =?utf-8?B?U0RBcklVaEJKdTllc0dIMGMwOCszcWhZY1VzRDkvd056SWljbEhHaUoyK2dU?=
+ =?utf-8?B?QWlNOEQ4RTU5RFVDelJmTERzSzdLYU1JNjlnNTZ3L2hqQnVRR1BZK1JNbkxV?=
+ =?utf-8?B?NEMvV3A5ZzM1MnhYRE9KdVlheDRuUXhQK0NwakxUUUVXUHFlN2QyaHM0VlV3?=
+ =?utf-8?B?c21vNVEyUGxOWWlla1NqSWYwbUs4UHNoQ3dvRkZBRml4OFV3dVczenU2OWdx?=
+ =?utf-8?B?dkVUOVZhMlhvZytrQ09XSVo5L05BRmdSWG4wRURwVEJWZTUrd29WY0ZIL0dW?=
+ =?utf-8?B?RmNjT3FjSWlZaHdPZGxHazZyNjdhT3YzTURaOFQ0NFRYWnZ3USt4MkdZM3Q4?=
+ =?utf-8?B?TFhIMU8rU2lXbjV3TjhNREVRd000VEl5TndQR25ub25DcDcxNytpUVh5RERJ?=
+ =?utf-8?B?Ry9XNysrckdzMko2dWVjSGFSWWgvRlNqV25abmJPMFliRWkrUFo3dHYwRVpz?=
+ =?utf-8?B?RXFMUVVmVko1TW1qT1k4UDA3NytPZ1RhVTlnUHVrZGEyam9DL29KYUswKytE?=
+ =?utf-8?B?czhnNHVEVkEraVBhUGJpdFNEdHRiM3FlK0dLOUlUUm9HZ2Myb3RldFA3enBK?=
+ =?utf-8?B?bDdmdHJCNytMUWxiM1VYVzRTMHl5QVhkWVBUU3g5Q3I4RXpHVmdsV3ZLK0kw?=
+ =?utf-8?B?Z3EzNDdoYnY5RklEUU5VR0xjeGJ5T1ViazE4TFdxaUJ0R2g3ZTVVYk43TTVN?=
+ =?utf-8?B?V2p1ZE9WZkp4YnNsWXg1WUhRQUx2VTRwQ2xCRTIrRm9uRUtLUUo4SXM2dEVi?=
+ =?utf-8?B?VEluRzI1VWZRWHY5NG9EVng3QURCTTVtc0cwbDFqK29GUTJQbFJEaU9uaVNX?=
+ =?utf-8?B?MFFmaVU0MFN4MHFMRXFhOXFVY3cwdGdCNVBHR3ZsazIrd25zQi9zNE9YRXJm?=
+ =?utf-8?B?QnE5OUJjNlJxeVBPcUw1SDQ5bFFkd29pdHNVRzBKdi9xcDZDQUsrUWxqTTlj?=
+ =?utf-8?B?djkwb1h0V3ZwZTlFbDU0UGt6aU04Ry91OHNBZkVtZ05XM2RraWhHL3FlVThn?=
+ =?utf-8?B?TnZZdlRrbDBrZ09Xay80Mkk2STlQUnBaKzczL21SaGs0TFhzOGhDbjV6RjBy?=
+ =?utf-8?B?UWNkTEk1QnQwWExCbEFMQnBib0hYZW00NXQvaXFjNDNwMmxOd0dTTE0zRlhy?=
+ =?utf-8?B?M2F1MWJQUUZUOFp4MXdnRnZqaStmQmN3clpaTGNyRnFZM0FmbUhOQlFaZHM4?=
+ =?utf-8?B?Q3pxLzRYaUlYSS9ZK04xNFNYR2w0b0xUMUg3UWpBQ2p3TW1Hd25YcEFWWFpu?=
+ =?utf-8?B?T0VpTXNiaFpPenk0OTdqMWJRL2N5RUQrMGpRRTFOWktySlZ6SXEzdDNLT2JD?=
+ =?utf-8?Q?VdxZo2dEOhB5fqlk7D?=
+Content-Type: text/plain; charset="utf-8"
+Content-ID: <FF39D109314AF146BA36A6738C878FDB@AUSP282.PROD.OUTLOOK.COM>
+Content-Transfer-Encoding: base64
 MIME-Version: 1.0
-References: <1383658177.878587.1792571670575.JavaMail.zimbra@savoirfairelinux.com>
- <AS8PR10MB507312025652BBCA5759F02BFD662@AS8PR10MB5073.EURPRD10.PROD.OUTLOOK.COM>
- <248975416.905486.1792594896595.JavaMail.zimbra@savoirfairelinux.com>
- <AM9PR10MB50824700DB37B9957B798A5CFD652@AM9PR10MB5082.EURPRD10.PROD.OUTLOOK.COM>
- <fbee9a7aecebbf87ce34560d6e097e16fb5b20e9.camel@siemens.com>
- <CAMKF1soAKNqtrd29vRSx7bEvN=JC-2idUiX8_LZghd_W91fDyQ@mail.gmail.com> <2100331131.1179227.1792744062637.JavaMail.zimbra@savoirfairelinux.com>
-In-Reply-To: <2100331131.1179227.1792744062637.JavaMail.zimbra@savoirfairelinux.com>
-From: Khem Raj <raj.khem@gmail.com>
-Date: Fri, 23 Oct 2026 07:24:56 -0700
-X-Gm-Features: AclHuK8mACSxbHpsdD-P_BjgmpCpD1xr-MObC2tVOT2Ng8lNjZFv6VCX-uHDBI4
-Message-ID: <CAMKF1srLZpcUMUcw=NJVPD2eGBhJOYzxLPrTtrv0Cj=f9s47tw@mail.gmail.com>
-Subject: Re: [yocto] Issues and questions regarding PowerPC 32-bits e500v2 tuning
-To: Elinor Montmasson <elinor.montmasson@savoirfairelinux.com>
-Cc: yocto <yocto@lists.yoctoproject.org>, 
-	adrian freihofer <adrian.freihofer@siemens.com>
-Content-Type: multipart/alternative; boundary="0000000000002941b6065e82c029"
+X-Exchange-RoutingPolicyChecked: Cerq6WZCOhTDuwQS6mpfeqzVm3hyP+fNRKteA7q8I49KzKKqdoHgxu0G79Hc8k1W0gX1BGHmol4UN/XBLo+bACGI0uegcdD1gdUk7GqPBVOFxbVrQBWpetz4x0A0XuPdjYgNkZM3bdh+gPVMDk0c9MZZRrJ0klj1YvaAAzduRuebbBCxlwb+22zO350w9onnEGktYzq5H67RDw5FWqPNN10YaBjgUC4BFDZfohcvYA/kLnI1BnZ4gFz8ZMPXYhQgyt8kPe8FTZIP93ngdaSJKYZWwBwb7xGlMYIgkUa8NxkuXZhmgvI7MkehPl/Q2yy6/sg5ZqOlvcWKuWmp2M8iLQ==
+X-MS-Exchange-AntiSpam-ExternalHop-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-ExternalHop-MessageData-0: C0ABG1QKr93u3WqHwtoyfBgXbK7bEoZIfF8SSlLC7cQVCIlG0xwtTDel00yJi5kx9SdLthBFFxmZyIHUynxnLYL+X/N5Vf+/LoxckSi0/rqoU/mQyAA4Sh/yLIgxuOmKuxBF/OgwWby/qostKzUeaBlntm3zX69QrInx7yZ+VxwAZldB082CIf0hkqR9jf3O2pZd+ioK4len9R8ij0jETzOsMZQNsM7u7Bowingb7fnVMaiaDuNR4s1FPpVzIsqoYvFF/vZ1lmia06JQ2lA6umn+HGIXCvFGDdcActnqi6p7UWtHHDgSQWT7XdXLuX1HGehEHiNiw+FreDtaW4wWpw6eUU/AUYeSc+s/fm1YZw05bc57CGNyOmlYahR24wF8e5d/bEn5Jwtzml6OqB4wRAPUfnExchlJ6cOqC1nhXgdCtp+NwMtFg2JHSUsDqPQJ+XQd5xzgl0DxH62RVY5Tr2Zjy0BZPXd4EHVy863ddzZ/1CHR+giOr1KOoYcQ/if+UN/lc3/XOMe+O0lV14aus76wdTsFsn9q2WfHfiD4KV79KgHe8iCUJ4hesoM+NoZguZs7FNSxe9g8YrO/BIIe3IJpjKIFMNLC/tVdnlppi/k=
+X-OriginatorOrg: csiro.au
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: SY0P282MB6047.AUSP282.PROD.OUTLOOK.COM
+X-MS-Exchange-CrossTenant-Network-Message-Id: 652e5ffd-7b81-419d-723b-08df33189d3e
+X-MS-Exchange-CrossTenant-originalarrivaltime: 26 Oct 2026 04:21:31.9818
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 0fe05593-19ac-4f98-adbf-0375fce7f160
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: 65GDwCWuScFSn8eInE6i/3fYG6i45kLiQifEJo1vZKzkjIhKuLv9hTIjPdI7NK9r
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: ME7P282MB644738
 List-Id: <yocto.lists.yoctoproject.org>
-X-Webhook-Received: from 45-33-107-173.ip.linodeusercontent.com [45.33.107.173] by lin-tor-korg-lkml-alma10-1 with HTTPS for <yocto@lists.yoctoproject.org>; Fri, 23 Oct 2026 14:25:25 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/66786
+X-Webhook-Received: from 45-33-107-173.ip.linodeusercontent.com [45.33.107.173] by lin-tor-korg-lkml-alma10-1 with HTTPS for <yocto@lists.yoctoproject.org>; Mon, 26 Oct 2026 04:21:40 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/66787
 
---0000000000002941b6065e82c029
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-On Fri, Oct 23, 2026 at 1:27=E2=80=AFAM Elinor Montmasson <
-elinor.montmasson@savoirfairelinux.com> wrote:
-
-> ----- Original Message -----
-> > From: "Khem Raj" <raj.khem@gmail.com>
-> > To: "yocto" <yocto@lists.yoctoproject.org>, "adrian freihofer" <
-> adrian.freihofer@siemens.com>
-> > Cc: "Elinor Montmasson" <elinor.montmasson@savoirfairelinux.com>
-> > Sent: Thursday, 22 October, 2026 22:37:25
-> > Subject: Re: [yocto] Issues and questions regarding PowerPC 32-bits
-> e500v2 tuning
->
-> >> On Thu, Oct 22, 2026 at 2:27 AM Adrian Freihofer via [
-> >> http://lists.yoctoproject.org/ | lists.yoctoproject.org ]
-> <adrian.freihofer=3D [
-> >> mailto:siemens.com@lists.yoctoproject.org |
-> siemens.com@lists.yoctoproject.org
-> >> ] > wrote:
->
-> >> Hi Elinor
->
-> >> I remember the times when I was working with a MPC5200. Quite a few
-> >> years ago :-).
->
-> >> If you can mix binaries built with different floating point
-> >> implementations depends on the details of the CPU architecture, at
-> >> least. We had some discussions related to ARM 32 a few years ago. I
-> >> just remember that "it depends on the details".
->
-> >> With wrynose there is now a TOOLCHAIN variable which can be set to
-> >> clang globally. But it depends on what you need if a build without gcc
-> >> is possible or not. For example, there is a patchset which fixes glibc
-> >> for building with clang (around 50 patches from ARM) somewhere around.
-> >> With musl it should work as well. Not sure this would allow you to go
-> >> with clang only for your use case.
->
-> >> There are also some discussions with maintaining some LTS branches lik=
-e
-> >> dunfell for longer than 4 years unofficially by users who need that.
->
-> >> Just some alternative ideas.
->
-> > GCC dropped SPE in 9.1 timeframe, so soft-float is the only option.
-> however
-> > another
-> > issue is that glibc also dropped it starting 2.30 release, so only
-> option is
-> > using musl since
-> > it does support single float (-sf) abi on ppc.
->
-> Yes good point thanks
->
-> > I added 0019-Re-introduce-spe-commandline-options.patch, back then to
-> keep
-> > qemuppc working, it simply made gcc to accept -mabi=3Dspe -mspe
-> > -mfloat-gprs=3Ddouble
-> > which are passed from tune-ppce500v2.inc, it then ignores them and fall=
-s
-> back to
-> > classic hard-float FPU instructions, e500v2 has no classic FPU, so the
-> binaries
-> > crash with SIGILL
-> > is no surprise. tune-ppce500.inc has the same problem. It has the same
-> spe
-> > feature with
-> > -mfloat-gprs=3Dsingle.
-> > a performance-compromised fix is to make these tunes use fpu-soft and
-> drop spe
->
-> > Using clang is not going to work out of box either, while it does
-> support SPE it
-> > does have
-> > some things to take care of e.g. -mfloat-gprs=3Ddouble is not supported=
-.
->
-> Do you know if an equivalent option or options exist with clang for this?
-> Or if it just not relevant with clang?
->
-
--mspe for -mfloat-gprs=3Ddouble
--mspe -mefpu2 for -mfloat-gprs=3Dsingle
-
->
-> > it also will reject
-> > linux-gnuspe and linux-muslspe triples that OE uses. it needs something
-> like
-> > powerpcspe-*-*
-> > or patching llvm sources to do what OE has done in past.
->
-> > Some recipes with GCC + fpu-soft, the rest with clang + SPE combo has a=
-n
-> ABI
-> > problem.
-> > Ordinary calls and returns are compatible, since both pass doubles in
-> pairs of
-> > general registers.
-> > The trouble is mixing the two in one process: a libgcc built for
-> soft-float sets
-> > the FP environment
-> > differently from SPE code.
->
-> I see
-> So does it means that for a given application/process, the floating point
-> support (soft or SPE here) must be the same for the runtime used,
-> the dynamic libraries used and the application itself,
-> to avoid any ABI compatibility problem?
->
-
-yes
-
->
-> In that case, I suppose two compiler runtime may be installed,
-> compiled with their respective compiler?
-> * libgcc for GCC + fpu-soft compiled programs
-> * llvm runtime for clang + SPE compiled programs
->
-> But then the ABI compatibility constraint will create complexity for
-> compiling and installing shared libraries.
->
-
-right thats what i think too
-
->
-> > Dunfell is not a way to keep SPE; only warrior or older is.
->
->
-> Best regards,
-> Elinor Montmasson
->
-
---0000000000002941b6065e82c029
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr"><div dir=3D"ltr"><br></div><br><div class=3D"gmail_quote g=
-mail_quote_container"><div dir=3D"ltr" class=3D"gmail_attr">On Fri, Oct 23,=
- 2026 at 1:27=E2=80=AFAM Elinor Montmasson &lt;<a href=3D"mailto:elinor.mon=
-tmasson@savoirfairelinux.com">elinor.montmasson@savoirfairelinux.com</a>&gt=
-; wrote:<br></div><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px=
- 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex">----- O=
-riginal Message -----<br>
-&gt; From: &quot;Khem Raj&quot; &lt;<a href=3D"mailto:raj.khem@gmail.com" t=
-arget=3D"_blank">raj.khem@gmail.com</a>&gt;<br>
-&gt; To: &quot;yocto&quot; &lt;<a href=3D"mailto:yocto@lists.yoctoproject.o=
-rg" target=3D"_blank">yocto@lists.yoctoproject.org</a>&gt;, &quot;adrian fr=
-eihofer&quot; &lt;<a href=3D"mailto:adrian.freihofer@siemens.com" target=3D=
-"_blank">adrian.freihofer@siemens.com</a>&gt;<br>
-&gt; Cc: &quot;Elinor Montmasson&quot; &lt;<a href=3D"mailto:elinor.montmas=
-son@savoirfairelinux.com" target=3D"_blank">elinor.montmasson@savoirfaireli=
-nux.com</a>&gt;<br>
-&gt; Sent: Thursday, 22 October, 2026 22:37:25<br>
-&gt; Subject: Re: [yocto] Issues and questions regarding PowerPC 32-bits e5=
-00v2 tuning<br>
-<br>
-&gt;&gt; On Thu, Oct 22, 2026 at 2:27 AM Adrian Freihofer via [<br>
-&gt;&gt; <a href=3D"http://lists.yoctoproject.org/" rel=3D"noreferrer" targ=
-et=3D"_blank">http://lists.yoctoproject.org/</a> | <a href=3D"http://lists.=
-yoctoproject.org" rel=3D"noreferrer" target=3D"_blank">lists.yoctoproject.o=
-rg</a> ] &lt;adrian.freihofer=3D [<br>
-&gt;&gt; mailto:<a href=3D"mailto:siemens.com@lists.yoctoproject.org" targe=
-t=3D"_blank">siemens.com@lists.yoctoproject.org</a> | <a href=3D"mailto:sie=
-mens.com@lists.yoctoproject.org" target=3D"_blank">siemens.com@lists.yoctop=
-roject.org</a><br>
-&gt;&gt; ] &gt; wrote:<br>
-<br>
-&gt;&gt; Hi Elinor<br>
-<br>
-&gt;&gt; I remember the times when I was working with a MPC5200. Quite a fe=
-w<br>
-&gt;&gt; years ago :-).<br>
-<br>
-&gt;&gt; If you can mix binaries built with different floating point<br>
-&gt;&gt; implementations depends on the details of the CPU architecture, at=
-<br>
-&gt;&gt; least. We had some discussions related to ARM 32 a few years ago. =
-I<br>
-&gt;&gt; just remember that &quot;it depends on the details&quot;.<br>
-<br>
-&gt;&gt; With wrynose there is now a TOOLCHAIN variable which can be set to=
-<br>
-&gt;&gt; clang globally. But it depends on what you need if a build without=
- gcc<br>
-&gt;&gt; is possible or not. For example, there is a patchset which fixes g=
-libc<br>
-&gt;&gt; for building with clang (around 50 patches from ARM) somewhere aro=
-und.<br>
-&gt;&gt; With musl it should work as well. Not sure this would allow you to=
- go<br>
-&gt;&gt; with clang only for your use case.<br>
-<br>
-&gt;&gt; There are also some discussions with maintaining some LTS branches=
- like<br>
-&gt;&gt; dunfell for longer than 4 years unofficially by users who need tha=
-t.<br>
-<br>
-&gt;&gt; Just some alternative ideas.<br>
-<br>
-&gt; GCC dropped SPE in 9.1 timeframe, so soft-float is the only option. ho=
-wever<br>
-&gt; another<br>
-&gt; issue is that glibc also dropped it starting 2.30 release, so only opt=
-ion is<br>
-&gt; using musl since<br>
-&gt; it does support single float (-sf) abi on ppc.<br>
-<br>
-Yes good point thanks<br>
-<br>
-&gt; I added 0019-Re-introduce-spe-commandline-options.patch, back then to =
-keep<br>
-&gt; qemuppc working, it simply made gcc to accept -mabi=3Dspe -mspe<br>
-&gt; -mfloat-gprs=3Ddouble<br>
-&gt; which are passed from tune-ppce500v2.inc, it then ignores them and fal=
-ls back to<br>
-&gt; classic hard-float FPU instructions, e500v2 has no classic FPU, so the=
- binaries<br>
-&gt; crash with SIGILL<br>
-&gt; is no surprise. tune-ppce500.inc has the same problem. It has the same=
- spe<br>
-&gt; feature with<br>
-&gt; -mfloat-gprs=3Dsingle.<br>
-&gt; a performance-compromised fix is to make these tunes use fpu-soft and =
-drop spe<br>
-<br>
-&gt; Using clang is not going to work out of box either, while it does supp=
-ort SPE it<br>
-&gt; does have<br>
-&gt; some things to take care of e.g. -mfloat-gprs=3Ddouble is not supporte=
-d.<br>
-<br>
-Do you know if an equivalent option or options exist with clang for this?<b=
-r>
-Or if it just not relevant with clang?<br></blockquote><div><br></div><div>=
--mspe=C2=A0for=C2=A0-mfloat-gprs=3Ddouble</div><div>-mspe -mefpu2=C2=A0for=
-=C2=A0-mfloat-gprs=3Dsingle=C2=A0</div><blockquote class=3D"gmail_quote" st=
-yle=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padd=
-ing-left:1ex">
-<br>
-&gt; it also will reject<br>
-&gt; linux-gnuspe and linux-muslspe triples that OE uses. it needs somethin=
-g like<br>
-&gt; powerpcspe-*-*<br>
-&gt; or patching llvm sources to do what OE has done in past.<br>
-<br>
-&gt; Some recipes with GCC + fpu-soft, the rest with clang + SPE combo has =
-an ABI<br>
-&gt; problem.<br>
-&gt; Ordinary calls and returns are compatible, since both pass doubles in =
-pairs of<br>
-&gt; general registers.<br>
-&gt; The trouble is mixing the two in one process: a libgcc built for soft-=
-float sets<br>
-&gt; the FP environment<br>
-&gt; differently from SPE code.<br>
-<br>
-I see<br>
-So does it means that for a given application/process, the floating point<b=
-r>
-support (soft or SPE here) must be the same for the runtime used,<br>
-the dynamic libraries used and the application itself,<br>
-to avoid any ABI compatibility problem?<br></blockquote><div><br></div><div=
->yes=C2=A0</div><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0=
-px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex">
-<br>
-In that case, I suppose two compiler runtime may be installed,<br>
-compiled with their respective compiler?<br>
-* libgcc for GCC + fpu-soft compiled programs<br>
-* llvm runtime for clang + SPE compiled programs<br>
-<br>
-But then the ABI compatibility constraint will create complexity for<br>
-compiling and installing shared libraries.<br></blockquote><div><br></div><=
-div>right thats=C2=A0what i think too=C2=A0</div><blockquote class=3D"gmail=
-_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204=
-,204);padding-left:1ex">
-<br>
-&gt; Dunfell is not a way to keep SPE; only warrior or older is.<br>
-<br>
-<br>
-Best regards,<br>
-Elinor Montmasson<br>
-</blockquote></div></div>
-
---0000000000002941b6065e82c029--
+T24NCg0KIGh0dHBzOi8vd2lraS55b2N0b3Byb2plY3Qub3JnL3dpa2kvTWFpbl9QYWdlDQoNCmlu
+IHRoaXMgdGV4dDoNCg0KPiBXaGVyZSB0byBOZXh0Pw0KPiANCj4gVGhhbmtzIHRvIHRoZSBxdWlj
+ayBzdGFydCBndWlkZSwgaXQncyBwcmV0dHkgZWFzeSB0byBnZXQgeW91ciBmaXJzdCBMaW51eCBp
+bWFnZSBidWlsZCBhbmQgcnVubmluZy4NCg0KdGhlICJpbWFnZSBidWlsZCBhbmQgcnVubmluZyIg
+ZmVlbHMgYXMgdGhvdWdoIGl0J3MgbWlzc2luZyBhbiAidXAiLCBzbw0KDQogICAuLi4gZ2V0IHlv
+dXIgZmlyc3QgTGludXggaW1hZ2UgYnVpbGQgdXAgYW5kIHJ1bm5pbmcuDQoNCm9yIG1heWJlIG5l
+ZWRzIHRvIGRyb3AgdGhlICJhbmQiLCBzbzoNCg0KICAgLi4uIGdldCB5b3VyIGZpcnN0IExpbnV4
+IGltYWdlIGJ1aWxkIHJ1bm5pbmcuDQoNCkhUSA0K
