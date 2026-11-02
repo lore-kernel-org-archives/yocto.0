@@ -1,231 +1,435 @@
-Received: from mail-yw1-f179.google.com (mail-yw1-f179.google.com [209.85.128.179])
- by mx.groups.io with SMTP id smtpd.msgproc01-g2.14428.1793287042863507717
+Received: from fout-a4-smtp.messagingengine.com (fout-a4-smtp.messagingengine.com [103.168.172.147])
+ by mx.groups.io with SMTP id smtpd.msgproc01-g2.9344.1793612900646186679
  for <yocto@lists.yoctoproject.org>;
- Thu, 29 Oct 2026 08:17:23 -0700
+ Mon, 02 Nov 2026 01:48:21 -0800
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20260707 header.b=Emq0LxoF;
- spf=pass (domain: gmail.com, ip: 209.85.128.179, mailfrom: jpewhacker@gmail.com)
-Received: by mail-yw1-f179.google.com with SMTP id 00721157ae682-8b0d63f60bcso20546047b3.3
-        for <yocto@lists.yoctoproject.org>; Thu, 29 Oct 2026 08:17:22 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; t=1793287042; cv=none;
-        d=google.com; s=arc-20260327;
-        b=OahXdcBJHaXG06CQeb5uGYuGsJHGSLi6HVQzGU0sE4Aragsl5zPYu9j6hLeKynx5km
-         X2+VrgGcde8vlSi/D9rNc0xREtQ3KR95c0eHlL7HgrNxOruNN85eK+QHkgGqRmLqZRw8
-         VesmAf67NMgPuW0ZgZKQivvmrjHdymPQ4vJ9tIE/8n94qJVuZE0MWA3FQZGzLfOl3hjI
-         1ZovotNZRUNinlGISBDwIrZDl6rZdZcehidGuz3WOTCt7LMbLMY6w90Vp7dVchAGf5l4
-         Le8R/CQDbVci5XEyekPvu0FRb4f2c+yxnWibofU9bLJkA6fMlfyXahqfYyOKMjaiJ7l6
-         VR5g==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20260327;
-        h=to:subject:message-id:date:from:in-reply-to:references:mime-version
-         :dkim-signature;
-        bh=esz86GbkfMR1Oj6Gl1DR1uTQAYjE42zsuyIFnvthwQU=;
-        fh=J09OaRI41L/c2i4WMquotmAeE5fKhmgXqCRy51xoJUw=;
-        b=OkgagWU5BJGAbf/L9XCDbiV07uO29u3dEAOLfcf+wm4S17RODp4JqG0EDC7LwkU+W8
-         veTM8OH64PjB880TQgsT4wYC1hLGBaGI1nifNQQVocsTZ8z+3qneQsYj7RlTaKRUudSS
-         0bNdR9/GABk/5ps2ssYII3NC2dMJZrSYtDAasb7Hcb3gv1fA8ghTt11eQALdKZzaE/ZI
-         anPgy8cl5MKwC4WbL6gogtr4HHqPGHVgQqe9JNUgoFQcHBRhhHwdwGPHQawB7YnQ7Sde
-         kCdXDyixt67E4hCxks3aqujVK+hKa0e2o+wE618J3w9bnd1OvUvXGsKnNkdu4tP1vpcg
-         XDCQ==;
-        darn=lists.yoctoproject.org
-ARC-Authentication-Results: i=1; mx.google.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20260707; t=1793287042; x=1793891842; darn=lists.yoctoproject.org;
-        h=content-type:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to
-         :content-type;
-        bh=esz86GbkfMR1Oj6Gl1DR1uTQAYjE42zsuyIFnvthwQU=;
-        b=Emq0LxoF2SqjF4wgpANc856zpG+Fq37dVXPGDxbqbrlt9kSyV9XPOUMOtEYgs3gUgf
-         68I88wxquyG7MeZSyr0wIlAPXpnXHe71HgCfC7+0fSleNIpXvzoFMnu6qbWv1pQ8Ocig
-         qsjUxSdrQk4stqFZbi+Ckx9dFJYi7OfnXx8U/vAtkR6O70soYDcthEjuFiopEDfEXPHE
-         QxG75COfpOPDbbKJIdiWeDu5GaU2oYU5/kjy98apr2mJ5uoPmIT8ekt/Ixw4xHVRovbm
-         3cZGH5Q2KPra3nWbJvprNHyU5C8pBPbnIPcFXqI4NLaJmjUATgbRTpDpcLN2Xe842BhI
-         aohQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1793287042; x=1793891842;
-        h=content-type:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to:content-type;
-        bh=esz86GbkfMR1Oj6Gl1DR1uTQAYjE42zsuyIFnvthwQU=;
-        b=0iOaNAow08EAUTQVXMlYsdPIUyUMD2rxQxAtmlpB12yL8C7vAUZ+odxbgNqThZc/6E
-         t/s/nby6LwDpeRhaMln3OyhqXViD8OdErsVASdZfF1K6bowFLeL/gHUR+1rYj5PbFVuq
-         VV5PWCn7GvDp2TFWVWv8q/zA+HVEaGyS7WXFOZsI1NJOw/3C2jo1pugjgAy2XJo13uN1
-         3GuuQoo2rQB0802A7WlA5xCeoiJioq096Ptjinz5p2fW8JqeByXpVIlDJPpu15zEC3Ay
-         rcRWDoeTIEpF0YBX8Rc0BT2CVdOz6PWBLgYYEeOMa02FaTWLxteHVrVPtRLh6+K0XiXq
-         C+Sw==
-X-Gm-Message-State: AFq9FYIFA2NgLtJ0amPYCn4dHTMxni15Q4qAfVds0U0l5FyCWBEhkpWC
-	9QAbO2UOsGPzitNNJtxM8VF3ng09+Jd7EvKNVzmIOqRZc/oNu0CInk2aMF/ytnEgEtbTQklvzWJ
-	1LI/9JJh5zpzWibopy20wyr0ULNMt2pIm7w==
-X-Gm-Gg: AYBFou0bAM4rsIVQIYd+xRgyALsvuDPSlXI6+58LuFPEBhaBNsLdFAznPQpNmXhf9OP
-	/hm0W1Z05WYQxs5EXorlOz8TLT7pvNWzLViSwxNNdIEi4HbJh4KYdzXPpPKKv3fluo15pz4F/dS
-	ab9px9QPJVHrU0NVLWG8/K1L2TUZKEANt50gzIKB2uUvt6ONVZBi/54FBnLszqZ9pS+iD2K+jDg
-	D5kxWzOKUUIiL58IJJt66fbQpdo0/Kb31P+30fGjOJVV38Y/WGH35XG1phak/kNIV/w6n/0DEup
-	tFzK1HDtStHnnL7dBbIUhmKk4SAvtrfElKZLYAuZNaXJHoGlEChh/3R54lu4dGMgGBLbjJnLzeH
-	qH5J8Uyr5p2Qpfwb3qFpZKhBwr7dbfa0lkFZGlq3HMtOPjqfuRnk=
-X-Received: by 2002:a05:690e:18e:b0:674:1248:2b87 with SMTP id
- 956f58d0204a3-67a7bd3b779mr3040588d50.29.1793287041642; Thu, 29 Oct 2026
- 08:17:21 -0700 (PDT)
+ dkim=pass header.i=@pbarker.dev header.s=fm1 header.b=KkOlZiGE;
+ dkim=pass header.i=@messagingengine.com header.s=fm2 header.b=IeZyNXbe;
+ spf=pass (domain: pbarker.dev, ip: 103.168.172.147, mailfrom: paul@pbarker.dev)
+Received: from phl-compute-03.internal (phl-compute-03.internal [10.202.2.43])
+	by mailfout.phl.internal (Postfix) with ESMTP id 972DBEC0123
+	for <yocto@lists.yoctoproject.org>; Mon,  2 Nov 2026 04:48:19 -0500 (EST)
+Received: from phl-frontend-04 ([10.202.2.163])
+  by phl-compute-03.internal (MEProxy); Mon, 02 Nov 2026 04:48:19 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=pbarker.dev; h=
+	cc:cc:content-transfer-encoding:content-type:content-type:date
+	:date:from:from:in-reply-to:message-id:mime-version:reply-to
+	:subject:subject:to:to; s=fm1; t=1793612899; x=1793699299; bh=KN
+	cqnrl66l8zYl6s9H1oEz7b6Mfo4TCpNoVp3X297mM=; b=KkOlZiGE6qJ8hI9K5A
+	Ds/YzImO/Hf+aS7qp4iTQNhlKwRfdj9zD5WLbH1K4cZwGq5npGEkAteGFogxaXV4
+	JUPKuNADyA3CHQJ7MC1Tc3rd6JPMr+itSXE/v0SP3BSNVnSvXLTmU9+u8N90hSLk
+	+qPZHdRK+FW8uKUmTzd8sZ12Fm+15BFWJp01mujHjjsNDsDXejvTi9AxOE/ILy/A
+	Z62Z7Mq8tve5pUM00S1yJNALbd9E82WGi3ftwf/P3YAGgSGLYhshHgXFpVCz5qnQ
+	yGjLu/OS1IEL9eJDBwcmgBMcngMNUAAdjUYt447h2lIkZKmc4OPXqm0CgR7hBxlM
+	a3jw==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+	messagingengine.com; h=cc:cc:content-transfer-encoding
+	:content-type:content-type:date:date:feedback-id:feedback-id
+	:from:from:in-reply-to:message-id:mime-version:reply-to:subject
+	:subject:to:to:x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=
+	fm2; t=1793612899; x=1793699299; bh=KNcqnrl66l8zYl6s9H1oEz7b6Mfo
+	4TCpNoVp3X297mM=; b=IeZyNXbelMMY/rImlOe6SdFlPPiQCe8khovmK2VqLhKs
+	gSGH5tRdy+zPS0qwcF1EjD5m3MgqviiJenAPyw10a3vsKffO9g4SJt80WGAZ7QZO
+	VW0QuN0lulKVQUsbMIE00MI7qhul2jc4Q7PfC02+5DliL2ozi7vWp2gRIbNTYxdM
+	/Z8G6Wp+j+Z9vW+PfT6KzRB7RPIr4Us7eOqGEUXbBC2o0h3HtAMVTkfJQqisNVKX
+	PLQTazFe3HUyzVZ3pCvY+JEzZnmcURDDF6xB4S9KXz3+NNwCOQ0IO8bwiR4rsdQq
+	U5wyFF9wyHCbjvbUolWNmtbpBv+wcPn+/0XWA8nN/w==
+X-DKIM2-Info: draft=ietf-dkim-dkim2-spec-08;
+	repo=github.com/dkim2wg/interop; date=2026-10-28; sw=lmtpprox;
+	action=sign d=pbarker.dev a=rsa-sha256;
+DKIM2-Signature: i=1; m=1; t=1793612899; d=pbarker.dev;
+	mf=PHBhdWxAcGJhcmtlci5kZXY+;
+	rt=PHlvY3RvQGxpc3RzLnlvY3RvcHJvamVjdC5vcmc+;
+	s=fm1:rsa-sha256:WmVvdBzNgSBtQry4hvdM4Pn5Dhd8dOu2dsTQAtwBnHt+raa
+	I1AO/opOOQLvIGY2GCs34fT7sassiCHTv8CUsgAsAoZRwgfpoKLq8eyeUoWlNzQc
+	oMPfo8mQRwTBi1wxqSl5dy0bLms0DdLk7g5fYeI/DP0dGgmDmzxW8vHjZDiy1tol
+	972pYWnw3KhOOBVj9N3fE781h1k+Z39El/2nM7bDBs2HwOx9QvADz9m/5+I/zzXY
+	uDGgNEpkdGTR+spVNh58K9dccE6Xc7gVmJh7NILBueAS5ToFe8HGIiKy9aZ/XmYD
+	Qe9V4aingzCyU10AekfR01C907Ic8FEPL1mBBZw==;
+X-DKIM2-Info: draft=ietf-dkim-dkim2-spec-08;
+	repo=github.com/dkim2wg/interop; date=2026-10-28; sw=lmtpprox;
+	action=mi-m=1; hc=10;
+	hn=cc,content-transfer-encoding,content-type,date,feedback-id,
+	from,message-id,mime-version,subject,to;
+Message-Instance: m=1; h=sha256:QK1JIXp+vzP6z88UoCosJ8Epk1Ch7lVxQO3Nlcj6H2w=:nOPrPhf8xjdVp5m/LY58bkI9sstWCwbDQVqsTVHKr2w=;
+X-ME-Sender: <xms:Y1zoahO72z0VMaods74yI4XGbkikiOGRVcubvb1OE299-__BJCkuFA>
+    <xme:Y1zoavYGvP5i2Fb4LWiHe_5Q853QnUR4F6OcEePLArS9qIwqqOuxxw9Ge6QHAQpk5
+    llJvF6CmUb8RAvPhnJTJKsRMP_ZZzBadyIHs9Y-WWPHB-ZhSQykaC_Y>
+X-ME-Received: <xmr:Y1zoajwOA6s7FF4D4ME5mAnvXB63QpOPOnI4OgA7jivlh7naB_BhcCZ6_of5Fw4Bh6-8lAw0UIyCvR75ehGD7ah5XsVpRHSgmYgIxpPg>
+X-ME-Proxy-Cause: dmFkZTGhwm6EAprcbYdP8sa8XtDTowugjfQDvhsz4tqWSH8+SrOeo4RegavOpvpVOFaydS
+    YKkhgo1r+B+zJ1hBG6Qt+T4voNHM0OYWpR1Jb+NW+KjpHgLYqrujJR1yy6UuHStG2gHz+m
+    gpnmOiE7FS06xyPh4LS1o/wEhzqRr6PaP3yha9XNihyl1cDbN2PBXiNKWsGHMvfjgpQrMZ
+    tc9YKzaQvmg8v2JHugGfXDHintZqWktTESQQHU1AiLreRL6eiVGEJkw/JvEphnhnt2S7ev
+    +fN9QrHN2hZuABDePE58t/BzCXK4Ttjfubd7WYsXyS6yQ0mhm/QMu7COxpAlFgmiqpSKEQ
+    5Rk/1qj7NJE2BYz9Ey2jlKpWwJPBCkm5bPZrjM46+twUrKiiINCySEt6FYhmnz5AkulDKK
+    w8tHABdzq9gGuFXNfGs67m3hr1+FoOWCPM4PKRUT5+RRnLO6X4fVqmcDgCEmw6rhpEoQlb
+    hCAxTRya+PulVFcce66kAFwzZlmzJ88DkrFNWOWDj7GBJZfzHHjr0fZ7Et+01Sw+Dyr5FY
+    m9OcvweqndWHTbhXhg6qbt1zjCzA9MV2wK/v7oMTFu6oFZL79t1jMW+1LGaLBOwObzTBJX
+    ODGTTLlx+LGNBFL4kKX5cegQOER8YRfbVcp1UmvgpiIOn4/5XGi020RUZwOQ
+X-ME-Proxy: <xmx:Y1zoaiLek9F2nfFj0oVliOe6btpN-xB3o8QE-I5HL9AXOtKqPOV9Yg>
+    <xmx:Y1zoalqz8vu9Kb1PKeohT-zjv1H016-IQCqlSQRqdEcp5lMwHwDd1w>
+    <xmx:Y1zoapJjEjxhBRjiM5CS65MG-vgAR-VY1QXVZcaEgCdhSJ_M5YgC1Q>
+    <xmx:Y1zoaiRO97R4xl_F5JiSv7fVi-vG5Cjv5GzfaoBRm3Uym_y3plp_DA>
+    <xmx:Y1zoamrZtPf5K6fISZEsxC2K5OpwVtW9rLVadgFFayiL87PmKZ-xVzoR>
+Feedback-ID: i51494658:Fastmail
+Received: by mail.messagingengine.com (Postfix) with ESMTPA; Mon,
+ 2 Nov 2026 04:48:18 -0500 (EST)
+From: Paul Barker <paul@pbarker.dev>
+Date: Mon, 02 Nov 2026 09:48:15 +0000
+Subject: [PATCH] contributor-guide: Adopt new AI-Assisted Contribution
+ Policy
 MIME-Version: 1.0
-References: <StmM.1793285611391362979.WYmm@lists.yoctoproject.org>
-In-Reply-To: <StmM.1793285611391362979.WYmm@lists.yoctoproject.org>
-From: Joshua Watt <jpewhacker@gmail.com>
-Date: Thu, 29 Oct 2026 09:17:10 -0600
-X-Gm-Features: AclHuK9BK8ToPVmLD9rr3BoNK8JPLSRFWdvJL8WoN9nDhfD45x0uaJLgmabb6Ao
-Message-ID: <CAJdd5GZJ=81KcSNFzTQ0brAGdQpv+PNS9cxOOmnavdkgSf_A+w@mail.gmail.com>
-Subject: Re: [yocto] create-spdx-3.0: SPDX agent variables (supplier/authors)
- are not part of the SPDX task signatures
-To: yocto@lists.yoctoproject.org, m.webert@devtronic.tech
-Content-Type: multipart/alternative; boundary="00000000000018f4e1065efc2df4"
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+Message-Id: <20261102-ai-policy-v1-1-db2e89267a1e@pbarker.dev>
+X-B4-Tracking: v=1; b=H4sIAF5c6GoC/yXM0QpAMBSA4VfRubbaWUx5FblgzjgS2hAt7264/
+ OrvD+DJMXkokwCODva8zBGYJmCGZu5JcBcNSiqNKJVoWKzLxOYSmFmrctRUaAmxXx1ZPr9XVf/
+ 2ezuS2d4B3PcDawEYzG0AAAA=
+X-Change-ID: 20261102-ai-policy-14ff2516e760
+To: docs@lists.yoctoproject.org
+Cc: yocto@lists.yoctoproject.org, 
+ openembedded-architecture@lists.openembedded.org, 
+ Paul Barker <paul@pbarker.dev>
+X-Mailer: b4 0.16.0
+X-Developer-Signature: v=1; a=openssh-sha256; t=1793612896; l=14829;
+ i=paul@pbarker.dev; s=id_piv_33200296; h=from:subject:message-id;
+ bh=nOPrPhf8xjdVp5m/LY58bkI9sstWCwbDQVqsTVHKr2w=;
+ b=U1NIU0lHAAAAAQAAAGgAAAATZWNkc2Etc2hhMi1uaXN0cDI1NgAAAAhuaXN0cDI1NgAAAEEEQ
+ dOfZ4fCf9WdA7cHWnYqW4P6zifYTwJ18a3l28hvdGt3M0CTKu/FWpwoh+x5E487TvYA9iW0goTM
+ GGtdemFzVgAAAAZwYXRhdHQAAAAAAAAABnNoYTUxMgAAAGQAAAATZWNkc2Etc2hhMi1uaXN0cDI
+ 1NgAAAEkAAAAhALhN1JDXdxJKLway6nyEhwUp+cT6VsGMY0DHZvfT0CLbAAAAIE8Er2sVi0pbUT
+ fCX8J/rfggCzp3/c2Z1w69DJusnx8S
+X-Developer-Key: i=paul@pbarker.dev; a=openssh;
+ fpr=SHA256:IlqExt9TPtGqXrqYg/YPMlsWlOGC6AVubz/PwuYw6KY
 List-Id: <yocto.lists.yoctoproject.org>
-X-Webhook-Received: from 45-33-107-173.ip.linodeusercontent.com [45.33.107.173] by lin-tor-korg-lkml-alma10-1 with HTTPS for <yocto@lists.yoctoproject.org>; Thu, 29 Oct 2026 15:17:27 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/66794
+X-Webhook-Received: from 45-33-107-173.ip.linodeusercontent.com [45.33.107.173] by lin-tor-korg-lkml-alma10-1 with HTTPS for <yocto@lists.yoctoproject.org>; Mon, 02 Nov 2026 09:48:24 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/66795
 
---00000000000018f4e1065efc2df4
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Over the last several months, Open Source projects have seen an increase
+in AI-assisted contributions - with AI being used to generate email
+content, bug reports (including security vulnerability reports) and
+other content as well as code. We've taken our time to let things play
+out a little before updating our policies around this, but now we do
+need to make some changes to ensure that the project remains sustainable
+and our community remains healthy.
 
-On Thu, Oct 29, 2026 at 8:53=E2=80=AFAM m.webert via lists.yoctoproject.org
-<m.webert=3Ddevtronic.tech@lists.yoctoproject.org> wrote:
+In brief, these changes allow AI-generated contributions to the project
+provided that:
 
-> Hi,
->
-> I just worked on customizing the SPDX json output that is created during
-> my build and I wondered why changing the SPDX agent variables is not
-> enough. It seems like those values that end up in the SBOMs are restored
-> from a cache.
->
-> Is this known/done by purpose?
->
+- The LF Generative AI policy is followed.
 
-Partly yes, and no. The Author only changes when the recipe is rebuilt on
-purpose because it's a record of who the author was at the time of the
-build (which, can be different as time progresses). It's also currently not
-(easily) possible to actually detect the changes to the author variable due
-to the way they are constructed. I'm not exactly sure how to make bitbake
-understand the variable structure to add it correctly into the task
-signature; this would need some thought and work.
+- There is a human responsible for the contribution who can engage with
+  the community, as well as understand and explain their contribution.
 
+- Signed-off-by tags are written by humans, not AI tools.
 
->
-> Thanks,
-> Markus
->
-> Some AI created information that might help as well:
-> The agent variables (SPDX_AUTHORS / SPDX_AUTHORS_<name>*,
-> SPDX_IMAGE_SUPPLIER, SPDX_SDK_SUPPLIER_, SPDX_PACKAGE_SUPPLIER_) are read
-> indirectly: oe.sbom30.ObjectSet.new_agent() builds the variable names
-> (<BASE>_name, <BASE>_type, <BASE>id<type>, <BASE>ref) at runtime, so
-> BitBake cannot see them. The SPDX tasks' vardeps only contain
-> SPDX3_VAR_DEPS, which does not include them, and do_create_image_sbom_spd=
-x
-> has no vardeps for SPDX_IMAGE_SUPPLIER either.
->
-> To reproduce (wrynose 636e5d3; master b62d5e6 has the same SPDX3_VAR_DEPS
-> apart from the SPDX_INCLUDE_* additions):
->
-> Build an image with the defaults.
-> Set e.g. SPDX_AUTHORS =3D "example" SPDX_AUTHORS_example_name =3D "Exampl=
-e
-> Ltd" SPDX_AUTHORS_example_type =3D "organization" SPDX_IMAGE_SUPPLIER_ref=
- =3D
-> "SPDX_AUTHORS_example"
-> Rebuild. The per-recipe do_create_*spdx tasks are not re-run, and the
-> image supplier only appears if the image itself is rebuilt for another
-> reason.
-> In our case, the resulting image SBOM contained both Organization agents,
-> "Example Ltd" (new) and "OpenEmbedded" (the default author of per-recipe
-> documents restored from sstate).
->
-> This looks like the same class of problem that aa5b220ca9b9
-> ("create-spdx-3.0: track SPDX_INCLUDE_SOURCES in do_create_spdx's sstate
-> signature") fixed for SPDX_INCLUDE_SOURCES. A fix could add the agent
-> variables to SPDX3_VAR_DEPS and to the vardeps of do_create_image_sbom_sp=
-dx
-> and the SDK SBOM task. Since the SPDX_AUTHORS_<name>_* names are derived
-> from SPDX_AUTHORS, and *_ref can point to other agents, the list probably
-> needs to be computed rather than hard-coded.
->
-> -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
-> Links: You receive all messages sent to this group.
-> View/Reply Online (#66793):
-> https://lists.yoctoproject.org/g/yocto/message/66793
-> Mute This Topic: https://lists.yoctoproject.org/mt/121995284/3616693
-> Group Owner: yocto+owner@lists.yoctoproject.org
-> Unsubscribe: https://lists.yoctoproject.org/g/yocto/unsub [
-> JPEWhacker@gmail.com]
-> -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
->
->
+- Patches against upstream components comply with any relevant upstream
+  policy on AI-generated content.
 
---00000000000018f4e1065efc2df4
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+- AI-generated content is disclosed, either using the `AI-Generated` tag
+  in commit messages or in free-form text in other contributions.
 
-<div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><br></div><br><div class=
-=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">On Thu, Oct 29, 2026=
- at 8:53=E2=80=AFAM m.webert via <a href=3D"http://lists.yoctoproject.org" =
-target=3D"_blank">lists.yoctoproject.org</a> &lt;m.webert=3D<a href=3D"mail=
-to:devtronic.tech@lists.yoctoproject.org" target=3D"_blank">devtronic.tech@=
-lists.yoctoproject.org</a>&gt; wrote:<br></div><blockquote class=3D"gmail_q=
-uote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,2=
-04);padding-left:1ex"><div>Hi,<br><br>I just worked on customizing the SPDX=
- json output that is created during my build and I wondered why changing th=
-e SPDX agent variables is not enough. It seems like those values that end u=
-p in the SBOMs are restored from a cache.</div>
-<div>=C2=A0</div>
-<div>Is this known/done by purpose?<br></div></blockquote><div><br></div><d=
-iv>Partly yes, and no. The Author only=C2=A0changes when the recipe is rebu=
-ilt on purpose because it&#39;s a record of who the author was at the time =
-of the build (which, can be different as time progresses). It&#39;s also cu=
-rrently not (easily) possible to actually detect the changes to the author =
-variable due to the way they are constructed. I&#39;m not exactly sure how =
-to make bitbake understand the variable structure to add it correctly into =
-the task signature; this=C2=A0would need some thought and work.</div><div>=
-=C2=A0</div><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0=
-.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex"><div><br>Than=
-ks,<br>Markus</div>
-<div>=C2=A0</div>
-<div>Some AI created information that might help as well:<br>The agent vari=
-ables (SPDX_AUTHORS / SPDX_AUTHORS_&lt;name&gt;*, SPDX_IMAGE_SUPPLIER, SPDX=
-_SDK_SUPPLIER_, SPDX_PACKAGE_SUPPLIER_) are read indirectly: oe.sbom30.Obje=
-ctSet.new_agent() builds the variable names (&lt;BASE&gt;_name, &lt;BASE&gt=
-;_type, &lt;BASE&gt;id&lt;type&gt;, &lt;BASE&gt;ref) at runtime, so BitBake=
- cannot see them. The SPDX tasks&#39; vardeps only contain SPDX3_VAR_DEPS, =
-which does not include them, and do_create_image_sbom_spdx has no vardeps f=
-or SPDX_IMAGE_SUPPLIER either.<br><br>To reproduce (wrynose 636e5d3; master=
- b62d5e6 has the same SPDX3_VAR_DEPS apart from the SPDX_INCLUDE_* addition=
-s):<br><br>Build an image with the defaults.<br>Set e.g. SPDX_AUTHORS =3D &=
-quot;example&quot; SPDX_AUTHORS_example_name =3D &quot;Example Ltd&quot; SP=
-DX_AUTHORS_example_type =3D &quot;organization&quot; SPDX_IMAGE_SUPPLIER_re=
-f =3D &quot;SPDX_AUTHORS_example&quot;<br>Rebuild. The per-recipe do_create=
-_*spdx tasks are not re-run, and the image supplier only appears if the ima=
-ge itself is rebuilt for another reason.<br>In our case, the resulting imag=
-e SBOM contained both Organization agents, &quot;Example Ltd&quot; (new) an=
-d &quot;OpenEmbedded&quot; (the default author of per-recipe documents rest=
-ored from sstate).<br><br>This looks like the same class of problem that aa=
-5b220ca9b9 (&quot;create-spdx-3.0: track SPDX_INCLUDE_SOURCES in do_create_=
-spdx&#39;s sstate signature&quot;) fixed for SPDX_INCLUDE_SOURCES. A fix co=
-uld add the agent variables to SPDX3_VAR_DEPS and to the vardeps of do_crea=
-te_image_sbom_spdx and the SDK SBOM task. Since the SPDX_AUTHORS_&lt;name&g=
-t;_* names are derived from SPDX_AUTHORS, and *_ref can point to other agen=
-ts, the list probably needs to be computed rather than hard-coded.</div>
-<br>
--=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-<br>
-Links: You receive all messages sent to this group.<br>
-View/Reply Online (#66793): <a href=3D"https://lists.yoctoproject.org/g/yoc=
-to/message/66793" rel=3D"noreferrer" target=3D"_blank">https://lists.yoctop=
-roject.org/g/yocto/message/66793</a><br>
-Mute This Topic: <a href=3D"https://lists.yoctoproject.org/mt/121995284/361=
-6693" rel=3D"noreferrer" target=3D"_blank">https://lists.yoctoproject.org/m=
-t/121995284/3616693</a><br>
-Group Owner: <a href=3D"mailto:yocto%2Bowner@lists.yoctoproject.org" target=
-=3D"_blank">yocto+owner@lists.yoctoproject.org</a><br>
-Unsubscribe: <a href=3D"https://lists.yoctoproject.org/g/yocto/unsub" rel=
-=3D"noreferrer" target=3D"_blank">https://lists.yoctoproject.org/g/yocto/un=
-sub</a> [<a href=3D"mailto:JPEWhacker@gmail.com" target=3D"_blank">JPEWhack=
-er@gmail.com</a>]<br>
--=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-<br>
-<br>
-</blockquote></div></div>
-</div>
+- Submissions are not fully automated (i.e. no submissions from bots or
+  unsupervised agents without prior agreement with the TSC).
 
---00000000000018f4e1065efc2df4--
+- Private or confidential information (including embargoed security
+  reports) are not submitted to untrusted third-party services.
+
+The Yocto Project Technical Steering Committee (TSC) has reviewed and
+approved this updated policy. We will continue to keep this policy under
+review as this is a rapidly evolving area.
+
+Signed-off-by: Paul Barker <paul@pbarker.dev>
+---
+This is a documentation patch, but it has been Cc'd to the yocto@ and
+openembedded-architecture@ mailing lists for wider visibility of the
+proposed policy changes.
+---
+ .../ai-assisted-contribution-policy.rst            | 199 +++++++++++++++++++++
+ documentation/contributor-guide/index.rst          |   1 +
+ documentation/contributor-guide/submit-changes.rst |  50 ------
+ 3 files changed, 200 insertions(+), 50 deletions(-)
+
+diff --git a/documentation/contributor-guide/ai-assisted-contribution-policy.rst b/documentation/contributor-guide/ai-assisted-contribution-policy.rst
+new file mode 100644
+index 000000000000..7b8ee82847e3
+--- /dev/null
++++ b/documentation/contributor-guide/ai-assisted-contribution-policy.rst
+@@ -0,0 +1,199 @@
++.. SPDX-License-Identifier: CC-BY-SA-2.0-UK
++
++AI-Assisted Contribution Policy
++*******************************
++
++Scope
++=====
++
++This policy applies to all contributions to the Yocto Project which
++include non-trivial AI-generated content.
++
++A *contribution* is anything you send to the project, including:
++
++- Patches, commit messages and cover letters
++
++- Review comments, discussions and other mailing list submissions
++
++- Bug reports and comments in Bugzilla
++
++- Security reports sent to the Security Team
++
++- Wiki content
++
++*AI-generated content* is anything produced by a Large Language Model
++(LLM) or other generative AI technology, including output from AI
++assistants, coding agents, etc.
++
++Trivial or incidental inclusion of AI-generated content is outside the
++scope of this policy - a single line copied from AI-assistant output
++into an otherwise human authored document, or autocompletion of a
++function signature in code that is otherwise hand-written, does not rise
++to the level of significance that we are considering here.
++
++This policy does not apply to upstream projects whose software we
++package, including patch files copied verbatim from upstream. It does
++however apply to patches against upstream software which you modify,
++develop or generate as a contributor to the Yocto Project.
++
++General conditions
++==================
++
++**AI-generated contributions to the Yocto Project must comply with the**
++`Linux Foundation Generative AI Policy`_. In particular,
++
++    Code or other content generated in whole or in part using AI tools can
++    be contributed to Linux Foundation projects. However, there are some
++    unique considerations related to AI generated content that developers
++    should factor into their contributions.
++
++    1. Contributors should ensure that the terms and conditions of the
++       generative AI tool do not place any contractual restrictions on how
++       the tool’s output can be used that are inconsistent with the
++       project’s open source software license, the project’s intellectual
++       property policies, or the Open Source Definition.
++
++    2. If any pre-existing copyrighted materials (including pre-existing
++       open source code) authored or owned by third parties are included in
++       the AI tool’s output, prior to contributing such output to the
++       project, the Contributor should confirm that they have have
++       permission from the third party owners–such as the form of an open
++       source license or public domain declaration that complies with the
++       project’s licensing policies–to use and modify such pre-existing
++       materials and contribute them to the project. Additionally, the
++       contributor should provide notice and attribution of such third party
++       rights, along with information about the applicable license terms,
++       with their contribution.
++
++**All existing Yocto Project contribution guidelines are expected to be
++followed**, including the `Code of Conduct`_, the
++:doc:`/contributor-guide/recipe-style-guide` and the documentation on how to
++:ref:`contributor-guide/submit-changes:Implement and commit changes`.
++
++Human responsibility
++====================
++
++The Yocto Project is a collaborative endeavour and our community is as
++valuable as our code base for the long-term health of the project. At a
++fundamental level, we each need to take responsibility for what we
++contribute to the project. For example, this includes ensuring that our
++contributions follow the project’s Code of Conduct. It also includes
++being respectful of the finite bandwidth that we all have for reading,
++reviewing and responding to contributions.
++
++**Patch authors take responsibility for the code they submit to the
++project** - we expect them to understand and be able to explain the
++proposed changes, to be able to engage with review comments and to be
++able to revise and follow up contributions. Similarly, reviewers must be
++able to participate in discussion about their comments.
++
++For bug reports, including security vulnerability reports, contributors
++must be able to substantiate their findings beyond simply taking
++AI-generated output at its word.
++
++**Do not act as a simple proxy between your AI-agent and the Yocto
++Project community**. When engaging with the community you need to do
++more than just copy questions you are asked into an AI-agent chat and
++send us the output. If you are using an AI-agent to assist you then
++read, understand and validate its output and send only relevant
++information rather than complete unedited agent responses.
++
++Signed-off-by tags
++==================
++
++**The Signed-off-by tag must never be added by an AI-agent.** In
++commit messages and patches, this tag indicates acceptance of the
++Developer Certificate of Origin - it confirms your right to submit the
++contribution under the appropriate open source license. It is your
++responsibility to add this tag, either manually or via Git
++configuration, when sending patches.
++
++Patch upstreaming
++=================
++
++**Patches against upstream software components must comply with any
++relevant AI-assisted contribution policies of the upstream project**.
++This enables patches to be submitted upstream and helps us to maintain
++good relationships with upstream projects.
++
++Transparency
++============
++
++**Contributors need to disclose where they have used AI-generated output
++in their submissions to the project**. As stated above, incidental or
++trivial use of AI-generated output within an otherwise human authored
++submission doesn’t require disclosure - but if in doubt, err on the side
++of disclosing the use of AI tools.
++
++The use of generative AI and LLMs in software development is a rapidly
++evolving field. Many questions around this technology are not yet
++settled, including the copyright status of AI-generated content and the
++biases or inclinations of these tools. Within the Yocto Project we need
++to be able to determine which contributions include non-trivial
++AI-generated content and which do not. Experience shows LLM patches have
++different review requirements to human ones. We also need to be able to
++evaluate the impact of AI-generated submissions on the project over
++time.
++
++In patches and commits
++----------------------
++
++**Where AI-generated code is contributed to the project, commit messages
++must include the ``AI-Generated`` tag identifying the AI tool or
++framework and the specific AI model used**. We encourage contributors to
++be as specific as they can be. For example::
++
++    AI-Generated: Claude Code, Opus 5.0
++
++Or::
++
++    AI-Generated: Copilot, GPT-5.5
++
++Note that this policy applies where commit messages are AI-generated as
++well as where the code change itself is AI-generated.
++
++Where a patch is a mix of human authored and AI-generated content, it
++may be helpful to briefly explain which parts are tool generated in
++addition to using the ``AI-Generated`` tag.
++
++In emails, bug reports and security reports
++-------------------------------------------
++
++**Where AI-generated output is used in emails, bug reports or security
++reports, disclosure is also required.** In this case there is not a
++standard or convention to follow, but disclosure must be clear. You may
++wish to use the ``AI-Generated`` tag, or simply include a sentence to
++say that the contribution is AI-generated.
++
++Fully automated contributions
++=============================
++
++**The project will not accept automated contributions which rely
++completely on AI generation without any significant human involvement,
++judgement or review.**
++
++Exceptions to this policy may be considered by the Yocto Project
++Technical Steering Committee (TSC).
++
++Privacy and confidentiality
++===========================
++
++**Avoid sending private or confidential information (including embargoed
++information about security vulnerabilities) as input to AI-assistants
++operated as-a-Service by untrusted third parties.**
++
++Many AI-assistant or agent tools are hosted by a service provider and
++accessed over the internet. Always bear in mind when interacting with
++such an AI-assistant that you are communicating with a third-party
++organisation who may have access to the full history of your
++interactions with the tool.
++
++Enforcement
++===========
++
++Violations of this policy may result in contributions being rejected or
++deleted as appropriate. Repeated violations will be dealt with through
++the project’s `Code of Conduct`_ policy.
++
++.. _Linux Foundation Generative AI Policy: https://www.linuxfoundation.org/legal/generative-ai
++.. _Code of Conduct: https://www.yoctoproject.org/code-of-conduct
+diff --git a/documentation/contributor-guide/index.rst b/documentation/contributor-guide/index.rst
+index b374cc1c43ec..8b611787be0b 100644
+--- a/documentation/contributor-guide/index.rst
++++ b/documentation/contributor-guide/index.rst
+@@ -22,5 +22,6 @@ this.
+    report-defect
+    recipe-style-guide
+    submit-changes
++   ai-assisted-contribution-policy
+ 
+ .. include:: /boilerplate.rst
+diff --git a/documentation/contributor-guide/submit-changes.rst b/documentation/contributor-guide/submit-changes.rst
+index 589545074907..56e4250430fe 100644
+--- a/documentation/contributor-guide/submit-changes.rst
++++ b/documentation/contributor-guide/submit-changes.rst
+@@ -848,53 +848,3 @@ branches in both the "openembedded-core" and "meta-yocto" repositories.
+ Other layers may have similar testing branches but there is no formal
+ requirement or standard for these so please check the documentation for the
+ layers you are contributing to.
+-
+-Acceptance of AI Generated Code
+-===============================
+-
+-The Yocto Project and OpenEmbedded follow the guidance of the Linux Foundation
+-in regards to the use of generative AI tools. See:
+-https://www.linuxfoundation.org/legal/generative-ai.
+-
+-All of the existing guidelines in this document are expected to be followed,
+-including in the :doc:`/contributor-guide/recipe-style-guide`, and contributing the changes with
+-additional requirements to the items in section
+-:ref:`contributor-guide/submit-changes:Implement and commit changes`.
+-
+-All AI Generated Code must be labeled as such in the commit message,
+-prior to your ``Signed-off-by`` line. It is also strongly recommended,
+-that any patches or code within the commit also have a comment or other
+-indication that this code was AI generated.
+-
+-For example, here is a properly formatted commit message::
+-
+-   component: Add the ability to ...
+-
+-   AI-Generated: Uses GitHub Copilot
+-
+-   Signed-off-by: Your Name <your.name@domain>
+-
+-The ``Signed-off-by`` line must be written by you, and not the AI helper.
+-As a reminder, when contributing a change, your ``Signed-off-by`` line is
+-required and the stipulations in the `Developer's Statement of Origin
+-1.1 <https://developercertificate.org/>`__ still apply.
+-
+-Additionally, you must stipulate AI contributions conform to the Linux
+-Foundation policy, specifically:
+-
+-#. Contributors should ensure that the terms and conditions of the generative AI
+-   tool do not place any contractual restrictions on how the tool's output can
+-   be used that are inconsistent with the project's open source software
+-   license, the project's intellectual property policies, or the Open Source
+-   Definition.
+-
+-#. If any pre-existing copyrighted materials (including pre-existing open
+-   source code) authored or owned by third parties are included in the AI tool's
+-   output, prior to contributing such output to the project, the Contributor
+-   should confirm that they have permission from the third party
+-   owners -- such as the form of an open source license or public domain
+-   declaration that complies with the project's licensing policies -- to use and
+-   modify such pre-existing materials and contribute them to the project.
+-   Additionally, the contributor should provide notice and attribution of such
+-   third party rights, along with information about the applicable license
+-   terms, with their contribution.
+
+---
+base-commit: 7b54854d12f3f2c909727702d39066a3d22a4a40
+change-id: 20261102-ai-policy-14ff2516e760
+
+Best regards,
+--  
+Paul Barker
+
