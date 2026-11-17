@@ -1,134 +1,93 @@
-Received: from mail-vs1-f50.google.com (mail-vs1-f50.google.com [209.85.217.50])
- by mx.groups.io with SMTP id smtpd.msgproc01-g2.22746.1794811006417344669
+Received: from mail-yw1-f182.google.com (mail-yw1-f182.google.com [209.85.128.182])
+ by mx.groups.io with SMTP id smtpd.msgproc01-g2.14165.1794907728750671505
  for <yocto@lists.yoctoproject.org>;
- Sun, 15 Nov 2026 22:36:46 -0800
+ Tue, 17 Nov 2026 01:28:49 -0800
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@sifive.com header.s=google header.b=aTDUP++o;
- spf=pass (domain: sifive.com, ip: 209.85.217.50, mailfrom: nylon.chen@sifive.com)
-Received: by mail-vs1-f50.google.com with SMTP id ada2fe7eead31-7d2e1abf3eeso3736466137.1
-        for <yocto@lists.yoctoproject.org>; Sun, 15 Nov 2026 22:36:46 -0800 (PST)
-ARC-Seal: i=1; a=rsa-sha256; t=1794811005; cv=none;
+ dkim=pass header.i=@theyoctojester-info.20260707.gappssmtp.com header.s=20260707 header.b=odt8GGhc;
+ spf=neutral (domain: theyoctojester.info, ip: 209.85.128.182, mailfrom: jester@theyoctojester.info)
+Received: by mail-yw1-f182.google.com with SMTP id 00721157ae682-8b10d24345dso40852397b3.3
+        for <yocto@lists.yoctoproject.org>; Tue, 17 Nov 2026 01:28:48 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; t=1794907727; cv=none;
         d=google.com; s=arc-20260327;
-        b=NZXUC+MM+DceZOm8+usmjVvXCO1EmMk7AJijAgv7GsYIGkoChshVkzvPdExGZPwks8
-         J+MRLkApTUbY1lbwcEYK/TKOLZhwnm87lt2HvuCNPJNwecfrbwC3z7HwXMzVeRe1UYGI
-         g30IvvnVVSQBHdt4xxPZZrpeLYMHQKCq8tdMdGhnLjKkOUun3PBacQ/a14APdAu/LV47
-         GlYrwh0sKMQNeXurQ5ViEkO+vWgUKGVsJP9U7M5mOc8bTQ4eyI3R7mNlUNeebsqTVuCm
-         BLyB4mSqb+aifpvMv774UkOctInd7iIsfWbfolgfCqNX524sskNEeYKAUBHGTGSB86d9
-         +9Wg==
+        b=pKvJsrvwhGsABDukIxXZlGAd/3RGQzAdU/jGP5wFXPjV07HBz7wv3eVwG/BUKWw1R/
+         /m1qxil3YfN0N89ChXDT5ei1GNmsmL5Sg++1EicoRqdLykayp/McPpN2+CHw/isGyMxY
+         XOeRbMpw2yjeKtQEqEwHS9LUlBZDfg6dO7GMRgLpF1T+gxXPPybznt5MdRkCOxVt6TJ8
+         yjJve/JVHnc8JiX4PweEWAdbSTSUzKLVLpfvIoxOBsHoApBPRC/vWZZumgG+4OMNRvOY
+         MKy3isnjFP870T9NHwoyCsC0qRJ62BooqCpZfhqAN04u0eBQJrzS06ndEOdx/wyid87j
+         VJNA==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20260327;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:dkim-signature;
-        bh=ZKB4xyV84cWJjpN64KPUy7rUSyg4U0ADKuHauPrHYoE=;
-        fh=dc/Sq0KReHTEWnmuq8ujukJBAYRMoaDbv4e1ncjx7/c=;
-        b=hdkxY5ftoIYDa/MDMZlk1z+hhXwNe27TFuieNfmGufJXkkEz+LzFRd1v0qHmNoaypM
-         eNMm/2S1nWjKTbyvffiYaf6NFZdJ/CrjFP7Sx6uZUTC9Kyk/fToOCDASgRQg0wv2eCfP
-         GUt6vSxcHdW2r0JQQQlCMZ6CMqDAKPOKM3CqC93fJnpX903OxqZ+mu0Wg2NGpTXPiWcH
-         aQRzKyQ4gYefTWSP06ckFIEPlBLSJ9WDLHdxaMDFYW1KO5GmXRE5swTfDRZl+cMA33tD
-         6ZDbnBPFCfO2UAscpJ/rzlvDCEkZ0U2HyBrZD2N/ldnJfaMqDXAze0NPmoeYJQI2yaX7
-         Q3GQ==;
+        h=to:subject:message-id:date:from:mime-version:dkim-signature;
+        bh=7zGHJge/+/jVxb6TNIn8p4XO+EYoA7MCp//QCyrMLbw=;
+        fh=4zghGehrW/MEnLOGdoIJXaNjy242Q2HZ4pxd0y64fPE=;
+        b=jokd6vygM8CrK/gAzdwQhe1wtB5dqrvaVLQHpZ3vFbMTOGVdfxRi+7j+YAl4Ib3fqq
+         f/9/c2BnbAYfFrJjHwKVy2JrwSp7wBMq7TNazE6PBnRqrlKa36eJlGCyBdeOBL7KUVeS
+         KdMUpzk21es7heJ5nK7sZKcx8lbx5lp8wMh9YHcscgt98opSovALIFTQbyuNELiy08GK
+         8KlNgn+P3QqO5uSOOIm8Drc/04pL5SSSkQyK1lhim92PzeFBNpRxjepHsc56rvBAK/LP
+         SUVbDxtnTE8r1ZN0Od+14iqvbRDng6AMdIJhLkwweaPVn8488giX0nokDRsGe0EUPvwX
+         u2pQ==;
         darn=lists.yoctoproject.org
 ARC-Authentication-Results: i=1; mx.google.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=sifive.com; s=google; t=1794811005; x=1795415805; darn=lists.yoctoproject.org;
-        h=content-transfer-encoding:content-type:cc:to:subject:message-id
-         :date:from:in-reply-to:references:mime-version:from:to:cc:subject
-         :date:message-id:reply-to:content-type;
-        bh=ZKB4xyV84cWJjpN64KPUy7rUSyg4U0ADKuHauPrHYoE=;
-        b=aTDUP++o9Oos0X4cMQRShTG/ubw5diznjWc2r24Zk+4DHiTODiZXFvwcJGbDjqoA3m
-         Q398vMGdmdX5eCd31w+O4Vv8Sg8mQi84zYfoPL9PPc6o2i/8mTolK97N/N5UFEoIanfI
-         XmR1IX1uphel+5taHTFV40mgRYni8s3FacvWcVlLyBkpqAyHS85xov+wGS8uXtjeqiF5
-         fn5uc0ch7P3rtCiKlcqLeYGVAf5AJ9sVVJSbOSIKaRuN1ngsVNqDXhEmZzKdLKzhn1Tu
-         p8tTrN+L/TIseH+6cNKNAEVd1PBOMa5PDXk9fe3V7PQBUVuEdm8b0sg5dnp3Pie5b2uc
-         VSow==
+        d=theyoctojester-info.20260707.gappssmtp.com; s=20260707; t=1794907727; x=1795512527; darn=lists.yoctoproject.org;
+        h=content-type:to:subject:message-id:date:from:mime-version:from:to
+         :cc:subject:date:message-id:reply-to:content-type;
+        bh=7zGHJge/+/jVxb6TNIn8p4XO+EYoA7MCp//QCyrMLbw=;
+        b=odt8GGhcbV+A6UfSYVcflEtgOX+vPgnq/tXbvijKhk0JHcD/1o5uxlUqX/62nzyExu
+         kREo1/hiZLOWSDHTBjCB8ricld6ScoZYGURpEepnlSFjUECK7RBuEhXyPGpX47JFCbXX
+         PSneJFnDK8wC7TOTp9D0bS/UG5XoZxV8FHc6m5lupwret4CF+hHSaSmR/hglY7+4z2+N
+         Wn2Je01xiHeoUyr7N02aNNEfmj2V/ha7S+murhbAMR91s25awIYw8Oj07m6oAOj1l3sC
+         lr+DSFqNtKZsl/dcCE6dLpwaPKjigWc7XQ5sXhhI7bByDMMxyg14JK+M3Nnd6gGcAIis
+         9MPw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20260707; t=1794811005; x=1795415805;
-        h=content-transfer-encoding:content-type:cc:to:subject:message-id
-         :date:from:in-reply-to:references:mime-version:x-gm-gg
+        d=1e100.net; s=20260707; t=1794907727; x=1795512527;
+        h=content-type:to:subject:message-id:date:from:mime-version:x-gm-gg
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
          :content-type;
-        bh=ZKB4xyV84cWJjpN64KPUy7rUSyg4U0ADKuHauPrHYoE=;
-        b=nfeZA8fBCSxjntRQUBAVrE0jY1RZsyQ4qqpbw+xWRXP7ZKW+Bq2CoTY1OLKYZReZvj
-         s0nyko2vSLhjZcGLcpnOn4rvt8Oe1Vyo8KHK/0A7BZWAE05oaRD4CARFzOR28OK90Low
-         KUJ77N/xIjCG8LDxDp3YQ7HOqwCvGAVG9DpFfm3HV06LX5U6ty01D5uqeJoz9BKliQsL
-         T12K/V/SeLiFppf5bBu7y/+Tx1Q6gTQLx7mzjBt4x81nBVd3nnPrFEYsPgf2KZfZpDk/
-         Zs/GB/4q53R64QaIMPA/ZGgnMfyLE8w9pb5VdBPnIJ/zdrHz9kDV6fzpo4NtfWLvqSLQ
-         EkKg==
-X-Gm-Message-State: APuU4Z/ZWVa9rXOEttY/7jzlQpudDqNkH6o5vvDTxQCQK7vzKm45bYQ/
-	HAMlnwOXfb6necD5CKwTUP+4VoDueOWa6pks01JHdvujKNwLWtuCRhUZxSxDk5PZyflaG/rcx0l
-	e+nyf/kBTfozHWg3xQUoTSe0dXy3nt+k8WWfdkkzeZg==
-X-Gm-Gg: AYBFou1IkpurVu+7T96VQOiA5rCgUlFLfGVMDMonsTqk7QPfK+F12OCqmgqVQttZroJ
-	dhVCTBi6Z6DZF8J3yeuwe9SaT7uE5I4rBwdp9hQhqkFzZtMribV67lbKjDeQCgnAYcPOUlkwZNf
-	IIxtcGPlyJMLypprdBU4mLPCIq0wzqeKeFQNdUALD8tgq1SyXGfyLiENScevQ9zrY/e+fBXlJRX
-	YotKsEuSsmEtE5aoh1BgJovObTlwPrIdnKYT5G5scSIbHYEEMzMo1uvIEdEOjGSVkaXJrqqHRnB
-	y8F6OBo07xL0xfsH5smsz88VAUv2eS/UfsR1aBLIkfTVKB+3v9V9qlslwn5Ceqz3C6u5InNfuEw
-	bVGLYYCiPbFzcLxW7cU8FJQ8rCAhJK15nO3XqPrH1
-X-Received: by 2002:a05:6102:4457:b0:7d2:d209:7af8 with SMTP id
- ada2fe7eead31-7d63178e144mr2397092137.19.1794811005214; Sun, 15 Nov 2026
- 22:36:45 -0800 (PST)
+        bh=7zGHJge/+/jVxb6TNIn8p4XO+EYoA7MCp//QCyrMLbw=;
+        b=GXcsGhlvQZ8fNNhlMDcz8G0tOeQzt4kjI69pIbmuIPsksZldb1r/XuMhEEQZDOXIE5
+         ZIcGPp/Si62vCIrOmCAFC8lAVhxznNy+3UsSR4XGavNuZpcjJ0h5gMKB9NJTXOG/OiJU
+         iCSTrlaNvNlOHitMjjGhCAqULizDJrR+wZLW87LRKr+TQgi0hds4BP1Gnrq4YIcPvlWR
+         zNf0e1fVV6M6VHyJubsws6Lzduzq2/ek/RZgnhP8qDNSfom7Orwph3wY2p/+jBZyGiRB
+         Q8y3ArYCjMG5y/WT7BKBR8q7PfubL+AO/ErsxjGYYM1L2PiYgCGvXUlGDNBUDIertdAb
+         avzg==
+X-Forwarded-Encrypted: i=1; AL+hErFzOSpSPi+lGW/cL3db308Gp9achPysh62G86GsIERCG8WQ0FOPTf3f5iD6YB4fVMscU9DwJQ==@lists.yoctoproject.org
+X-Gm-Message-State: APuU4Z/kTe50AMpZDuITp0rEBsfn6rZc1/aLZSUP186PYjP/XT3MflS2
+	iVFa+prvblG969aOH6/N0DZeGetZ4IhY7Ko2Mqt5fF097aFeAIXqzlNMHO83zOnVElRzEoceqIS
+	rlGcVqs0bcESqAsUpR/49dvR0LTYdZNbAdQDJPSv2dA==
+X-Gm-Gg: AZFdTZeUI0pnjwoPvEMvCCWydrFx8cVPre3hHQPLApbN18iv8vE8w3iv0/uFO4cfldF
+	mVFB+5svllYTQqB0eNkbYGjPoEE1B1w/TeFv4j6J3HelDaNzt3f0bxXa0AYm6PCzBa3ZhVQ/xK8
+	2tNME/lFjCy1uAlI1Ke31fXQ77HScdVsQvK3xWPCggvr44nMl5iEv5H9xC4p4jHbRIv78+9MD2q
+	kex1PXUeLoiabVYgydo3Az9wRra295qCi/ZTzHIfbnX/5GYcV6o3DemgzxX7XC4RnMvhuFLu8Ia
+	V0ssC4A/BU+6F7XrIJkIAGtoICykBUo0k+4J83MqFJip1moP4BLliflVCs/PuRhKqtCLBDW3EnZ
+	aSk8M107g75MwizwYRqk6494mAdv2jJtieSJ6DLjXEBr43gPNtw+UtKIHNcC8lq8+CPiM3tUH1m
+	qUW4f5eGRKxgMOiaoLvJ+wNTga+BOp6ltbnBbsQgjbDA==
+X-Received: by 2002:a05:690c:f03:b0:8b0:bc6c:9229 with SMTP id
+ 00721157ae682-8b4aa2e33c0mr84636287b3.27.1794907727496; Tue, 17 Nov 2026
+ 01:28:47 -0800 (PST)
 MIME-Version: 1.0
-References: <84f4a7735a6ba8af9dfd8d314c71ed02cf4ee7a5.camel@bootlin.com>
-In-Reply-To: <84f4a7735a6ba8af9dfd8d314c71ed02cf4ee7a5.camel@bootlin.com>
-From: Nylon Chen <nylon.chen@sifive.com>
-Date: Mon, 16 Nov 2026 14:36:34 +0800
-X-Gm-Features: Aa3M54pu_q2LXZrm7namNc91RHGHQGLADxg4f_rQSVu8TJNChdgzYMPRg8gZ6PA
-Message-ID: <CAHh=Yk8qv8RTdfhoRuyE_pSDSUpqm-KpPnsshgfHNfjGgms=aA@mail.gmail.com>
-Subject: Re: [RFC] Moving OP-TEE support from meta-arm to oe-core
-To: Thomas Perrot <thomas.perrot@bootlin.com>
-Cc: yocto@lists.yoctoproject.org, meta-arm@lists.yoctoproject.org, 
-	peter.lin@sifive.com, Thomas Petazzoni <thomas.petazzoni@bootlin.com>, 
-	Michelangelo De Simone <michelangelo.desimone@sifive.com>, Zong Li <zong.li@sifive.com>, 
-	Greentime Hu <greentime.hu@sifive.com>
+From: Josef Holzmayr <jester@theyoctojester.info>
+Date: Tue, 17 Nov 2026 10:28:21 +0100
+X-Gm-Features: AclHuK_RWciqAMZ5aWmBm-5DFBFJHFzzw7jqQk-UCGMm5KHZEAGdLt5dnKHPr6c
+Message-ID: <CAEt6NwrXK7Zcz=Ljc7VS4U0Qu+yfTb33SDpjUn-GA62CDgP0pA@mail.gmail.com>
+Subject: YPS 2026.12 - schedule and registration
+To: Josef Holzmayr <jester@theyoctojester.info>
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Bcc: yocto@lists.yoctoproject.org
 List-Id: <yocto.lists.yoctoproject.org>
-X-Webhook-Received: from 45-33-107-173.ip.linodeusercontent.com [45.33.107.173] by lin-tor-korg-lkml-alma10-1 with HTTPS for <yocto@lists.yoctoproject.org>; Mon, 16 Nov 2026 06:36:51 -0000
-X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/66802
+X-Webhook-Received: from 45-33-107-173.ip.linodeusercontent.com [45.33.107.173] by lin-tor-korg-lkml-alma10-1 with HTTPS for <yocto@lists.yoctoproject.org>; Tue, 17 Nov 2026 09:28:51 -0000
+X-Groupsio-URL: https://lists.yoctoproject.org/g/yocto/message/66803
 
-Hi Thomas,
+Hear me, hear me!
 
-I would like to follow up on this RFC. Could you share if there has
-been any recent progress or updates on moving OP-TEE support to
-oe-core?
+The schedule for YPS 2026.12 is almost finished, and we've got the
+good, the bad, the ugly... I mean, the good, the better and the best
+things lined up for you. Check it out at
+https://pretalx.com/yocto-project-summit-2026-12/schedule/
 
-If there hasn't been much movement lately and no one is currently
-working on it, I would be happy to take over and continue driving this
-effort forward. Please let me know if that works for you or if there
-is anything I can help with.
+And then, hurry up, head over to
+https://register.linuxfoundation.org/yocto-project-virtual-summit-2026-12
+to grab your seat! No change since years, still only 40$ for a
+whopping 3-day program.
 
-Best regards,
-Nylon Chen
-
-Thomas Perrot <thomas.perrot@bootlin.com> =E6=96=BC 2026=E5=B9=B43=E6=9C=88=
-3=E6=97=A5=E9=80=B1=E4=BA=8C =E4=B8=8B=E5=8D=8810:31=E5=AF=AB=E9=81=93=EF=
-=BC=9A
->
-> Hello,
->
-> I'm following up on the RFC I sent in January [1] about moving OP-TEE
-> support from meta-arm to oe-core.
->
-> Thank you to everyone who participated in the discussion, Ross, Khem,
-> Sumit, Rahul and John.
->
-> OP-TEE is being adopted on RISC-V (non-ARM) platforms, and having it in
-> oe-core would avoid duplication and fragmentation across layers,
-> consolidate generic parts, and make it accessible without a dependency
-> on the ARM BSP layer. This follows the same model as U-Boot, which was
-> seen as a valid precedent.
->
-> Please let us know if you have any remaining concerns or objections,
-> then to move forward and maybe prepare a first patch series adding OP-
-> TEE recipes to oe-core with support for qemuarm64 and qemuriscv64 as a
-> first step.
->
-> Kind Regards,
-> Thomas Perrot
->
-> [1]
-> https://lore.kernel.org/all/39d5c5061d0c220d37a302b5669df66d04ca41c0.came=
-l@bootlin.com/
->
-> --
-> Thomas Perrot, Bootlin
-> Embedded Linux and kernel engineering
-> https://bootlin.com
+See you there!
+Josef
